@@ -2,40 +2,31 @@ package main
 
 import (
 	"fmt"
-	. "vela-go-sdk/apis/component/cron-task"
+	. "vela-go-sdk/apis/component/webservice"
+	. "vela-go-sdk/apis/trait/resource"
 	"vela-go-sdk/app"
-	. "vela-go-sdk/component"
-	. "vela-go-sdk/trait"
 )
 
 func main() {
 	// Build application with components and traits
+
 	application := app.New().
 		WithComponent(
-			Webservice("backend").
-				Image("nginx:latest").
-				Traits(Resource().CPU(1.0)),
-		).
-		WithComponent(
-			Webservice("frontend").
-				Traits(
-					Resource().Requests(Requests{CPU: 1.0, Memory: "1Gi"}),
-				).
-				DependsOn([]string{"backend"}),
+			Webservice("nginx").
+				Cmd([]string{"nginx", "-g", "daemon off;"}).
+				Cpu("100m").
+				Memory("128Mi"),
 		)
 
 	// Create component and add traits.
 	ws := Webservice("example").
 		Image("nginx")
 
-	ws.Traits(
-		// Resource().CPU(1.0),
-		Resource().Requests(Requests{CPU: 1.0, Memory: "1Gi"}),
+	ws.AddTrait(
+		Resource().Cpu(0.1).Memory("128Mi"),
 	)
 	application = app.New().WithComponent(ws)
 
 	fmt.Println(application)
 
-	NewCronTaskSpec()
-	app2 := app.New().WithComponent()
 }
