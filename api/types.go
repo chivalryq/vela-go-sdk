@@ -10,7 +10,6 @@ type Application interface {
 }
 
 type Component interface {
-	Name() string
 	Build() common.ApplicationComponent
 }
 
@@ -29,3 +28,7 @@ type ComponentBase struct {
 	Outputs   common.StepOutputs
 	Traits    []Trait
 }
+
+type TraitBase struct{}
+
+type WorkflowStepBase struct{}

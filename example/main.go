@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	. "vela-go-sdk/apis/component/cron-task"
 	"vela-go-sdk/app"
 	. "vela-go-sdk/component"
 	. "vela-go-sdk/trait"
@@ -34,4 +35,7 @@ func main() {
 	application = app.New().WithComponent(ws)
 
 	fmt.Println(application)
+
+	NewCronTaskSpec()
+	app2 := app.New().WithComponent()
 }
