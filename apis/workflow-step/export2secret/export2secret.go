@@ -110,7 +110,7 @@ func (o *Export2secretWorkflowStep) GetDataOk() (map[string]interface{}, bool) {
 }
 
 // Data sets field value
-func (o *Export2secretWorkflowStep) Data(v map[string]interface{}) *Export2secretSpec {
+func (o *Export2secretWorkflowStep) Data(v map[string]interface{}) *Export2secretWorkflowStep {
 	o.Properties.data = v
 	return o
 }

@@ -27,11 +27,11 @@ type ApplyTerraformConfigSpecSourceOneOf1 struct {
 	remote string `json:"remote"`
 }
 
-// ApplyTerraformConfigSpecSourceOneOf1With instantiates a new ApplyTerraformConfigSpecSourceOneOf1 object
+// NewApplyTerraformConfigSpecSourceOneOf1With instantiates a new ApplyTerraformConfigSpecSourceOneOf1 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func ApplyTerraformConfigSpecSourceOneOf1With(remote string) *ApplyTerraformConfigSpecSourceOneOf1 {
+func NewApplyTerraformConfigSpecSourceOneOf1With(remote string) *ApplyTerraformConfigSpecSourceOneOf1 {
 	this := ApplyTerraformConfigSpecSourceOneOf1{}
 	this.remote = remote
 	return &this
@@ -74,9 +74,8 @@ func (o *ApplyTerraformConfigSpecSourceOneOf1) HasPath() bool {
 	return false
 }
 
-// SetPath gets a reference to the given string and assigns it to the path field.
+// Path gets a reference to the given string and assigns it to the path field.
 // path:  specify the path of the terraform configuration
-
 func (o *ApplyTerraformConfigSpecSourceOneOf1) Path(v string) *ApplyTerraformConfigSpecSourceOneOf1 {
 	o.path = &v
 	return o

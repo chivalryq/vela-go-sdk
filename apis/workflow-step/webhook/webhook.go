@@ -77,7 +77,7 @@ func (o *WebhookWorkflowStep) HasData() bool {
 
 // Data gets a reference to the given map[string]interface{} and assigns it to the data field.
 // data:  Specify the data you want to send
-func (o *WebhookWorkflowStep) Data(v map[string]interface{}) *WebhookSpec {
+func (o *WebhookWorkflowStep) Data(v map[string]interface{}) *WebhookWorkflowStep {
 	o.Properties.data = v
 	return o
 }

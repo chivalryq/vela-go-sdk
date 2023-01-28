@@ -25,11 +25,11 @@ type ApplyTerraformConfigSpecWriteConnectionSecretToRef struct {
 	namespace string `json:"namespace"`
 }
 
-// ApplyTerraformConfigSpecWriteConnectionSecretToRefWith instantiates a new ApplyTerraformConfigSpecWriteConnectionSecretToRef object
+// NewApplyTerraformConfigSpecWriteConnectionSecretToRefWith instantiates a new ApplyTerraformConfigSpecWriteConnectionSecretToRef object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func ApplyTerraformConfigSpecWriteConnectionSecretToRefWith(name string, namespace string) *ApplyTerraformConfigSpecWriteConnectionSecretToRef {
+func NewApplyTerraformConfigSpecWriteConnectionSecretToRefWith(name string, namespace string) *ApplyTerraformConfigSpecWriteConnectionSecretToRef {
 	this := ApplyTerraformConfigSpecWriteConnectionSecretToRef{}
 	this.name = name
 	this.namespace = namespace

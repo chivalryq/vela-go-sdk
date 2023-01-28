@@ -25,14 +25,14 @@ var _ utils.MappedNullable = &TopologyspreadconstraintsSpec{}
 
 // TopologyspreadconstraintsSpec struct for TopologyspreadconstraintsSpec
 type TopologyspreadconstraintsSpec struct {
-	constraints []Constraints `json:"constraints"`
+	constraints []TopologyspreadconstraintsSpecConstraints `json:"constraints"`
 }
 
 // NewTopologyspreadconstraintsSpecWith instantiates a new TopologyspreadconstraintsSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTopologyspreadconstraintsSpecWith(constraints []Constraints) *TopologyspreadconstraintsSpec {
+func NewTopologyspreadconstraintsSpecWith(constraints []TopologyspreadconstraintsSpecConstraints) *TopologyspreadconstraintsSpec {
 	this := TopologyspreadconstraintsSpec{}
 	this.constraints = constraints
 	return &this
@@ -47,9 +47,9 @@ func NewTopologyspreadconstraintsSpec() *TopologyspreadconstraintsSpec {
 }
 
 // GetConstraints returns the Constraints field value
-func (o *TopologyspreadconstraintsTrait) GetConstraints() []Constraints {
+func (o *TopologyspreadconstraintsTrait) GetConstraints() []TopologyspreadconstraintsSpecConstraints {
 	if o == nil {
-		var ret []Constraints
+		var ret []TopologyspreadconstraintsSpecConstraints
 		return ret
 	}
 
@@ -58,7 +58,7 @@ func (o *TopologyspreadconstraintsTrait) GetConstraints() []Constraints {
 
 // GetConstraintsOk returns a tuple with the Constraints field value
 // and a boolean to check if the value has been set.
-func (o *TopologyspreadconstraintsTrait) GetConstraintsOk() ([]Constraints, bool) {
+func (o *TopologyspreadconstraintsTrait) GetConstraintsOk() ([]TopologyspreadconstraintsSpecConstraints, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *TopologyspreadconstraintsTrait) GetConstraintsOk() ([]Constraints, bool
 }
 
 // Constraints sets field value
-func (o *TopologyspreadconstraintsTrait) Constraints(v []Constraints) *TopologyspreadconstraintsTrait {
+func (o *TopologyspreadconstraintsTrait) Constraints(v []TopologyspreadconstraintsSpecConstraints) *TopologyspreadconstraintsTrait {
 	o.Properties.constraints = v
 	return o
 }

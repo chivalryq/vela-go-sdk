@@ -29,21 +29,21 @@ type ApplyTerraformConfigSpec struct {
 	deleteResource bool `json:"deleteResource"`
 	forceDelete    bool `json:"forceDelete"`
 	// the envs for job
-	jobEnv      map[string]interface{} `json:"jobEnv,omitempty"`
-	providerRef *ProviderRef           `json:"providerRef,omitempty"`
+	jobEnv      map[string]interface{}               `json:"jobEnv,omitempty"`
+	providerRef *ApplyTerraformConfigSpecProviderRef `json:"providerRef,omitempty"`
 	// region is cloud provider's region. It will override the region in the region field of providerRef
-	region *string `json:"region,omitempty"`
-	source Source  `json:"source"`
+	region *string                        `json:"region,omitempty"`
+	source ApplyTerraformConfigSpecSource `json:"source"`
 	// the variable in the configuration
-	variable                   map[string]interface{}      `json:"variable"`
-	writeConnectionSecretToRef *WriteConnectionSecretToRef `json:"writeConnectionSecretToRef,omitempty"`
+	variable                   map[string]interface{}                              `json:"variable"`
+	writeConnectionSecretToRef *ApplyTerraformConfigSpecWriteConnectionSecretToRef `json:"writeConnectionSecretToRef,omitempty"`
 }
 
 // NewApplyTerraformConfigSpecWith instantiates a new ApplyTerraformConfigSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApplyTerraformConfigSpecWith(deleteResource bool, forceDelete bool, source Source, variable map[string]interface{}) *ApplyTerraformConfigSpec {
+func NewApplyTerraformConfigSpecWith(deleteResource bool, forceDelete bool, source ApplyTerraformConfigSpecSource, variable map[string]interface{}) *ApplyTerraformConfigSpec {
 	this := ApplyTerraformConfigSpec{}
 	this.deleteResource = deleteResource
 	this.forceDelete = forceDelete
@@ -143,15 +143,15 @@ func (o *ApplyTerraformConfigWorkflowStep) HasJobEnv() bool {
 
 // JobEnv gets a reference to the given map[string]interface{} and assigns it to the jobEnv field.
 // jobEnv:  the envs for job
-func (o *ApplyTerraformConfigWorkflowStep) JobEnv(v map[string]interface{}) *ApplyTerraformConfigSpec {
+func (o *ApplyTerraformConfigWorkflowStep) JobEnv(v map[string]interface{}) *ApplyTerraformConfigWorkflowStep {
 	o.Properties.jobEnv = v
 	return o
 }
 
 // GetProviderRef returns the ProviderRef field value if set, zero value otherwise.
-func (o *ApplyTerraformConfigWorkflowStep) GetProviderRef() ProviderRef {
+func (o *ApplyTerraformConfigWorkflowStep) GetProviderRef() ApplyTerraformConfigSpecProviderRef {
 	if o == nil || utils.IsNil(o.Properties.providerRef) {
-		var ret ProviderRef
+		var ret ApplyTerraformConfigSpecProviderRef
 		return ret
 	}
 	return *o.Properties.providerRef
@@ -159,7 +159,7 @@ func (o *ApplyTerraformConfigWorkflowStep) GetProviderRef() ProviderRef {
 
 // GetProviderRefOk returns a tuple with the ProviderRef field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplyTerraformConfigWorkflowStep) GetProviderRefOk() (*ProviderRef, bool) {
+func (o *ApplyTerraformConfigWorkflowStep) GetProviderRefOk() (*ApplyTerraformConfigSpecProviderRef, bool) {
 	if o == nil || utils.IsNil(o.Properties.providerRef) {
 		return nil, false
 	}
@@ -175,9 +175,9 @@ func (o *ApplyTerraformConfigWorkflowStep) HasProviderRef() bool {
 	return false
 }
 
-// ProviderRef gets a reference to the given ProviderRef and assigns it to the providerRef field.
+// ProviderRef gets a reference to the given ApplyTerraformConfigSpecProviderRef and assigns it to the providerRef field.
 // providerRef:
-func (o *ApplyTerraformConfigWorkflowStep) ProviderRef(v ProviderRef) *ApplyTerraformConfigWorkflowStep {
+func (o *ApplyTerraformConfigWorkflowStep) ProviderRef(v ApplyTerraformConfigSpecProviderRef) *ApplyTerraformConfigWorkflowStep {
 	o.Properties.providerRef = &v
 	return o
 }
@@ -217,9 +217,9 @@ func (o *ApplyTerraformConfigWorkflowStep) Region(v string) *ApplyTerraformConfi
 }
 
 // GetSource returns the Source field value
-func (o *ApplyTerraformConfigWorkflowStep) GetSource() Source {
+func (o *ApplyTerraformConfigWorkflowStep) GetSource() ApplyTerraformConfigSpecSource {
 	if o == nil {
-		var ret Source
+		var ret ApplyTerraformConfigSpecSource
 		return ret
 	}
 
@@ -228,7 +228,7 @@ func (o *ApplyTerraformConfigWorkflowStep) GetSource() Source {
 
 // GetSourceOk returns a tuple with the Source field value
 // and a boolean to check if the value has been set.
-func (o *ApplyTerraformConfigWorkflowStep) GetSourceOk() (*Source, bool) {
+func (o *ApplyTerraformConfigWorkflowStep) GetSourceOk() (*ApplyTerraformConfigSpecSource, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -236,7 +236,7 @@ func (o *ApplyTerraformConfigWorkflowStep) GetSourceOk() (*Source, bool) {
 }
 
 // Source sets field value
-func (o *ApplyTerraformConfigWorkflowStep) Source(v Source) *ApplyTerraformConfigWorkflowStep {
+func (o *ApplyTerraformConfigWorkflowStep) Source(v ApplyTerraformConfigSpecSource) *ApplyTerraformConfigWorkflowStep {
 	o.Properties.source = v
 	return o
 }
@@ -261,15 +261,15 @@ func (o *ApplyTerraformConfigWorkflowStep) GetVariableOk() (map[string]interface
 }
 
 // Variable sets field value
-func (o *ApplyTerraformConfigWorkflowStep) Variable(v map[string]interface{}) *ApplyTerraformConfigSpec {
+func (o *ApplyTerraformConfigWorkflowStep) Variable(v map[string]interface{}) *ApplyTerraformConfigWorkflowStep {
 	o.Properties.variable = v
 	return o
 }
 
 // GetWriteConnectionSecretToRef returns the WriteConnectionSecretToRef field value if set, zero value otherwise.
-func (o *ApplyTerraformConfigWorkflowStep) GetWriteConnectionSecretToRef() WriteConnectionSecretToRef {
+func (o *ApplyTerraformConfigWorkflowStep) GetWriteConnectionSecretToRef() ApplyTerraformConfigSpecWriteConnectionSecretToRef {
 	if o == nil || utils.IsNil(o.Properties.writeConnectionSecretToRef) {
-		var ret WriteConnectionSecretToRef
+		var ret ApplyTerraformConfigSpecWriteConnectionSecretToRef
 		return ret
 	}
 	return *o.Properties.writeConnectionSecretToRef
@@ -277,7 +277,7 @@ func (o *ApplyTerraformConfigWorkflowStep) GetWriteConnectionSecretToRef() Write
 
 // GetWriteConnectionSecretToRefOk returns a tuple with the WriteConnectionSecretToRef field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplyTerraformConfigWorkflowStep) GetWriteConnectionSecretToRefOk() (*WriteConnectionSecretToRef, bool) {
+func (o *ApplyTerraformConfigWorkflowStep) GetWriteConnectionSecretToRefOk() (*ApplyTerraformConfigSpecWriteConnectionSecretToRef, bool) {
 	if o == nil || utils.IsNil(o.Properties.writeConnectionSecretToRef) {
 		return nil, false
 	}
@@ -293,9 +293,9 @@ func (o *ApplyTerraformConfigWorkflowStep) HasWriteConnectionSecretToRef() bool 
 	return false
 }
 
-// WriteConnectionSecretToRef gets a reference to the given WriteConnectionSecretToRef and assigns it to the writeConnectionSecretToRef field.
+// WriteConnectionSecretToRef gets a reference to the given ApplyTerraformConfigSpecWriteConnectionSecretToRef and assigns it to the writeConnectionSecretToRef field.
 // writeConnectionSecretToRef:
-func (o *ApplyTerraformConfigWorkflowStep) WriteConnectionSecretToRef(v WriteConnectionSecretToRef) *ApplyTerraformConfigWorkflowStep {
+func (o *ApplyTerraformConfigWorkflowStep) WriteConnectionSecretToRef(v ApplyTerraformConfigSpecWriteConnectionSecretToRef) *ApplyTerraformConfigWorkflowStep {
 	o.Properties.writeConnectionSecretToRef = &v
 	return o
 }

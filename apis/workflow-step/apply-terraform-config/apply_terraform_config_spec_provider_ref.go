@@ -25,11 +25,11 @@ type ApplyTerraformConfigSpecProviderRef struct {
 	namespace string `json:"namespace"`
 }
 
-// ApplyTerraformConfigSpecProviderRefWith instantiates a new ApplyTerraformConfigSpecProviderRef object
+// NewApplyTerraformConfigSpecProviderRefWith instantiates a new ApplyTerraformConfigSpecProviderRef object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func ApplyTerraformConfigSpecProviderRefWith(name string, namespace string) *ApplyTerraformConfigSpecProviderRef {
+func NewApplyTerraformConfigSpecProviderRefWith(name string, namespace string) *ApplyTerraformConfigSpecProviderRef {
 	this := ApplyTerraformConfigSpecProviderRef{}
 	this.name = name
 	this.namespace = namespace

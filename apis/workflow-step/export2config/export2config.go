@@ -127,7 +127,7 @@ func (o *Export2configWorkflowStep) GetDataOk() (map[string]interface{}, bool) {
 }
 
 // Data sets field value
-func (o *Export2configWorkflowStep) Data(v map[string]interface{}) *Export2configSpec {
+func (o *Export2configWorkflowStep) Data(v map[string]interface{}) *Export2configWorkflowStep {
 	o.Properties.data = v
 	return o
 }

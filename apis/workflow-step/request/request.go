@@ -81,7 +81,7 @@ func (o *RequestWorkflowStep) HasBody() bool {
 
 // Body gets a reference to the given map[string]interface{} and assigns it to the body field.
 // body:
-func (o *RequestWorkflowStep) Body(v map[string]interface{}) *RequestSpec {
+func (o *RequestWorkflowStep) Body(v map[string]interface{}) *RequestWorkflowStep {
 	o.Properties.body = v
 	return o
 }

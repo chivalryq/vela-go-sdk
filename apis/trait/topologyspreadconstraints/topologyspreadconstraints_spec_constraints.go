@@ -38,11 +38,11 @@ type TopologyspreadconstraintsSpecConstraints struct {
 	whenUnsatisfiable string `json:"whenUnsatisfiable"`
 }
 
-// TopologyspreadconstraintsSpecConstraintsWith instantiates a new TopologyspreadconstraintsSpecConstraints object
+// NewTopologyspreadconstraintsSpecConstraintsWith instantiates a new TopologyspreadconstraintsSpecConstraints object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func TopologyspreadconstraintsSpecConstraintsWith(labelSelector LabSelector, maxSkew int32, topologyKey string, whenUnsatisfiable string) *TopologyspreadconstraintsSpecConstraints {
+func NewTopologyspreadconstraintsSpecConstraintsWith(labelSelector LabSelector, maxSkew int32, topologyKey string, whenUnsatisfiable string) *TopologyspreadconstraintsSpecConstraints {
 	this := TopologyspreadconstraintsSpecConstraints{}
 	this.labelSelector = labelSelector
 	this.maxSkew = maxSkew
@@ -121,9 +121,8 @@ func (o *TopologyspreadconstraintsSpecConstraints) HasMatchLabelKeys() bool {
 	return false
 }
 
-// SetMatchLabelKeys gets a reference to the given []string and assigns it to the matchLabelKeys field.
+// MatchLabelKeys gets a reference to the given []string and assigns it to the matchLabelKeys field.
 // matchLabelKeys:  A list of pod label keys to select the pods over which spreading will be calculated
-
 func (o *TopologyspreadconstraintsSpecConstraints) MatchLabelKeys(v []string) *TopologyspreadconstraintsSpecConstraints {
 	o.matchLabelKeys = v
 	return o
@@ -181,9 +180,8 @@ func (o *TopologyspreadconstraintsSpecConstraints) HasMinDomains() bool {
 	return false
 }
 
-// SetMinDomains gets a reference to the given int32 and assigns it to the minDomains field.
+// MinDomains gets a reference to the given int32 and assigns it to the minDomains field.
 // minDomains:  Indicate a minimum number of eligible domains
-
 func (o *TopologyspreadconstraintsSpecConstraints) MinDomains(v int32) *TopologyspreadconstraintsSpecConstraints {
 	o.minDomains = &v
 	return o
@@ -216,9 +214,8 @@ func (o *TopologyspreadconstraintsSpecConstraints) HasNodeAffinityPolicy() bool 
 	return false
 }
 
-// SetNodeAffinityPolicy gets a reference to the given string and assigns it to the nodeAffinityPolicy field.
+// NodeAffinityPolicy gets a reference to the given string and assigns it to the nodeAffinityPolicy field.
 // nodeAffinityPolicy:  Indicate how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew
-
 func (o *TopologyspreadconstraintsSpecConstraints) NodeAffinityPolicy(v string) *TopologyspreadconstraintsSpecConstraints {
 	o.nodeAffinityPolicy = &v
 	return o
@@ -251,9 +248,8 @@ func (o *TopologyspreadconstraintsSpecConstraints) HasNodeTaintsPolicy() bool {
 	return false
 }
 
-// SetNodeTaintsPolicy gets a reference to the given string and assigns it to the nodeTaintsPolicy field.
+// NodeTaintsPolicy gets a reference to the given string and assigns it to the nodeTaintsPolicy field.
 // nodeTaintsPolicy:  Indicate how we will treat node taints when calculating pod topology spread skew
-
 func (o *TopologyspreadconstraintsSpecConstraints) NodeTaintsPolicy(v string) *TopologyspreadconstraintsSpecConstraints {
 	o.nodeTaintsPolicy = &v
 	return o

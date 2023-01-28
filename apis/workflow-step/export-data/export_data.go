@@ -78,7 +78,7 @@ func (o *ExportDataWorkflowStep) GetDataOk() (map[string]interface{}, bool) {
 }
 
 // Data sets field value
-func (o *ExportDataWorkflowStep) Data(v map[string]interface{}) *ExportDataSpec {
+func (o *ExportDataWorkflowStep) Data(v map[string]interface{}) *ExportDataWorkflowStep {
 	o.Properties.data = v
 	return o
 }

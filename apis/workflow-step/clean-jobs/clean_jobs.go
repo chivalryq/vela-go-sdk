@@ -76,7 +76,7 @@ func (o *CleanJobsWorkflowStep) HasLabelselector() bool {
 
 // Labelselector gets a reference to the given map[string]interface{} and assigns it to the labelselector field.
 // labelselector:
-func (o *CleanJobsWorkflowStep) Labelselector(v map[string]interface{}) *CleanJobsSpec {
+func (o *CleanJobsWorkflowStep) Labelselector(v map[string]interface{}) *CleanJobsWorkflowStep {
 	o.Properties.labelselector = v
 	return o
 }

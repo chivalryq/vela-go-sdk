@@ -25,11 +25,11 @@ type ApplyTerraformConfigSpecSourceOneOf struct {
 	hcl string `json:"hcl"`
 }
 
-// ApplyTerraformConfigSpecSourceOneOfWith instantiates a new ApplyTerraformConfigSpecSourceOneOf object
+// NewApplyTerraformConfigSpecSourceOneOfWith instantiates a new ApplyTerraformConfigSpecSourceOneOf object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func ApplyTerraformConfigSpecSourceOneOfWith(hcl string) *ApplyTerraformConfigSpecSourceOneOf {
+func NewApplyTerraformConfigSpecSourceOneOfWith(hcl string) *ApplyTerraformConfigSpecSourceOneOf {
 	this := ApplyTerraformConfigSpecSourceOneOf{}
 	this.hcl = hcl
 	return &this

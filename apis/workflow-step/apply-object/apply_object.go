@@ -97,7 +97,7 @@ func (o *ApplyObjectWorkflowStep) GetValueOk() (map[string]interface{}, bool) {
 }
 
 // Value sets field value
-func (o *ApplyObjectWorkflowStep) Value(v map[string]interface{}) *ApplyObjectSpec {
+func (o *ApplyObjectWorkflowStep) Value(v map[string]interface{}) *ApplyObjectWorkflowStep {
 	o.Properties.value = v
 	return o
 }

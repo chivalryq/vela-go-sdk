@@ -74,7 +74,7 @@ func (o *CreateConfigWorkflowStep) GetConfigOk() (map[string]interface{}, bool) 
 }
 
 // Config sets field value
-func (o *CreateConfigWorkflowStep) Config(v map[string]interface{}) *CreateConfigSpec {
+func (o *CreateConfigWorkflowStep) Config(v map[string]interface{}) *CreateConfigWorkflowStep {
 	o.Properties.config = v
 	return o
 }

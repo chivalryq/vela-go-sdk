@@ -66,7 +66,7 @@ func (o *K8sObjectsComponent) GetObjectsOk() ([]map[string]interface{}, bool) {
 }
 
 // Objects sets field value
-func (o *K8sObjectsComponent) Objects(v []map[string]interface{}) *K8sObjectsSpec {
+func (o *K8sObjectsComponent) Objects(v []map[string]interface{}) *K8sObjectsComponent {
 	o.Properties.objects = v
 	return o
 }
