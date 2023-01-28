@@ -16,11 +16,11 @@ import (
 	"vela-go-sdk/apis/utils"
 )
 
-// checks if the AffinitySpecTolerations type satisfies the MappedNullable interface at compile time
-var _ utils.MappedNullable = &AffinitySpecTolerations{}
+// checks if the Tolerations type satisfies the MappedNullable interface at compile time
+var _ utils.MappedNullable = &Tolerations{}
 
-// AffinitySpecTolerations struct for AffinitySpecTolerations
-type AffinitySpecTolerations struct {
+// Tolerations struct for Tolerations
+type Tolerations struct {
 	effect   *string `json:"effect,omitempty"`
 	key      *string `json:"key,omitempty"`
 	operator string  `json:"operator"`
@@ -29,28 +29,28 @@ type AffinitySpecTolerations struct {
 	value             *string `json:"value,omitempty"`
 }
 
-// NewAffinitySpecTolerationsWith instantiates a new AffinitySpecTolerations object
+// NewTolerationsWith instantiates a new Tolerations object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAffinitySpecTolerationsWith(operator string) *AffinitySpecTolerations {
-	this := AffinitySpecTolerations{}
+func NewTolerationsWith(operator string) *Tolerations {
+	this := Tolerations{}
 	this.operator = operator
 	return &this
 }
 
-// NewAffinitySpecTolerations instantiates a new AffinitySpecTolerations object
+// NewTolerations instantiates a new Tolerations object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAffinitySpecTolerations() *AffinitySpecTolerations {
-	this := AffinitySpecTolerations{}
+func NewTolerations() *Tolerations {
+	this := Tolerations{}
 	var operator string = "Equal"
 	this.operator = operator
 	return &this
 }
 
 // GetEffect returns the Effect field value if set, zero value otherwise.
-func (o *AffinitySpecTolerations) GetEffect() string {
+func (o *Tolerations) GetEffect() string {
 	if o == nil || utils.IsNil(o.effect) {
 		var ret string
 		return ret
@@ -60,7 +60,7 @@ func (o *AffinitySpecTolerations) GetEffect() string {
 
 // GetEffectOk returns a tuple with the Effect field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AffinitySpecTolerations) GetEffectOk() (*string, bool) {
+func (o *Tolerations) GetEffectOk() (*string, bool) {
 	if o == nil || utils.IsNil(o.effect) {
 		return nil, false
 	}
@@ -68,7 +68,7 @@ func (o *AffinitySpecTolerations) GetEffectOk() (*string, bool) {
 }
 
 // HasEffect returns a boolean if a field has been set.
-func (o *AffinitySpecTolerations) HasEffect() bool {
+func (o *Tolerations) HasEffect() bool {
 	if o != nil && !utils.IsNil(o.effect) {
 		return true
 	}
@@ -78,13 +78,13 @@ func (o *AffinitySpecTolerations) HasEffect() bool {
 
 // Effect gets a reference to the given string and assigns it to the effect field.
 // effect:
-func (o *AffinitySpecTolerations) Effect(v string) *AffinitySpecTolerations {
+func (o *Tolerations) Effect(v string) *Tolerations {
 	o.effect = &v
 	return o
 }
 
 // GetKey returns the Key field value if set, zero value otherwise.
-func (o *AffinitySpecTolerations) GetKey() string {
+func (o *Tolerations) GetKey() string {
 	if o == nil || utils.IsNil(o.key) {
 		var ret string
 		return ret
@@ -94,7 +94,7 @@ func (o *AffinitySpecTolerations) GetKey() string {
 
 // GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AffinitySpecTolerations) GetKeyOk() (*string, bool) {
+func (o *Tolerations) GetKeyOk() (*string, bool) {
 	if o == nil || utils.IsNil(o.key) {
 		return nil, false
 	}
@@ -102,7 +102,7 @@ func (o *AffinitySpecTolerations) GetKeyOk() (*string, bool) {
 }
 
 // HasKey returns a boolean if a field has been set.
-func (o *AffinitySpecTolerations) HasKey() bool {
+func (o *Tolerations) HasKey() bool {
 	if o != nil && !utils.IsNil(o.key) {
 		return true
 	}
@@ -112,13 +112,13 @@ func (o *AffinitySpecTolerations) HasKey() bool {
 
 // Key gets a reference to the given string and assigns it to the key field.
 // key:
-func (o *AffinitySpecTolerations) Key(v string) *AffinitySpecTolerations {
+func (o *Tolerations) Key(v string) *Tolerations {
 	o.key = &v
 	return o
 }
 
 // GetOperator returns the Operator field value
-func (o *AffinitySpecTolerations) GetOperator() string {
+func (o *Tolerations) GetOperator() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -129,7 +129,7 @@ func (o *AffinitySpecTolerations) GetOperator() string {
 
 // GetOperatorOk returns a tuple with the Operator field value
 // and a boolean to check if the value has been set.
-func (o *AffinitySpecTolerations) GetOperatorOk() (*string, bool) {
+func (o *Tolerations) GetOperatorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -137,13 +137,13 @@ func (o *AffinitySpecTolerations) GetOperatorOk() (*string, bool) {
 }
 
 // Operator sets field value
-func (o *AffinitySpecTolerations) Operator(v string) *AffinitySpecTolerations {
+func (o *Tolerations) Operator(v string) *Tolerations {
 	o.operator = v
 	return o
 }
 
 // GetTolerationSeconds returns the TolerationSeconds field value if set, zero value otherwise.
-func (o *AffinitySpecTolerations) GetTolerationSeconds() int32 {
+func (o *Tolerations) GetTolerationSeconds() int32 {
 	if o == nil || utils.IsNil(o.tolerationSeconds) {
 		var ret int32
 		return ret
@@ -153,7 +153,7 @@ func (o *AffinitySpecTolerations) GetTolerationSeconds() int32 {
 
 // GetTolerationSecondsOk returns a tuple with the TolerationSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AffinitySpecTolerations) GetTolerationSecondsOk() (*int32, bool) {
+func (o *Tolerations) GetTolerationSecondsOk() (*int32, bool) {
 	if o == nil || utils.IsNil(o.tolerationSeconds) {
 		return nil, false
 	}
@@ -161,7 +161,7 @@ func (o *AffinitySpecTolerations) GetTolerationSecondsOk() (*int32, bool) {
 }
 
 // HasTolerationSeconds returns a boolean if a field has been set.
-func (o *AffinitySpecTolerations) HasTolerationSeconds() bool {
+func (o *Tolerations) HasTolerationSeconds() bool {
 	if o != nil && !utils.IsNil(o.tolerationSeconds) {
 		return true
 	}
@@ -171,13 +171,13 @@ func (o *AffinitySpecTolerations) HasTolerationSeconds() bool {
 
 // TolerationSeconds gets a reference to the given int32 and assigns it to the tolerationSeconds field.
 // tolerationSeconds:  Specify the period of time the toleration
-func (o *AffinitySpecTolerations) TolerationSeconds(v int32) *AffinitySpecTolerations {
+func (o *Tolerations) TolerationSeconds(v int32) *Tolerations {
 	o.tolerationSeconds = &v
 	return o
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *AffinitySpecTolerations) GetValue() string {
+func (o *Tolerations) GetValue() string {
 	if o == nil || utils.IsNil(o.value) {
 		var ret string
 		return ret
@@ -187,7 +187,7 @@ func (o *AffinitySpecTolerations) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AffinitySpecTolerations) GetValueOk() (*string, bool) {
+func (o *Tolerations) GetValueOk() (*string, bool) {
 	if o == nil || utils.IsNil(o.value) {
 		return nil, false
 	}
@@ -195,7 +195,7 @@ func (o *AffinitySpecTolerations) GetValueOk() (*string, bool) {
 }
 
 // HasValue returns a boolean if a field has been set.
-func (o *AffinitySpecTolerations) HasValue() bool {
+func (o *Tolerations) HasValue() bool {
 	if o != nil && !utils.IsNil(o.value) {
 		return true
 	}
@@ -205,12 +205,12 @@ func (o *AffinitySpecTolerations) HasValue() bool {
 
 // Value gets a reference to the given string and assigns it to the value field.
 // value:
-func (o *AffinitySpecTolerations) Value(v string) *AffinitySpecTolerations {
+func (o *Tolerations) Value(v string) *Tolerations {
 	o.value = &v
 	return o
 }
 
-func (o AffinitySpecTolerations) MarshalJSON() ([]byte, error) {
+func (o Tolerations) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -218,7 +218,7 @@ func (o AffinitySpecTolerations) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o AffinitySpecTolerations) ToMap() (map[string]interface{}, error) {
+func (o Tolerations) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !utils.IsNil(o.effect) {
 		toSerialize["effect"] = o.effect
@@ -236,38 +236,38 @@ func (o AffinitySpecTolerations) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableAffinitySpecTolerations struct {
-	value *AffinitySpecTolerations
+type NullableTolerations struct {
+	value *Tolerations
 	isSet bool
 }
 
-func (v NullableAffinitySpecTolerations) Get() *AffinitySpecTolerations {
+func (v NullableTolerations) Get() *Tolerations {
 	return v.value
 }
 
-func (v *NullableAffinitySpecTolerations) Set(val *AffinitySpecTolerations) {
+func (v *NullableTolerations) Set(val *Tolerations) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAffinitySpecTolerations) IsSet() bool {
+func (v NullableTolerations) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAffinitySpecTolerations) Unset() {
+func (v *NullableTolerations) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAffinitySpecTolerations(val *AffinitySpecTolerations) *NullableAffinitySpecTolerations {
-	return &NullableAffinitySpecTolerations{value: val, isSet: true}
+func NewNullableTolerations(val *Tolerations) *NullableTolerations {
+	return &NullableTolerations{value: val, isSet: true}
 }
 
-func (v NullableAffinitySpecTolerations) MarshalJSON() ([]byte, error) {
+func (v NullableTolerations) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAffinitySpecTolerations) UnmarshalJSON(src []byte) error {
+func (v *NullableTolerations) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

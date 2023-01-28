@@ -28,8 +28,8 @@ type Export2secretSpec struct {
 	// Specify the cluster of the secret
 	cluster string `json:"cluster"`
 	// Specify the data of secret
-	data           map[string]interface{}           `json:"data"`
-	dockerRegistry *Export2secretSpecDockerRegistry `json:"dockerRegistry,omitempty"`
+	data           map[string]interface{} `json:"data"`
+	dockerRegistry *DockerRegistry        `json:"dockerRegistry,omitempty"`
 	// Specify the kind of the secret
 	kind string `json:"kind"`
 	// Specify the namespace of the secret
@@ -116,9 +116,9 @@ func (o *Export2secretWorkflowStep) Data(v map[string]interface{}) *Export2secre
 }
 
 // GetDockerRegistry returns the DockerRegistry field value if set, zero value otherwise.
-func (o *Export2secretWorkflowStep) GetDockerRegistry() Export2secretSpecDockerRegistry {
+func (o *Export2secretWorkflowStep) GetDockerRegistry() DockerRegistry {
 	if o == nil || utils.IsNil(o.Properties.dockerRegistry) {
-		var ret Export2secretSpecDockerRegistry
+		var ret DockerRegistry
 		return ret
 	}
 	return *o.Properties.dockerRegistry
@@ -126,7 +126,7 @@ func (o *Export2secretWorkflowStep) GetDockerRegistry() Export2secretSpecDockerR
 
 // GetDockerRegistryOk returns a tuple with the DockerRegistry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Export2secretWorkflowStep) GetDockerRegistryOk() (*Export2secretSpecDockerRegistry, bool) {
+func (o *Export2secretWorkflowStep) GetDockerRegistryOk() (*DockerRegistry, bool) {
 	if o == nil || utils.IsNil(o.Properties.dockerRegistry) {
 		return nil, false
 	}
@@ -142,9 +142,9 @@ func (o *Export2secretWorkflowStep) HasDockerRegistry() bool {
 	return false
 }
 
-// DockerRegistry gets a reference to the given Export2secretSpecDockerRegistry and assigns it to the dockerRegistry field.
+// DockerRegistry gets a reference to the given DockerRegistry and assigns it to the dockerRegistry field.
 // dockerRegistry:
-func (o *Export2secretWorkflowStep) DockerRegistry(v Export2secretSpecDockerRegistry) *Export2secretWorkflowStep {
+func (o *Export2secretWorkflowStep) DockerRegistry(v DockerRegistry) *Export2secretWorkflowStep {
 	o.Properties.dockerRegistry = &v
 	return o
 }
