@@ -16,11 +16,11 @@ import (
 	"vela-go-sdk/apis/utils"
 )
 
-// checks if the DockerRegistry type satisfies the MappedNullable interface at compile time
-var _ utils.MappedNullable = &DockerRegistry{}
+// checks if the Export2secretSpecDockerRegistry type satisfies the MappedNullable interface at compile time
+var _ utils.MappedNullable = &Export2secretSpecDockerRegistry{}
 
-// DockerRegistry Specify the docker data
-type DockerRegistry struct {
+// Export2secretSpecDockerRegistry Specify the docker data
+type Export2secretSpecDockerRegistry struct {
 	// Specify the password of the docker registry
 	password string `json:"password"`
 	// Specify the server of the docker registry
@@ -29,30 +29,30 @@ type DockerRegistry struct {
 	username string `json:"username"`
 }
 
-// NewDockerRegistryWith instantiates a new DockerRegistry object
+// NewExport2secretSpecDockerRegistryWith instantiates a new Export2secretSpecDockerRegistry object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDockerRegistryWith(password string, server string, username string) *DockerRegistry {
-	this := DockerRegistry{}
+func NewExport2secretSpecDockerRegistryWith(password string, server string, username string) *Export2secretSpecDockerRegistry {
+	this := Export2secretSpecDockerRegistry{}
 	this.password = password
 	this.server = server
 	this.username = username
 	return &this
 }
 
-// NewDockerRegistry instantiates a new DockerRegistry object
+// NewExport2secretSpecDockerRegistry instantiates a new Export2secretSpecDockerRegistry object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewDockerRegistry() *DockerRegistry {
-	this := DockerRegistry{}
+func NewExport2secretSpecDockerRegistry() *Export2secretSpecDockerRegistry {
+	this := Export2secretSpecDockerRegistry{}
 	var server string = "https://index.docker.io/v1/"
 	this.server = server
 	return &this
 }
 
 // GetPassword returns the Password field value
-func (o *DockerRegistry) GetPassword() string {
+func (o *Export2secretSpecDockerRegistry) GetPassword() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -63,7 +63,7 @@ func (o *DockerRegistry) GetPassword() string {
 
 // GetPasswordOk returns a tuple with the Password field value
 // and a boolean to check if the value has been set.
-func (o *DockerRegistry) GetPasswordOk() (*string, bool) {
+func (o *Export2secretSpecDockerRegistry) GetPasswordOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,13 +71,13 @@ func (o *DockerRegistry) GetPasswordOk() (*string, bool) {
 }
 
 // Password sets field value
-func (o *DockerRegistry) Password(v string) *DockerRegistry {
+func (o *Export2secretSpecDockerRegistry) Password(v string) *Export2secretSpecDockerRegistry {
 	o.password = v
 	return o
 }
 
 // GetServer returns the Server field value
-func (o *DockerRegistry) GetServer() string {
+func (o *Export2secretSpecDockerRegistry) GetServer() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -88,7 +88,7 @@ func (o *DockerRegistry) GetServer() string {
 
 // GetServerOk returns a tuple with the Server field value
 // and a boolean to check if the value has been set.
-func (o *DockerRegistry) GetServerOk() (*string, bool) {
+func (o *Export2secretSpecDockerRegistry) GetServerOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -96,13 +96,13 @@ func (o *DockerRegistry) GetServerOk() (*string, bool) {
 }
 
 // Server sets field value
-func (o *DockerRegistry) Server(v string) *DockerRegistry {
+func (o *Export2secretSpecDockerRegistry) Server(v string) *Export2secretSpecDockerRegistry {
 	o.server = v
 	return o
 }
 
 // GetUsername returns the Username field value
-func (o *DockerRegistry) GetUsername() string {
+func (o *Export2secretSpecDockerRegistry) GetUsername() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -113,7 +113,7 @@ func (o *DockerRegistry) GetUsername() string {
 
 // GetUsernameOk returns a tuple with the Username field value
 // and a boolean to check if the value has been set.
-func (o *DockerRegistry) GetUsernameOk() (*string, bool) {
+func (o *Export2secretSpecDockerRegistry) GetUsernameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -121,12 +121,12 @@ func (o *DockerRegistry) GetUsernameOk() (*string, bool) {
 }
 
 // Username sets field value
-func (o *DockerRegistry) Username(v string) *DockerRegistry {
+func (o *Export2secretSpecDockerRegistry) Username(v string) *Export2secretSpecDockerRegistry {
 	o.username = v
 	return o
 }
 
-func (o DockerRegistry) MarshalJSON() ([]byte, error) {
+func (o Export2secretSpecDockerRegistry) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -134,7 +134,7 @@ func (o DockerRegistry) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o DockerRegistry) ToMap() (map[string]interface{}, error) {
+func (o Export2secretSpecDockerRegistry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["password"] = o.password
 	toSerialize["server"] = o.server
@@ -142,38 +142,38 @@ func (o DockerRegistry) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableDockerRegistry struct {
-	value *DockerRegistry
+type NullableExport2secretSpecDockerRegistry struct {
+	value *Export2secretSpecDockerRegistry
 	isSet bool
 }
 
-func (v NullableDockerRegistry) Get() *DockerRegistry {
+func (v NullableExport2secretSpecDockerRegistry) Get() *Export2secretSpecDockerRegistry {
 	return v.value
 }
 
-func (v *NullableDockerRegistry) Set(val *DockerRegistry) {
+func (v *NullableExport2secretSpecDockerRegistry) Set(val *Export2secretSpecDockerRegistry) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableDockerRegistry) IsSet() bool {
+func (v NullableExport2secretSpecDockerRegistry) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableDockerRegistry) Unset() {
+func (v *NullableExport2secretSpecDockerRegistry) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableDockerRegistry(val *DockerRegistry) *NullableDockerRegistry {
-	return &NullableDockerRegistry{value: val, isSet: true}
+func NewNullableExport2secretSpecDockerRegistry(val *Export2secretSpecDockerRegistry) *NullableExport2secretSpecDockerRegistry {
+	return &NullableExport2secretSpecDockerRegistry{value: val, isSet: true}
 }
 
-func (v NullableDockerRegistry) MarshalJSON() ([]byte, error) {
+func (v NullableExport2secretSpecDockerRegistry) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableDockerRegistry) UnmarshalJSON(src []byte) error {
+func (v *NullableExport2secretSpecDockerRegistry) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

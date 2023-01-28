@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &Message2{}
 
 // Message2 Specify the message that you want to sent, refer to [slack messaging](https://api.slack.com/reference/messaging/payload)
 type Message2 struct {
-	attachments NullableAttachments `json:"attachments,omitempty"`
-	blocks      NullableString      `json:"blocks,omitempty"`
+	attachments NullableAttachments  `json:"attachments,omitempty"`
+	blocks      utils.NullableString `json:"blocks,omitempty"`
 	// Specify the message text format in markdown for slack notification
 	mrkdwn *bool `json:"mrkdwn,omitempty"`
 	// Specify the message text for slack notification
@@ -125,7 +125,7 @@ func (o *Message2) HasBlocks() bool {
 	return false
 }
 
-// Blocks gets a reference to the given NullableString and assigns it to the blocks field.
+// Blocks gets a reference to the given utils.NullableString and assigns it to the blocks field.
 // blocks:
 func (o *Message2) Blocks(v string) *Message2 {
 	o.blocks.Set(&v)

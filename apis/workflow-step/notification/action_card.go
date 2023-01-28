@@ -21,20 +21,20 @@ var _ utils.MappedNullable = &ActionCard{}
 
 // ActionCard struct for ActionCard
 type ActionCard struct {
-	btnOrientation string         `json:"btnOrientation"`
-	btns           NullableString `json:"btns"`
-	hideAvatar     string         `json:"hideAvatar"`
-	singleTitle    string         `json:"singleTitle"`
-	singleURL      string         `json:"singleURL"`
-	text           string         `json:"text"`
-	title          string         `json:"title"`
+	btnOrientation string               `json:"btnOrientation"`
+	btns           utils.NullableString `json:"btns"`
+	hideAvatar     string               `json:"hideAvatar"`
+	singleTitle    string               `json:"singleTitle"`
+	singleURL      string               `json:"singleURL"`
+	text           string               `json:"text"`
+	title          string               `json:"title"`
 }
 
 // NewActionCardWith instantiates a new ActionCard object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewActionCardWith(btnOrientation string, btns NullableString, hideAvatar string, singleTitle string, singleURL string, text string, title string) *ActionCard {
+func NewActionCardWith(btnOrientation string, btns utils.NullableString, hideAvatar string, singleTitle string, singleURL string, text string, title string) *ActionCard {
 	this := ActionCard{}
 	this.btnOrientation = btnOrientation
 	this.btns = btns

@@ -47,7 +47,7 @@ func NewJsonPatchSpec() *JsonPatchSpec {
 }
 
 // GetOperations returns the Operations field value
-func (o *JsonPatchSpec) GetOperations() []map[string]interface{} {
+func (o *JSONPatchTrait) GetOperations() []map[string]interface{} {
 	if o == nil {
 		var ret []map[string]interface{}
 		return ret
@@ -58,7 +58,7 @@ func (o *JsonPatchSpec) GetOperations() []map[string]interface{} {
 
 // GetOperationsOk returns a tuple with the Operations field value
 // and a boolean to check if the value has been set.
-func (o *JsonPatchSpec) GetOperationsOk() ([]map[string]interface{}, bool) {
+func (o *JSONPatchTrait) GetOperationsOk() ([]map[string]interface{}, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *JsonPatchSpec) GetOperationsOk() ([]map[string]interface{}, bool) {
 }
 
 // Operations sets field value
-func (o *JsonPatchSpec) Operations(v []map[string]interface{}) *JsonPatchSpec {
+func (o *JSONPatchTrait) Operations(v []map[string]interface{}) *JSONPatchTrait {
 	o.Properties.operations = v
 	return o
 }
@@ -121,14 +121,14 @@ func (v *NullableJsonPatchSpec) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-const JSONPatchType = "json-patch"
+const JsonPatchType = "json-patch"
 
 type JSONPatchTrait struct {
 	Base       api.TraitBase
-	Properties JSONPatchSpec
+	Properties JsonPatchSpec
 }
 
-func JSONPatch() *JSONPatchTrait {
+func JsonPatch() *JSONPatchTrait {
 	j := &JSONPatchTrait{Base: api.TraitBase{}}
 	return j
 }
@@ -136,11 +136,11 @@ func JSONPatch() *JSONPatchTrait {
 func (j *JSONPatchTrait) Build() common.ApplicationTrait {
 	res := common.ApplicationTrait{
 		Properties: util.Object2RawExtension(j.Properties),
-		Type:       JSONPatchType,
+		Type:       JsonPatchType,
 	}
 	return res
 }
 
-func (j *JSONPatchTrait) Props() *JSONPatchSpec {
+func (j *JSONPatchTrait) Props() *JsonPatchSpec {
 	return &j.Properties
 }

@@ -16,39 +16,39 @@ import (
 	"vela-go-sdk/apis/utils"
 )
 
-// checks if the ApplyTerraformConfigSpecSourceOneOf1 type satisfies the MappedNullable interface at compile time
-var _ utils.MappedNullable = &ApplyTerraformConfigSpecSourceOneOf1{}
+// checks if the SourceOneOf1 type satisfies the MappedNullable interface at compile time
+var _ utils.MappedNullable = &SourceOneOf1{}
 
-// ApplyTerraformConfigSpecSourceOneOf1 struct for ApplyTerraformConfigSpecSourceOneOf1
-type ApplyTerraformConfigSpecSourceOneOf1 struct {
+// SourceOneOf1 struct for SourceOneOf1
+type SourceOneOf1 struct {
 	// specify the path of the terraform configuration
 	path *string `json:"path,omitempty"`
 	// specify the remote url of the terraform configuration
 	remote string `json:"remote"`
 }
 
-// NewApplyTerraformConfigSpecSourceOneOf1With instantiates a new ApplyTerraformConfigSpecSourceOneOf1 object
+// NewSourceOneOf1With instantiates a new SourceOneOf1 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApplyTerraformConfigSpecSourceOneOf1With(remote string) *ApplyTerraformConfigSpecSourceOneOf1 {
-	this := ApplyTerraformConfigSpecSourceOneOf1{}
+func NewSourceOneOf1With(remote string) *SourceOneOf1 {
+	this := SourceOneOf1{}
 	this.remote = remote
 	return &this
 }
 
-// NewApplyTerraformConfigSpecSourceOneOf1 instantiates a new ApplyTerraformConfigSpecSourceOneOf1 object
+// NewSourceOneOf1 instantiates a new SourceOneOf1 object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewApplyTerraformConfigSpecSourceOneOf1() *ApplyTerraformConfigSpecSourceOneOf1 {
-	this := ApplyTerraformConfigSpecSourceOneOf1{}
+func NewSourceOneOf1() *SourceOneOf1 {
+	this := SourceOneOf1{}
 	var remote string = "https://github.com/kubevela-contrib/terraform-modules.git"
 	this.remote = remote
 	return &this
 }
 
 // GetPath returns the Path field value if set, zero value otherwise.
-func (o *ApplyTerraformConfigSpecSourceOneOf1) GetPath() string {
+func (o *SourceOneOf1) GetPath() string {
 	if o == nil || utils.IsNil(o.path) {
 		var ret string
 		return ret
@@ -58,7 +58,7 @@ func (o *ApplyTerraformConfigSpecSourceOneOf1) GetPath() string {
 
 // GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplyTerraformConfigSpecSourceOneOf1) GetPathOk() (*string, bool) {
+func (o *SourceOneOf1) GetPathOk() (*string, bool) {
 	if o == nil || utils.IsNil(o.path) {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *ApplyTerraformConfigSpecSourceOneOf1) GetPathOk() (*string, bool) {
 }
 
 // HasPath returns a boolean if a field has been set.
-func (o *ApplyTerraformConfigSpecSourceOneOf1) HasPath() bool {
+func (o *SourceOneOf1) HasPath() bool {
 	if o != nil && !utils.IsNil(o.path) {
 		return true
 	}
@@ -76,13 +76,13 @@ func (o *ApplyTerraformConfigSpecSourceOneOf1) HasPath() bool {
 
 // Path gets a reference to the given string and assigns it to the path field.
 // path:  specify the path of the terraform configuration
-func (o *ApplyTerraformConfigSpecSourceOneOf1) Path(v string) *ApplyTerraformConfigSpecSourceOneOf1 {
+func (o *SourceOneOf1) Path(v string) *SourceOneOf1 {
 	o.path = &v
 	return o
 }
 
 // GetRemote returns the Remote field value
-func (o *ApplyTerraformConfigSpecSourceOneOf1) GetRemote() string {
+func (o *SourceOneOf1) GetRemote() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -93,7 +93,7 @@ func (o *ApplyTerraformConfigSpecSourceOneOf1) GetRemote() string {
 
 // GetRemoteOk returns a tuple with the Remote field value
 // and a boolean to check if the value has been set.
-func (o *ApplyTerraformConfigSpecSourceOneOf1) GetRemoteOk() (*string, bool) {
+func (o *SourceOneOf1) GetRemoteOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -101,12 +101,12 @@ func (o *ApplyTerraformConfigSpecSourceOneOf1) GetRemoteOk() (*string, bool) {
 }
 
 // Remote sets field value
-func (o *ApplyTerraformConfigSpecSourceOneOf1) Remote(v string) *ApplyTerraformConfigSpecSourceOneOf1 {
+func (o *SourceOneOf1) Remote(v string) *SourceOneOf1 {
 	o.remote = v
 	return o
 }
 
-func (o ApplyTerraformConfigSpecSourceOneOf1) MarshalJSON() ([]byte, error) {
+func (o SourceOneOf1) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -114,7 +114,7 @@ func (o ApplyTerraformConfigSpecSourceOneOf1) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ApplyTerraformConfigSpecSourceOneOf1) ToMap() (map[string]interface{}, error) {
+func (o SourceOneOf1) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !utils.IsNil(o.path) {
 		toSerialize["path"] = o.path
@@ -123,38 +123,38 @@ func (o ApplyTerraformConfigSpecSourceOneOf1) ToMap() (map[string]interface{}, e
 	return toSerialize, nil
 }
 
-type NullableApplyTerraformConfigSpecSourceOneOf1 struct {
-	value *ApplyTerraformConfigSpecSourceOneOf1
+type NullableSourceOneOf1 struct {
+	value *SourceOneOf1
 	isSet bool
 }
 
-func (v NullableApplyTerraformConfigSpecSourceOneOf1) Get() *ApplyTerraformConfigSpecSourceOneOf1 {
+func (v NullableSourceOneOf1) Get() *SourceOneOf1 {
 	return v.value
 }
 
-func (v *NullableApplyTerraformConfigSpecSourceOneOf1) Set(val *ApplyTerraformConfigSpecSourceOneOf1) {
+func (v *NullableSourceOneOf1) Set(val *SourceOneOf1) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableApplyTerraformConfigSpecSourceOneOf1) IsSet() bool {
+func (v NullableSourceOneOf1) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableApplyTerraformConfigSpecSourceOneOf1) Unset() {
+func (v *NullableSourceOneOf1) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableApplyTerraformConfigSpecSourceOneOf1(val *ApplyTerraformConfigSpecSourceOneOf1) *NullableApplyTerraformConfigSpecSourceOneOf1 {
-	return &NullableApplyTerraformConfigSpecSourceOneOf1{value: val, isSet: true}
+func NewNullableSourceOneOf1(val *SourceOneOf1) *NullableSourceOneOf1 {
+	return &NullableSourceOneOf1{value: val, isSet: true}
 }
 
-func (v NullableApplyTerraformConfigSpecSourceOneOf1) MarshalJSON() ([]byte, error) {
+func (v NullableSourceOneOf1) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableApplyTerraformConfigSpecSourceOneOf1) UnmarshalJSON(src []byte) error {
+func (v *NullableSourceOneOf1) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

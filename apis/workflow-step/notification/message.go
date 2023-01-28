@@ -23,8 +23,8 @@ var _ utils.MappedNullable = &Message{}
 type Message struct {
 	actionCard NullableActionCard `json:"actionCard,omitempty"`
 	at         NullableAt         `json:"at,omitempty"`
-	feedCard   NullableFeedCard   `json:"feedCard,omitempty"`
-	link       NullableLink       `json:"link,omitempty"`
+	feedCard   *FeedCard          `json:"feedCard,omitempty"`
+	link       *Link              `json:"link,omitempty"`
 	markdown   NullableMarkdown   `json:"markdown,omitempty"`
 	// msgType can be text, link, mardown, actionCard, feedCard
 	msgtype string       `json:"msgtype"`
@@ -141,94 +141,72 @@ func (o *Message) UnsetAt() {
 	o.at.Unset()
 }
 
-// GetFeedCard returns the FeedCard field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetFeedCard returns the FeedCard field value if set, zero value otherwise.
 func (o *Message) GetFeedCard() FeedCard {
-	if o == nil || utils.IsNil(o.feedCard.Get()) {
+	if o == nil || utils.IsNil(o.feedCard) {
 		var ret FeedCard
 		return ret
 	}
-	return *o.feedCard.Get()
+	return *o.feedCard
 }
 
 // GetFeedCardOk returns a tuple with the FeedCard field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Message) GetFeedCardOk() (*FeedCard, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.feedCard) {
 		return nil, false
 	}
-	return o.feedCard.Get(), o.feedCard.IsSet()
+	return o.feedCard, true
 }
 
 // HasFeedCard returns a boolean if a field has been set.
 func (o *Message) HasFeedCard() bool {
-	if o != nil && o.feedCard.IsSet() {
+	if o != nil && !utils.IsNil(o.feedCard) {
 		return true
 	}
 
 	return false
 }
 
-// FeedCard gets a reference to the given NullableFeedCard and assigns it to the feedCard field.
+// FeedCard gets a reference to the given FeedCard and assigns it to the feedCard field.
 // feedCard:
 func (o *Message) FeedCard(v FeedCard) *Message {
-	o.feedCard.Set(&v)
+	o.feedCard = &v
 	return o
 }
 
-// SetFeedCardNil sets the value for FeedCard to be an explicit nil
-func (o *Message) SetFeedCardNil() {
-	o.feedCard.Set(nil)
-}
-
-// UnsetFeedCard ensures that no value is present for FeedCard, not even an explicit nil
-func (o *Message) UnsetFeedCard() {
-	o.feedCard.Unset()
-}
-
-// GetLink returns the Link field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLink returns the Link field value if set, zero value otherwise.
 func (o *Message) GetLink() Link {
-	if o == nil || utils.IsNil(o.link.Get()) {
+	if o == nil || utils.IsNil(o.link) {
 		var ret Link
 		return ret
 	}
-	return *o.link.Get()
+	return *o.link
 }
 
 // GetLinkOk returns a tuple with the Link field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Message) GetLinkOk() (*Link, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.link) {
 		return nil, false
 	}
-	return o.link.Get(), o.link.IsSet()
+	return o.link, true
 }
 
 // HasLink returns a boolean if a field has been set.
 func (o *Message) HasLink() bool {
-	if o != nil && o.link.IsSet() {
+	if o != nil && !utils.IsNil(o.link) {
 		return true
 	}
 
 	return false
 }
 
-// Link gets a reference to the given NullableLink and assigns it to the link field.
+// Link gets a reference to the given Link and assigns it to the link field.
 // link:
 func (o *Message) Link(v Link) *Message {
-	o.link.Set(&v)
+	o.link = &v
 	return o
-}
-
-// SetLinkNil sets the value for Link to be an explicit nil
-func (o *Message) SetLinkNil() {
-	o.link.Set(nil)
-}
-
-// UnsetLink ensures that no value is present for Link, not even an explicit nil
-func (o *Message) UnsetLink() {
-	o.link.Unset()
 }
 
 // GetMarkdown returns the Markdown field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -362,11 +340,11 @@ func (o Message) ToMap() (map[string]interface{}, error) {
 	if o.at.IsSet() {
 		toSerialize["at"] = o.at.Get()
 	}
-	if o.feedCard.IsSet() {
-		toSerialize["feedCard"] = o.feedCard.Get()
+	if !utils.IsNil(o.feedCard) {
+		toSerialize["feedCard"] = o.feedCard
 	}
-	if o.link.IsSet() {
-		toSerialize["link"] = o.link.Get()
+	if !utils.IsNil(o.link) {
+		toSerialize["link"] = o.link
 	}
 	if o.markdown.IsSet() {
 		toSerialize["markdown"] = o.markdown.Get()

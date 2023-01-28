@@ -16,34 +16,34 @@ import (
 	"vela-go-sdk/apis/utils"
 )
 
-// checks if the Placements type satisfies the MappedNullable interface at compile time
-var _ utils.MappedNullable = &Placements{}
+// checks if the ShareCloudResourceSpecPlacements type satisfies the MappedNullable interface at compile time
+var _ utils.MappedNullable = &ShareCloudResourceSpecPlacements{}
 
-// Placements struct for Placements
-type Placements struct {
+// ShareCloudResourceSpecPlacements struct for ShareCloudResourceSpecPlacements
+type ShareCloudResourceSpecPlacements struct {
 	cluster   *string `json:"cluster,omitempty"`
 	namespace *string `json:"namespace,omitempty"`
 }
 
-// NewPlacementsWith instantiates a new Placements object
+// NewShareCloudResourceSpecPlacementsWith instantiates a new ShareCloudResourceSpecPlacements object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPlacementsWith() *Placements {
-	this := Placements{}
+func NewShareCloudResourceSpecPlacementsWith() *ShareCloudResourceSpecPlacements {
+	this := ShareCloudResourceSpecPlacements{}
 	return &this
 }
 
-// NewPlacements instantiates a new Placements object
+// NewShareCloudResourceSpecPlacements instantiates a new ShareCloudResourceSpecPlacements object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPlacements() *Placements {
-	this := Placements{}
+func NewShareCloudResourceSpecPlacements() *ShareCloudResourceSpecPlacements {
+	this := ShareCloudResourceSpecPlacements{}
 	return &this
 }
 
 // GetCluster returns the Cluster field value if set, zero value otherwise.
-func (o *Placements) GetCluster() string {
+func (o *ShareCloudResourceSpecPlacements) GetCluster() string {
 	if o == nil || utils.IsNil(o.cluster) {
 		var ret string
 		return ret
@@ -53,7 +53,7 @@ func (o *Placements) GetCluster() string {
 
 // GetClusterOk returns a tuple with the Cluster field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Placements) GetClusterOk() (*string, bool) {
+func (o *ShareCloudResourceSpecPlacements) GetClusterOk() (*string, bool) {
 	if o == nil || utils.IsNil(o.cluster) {
 		return nil, false
 	}
@@ -61,7 +61,7 @@ func (o *Placements) GetClusterOk() (*string, bool) {
 }
 
 // HasCluster returns a boolean if a field has been set.
-func (o *Placements) HasCluster() bool {
+func (o *ShareCloudResourceSpecPlacements) HasCluster() bool {
 	if o != nil && !utils.IsNil(o.cluster) {
 		return true
 	}
@@ -71,13 +71,13 @@ func (o *Placements) HasCluster() bool {
 
 // Cluster gets a reference to the given string and assigns it to the cluster field.
 // cluster:
-func (o *Placements) Cluster(v string) *Placements {
+func (o *ShareCloudResourceSpecPlacements) Cluster(v string) *ShareCloudResourceSpecPlacements {
 	o.cluster = &v
 	return o
 }
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
-func (o *Placements) GetNamespace() string {
+func (o *ShareCloudResourceSpecPlacements) GetNamespace() string {
 	if o == nil || utils.IsNil(o.namespace) {
 		var ret string
 		return ret
@@ -87,7 +87,7 @@ func (o *Placements) GetNamespace() string {
 
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Placements) GetNamespaceOk() (*string, bool) {
+func (o *ShareCloudResourceSpecPlacements) GetNamespaceOk() (*string, bool) {
 	if o == nil || utils.IsNil(o.namespace) {
 		return nil, false
 	}
@@ -95,7 +95,7 @@ func (o *Placements) GetNamespaceOk() (*string, bool) {
 }
 
 // HasNamespace returns a boolean if a field has been set.
-func (o *Placements) HasNamespace() bool {
+func (o *ShareCloudResourceSpecPlacements) HasNamespace() bool {
 	if o != nil && !utils.IsNil(o.namespace) {
 		return true
 	}
@@ -105,12 +105,12 @@ func (o *Placements) HasNamespace() bool {
 
 // Namespace gets a reference to the given string and assigns it to the namespace field.
 // namespace:
-func (o *Placements) Namespace(v string) *Placements {
+func (o *ShareCloudResourceSpecPlacements) Namespace(v string) *ShareCloudResourceSpecPlacements {
 	o.namespace = &v
 	return o
 }
 
-func (o Placements) MarshalJSON() ([]byte, error) {
+func (o ShareCloudResourceSpecPlacements) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -118,7 +118,7 @@ func (o Placements) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o Placements) ToMap() (map[string]interface{}, error) {
+func (o ShareCloudResourceSpecPlacements) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !utils.IsNil(o.cluster) {
 		toSerialize["cluster"] = o.cluster
@@ -129,38 +129,38 @@ func (o Placements) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullablePlacements struct {
-	value *Placements
+type NullableShareCloudResourceSpecPlacements struct {
+	value *ShareCloudResourceSpecPlacements
 	isSet bool
 }
 
-func (v NullablePlacements) Get() *Placements {
+func (v NullableShareCloudResourceSpecPlacements) Get() *ShareCloudResourceSpecPlacements {
 	return v.value
 }
 
-func (v *NullablePlacements) Set(val *Placements) {
+func (v *NullableShareCloudResourceSpecPlacements) Set(val *ShareCloudResourceSpecPlacements) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePlacements) IsSet() bool {
+func (v NullableShareCloudResourceSpecPlacements) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePlacements) Unset() {
+func (v *NullableShareCloudResourceSpecPlacements) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePlacements(val *Placements) *NullablePlacements {
-	return &NullablePlacements{value: val, isSet: true}
+func NewNullableShareCloudResourceSpecPlacements(val *ShareCloudResourceSpecPlacements) *NullableShareCloudResourceSpecPlacements {
+	return &NullableShareCloudResourceSpecPlacements{value: val, isSet: true}
 }
 
-func (v NullablePlacements) MarshalJSON() ([]byte, error) {
+func (v NullableShareCloudResourceSpecPlacements) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePlacements) UnmarshalJSON(src []byte) error {
+func (v *NullableShareCloudResourceSpecPlacements) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

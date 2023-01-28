@@ -28,7 +28,7 @@ type ShareCloudResourceSpec struct {
 	// Declare the name of the env in policy
 	env string `json:"env"`
 	// Declare the location to bind
-	placements []Placements `json:"placements"`
+	placements []ShareCloudResourceSpecPlacements `json:"placements"`
 	// Declare the name of the env-binding policy, if empty, the first env-binding policy will be used
 	policy string `json:"policy"`
 }
@@ -37,7 +37,7 @@ type ShareCloudResourceSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewShareCloudResourceSpecWith(env string, placements []Placements, policy string) *ShareCloudResourceSpec {
+func NewShareCloudResourceSpecWith(env string, placements []ShareCloudResourceSpecPlacements, policy string) *ShareCloudResourceSpec {
 	this := ShareCloudResourceSpec{}
 	this.env = env
 	this.placements = placements
@@ -81,9 +81,9 @@ func (o *ShareCloudResourceWorkflowStep) Env(v string) *ShareCloudResourceWorkfl
 }
 
 // GetPlacements returns the Placements field value
-func (o *ShareCloudResourceWorkflowStep) GetPlacements() []Placements {
+func (o *ShareCloudResourceWorkflowStep) GetPlacements() []ShareCloudResourceSpecPlacements {
 	if o == nil {
-		var ret []Placements
+		var ret []ShareCloudResourceSpecPlacements
 		return ret
 	}
 
@@ -92,7 +92,7 @@ func (o *ShareCloudResourceWorkflowStep) GetPlacements() []Placements {
 
 // GetPlacementsOk returns a tuple with the Placements field value
 // and a boolean to check if the value has been set.
-func (o *ShareCloudResourceWorkflowStep) GetPlacementsOk() ([]Placements, bool) {
+func (o *ShareCloudResourceWorkflowStep) GetPlacementsOk() ([]ShareCloudResourceSpecPlacements, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -100,7 +100,7 @@ func (o *ShareCloudResourceWorkflowStep) GetPlacementsOk() ([]Placements, bool) 
 }
 
 // Placements sets field value
-func (o *ShareCloudResourceWorkflowStep) Placements(v []Placements) *ShareCloudResourceWorkflowStep {
+func (o *ShareCloudResourceWorkflowStep) Placements(v []ShareCloudResourceSpecPlacements) *ShareCloudResourceWorkflowStep {
 	o.Properties.placements = v
 	return o
 }

@@ -16,38 +16,38 @@ import (
 	"vela-go-sdk/apis/utils"
 )
 
-// checks if the PodAffinity type satisfies the MappedNullable interface at compile time
-var _ utils.MappedNullable = &PodAffinity{}
+// checks if the AffinitySpecPodAntiAffinity type satisfies the MappedNullable interface at compile time
+var _ utils.MappedNullable = &AffinitySpecPodAntiAffinity{}
 
-// PodAffinity Specify the pod affinity scheduling rules
-type PodAffinity struct {
+// AffinitySpecPodAntiAffinity Specify the pod anti-affinity scheduling rules
+type AffinitySpecPodAntiAffinity struct {
 	// Specify the preferred during scheduling ignored during execution
-	preferred []Preferred1 `json:"preferred,omitempty"`
+	preferred []AffinitySpecPodAffinityPreferred `json:"preferred,omitempty"`
 	// Specify the required during scheduling ignored during execution
 	required []PodAffinityTerm `json:"required,omitempty"`
 }
 
-// NewPodAffinityWith instantiates a new PodAffinity object
+// NewAffinitySpecPodAntiAffinityWith instantiates a new AffinitySpecPodAntiAffinity object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPodAffinityWith() *PodAffinity {
-	this := PodAffinity{}
+func NewAffinitySpecPodAntiAffinityWith() *AffinitySpecPodAntiAffinity {
+	this := AffinitySpecPodAntiAffinity{}
 	return &this
 }
 
-// NewPodAffinity instantiates a new PodAffinity object
+// NewAffinitySpecPodAntiAffinity instantiates a new AffinitySpecPodAntiAffinity object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPodAffinity() *PodAffinity {
-	this := PodAffinity{}
+func NewAffinitySpecPodAntiAffinity() *AffinitySpecPodAntiAffinity {
+	this := AffinitySpecPodAntiAffinity{}
 	return &this
 }
 
 // GetPreferred returns the Preferred field value if set, zero value otherwise.
-func (o *PodAffinity) GetPreferred() []Preferred1 {
+func (o *AffinitySpecPodAntiAffinity) GetPreferred() []AffinitySpecPodAffinityPreferred {
 	if o == nil || utils.IsNil(o.preferred) {
-		var ret []Preferred1
+		var ret []AffinitySpecPodAffinityPreferred
 		return ret
 	}
 	return o.preferred
@@ -55,7 +55,7 @@ func (o *PodAffinity) GetPreferred() []Preferred1 {
 
 // GetPreferredOk returns a tuple with the Preferred field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PodAffinity) GetPreferredOk() ([]Preferred1, bool) {
+func (o *AffinitySpecPodAntiAffinity) GetPreferredOk() ([]AffinitySpecPodAffinityPreferred, bool) {
 	if o == nil || utils.IsNil(o.preferred) {
 		return nil, false
 	}
@@ -63,7 +63,7 @@ func (o *PodAffinity) GetPreferredOk() ([]Preferred1, bool) {
 }
 
 // HasPreferred returns a boolean if a field has been set.
-func (o *PodAffinity) HasPreferred() bool {
+func (o *AffinitySpecPodAntiAffinity) HasPreferred() bool {
 	if o != nil && !utils.IsNil(o.preferred) {
 		return true
 	}
@@ -71,15 +71,15 @@ func (o *PodAffinity) HasPreferred() bool {
 	return false
 }
 
-// Preferred gets a reference to the given []Preferred1 and assigns it to the preferred field.
+// Preferred gets a reference to the given []AffinitySpecPodAffinityPreferred and assigns it to the preferred field.
 // preferred:  Specify the preferred during scheduling ignored during execution
-func (o *PodAffinity) Preferred(v []Preferred1) *PodAffinity {
+func (o *AffinitySpecPodAntiAffinity) Preferred(v []AffinitySpecPodAffinityPreferred) *AffinitySpecPodAntiAffinity {
 	o.preferred = v
 	return o
 }
 
 // GetRequired returns the Required field value if set, zero value otherwise.
-func (o *PodAffinity) GetRequired() []PodAffinityTerm {
+func (o *AffinitySpecPodAntiAffinity) GetRequired() []PodAffinityTerm {
 	if o == nil || utils.IsNil(o.required) {
 		var ret []PodAffinityTerm
 		return ret
@@ -89,7 +89,7 @@ func (o *PodAffinity) GetRequired() []PodAffinityTerm {
 
 // GetRequiredOk returns a tuple with the Required field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PodAffinity) GetRequiredOk() ([]PodAffinityTerm, bool) {
+func (o *AffinitySpecPodAntiAffinity) GetRequiredOk() ([]PodAffinityTerm, bool) {
 	if o == nil || utils.IsNil(o.required) {
 		return nil, false
 	}
@@ -97,7 +97,7 @@ func (o *PodAffinity) GetRequiredOk() ([]PodAffinityTerm, bool) {
 }
 
 // HasRequired returns a boolean if a field has been set.
-func (o *PodAffinity) HasRequired() bool {
+func (o *AffinitySpecPodAntiAffinity) HasRequired() bool {
 	if o != nil && !utils.IsNil(o.required) {
 		return true
 	}
@@ -107,12 +107,12 @@ func (o *PodAffinity) HasRequired() bool {
 
 // Required gets a reference to the given []PodAffinityTerm and assigns it to the required field.
 // required:  Specify the required during scheduling ignored during execution
-func (o *PodAffinity) Required(v []PodAffinityTerm) *PodAffinity {
+func (o *AffinitySpecPodAntiAffinity) Required(v []PodAffinityTerm) *AffinitySpecPodAntiAffinity {
 	o.required = v
 	return o
 }
 
-func (o PodAffinity) MarshalJSON() ([]byte, error) {
+func (o AffinitySpecPodAntiAffinity) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -120,7 +120,7 @@ func (o PodAffinity) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PodAffinity) ToMap() (map[string]interface{}, error) {
+func (o AffinitySpecPodAntiAffinity) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !utils.IsNil(o.preferred) {
 		toSerialize["preferred"] = o.preferred
@@ -131,38 +131,38 @@ func (o PodAffinity) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullablePodAffinity struct {
-	value *PodAffinity
+type NullableAffinitySpecPodAntiAffinity struct {
+	value *AffinitySpecPodAntiAffinity
 	isSet bool
 }
 
-func (v NullablePodAffinity) Get() *PodAffinity {
+func (v NullableAffinitySpecPodAntiAffinity) Get() *AffinitySpecPodAntiAffinity {
 	return v.value
 }
 
-func (v *NullablePodAffinity) Set(val *PodAffinity) {
+func (v *NullableAffinitySpecPodAntiAffinity) Set(val *AffinitySpecPodAntiAffinity) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePodAffinity) IsSet() bool {
+func (v NullableAffinitySpecPodAntiAffinity) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePodAffinity) Unset() {
+func (v *NullableAffinitySpecPodAntiAffinity) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePodAffinity(val *PodAffinity) *NullablePodAffinity {
-	return &NullablePodAffinity{value: val, isSet: true}
+func NewNullableAffinitySpecPodAntiAffinity(val *AffinitySpecPodAntiAffinity) *NullableAffinitySpecPodAntiAffinity {
+	return &NullableAffinitySpecPodAntiAffinity{value: val, isSet: true}
 }
 
-func (v NullablePodAffinity) MarshalJSON() ([]byte, error) {
+func (v NullableAffinitySpecPodAntiAffinity) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePodAffinity) UnmarshalJSON(src []byte) error {
+func (v *NullableAffinitySpecPodAntiAffinity) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

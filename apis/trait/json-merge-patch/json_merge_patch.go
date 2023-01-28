@@ -93,14 +93,14 @@ func (v *NullableJsonMergePatchSpec) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-const JSONMergePatchType = "json-merge-patch"
+const JsonMergePatchType = "json-merge-patch"
 
 type JSONMergePatchTrait struct {
 	Base       api.TraitBase
-	Properties JSONMergePatchSpec
+	Properties JsonMergePatchSpec
 }
 
-func JSONMergePatch() *JSONMergePatchTrait {
+func JsonMergePatch() *JSONMergePatchTrait {
 	j := &JSONMergePatchTrait{Base: api.TraitBase{}}
 	return j
 }
@@ -108,11 +108,11 @@ func JSONMergePatch() *JSONMergePatchTrait {
 func (j *JSONMergePatchTrait) Build() common.ApplicationTrait {
 	res := common.ApplicationTrait{
 		Properties: util.Object2RawExtension(j.Properties),
-		Type:       JSONMergePatchType,
+		Type:       JsonMergePatchType,
 	}
 	return res
 }
 
-func (j *JSONMergePatchTrait) Props() *JSONMergePatchSpec {
+func (j *JSONMergePatchTrait) Props() *JsonMergePatchSpec {
 	return &j.Properties
 }

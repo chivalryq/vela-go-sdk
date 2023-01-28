@@ -16,11 +16,11 @@ import (
 	"vela-go-sdk/apis/utils"
 )
 
-// checks if the TopologyspreadconstraintsSpecConstraints type satisfies the MappedNullable interface at compile time
-var _ utils.MappedNullable = &TopologyspreadconstraintsSpecConstraints{}
+// checks if the Constraints type satisfies the MappedNullable interface at compile time
+var _ utils.MappedNullable = &Constraints{}
 
-// TopologyspreadconstraintsSpecConstraints struct for TopologyspreadconstraintsSpecConstraints
-type TopologyspreadconstraintsSpecConstraints struct {
+// Constraints struct for Constraints
+type Constraints struct {
 	labelSelector LabSelector `json:"labelSelector"`
 	// A list of pod label keys to select the pods over which spreading will be calculated
 	matchLabelKeys []string `json:"matchLabelKeys,omitempty"`
@@ -38,12 +38,12 @@ type TopologyspreadconstraintsSpecConstraints struct {
 	whenUnsatisfiable string `json:"whenUnsatisfiable"`
 }
 
-// NewTopologyspreadconstraintsSpecConstraintsWith instantiates a new TopologyspreadconstraintsSpecConstraints object
+// NewConstraintsWith instantiates a new Constraints object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTopologyspreadconstraintsSpecConstraintsWith(labelSelector LabSelector, maxSkew int32, topologyKey string, whenUnsatisfiable string) *TopologyspreadconstraintsSpecConstraints {
-	this := TopologyspreadconstraintsSpecConstraints{}
+func NewConstraintsWith(labelSelector LabSelector, maxSkew int32, topologyKey string, whenUnsatisfiable string) *Constraints {
+	this := Constraints{}
 	this.labelSelector = labelSelector
 	this.maxSkew = maxSkew
 	var nodeAffinityPolicy string = "Honor"
@@ -55,11 +55,11 @@ func NewTopologyspreadconstraintsSpecConstraintsWith(labelSelector LabSelector, 
 	return &this
 }
 
-// NewTopologyspreadconstraintsSpecConstraints instantiates a new TopologyspreadconstraintsSpecConstraints object
+// NewConstraints instantiates a new Constraints object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewTopologyspreadconstraintsSpecConstraints() *TopologyspreadconstraintsSpecConstraints {
-	this := TopologyspreadconstraintsSpecConstraints{}
+func NewConstraints() *Constraints {
+	this := Constraints{}
 	var nodeAffinityPolicy string = "Honor"
 	this.nodeAffinityPolicy = &nodeAffinityPolicy
 	var nodeTaintsPolicy string = "Honor"
@@ -70,7 +70,7 @@ func NewTopologyspreadconstraintsSpecConstraints() *TopologyspreadconstraintsSpe
 }
 
 // GetLabelSelector returns the LabelSelector field value
-func (o *TopologyspreadconstraintsSpecConstraints) GetLabelSelector() LabSelector {
+func (o *Constraints) GetLabelSelector() LabSelector {
 	if o == nil {
 		var ret LabSelector
 		return ret
@@ -81,7 +81,7 @@ func (o *TopologyspreadconstraintsSpecConstraints) GetLabelSelector() LabSelecto
 
 // GetLabelSelectorOk returns a tuple with the LabelSelector field value
 // and a boolean to check if the value has been set.
-func (o *TopologyspreadconstraintsSpecConstraints) GetLabelSelectorOk() (*LabSelector, bool) {
+func (o *Constraints) GetLabelSelectorOk() (*LabSelector, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -89,13 +89,13 @@ func (o *TopologyspreadconstraintsSpecConstraints) GetLabelSelectorOk() (*LabSel
 }
 
 // LabelSelector sets field value
-func (o *TopologyspreadconstraintsSpecConstraints) LabelSelector(v LabSelector) *TopologyspreadconstraintsSpecConstraints {
+func (o *Constraints) LabelSelector(v LabSelector) *Constraints {
 	o.labelSelector = v
 	return o
 }
 
 // GetMatchLabelKeys returns the MatchLabelKeys field value if set, zero value otherwise.
-func (o *TopologyspreadconstraintsSpecConstraints) GetMatchLabelKeys() []string {
+func (o *Constraints) GetMatchLabelKeys() []string {
 	if o == nil || utils.IsNil(o.matchLabelKeys) {
 		var ret []string
 		return ret
@@ -105,7 +105,7 @@ func (o *TopologyspreadconstraintsSpecConstraints) GetMatchLabelKeys() []string 
 
 // GetMatchLabelKeysOk returns a tuple with the MatchLabelKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TopologyspreadconstraintsSpecConstraints) GetMatchLabelKeysOk() ([]string, bool) {
+func (o *Constraints) GetMatchLabelKeysOk() ([]string, bool) {
 	if o == nil || utils.IsNil(o.matchLabelKeys) {
 		return nil, false
 	}
@@ -113,7 +113,7 @@ func (o *TopologyspreadconstraintsSpecConstraints) GetMatchLabelKeysOk() ([]stri
 }
 
 // HasMatchLabelKeys returns a boolean if a field has been set.
-func (o *TopologyspreadconstraintsSpecConstraints) HasMatchLabelKeys() bool {
+func (o *Constraints) HasMatchLabelKeys() bool {
 	if o != nil && !utils.IsNil(o.matchLabelKeys) {
 		return true
 	}
@@ -123,13 +123,13 @@ func (o *TopologyspreadconstraintsSpecConstraints) HasMatchLabelKeys() bool {
 
 // MatchLabelKeys gets a reference to the given []string and assigns it to the matchLabelKeys field.
 // matchLabelKeys:  A list of pod label keys to select the pods over which spreading will be calculated
-func (o *TopologyspreadconstraintsSpecConstraints) MatchLabelKeys(v []string) *TopologyspreadconstraintsSpecConstraints {
+func (o *Constraints) MatchLabelKeys(v []string) *Constraints {
 	o.matchLabelKeys = v
 	return o
 }
 
 // GetMaxSkew returns the MaxSkew field value
-func (o *TopologyspreadconstraintsSpecConstraints) GetMaxSkew() int32 {
+func (o *Constraints) GetMaxSkew() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -140,7 +140,7 @@ func (o *TopologyspreadconstraintsSpecConstraints) GetMaxSkew() int32 {
 
 // GetMaxSkewOk returns a tuple with the MaxSkew field value
 // and a boolean to check if the value has been set.
-func (o *TopologyspreadconstraintsSpecConstraints) GetMaxSkewOk() (*int32, bool) {
+func (o *Constraints) GetMaxSkewOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -148,13 +148,13 @@ func (o *TopologyspreadconstraintsSpecConstraints) GetMaxSkewOk() (*int32, bool)
 }
 
 // MaxSkew sets field value
-func (o *TopologyspreadconstraintsSpecConstraints) MaxSkew(v int32) *TopologyspreadconstraintsSpecConstraints {
+func (o *Constraints) MaxSkew(v int32) *Constraints {
 	o.maxSkew = v
 	return o
 }
 
 // GetMinDomains returns the MinDomains field value if set, zero value otherwise.
-func (o *TopologyspreadconstraintsSpecConstraints) GetMinDomains() int32 {
+func (o *Constraints) GetMinDomains() int32 {
 	if o == nil || utils.IsNil(o.minDomains) {
 		var ret int32
 		return ret
@@ -164,7 +164,7 @@ func (o *TopologyspreadconstraintsSpecConstraints) GetMinDomains() int32 {
 
 // GetMinDomainsOk returns a tuple with the MinDomains field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TopologyspreadconstraintsSpecConstraints) GetMinDomainsOk() (*int32, bool) {
+func (o *Constraints) GetMinDomainsOk() (*int32, bool) {
 	if o == nil || utils.IsNil(o.minDomains) {
 		return nil, false
 	}
@@ -172,7 +172,7 @@ func (o *TopologyspreadconstraintsSpecConstraints) GetMinDomainsOk() (*int32, bo
 }
 
 // HasMinDomains returns a boolean if a field has been set.
-func (o *TopologyspreadconstraintsSpecConstraints) HasMinDomains() bool {
+func (o *Constraints) HasMinDomains() bool {
 	if o != nil && !utils.IsNil(o.minDomains) {
 		return true
 	}
@@ -182,13 +182,13 @@ func (o *TopologyspreadconstraintsSpecConstraints) HasMinDomains() bool {
 
 // MinDomains gets a reference to the given int32 and assigns it to the minDomains field.
 // minDomains:  Indicate a minimum number of eligible domains
-func (o *TopologyspreadconstraintsSpecConstraints) MinDomains(v int32) *TopologyspreadconstraintsSpecConstraints {
+func (o *Constraints) MinDomains(v int32) *Constraints {
 	o.minDomains = &v
 	return o
 }
 
 // GetNodeAffinityPolicy returns the NodeAffinityPolicy field value if set, zero value otherwise.
-func (o *TopologyspreadconstraintsSpecConstraints) GetNodeAffinityPolicy() string {
+func (o *Constraints) GetNodeAffinityPolicy() string {
 	if o == nil || utils.IsNil(o.nodeAffinityPolicy) {
 		var ret string
 		return ret
@@ -198,7 +198,7 @@ func (o *TopologyspreadconstraintsSpecConstraints) GetNodeAffinityPolicy() strin
 
 // GetNodeAffinityPolicyOk returns a tuple with the NodeAffinityPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TopologyspreadconstraintsSpecConstraints) GetNodeAffinityPolicyOk() (*string, bool) {
+func (o *Constraints) GetNodeAffinityPolicyOk() (*string, bool) {
 	if o == nil || utils.IsNil(o.nodeAffinityPolicy) {
 		return nil, false
 	}
@@ -206,7 +206,7 @@ func (o *TopologyspreadconstraintsSpecConstraints) GetNodeAffinityPolicyOk() (*s
 }
 
 // HasNodeAffinityPolicy returns a boolean if a field has been set.
-func (o *TopologyspreadconstraintsSpecConstraints) HasNodeAffinityPolicy() bool {
+func (o *Constraints) HasNodeAffinityPolicy() bool {
 	if o != nil && !utils.IsNil(o.nodeAffinityPolicy) {
 		return true
 	}
@@ -216,13 +216,13 @@ func (o *TopologyspreadconstraintsSpecConstraints) HasNodeAffinityPolicy() bool 
 
 // NodeAffinityPolicy gets a reference to the given string and assigns it to the nodeAffinityPolicy field.
 // nodeAffinityPolicy:  Indicate how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew
-func (o *TopologyspreadconstraintsSpecConstraints) NodeAffinityPolicy(v string) *TopologyspreadconstraintsSpecConstraints {
+func (o *Constraints) NodeAffinityPolicy(v string) *Constraints {
 	o.nodeAffinityPolicy = &v
 	return o
 }
 
 // GetNodeTaintsPolicy returns the NodeTaintsPolicy field value if set, zero value otherwise.
-func (o *TopologyspreadconstraintsSpecConstraints) GetNodeTaintsPolicy() string {
+func (o *Constraints) GetNodeTaintsPolicy() string {
 	if o == nil || utils.IsNil(o.nodeTaintsPolicy) {
 		var ret string
 		return ret
@@ -232,7 +232,7 @@ func (o *TopologyspreadconstraintsSpecConstraints) GetNodeTaintsPolicy() string 
 
 // GetNodeTaintsPolicyOk returns a tuple with the NodeTaintsPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TopologyspreadconstraintsSpecConstraints) GetNodeTaintsPolicyOk() (*string, bool) {
+func (o *Constraints) GetNodeTaintsPolicyOk() (*string, bool) {
 	if o == nil || utils.IsNil(o.nodeTaintsPolicy) {
 		return nil, false
 	}
@@ -240,7 +240,7 @@ func (o *TopologyspreadconstraintsSpecConstraints) GetNodeTaintsPolicyOk() (*str
 }
 
 // HasNodeTaintsPolicy returns a boolean if a field has been set.
-func (o *TopologyspreadconstraintsSpecConstraints) HasNodeTaintsPolicy() bool {
+func (o *Constraints) HasNodeTaintsPolicy() bool {
 	if o != nil && !utils.IsNil(o.nodeTaintsPolicy) {
 		return true
 	}
@@ -250,13 +250,13 @@ func (o *TopologyspreadconstraintsSpecConstraints) HasNodeTaintsPolicy() bool {
 
 // NodeTaintsPolicy gets a reference to the given string and assigns it to the nodeTaintsPolicy field.
 // nodeTaintsPolicy:  Indicate how we will treat node taints when calculating pod topology spread skew
-func (o *TopologyspreadconstraintsSpecConstraints) NodeTaintsPolicy(v string) *TopologyspreadconstraintsSpecConstraints {
+func (o *Constraints) NodeTaintsPolicy(v string) *Constraints {
 	o.nodeTaintsPolicy = &v
 	return o
 }
 
 // GetTopologyKey returns the TopologyKey field value
-func (o *TopologyspreadconstraintsSpecConstraints) GetTopologyKey() string {
+func (o *Constraints) GetTopologyKey() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -267,7 +267,7 @@ func (o *TopologyspreadconstraintsSpecConstraints) GetTopologyKey() string {
 
 // GetTopologyKeyOk returns a tuple with the TopologyKey field value
 // and a boolean to check if the value has been set.
-func (o *TopologyspreadconstraintsSpecConstraints) GetTopologyKeyOk() (*string, bool) {
+func (o *Constraints) GetTopologyKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -275,13 +275,13 @@ func (o *TopologyspreadconstraintsSpecConstraints) GetTopologyKeyOk() (*string, 
 }
 
 // TopologyKey sets field value
-func (o *TopologyspreadconstraintsSpecConstraints) TopologyKey(v string) *TopologyspreadconstraintsSpecConstraints {
+func (o *Constraints) TopologyKey(v string) *Constraints {
 	o.topologyKey = v
 	return o
 }
 
 // GetWhenUnsatisfiable returns the WhenUnsatisfiable field value
-func (o *TopologyspreadconstraintsSpecConstraints) GetWhenUnsatisfiable() string {
+func (o *Constraints) GetWhenUnsatisfiable() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -292,7 +292,7 @@ func (o *TopologyspreadconstraintsSpecConstraints) GetWhenUnsatisfiable() string
 
 // GetWhenUnsatisfiableOk returns a tuple with the WhenUnsatisfiable field value
 // and a boolean to check if the value has been set.
-func (o *TopologyspreadconstraintsSpecConstraints) GetWhenUnsatisfiableOk() (*string, bool) {
+func (o *Constraints) GetWhenUnsatisfiableOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -300,12 +300,12 @@ func (o *TopologyspreadconstraintsSpecConstraints) GetWhenUnsatisfiableOk() (*st
 }
 
 // WhenUnsatisfiable sets field value
-func (o *TopologyspreadconstraintsSpecConstraints) WhenUnsatisfiable(v string) *TopologyspreadconstraintsSpecConstraints {
+func (o *Constraints) WhenUnsatisfiable(v string) *Constraints {
 	o.whenUnsatisfiable = v
 	return o
 }
 
-func (o TopologyspreadconstraintsSpecConstraints) MarshalJSON() ([]byte, error) {
+func (o Constraints) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -313,7 +313,7 @@ func (o TopologyspreadconstraintsSpecConstraints) MarshalJSON() ([]byte, error) 
 	return json.Marshal(toSerialize)
 }
 
-func (o TopologyspreadconstraintsSpecConstraints) ToMap() (map[string]interface{}, error) {
+func (o Constraints) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["labelSelector"] = o.labelSelector
 	if !utils.IsNil(o.matchLabelKeys) {
@@ -334,38 +334,38 @@ func (o TopologyspreadconstraintsSpecConstraints) ToMap() (map[string]interface{
 	return toSerialize, nil
 }
 
-type NullableTopologyspreadconstraintsSpecConstraints struct {
-	value *TopologyspreadconstraintsSpecConstraints
+type NullableConstraints struct {
+	value *Constraints
 	isSet bool
 }
 
-func (v NullableTopologyspreadconstraintsSpecConstraints) Get() *TopologyspreadconstraintsSpecConstraints {
+func (v NullableConstraints) Get() *Constraints {
 	return v.value
 }
 
-func (v *NullableTopologyspreadconstraintsSpecConstraints) Set(val *TopologyspreadconstraintsSpecConstraints) {
+func (v *NullableConstraints) Set(val *Constraints) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableTopologyspreadconstraintsSpecConstraints) IsSet() bool {
+func (v NullableConstraints) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableTopologyspreadconstraintsSpecConstraints) Unset() {
+func (v *NullableConstraints) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableTopologyspreadconstraintsSpecConstraints(val *TopologyspreadconstraintsSpecConstraints) *NullableTopologyspreadconstraintsSpecConstraints {
-	return &NullableTopologyspreadconstraintsSpecConstraints{value: val, isSet: true}
+func NewNullableConstraints(val *Constraints) *NullableConstraints {
+	return &NullableConstraints{value: val, isSet: true}
 }
 
-func (v NullableTopologyspreadconstraintsSpecConstraints) MarshalJSON() ([]byte, error) {
+func (v NullableConstraints) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableTopologyspreadconstraintsSpecConstraints) UnmarshalJSON(src []byte) error {
+func (v *NullableConstraints) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

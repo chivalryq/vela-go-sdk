@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &Attachments{}
 
 // Attachments struct for Attachments
 type Attachments struct {
-	blocks NullableString `json:"blocks,omitempty"`
-	color  *string        `json:"color,omitempty"`
+	blocks utils.NullableString `json:"blocks,omitempty"`
+	color  *string              `json:"color,omitempty"`
 }
 
 // NewAttachmentsWith instantiates a new Attachments object
@@ -70,7 +70,7 @@ func (o *Attachments) HasBlocks() bool {
 	return false
 }
 
-// Blocks gets a reference to the given NullableString and assigns it to the blocks field.
+// Blocks gets a reference to the given utils.NullableString and assigns it to the blocks field.
 // blocks:
 func (o *Attachments) Blocks(v string) *Attachments {
 	o.blocks.Set(&v)
