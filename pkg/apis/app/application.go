@@ -123,5 +123,5 @@ func FromK8sObject(app *v1beta1.Application) (Application, error) {
 }
 
 func CompFromK8sObject(component *common.ApplicationComponent) (Component, error) {
-
+	panic("implement me")
 }
