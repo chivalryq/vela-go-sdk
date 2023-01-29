@@ -12,12 +12,13 @@ package deploy_cloud_resource
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the DeployCloudResourceSpec type satisfies the MappedNullable interface at compile time
@@ -219,4 +220,12 @@ func (d *DeployCloudResourceWorkflowStep) Inputs(input common.StepInputs) *Deplo
 func (d *DeployCloudResourceWorkflowStep) Outputs(output common.StepOutputs) *DeployCloudResourceWorkflowStep {
 	d.Base.Outputs = output
 	return d
+}
+
+func (d *DeployCloudResourceWorkflowStep) Name() string {
+	return d.Base.Name
+}
+
+func (d *DeployCloudResourceWorkflowStep) Type() string {
+	return DeployCloudResourceType
 }

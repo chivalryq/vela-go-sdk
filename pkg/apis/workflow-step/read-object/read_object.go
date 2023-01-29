@@ -12,12 +12,13 @@ package read_object
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the ReadObjectSpec type satisfies the MappedNullable interface at compile time
@@ -340,4 +341,12 @@ func (r *ReadObjectWorkflowStep) Inputs(input common.StepInputs) *ReadObjectWork
 func (r *ReadObjectWorkflowStep) Outputs(output common.StepOutputs) *ReadObjectWorkflowStep {
 	r.Base.Outputs = output
 	return r
+}
+
+func (r *ReadObjectWorkflowStep) Name() string {
+	return r.Base.Name
+}
+
+func (r *ReadObjectWorkflowStep) Type() string {
+	return ReadObjectType
 }

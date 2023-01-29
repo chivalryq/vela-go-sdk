@@ -12,13 +12,13 @@ package startup_probe
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"fmt"
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // StartupProbeSpec - struct for StartupProbeSpec
@@ -168,4 +168,8 @@ func (s *StartupProbeTrait) Build() common.ApplicationTrait {
 		Type:       StartupProbeType,
 	}
 	return res
+}
+
+func (s *StartupProbeTrait) Type() string {
+	return StartupProbeType
 }

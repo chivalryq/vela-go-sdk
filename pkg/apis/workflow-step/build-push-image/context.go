@@ -12,9 +12,9 @@ package build_push_image
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"fmt"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // Context - Specify the context to build image, you can use context with git and branch or directly specify the context, please refer to https://github.com/GoogleContainerTools/kaniko#kaniko-build-contexts

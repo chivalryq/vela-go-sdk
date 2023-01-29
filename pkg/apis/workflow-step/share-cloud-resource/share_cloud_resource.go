@@ -12,12 +12,13 @@ package share_cloud_resource
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the ShareCloudResourceSpec type satisfies the MappedNullable interface at compile time
@@ -248,4 +249,12 @@ func (s *ShareCloudResourceWorkflowStep) Inputs(input common.StepInputs) *ShareC
 func (s *ShareCloudResourceWorkflowStep) Outputs(output common.StepOutputs) *ShareCloudResourceWorkflowStep {
 	s.Base.Outputs = output
 	return s
+}
+
+func (s *ShareCloudResourceWorkflowStep) Name() string {
+	return s.Base.Name
+}
+
+func (s *ShareCloudResourceWorkflowStep) Type() string {
+	return ShareCloudResourceType
 }

@@ -16,7 +16,7 @@ type Client interface {
 	Create(ctx context.Context, app apis.Application) error
 	Delete(ctx context.Context, app apis.Application) error
 	Update(ctx context.Context, app apis.Application) error
-	Patch(ctx context.Context, app apis.Application) error
+	Patch(ctx context.Context, app apis.Application, patch client.Patch) error
 }
 
 type clientImpl struct {
@@ -62,21 +62,21 @@ func (c clientImpl) List(ctx context.Context, opts client.ListOption) ([]apis.Ap
 }
 
 func (c clientImpl) Create(ctx context.Context, app apis.Application) error {
-	//TODO implement me
-	panic("implement me")
+	appObj := app.Build()
+	return c.clt.Create(ctx, &appObj)
 }
 
 func (c clientImpl) Delete(ctx context.Context, app apis.Application) error {
-	//TODO implement me
-	panic("implement me")
+	appObj := app.Build()
+	return c.clt.Delete(ctx, &appObj)
 }
 
 func (c clientImpl) Update(ctx context.Context, app apis.Application) error {
-	//TODO implement me
-	panic("implement me")
+	appObj := app.Build()
+	return c.clt.Update(ctx, &appObj)
 }
 
-func (c clientImpl) Patch(ctx context.Context, app apis.Application) error {
-	//TODO implement me
-	panic("implement me")
+func (c clientImpl) Patch(ctx context.Context, app apis.Application, patch client.Patch) error {
+	appObj := app.Build()
+	return c.clt.Patch(ctx, &appObj, patch)
 }

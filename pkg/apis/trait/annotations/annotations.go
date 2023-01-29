@@ -12,11 +12,12 @@ package annotations
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the AnnotationsSpec type satisfies the MappedNullable interface at compile time
@@ -110,4 +111,8 @@ func (a *AnnotationsTrait) Build() common.ApplicationTrait {
 		Type:       AnnotationsType,
 	}
 	return res
+}
+
+func (a *AnnotationsTrait) Type() string {
+	return AnnotationsType
 }

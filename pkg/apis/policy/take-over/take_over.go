@@ -12,11 +12,12 @@ package take_over
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the TakeOverSpec type satisfies the MappedNullable interface at compile time
@@ -152,4 +153,8 @@ func (t *TakeOverPolicy) Build() v1beta1.AppPolicy {
 		Type:       TakeOverType,
 	}
 	return res
+}
+
+func (t *TakeOverPolicy) Type() string {
+	return TakeOverType
 }

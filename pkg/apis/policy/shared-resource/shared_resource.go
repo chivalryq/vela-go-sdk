@@ -12,11 +12,12 @@ package shared_resource
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the SharedResourceSpec type satisfies the MappedNullable interface at compile time
@@ -152,4 +153,8 @@ func (s *SharedResourcePolicy) Build() v1beta1.AppPolicy {
 		Type:       SharedResourceType,
 	}
 	return res
+}
+
+func (s *SharedResourcePolicy) Type() string {
+	return SharedResourceType
 }

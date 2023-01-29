@@ -12,12 +12,13 @@ package deploy
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the DeploySpec type satisfies the MappedNullable interface at compile time
@@ -291,4 +292,12 @@ func (d *DeployWorkflowStep) Inputs(input common.StepInputs) *DeployWorkflowStep
 func (d *DeployWorkflowStep) Outputs(output common.StepOutputs) *DeployWorkflowStep {
 	d.Base.Outputs = output
 	return d
+}
+
+func (d *DeployWorkflowStep) Name() string {
+	return d.Base.Name
+}
+
+func (d *DeployWorkflowStep) Type() string {
+	return DeployType
 }

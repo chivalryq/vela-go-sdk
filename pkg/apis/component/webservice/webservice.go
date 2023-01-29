@@ -12,11 +12,12 @@ package webservice
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the WebserviceSpec type satisfies the MappedNullable interface at compile time
@@ -837,14 +838,10 @@ func (w *WebserviceComponent) AddTrait(traits ...apis.Trait) *WebserviceComponen
 	return w
 }
 
-func (w *WebserviceComponent) FromComponent(comp common.ApplicationComponent) error {
-	w.Base.Name = comp.Name
-	w.Base.DependsOn = comp.DependsOn
-	w.Base.Inputs = comp.Inputs
-	w.Base.Outputs = comp.Outputs
-	err := json.Unmarshal(comp.Properties.Raw, &w.Properties)
-	if err != nil {
-		return err
-	}
-	for
+func (w *WebserviceComponent) Name() string {
+	return w.Base.Name
+}
+
+func (w *WebserviceComponent) Type() string {
+	return WebserviceType
 }

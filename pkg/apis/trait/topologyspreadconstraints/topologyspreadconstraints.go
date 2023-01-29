@@ -12,11 +12,12 @@ package topologyspreadconstraints
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the TopologyspreadconstraintsSpec type satisfies the MappedNullable interface at compile time
@@ -138,4 +139,8 @@ func (t *TopologyspreadconstraintsTrait) Build() common.ApplicationTrait {
 		Type:       TopologyspreadconstraintsType,
 	}
 	return res
+}
+
+func (t *TopologyspreadconstraintsTrait) Type() string {
+	return TopologyspreadconstraintsType
 }

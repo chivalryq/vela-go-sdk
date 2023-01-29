@@ -12,6 +12,7 @@ package storage
 
 import (
 	"encoding/json"
+
 	"vela-go-sdk/pkg/apis/utils"
 )
 
@@ -21,13 +22,13 @@ var _ utils.MappedNullable = &Secret{}
 // Secret struct for Secret
 type Secret struct {
 	data        map[string]interface{} `json:"data,omitempty"`
-	defaultMode int32          `json:"defaultMode"`
-	items       []Items        `json:"items,omitempty"`
-	mountOnly   bool           `json:"mountOnly"`
-	mountPath   *string        `json:"mountPath,omitempty"`
-	mountToEnv  *MountToEnv1   `json:"mountToEnv,omitempty"`
-	mountToEnvs []MountToEnvs1 `json:"mountToEnvs,omitempty"`
-	name        string         `json:"name"`
+	defaultMode int32                  `json:"defaultMode"`
+	items       []Items                `json:"items,omitempty"`
+	mountOnly   bool                   `json:"mountOnly"`
+	mountPath   *string                `json:"mountPath,omitempty"`
+	mountToEnv  *MountToEnv1           `json:"mountToEnv,omitempty"`
+	mountToEnvs []MountToEnvs1         `json:"mountToEnvs,omitempty"`
+	name        string                 `json:"name"`
 	readOnly    bool                   `json:"readOnly"`
 	stringData  map[string]interface{} `json:"stringData,omitempty"`
 	subPath     *string                `json:"subPath,omitempty"`

@@ -12,12 +12,13 @@ package apply_application_in_parallel
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the ApplyApplicationInParallelSpec type satisfies the MappedNullable interface at compile time
@@ -159,4 +160,12 @@ func (a *ApplyApplicationInParallelWorkflowStep) Inputs(input common.StepInputs)
 func (a *ApplyApplicationInParallelWorkflowStep) Outputs(output common.StepOutputs) *ApplyApplicationInParallelWorkflowStep {
 	a.Base.Outputs = output
 	return a
+}
+
+func (a *ApplyApplicationInParallelWorkflowStep) Name() string {
+	return a.Base.Name
+}
+
+func (a *ApplyApplicationInParallelWorkflowStep) Type() string {
+	return ApplyApplicationInParallelType
 }

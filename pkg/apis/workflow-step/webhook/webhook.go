@@ -12,12 +12,13 @@ package webhook
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the WebhookSpec type satisfies the MappedNullable interface at compile time
@@ -226,4 +227,12 @@ func (w *WebhookWorkflowStep) Inputs(input common.StepInputs) *WebhookWorkflowSt
 func (w *WebhookWorkflowStep) Outputs(output common.StepOutputs) *WebhookWorkflowStep {
 	w.Base.Outputs = output
 	return w
+}
+
+func (w *WebhookWorkflowStep) Name() string {
+	return w.Base.Name
+}
+
+func (w *WebhookWorkflowStep) Type() string {
+	return WebhookType
 }

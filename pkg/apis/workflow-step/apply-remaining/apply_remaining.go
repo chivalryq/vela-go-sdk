@@ -12,12 +12,13 @@ package apply_remaining
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the ApplyRemainingSpec type satisfies the MappedNullable interface at compile time
@@ -198,4 +199,12 @@ func (a *ApplyRemainingWorkflowStep) Inputs(input common.StepInputs) *ApplyRemai
 func (a *ApplyRemainingWorkflowStep) Outputs(output common.StepOutputs) *ApplyRemainingWorkflowStep {
 	a.Base.Outputs = output
 	return a
+}
+
+func (a *ApplyRemainingWorkflowStep) Name() string {
+	return a.Base.Name
+}
+
+func (a *ApplyRemainingWorkflowStep) Type() string {
+	return ApplyRemainingType
 }

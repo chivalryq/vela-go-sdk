@@ -12,11 +12,12 @@ package worker
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the WorkerSpec type satisfies the MappedNullable interface at compile time
@@ -542,4 +543,12 @@ func (w *WorkerComponent) Build() common.ApplicationComponent {
 func (w *WorkerComponent) AddTrait(traits ...apis.Trait) *WorkerComponent {
 	w.Base.Traits = append(w.Base.Traits, traits...)
 	return w
+}
+
+func (w *WorkerComponent) Name() string {
+	return w.Base.Name
+}
+
+func (w *WorkerComponent) Type() string {
+	return WorkerType
 }

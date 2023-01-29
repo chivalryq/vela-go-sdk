@@ -12,11 +12,12 @@ package k8s_objects
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the K8sObjectsSpec type satisfies the MappedNullable interface at compile time
@@ -154,4 +155,12 @@ func (k *K8sObjectsComponent) Build() common.ApplicationComponent {
 func (k *K8sObjectsComponent) AddTrait(traits ...apis.Trait) *K8sObjectsComponent {
 	k.Base.Traits = append(k.Base.Traits, traits...)
 	return k
+}
+
+func (k *K8sObjectsComponent) Name() string {
+	return k.Base.Name
+}
+
+func (k *K8sObjectsComponent) Type() string {
+	return K8sObjectsType
 }

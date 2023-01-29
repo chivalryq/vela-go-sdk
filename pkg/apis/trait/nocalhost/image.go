@@ -12,9 +12,9 @@ package nocalhost
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"fmt"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // Image - struct for Image

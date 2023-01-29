@@ -12,12 +12,13 @@ package build_push_image
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the BuildPushImageSpec type satisfies the MappedNullable interface at compile time
@@ -425,4 +426,12 @@ func (b *BuildPushImageWorkflowStep) Inputs(input common.StepInputs) *BuildPushI
 func (b *BuildPushImageWorkflowStep) Outputs(output common.StepOutputs) *BuildPushImageWorkflowStep {
 	b.Base.Outputs = output
 	return b
+}
+
+func (b *BuildPushImageWorkflowStep) Name() string {
+	return b.Base.Name
+}
+
+func (b *BuildPushImageWorkflowStep) Type() string {
+	return BuildPushImageType
 }

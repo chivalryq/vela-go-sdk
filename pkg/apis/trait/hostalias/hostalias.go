@@ -12,11 +12,12 @@ package hostalias
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the HostaliasSpec type satisfies the MappedNullable interface at compile time
@@ -139,4 +140,8 @@ func (h *HostaliasTrait) Build() common.ApplicationTrait {
 		Type:       HostaliasType,
 	}
 	return res
+}
+
+func (h *HostaliasTrait) Type() string {
+	return HostaliasType
 }

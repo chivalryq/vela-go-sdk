@@ -12,9 +12,9 @@ package webhook
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"fmt"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // Url - Specify the webhook url

@@ -12,11 +12,12 @@ package k8s_update_strategy
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the K8sUpdateStrategySpec type satisfies the MappedNullable interface at compile time
@@ -200,4 +201,8 @@ func (k *K8sUpdateStrategyTrait) Build() common.ApplicationTrait {
 		Type:       K8sUpdateStrategyType,
 	}
 	return res
+}
+
+func (k *K8sUpdateStrategyTrait) Type() string {
+	return K8sUpdateStrategyType
 }

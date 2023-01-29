@@ -12,11 +12,12 @@ package lifecycle
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the LifecycleSpec type satisfies the MappedNullable interface at compile time
@@ -186,4 +187,8 @@ func (l *LifecycleTrait) Build() common.ApplicationTrait {
 		Type:       LifecycleType,
 	}
 	return res
+}
+
+func (l *LifecycleTrait) Type() string {
+	return LifecycleType
 }

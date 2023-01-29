@@ -12,12 +12,13 @@ package apply_deployment
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the ApplyDeploymentSpec type satisfies the MappedNullable interface at compile time
@@ -225,4 +226,12 @@ func (a *ApplyDeploymentWorkflowStep) Inputs(input common.StepInputs) *ApplyDepl
 func (a *ApplyDeploymentWorkflowStep) Outputs(output common.StepOutputs) *ApplyDeploymentWorkflowStep {
 	a.Base.Outputs = output
 	return a
+}
+
+func (a *ApplyDeploymentWorkflowStep) Name() string {
+	return a.Base.Name
+}
+
+func (a *ApplyDeploymentWorkflowStep) Type() string {
+	return ApplyDeploymentType
 }

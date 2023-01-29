@@ -12,12 +12,13 @@ package collect_service_endpoints
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the CollectServiceEndpointsSpec type satisfies the MappedNullable interface at compile time
@@ -424,4 +425,12 @@ func (c *CollectServiceEndpointsWorkflowStep) Inputs(input common.StepInputs) *C
 func (c *CollectServiceEndpointsWorkflowStep) Outputs(output common.StepOutputs) *CollectServiceEndpointsWorkflowStep {
 	c.Base.Outputs = output
 	return c
+}
+
+func (c *CollectServiceEndpointsWorkflowStep) Name() string {
+	return c.Base.Name
+}
+
+func (c *CollectServiceEndpointsWorkflowStep) Type() string {
+	return CollectServiceEndpointsType
 }

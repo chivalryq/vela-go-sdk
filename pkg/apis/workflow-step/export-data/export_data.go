@@ -12,12 +12,13 @@ package export_data
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the ExportDataSpec type satisfies the MappedNullable interface at compile time
@@ -336,4 +337,12 @@ func (e *ExportDataWorkflowStep) Inputs(input common.StepInputs) *ExportDataWork
 func (e *ExportDataWorkflowStep) Outputs(output common.StepOutputs) *ExportDataWorkflowStep {
 	e.Base.Outputs = output
 	return e
+}
+
+func (e *ExportDataWorkflowStep) Name() string {
+	return e.Base.Name
+}
+
+func (e *ExportDataWorkflowStep) Type() string {
+	return ExportDataType
 }

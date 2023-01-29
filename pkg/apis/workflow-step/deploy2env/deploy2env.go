@@ -12,12 +12,13 @@ package deploy2env
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the Deploy2envSpec type satisfies the MappedNullable interface at compile time
@@ -250,4 +251,12 @@ func (d *Deploy2envWorkflowStep) Inputs(input common.StepInputs) *Deploy2envWork
 func (d *Deploy2envWorkflowStep) Outputs(output common.StepOutputs) *Deploy2envWorkflowStep {
 	d.Base.Outputs = output
 	return d
+}
+
+func (d *Deploy2envWorkflowStep) Name() string {
+	return d.Base.Name
+}
+
+func (d *Deploy2envWorkflowStep) Type() string {
+	return Deploy2envType
 }

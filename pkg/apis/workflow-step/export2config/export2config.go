@@ -12,12 +12,13 @@ package export2config
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the Export2configSpec type satisfies the MappedNullable interface at compile time
@@ -287,4 +288,12 @@ func (e *Export2configWorkflowStep) Inputs(input common.StepInputs) *Export2conf
 func (e *Export2configWorkflowStep) Outputs(output common.StepOutputs) *Export2configWorkflowStep {
 	e.Base.Outputs = output
 	return e
+}
+
+func (e *Export2configWorkflowStep) Name() string {
+	return e.Base.Name
+}
+
+func (e *Export2configWorkflowStep) Type() string {
+	return Export2configType
 }

@@ -12,11 +12,12 @@ package ref_objects
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the RefObjectsSpec type satisfies the MappedNullable interface at compile time
@@ -204,4 +205,12 @@ func (r *RefObjectsComponent) Build() common.ApplicationComponent {
 func (r *RefObjectsComponent) AddTrait(traits ...apis.Trait) *RefObjectsComponent {
 	r.Base.Traits = append(r.Base.Traits, traits...)
 	return r
+}
+
+func (r *RefObjectsComponent) Name() string {
+	return r.Base.Name
+}
+
+func (r *RefObjectsComponent) Type() string {
+	return RefObjectsType
 }

@@ -12,6 +12,7 @@ package storage
 
 import (
 	"encoding/json"
+
 	"vela-go-sdk/pkg/apis/utils"
 )
 
@@ -21,13 +22,13 @@ var _ utils.MappedNullable = &ConfigMap{}
 // ConfigMap struct for ConfigMap
 type ConfigMap struct {
 	data        map[string]interface{} `json:"data,omitempty"`
-	defaultMode int32         `json:"defaultMode"`
-	items       []Items       `json:"items,omitempty"`
-	mountOnly   bool          `json:"mountOnly"`
-	mountPath   *string       `json:"mountPath,omitempty"`
-	mountToEnv  *MountToEnv   `json:"mountToEnv,omitempty"`
-	mountToEnvs []MountToEnvs `json:"mountToEnvs,omitempty"`
-	name        string        `json:"name"`
+	defaultMode int32                  `json:"defaultMode"`
+	items       []Items                `json:"items,omitempty"`
+	mountOnly   bool                   `json:"mountOnly"`
+	mountPath   *string                `json:"mountPath,omitempty"`
+	mountToEnv  *MountToEnv            `json:"mountToEnv,omitempty"`
+	mountToEnvs []MountToEnvs          `json:"mountToEnvs,omitempty"`
+	name        string                 `json:"name"`
 	readOnly    bool                   `json:"readOnly"`
 	subPath     *string                `json:"subPath,omitempty"`
 }

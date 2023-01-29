@@ -12,11 +12,12 @@ package daemon
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the DaemonSpec type satisfies the MappedNullable interface at compile time
@@ -796,4 +797,12 @@ func (d *DaemonComponent) Build() common.ApplicationComponent {
 func (d *DaemonComponent) AddTrait(traits ...apis.Trait) *DaemonComponent {
 	d.Base.Traits = append(d.Base.Traits, traits...)
 	return d
+}
+
+func (d *DaemonComponent) Name() string {
+	return d.Base.Name
+}
+
+func (d *DaemonComponent) Type() string {
+	return DaemonType
 }

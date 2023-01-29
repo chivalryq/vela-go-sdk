@@ -12,14 +12,14 @@ package apply_terraform_provider
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"fmt"
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // ApplyTerraformProviderSpec - struct for ApplyTerraformProviderSpec
@@ -397,4 +397,12 @@ func (a *ApplyTerraformProviderWorkflowStep) Inputs(input common.StepInputs) *Ap
 func (a *ApplyTerraformProviderWorkflowStep) Outputs(output common.StepOutputs) *ApplyTerraformProviderWorkflowStep {
 	a.Base.Outputs = output
 	return a
+}
+
+func (a *ApplyTerraformProviderWorkflowStep) Name() string {
+	return a.Base.Name
+}
+
+func (a *ApplyTerraformProviderWorkflowStep) Type() string {
+	return ApplyTerraformProviderType
 }

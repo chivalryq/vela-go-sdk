@@ -64,6 +64,22 @@ func (a *ApplicationBuilder) Annotations(annotations map[string]string) Applicat
 	return a
 }
 
+func (a *ApplicationBuilder) GetName() string {
+	return a.name
+}
+
+func (a *ApplicationBuilder) GetNamespace() string {
+	return a.namespace
+}
+
+func (a *ApplicationBuilder) GetLabels() map[string]string {
+	return a.labels
+}
+
+func (a *ApplicationBuilder) GetAnnotations() map[string]string {
+	return a.annotations
+}
+
 // New creates a new application with the given components.
 func New() Application {
 	app := &ApplicationBuilder{

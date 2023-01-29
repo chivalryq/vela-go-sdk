@@ -12,12 +12,13 @@ package create_config
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the CreateConfigSpec type satisfies the MappedNullable interface at compile time
@@ -295,4 +296,12 @@ func (c *CreateConfigWorkflowStep) Inputs(input common.StepInputs) *CreateConfig
 func (c *CreateConfigWorkflowStep) Outputs(output common.StepOutputs) *CreateConfigWorkflowStep {
 	c.Base.Outputs = output
 	return c
+}
+
+func (c *CreateConfigWorkflowStep) Name() string {
+	return c.Base.Name
+}
+
+func (c *CreateConfigWorkflowStep) Type() string {
+	return CreateConfigType
 }

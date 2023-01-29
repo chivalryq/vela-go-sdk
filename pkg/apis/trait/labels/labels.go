@@ -12,11 +12,12 @@ package labels
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the LabelsSpec type satisfies the MappedNullable interface at compile time
@@ -110,4 +111,8 @@ func (l *LabelsTrait) Build() common.ApplicationTrait {
 		Type:       LabelsType,
 	}
 	return res
+}
+
+func (l *LabelsTrait) Type() string {
+	return LabelsType
 }

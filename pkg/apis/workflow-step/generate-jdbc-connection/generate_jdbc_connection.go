@@ -12,12 +12,13 @@ package generate_jdbc_connection
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the GenerateJdbcConnectionSpec type satisfies the MappedNullable interface at compile time
@@ -227,4 +228,12 @@ func (g *GenerateJdbcConnectionWorkflowStep) Inputs(input common.StepInputs) *Ge
 func (g *GenerateJdbcConnectionWorkflowStep) Outputs(output common.StepOutputs) *GenerateJdbcConnectionWorkflowStep {
 	g.Base.Outputs = output
 	return g
+}
+
+func (g *GenerateJdbcConnectionWorkflowStep) Name() string {
+	return g.Base.Name
+}
+
+func (g *GenerateJdbcConnectionWorkflowStep) Type() string {
+	return GenerateJdbcConnectionType
 }

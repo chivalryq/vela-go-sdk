@@ -12,13 +12,13 @@ package command
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"fmt"
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // CommandSpec - struct for CommandSpec
@@ -168,4 +168,8 @@ func (c *CommandTrait) Build() common.ApplicationTrait {
 		Type:       CommandType,
 	}
 	return res
+}
+
+func (c *CommandTrait) Type() string {
+	return CommandType
 }

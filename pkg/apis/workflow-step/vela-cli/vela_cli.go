@@ -12,12 +12,13 @@ package vela_cli
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the VelaCliSpec type satisfies the MappedNullable interface at compile time
@@ -317,4 +318,12 @@ func (v *VelaCliWorkflowStep) Inputs(input common.StepInputs) *VelaCliWorkflowSt
 func (v *VelaCliWorkflowStep) Outputs(output common.StepOutputs) *VelaCliWorkflowStep {
 	v.Base.Outputs = output
 	return v
+}
+
+func (v *VelaCliWorkflowStep) Name() string {
+	return v.Base.Name
+}
+
+func (v *VelaCliWorkflowStep) Type() string {
+	return VelaCliType
 }

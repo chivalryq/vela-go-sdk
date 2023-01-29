@@ -12,9 +12,9 @@ package apply_terraform_config
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"fmt"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // Source - specify the source of the terraform configuration

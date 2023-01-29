@@ -15,6 +15,13 @@ type Application interface {
 	WithWorkflowSteps(step ...WorkflowStep) Application
 	WithPolicies(policy ...Policy) Application
 	WithWorkflowMode(steps, subSteps common.WorkflowMode) Application
+
+	GetName() string
+	GetNamespace() string
+	GetLabels() map[string]string
+	GetAnnotations() map[string]string
+
+	Build() v1beta1.Application
 }
 
 type Component interface {
@@ -52,7 +59,9 @@ type ComponentBase struct {
 	Traits    []Trait
 }
 
-type TraitBase struct{}
+type TraitBase struct {
+	Type string
+}
 
 type WorkflowSubStepBase struct {
 	Name      string

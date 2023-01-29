@@ -12,12 +12,13 @@ package notification
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the NotificationSpec type satisfies the MappedNullable interface at compile time
@@ -311,4 +312,12 @@ func (n *NotificationWorkflowStep) Inputs(input common.StepInputs) *Notification
 func (n *NotificationWorkflowStep) Outputs(output common.StepOutputs) *NotificationWorkflowStep {
 	n.Base.Outputs = output
 	return n
+}
+
+func (n *NotificationWorkflowStep) Name() string {
+	return n.Base.Name
+}
+
+func (n *NotificationWorkflowStep) Type() string {
+	return NotificationType
 }

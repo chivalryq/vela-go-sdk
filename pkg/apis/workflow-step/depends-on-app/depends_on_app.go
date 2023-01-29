@@ -12,12 +12,13 @@ package depends_on_app
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the DependsOnAppSpec type satisfies the MappedNullable interface at compile time
@@ -217,4 +218,12 @@ func (d *DependsOnAppWorkflowStep) Inputs(input common.StepInputs) *DependsOnApp
 func (d *DependsOnAppWorkflowStep) Outputs(output common.StepOutputs) *DependsOnAppWorkflowStep {
 	d.Base.Outputs = output
 	return d
+}
+
+func (d *DependsOnAppWorkflowStep) Name() string {
+	return d.Base.Name
+}
+
+func (d *DependsOnAppWorkflowStep) Type() string {
+	return DependsOnAppType
 }

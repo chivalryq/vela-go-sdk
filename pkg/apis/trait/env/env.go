@@ -12,13 +12,13 @@ package env
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"fmt"
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // EnvSpec - struct for EnvSpec
@@ -168,4 +168,8 @@ func (e *EnvTrait) Build() common.ApplicationTrait {
 		Type:       EnvType,
 	}
 	return res
+}
+
+func (e *EnvTrait) Type() string {
+	return EnvType
 }

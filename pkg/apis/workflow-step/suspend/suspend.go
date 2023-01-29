@@ -12,12 +12,13 @@ package suspend
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the SuspendSpec type satisfies the MappedNullable interface at compile time
@@ -198,4 +199,12 @@ func (s *SuspendWorkflowStep) Inputs(input common.StepInputs) *SuspendWorkflowSt
 func (s *SuspendWorkflowStep) Outputs(output common.StepOutputs) *SuspendWorkflowStep {
 	s.Base.Outputs = output
 	return s
+}
+
+func (s *SuspendWorkflowStep) Name() string {
+	return s.Base.Name
+}
+
+func (s *SuspendWorkflowStep) Type() string {
+	return SuspendType
 }

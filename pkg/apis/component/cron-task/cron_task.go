@@ -12,11 +12,12 @@ package cron_task
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the CronTaskSpec type satisfies the MappedNullable interface at compile time
@@ -984,4 +985,12 @@ func (c *CronTaskComponent) Build() common.ApplicationComponent {
 func (c *CronTaskComponent) AddTrait(traits ...apis.Trait) *CronTaskComponent {
 	c.Base.Traits = append(c.Base.Traits, traits...)
 	return c
+}
+
+func (c *CronTaskComponent) Name() string {
+	return c.Base.Name
+}
+
+func (c *CronTaskComponent) Type() string {
+	return CronTaskType
 }

@@ -11,9 +11,14 @@ This is a Go SDK for KubeVela.
   - [ ] Convert from K8s Application Object
   - [ ] Referring to external Workflow object.
 - 🔍Application client
-  - [ ] Create/List/Get/Delete/Patch/Update Application
+  - [x] Create/Delete/Patch/Update Application
+  - [ ] List/Get Application
  
-## Feature planned
+## Example
+
+See [example](./example) for more details.
+
+## Future Work
 
 There is some proper features for this SDK and possible to be added in the future. If you are interested in any of them, please feel free to contact us.
 

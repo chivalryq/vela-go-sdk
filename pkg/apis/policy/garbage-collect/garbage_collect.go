@@ -12,11 +12,12 @@ package garbage_collect
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the GarbageCollectSpec type satisfies the MappedNullable interface at compile time
@@ -183,4 +184,8 @@ func (g *GarbageCollectPolicy) Build() v1beta1.AppPolicy {
 		Type:       GarbageCollectType,
 	}
 	return res
+}
+
+func (g *GarbageCollectPolicy) Type() string {
+	return GarbageCollectType
 }

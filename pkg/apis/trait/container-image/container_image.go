@@ -12,13 +12,13 @@ package container_image
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"fmt"
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // ContainerImageSpec - struct for ContainerImageSpec
@@ -168,4 +168,8 @@ func (c *ContainerImageTrait) Build() common.ApplicationTrait {
 		Type:       ContainerImageType,
 	}
 	return res
+}
+
+func (c *ContainerImageTrait) Type() string {
+	return ContainerImageType
 }

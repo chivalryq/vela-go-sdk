@@ -12,11 +12,12 @@ package affinity
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the AffinitySpec type satisfies the MappedNullable interface at compile time
@@ -263,4 +264,8 @@ func (a *AffinityTrait) Build() common.ApplicationTrait {
 		Type:       AffinityType,
 	}
 	return res
+}
+
+func (a *AffinityTrait) Type() string {
+	return AffinityType
 }

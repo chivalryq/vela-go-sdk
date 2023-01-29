@@ -12,12 +12,13 @@ package read_config
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the ReadConfigSpec type satisfies the MappedNullable interface at compile time
@@ -227,4 +228,12 @@ func (r *ReadConfigWorkflowStep) Inputs(input common.StepInputs) *ReadConfigWork
 func (r *ReadConfigWorkflowStep) Outputs(output common.StepOutputs) *ReadConfigWorkflowStep {
 	r.Base.Outputs = output
 	return r
+}
+
+func (r *ReadConfigWorkflowStep) Name() string {
+	return r.Base.Name
+}
+
+func (r *ReadConfigWorkflowStep) Type() string {
+	return ReadConfigType
 }

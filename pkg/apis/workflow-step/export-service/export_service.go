@@ -12,12 +12,13 @@ package export_service
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the ExportServiceSpec type satisfies the MappedNullable interface at compile time
@@ -363,4 +364,12 @@ func (e *ExportServiceWorkflowStep) Inputs(input common.StepInputs) *ExportServi
 func (e *ExportServiceWorkflowStep) Outputs(output common.StepOutputs) *ExportServiceWorkflowStep {
 	e.Base.Outputs = output
 	return e
+}
+
+func (e *ExportServiceWorkflowStep) Name() string {
+	return e.Base.Name
+}
+
+func (e *ExportServiceWorkflowStep) Type() string {
+	return ExportServiceType
 }

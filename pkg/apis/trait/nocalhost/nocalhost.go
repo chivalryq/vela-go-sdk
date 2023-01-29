@@ -12,11 +12,12 @@ package nocalhost
 
 import (
 	"encoding/json"
-	"vela-go-sdk/pkg/apis"
-	"vela-go-sdk/pkg/apis/utils"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
+
+	"vela-go-sdk/pkg/apis"
+	"vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the NocalhostSpec type satisfies the MappedNullable interface at compile time
@@ -598,4 +599,8 @@ func (n *NocalhostTrait) Build() common.ApplicationTrait {
 		Type:       NocalhostType,
 	}
 	return res
+}
+
+func (n *NocalhostTrait) Type() string {
+	return NocalhostType
 }
