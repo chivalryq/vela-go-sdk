@@ -14,7 +14,8 @@ import (
 	"encoding/json"
 
 	"fmt"
-	"vela-go-sdk/pkg/apis/utils"
+
+	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
 // Url1 - Specify the the lark url, you can either sepcify it in value or use secretRef

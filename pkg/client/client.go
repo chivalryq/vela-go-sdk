@@ -2,12 +2,12 @@ package client
 
 import (
 	"context"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"k8s.io/client-go/rest"
 	"sigs.k8s.io/controller-runtime/pkg/client"
-	apiapp "vela-go-sdk/pkg/apis/app"
 
-	"vela-go-sdk/pkg/apis"
+	"github.com/chivalryq/vela-go-sdk/pkg/apis"
 )
 
 type Client interface {
@@ -53,7 +53,7 @@ func (c clientImpl) Get(ctx context.Context, key client.ObjectKey) (apis.Applica
 	if err != nil {
 		return nil, err
 	}
-	return apiapp.FromK8sObject(&_app)
+	return sdkcommon.FromK8sObject(&_app)
 }
 
 func (c clientImpl) List(ctx context.Context, opts client.ListOption) ([]apis.Application, error) {

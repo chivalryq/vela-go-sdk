@@ -13,7 +13,7 @@ package cron_task
 import (
 	"encoding/json"
 
-	"vela-go-sdk/pkg/apis/utils"
+	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the Exec type satisfies the MappedNullable interface at compile time

@@ -1,11 +1,11 @@
-package app
+package common
 
 import (
+	. "github.com/chivalryq/vela-go-sdk/pkg/apis"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
 	"github.com/pkg/errors"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	. "vela-go-sdk/pkg/apis"
 )
 
 type ApplicationBuilder struct {

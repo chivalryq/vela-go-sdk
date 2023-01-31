@@ -1,4 +1,4 @@
-module vela-go-sdk
+module github.com/chivalryq/vela-go-sdk
 
 go 1.19
 

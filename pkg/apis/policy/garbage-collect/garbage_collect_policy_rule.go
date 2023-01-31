@@ -13,7 +13,7 @@ package garbage_collect
 import (
 	"encoding/json"
 
-	"vela-go-sdk/pkg/apis/utils"
+	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the GarbageCollectPolicyRule type satisfies the MappedNullable interface at compile time

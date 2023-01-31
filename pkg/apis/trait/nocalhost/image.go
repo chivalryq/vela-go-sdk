@@ -14,7 +14,8 @@ import (
 	"encoding/json"
 
 	"fmt"
-	"vela-go-sdk/pkg/apis/utils"
+
+	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
 // Image - struct for Image

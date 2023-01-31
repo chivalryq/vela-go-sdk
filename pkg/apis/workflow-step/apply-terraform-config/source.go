@@ -14,7 +14,8 @@ import (
 	"encoding/json"
 
 	"fmt"
-	"vela-go-sdk/pkg/apis/utils"
+
+	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
 // Source - specify the source of the terraform configuration

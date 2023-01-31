@@ -13,7 +13,7 @@ package k8s_update_strategy
 import (
 	"encoding/json"
 
-	"vela-go-sdk/pkg/apis/utils"
+	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
 // checks if the RollingStrategy type satisfies the MappedNullable interface at compile time

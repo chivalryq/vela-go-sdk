@@ -4,8 +4,8 @@ import (
 	"bytes"
 	json2 "encoding/json"
 	"fmt"
+	"github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"k8s.io/apimachinery/pkg/util/json"
-	"vela-go-sdk/pkg/apis/app"
 	. "vela-go-sdk/pkg/apis/component/webservice"
 	applyonce "vela-go-sdk/pkg/apis/policy/apply-once"
 	initcontainer "vela-go-sdk/pkg/apis/trait/init-container"
@@ -18,7 +18,7 @@ import (
 
 func main() {
 	// Build application with components/trait/workflow/policy
-	application := app.New().
+	application := common.New().
 		Name("test-app").
 		Namespace("default").
 		WithComponents(
