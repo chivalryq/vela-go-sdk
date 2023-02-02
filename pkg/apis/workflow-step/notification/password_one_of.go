@@ -22,7 +22,7 @@ var _ utils.MappedNullable = &PasswordOneOf{}
 // PasswordOneOf struct for PasswordOneOf
 type PasswordOneOf struct {
 	// the password content in string
-	value string `json:"value"`
+	Value string `json:"value"`
 }
 
 // NewPasswordOneOfWith instantiates a new PasswordOneOf object
@@ -31,7 +31,7 @@ type PasswordOneOf struct {
 // will change when the set of required properties is changed
 func NewPasswordOneOfWith(value string) *PasswordOneOf {
 	this := PasswordOneOf{}
-	this.value = value
+	this.Value = value
 	return &this
 }
 
@@ -50,7 +50,7 @@ func (o *PasswordOneOf) GetValue() string {
 		return ret
 	}
 
-	return o.value
+	return o.Value
 }
 
 // GetValueOk returns a tuple with the Value field value
@@ -59,12 +59,12 @@ func (o *PasswordOneOf) GetValueOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.value, true
+	return &o.Value, true
 }
 
-// Value sets field value
-func (o *PasswordOneOf) Value(v string) *PasswordOneOf {
-	o.value = v
+// SetValue sets field value
+func (o *PasswordOneOf) SetValue(v string) *PasswordOneOf {
+	o.Value = v
 	return o
 }
 
@@ -78,7 +78,7 @@ func (o PasswordOneOf) MarshalJSON() ([]byte, error) {
 
 func (o PasswordOneOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["value"] = o.value
+	toSerialize["value"] = o.Value
 	return toSerialize, nil
 }
 

@@ -27,11 +27,11 @@ var _ utils.MappedNullable = &ResourceSpec{}
 // ResourceSpec struct for ResourceSpec
 type ResourceSpec struct {
 	// Specify the amount of cpu for requests and limits
-	cpu    *float32 `json:"cpu,omitempty"`
-	limits *Limits  `json:"limits,omitempty"`
+	Cpu    *float32 `json:"cpu,omitempty"`
+	Limits *Limits  `json:"limits,omitempty"`
 	// Specify the amount of memory for requests and limits
-	memory   *string   `json:"memory,omitempty"`
-	requests *Requests `json:"requests,omitempty"`
+	Memory   *string   `json:"memory,omitempty"`
+	Requests *Requests `json:"requests,omitempty"`
 }
 
 // NewResourceSpecWith instantiates a new ResourceSpec object
@@ -41,9 +41,9 @@ type ResourceSpec struct {
 func NewResourceSpecWith() *ResourceSpec {
 	this := ResourceSpec{}
 	var cpu float32 = 1
-	this.cpu = &cpu
+	this.Cpu = &cpu
 	var memory string = "2048Mi"
-	this.memory = &memory
+	this.Memory = &memory
 	return &this
 }
 
@@ -53,145 +53,145 @@ func NewResourceSpecWith() *ResourceSpec {
 func NewResourceSpec() *ResourceSpec {
 	this := ResourceSpec{}
 	var cpu float32 = 1
-	this.cpu = &cpu
+	this.Cpu = &cpu
 	var memory string = "2048Mi"
-	this.memory = &memory
+	this.Memory = &memory
 	return &this
 }
 
 // GetCpu returns the Cpu field value if set, zero value otherwise.
 func (o *ResourceTrait) GetCpu() float32 {
-	if o == nil || utils.IsNil(o.Properties.cpu) {
+	if o == nil || utils.IsNil(o.Properties.Cpu) {
 		var ret float32
 		return ret
 	}
-	return *o.Properties.cpu
+	return *o.Properties.Cpu
 }
 
 // GetCpuOk returns a tuple with the Cpu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ResourceTrait) GetCpuOk() (*float32, bool) {
-	if o == nil || utils.IsNil(o.Properties.cpu) {
+	if o == nil || utils.IsNil(o.Properties.Cpu) {
 		return nil, false
 	}
-	return o.Properties.cpu, true
+	return o.Properties.Cpu, true
 }
 
 // HasCpu returns a boolean if a field has been set.
 func (o *ResourceTrait) HasCpu() bool {
-	if o != nil && !utils.IsNil(o.Properties.cpu) {
+	if o != nil && !utils.IsNil(o.Properties.Cpu) {
 		return true
 	}
 
 	return false
 }
 
-// Cpu gets a reference to the given float32 and assigns it to the cpu field.
-// cpu:  Specify the amount of cpu for requests and limits
-func (o *ResourceTrait) Cpu(v float32) *ResourceTrait {
-	o.Properties.cpu = &v
+// SetCpu gets a reference to the given float32 and assigns it to the cpu field.
+// Cpu:  Specify the amount of cpu for requests and limits
+func (o *ResourceTrait) SetCpu(v float32) *ResourceTrait {
+	o.Properties.Cpu = &v
 	return o
 }
 
 // GetLimits returns the Limits field value if set, zero value otherwise.
 func (o *ResourceTrait) GetLimits() Limits {
-	if o == nil || utils.IsNil(o.Properties.limits) {
+	if o == nil || utils.IsNil(o.Properties.Limits) {
 		var ret Limits
 		return ret
 	}
-	return *o.Properties.limits
+	return *o.Properties.Limits
 }
 
 // GetLimitsOk returns a tuple with the Limits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ResourceTrait) GetLimitsOk() (*Limits, bool) {
-	if o == nil || utils.IsNil(o.Properties.limits) {
+	if o == nil || utils.IsNil(o.Properties.Limits) {
 		return nil, false
 	}
-	return o.Properties.limits, true
+	return o.Properties.Limits, true
 }
 
 // HasLimits returns a boolean if a field has been set.
 func (o *ResourceTrait) HasLimits() bool {
-	if o != nil && !utils.IsNil(o.Properties.limits) {
+	if o != nil && !utils.IsNil(o.Properties.Limits) {
 		return true
 	}
 
 	return false
 }
 
-// Limits gets a reference to the given Limits and assigns it to the limits field.
-// limits:
-func (o *ResourceTrait) Limits(v Limits) *ResourceTrait {
-	o.Properties.limits = &v
+// SetLimits gets a reference to the given Limits and assigns it to the limits field.
+// Limits:
+func (o *ResourceTrait) SetLimits(v Limits) *ResourceTrait {
+	o.Properties.Limits = &v
 	return o
 }
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
 func (o *ResourceTrait) GetMemory() string {
-	if o == nil || utils.IsNil(o.Properties.memory) {
+	if o == nil || utils.IsNil(o.Properties.Memory) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.memory
+	return *o.Properties.Memory
 }
 
 // GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ResourceTrait) GetMemoryOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.memory) {
+	if o == nil || utils.IsNil(o.Properties.Memory) {
 		return nil, false
 	}
-	return o.Properties.memory, true
+	return o.Properties.Memory, true
 }
 
 // HasMemory returns a boolean if a field has been set.
 func (o *ResourceTrait) HasMemory() bool {
-	if o != nil && !utils.IsNil(o.Properties.memory) {
+	if o != nil && !utils.IsNil(o.Properties.Memory) {
 		return true
 	}
 
 	return false
 }
 
-// Memory gets a reference to the given string and assigns it to the memory field.
-// memory:  Specify the amount of memory for requests and limits
-func (o *ResourceTrait) Memory(v string) *ResourceTrait {
-	o.Properties.memory = &v
+// SetMemory gets a reference to the given string and assigns it to the memory field.
+// Memory:  Specify the amount of memory for requests and limits
+func (o *ResourceTrait) SetMemory(v string) *ResourceTrait {
+	o.Properties.Memory = &v
 	return o
 }
 
 // GetRequests returns the Requests field value if set, zero value otherwise.
 func (o *ResourceTrait) GetRequests() Requests {
-	if o == nil || utils.IsNil(o.Properties.requests) {
+	if o == nil || utils.IsNil(o.Properties.Requests) {
 		var ret Requests
 		return ret
 	}
-	return *o.Properties.requests
+	return *o.Properties.Requests
 }
 
 // GetRequestsOk returns a tuple with the Requests field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ResourceTrait) GetRequestsOk() (*Requests, bool) {
-	if o == nil || utils.IsNil(o.Properties.requests) {
+	if o == nil || utils.IsNil(o.Properties.Requests) {
 		return nil, false
 	}
-	return o.Properties.requests, true
+	return o.Properties.Requests, true
 }
 
 // HasRequests returns a boolean if a field has been set.
 func (o *ResourceTrait) HasRequests() bool {
-	if o != nil && !utils.IsNil(o.Properties.requests) {
+	if o != nil && !utils.IsNil(o.Properties.Requests) {
 		return true
 	}
 
 	return false
 }
 
-// Requests gets a reference to the given Requests and assigns it to the requests field.
-// requests:
-func (o *ResourceTrait) Requests(v Requests) *ResourceTrait {
-	o.Properties.requests = &v
+// SetRequests gets a reference to the given Requests and assigns it to the requests field.
+// Requests:
+func (o *ResourceTrait) SetRequests(v Requests) *ResourceTrait {
+	o.Properties.Requests = &v
 	return o
 }
 
@@ -205,17 +205,17 @@ func (o ResourceSpec) MarshalJSON() ([]byte, error) {
 
 func (o ResourceSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.cpu) {
-		toSerialize["cpu"] = o.cpu
+	if !utils.IsNil(o.Cpu) {
+		toSerialize["cpu"] = o.Cpu
 	}
-	if !utils.IsNil(o.limits) {
-		toSerialize["limits"] = o.limits
+	if !utils.IsNil(o.Limits) {
+		toSerialize["limits"] = o.Limits
 	}
-	if !utils.IsNil(o.memory) {
-		toSerialize["memory"] = o.memory
+	if !utils.IsNil(o.Memory) {
+		toSerialize["memory"] = o.Memory
 	}
-	if !utils.IsNil(o.requests) {
-		toSerialize["requests"] = o.requests
+	if !utils.IsNil(o.Requests) {
+		toSerialize["requests"] = o.Requests
 	}
 	return toSerialize, nil
 }

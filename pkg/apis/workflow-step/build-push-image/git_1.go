@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &Git1{}
 // Git1 Specify the credentials to access git
 type Git1 struct {
 	// Specify the secret key
-	key *string `json:"key,omitempty"`
+	Key *string `json:"key,omitempty"`
 	// Specify the secret name
-	name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 }
 
 // NewGit1With instantiates a new Git1 object
@@ -46,69 +46,69 @@ func NewGit1() *Git1 {
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *Git1) GetKey() string {
-	if o == nil || utils.IsNil(o.key) {
+	if o == nil || utils.IsNil(o.Key) {
 		var ret string
 		return ret
 	}
-	return *o.key
+	return *o.Key
 }
 
 // GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Git1) GetKeyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.key) {
+	if o == nil || utils.IsNil(o.Key) {
 		return nil, false
 	}
-	return o.key, true
+	return o.Key, true
 }
 
 // HasKey returns a boolean if a field has been set.
 func (o *Git1) HasKey() bool {
-	if o != nil && !utils.IsNil(o.key) {
+	if o != nil && !utils.IsNil(o.Key) {
 		return true
 	}
 
 	return false
 }
 
-// Key gets a reference to the given string and assigns it to the key field.
-// key:  Specify the secret key
-func (o *Git1) Key(v string) *Git1 {
-	o.key = &v
+// SetKey gets a reference to the given string and assigns it to the key field.
+// Key:  Specify the secret key
+func (o *Git1) SetKey(v string) *Git1 {
+	o.Key = &v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Git1) GetName() string {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.name
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Git1) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Git1) HasName() bool {
-	if o != nil && !utils.IsNil(o.name) {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:  Specify the secret name
-func (o *Git1) Name(v string) *Git1 {
-	o.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:  Specify the secret name
+func (o *Git1) SetName(v string) *Git1 {
+	o.Name = &v
 	return o
 }
 
@@ -122,11 +122,11 @@ func (o Git1) MarshalJSON() ([]byte, error) {
 
 func (o Git1) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.key) {
-		toSerialize["key"] = o.key
+	if !utils.IsNil(o.Key) {
+		toSerialize["key"] = o.Key
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	return toSerialize, nil
 }

@@ -28,9 +28,9 @@ var _ utils.MappedNullable = &ListConfigSpec{}
 // ListConfigSpec struct for ListConfigSpec
 type ListConfigSpec struct {
 	// Specify the namespace of the config.
-	namespace *string `json:"namespace,omitempty"`
+	Namespace *string `json:"namespace,omitempty"`
 	// Specify the template of the config.
-	template *string `json:"template,omitempty"`
+	Template *string `json:"template,omitempty"`
 }
 
 // NewListConfigSpecWith instantiates a new ListConfigSpec object
@@ -52,69 +52,69 @@ func NewListConfigSpec() *ListConfigSpec {
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *ListConfigWorkflowStep) GetNamespace() string {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.namespace
+	return *o.Properties.Namespace
 }
 
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListConfigWorkflowStep) GetNamespaceOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		return nil, false
 	}
-	return o.Properties.namespace, true
+	return o.Properties.Namespace, true
 }
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *ListConfigWorkflowStep) HasNamespace() bool {
-	if o != nil && !utils.IsNil(o.Properties.namespace) {
+	if o != nil && !utils.IsNil(o.Properties.Namespace) {
 		return true
 	}
 
 	return false
 }
 
-// Namespace gets a reference to the given string and assigns it to the namespace field.
-// namespace:  Specify the namespace of the config.
-func (o *ListConfigWorkflowStep) Namespace(v string) *ListConfigWorkflowStep {
-	o.Properties.namespace = &v
+// SetNamespace gets a reference to the given string and assigns it to the namespace field.
+// Namespace:  Specify the namespace of the config.
+func (o *ListConfigWorkflowStep) SetNamespace(v string) *ListConfigWorkflowStep {
+	o.Properties.Namespace = &v
 	return o
 }
 
 // GetTemplate returns the Template field value if set, zero value otherwise.
 func (o *ListConfigWorkflowStep) GetTemplate() string {
-	if o == nil || utils.IsNil(o.Properties.template) {
+	if o == nil || utils.IsNil(o.Properties.Template) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.template
+	return *o.Properties.Template
 }
 
 // GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListConfigWorkflowStep) GetTemplateOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.template) {
+	if o == nil || utils.IsNil(o.Properties.Template) {
 		return nil, false
 	}
-	return o.Properties.template, true
+	return o.Properties.Template, true
 }
 
 // HasTemplate returns a boolean if a field has been set.
 func (o *ListConfigWorkflowStep) HasTemplate() bool {
-	if o != nil && !utils.IsNil(o.Properties.template) {
+	if o != nil && !utils.IsNil(o.Properties.Template) {
 		return true
 	}
 
 	return false
 }
 
-// Template gets a reference to the given string and assigns it to the template field.
-// template:  Specify the template of the config.
-func (o *ListConfigWorkflowStep) Template(v string) *ListConfigWorkflowStep {
-	o.Properties.template = &v
+// SetTemplate gets a reference to the given string and assigns it to the template field.
+// Template:  Specify the template of the config.
+func (o *ListConfigWorkflowStep) SetTemplate(v string) *ListConfigWorkflowStep {
+	o.Properties.Template = &v
 	return o
 }
 
@@ -128,11 +128,11 @@ func (o ListConfigSpec) MarshalJSON() ([]byte, error) {
 
 func (o ListConfigSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.namespace) {
-		toSerialize["namespace"] = o.namespace
+	if !utils.IsNil(o.Namespace) {
+		toSerialize["namespace"] = o.Namespace
 	}
-	if !utils.IsNil(o.template) {
-		toSerialize["template"] = o.template
+	if !utils.IsNil(o.Template) {
+		toSerialize["template"] = o.Template
 	}
 	return toSerialize, nil
 }

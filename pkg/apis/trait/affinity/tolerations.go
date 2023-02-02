@@ -21,12 +21,12 @@ var _ utils.MappedNullable = &Tolerations{}
 
 // Tolerations struct for Tolerations
 type Tolerations struct {
-	effect   *string `json:"effect,omitempty"`
-	key      *string `json:"key,omitempty"`
-	operator *string `json:"operator,omitempty"`
+	Effect   *string `json:"effect,omitempty"`
+	Key      *string `json:"key,omitempty"`
+	Operator *string `json:"operator,omitempty"`
 	// Specify the period of time the toleration
-	tolerationSeconds *int32  `json:"tolerationSeconds,omitempty"`
-	value             *string `json:"value,omitempty"`
+	TolerationSeconds *int32  `json:"tolerationSeconds,omitempty"`
+	Value             *string `json:"value,omitempty"`
 }
 
 // NewTolerationsWith instantiates a new Tolerations object
@@ -36,7 +36,7 @@ type Tolerations struct {
 func NewTolerationsWith() *Tolerations {
 	this := Tolerations{}
 	var operator string = "Equal"
-	this.operator = &operator
+	this.Operator = &operator
 	return &this
 }
 
@@ -46,177 +46,177 @@ func NewTolerationsWith() *Tolerations {
 func NewTolerations() *Tolerations {
 	this := Tolerations{}
 	var operator string = "Equal"
-	this.operator = &operator
+	this.Operator = &operator
 	return &this
 }
 
 // GetEffect returns the Effect field value if set, zero value otherwise.
 func (o *Tolerations) GetEffect() string {
-	if o == nil || utils.IsNil(o.effect) {
+	if o == nil || utils.IsNil(o.Effect) {
 		var ret string
 		return ret
 	}
-	return *o.effect
+	return *o.Effect
 }
 
 // GetEffectOk returns a tuple with the Effect field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Tolerations) GetEffectOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.effect) {
+	if o == nil || utils.IsNil(o.Effect) {
 		return nil, false
 	}
-	return o.effect, true
+	return o.Effect, true
 }
 
 // HasEffect returns a boolean if a field has been set.
 func (o *Tolerations) HasEffect() bool {
-	if o != nil && !utils.IsNil(o.effect) {
+	if o != nil && !utils.IsNil(o.Effect) {
 		return true
 	}
 
 	return false
 }
 
-// Effect gets a reference to the given string and assigns it to the effect field.
-// effect:
-func (o *Tolerations) Effect(v string) *Tolerations {
-	o.effect = &v
+// SetEffect gets a reference to the given string and assigns it to the effect field.
+// Effect:
+func (o *Tolerations) SetEffect(v string) *Tolerations {
+	o.Effect = &v
 	return o
 }
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *Tolerations) GetKey() string {
-	if o == nil || utils.IsNil(o.key) {
+	if o == nil || utils.IsNil(o.Key) {
 		var ret string
 		return ret
 	}
-	return *o.key
+	return *o.Key
 }
 
 // GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Tolerations) GetKeyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.key) {
+	if o == nil || utils.IsNil(o.Key) {
 		return nil, false
 	}
-	return o.key, true
+	return o.Key, true
 }
 
 // HasKey returns a boolean if a field has been set.
 func (o *Tolerations) HasKey() bool {
-	if o != nil && !utils.IsNil(o.key) {
+	if o != nil && !utils.IsNil(o.Key) {
 		return true
 	}
 
 	return false
 }
 
-// Key gets a reference to the given string and assigns it to the key field.
-// key:
-func (o *Tolerations) Key(v string) *Tolerations {
-	o.key = &v
+// SetKey gets a reference to the given string and assigns it to the key field.
+// Key:
+func (o *Tolerations) SetKey(v string) *Tolerations {
+	o.Key = &v
 	return o
 }
 
 // GetOperator returns the Operator field value if set, zero value otherwise.
 func (o *Tolerations) GetOperator() string {
-	if o == nil || utils.IsNil(o.operator) {
+	if o == nil || utils.IsNil(o.Operator) {
 		var ret string
 		return ret
 	}
-	return *o.operator
+	return *o.Operator
 }
 
 // GetOperatorOk returns a tuple with the Operator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Tolerations) GetOperatorOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.operator) {
+	if o == nil || utils.IsNil(o.Operator) {
 		return nil, false
 	}
-	return o.operator, true
+	return o.Operator, true
 }
 
 // HasOperator returns a boolean if a field has been set.
 func (o *Tolerations) HasOperator() bool {
-	if o != nil && !utils.IsNil(o.operator) {
+	if o != nil && !utils.IsNil(o.Operator) {
 		return true
 	}
 
 	return false
 }
 
-// Operator gets a reference to the given string and assigns it to the operator field.
-// operator:
-func (o *Tolerations) Operator(v string) *Tolerations {
-	o.operator = &v
+// SetOperator gets a reference to the given string and assigns it to the operator field.
+// Operator:
+func (o *Tolerations) SetOperator(v string) *Tolerations {
+	o.Operator = &v
 	return o
 }
 
 // GetTolerationSeconds returns the TolerationSeconds field value if set, zero value otherwise.
 func (o *Tolerations) GetTolerationSeconds() int32 {
-	if o == nil || utils.IsNil(o.tolerationSeconds) {
+	if o == nil || utils.IsNil(o.TolerationSeconds) {
 		var ret int32
 		return ret
 	}
-	return *o.tolerationSeconds
+	return *o.TolerationSeconds
 }
 
 // GetTolerationSecondsOk returns a tuple with the TolerationSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Tolerations) GetTolerationSecondsOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.tolerationSeconds) {
+	if o == nil || utils.IsNil(o.TolerationSeconds) {
 		return nil, false
 	}
-	return o.tolerationSeconds, true
+	return o.TolerationSeconds, true
 }
 
 // HasTolerationSeconds returns a boolean if a field has been set.
 func (o *Tolerations) HasTolerationSeconds() bool {
-	if o != nil && !utils.IsNil(o.tolerationSeconds) {
+	if o != nil && !utils.IsNil(o.TolerationSeconds) {
 		return true
 	}
 
 	return false
 }
 
-// TolerationSeconds gets a reference to the given int32 and assigns it to the tolerationSeconds field.
-// tolerationSeconds:  Specify the period of time the toleration
-func (o *Tolerations) TolerationSeconds(v int32) *Tolerations {
-	o.tolerationSeconds = &v
+// SetTolerationSeconds gets a reference to the given int32 and assigns it to the tolerationSeconds field.
+// TolerationSeconds:  Specify the period of time the toleration
+func (o *Tolerations) SetTolerationSeconds(v int32) *Tolerations {
+	o.TolerationSeconds = &v
 	return o
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *Tolerations) GetValue() string {
-	if o == nil || utils.IsNil(o.value) {
+	if o == nil || utils.IsNil(o.Value) {
 		var ret string
 		return ret
 	}
-	return *o.value
+	return *o.Value
 }
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Tolerations) GetValueOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.value) {
+	if o == nil || utils.IsNil(o.Value) {
 		return nil, false
 	}
-	return o.value, true
+	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
 func (o *Tolerations) HasValue() bool {
-	if o != nil && !utils.IsNil(o.value) {
+	if o != nil && !utils.IsNil(o.Value) {
 		return true
 	}
 
 	return false
 }
 
-// Value gets a reference to the given string and assigns it to the value field.
-// value:
-func (o *Tolerations) Value(v string) *Tolerations {
-	o.value = &v
+// SetValue gets a reference to the given string and assigns it to the value field.
+// Value:
+func (o *Tolerations) SetValue(v string) *Tolerations {
+	o.Value = &v
 	return o
 }
 
@@ -230,20 +230,20 @@ func (o Tolerations) MarshalJSON() ([]byte, error) {
 
 func (o Tolerations) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.effect) {
-		toSerialize["effect"] = o.effect
+	if !utils.IsNil(o.Effect) {
+		toSerialize["effect"] = o.Effect
 	}
-	if !utils.IsNil(o.key) {
-		toSerialize["key"] = o.key
+	if !utils.IsNil(o.Key) {
+		toSerialize["key"] = o.Key
 	}
-	if !utils.IsNil(o.operator) {
-		toSerialize["operator"] = o.operator
+	if !utils.IsNil(o.Operator) {
+		toSerialize["operator"] = o.Operator
 	}
-	if !utils.IsNil(o.tolerationSeconds) {
-		toSerialize["tolerationSeconds"] = o.tolerationSeconds
+	if !utils.IsNil(o.TolerationSeconds) {
+		toSerialize["tolerationSeconds"] = o.TolerationSeconds
 	}
-	if !utils.IsNil(o.value) {
-		toSerialize["value"] = o.value
+	if !utils.IsNil(o.Value) {
+		toSerialize["value"] = o.Value
 	}
 	return toSerialize, nil
 }

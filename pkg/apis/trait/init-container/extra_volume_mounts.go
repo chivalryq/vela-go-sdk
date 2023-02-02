@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &ExtraVolumeMounts{}
 // ExtraVolumeMounts struct for ExtraVolumeMounts
 type ExtraVolumeMounts struct {
 	// The mountPath for mount in the init container
-	mountPath *string `json:"mountPath,omitempty"`
+	MountPath *string `json:"mountPath,omitempty"`
 	// The name of the volume to be mounted
-	name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 }
 
 // NewExtraVolumeMountsWith instantiates a new ExtraVolumeMounts object
@@ -46,69 +46,69 @@ func NewExtraVolumeMounts() *ExtraVolumeMounts {
 
 // GetMountPath returns the MountPath field value if set, zero value otherwise.
 func (o *ExtraVolumeMounts) GetMountPath() string {
-	if o == nil || utils.IsNil(o.mountPath) {
+	if o == nil || utils.IsNil(o.MountPath) {
 		var ret string
 		return ret
 	}
-	return *o.mountPath
+	return *o.MountPath
 }
 
 // GetMountPathOk returns a tuple with the MountPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExtraVolumeMounts) GetMountPathOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.mountPath) {
+	if o == nil || utils.IsNil(o.MountPath) {
 		return nil, false
 	}
-	return o.mountPath, true
+	return o.MountPath, true
 }
 
 // HasMountPath returns a boolean if a field has been set.
 func (o *ExtraVolumeMounts) HasMountPath() bool {
-	if o != nil && !utils.IsNil(o.mountPath) {
+	if o != nil && !utils.IsNil(o.MountPath) {
 		return true
 	}
 
 	return false
 }
 
-// MountPath gets a reference to the given string and assigns it to the mountPath field.
-// mountPath:  The mountPath for mount in the init container
-func (o *ExtraVolumeMounts) MountPath(v string) *ExtraVolumeMounts {
-	o.mountPath = &v
+// SetMountPath gets a reference to the given string and assigns it to the mountPath field.
+// MountPath:  The mountPath for mount in the init container
+func (o *ExtraVolumeMounts) SetMountPath(v string) *ExtraVolumeMounts {
+	o.MountPath = &v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ExtraVolumeMounts) GetName() string {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.name
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExtraVolumeMounts) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *ExtraVolumeMounts) HasName() bool {
-	if o != nil && !utils.IsNil(o.name) {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:  The name of the volume to be mounted
-func (o *ExtraVolumeMounts) Name(v string) *ExtraVolumeMounts {
-	o.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:  The name of the volume to be mounted
+func (o *ExtraVolumeMounts) SetName(v string) *ExtraVolumeMounts {
+	o.Name = &v
 	return o
 }
 
@@ -122,11 +122,11 @@ func (o ExtraVolumeMounts) MarshalJSON() ([]byte, error) {
 
 func (o ExtraVolumeMounts) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.mountPath) {
-		toSerialize["mountPath"] = o.mountPath
+	if !utils.IsNil(o.MountPath) {
+		toSerialize["mountPath"] = o.MountPath
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	return toSerialize, nil
 }

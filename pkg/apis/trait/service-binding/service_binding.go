@@ -27,7 +27,7 @@ var _ utils.MappedNullable = &ServiceBindingSpec{}
 // ServiceBindingSpec struct for ServiceBindingSpec
 type ServiceBindingSpec struct {
 	// The mapping of environment variables to secret
-	envMappings map[string]KeySecret `json:"envMappings"`
+	EnvMappings map[string]KeySecret `json:"envMappings"`
 }
 
 // NewServiceBindingSpecWith instantiates a new ServiceBindingSpec object
@@ -36,7 +36,7 @@ type ServiceBindingSpec struct {
 // will change when the set of required properties is changed
 func NewServiceBindingSpecWith(envMappings map[string]KeySecret) *ServiceBindingSpec {
 	this := ServiceBindingSpec{}
-	this.envMappings = envMappings
+	this.EnvMappings = envMappings
 	return &this
 }
 
@@ -55,7 +55,7 @@ func (o *ServiceBindingTrait) GetEnvMappings() map[string]KeySecret {
 		return ret
 	}
 
-	return o.Properties.envMappings
+	return o.Properties.EnvMappings
 }
 
 // GetEnvMappingsOk returns a tuple with the EnvMappings field value
@@ -64,12 +64,12 @@ func (o *ServiceBindingTrait) GetEnvMappingsOk() (*map[string]KeySecret, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Properties.envMappings, true
+	return &o.Properties.EnvMappings, true
 }
 
-// EnvMappings sets field value
-func (o *ServiceBindingTrait) EnvMappings(v map[string]KeySecret) *ServiceBindingTrait {
-	o.Properties.envMappings = v
+// SetEnvMappings sets field value
+func (o *ServiceBindingTrait) SetEnvMappings(v map[string]KeySecret) *ServiceBindingTrait {
+	o.Properties.EnvMappings = v
 	return o
 }
 
@@ -83,7 +83,7 @@ func (o ServiceBindingSpec) MarshalJSON() ([]byte, error) {
 
 func (o ServiceBindingSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["envMappings"] = o.envMappings
+	toSerialize["envMappings"] = o.EnvMappings
 	return toSerialize, nil
 }
 

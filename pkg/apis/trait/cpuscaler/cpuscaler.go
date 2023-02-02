@@ -27,15 +27,15 @@ var _ utils.MappedNullable = &CpuscalerSpec{}
 // CpuscalerSpec struct for CpuscalerSpec
 type CpuscalerSpec struct {
 	// Specify the average CPU utilization, for example, 50 means the CPU usage is 50%
-	cpuUtil *int32 `json:"cpuUtil,omitempty"`
+	CpuUtil *int32 `json:"cpuUtil,omitempty"`
 	// Specify the maximum number of of replicas to which the autoscaler can scale up
-	max *int32 `json:"max,omitempty"`
+	Max *int32 `json:"max,omitempty"`
 	// Specify the minimal number of replicas to which the autoscaler can scale down
-	min *int32 `json:"min,omitempty"`
+	Min *int32 `json:"min,omitempty"`
 	// Specify the apiVersion of scale target
-	targetAPIVersion *string `json:"targetAPIVersion,omitempty"`
+	TargetAPIVersion *string `json:"targetAPIVersion,omitempty"`
 	// Specify the kind of scale target
-	targetKind *string `json:"targetKind,omitempty"`
+	TargetKind *string `json:"targetKind,omitempty"`
 }
 
 // NewCpuscalerSpecWith instantiates a new CpuscalerSpec object
@@ -45,15 +45,15 @@ type CpuscalerSpec struct {
 func NewCpuscalerSpecWith() *CpuscalerSpec {
 	this := CpuscalerSpec{}
 	var cpuUtil int32 = 50
-	this.cpuUtil = &cpuUtil
+	this.CpuUtil = &cpuUtil
 	var max int32 = 10
-	this.max = &max
+	this.Max = &max
 	var min int32 = 1
-	this.min = &min
+	this.Min = &min
 	var targetAPIVersion string = "apps/v1"
-	this.targetAPIVersion = &targetAPIVersion
+	this.TargetAPIVersion = &targetAPIVersion
 	var targetKind string = "Deployment"
-	this.targetKind = &targetKind
+	this.TargetKind = &targetKind
 	return &this
 }
 
@@ -63,185 +63,185 @@ func NewCpuscalerSpecWith() *CpuscalerSpec {
 func NewCpuscalerSpec() *CpuscalerSpec {
 	this := CpuscalerSpec{}
 	var cpuUtil int32 = 50
-	this.cpuUtil = &cpuUtil
+	this.CpuUtil = &cpuUtil
 	var max int32 = 10
-	this.max = &max
+	this.Max = &max
 	var min int32 = 1
-	this.min = &min
+	this.Min = &min
 	var targetAPIVersion string = "apps/v1"
-	this.targetAPIVersion = &targetAPIVersion
+	this.TargetAPIVersion = &targetAPIVersion
 	var targetKind string = "Deployment"
-	this.targetKind = &targetKind
+	this.TargetKind = &targetKind
 	return &this
 }
 
 // GetCpuUtil returns the CpuUtil field value if set, zero value otherwise.
 func (o *CpuscalerTrait) GetCpuUtil() int32 {
-	if o == nil || utils.IsNil(o.Properties.cpuUtil) {
+	if o == nil || utils.IsNil(o.Properties.CpuUtil) {
 		var ret int32
 		return ret
 	}
-	return *o.Properties.cpuUtil
+	return *o.Properties.CpuUtil
 }
 
 // GetCpuUtilOk returns a tuple with the CpuUtil field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CpuscalerTrait) GetCpuUtilOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.Properties.cpuUtil) {
+	if o == nil || utils.IsNil(o.Properties.CpuUtil) {
 		return nil, false
 	}
-	return o.Properties.cpuUtil, true
+	return o.Properties.CpuUtil, true
 }
 
 // HasCpuUtil returns a boolean if a field has been set.
 func (o *CpuscalerTrait) HasCpuUtil() bool {
-	if o != nil && !utils.IsNil(o.Properties.cpuUtil) {
+	if o != nil && !utils.IsNil(o.Properties.CpuUtil) {
 		return true
 	}
 
 	return false
 }
 
-// CpuUtil gets a reference to the given int32 and assigns it to the cpuUtil field.
-// cpuUtil:  Specify the average CPU utilization, for example, 50 means the CPU usage is 50%
-func (o *CpuscalerTrait) CpuUtil(v int32) *CpuscalerTrait {
-	o.Properties.cpuUtil = &v
+// SetCpuUtil gets a reference to the given int32 and assigns it to the cpuUtil field.
+// CpuUtil:  Specify the average CPU utilization, for example, 50 means the CPU usage is 50%
+func (o *CpuscalerTrait) SetCpuUtil(v int32) *CpuscalerTrait {
+	o.Properties.CpuUtil = &v
 	return o
 }
 
 // GetMax returns the Max field value if set, zero value otherwise.
 func (o *CpuscalerTrait) GetMax() int32 {
-	if o == nil || utils.IsNil(o.Properties.max) {
+	if o == nil || utils.IsNil(o.Properties.Max) {
 		var ret int32
 		return ret
 	}
-	return *o.Properties.max
+	return *o.Properties.Max
 }
 
 // GetMaxOk returns a tuple with the Max field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CpuscalerTrait) GetMaxOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.Properties.max) {
+	if o == nil || utils.IsNil(o.Properties.Max) {
 		return nil, false
 	}
-	return o.Properties.max, true
+	return o.Properties.Max, true
 }
 
 // HasMax returns a boolean if a field has been set.
 func (o *CpuscalerTrait) HasMax() bool {
-	if o != nil && !utils.IsNil(o.Properties.max) {
+	if o != nil && !utils.IsNil(o.Properties.Max) {
 		return true
 	}
 
 	return false
 }
 
-// Max gets a reference to the given int32 and assigns it to the max field.
-// max:  Specify the maximum number of of replicas to which the autoscaler can scale up
-func (o *CpuscalerTrait) Max(v int32) *CpuscalerTrait {
-	o.Properties.max = &v
+// SetMax gets a reference to the given int32 and assigns it to the max field.
+// Max:  Specify the maximum number of of replicas to which the autoscaler can scale up
+func (o *CpuscalerTrait) SetMax(v int32) *CpuscalerTrait {
+	o.Properties.Max = &v
 	return o
 }
 
 // GetMin returns the Min field value if set, zero value otherwise.
 func (o *CpuscalerTrait) GetMin() int32 {
-	if o == nil || utils.IsNil(o.Properties.min) {
+	if o == nil || utils.IsNil(o.Properties.Min) {
 		var ret int32
 		return ret
 	}
-	return *o.Properties.min
+	return *o.Properties.Min
 }
 
 // GetMinOk returns a tuple with the Min field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CpuscalerTrait) GetMinOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.Properties.min) {
+	if o == nil || utils.IsNil(o.Properties.Min) {
 		return nil, false
 	}
-	return o.Properties.min, true
+	return o.Properties.Min, true
 }
 
 // HasMin returns a boolean if a field has been set.
 func (o *CpuscalerTrait) HasMin() bool {
-	if o != nil && !utils.IsNil(o.Properties.min) {
+	if o != nil && !utils.IsNil(o.Properties.Min) {
 		return true
 	}
 
 	return false
 }
 
-// Min gets a reference to the given int32 and assigns it to the min field.
-// min:  Specify the minimal number of replicas to which the autoscaler can scale down
-func (o *CpuscalerTrait) Min(v int32) *CpuscalerTrait {
-	o.Properties.min = &v
+// SetMin gets a reference to the given int32 and assigns it to the min field.
+// Min:  Specify the minimal number of replicas to which the autoscaler can scale down
+func (o *CpuscalerTrait) SetMin(v int32) *CpuscalerTrait {
+	o.Properties.Min = &v
 	return o
 }
 
 // GetTargetAPIVersion returns the TargetAPIVersion field value if set, zero value otherwise.
 func (o *CpuscalerTrait) GetTargetAPIVersion() string {
-	if o == nil || utils.IsNil(o.Properties.targetAPIVersion) {
+	if o == nil || utils.IsNil(o.Properties.TargetAPIVersion) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.targetAPIVersion
+	return *o.Properties.TargetAPIVersion
 }
 
 // GetTargetAPIVersionOk returns a tuple with the TargetAPIVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CpuscalerTrait) GetTargetAPIVersionOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.targetAPIVersion) {
+	if o == nil || utils.IsNil(o.Properties.TargetAPIVersion) {
 		return nil, false
 	}
-	return o.Properties.targetAPIVersion, true
+	return o.Properties.TargetAPIVersion, true
 }
 
 // HasTargetAPIVersion returns a boolean if a field has been set.
 func (o *CpuscalerTrait) HasTargetAPIVersion() bool {
-	if o != nil && !utils.IsNil(o.Properties.targetAPIVersion) {
+	if o != nil && !utils.IsNil(o.Properties.TargetAPIVersion) {
 		return true
 	}
 
 	return false
 }
 
-// TargetAPIVersion gets a reference to the given string and assigns it to the targetAPIVersion field.
-// targetAPIVersion:  Specify the apiVersion of scale target
-func (o *CpuscalerTrait) TargetAPIVersion(v string) *CpuscalerTrait {
-	o.Properties.targetAPIVersion = &v
+// SetTargetAPIVersion gets a reference to the given string and assigns it to the targetAPIVersion field.
+// TargetAPIVersion:  Specify the apiVersion of scale target
+func (o *CpuscalerTrait) SetTargetAPIVersion(v string) *CpuscalerTrait {
+	o.Properties.TargetAPIVersion = &v
 	return o
 }
 
 // GetTargetKind returns the TargetKind field value if set, zero value otherwise.
 func (o *CpuscalerTrait) GetTargetKind() string {
-	if o == nil || utils.IsNil(o.Properties.targetKind) {
+	if o == nil || utils.IsNil(o.Properties.TargetKind) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.targetKind
+	return *o.Properties.TargetKind
 }
 
 // GetTargetKindOk returns a tuple with the TargetKind field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CpuscalerTrait) GetTargetKindOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.targetKind) {
+	if o == nil || utils.IsNil(o.Properties.TargetKind) {
 		return nil, false
 	}
-	return o.Properties.targetKind, true
+	return o.Properties.TargetKind, true
 }
 
 // HasTargetKind returns a boolean if a field has been set.
 func (o *CpuscalerTrait) HasTargetKind() bool {
-	if o != nil && !utils.IsNil(o.Properties.targetKind) {
+	if o != nil && !utils.IsNil(o.Properties.TargetKind) {
 		return true
 	}
 
 	return false
 }
 
-// TargetKind gets a reference to the given string and assigns it to the targetKind field.
-// targetKind:  Specify the kind of scale target
-func (o *CpuscalerTrait) TargetKind(v string) *CpuscalerTrait {
-	o.Properties.targetKind = &v
+// SetTargetKind gets a reference to the given string and assigns it to the targetKind field.
+// TargetKind:  Specify the kind of scale target
+func (o *CpuscalerTrait) SetTargetKind(v string) *CpuscalerTrait {
+	o.Properties.TargetKind = &v
 	return o
 }
 
@@ -255,20 +255,20 @@ func (o CpuscalerSpec) MarshalJSON() ([]byte, error) {
 
 func (o CpuscalerSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.cpuUtil) {
-		toSerialize["cpuUtil"] = o.cpuUtil
+	if !utils.IsNil(o.CpuUtil) {
+		toSerialize["cpuUtil"] = o.CpuUtil
 	}
-	if !utils.IsNil(o.max) {
-		toSerialize["max"] = o.max
+	if !utils.IsNil(o.Max) {
+		toSerialize["max"] = o.Max
 	}
-	if !utils.IsNil(o.min) {
-		toSerialize["min"] = o.min
+	if !utils.IsNil(o.Min) {
+		toSerialize["min"] = o.Min
 	}
-	if !utils.IsNil(o.targetAPIVersion) {
-		toSerialize["targetAPIVersion"] = o.targetAPIVersion
+	if !utils.IsNil(o.TargetAPIVersion) {
+		toSerialize["targetAPIVersion"] = o.TargetAPIVersion
 	}
-	if !utils.IsNil(o.targetKind) {
-		toSerialize["targetKind"] = o.targetKind
+	if !utils.IsNil(o.TargetKind) {
+		toSerialize["targetKind"] = o.TargetKind
 	}
 	return toSerialize, nil
 }

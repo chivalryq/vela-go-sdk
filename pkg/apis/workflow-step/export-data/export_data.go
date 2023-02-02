@@ -28,15 +28,15 @@ var _ utils.MappedNullable = &ExportDataSpec{}
 // ExportDataSpec struct for ExportDataSpec
 type ExportDataSpec struct {
 	// Specify the data to export
-	data map[string]interface{} `json:"data,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty"`
 	// Specify the kind of the export destination
-	kind *string `json:"kind,omitempty"`
+	Kind *string `json:"kind,omitempty"`
 	// Specify the name of the export destination
-	name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	// Specify the namespace of the export destination
-	namespace *string `json:"namespace,omitempty"`
+	Namespace *string `json:"namespace,omitempty"`
 	// Specify the topology to export
-	topology *string `json:"topology,omitempty"`
+	Topology *string `json:"topology,omitempty"`
 }
 
 // NewExportDataSpecWith instantiates a new ExportDataSpec object
@@ -46,7 +46,7 @@ type ExportDataSpec struct {
 func NewExportDataSpecWith() *ExportDataSpec {
 	this := ExportDataSpec{}
 	var kind string = "ConfigMap"
-	this.kind = &kind
+	this.Kind = &kind
 	return &this
 }
 
@@ -56,177 +56,177 @@ func NewExportDataSpecWith() *ExportDataSpec {
 func NewExportDataSpec() *ExportDataSpec {
 	this := ExportDataSpec{}
 	var kind string = "ConfigMap"
-	this.kind = &kind
+	this.Kind = &kind
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *ExportDataWorkflowStep) GetData() map[string]interface{} {
-	if o == nil || utils.IsNil(o.Properties.data) {
+	if o == nil || utils.IsNil(o.Properties.Data) {
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.Properties.data
+	return o.Properties.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportDataWorkflowStep) GetDataOk() (map[string]interface{}, bool) {
-	if o == nil || utils.IsNil(o.Properties.data) {
+	if o == nil || utils.IsNil(o.Properties.Data) {
 		return map[string]interface{}{}, false
 	}
-	return o.Properties.data, true
+	return o.Properties.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
 func (o *ExportDataWorkflowStep) HasData() bool {
-	if o != nil && !utils.IsNil(o.Properties.data) {
+	if o != nil && !utils.IsNil(o.Properties.Data) {
 		return true
 	}
 
 	return false
 }
 
-// Data gets a reference to the given map[string]interface{} and assigns it to the data field.
-// data:  Specify the data to export
-func (o *ExportDataWorkflowStep) Data(v map[string]interface{}) *ExportDataWorkflowStep {
-	o.Properties.data = v
+// SetData gets a reference to the given map[string]interface{} and assigns it to the data field.
+// Data:  Specify the data to export
+func (o *ExportDataWorkflowStep) SetData(v map[string]interface{}) *ExportDataWorkflowStep {
+	o.Properties.Data = v
 	return o
 }
 
 // GetKind returns the Kind field value if set, zero value otherwise.
 func (o *ExportDataWorkflowStep) GetKind() string {
-	if o == nil || utils.IsNil(o.Properties.kind) {
+	if o == nil || utils.IsNil(o.Properties.Kind) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.kind
+	return *o.Properties.Kind
 }
 
 // GetKindOk returns a tuple with the Kind field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportDataWorkflowStep) GetKindOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.kind) {
+	if o == nil || utils.IsNil(o.Properties.Kind) {
 		return nil, false
 	}
-	return o.Properties.kind, true
+	return o.Properties.Kind, true
 }
 
 // HasKind returns a boolean if a field has been set.
 func (o *ExportDataWorkflowStep) HasKind() bool {
-	if o != nil && !utils.IsNil(o.Properties.kind) {
+	if o != nil && !utils.IsNil(o.Properties.Kind) {
 		return true
 	}
 
 	return false
 }
 
-// Kind gets a reference to the given string and assigns it to the kind field.
-// kind:  Specify the kind of the export destination
-func (o *ExportDataWorkflowStep) Kind(v string) *ExportDataWorkflowStep {
-	o.Properties.kind = &v
+// SetKind gets a reference to the given string and assigns it to the kind field.
+// Kind:  Specify the kind of the export destination
+func (o *ExportDataWorkflowStep) SetKind(v string) *ExportDataWorkflowStep {
+	o.Properties.Kind = &v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ExportDataWorkflowStep) GetName() string {
-	if o == nil || utils.IsNil(o.Properties.name) {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.name
+	return *o.Properties.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportDataWorkflowStep) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.name) {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		return nil, false
 	}
-	return o.Properties.name, true
+	return o.Properties.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *ExportDataWorkflowStep) HasName() bool {
-	if o != nil && !utils.IsNil(o.Properties.name) {
+	if o != nil && !utils.IsNil(o.Properties.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:  Specify the name of the export destination
-func (o *ExportDataWorkflowStep) Name(v string) *ExportDataWorkflowStep {
-	o.Properties.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:  Specify the name of the export destination
+func (o *ExportDataWorkflowStep) SetName(v string) *ExportDataWorkflowStep {
+	o.Properties.Name = &v
 	return o
 }
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *ExportDataWorkflowStep) GetNamespace() string {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.namespace
+	return *o.Properties.Namespace
 }
 
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportDataWorkflowStep) GetNamespaceOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		return nil, false
 	}
-	return o.Properties.namespace, true
+	return o.Properties.Namespace, true
 }
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *ExportDataWorkflowStep) HasNamespace() bool {
-	if o != nil && !utils.IsNil(o.Properties.namespace) {
+	if o != nil && !utils.IsNil(o.Properties.Namespace) {
 		return true
 	}
 
 	return false
 }
 
-// Namespace gets a reference to the given string and assigns it to the namespace field.
-// namespace:  Specify the namespace of the export destination
-func (o *ExportDataWorkflowStep) Namespace(v string) *ExportDataWorkflowStep {
-	o.Properties.namespace = &v
+// SetNamespace gets a reference to the given string and assigns it to the namespace field.
+// Namespace:  Specify the namespace of the export destination
+func (o *ExportDataWorkflowStep) SetNamespace(v string) *ExportDataWorkflowStep {
+	o.Properties.Namespace = &v
 	return o
 }
 
 // GetTopology returns the Topology field value if set, zero value otherwise.
 func (o *ExportDataWorkflowStep) GetTopology() string {
-	if o == nil || utils.IsNil(o.Properties.topology) {
+	if o == nil || utils.IsNil(o.Properties.Topology) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.topology
+	return *o.Properties.Topology
 }
 
 // GetTopologyOk returns a tuple with the Topology field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportDataWorkflowStep) GetTopologyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.topology) {
+	if o == nil || utils.IsNil(o.Properties.Topology) {
 		return nil, false
 	}
-	return o.Properties.topology, true
+	return o.Properties.Topology, true
 }
 
 // HasTopology returns a boolean if a field has been set.
 func (o *ExportDataWorkflowStep) HasTopology() bool {
-	if o != nil && !utils.IsNil(o.Properties.topology) {
+	if o != nil && !utils.IsNil(o.Properties.Topology) {
 		return true
 	}
 
 	return false
 }
 
-// Topology gets a reference to the given string and assigns it to the topology field.
-// topology:  Specify the topology to export
-func (o *ExportDataWorkflowStep) Topology(v string) *ExportDataWorkflowStep {
-	o.Properties.topology = &v
+// SetTopology gets a reference to the given string and assigns it to the topology field.
+// Topology:  Specify the topology to export
+func (o *ExportDataWorkflowStep) SetTopology(v string) *ExportDataWorkflowStep {
+	o.Properties.Topology = &v
 	return o
 }
 
@@ -240,20 +240,20 @@ func (o ExportDataSpec) MarshalJSON() ([]byte, error) {
 
 func (o ExportDataSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.data) {
-		toSerialize["data"] = o.data
+	if !utils.IsNil(o.Data) {
+		toSerialize["data"] = o.Data
 	}
-	if !utils.IsNil(o.kind) {
-		toSerialize["kind"] = o.kind
+	if !utils.IsNil(o.Kind) {
+		toSerialize["kind"] = o.Kind
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if !utils.IsNil(o.namespace) {
-		toSerialize["namespace"] = o.namespace
+	if !utils.IsNil(o.Namespace) {
+		toSerialize["namespace"] = o.Namespace
 	}
-	if !utils.IsNil(o.topology) {
-		toSerialize["topology"] = o.topology
+	if !utils.IsNil(o.Topology) {
+		toSerialize["topology"] = o.Topology
 	}
 	return toSerialize, nil
 }

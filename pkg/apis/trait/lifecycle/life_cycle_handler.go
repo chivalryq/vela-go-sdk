@@ -21,9 +21,9 @@ var _ utils.MappedNullable = &LifeCycleHandler{}
 
 // LifeCycleHandler struct for LifeCycleHandler
 type LifeCycleHandler struct {
-	exec      *Exec      `json:"exec,omitempty"`
-	httpGet   *HttpGet   `json:"httpGet,omitempty"`
-	tcpSocket *TcpSocket `json:"tcpSocket,omitempty"`
+	Exec      *Exec      `json:"exec,omitempty"`
+	HttpGet   *HttpGet   `json:"httpGet,omitempty"`
+	TcpSocket *TcpSocket `json:"tcpSocket,omitempty"`
 }
 
 // NewLifeCycleHandlerWith instantiates a new LifeCycleHandler object
@@ -45,103 +45,103 @@ func NewLifeCycleHandler() *LifeCycleHandler {
 
 // GetExec returns the Exec field value if set, zero value otherwise.
 func (o *LifeCycleHandler) GetExec() Exec {
-	if o == nil || utils.IsNil(o.exec) {
+	if o == nil || utils.IsNil(o.Exec) {
 		var ret Exec
 		return ret
 	}
-	return *o.exec
+	return *o.Exec
 }
 
 // GetExecOk returns a tuple with the Exec field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LifeCycleHandler) GetExecOk() (*Exec, bool) {
-	if o == nil || utils.IsNil(o.exec) {
+	if o == nil || utils.IsNil(o.Exec) {
 		return nil, false
 	}
-	return o.exec, true
+	return o.Exec, true
 }
 
 // HasExec returns a boolean if a field has been set.
 func (o *LifeCycleHandler) HasExec() bool {
-	if o != nil && !utils.IsNil(o.exec) {
+	if o != nil && !utils.IsNil(o.Exec) {
 		return true
 	}
 
 	return false
 }
 
-// Exec gets a reference to the given Exec and assigns it to the exec field.
-// exec:
-func (o *LifeCycleHandler) Exec(v Exec) *LifeCycleHandler {
-	o.exec = &v
+// SetExec gets a reference to the given Exec and assigns it to the exec field.
+// Exec:
+func (o *LifeCycleHandler) SetExec(v Exec) *LifeCycleHandler {
+	o.Exec = &v
 	return o
 }
 
 // GetHttpGet returns the HttpGet field value if set, zero value otherwise.
 func (o *LifeCycleHandler) GetHttpGet() HttpGet {
-	if o == nil || utils.IsNil(o.httpGet) {
+	if o == nil || utils.IsNil(o.HttpGet) {
 		var ret HttpGet
 		return ret
 	}
-	return *o.httpGet
+	return *o.HttpGet
 }
 
 // GetHttpGetOk returns a tuple with the HttpGet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LifeCycleHandler) GetHttpGetOk() (*HttpGet, bool) {
-	if o == nil || utils.IsNil(o.httpGet) {
+	if o == nil || utils.IsNil(o.HttpGet) {
 		return nil, false
 	}
-	return o.httpGet, true
+	return o.HttpGet, true
 }
 
 // HasHttpGet returns a boolean if a field has been set.
 func (o *LifeCycleHandler) HasHttpGet() bool {
-	if o != nil && !utils.IsNil(o.httpGet) {
+	if o != nil && !utils.IsNil(o.HttpGet) {
 		return true
 	}
 
 	return false
 }
 
-// HttpGet gets a reference to the given HttpGet and assigns it to the httpGet field.
-// httpGet:
-func (o *LifeCycleHandler) HttpGet(v HttpGet) *LifeCycleHandler {
-	o.httpGet = &v
+// SetHttpGet gets a reference to the given HttpGet and assigns it to the httpGet field.
+// HttpGet:
+func (o *LifeCycleHandler) SetHttpGet(v HttpGet) *LifeCycleHandler {
+	o.HttpGet = &v
 	return o
 }
 
 // GetTcpSocket returns the TcpSocket field value if set, zero value otherwise.
 func (o *LifeCycleHandler) GetTcpSocket() TcpSocket {
-	if o == nil || utils.IsNil(o.tcpSocket) {
+	if o == nil || utils.IsNil(o.TcpSocket) {
 		var ret TcpSocket
 		return ret
 	}
-	return *o.tcpSocket
+	return *o.TcpSocket
 }
 
 // GetTcpSocketOk returns a tuple with the TcpSocket field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LifeCycleHandler) GetTcpSocketOk() (*TcpSocket, bool) {
-	if o == nil || utils.IsNil(o.tcpSocket) {
+	if o == nil || utils.IsNil(o.TcpSocket) {
 		return nil, false
 	}
-	return o.tcpSocket, true
+	return o.TcpSocket, true
 }
 
 // HasTcpSocket returns a boolean if a field has been set.
 func (o *LifeCycleHandler) HasTcpSocket() bool {
-	if o != nil && !utils.IsNil(o.tcpSocket) {
+	if o != nil && !utils.IsNil(o.TcpSocket) {
 		return true
 	}
 
 	return false
 }
 
-// TcpSocket gets a reference to the given TcpSocket and assigns it to the tcpSocket field.
-// tcpSocket:
-func (o *LifeCycleHandler) TcpSocket(v TcpSocket) *LifeCycleHandler {
-	o.tcpSocket = &v
+// SetTcpSocket gets a reference to the given TcpSocket and assigns it to the tcpSocket field.
+// TcpSocket:
+func (o *LifeCycleHandler) SetTcpSocket(v TcpSocket) *LifeCycleHandler {
+	o.TcpSocket = &v
 	return o
 }
 
@@ -155,14 +155,14 @@ func (o LifeCycleHandler) MarshalJSON() ([]byte, error) {
 
 func (o LifeCycleHandler) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.exec) {
-		toSerialize["exec"] = o.exec
+	if !utils.IsNil(o.Exec) {
+		toSerialize["exec"] = o.Exec
 	}
-	if !utils.IsNil(o.httpGet) {
-		toSerialize["httpGet"] = o.httpGet
+	if !utils.IsNil(o.HttpGet) {
+		toSerialize["httpGet"] = o.HttpGet
 	}
-	if !utils.IsNil(o.tcpSocket) {
-		toSerialize["tcpSocket"] = o.tcpSocket
+	if !utils.IsNil(o.TcpSocket) {
+		toSerialize["tcpSocket"] = o.TcpSocket
 	}
 	return toSerialize, nil
 }

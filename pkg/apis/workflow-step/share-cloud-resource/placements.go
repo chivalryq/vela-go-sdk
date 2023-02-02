@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &Placements{}
 
 // Placements struct for Placements
 type Placements struct {
-	cluster   *string `json:"cluster,omitempty"`
-	namespace *string `json:"namespace,omitempty"`
+	Cluster   *string `json:"cluster,omitempty"`
+	Namespace *string `json:"namespace,omitempty"`
 }
 
 // NewPlacementsWith instantiates a new Placements object
@@ -44,69 +44,69 @@ func NewPlacements() *Placements {
 
 // GetCluster returns the Cluster field value if set, zero value otherwise.
 func (o *Placements) GetCluster() string {
-	if o == nil || utils.IsNil(o.cluster) {
+	if o == nil || utils.IsNil(o.Cluster) {
 		var ret string
 		return ret
 	}
-	return *o.cluster
+	return *o.Cluster
 }
 
 // GetClusterOk returns a tuple with the Cluster field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Placements) GetClusterOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.cluster) {
+	if o == nil || utils.IsNil(o.Cluster) {
 		return nil, false
 	}
-	return o.cluster, true
+	return o.Cluster, true
 }
 
 // HasCluster returns a boolean if a field has been set.
 func (o *Placements) HasCluster() bool {
-	if o != nil && !utils.IsNil(o.cluster) {
+	if o != nil && !utils.IsNil(o.Cluster) {
 		return true
 	}
 
 	return false
 }
 
-// Cluster gets a reference to the given string and assigns it to the cluster field.
-// cluster:
-func (o *Placements) Cluster(v string) *Placements {
-	o.cluster = &v
+// SetCluster gets a reference to the given string and assigns it to the cluster field.
+// Cluster:
+func (o *Placements) SetCluster(v string) *Placements {
+	o.Cluster = &v
 	return o
 }
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *Placements) GetNamespace() string {
-	if o == nil || utils.IsNil(o.namespace) {
+	if o == nil || utils.IsNil(o.Namespace) {
 		var ret string
 		return ret
 	}
-	return *o.namespace
+	return *o.Namespace
 }
 
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Placements) GetNamespaceOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.namespace) {
+	if o == nil || utils.IsNil(o.Namespace) {
 		return nil, false
 	}
-	return o.namespace, true
+	return o.Namespace, true
 }
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *Placements) HasNamespace() bool {
-	if o != nil && !utils.IsNil(o.namespace) {
+	if o != nil && !utils.IsNil(o.Namespace) {
 		return true
 	}
 
 	return false
 }
 
-// Namespace gets a reference to the given string and assigns it to the namespace field.
-// namespace:
-func (o *Placements) Namespace(v string) *Placements {
-	o.namespace = &v
+// SetNamespace gets a reference to the given string and assigns it to the namespace field.
+// Namespace:
+func (o *Placements) SetNamespace(v string) *Placements {
+	o.Namespace = &v
 	return o
 }
 
@@ -120,11 +120,11 @@ func (o Placements) MarshalJSON() ([]byte, error) {
 
 func (o Placements) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.cluster) {
-		toSerialize["cluster"] = o.cluster
+	if !utils.IsNil(o.Cluster) {
+		toSerialize["cluster"] = o.Cluster
 	}
-	if !utils.IsNil(o.namespace) {
-		toSerialize["namespace"] = o.namespace
+	if !utils.IsNil(o.Namespace) {
+		toSerialize["namespace"] = o.Namespace
 	}
 	return toSerialize, nil
 }

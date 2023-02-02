@@ -22,13 +22,13 @@ var _ utils.MappedNullable = &PatchParams{}
 // PatchParams struct for PatchParams
 type PatchParams struct {
 	// Specify the name of the patch component, if empty, all components will be merged
-	name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	// Specify the properties to override.
-	properties map[string]interface{} `json:"properties,omitempty"`
+	Properties map[string]interface{} `json:"properties,omitempty"`
 	// Specify the traits to override.
-	traits []Traits `json:"traits,omitempty"`
+	Traits []Traits `json:"traits,omitempty"`
 	// Specify the type of the patch component.
-	type_ *string `json:"type,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // NewPatchParamsWith instantiates a new PatchParams object
@@ -50,137 +50,137 @@ func NewPatchParams() *PatchParams {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PatchParams) GetName() string {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.name
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchParams) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *PatchParams) HasName() bool {
-	if o != nil && !utils.IsNil(o.name) {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:  Specify the name of the patch component, if empty, all components will be merged
-func (o *PatchParams) Name(v string) *PatchParams {
-	o.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:  Specify the name of the patch component, if empty, all components will be merged
+func (o *PatchParams) SetName(v string) *PatchParams {
+	o.Name = &v
 	return o
 }
 
 // GetProperties returns the Properties field value if set, zero value otherwise.
 func (o *PatchParams) GetProperties() map[string]interface{} {
-	if o == nil || utils.IsNil(o.properties) {
+	if o == nil || utils.IsNil(o.Properties) {
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.properties
+	return o.Properties
 }
 
 // GetPropertiesOk returns a tuple with the Properties field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchParams) GetPropertiesOk() (map[string]interface{}, bool) {
-	if o == nil || utils.IsNil(o.properties) {
+	if o == nil || utils.IsNil(o.Properties) {
 		return map[string]interface{}{}, false
 	}
-	return o.properties, true
+	return o.Properties, true
 }
 
 // HasProperties returns a boolean if a field has been set.
 func (o *PatchParams) HasProperties() bool {
-	if o != nil && !utils.IsNil(o.properties) {
+	if o != nil && !utils.IsNil(o.Properties) {
 		return true
 	}
 
 	return false
 }
 
-// Properties gets a reference to the given map[string]interface{} and assigns it to the properties field.
-// properties:  Specify the properties to override.
-func (o *PatchParams) Properties(v map[string]interface{}) *PatchParams {
-	o.properties = v
+// SetProperties gets a reference to the given map[string]interface{} and assigns it to the properties field.
+// Properties:  Specify the properties to override.
+func (o *PatchParams) SetProperties(v map[string]interface{}) *PatchParams {
+	o.Properties = v
 	return o
 }
 
 // GetTraits returns the Traits field value if set, zero value otherwise.
 func (o *PatchParams) GetTraits() []Traits {
-	if o == nil || utils.IsNil(o.traits) {
+	if o == nil || utils.IsNil(o.Traits) {
 		var ret []Traits
 		return ret
 	}
-	return o.traits
+	return o.Traits
 }
 
 // GetTraitsOk returns a tuple with the Traits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchParams) GetTraitsOk() ([]Traits, bool) {
-	if o == nil || utils.IsNil(o.traits) {
+	if o == nil || utils.IsNil(o.Traits) {
 		return nil, false
 	}
-	return o.traits, true
+	return o.Traits, true
 }
 
 // HasTraits returns a boolean if a field has been set.
 func (o *PatchParams) HasTraits() bool {
-	if o != nil && !utils.IsNil(o.traits) {
+	if o != nil && !utils.IsNil(o.Traits) {
 		return true
 	}
 
 	return false
 }
 
-// Traits gets a reference to the given []Traits and assigns it to the traits field.
-// traits:  Specify the traits to override.
-func (o *PatchParams) Traits(v []Traits) *PatchParams {
-	o.traits = v
+// SetTraits gets a reference to the given []Traits and assigns it to the traits field.
+// Traits:  Specify the traits to override.
+func (o *PatchParams) SetTraits(v []Traits) *PatchParams {
+	o.Traits = v
 	return o
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *PatchParams) GetType() string {
-	if o == nil || utils.IsNil(o.type_) {
+	if o == nil || utils.IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-	return *o.type_
+	return *o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchParams) GetTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.type_) {
+	if o == nil || utils.IsNil(o.Type) {
 		return nil, false
 	}
-	return o.type_, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *PatchParams) HasType() bool {
-	if o != nil && !utils.IsNil(o.type_) {
+	if o != nil && !utils.IsNil(o.Type) {
 		return true
 	}
 
 	return false
 }
 
-// Type gets a reference to the given string and assigns it to the type_ field.
-// type_:  Specify the type of the patch component.
-func (o *PatchParams) Type(v string) *PatchParams {
-	o.type_ = &v
+// SetType gets a reference to the given string and assigns it to the type_ field.
+// Type:  Specify the type of the patch component.
+func (o *PatchParams) SetType(v string) *PatchParams {
+	o.Type = &v
 	return o
 }
 
@@ -194,17 +194,17 @@ func (o PatchParams) MarshalJSON() ([]byte, error) {
 
 func (o PatchParams) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if !utils.IsNil(o.properties) {
-		toSerialize["properties"] = o.properties
+	if !utils.IsNil(o.Properties) {
+		toSerialize["properties"] = o.Properties
 	}
-	if !utils.IsNil(o.traits) {
-		toSerialize["traits"] = o.traits
+	if !utils.IsNil(o.Traits) {
+		toSerialize["traits"] = o.Traits
 	}
-	if !utils.IsNil(o.type_) {
-		toSerialize["type"] = o.type_
+	if !utils.IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
 	return toSerialize, nil
 }

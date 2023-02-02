@@ -21,13 +21,13 @@ var _ utils.MappedNullable = &Message2{}
 
 // Message2 Specify the message that you want to sent, refer to [slack messaging](https://api.slack.com/reference/messaging/payload)
 type Message2 struct {
-	attachments NullableAttachments  `json:"attachments,omitempty"`
-	blocks      utils.NullableString `json:"blocks,omitempty"`
+	Attachments NullableAttachments  `json:"attachments,omitempty"`
+	Blocks      utils.NullableString `json:"blocks,omitempty"`
 	// Specify the message text format in markdown for slack notification
-	mrkdwn *bool `json:"mrkdwn,omitempty"`
+	Mrkdwn *bool `json:"mrkdwn,omitempty"`
 	// Specify the message text for slack notification
-	text     *string `json:"text,omitempty"`
-	threadTs *string `json:"thread_ts,omitempty"`
+	Text     *string `json:"text,omitempty"`
+	ThreadTs *string `json:"thread_ts,omitempty"`
 }
 
 // NewMessage2With instantiates a new Message2 object
@@ -37,7 +37,7 @@ type Message2 struct {
 func NewMessage2With() *Message2 {
 	this := Message2{}
 	var mrkdwn bool = true
-	this.mrkdwn = &mrkdwn
+	this.Mrkdwn = &mrkdwn
 	return &this
 }
 
@@ -47,17 +47,17 @@ func NewMessage2With() *Message2 {
 func NewMessage2() *Message2 {
 	this := Message2{}
 	var mrkdwn bool = true
-	this.mrkdwn = &mrkdwn
+	this.Mrkdwn = &mrkdwn
 	return &this
 }
 
 // GetAttachments returns the Attachments field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Message2) GetAttachments() Attachments {
-	if o == nil || utils.IsNil(o.attachments.Get()) {
+	if o == nil || utils.IsNil(o.Attachments.Get()) {
 		var ret Attachments
 		return ret
 	}
-	return *o.attachments.Get()
+	return *o.Attachments.Get()
 }
 
 // GetAttachmentsOk returns a tuple with the Attachments field value if set, nil otherwise
@@ -67,42 +67,42 @@ func (o *Message2) GetAttachmentsOk() (*Attachments, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.attachments.Get(), o.attachments.IsSet()
+	return o.Attachments.Get(), o.Attachments.IsSet()
 }
 
 // HasAttachments returns a boolean if a field has been set.
 func (o *Message2) HasAttachments() bool {
-	if o != nil && o.attachments.IsSet() {
+	if o != nil && o.Attachments.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// Attachments gets a reference to the given NullableAttachments and assigns it to the attachments field.
-// attachments:
-func (o *Message2) Attachments(v Attachments) *Message2 {
-	o.attachments.Set(&v)
+// SetAttachments gets a reference to the given NullableAttachments and assigns it to the attachments field.
+// Attachments:
+func (o *Message2) SetAttachments(v Attachments) *Message2 {
+	o.Attachments.Set(&v)
 	return o
 }
 
 // SetAttachmentsNil sets the value for Attachments to be an explicit nil
 func (o *Message2) SetAttachmentsNil() {
-	o.attachments.Set(nil)
+	o.Attachments.Set(nil)
 }
 
 // UnsetAttachments ensures that no value is present for Attachments, not even an explicit nil
 func (o *Message2) UnsetAttachments() {
-	o.attachments.Unset()
+	o.Attachments.Unset()
 }
 
 // GetBlocks returns the Blocks field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Message2) GetBlocks() string {
-	if o == nil || utils.IsNil(o.blocks.Get()) {
+	if o == nil || utils.IsNil(o.Blocks.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.blocks.Get()
+	return *o.Blocks.Get()
 }
 
 // GetBlocksOk returns a tuple with the Blocks field value if set, nil otherwise
@@ -112,134 +112,134 @@ func (o *Message2) GetBlocksOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.blocks.Get(), o.blocks.IsSet()
+	return o.Blocks.Get(), o.Blocks.IsSet()
 }
 
 // HasBlocks returns a boolean if a field has been set.
 func (o *Message2) HasBlocks() bool {
-	if o != nil && o.blocks.IsSet() {
+	if o != nil && o.Blocks.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// Blocks gets a reference to the given utils.NullableString and assigns it to the blocks field.
-// blocks:
-func (o *Message2) Blocks(v string) *Message2 {
-	o.blocks.Set(&v)
+// SetBlocks gets a reference to the given utils.NullableString and assigns it to the blocks field.
+// Blocks:
+func (o *Message2) SetBlocks(v string) *Message2 {
+	o.Blocks.Set(&v)
 	return o
 }
 
 // SetBlocksNil sets the value for Blocks to be an explicit nil
 func (o *Message2) SetBlocksNil() {
-	o.blocks.Set(nil)
+	o.Blocks.Set(nil)
 }
 
 // UnsetBlocks ensures that no value is present for Blocks, not even an explicit nil
 func (o *Message2) UnsetBlocks() {
-	o.blocks.Unset()
+	o.Blocks.Unset()
 }
 
 // GetMrkdwn returns the Mrkdwn field value if set, zero value otherwise.
 func (o *Message2) GetMrkdwn() bool {
-	if o == nil || utils.IsNil(o.mrkdwn) {
+	if o == nil || utils.IsNil(o.Mrkdwn) {
 		var ret bool
 		return ret
 	}
-	return *o.mrkdwn
+	return *o.Mrkdwn
 }
 
 // GetMrkdwnOk returns a tuple with the Mrkdwn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Message2) GetMrkdwnOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.mrkdwn) {
+	if o == nil || utils.IsNil(o.Mrkdwn) {
 		return nil, false
 	}
-	return o.mrkdwn, true
+	return o.Mrkdwn, true
 }
 
 // HasMrkdwn returns a boolean if a field has been set.
 func (o *Message2) HasMrkdwn() bool {
-	if o != nil && !utils.IsNil(o.mrkdwn) {
+	if o != nil && !utils.IsNil(o.Mrkdwn) {
 		return true
 	}
 
 	return false
 }
 
-// Mrkdwn gets a reference to the given bool and assigns it to the mrkdwn field.
-// mrkdwn:  Specify the message text format in markdown for slack notification
-func (o *Message2) Mrkdwn(v bool) *Message2 {
-	o.mrkdwn = &v
+// SetMrkdwn gets a reference to the given bool and assigns it to the mrkdwn field.
+// Mrkdwn:  Specify the message text format in markdown for slack notification
+func (o *Message2) SetMrkdwn(v bool) *Message2 {
+	o.Mrkdwn = &v
 	return o
 }
 
 // GetText returns the Text field value if set, zero value otherwise.
 func (o *Message2) GetText() string {
-	if o == nil || utils.IsNil(o.text) {
+	if o == nil || utils.IsNil(o.Text) {
 		var ret string
 		return ret
 	}
-	return *o.text
+	return *o.Text
 }
 
 // GetTextOk returns a tuple with the Text field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Message2) GetTextOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.text) {
+	if o == nil || utils.IsNil(o.Text) {
 		return nil, false
 	}
-	return o.text, true
+	return o.Text, true
 }
 
 // HasText returns a boolean if a field has been set.
 func (o *Message2) HasText() bool {
-	if o != nil && !utils.IsNil(o.text) {
+	if o != nil && !utils.IsNil(o.Text) {
 		return true
 	}
 
 	return false
 }
 
-// Text gets a reference to the given string and assigns it to the text field.
-// text:  Specify the message text for slack notification
-func (o *Message2) Text(v string) *Message2 {
-	o.text = &v
+// SetText gets a reference to the given string and assigns it to the text field.
+// Text:  Specify the message text for slack notification
+func (o *Message2) SetText(v string) *Message2 {
+	o.Text = &v
 	return o
 }
 
 // GetThreadTs returns the ThreadTs field value if set, zero value otherwise.
 func (o *Message2) GetThreadTs() string {
-	if o == nil || utils.IsNil(o.threadTs) {
+	if o == nil || utils.IsNil(o.ThreadTs) {
 		var ret string
 		return ret
 	}
-	return *o.threadTs
+	return *o.ThreadTs
 }
 
 // GetThreadTsOk returns a tuple with the ThreadTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Message2) GetThreadTsOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.threadTs) {
+	if o == nil || utils.IsNil(o.ThreadTs) {
 		return nil, false
 	}
-	return o.threadTs, true
+	return o.ThreadTs, true
 }
 
 // HasThreadTs returns a boolean if a field has been set.
 func (o *Message2) HasThreadTs() bool {
-	if o != nil && !utils.IsNil(o.threadTs) {
+	if o != nil && !utils.IsNil(o.ThreadTs) {
 		return true
 	}
 
 	return false
 }
 
-// ThreadTs gets a reference to the given string and assigns it to the threadTs field.
-// threadTs:
-func (o *Message2) ThreadTs(v string) *Message2 {
-	o.threadTs = &v
+// SetThreadTs gets a reference to the given string and assigns it to the threadTs field.
+// ThreadTs:
+func (o *Message2) SetThreadTs(v string) *Message2 {
+	o.ThreadTs = &v
 	return o
 }
 
@@ -253,20 +253,20 @@ func (o Message2) MarshalJSON() ([]byte, error) {
 
 func (o Message2) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.attachments.IsSet() {
-		toSerialize["attachments"] = o.attachments.Get()
+	if o.Attachments.IsSet() {
+		toSerialize["attachments"] = o.Attachments.Get()
 	}
-	if o.blocks.IsSet() {
-		toSerialize["blocks"] = o.blocks.Get()
+	if o.Blocks.IsSet() {
+		toSerialize["blocks"] = o.Blocks.Get()
 	}
-	if !utils.IsNil(o.mrkdwn) {
-		toSerialize["mrkdwn"] = o.mrkdwn
+	if !utils.IsNil(o.Mrkdwn) {
+		toSerialize["mrkdwn"] = o.Mrkdwn
 	}
-	if !utils.IsNil(o.text) {
-		toSerialize["text"] = o.text
+	if !utils.IsNil(o.Text) {
+		toSerialize["text"] = o.Text
 	}
-	if !utils.IsNil(o.threadTs) {
-		toSerialize["thread_ts"] = o.threadTs
+	if !utils.IsNil(o.ThreadTs) {
+		toSerialize["thread_ts"] = o.ThreadTs
 	}
 	return toSerialize, nil
 }

@@ -22,13 +22,13 @@ var _ utils.MappedNullable = &Ports{}
 // Ports struct for Ports
 type Ports struct {
 	// Specify if the port should be exposed
-	expose *bool `json:"expose,omitempty"`
+	Expose *bool `json:"expose,omitempty"`
 	// Name of the port
-	name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	// Number of port to expose on the pod's IP address
-	port *int32 `json:"port,omitempty"`
+	Port *int32 `json:"port,omitempty"`
 	// Protocol for port. Must be UDP, TCP, or SCTP
-	protocol *string `json:"protocol,omitempty"`
+	Protocol *string `json:"protocol,omitempty"`
 }
 
 // NewPortsWith instantiates a new Ports object
@@ -38,9 +38,9 @@ type Ports struct {
 func NewPortsWith() *Ports {
 	this := Ports{}
 	var expose bool = false
-	this.expose = &expose
+	this.Expose = &expose
 	var protocol string = "TCP"
-	this.protocol = &protocol
+	this.Protocol = &protocol
 	return &this
 }
 
@@ -50,145 +50,145 @@ func NewPortsWith() *Ports {
 func NewPorts() *Ports {
 	this := Ports{}
 	var expose bool = false
-	this.expose = &expose
+	this.Expose = &expose
 	var protocol string = "TCP"
-	this.protocol = &protocol
+	this.Protocol = &protocol
 	return &this
 }
 
 // GetExpose returns the Expose field value if set, zero value otherwise.
 func (o *Ports) GetExpose() bool {
-	if o == nil || utils.IsNil(o.expose) {
+	if o == nil || utils.IsNil(o.Expose) {
 		var ret bool
 		return ret
 	}
-	return *o.expose
+	return *o.Expose
 }
 
 // GetExposeOk returns a tuple with the Expose field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Ports) GetExposeOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.expose) {
+	if o == nil || utils.IsNil(o.Expose) {
 		return nil, false
 	}
-	return o.expose, true
+	return o.Expose, true
 }
 
 // HasExpose returns a boolean if a field has been set.
 func (o *Ports) HasExpose() bool {
-	if o != nil && !utils.IsNil(o.expose) {
+	if o != nil && !utils.IsNil(o.Expose) {
 		return true
 	}
 
 	return false
 }
 
-// Expose gets a reference to the given bool and assigns it to the expose field.
-// expose:  Specify if the port should be exposed
-func (o *Ports) Expose(v bool) *Ports {
-	o.expose = &v
+// SetExpose gets a reference to the given bool and assigns it to the expose field.
+// Expose:  Specify if the port should be exposed
+func (o *Ports) SetExpose(v bool) *Ports {
+	o.Expose = &v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Ports) GetName() string {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.name
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Ports) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Ports) HasName() bool {
-	if o != nil && !utils.IsNil(o.name) {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:  Name of the port
-func (o *Ports) Name(v string) *Ports {
-	o.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:  Name of the port
+func (o *Ports) SetName(v string) *Ports {
+	o.Name = &v
 	return o
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *Ports) GetPort() int32 {
-	if o == nil || utils.IsNil(o.port) {
+	if o == nil || utils.IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
-	return *o.port
+	return *o.Port
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Ports) GetPortOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.port) {
+	if o == nil || utils.IsNil(o.Port) {
 		return nil, false
 	}
-	return o.port, true
+	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *Ports) HasPort() bool {
-	if o != nil && !utils.IsNil(o.port) {
+	if o != nil && !utils.IsNil(o.Port) {
 		return true
 	}
 
 	return false
 }
 
-// Port gets a reference to the given int32 and assigns it to the port field.
-// port:  Number of port to expose on the pod's IP address
-func (o *Ports) Port(v int32) *Ports {
-	o.port = &v
+// SetPort gets a reference to the given int32 and assigns it to the port field.
+// Port:  Number of port to expose on the pod's IP address
+func (o *Ports) SetPort(v int32) *Ports {
+	o.Port = &v
 	return o
 }
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
 func (o *Ports) GetProtocol() string {
-	if o == nil || utils.IsNil(o.protocol) {
+	if o == nil || utils.IsNil(o.Protocol) {
 		var ret string
 		return ret
 	}
-	return *o.protocol
+	return *o.Protocol
 }
 
 // GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Ports) GetProtocolOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.protocol) {
+	if o == nil || utils.IsNil(o.Protocol) {
 		return nil, false
 	}
-	return o.protocol, true
+	return o.Protocol, true
 }
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *Ports) HasProtocol() bool {
-	if o != nil && !utils.IsNil(o.protocol) {
+	if o != nil && !utils.IsNil(o.Protocol) {
 		return true
 	}
 
 	return false
 }
 
-// Protocol gets a reference to the given string and assigns it to the protocol field.
-// protocol:  Protocol for port. Must be UDP, TCP, or SCTP
-func (o *Ports) Protocol(v string) *Ports {
-	o.protocol = &v
+// SetProtocol gets a reference to the given string and assigns it to the protocol field.
+// Protocol:  Protocol for port. Must be UDP, TCP, or SCTP
+func (o *Ports) SetProtocol(v string) *Ports {
+	o.Protocol = &v
 	return o
 }
 
@@ -202,17 +202,17 @@ func (o Ports) MarshalJSON() ([]byte, error) {
 
 func (o Ports) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.expose) {
-		toSerialize["expose"] = o.expose
+	if !utils.IsNil(o.Expose) {
+		toSerialize["expose"] = o.Expose
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if !utils.IsNil(o.port) {
-		toSerialize["port"] = o.port
+	if !utils.IsNil(o.Port) {
+		toSerialize["port"] = o.Port
 	}
-	if !utils.IsNil(o.protocol) {
-		toSerialize["protocol"] = o.protocol
+	if !utils.IsNil(o.Protocol) {
+		toSerialize["protocol"] = o.Protocol
 	}
 	return toSerialize, nil
 }

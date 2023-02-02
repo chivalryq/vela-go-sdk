@@ -8,7 +8,8 @@ This is a Go SDK for KubeVela.
   - [x] Add Components/Traits/Workflow Steps/Policies
   - [x] Setting Workflow Mode
   - [x] Convert to K8s Application Object
-  - [ ] Convert from K8s Application Object
+  - [x] Convert from K8s Application Object
+  - [ ] Get Components/Traits/Workflow Steps/Policies from app
   - [ ] Referring to external Workflow object.
 - 🔍Application client
   - [x] Create/Delete/Patch/Update Application

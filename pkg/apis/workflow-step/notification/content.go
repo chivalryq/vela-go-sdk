@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &Content{}
 // Content Specify the content of the email
 type Content struct {
 	// Specify the context body of the email
-	body *string `json:"body,omitempty"`
+	Body *string `json:"body,omitempty"`
 	// Specify the subject of the email
-	subject *string `json:"subject,omitempty"`
+	Subject *string `json:"subject,omitempty"`
 }
 
 // NewContentWith instantiates a new Content object
@@ -46,69 +46,69 @@ func NewContent() *Content {
 
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *Content) GetBody() string {
-	if o == nil || utils.IsNil(o.body) {
+	if o == nil || utils.IsNil(o.Body) {
 		var ret string
 		return ret
 	}
-	return *o.body
+	return *o.Body
 }
 
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Content) GetBodyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.body) {
+	if o == nil || utils.IsNil(o.Body) {
 		return nil, false
 	}
-	return o.body, true
+	return o.Body, true
 }
 
 // HasBody returns a boolean if a field has been set.
 func (o *Content) HasBody() bool {
-	if o != nil && !utils.IsNil(o.body) {
+	if o != nil && !utils.IsNil(o.Body) {
 		return true
 	}
 
 	return false
 }
 
-// Body gets a reference to the given string and assigns it to the body field.
-// body:  Specify the context body of the email
-func (o *Content) Body(v string) *Content {
-	o.body = &v
+// SetBody gets a reference to the given string and assigns it to the body field.
+// Body:  Specify the context body of the email
+func (o *Content) SetBody(v string) *Content {
+	o.Body = &v
 	return o
 }
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *Content) GetSubject() string {
-	if o == nil || utils.IsNil(o.subject) {
+	if o == nil || utils.IsNil(o.Subject) {
 		var ret string
 		return ret
 	}
-	return *o.subject
+	return *o.Subject
 }
 
 // GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Content) GetSubjectOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.subject) {
+	if o == nil || utils.IsNil(o.Subject) {
 		return nil, false
 	}
-	return o.subject, true
+	return o.Subject, true
 }
 
 // HasSubject returns a boolean if a field has been set.
 func (o *Content) HasSubject() bool {
-	if o != nil && !utils.IsNil(o.subject) {
+	if o != nil && !utils.IsNil(o.Subject) {
 		return true
 	}
 
 	return false
 }
 
-// Subject gets a reference to the given string and assigns it to the subject field.
-// subject:  Specify the subject of the email
-func (o *Content) Subject(v string) *Content {
-	o.subject = &v
+// SetSubject gets a reference to the given string and assigns it to the subject field.
+// Subject:  Specify the subject of the email
+func (o *Content) SetSubject(v string) *Content {
+	o.Subject = &v
 	return o
 }
 
@@ -122,11 +122,11 @@ func (o Content) MarshalJSON() ([]byte, error) {
 
 func (o Content) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.body) {
-		toSerialize["body"] = o.body
+	if !utils.IsNil(o.Body) {
+		toSerialize["body"] = o.Body
 	}
-	if !utils.IsNil(o.subject) {
-		toSerialize["subject"] = o.subject
+	if !utils.IsNil(o.Subject) {
+		toSerialize["subject"] = o.Subject
 	}
 	return toSerialize, nil
 }

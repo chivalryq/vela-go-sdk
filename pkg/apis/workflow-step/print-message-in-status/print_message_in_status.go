@@ -27,7 +27,7 @@ var _ utils.MappedNullable = &PrintMessageInStatusSpec{}
 
 // PrintMessageInStatusSpec struct for PrintMessageInStatusSpec
 type PrintMessageInStatusSpec struct {
-	message *string `json:"message,omitempty"`
+	Message *string `json:"message,omitempty"`
 }
 
 // NewPrintMessageInStatusSpecWith instantiates a new PrintMessageInStatusSpec object
@@ -49,35 +49,35 @@ func NewPrintMessageInStatusSpec() *PrintMessageInStatusSpec {
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *PrintMessageInStatusWorkflowStep) GetMessage() string {
-	if o == nil || utils.IsNil(o.Properties.message) {
+	if o == nil || utils.IsNil(o.Properties.Message) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.message
+	return *o.Properties.Message
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PrintMessageInStatusWorkflowStep) GetMessageOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.message) {
+	if o == nil || utils.IsNil(o.Properties.Message) {
 		return nil, false
 	}
-	return o.Properties.message, true
+	return o.Properties.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *PrintMessageInStatusWorkflowStep) HasMessage() bool {
-	if o != nil && !utils.IsNil(o.Properties.message) {
+	if o != nil && !utils.IsNil(o.Properties.Message) {
 		return true
 	}
 
 	return false
 }
 
-// Message gets a reference to the given string and assigns it to the message field.
-// message:
-func (o *PrintMessageInStatusWorkflowStep) Message(v string) *PrintMessageInStatusWorkflowStep {
-	o.Properties.message = &v
+// SetMessage gets a reference to the given string and assigns it to the message field.
+// Message:
+func (o *PrintMessageInStatusWorkflowStep) SetMessage(v string) *PrintMessageInStatusWorkflowStep {
+	o.Properties.Message = &v
 	return o
 }
 
@@ -91,8 +91,8 @@ func (o PrintMessageInStatusSpec) MarshalJSON() ([]byte, error) {
 
 func (o PrintMessageInStatusSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.message) {
-		toSerialize["message"] = o.message
+	if !utils.IsNil(o.Message) {
+		toSerialize["message"] = o.Message
 	}
 	return toSerialize, nil
 }

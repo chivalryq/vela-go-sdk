@@ -21,12 +21,12 @@ var _ utils.MappedNullable = &AWSProvider{}
 
 // AWSProvider struct for AWSProvider
 type AWSProvider struct {
-	accessKey *string `json:"accessKey,omitempty"`
-	region    *string `json:"region,omitempty"`
-	secretKey *string `json:"secretKey,omitempty"`
-	name      string  `json:"name"`
-	token     string  `json:"token"`
-	type_     string  `json:"type"`
+	AccessKey *string `json:"accessKey,omitempty"`
+	Region    *string `json:"region,omitempty"`
+	SecretKey *string `json:"secretKey,omitempty"`
+	Name      string  `json:"name"`
+	Token     string  `json:"token"`
+	Type      string  `json:"type"`
 }
 
 // NewAWSProviderWith instantiates a new AWSProvider object
@@ -35,9 +35,9 @@ type AWSProvider struct {
 // will change when the set of required properties is changed
 func NewAWSProviderWith(name string, token string, type_ string) *AWSProvider {
 	this := AWSProvider{}
-	this.name = name
-	this.token = token
-	this.type_ = type_
+	this.Name = name
+	this.Token = token
+	this.Type = type_
 	return &this
 }
 
@@ -47,111 +47,111 @@ func NewAWSProviderWith(name string, token string, type_ string) *AWSProvider {
 func NewAWSProvider() *AWSProvider {
 	this := AWSProvider{}
 	var name string = "aws-provider"
-	this.name = name
+	this.Name = name
 	var token string = ""
-	this.token = token
+	this.Token = token
 	return &this
 }
 
 // GetAccessKey returns the AccessKey field value if set, zero value otherwise.
 func (o *AWSProvider) GetAccessKey() string {
-	if o == nil || utils.IsNil(o.accessKey) {
+	if o == nil || utils.IsNil(o.AccessKey) {
 		var ret string
 		return ret
 	}
-	return *o.accessKey
+	return *o.AccessKey
 }
 
 // GetAccessKeyOk returns a tuple with the AccessKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSProvider) GetAccessKeyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.accessKey) {
+	if o == nil || utils.IsNil(o.AccessKey) {
 		return nil, false
 	}
-	return o.accessKey, true
+	return o.AccessKey, true
 }
 
 // HasAccessKey returns a boolean if a field has been set.
 func (o *AWSProvider) HasAccessKey() bool {
-	if o != nil && !utils.IsNil(o.accessKey) {
+	if o != nil && !utils.IsNil(o.AccessKey) {
 		return true
 	}
 
 	return false
 }
 
-// AccessKey gets a reference to the given string and assigns it to the accessKey field.
-// accessKey:
-func (o *AWSProvider) AccessKey(v string) *AWSProvider {
-	o.accessKey = &v
+// SetAccessKey gets a reference to the given string and assigns it to the accessKey field.
+// AccessKey:
+func (o *AWSProvider) SetAccessKey(v string) *AWSProvider {
+	o.AccessKey = &v
 	return o
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *AWSProvider) GetRegion() string {
-	if o == nil || utils.IsNil(o.region) {
+	if o == nil || utils.IsNil(o.Region) {
 		var ret string
 		return ret
 	}
-	return *o.region
+	return *o.Region
 }
 
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSProvider) GetRegionOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.region) {
+	if o == nil || utils.IsNil(o.Region) {
 		return nil, false
 	}
-	return o.region, true
+	return o.Region, true
 }
 
 // HasRegion returns a boolean if a field has been set.
 func (o *AWSProvider) HasRegion() bool {
-	if o != nil && !utils.IsNil(o.region) {
+	if o != nil && !utils.IsNil(o.Region) {
 		return true
 	}
 
 	return false
 }
 
-// Region gets a reference to the given string and assigns it to the region field.
-// region:
-func (o *AWSProvider) Region(v string) *AWSProvider {
-	o.region = &v
+// SetRegion gets a reference to the given string and assigns it to the region field.
+// Region:
+func (o *AWSProvider) SetRegion(v string) *AWSProvider {
+	o.Region = &v
 	return o
 }
 
 // GetSecretKey returns the SecretKey field value if set, zero value otherwise.
 func (o *AWSProvider) GetSecretKey() string {
-	if o == nil || utils.IsNil(o.secretKey) {
+	if o == nil || utils.IsNil(o.SecretKey) {
 		var ret string
 		return ret
 	}
-	return *o.secretKey
+	return *o.SecretKey
 }
 
 // GetSecretKeyOk returns a tuple with the SecretKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSProvider) GetSecretKeyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.secretKey) {
+	if o == nil || utils.IsNil(o.SecretKey) {
 		return nil, false
 	}
-	return o.secretKey, true
+	return o.SecretKey, true
 }
 
 // HasSecretKey returns a boolean if a field has been set.
 func (o *AWSProvider) HasSecretKey() bool {
-	if o != nil && !utils.IsNil(o.secretKey) {
+	if o != nil && !utils.IsNil(o.SecretKey) {
 		return true
 	}
 
 	return false
 }
 
-// SecretKey gets a reference to the given string and assigns it to the secretKey field.
-// secretKey:
-func (o *AWSProvider) SecretKey(v string) *AWSProvider {
-	o.secretKey = &v
+// SetSecretKey gets a reference to the given string and assigns it to the secretKey field.
+// SecretKey:
+func (o *AWSProvider) SetSecretKey(v string) *AWSProvider {
+	o.SecretKey = &v
 	return o
 }
 
@@ -162,7 +162,7 @@ func (o *AWSProvider) GetName() string {
 		return ret
 	}
 
-	return o.name
+	return o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value
@@ -171,12 +171,12 @@ func (o *AWSProvider) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.name, true
+	return &o.Name, true
 }
 
-// Name sets field value
-func (o *AWSProvider) Name(v string) *AWSProvider {
-	o.name = v
+// SetName sets field value
+func (o *AWSProvider) SetName(v string) *AWSProvider {
+	o.Name = v
 	return o
 }
 
@@ -187,7 +187,7 @@ func (o *AWSProvider) GetToken() string {
 		return ret
 	}
 
-	return o.token
+	return o.Token
 }
 
 // GetTokenOk returns a tuple with the Token field value
@@ -196,12 +196,12 @@ func (o *AWSProvider) GetTokenOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.token, true
+	return &o.Token, true
 }
 
-// Token sets field value
-func (o *AWSProvider) Token(v string) *AWSProvider {
-	o.token = v
+// SetToken sets field value
+func (o *AWSProvider) SetToken(v string) *AWSProvider {
+	o.Token = v
 	return o
 }
 
@@ -212,7 +212,7 @@ func (o *AWSProvider) GetType() string {
 		return ret
 	}
 
-	return o.type_
+	return o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value
@@ -221,12 +221,12 @@ func (o *AWSProvider) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.type_, true
+	return &o.Type, true
 }
 
-// Type sets field value
-func (o *AWSProvider) Type(v string) *AWSProvider {
-	o.type_ = v
+// SetType sets field value
+func (o *AWSProvider) SetType(v string) *AWSProvider {
+	o.Type = v
 	return o
 }
 
@@ -240,18 +240,18 @@ func (o AWSProvider) MarshalJSON() ([]byte, error) {
 
 func (o AWSProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.accessKey) {
-		toSerialize["accessKey"] = o.accessKey
+	if !utils.IsNil(o.AccessKey) {
+		toSerialize["accessKey"] = o.AccessKey
 	}
-	if !utils.IsNil(o.region) {
-		toSerialize["region"] = o.region
+	if !utils.IsNil(o.Region) {
+		toSerialize["region"] = o.Region
 	}
-	if !utils.IsNil(o.secretKey) {
-		toSerialize["secretKey"] = o.secretKey
+	if !utils.IsNil(o.SecretKey) {
+		toSerialize["secretKey"] = o.SecretKey
 	}
-	toSerialize["name"] = o.name
-	toSerialize["token"] = o.token
-	toSerialize["type"] = o.type_
+	toSerialize["name"] = o.Name
+	toSerialize["token"] = o.Token
+	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 

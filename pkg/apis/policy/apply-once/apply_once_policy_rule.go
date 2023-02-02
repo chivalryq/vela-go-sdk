@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &ApplyOncePolicyRule{}
 
 // ApplyOncePolicyRule struct for ApplyOncePolicyRule
 type ApplyOncePolicyRule struct {
-	selector *ResourcePolicyRuleSelector `json:"selector,omitempty"`
-	strategy *ApplyOnceStrategy          `json:"strategy,omitempty"`
+	Selector *ResourcePolicyRuleSelector `json:"selector,omitempty"`
+	Strategy *ApplyOnceStrategy          `json:"strategy,omitempty"`
 }
 
 // NewApplyOncePolicyRuleWith instantiates a new ApplyOncePolicyRule object
@@ -44,69 +44,69 @@ func NewApplyOncePolicyRule() *ApplyOncePolicyRule {
 
 // GetSelector returns the Selector field value if set, zero value otherwise.
 func (o *ApplyOncePolicyRule) GetSelector() ResourcePolicyRuleSelector {
-	if o == nil || utils.IsNil(o.selector) {
+	if o == nil || utils.IsNil(o.Selector) {
 		var ret ResourcePolicyRuleSelector
 		return ret
 	}
-	return *o.selector
+	return *o.Selector
 }
 
 // GetSelectorOk returns a tuple with the Selector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplyOncePolicyRule) GetSelectorOk() (*ResourcePolicyRuleSelector, bool) {
-	if o == nil || utils.IsNil(o.selector) {
+	if o == nil || utils.IsNil(o.Selector) {
 		return nil, false
 	}
-	return o.selector, true
+	return o.Selector, true
 }
 
 // HasSelector returns a boolean if a field has been set.
 func (o *ApplyOncePolicyRule) HasSelector() bool {
-	if o != nil && !utils.IsNil(o.selector) {
+	if o != nil && !utils.IsNil(o.Selector) {
 		return true
 	}
 
 	return false
 }
 
-// Selector gets a reference to the given ResourcePolicyRuleSelector and assigns it to the selector field.
-// selector:
-func (o *ApplyOncePolicyRule) Selector(v ResourcePolicyRuleSelector) *ApplyOncePolicyRule {
-	o.selector = &v
+// SetSelector gets a reference to the given ResourcePolicyRuleSelector and assigns it to the selector field.
+// Selector:
+func (o *ApplyOncePolicyRule) SetSelector(v ResourcePolicyRuleSelector) *ApplyOncePolicyRule {
+	o.Selector = &v
 	return o
 }
 
 // GetStrategy returns the Strategy field value if set, zero value otherwise.
 func (o *ApplyOncePolicyRule) GetStrategy() ApplyOnceStrategy {
-	if o == nil || utils.IsNil(o.strategy) {
+	if o == nil || utils.IsNil(o.Strategy) {
 		var ret ApplyOnceStrategy
 		return ret
 	}
-	return *o.strategy
+	return *o.Strategy
 }
 
 // GetStrategyOk returns a tuple with the Strategy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplyOncePolicyRule) GetStrategyOk() (*ApplyOnceStrategy, bool) {
-	if o == nil || utils.IsNil(o.strategy) {
+	if o == nil || utils.IsNil(o.Strategy) {
 		return nil, false
 	}
-	return o.strategy, true
+	return o.Strategy, true
 }
 
 // HasStrategy returns a boolean if a field has been set.
 func (o *ApplyOncePolicyRule) HasStrategy() bool {
-	if o != nil && !utils.IsNil(o.strategy) {
+	if o != nil && !utils.IsNil(o.Strategy) {
 		return true
 	}
 
 	return false
 }
 
-// Strategy gets a reference to the given ApplyOnceStrategy and assigns it to the strategy field.
-// strategy:
-func (o *ApplyOncePolicyRule) Strategy(v ApplyOnceStrategy) *ApplyOncePolicyRule {
-	o.strategy = &v
+// SetStrategy gets a reference to the given ApplyOnceStrategy and assigns it to the strategy field.
+// Strategy:
+func (o *ApplyOncePolicyRule) SetStrategy(v ApplyOnceStrategy) *ApplyOncePolicyRule {
+	o.Strategy = &v
 	return o
 }
 
@@ -120,11 +120,11 @@ func (o ApplyOncePolicyRule) MarshalJSON() ([]byte, error) {
 
 func (o ApplyOncePolicyRule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.selector) {
-		toSerialize["selector"] = o.selector
+	if !utils.IsNil(o.Selector) {
+		toSerialize["selector"] = o.Selector
 	}
-	if !utils.IsNil(o.strategy) {
-		toSerialize["strategy"] = o.strategy
+	if !utils.IsNil(o.Strategy) {
+		toSerialize["strategy"] = o.Strategy
 	}
 	return toSerialize, nil
 }

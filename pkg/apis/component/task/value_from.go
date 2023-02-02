@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &ValueFrom{}
 
 // ValueFrom Specifies a source the value of this var should come from
 type ValueFrom struct {
-	configMapKeyRef *ConfigMapKeyRef `json:"configMapKeyRef,omitempty"`
-	secretKeyRef    *SecretKeyRef    `json:"secretKeyRef,omitempty"`
+	ConfigMapKeyRef *ConfigMapKeyRef `json:"configMapKeyRef,omitempty"`
+	SecretKeyRef    *SecretKeyRef    `json:"secretKeyRef,omitempty"`
 }
 
 // NewValueFromWith instantiates a new ValueFrom object
@@ -44,69 +44,69 @@ func NewValueFrom() *ValueFrom {
 
 // GetConfigMapKeyRef returns the ConfigMapKeyRef field value if set, zero value otherwise.
 func (o *ValueFrom) GetConfigMapKeyRef() ConfigMapKeyRef {
-	if o == nil || utils.IsNil(o.configMapKeyRef) {
+	if o == nil || utils.IsNil(o.ConfigMapKeyRef) {
 		var ret ConfigMapKeyRef
 		return ret
 	}
-	return *o.configMapKeyRef
+	return *o.ConfigMapKeyRef
 }
 
 // GetConfigMapKeyRefOk returns a tuple with the ConfigMapKeyRef field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValueFrom) GetConfigMapKeyRefOk() (*ConfigMapKeyRef, bool) {
-	if o == nil || utils.IsNil(o.configMapKeyRef) {
+	if o == nil || utils.IsNil(o.ConfigMapKeyRef) {
 		return nil, false
 	}
-	return o.configMapKeyRef, true
+	return o.ConfigMapKeyRef, true
 }
 
 // HasConfigMapKeyRef returns a boolean if a field has been set.
 func (o *ValueFrom) HasConfigMapKeyRef() bool {
-	if o != nil && !utils.IsNil(o.configMapKeyRef) {
+	if o != nil && !utils.IsNil(o.ConfigMapKeyRef) {
 		return true
 	}
 
 	return false
 }
 
-// ConfigMapKeyRef gets a reference to the given ConfigMapKeyRef and assigns it to the configMapKeyRef field.
-// configMapKeyRef:
-func (o *ValueFrom) ConfigMapKeyRef(v ConfigMapKeyRef) *ValueFrom {
-	o.configMapKeyRef = &v
+// SetConfigMapKeyRef gets a reference to the given ConfigMapKeyRef and assigns it to the configMapKeyRef field.
+// ConfigMapKeyRef:
+func (o *ValueFrom) SetConfigMapKeyRef(v ConfigMapKeyRef) *ValueFrom {
+	o.ConfigMapKeyRef = &v
 	return o
 }
 
 // GetSecretKeyRef returns the SecretKeyRef field value if set, zero value otherwise.
 func (o *ValueFrom) GetSecretKeyRef() SecretKeyRef {
-	if o == nil || utils.IsNil(o.secretKeyRef) {
+	if o == nil || utils.IsNil(o.SecretKeyRef) {
 		var ret SecretKeyRef
 		return ret
 	}
-	return *o.secretKeyRef
+	return *o.SecretKeyRef
 }
 
 // GetSecretKeyRefOk returns a tuple with the SecretKeyRef field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValueFrom) GetSecretKeyRefOk() (*SecretKeyRef, bool) {
-	if o == nil || utils.IsNil(o.secretKeyRef) {
+	if o == nil || utils.IsNil(o.SecretKeyRef) {
 		return nil, false
 	}
-	return o.secretKeyRef, true
+	return o.SecretKeyRef, true
 }
 
 // HasSecretKeyRef returns a boolean if a field has been set.
 func (o *ValueFrom) HasSecretKeyRef() bool {
-	if o != nil && !utils.IsNil(o.secretKeyRef) {
+	if o != nil && !utils.IsNil(o.SecretKeyRef) {
 		return true
 	}
 
 	return false
 }
 
-// SecretKeyRef gets a reference to the given SecretKeyRef and assigns it to the secretKeyRef field.
-// secretKeyRef:
-func (o *ValueFrom) SecretKeyRef(v SecretKeyRef) *ValueFrom {
-	o.secretKeyRef = &v
+// SetSecretKeyRef gets a reference to the given SecretKeyRef and assigns it to the secretKeyRef field.
+// SecretKeyRef:
+func (o *ValueFrom) SetSecretKeyRef(v SecretKeyRef) *ValueFrom {
+	o.SecretKeyRef = &v
 	return o
 }
 
@@ -120,11 +120,11 @@ func (o ValueFrom) MarshalJSON() ([]byte, error) {
 
 func (o ValueFrom) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.configMapKeyRef) {
-		toSerialize["configMapKeyRef"] = o.configMapKeyRef
+	if !utils.IsNil(o.ConfigMapKeyRef) {
+		toSerialize["configMapKeyRef"] = o.ConfigMapKeyRef
 	}
-	if !utils.IsNil(o.secretKeyRef) {
-		toSerialize["secretKeyRef"] = o.secretKeyRef
+	if !utils.IsNil(o.SecretKeyRef) {
+		toSerialize["secretKeyRef"] = o.SecretKeyRef
 	}
 	return toSerialize, nil
 }

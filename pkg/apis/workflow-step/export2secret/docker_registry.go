@@ -22,11 +22,11 @@ var _ utils.MappedNullable = &DockerRegistry{}
 // DockerRegistry Specify the docker data
 type DockerRegistry struct {
 	// Specify the password of the docker registry
-	password *string `json:"password,omitempty"`
+	Password *string `json:"password,omitempty"`
 	// Specify the server of the docker registry
-	server *string `json:"server,omitempty"`
+	Server *string `json:"server,omitempty"`
 	// Specify the username of the docker registry
-	username *string `json:"username,omitempty"`
+	Username *string `json:"username,omitempty"`
 }
 
 // NewDockerRegistryWith instantiates a new DockerRegistry object
@@ -36,7 +36,7 @@ type DockerRegistry struct {
 func NewDockerRegistryWith() *DockerRegistry {
 	this := DockerRegistry{}
 	var server string = "https://index.docker.io/v1/"
-	this.server = &server
+	this.Server = &server
 	return &this
 }
 
@@ -46,109 +46,109 @@ func NewDockerRegistryWith() *DockerRegistry {
 func NewDockerRegistry() *DockerRegistry {
 	this := DockerRegistry{}
 	var server string = "https://index.docker.io/v1/"
-	this.server = &server
+	this.Server = &server
 	return &this
 }
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *DockerRegistry) GetPassword() string {
-	if o == nil || utils.IsNil(o.password) {
+	if o == nil || utils.IsNil(o.Password) {
 		var ret string
 		return ret
 	}
-	return *o.password
+	return *o.Password
 }
 
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DockerRegistry) GetPasswordOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.password) {
+	if o == nil || utils.IsNil(o.Password) {
 		return nil, false
 	}
-	return o.password, true
+	return o.Password, true
 }
 
 // HasPassword returns a boolean if a field has been set.
 func (o *DockerRegistry) HasPassword() bool {
-	if o != nil && !utils.IsNil(o.password) {
+	if o != nil && !utils.IsNil(o.Password) {
 		return true
 	}
 
 	return false
 }
 
-// Password gets a reference to the given string and assigns it to the password field.
-// password:  Specify the password of the docker registry
-func (o *DockerRegistry) Password(v string) *DockerRegistry {
-	o.password = &v
+// SetPassword gets a reference to the given string and assigns it to the password field.
+// Password:  Specify the password of the docker registry
+func (o *DockerRegistry) SetPassword(v string) *DockerRegistry {
+	o.Password = &v
 	return o
 }
 
 // GetServer returns the Server field value if set, zero value otherwise.
 func (o *DockerRegistry) GetServer() string {
-	if o == nil || utils.IsNil(o.server) {
+	if o == nil || utils.IsNil(o.Server) {
 		var ret string
 		return ret
 	}
-	return *o.server
+	return *o.Server
 }
 
 // GetServerOk returns a tuple with the Server field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DockerRegistry) GetServerOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.server) {
+	if o == nil || utils.IsNil(o.Server) {
 		return nil, false
 	}
-	return o.server, true
+	return o.Server, true
 }
 
 // HasServer returns a boolean if a field has been set.
 func (o *DockerRegistry) HasServer() bool {
-	if o != nil && !utils.IsNil(o.server) {
+	if o != nil && !utils.IsNil(o.Server) {
 		return true
 	}
 
 	return false
 }
 
-// Server gets a reference to the given string and assigns it to the server field.
-// server:  Specify the server of the docker registry
-func (o *DockerRegistry) Server(v string) *DockerRegistry {
-	o.server = &v
+// SetServer gets a reference to the given string and assigns it to the server field.
+// Server:  Specify the server of the docker registry
+func (o *DockerRegistry) SetServer(v string) *DockerRegistry {
+	o.Server = &v
 	return o
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *DockerRegistry) GetUsername() string {
-	if o == nil || utils.IsNil(o.username) {
+	if o == nil || utils.IsNil(o.Username) {
 		var ret string
 		return ret
 	}
-	return *o.username
+	return *o.Username
 }
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DockerRegistry) GetUsernameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.username) {
+	if o == nil || utils.IsNil(o.Username) {
 		return nil, false
 	}
-	return o.username, true
+	return o.Username, true
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *DockerRegistry) HasUsername() bool {
-	if o != nil && !utils.IsNil(o.username) {
+	if o != nil && !utils.IsNil(o.Username) {
 		return true
 	}
 
 	return false
 }
 
-// Username gets a reference to the given string and assigns it to the username field.
-// username:  Specify the username of the docker registry
-func (o *DockerRegistry) Username(v string) *DockerRegistry {
-	o.username = &v
+// SetUsername gets a reference to the given string and assigns it to the username field.
+// Username:  Specify the username of the docker registry
+func (o *DockerRegistry) SetUsername(v string) *DockerRegistry {
+	o.Username = &v
 	return o
 }
 
@@ -162,14 +162,14 @@ func (o DockerRegistry) MarshalJSON() ([]byte, error) {
 
 func (o DockerRegistry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.password) {
-		toSerialize["password"] = o.password
+	if !utils.IsNil(o.Password) {
+		toSerialize["password"] = o.Password
 	}
-	if !utils.IsNil(o.server) {
-		toSerialize["server"] = o.server
+	if !utils.IsNil(o.Server) {
+		toSerialize["server"] = o.Server
 	}
-	if !utils.IsNil(o.username) {
-		toSerialize["username"] = o.username
+	if !utils.IsNil(o.Username) {
+		toSerialize["username"] = o.Username
 	}
 	return toSerialize, nil
 }

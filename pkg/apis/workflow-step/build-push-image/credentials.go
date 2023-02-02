@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &Credentials{}
 
 // Credentials Specify the credentials to access git and image registry
 type Credentials struct {
-	git   *Git1  `json:"git,omitempty"`
-	image *Image `json:"image,omitempty"`
+	Git   *Git1  `json:"git,omitempty"`
+	Image *Image `json:"image,omitempty"`
 }
 
 // NewCredentialsWith instantiates a new Credentials object
@@ -44,69 +44,69 @@ func NewCredentials() *Credentials {
 
 // GetGit returns the Git field value if set, zero value otherwise.
 func (o *Credentials) GetGit() Git1 {
-	if o == nil || utils.IsNil(o.git) {
+	if o == nil || utils.IsNil(o.Git) {
 		var ret Git1
 		return ret
 	}
-	return *o.git
+	return *o.Git
 }
 
 // GetGitOk returns a tuple with the Git field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Credentials) GetGitOk() (*Git1, bool) {
-	if o == nil || utils.IsNil(o.git) {
+	if o == nil || utils.IsNil(o.Git) {
 		return nil, false
 	}
-	return o.git, true
+	return o.Git, true
 }
 
 // HasGit returns a boolean if a field has been set.
 func (o *Credentials) HasGit() bool {
-	if o != nil && !utils.IsNil(o.git) {
+	if o != nil && !utils.IsNil(o.Git) {
 		return true
 	}
 
 	return false
 }
 
-// Git gets a reference to the given Git1 and assigns it to the git field.
-// git:
-func (o *Credentials) Git(v Git1) *Credentials {
-	o.git = &v
+// SetGit gets a reference to the given Git1 and assigns it to the git field.
+// Git:
+func (o *Credentials) SetGit(v Git1) *Credentials {
+	o.Git = &v
 	return o
 }
 
 // GetImage returns the Image field value if set, zero value otherwise.
 func (o *Credentials) GetImage() Image {
-	if o == nil || utils.IsNil(o.image) {
+	if o == nil || utils.IsNil(o.Image) {
 		var ret Image
 		return ret
 	}
-	return *o.image
+	return *o.Image
 }
 
 // GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Credentials) GetImageOk() (*Image, bool) {
-	if o == nil || utils.IsNil(o.image) {
+	if o == nil || utils.IsNil(o.Image) {
 		return nil, false
 	}
-	return o.image, true
+	return o.Image, true
 }
 
 // HasImage returns a boolean if a field has been set.
 func (o *Credentials) HasImage() bool {
-	if o != nil && !utils.IsNil(o.image) {
+	if o != nil && !utils.IsNil(o.Image) {
 		return true
 	}
 
 	return false
 }
 
-// Image gets a reference to the given Image and assigns it to the image field.
-// image:
-func (o *Credentials) Image(v Image) *Credentials {
-	o.image = &v
+// SetImage gets a reference to the given Image and assigns it to the image field.
+// Image:
+func (o *Credentials) SetImage(v Image) *Credentials {
+	o.Image = &v
 	return o
 }
 
@@ -120,11 +120,11 @@ func (o Credentials) MarshalJSON() ([]byte, error) {
 
 func (o Credentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.git) {
-		toSerialize["git"] = o.git
+	if !utils.IsNil(o.Git) {
+		toSerialize["git"] = o.Git
 	}
-	if !utils.IsNil(o.image) {
-		toSerialize["image"] = o.image
+	if !utils.IsNil(o.Image) {
+		toSerialize["image"] = o.Image
 	}
 	return toSerialize, nil
 }

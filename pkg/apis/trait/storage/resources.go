@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &Resources{}
 
 // Resources struct for Resources
 type Resources struct {
-	limits   *Limits   `json:"limits,omitempty"`
-	requests *Requests `json:"requests,omitempty"`
+	Limits   *Limits   `json:"limits,omitempty"`
+	Requests *Requests `json:"requests,omitempty"`
 }
 
 // NewResourcesWith instantiates a new Resources object
@@ -44,69 +44,69 @@ func NewResources() *Resources {
 
 // GetLimits returns the Limits field value if set, zero value otherwise.
 func (o *Resources) GetLimits() Limits {
-	if o == nil || utils.IsNil(o.limits) {
+	if o == nil || utils.IsNil(o.Limits) {
 		var ret Limits
 		return ret
 	}
-	return *o.limits
+	return *o.Limits
 }
 
 // GetLimitsOk returns a tuple with the Limits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Resources) GetLimitsOk() (*Limits, bool) {
-	if o == nil || utils.IsNil(o.limits) {
+	if o == nil || utils.IsNil(o.Limits) {
 		return nil, false
 	}
-	return o.limits, true
+	return o.Limits, true
 }
 
 // HasLimits returns a boolean if a field has been set.
 func (o *Resources) HasLimits() bool {
-	if o != nil && !utils.IsNil(o.limits) {
+	if o != nil && !utils.IsNil(o.Limits) {
 		return true
 	}
 
 	return false
 }
 
-// Limits gets a reference to the given Limits and assigns it to the limits field.
-// limits:
-func (o *Resources) Limits(v Limits) *Resources {
-	o.limits = &v
+// SetLimits gets a reference to the given Limits and assigns it to the limits field.
+// Limits:
+func (o *Resources) SetLimits(v Limits) *Resources {
+	o.Limits = &v
 	return o
 }
 
 // GetRequests returns the Requests field value if set, zero value otherwise.
 func (o *Resources) GetRequests() Requests {
-	if o == nil || utils.IsNil(o.requests) {
+	if o == nil || utils.IsNil(o.Requests) {
 		var ret Requests
 		return ret
 	}
-	return *o.requests
+	return *o.Requests
 }
 
 // GetRequestsOk returns a tuple with the Requests field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Resources) GetRequestsOk() (*Requests, bool) {
-	if o == nil || utils.IsNil(o.requests) {
+	if o == nil || utils.IsNil(o.Requests) {
 		return nil, false
 	}
-	return o.requests, true
+	return o.Requests, true
 }
 
 // HasRequests returns a boolean if a field has been set.
 func (o *Resources) HasRequests() bool {
-	if o != nil && !utils.IsNil(o.requests) {
+	if o != nil && !utils.IsNil(o.Requests) {
 		return true
 	}
 
 	return false
 }
 
-// Requests gets a reference to the given Requests and assigns it to the requests field.
-// requests:
-func (o *Resources) Requests(v Requests) *Resources {
-	o.requests = &v
+// SetRequests gets a reference to the given Requests and assigns it to the requests field.
+// Requests:
+func (o *Resources) SetRequests(v Requests) *Resources {
+	o.Requests = &v
 	return o
 }
 
@@ -120,11 +120,11 @@ func (o Resources) MarshalJSON() ([]byte, error) {
 
 func (o Resources) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.limits) {
-		toSerialize["limits"] = o.limits
+	if !utils.IsNil(o.Limits) {
+		toSerialize["limits"] = o.Limits
 	}
-	if !utils.IsNil(o.requests) {
-		toSerialize["requests"] = o.requests
+	if !utils.IsNil(o.Requests) {
+		toSerialize["requests"] = o.Requests
 	}
 	return toSerialize, nil
 }

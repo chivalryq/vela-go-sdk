@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &SecretKeyRef{}
 // SecretKeyRef Selects a key of a secret in the pod's namespace
 type SecretKeyRef struct {
 	// The key of the secret to select from. Must be a valid secret key
-	key *string `json:"key,omitempty"`
+	Key *string `json:"key,omitempty"`
 	// The name of the secret in the pod's namespace to select from
-	name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 }
 
 // NewSecretKeyRefWith instantiates a new SecretKeyRef object
@@ -46,69 +46,69 @@ func NewSecretKeyRef() *SecretKeyRef {
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *SecretKeyRef) GetKey() string {
-	if o == nil || utils.IsNil(o.key) {
+	if o == nil || utils.IsNil(o.Key) {
 		var ret string
 		return ret
 	}
-	return *o.key
+	return *o.Key
 }
 
 // GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SecretKeyRef) GetKeyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.key) {
+	if o == nil || utils.IsNil(o.Key) {
 		return nil, false
 	}
-	return o.key, true
+	return o.Key, true
 }
 
 // HasKey returns a boolean if a field has been set.
 func (o *SecretKeyRef) HasKey() bool {
-	if o != nil && !utils.IsNil(o.key) {
+	if o != nil && !utils.IsNil(o.Key) {
 		return true
 	}
 
 	return false
 }
 
-// Key gets a reference to the given string and assigns it to the key field.
-// key:  The key of the secret to select from. Must be a valid secret key
-func (o *SecretKeyRef) Key(v string) *SecretKeyRef {
-	o.key = &v
+// SetKey gets a reference to the given string and assigns it to the key field.
+// Key:  The key of the secret to select from. Must be a valid secret key
+func (o *SecretKeyRef) SetKey(v string) *SecretKeyRef {
+	o.Key = &v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SecretKeyRef) GetName() string {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.name
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SecretKeyRef) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *SecretKeyRef) HasName() bool {
-	if o != nil && !utils.IsNil(o.name) {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:  The name of the secret in the pod's namespace to select from
-func (o *SecretKeyRef) Name(v string) *SecretKeyRef {
-	o.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:  The name of the secret in the pod's namespace to select from
+func (o *SecretKeyRef) SetName(v string) *SecretKeyRef {
+	o.Name = &v
 	return o
 }
 
@@ -122,11 +122,11 @@ func (o SecretKeyRef) MarshalJSON() ([]byte, error) {
 
 func (o SecretKeyRef) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.key) {
-		toSerialize["key"] = o.key
+	if !utils.IsNil(o.Key) {
+		toSerialize["key"] = o.Key
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	return toSerialize, nil
 }

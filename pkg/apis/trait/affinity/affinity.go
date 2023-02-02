@@ -26,11 +26,11 @@ var _ utils.MappedNullable = &AffinitySpec{}
 
 // AffinitySpec struct for AffinitySpec
 type AffinitySpec struct {
-	nodeAffinity    *NodeAffinity    `json:"nodeAffinity,omitempty"`
-	podAffinity     *PodAffinity     `json:"podAffinity,omitempty"`
-	podAntiAffinity *PodAntiAffinity `json:"podAntiAffinity,omitempty"`
+	NodeAffinity    *NodeAffinity    `json:"nodeAffinity,omitempty"`
+	PodAffinity     *PodAffinity     `json:"podAffinity,omitempty"`
+	PodAntiAffinity *PodAntiAffinity `json:"podAntiAffinity,omitempty"`
 	// Specify tolerant taint
-	tolerations []Tolerations `json:"tolerations,omitempty"`
+	Tolerations []Tolerations `json:"tolerations,omitempty"`
 }
 
 // NewAffinitySpecWith instantiates a new AffinitySpec object
@@ -52,137 +52,137 @@ func NewAffinitySpec() *AffinitySpec {
 
 // GetNodeAffinity returns the NodeAffinity field value if set, zero value otherwise.
 func (o *AffinityTrait) GetNodeAffinity() NodeAffinity {
-	if o == nil || utils.IsNil(o.Properties.nodeAffinity) {
+	if o == nil || utils.IsNil(o.Properties.NodeAffinity) {
 		var ret NodeAffinity
 		return ret
 	}
-	return *o.Properties.nodeAffinity
+	return *o.Properties.NodeAffinity
 }
 
 // GetNodeAffinityOk returns a tuple with the NodeAffinity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AffinityTrait) GetNodeAffinityOk() (*NodeAffinity, bool) {
-	if o == nil || utils.IsNil(o.Properties.nodeAffinity) {
+	if o == nil || utils.IsNil(o.Properties.NodeAffinity) {
 		return nil, false
 	}
-	return o.Properties.nodeAffinity, true
+	return o.Properties.NodeAffinity, true
 }
 
 // HasNodeAffinity returns a boolean if a field has been set.
 func (o *AffinityTrait) HasNodeAffinity() bool {
-	if o != nil && !utils.IsNil(o.Properties.nodeAffinity) {
+	if o != nil && !utils.IsNil(o.Properties.NodeAffinity) {
 		return true
 	}
 
 	return false
 }
 
-// NodeAffinity gets a reference to the given NodeAffinity and assigns it to the nodeAffinity field.
-// nodeAffinity:
-func (o *AffinityTrait) NodeAffinity(v NodeAffinity) *AffinityTrait {
-	o.Properties.nodeAffinity = &v
+// SetNodeAffinity gets a reference to the given NodeAffinity and assigns it to the nodeAffinity field.
+// NodeAffinity:
+func (o *AffinityTrait) SetNodeAffinity(v NodeAffinity) *AffinityTrait {
+	o.Properties.NodeAffinity = &v
 	return o
 }
 
 // GetPodAffinity returns the PodAffinity field value if set, zero value otherwise.
 func (o *AffinityTrait) GetPodAffinity() PodAffinity {
-	if o == nil || utils.IsNil(o.Properties.podAffinity) {
+	if o == nil || utils.IsNil(o.Properties.PodAffinity) {
 		var ret PodAffinity
 		return ret
 	}
-	return *o.Properties.podAffinity
+	return *o.Properties.PodAffinity
 }
 
 // GetPodAffinityOk returns a tuple with the PodAffinity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AffinityTrait) GetPodAffinityOk() (*PodAffinity, bool) {
-	if o == nil || utils.IsNil(o.Properties.podAffinity) {
+	if o == nil || utils.IsNil(o.Properties.PodAffinity) {
 		return nil, false
 	}
-	return o.Properties.podAffinity, true
+	return o.Properties.PodAffinity, true
 }
 
 // HasPodAffinity returns a boolean if a field has been set.
 func (o *AffinityTrait) HasPodAffinity() bool {
-	if o != nil && !utils.IsNil(o.Properties.podAffinity) {
+	if o != nil && !utils.IsNil(o.Properties.PodAffinity) {
 		return true
 	}
 
 	return false
 }
 
-// PodAffinity gets a reference to the given PodAffinity and assigns it to the podAffinity field.
-// podAffinity:
-func (o *AffinityTrait) PodAffinity(v PodAffinity) *AffinityTrait {
-	o.Properties.podAffinity = &v
+// SetPodAffinity gets a reference to the given PodAffinity and assigns it to the podAffinity field.
+// PodAffinity:
+func (o *AffinityTrait) SetPodAffinity(v PodAffinity) *AffinityTrait {
+	o.Properties.PodAffinity = &v
 	return o
 }
 
 // GetPodAntiAffinity returns the PodAntiAffinity field value if set, zero value otherwise.
 func (o *AffinityTrait) GetPodAntiAffinity() PodAntiAffinity {
-	if o == nil || utils.IsNil(o.Properties.podAntiAffinity) {
+	if o == nil || utils.IsNil(o.Properties.PodAntiAffinity) {
 		var ret PodAntiAffinity
 		return ret
 	}
-	return *o.Properties.podAntiAffinity
+	return *o.Properties.PodAntiAffinity
 }
 
 // GetPodAntiAffinityOk returns a tuple with the PodAntiAffinity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AffinityTrait) GetPodAntiAffinityOk() (*PodAntiAffinity, bool) {
-	if o == nil || utils.IsNil(o.Properties.podAntiAffinity) {
+	if o == nil || utils.IsNil(o.Properties.PodAntiAffinity) {
 		return nil, false
 	}
-	return o.Properties.podAntiAffinity, true
+	return o.Properties.PodAntiAffinity, true
 }
 
 // HasPodAntiAffinity returns a boolean if a field has been set.
 func (o *AffinityTrait) HasPodAntiAffinity() bool {
-	if o != nil && !utils.IsNil(o.Properties.podAntiAffinity) {
+	if o != nil && !utils.IsNil(o.Properties.PodAntiAffinity) {
 		return true
 	}
 
 	return false
 }
 
-// PodAntiAffinity gets a reference to the given PodAntiAffinity and assigns it to the podAntiAffinity field.
-// podAntiAffinity:
-func (o *AffinityTrait) PodAntiAffinity(v PodAntiAffinity) *AffinityTrait {
-	o.Properties.podAntiAffinity = &v
+// SetPodAntiAffinity gets a reference to the given PodAntiAffinity and assigns it to the podAntiAffinity field.
+// PodAntiAffinity:
+func (o *AffinityTrait) SetPodAntiAffinity(v PodAntiAffinity) *AffinityTrait {
+	o.Properties.PodAntiAffinity = &v
 	return o
 }
 
 // GetTolerations returns the Tolerations field value if set, zero value otherwise.
 func (o *AffinityTrait) GetTolerations() []Tolerations {
-	if o == nil || utils.IsNil(o.Properties.tolerations) {
+	if o == nil || utils.IsNil(o.Properties.Tolerations) {
 		var ret []Tolerations
 		return ret
 	}
-	return o.Properties.tolerations
+	return o.Properties.Tolerations
 }
 
 // GetTolerationsOk returns a tuple with the Tolerations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AffinityTrait) GetTolerationsOk() ([]Tolerations, bool) {
-	if o == nil || utils.IsNil(o.Properties.tolerations) {
+	if o == nil || utils.IsNil(o.Properties.Tolerations) {
 		return nil, false
 	}
-	return o.Properties.tolerations, true
+	return o.Properties.Tolerations, true
 }
 
 // HasTolerations returns a boolean if a field has been set.
 func (o *AffinityTrait) HasTolerations() bool {
-	if o != nil && !utils.IsNil(o.Properties.tolerations) {
+	if o != nil && !utils.IsNil(o.Properties.Tolerations) {
 		return true
 	}
 
 	return false
 }
 
-// Tolerations gets a reference to the given []Tolerations and assigns it to the tolerations field.
-// tolerations:  Specify tolerant taint
-func (o *AffinityTrait) Tolerations(v []Tolerations) *AffinityTrait {
-	o.Properties.tolerations = v
+// SetTolerations gets a reference to the given []Tolerations and assigns it to the tolerations field.
+// Tolerations:  Specify tolerant taint
+func (o *AffinityTrait) SetTolerations(v []Tolerations) *AffinityTrait {
+	o.Properties.Tolerations = v
 	return o
 }
 
@@ -196,17 +196,17 @@ func (o AffinitySpec) MarshalJSON() ([]byte, error) {
 
 func (o AffinitySpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.nodeAffinity) {
-		toSerialize["nodeAffinity"] = o.nodeAffinity
+	if !utils.IsNil(o.NodeAffinity) {
+		toSerialize["nodeAffinity"] = o.NodeAffinity
 	}
-	if !utils.IsNil(o.podAffinity) {
-		toSerialize["podAffinity"] = o.podAffinity
+	if !utils.IsNil(o.PodAffinity) {
+		toSerialize["podAffinity"] = o.PodAffinity
 	}
-	if !utils.IsNil(o.podAntiAffinity) {
-		toSerialize["podAntiAffinity"] = o.podAntiAffinity
+	if !utils.IsNil(o.PodAntiAffinity) {
+		toSerialize["podAntiAffinity"] = o.PodAntiAffinity
 	}
-	if !utils.IsNil(o.tolerations) {
-		toSerialize["tolerations"] = o.tolerations
+	if !utils.IsNil(o.Tolerations) {
+		toSerialize["tolerations"] = o.Tolerations
 	}
 	return toSerialize, nil
 }

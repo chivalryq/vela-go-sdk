@@ -28,9 +28,9 @@ var _ utils.MappedNullable = &DeleteConfigSpec{}
 // DeleteConfigSpec struct for DeleteConfigSpec
 type DeleteConfigSpec struct {
 	// Specify the name of the config.
-	name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	// Specify the namespace of the config.
-	namespace *string `json:"namespace,omitempty"`
+	Namespace *string `json:"namespace,omitempty"`
 }
 
 // NewDeleteConfigSpecWith instantiates a new DeleteConfigSpec object
@@ -52,69 +52,69 @@ func NewDeleteConfigSpec() *DeleteConfigSpec {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DeleteConfigWorkflowStep) GetName() string {
-	if o == nil || utils.IsNil(o.Properties.name) {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.name
+	return *o.Properties.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeleteConfigWorkflowStep) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.name) {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		return nil, false
 	}
-	return o.Properties.name, true
+	return o.Properties.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *DeleteConfigWorkflowStep) HasName() bool {
-	if o != nil && !utils.IsNil(o.Properties.name) {
+	if o != nil && !utils.IsNil(o.Properties.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:  Specify the name of the config.
-func (o *DeleteConfigWorkflowStep) Name(v string) *DeleteConfigWorkflowStep {
-	o.Properties.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:  Specify the name of the config.
+func (o *DeleteConfigWorkflowStep) SetName(v string) *DeleteConfigWorkflowStep {
+	o.Properties.Name = &v
 	return o
 }
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *DeleteConfigWorkflowStep) GetNamespace() string {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.namespace
+	return *o.Properties.Namespace
 }
 
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeleteConfigWorkflowStep) GetNamespaceOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		return nil, false
 	}
-	return o.Properties.namespace, true
+	return o.Properties.Namespace, true
 }
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *DeleteConfigWorkflowStep) HasNamespace() bool {
-	if o != nil && !utils.IsNil(o.Properties.namespace) {
+	if o != nil && !utils.IsNil(o.Properties.Namespace) {
 		return true
 	}
 
 	return false
 }
 
-// Namespace gets a reference to the given string and assigns it to the namespace field.
-// namespace:  Specify the namespace of the config.
-func (o *DeleteConfigWorkflowStep) Namespace(v string) *DeleteConfigWorkflowStep {
-	o.Properties.namespace = &v
+// SetNamespace gets a reference to the given string and assigns it to the namespace field.
+// Namespace:  Specify the namespace of the config.
+func (o *DeleteConfigWorkflowStep) SetNamespace(v string) *DeleteConfigWorkflowStep {
+	o.Properties.Namespace = &v
 	return o
 }
 
@@ -128,11 +128,11 @@ func (o DeleteConfigSpec) MarshalJSON() ([]byte, error) {
 
 func (o DeleteConfigSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if !utils.IsNil(o.namespace) {
-		toSerialize["namespace"] = o.namespace
+	if !utils.IsNil(o.Namespace) {
+		toSerialize["namespace"] = o.Namespace
 	}
 	return toSerialize, nil
 }

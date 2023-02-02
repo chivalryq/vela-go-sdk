@@ -27,11 +27,11 @@ var _ utils.MappedNullable = &ExposeSpec{}
 // ExposeSpec struct for ExposeSpec
 type ExposeSpec struct {
 	// Specify the annotaions of the exposed service
-	annotations *map[string]string `json:"annotations,omitempty"`
+	Annotations *map[string]string `json:"annotations,omitempty"`
 	// Specify the exposion ports
-	port []int32 `json:"port,omitempty"`
+	Port []int32 `json:"port,omitempty"`
 	// Specify what kind of Service you want. options: \"ClusterIP\",\"NodePort\",\"LoadBalancer\",\"ExternalName\"
-	type_ *string `json:"type,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // NewExposeSpecWith instantiates a new ExposeSpec object
@@ -41,7 +41,7 @@ type ExposeSpec struct {
 func NewExposeSpecWith() *ExposeSpec {
 	this := ExposeSpec{}
 	var type_ string = "ClusterIP"
-	this.type_ = &type_
+	this.Type = &type_
 	return &this
 }
 
@@ -51,109 +51,109 @@ func NewExposeSpecWith() *ExposeSpec {
 func NewExposeSpec() *ExposeSpec {
 	this := ExposeSpec{}
 	var type_ string = "ClusterIP"
-	this.type_ = &type_
+	this.Type = &type_
 	return &this
 }
 
 // GetAnnotations returns the Annotations field value if set, zero value otherwise.
 func (o *ExposeTrait) GetAnnotations() map[string]string {
-	if o == nil || utils.IsNil(o.Properties.annotations) {
+	if o == nil || utils.IsNil(o.Properties.Annotations) {
 		var ret map[string]string
 		return ret
 	}
-	return *o.Properties.annotations
+	return *o.Properties.Annotations
 }
 
 // GetAnnotationsOk returns a tuple with the Annotations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExposeTrait) GetAnnotationsOk() (*map[string]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.annotations) {
+	if o == nil || utils.IsNil(o.Properties.Annotations) {
 		return nil, false
 	}
-	return o.Properties.annotations, true
+	return o.Properties.Annotations, true
 }
 
 // HasAnnotations returns a boolean if a field has been set.
 func (o *ExposeTrait) HasAnnotations() bool {
-	if o != nil && !utils.IsNil(o.Properties.annotations) {
+	if o != nil && !utils.IsNil(o.Properties.Annotations) {
 		return true
 	}
 
 	return false
 }
 
-// Annotations gets a reference to the given map[string]string and assigns it to the annotations field.
-// annotations:  Specify the annotaions of the exposed service
-func (o *ExposeTrait) Annotations(v map[string]string) *ExposeTrait {
-	o.Properties.annotations = &v
+// SetAnnotations gets a reference to the given map[string]string and assigns it to the annotations field.
+// Annotations:  Specify the annotaions of the exposed service
+func (o *ExposeTrait) SetAnnotations(v map[string]string) *ExposeTrait {
+	o.Properties.Annotations = &v
 	return o
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *ExposeTrait) GetPort() []int32 {
-	if o == nil || utils.IsNil(o.Properties.port) {
+	if o == nil || utils.IsNil(o.Properties.Port) {
 		var ret []int32
 		return ret
 	}
-	return o.Properties.port
+	return o.Properties.Port
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExposeTrait) GetPortOk() ([]int32, bool) {
-	if o == nil || utils.IsNil(o.Properties.port) {
+	if o == nil || utils.IsNil(o.Properties.Port) {
 		return nil, false
 	}
-	return o.Properties.port, true
+	return o.Properties.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *ExposeTrait) HasPort() bool {
-	if o != nil && !utils.IsNil(o.Properties.port) {
+	if o != nil && !utils.IsNil(o.Properties.Port) {
 		return true
 	}
 
 	return false
 }
 
-// Port gets a reference to the given []int32 and assigns it to the port field.
-// port:  Specify the exposion ports
-func (o *ExposeTrait) Port(v []int32) *ExposeTrait {
-	o.Properties.port = v
+// SetPort gets a reference to the given []int32 and assigns it to the port field.
+// Port:  Specify the exposion ports
+func (o *ExposeTrait) SetPort(v []int32) *ExposeTrait {
+	o.Properties.Port = v
 	return o
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ExposeTrait) GetType() string {
-	if o == nil || utils.IsNil(o.Properties.type_) {
+	if o == nil || utils.IsNil(o.Properties.Type) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.type_
+	return *o.Properties.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExposeTrait) GetTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.type_) {
+	if o == nil || utils.IsNil(o.Properties.Type) {
 		return nil, false
 	}
-	return o.Properties.type_, true
+	return o.Properties.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *ExposeTrait) HasType() bool {
-	if o != nil && !utils.IsNil(o.Properties.type_) {
+	if o != nil && !utils.IsNil(o.Properties.Type) {
 		return true
 	}
 
 	return false
 }
 
-// Type gets a reference to the given string and assigns it to the type_ field.
-// type_:  Specify what kind of Service you want. options: \"ClusterIP\",\"NodePort\",\"LoadBalancer\",\"ExternalName\"
-func (o *ExposeTrait) Type(v string) *ExposeTrait {
-	o.Properties.type_ = &v
+// SetType gets a reference to the given string and assigns it to the type_ field.
+// Type:  Specify what kind of Service you want. options: \"ClusterIP\",\"NodePort\",\"LoadBalancer\",\"ExternalName\"
+func (o *ExposeTrait) SetType(v string) *ExposeTrait {
+	o.Properties.Type = &v
 	return o
 }
 
@@ -167,14 +167,14 @@ func (o ExposeSpec) MarshalJSON() ([]byte, error) {
 
 func (o ExposeSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.annotations) {
-		toSerialize["annotations"] = o.annotations
+	if !utils.IsNil(o.Annotations) {
+		toSerialize["annotations"] = o.Annotations
 	}
-	if !utils.IsNil(o.port) {
-		toSerialize["port"] = o.port
+	if !utils.IsNil(o.Port) {
+		toSerialize["port"] = o.Port
 	}
-	if !utils.IsNil(o.type_) {
-		toSerialize["type"] = o.type_
+	if !utils.IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
 	return toSerialize, nil
 }

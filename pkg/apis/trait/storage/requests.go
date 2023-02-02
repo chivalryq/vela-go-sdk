@@ -21,7 +21,7 @@ var _ utils.MappedNullable = &Requests{}
 
 // Requests struct for Requests
 type Requests struct {
-	storage *string `json:"storage,omitempty"`
+	Storage *string `json:"storage,omitempty"`
 }
 
 // NewRequestsWith instantiates a new Requests object
@@ -43,35 +43,35 @@ func NewRequests() *Requests {
 
 // GetStorage returns the Storage field value if set, zero value otherwise.
 func (o *Requests) GetStorage() string {
-	if o == nil || utils.IsNil(o.storage) {
+	if o == nil || utils.IsNil(o.Storage) {
 		var ret string
 		return ret
 	}
-	return *o.storage
+	return *o.Storage
 }
 
 // GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Requests) GetStorageOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.storage) {
+	if o == nil || utils.IsNil(o.Storage) {
 		return nil, false
 	}
-	return o.storage, true
+	return o.Storage, true
 }
 
 // HasStorage returns a boolean if a field has been set.
 func (o *Requests) HasStorage() bool {
-	if o != nil && !utils.IsNil(o.storage) {
+	if o != nil && !utils.IsNil(o.Storage) {
 		return true
 	}
 
 	return false
 }
 
-// Storage gets a reference to the given string and assigns it to the storage field.
-// storage:
-func (o *Requests) Storage(v string) *Requests {
-	o.storage = &v
+// SetStorage gets a reference to the given string and assigns it to the storage field.
+// Storage:
+func (o *Requests) SetStorage(v string) *Requests {
+	o.Storage = &v
 	return o
 }
 
@@ -85,8 +85,8 @@ func (o Requests) MarshalJSON() ([]byte, error) {
 
 func (o Requests) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.storage) {
-		toSerialize["storage"] = o.storage
+	if !utils.IsNil(o.Storage) {
+		toSerialize["storage"] = o.Storage
 	}
 	return toSerialize, nil
 }

@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &Message1{}
 // Message1 Specify the message that you want to sent, refer to [Lark messaging](https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN#8b0f2a1b).
 type Message1 struct {
 	// content should be json encode string
-	content *string `json:"content,omitempty"`
+	Content *string `json:"content,omitempty"`
 	// msg_type can be text, post, image, interactive, share_chat, share_user, audio, media, file, sticker
-	msgType *string `json:"msg_type,omitempty"`
+	MsgType *string `json:"msg_type,omitempty"`
 }
 
 // NewMessage1With instantiates a new Message1 object
@@ -46,69 +46,69 @@ func NewMessage1() *Message1 {
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *Message1) GetContent() string {
-	if o == nil || utils.IsNil(o.content) {
+	if o == nil || utils.IsNil(o.Content) {
 		var ret string
 		return ret
 	}
-	return *o.content
+	return *o.Content
 }
 
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Message1) GetContentOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.content) {
+	if o == nil || utils.IsNil(o.Content) {
 		return nil, false
 	}
-	return o.content, true
+	return o.Content, true
 }
 
 // HasContent returns a boolean if a field has been set.
 func (o *Message1) HasContent() bool {
-	if o != nil && !utils.IsNil(o.content) {
+	if o != nil && !utils.IsNil(o.Content) {
 		return true
 	}
 
 	return false
 }
 
-// Content gets a reference to the given string and assigns it to the content field.
-// content:  content should be json encode string
-func (o *Message1) Content(v string) *Message1 {
-	o.content = &v
+// SetContent gets a reference to the given string and assigns it to the content field.
+// Content:  content should be json encode string
+func (o *Message1) SetContent(v string) *Message1 {
+	o.Content = &v
 	return o
 }
 
 // GetMsgType returns the MsgType field value if set, zero value otherwise.
 func (o *Message1) GetMsgType() string {
-	if o == nil || utils.IsNil(o.msgType) {
+	if o == nil || utils.IsNil(o.MsgType) {
 		var ret string
 		return ret
 	}
-	return *o.msgType
+	return *o.MsgType
 }
 
 // GetMsgTypeOk returns a tuple with the MsgType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Message1) GetMsgTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.msgType) {
+	if o == nil || utils.IsNil(o.MsgType) {
 		return nil, false
 	}
-	return o.msgType, true
+	return o.MsgType, true
 }
 
 // HasMsgType returns a boolean if a field has been set.
 func (o *Message1) HasMsgType() bool {
-	if o != nil && !utils.IsNil(o.msgType) {
+	if o != nil && !utils.IsNil(o.MsgType) {
 		return true
 	}
 
 	return false
 }
 
-// MsgType gets a reference to the given string and assigns it to the msgType field.
-// msgType:  msg_type can be text, post, image, interactive, share_chat, share_user, audio, media, file, sticker
-func (o *Message1) MsgType(v string) *Message1 {
-	o.msgType = &v
+// SetMsgType gets a reference to the given string and assigns it to the msgType field.
+// MsgType:  msg_type can be text, post, image, interactive, share_chat, share_user, audio, media, file, sticker
+func (o *Message1) SetMsgType(v string) *Message1 {
+	o.MsgType = &v
 	return o
 }
 
@@ -122,11 +122,11 @@ func (o Message1) MarshalJSON() ([]byte, error) {
 
 func (o Message1) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.content) {
-		toSerialize["content"] = o.content
+	if !utils.IsNil(o.Content) {
+		toSerialize["content"] = o.Content
 	}
-	if !utils.IsNil(o.msgType) {
-		toSerialize["msg_type"] = o.msgType
+	if !utils.IsNil(o.MsgType) {
+		toSerialize["msg_type"] = o.MsgType
 	}
 	return toSerialize, nil
 }

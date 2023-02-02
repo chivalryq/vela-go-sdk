@@ -22,7 +22,7 @@ var _ utils.MappedNullable = &CommandSpecOneOf{}
 // CommandSpecOneOf struct for CommandSpecOneOf
 type CommandSpecOneOf struct {
 	// Specify the commands for multiple containers
-	containers []PatchParams `json:"containers"`
+	Containers []PatchParams `json:"containers"`
 }
 
 // NewCommandSpecOneOfWith instantiates a new CommandSpecOneOf object
@@ -31,7 +31,7 @@ type CommandSpecOneOf struct {
 // will change when the set of required properties is changed
 func NewCommandSpecOneOfWith(containers []PatchParams) *CommandSpecOneOf {
 	this := CommandSpecOneOf{}
-	this.containers = containers
+	this.Containers = containers
 	return &this
 }
 
@@ -50,7 +50,7 @@ func (o *CommandSpecOneOf) GetContainers() []PatchParams {
 		return ret
 	}
 
-	return o.containers
+	return o.Containers
 }
 
 // GetContainersOk returns a tuple with the Containers field value
@@ -59,12 +59,12 @@ func (o *CommandSpecOneOf) GetContainersOk() ([]PatchParams, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.containers, true
+	return o.Containers, true
 }
 
-// Containers sets field value
-func (o *CommandSpecOneOf) Containers(v []PatchParams) *CommandSpecOneOf {
-	o.containers = v
+// SetContainers sets field value
+func (o *CommandSpecOneOf) SetContainers(v []PatchParams) *CommandSpecOneOf {
+	o.Containers = v
 	return o
 }
 
@@ -78,7 +78,7 @@ func (o CommandSpecOneOf) MarshalJSON() ([]byte, error) {
 
 func (o CommandSpecOneOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["containers"] = o.containers
+	toSerialize["containers"] = o.Containers
 	return toSerialize, nil
 }
 

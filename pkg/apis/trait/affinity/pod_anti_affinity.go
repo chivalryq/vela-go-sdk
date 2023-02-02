@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &PodAntiAffinity{}
 // PodAntiAffinity Specify the pod anti-affinity scheduling rules
 type PodAntiAffinity struct {
 	// Specify the preferred during scheduling ignored during execution
-	preferred []Preferred1 `json:"preferred,omitempty"`
+	Preferred []Preferred1 `json:"preferred,omitempty"`
 	// Specify the required during scheduling ignored during execution
-	required []PodAffinityTerm `json:"required,omitempty"`
+	Required []PodAffinityTerm `json:"required,omitempty"`
 }
 
 // NewPodAntiAffinityWith instantiates a new PodAntiAffinity object
@@ -46,69 +46,69 @@ func NewPodAntiAffinity() *PodAntiAffinity {
 
 // GetPreferred returns the Preferred field value if set, zero value otherwise.
 func (o *PodAntiAffinity) GetPreferred() []Preferred1 {
-	if o == nil || utils.IsNil(o.preferred) {
+	if o == nil || utils.IsNil(o.Preferred) {
 		var ret []Preferred1
 		return ret
 	}
-	return o.preferred
+	return o.Preferred
 }
 
 // GetPreferredOk returns a tuple with the Preferred field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PodAntiAffinity) GetPreferredOk() ([]Preferred1, bool) {
-	if o == nil || utils.IsNil(o.preferred) {
+	if o == nil || utils.IsNil(o.Preferred) {
 		return nil, false
 	}
-	return o.preferred, true
+	return o.Preferred, true
 }
 
 // HasPreferred returns a boolean if a field has been set.
 func (o *PodAntiAffinity) HasPreferred() bool {
-	if o != nil && !utils.IsNil(o.preferred) {
+	if o != nil && !utils.IsNil(o.Preferred) {
 		return true
 	}
 
 	return false
 }
 
-// Preferred gets a reference to the given []Preferred1 and assigns it to the preferred field.
-// preferred:  Specify the preferred during scheduling ignored during execution
-func (o *PodAntiAffinity) Preferred(v []Preferred1) *PodAntiAffinity {
-	o.preferred = v
+// SetPreferred gets a reference to the given []Preferred1 and assigns it to the preferred field.
+// Preferred:  Specify the preferred during scheduling ignored during execution
+func (o *PodAntiAffinity) SetPreferred(v []Preferred1) *PodAntiAffinity {
+	o.Preferred = v
 	return o
 }
 
 // GetRequired returns the Required field value if set, zero value otherwise.
 func (o *PodAntiAffinity) GetRequired() []PodAffinityTerm {
-	if o == nil || utils.IsNil(o.required) {
+	if o == nil || utils.IsNil(o.Required) {
 		var ret []PodAffinityTerm
 		return ret
 	}
-	return o.required
+	return o.Required
 }
 
 // GetRequiredOk returns a tuple with the Required field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PodAntiAffinity) GetRequiredOk() ([]PodAffinityTerm, bool) {
-	if o == nil || utils.IsNil(o.required) {
+	if o == nil || utils.IsNil(o.Required) {
 		return nil, false
 	}
-	return o.required, true
+	return o.Required, true
 }
 
 // HasRequired returns a boolean if a field has been set.
 func (o *PodAntiAffinity) HasRequired() bool {
-	if o != nil && !utils.IsNil(o.required) {
+	if o != nil && !utils.IsNil(o.Required) {
 		return true
 	}
 
 	return false
 }
 
-// Required gets a reference to the given []PodAffinityTerm and assigns it to the required field.
-// required:  Specify the required during scheduling ignored during execution
-func (o *PodAntiAffinity) Required(v []PodAffinityTerm) *PodAntiAffinity {
-	o.required = v
+// SetRequired gets a reference to the given []PodAffinityTerm and assigns it to the required field.
+// Required:  Specify the required during scheduling ignored during execution
+func (o *PodAntiAffinity) SetRequired(v []PodAffinityTerm) *PodAntiAffinity {
+	o.Required = v
 	return o
 }
 
@@ -122,11 +122,11 @@ func (o PodAntiAffinity) MarshalJSON() ([]byte, error) {
 
 func (o PodAntiAffinity) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.preferred) {
-		toSerialize["preferred"] = o.preferred
+	if !utils.IsNil(o.Preferred) {
+		toSerialize["preferred"] = o.Preferred
 	}
-	if !utils.IsNil(o.required) {
-		toSerialize["required"] = o.required
+	if !utils.IsNil(o.Required) {
+		toSerialize["required"] = o.Required
 	}
 	return toSerialize, nil
 }

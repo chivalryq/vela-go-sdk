@@ -21,7 +21,7 @@ var _ utils.MappedNullable = &UrlOneOf1{}
 
 // UrlOneOf1 struct for UrlOneOf1
 type UrlOneOf1 struct {
-	secretRef SecretRef `json:"secretRef"`
+	SecretRef SecretRef `json:"secretRef"`
 }
 
 // NewUrlOneOf1With instantiates a new UrlOneOf1 object
@@ -30,7 +30,7 @@ type UrlOneOf1 struct {
 // will change when the set of required properties is changed
 func NewUrlOneOf1With(secretRef SecretRef) *UrlOneOf1 {
 	this := UrlOneOf1{}
-	this.secretRef = secretRef
+	this.SecretRef = secretRef
 	return &this
 }
 
@@ -49,7 +49,7 @@ func (o *UrlOneOf1) GetSecretRef() SecretRef {
 		return ret
 	}
 
-	return o.secretRef
+	return o.SecretRef
 }
 
 // GetSecretRefOk returns a tuple with the SecretRef field value
@@ -58,12 +58,12 @@ func (o *UrlOneOf1) GetSecretRefOk() (*SecretRef, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.secretRef, true
+	return &o.SecretRef, true
 }
 
-// SecretRef sets field value
-func (o *UrlOneOf1) SecretRef(v SecretRef) *UrlOneOf1 {
-	o.secretRef = v
+// SetSecretRef sets field value
+func (o *UrlOneOf1) SetSecretRef(v SecretRef) *UrlOneOf1 {
+	o.SecretRef = v
 	return o
 }
 
@@ -77,7 +77,7 @@ func (o UrlOneOf1) MarshalJSON() ([]byte, error) {
 
 func (o UrlOneOf1) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["secretRef"] = o.secretRef
+	toSerialize["secretRef"] = o.SecretRef
 	return toSerialize, nil
 }
 

@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &Limits{}
 // Limits Specify the resources in limits
 type Limits struct {
 	// Specify the amount of cpu for limits
-	cpu *float32 `json:"cpu,omitempty"`
+	Cpu *float32 `json:"cpu,omitempty"`
 	// Specify the amount of memory for limits
-	memory *string `json:"memory,omitempty"`
+	Memory *string `json:"memory,omitempty"`
 }
 
 // NewLimitsWith instantiates a new Limits object
@@ -34,9 +34,9 @@ type Limits struct {
 func NewLimitsWith() *Limits {
 	this := Limits{}
 	var cpu float32 = 1
-	this.cpu = &cpu
+	this.Cpu = &cpu
 	var memory string = "2048Mi"
-	this.memory = &memory
+	this.Memory = &memory
 	return &this
 }
 
@@ -46,77 +46,77 @@ func NewLimitsWith() *Limits {
 func NewLimits() *Limits {
 	this := Limits{}
 	var cpu float32 = 1
-	this.cpu = &cpu
+	this.Cpu = &cpu
 	var memory string = "2048Mi"
-	this.memory = &memory
+	this.Memory = &memory
 	return &this
 }
 
 // GetCpu returns the Cpu field value if set, zero value otherwise.
 func (o *Limits) GetCpu() float32 {
-	if o == nil || utils.IsNil(o.cpu) {
+	if o == nil || utils.IsNil(o.Cpu) {
 		var ret float32
 		return ret
 	}
-	return *o.cpu
+	return *o.Cpu
 }
 
 // GetCpuOk returns a tuple with the Cpu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Limits) GetCpuOk() (*float32, bool) {
-	if o == nil || utils.IsNil(o.cpu) {
+	if o == nil || utils.IsNil(o.Cpu) {
 		return nil, false
 	}
-	return o.cpu, true
+	return o.Cpu, true
 }
 
 // HasCpu returns a boolean if a field has been set.
 func (o *Limits) HasCpu() bool {
-	if o != nil && !utils.IsNil(o.cpu) {
+	if o != nil && !utils.IsNil(o.Cpu) {
 		return true
 	}
 
 	return false
 }
 
-// Cpu gets a reference to the given float32 and assigns it to the cpu field.
-// cpu:  Specify the amount of cpu for limits
-func (o *Limits) Cpu(v float32) *Limits {
-	o.cpu = &v
+// SetCpu gets a reference to the given float32 and assigns it to the cpu field.
+// Cpu:  Specify the amount of cpu for limits
+func (o *Limits) SetCpu(v float32) *Limits {
+	o.Cpu = &v
 	return o
 }
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
 func (o *Limits) GetMemory() string {
-	if o == nil || utils.IsNil(o.memory) {
+	if o == nil || utils.IsNil(o.Memory) {
 		var ret string
 		return ret
 	}
-	return *o.memory
+	return *o.Memory
 }
 
 // GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Limits) GetMemoryOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.memory) {
+	if o == nil || utils.IsNil(o.Memory) {
 		return nil, false
 	}
-	return o.memory, true
+	return o.Memory, true
 }
 
 // HasMemory returns a boolean if a field has been set.
 func (o *Limits) HasMemory() bool {
-	if o != nil && !utils.IsNil(o.memory) {
+	if o != nil && !utils.IsNil(o.Memory) {
 		return true
 	}
 
 	return false
 }
 
-// Memory gets a reference to the given string and assigns it to the memory field.
-// memory:  Specify the amount of memory for limits
-func (o *Limits) Memory(v string) *Limits {
-	o.memory = &v
+// SetMemory gets a reference to the given string and assigns it to the memory field.
+// Memory:  Specify the amount of memory for limits
+func (o *Limits) SetMemory(v string) *Limits {
+	o.Memory = &v
 	return o
 }
 
@@ -130,11 +130,11 @@ func (o Limits) MarshalJSON() ([]byte, error) {
 
 func (o Limits) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.cpu) {
-		toSerialize["cpu"] = o.cpu
+	if !utils.IsNil(o.Cpu) {
+		toSerialize["cpu"] = o.Cpu
 	}
-	if !utils.IsNil(o.memory) {
-		toSerialize["memory"] = o.memory
+	if !utils.IsNil(o.Memory) {
+		toSerialize["memory"] = o.Memory
 	}
 	return toSerialize, nil
 }

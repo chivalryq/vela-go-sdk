@@ -22,14 +22,14 @@ var _ utils.MappedNullable = &From{}
 // From Specify the email info that you want to send from
 type From struct {
 	// Specify the email address that you want to send from
-	address *string `json:"address,omitempty"`
+	Address *string `json:"address,omitempty"`
 	// The alias is the email alias to show after sending the email
-	alias *string `json:"alias,omitempty"`
+	Alias *string `json:"alias,omitempty"`
 	// Specify the host of your email
-	host     *string   `json:"host,omitempty"`
-	password *Password `json:"password,omitempty"`
+	Host     *string   `json:"host,omitempty"`
+	Password *Password `json:"password,omitempty"`
 	// Specify the port of the email host, default to 587
-	port *int32 `json:"port,omitempty"`
+	Port *int32 `json:"port,omitempty"`
 }
 
 // NewFromWith instantiates a new From object
@@ -39,7 +39,7 @@ type From struct {
 func NewFromWith() *From {
 	this := From{}
 	var port int32 = 587
-	this.port = &port
+	this.Port = &port
 	return &this
 }
 
@@ -49,177 +49,177 @@ func NewFromWith() *From {
 func NewFrom() *From {
 	this := From{}
 	var port int32 = 587
-	this.port = &port
+	this.Port = &port
 	return &this
 }
 
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *From) GetAddress() string {
-	if o == nil || utils.IsNil(o.address) {
+	if o == nil || utils.IsNil(o.Address) {
 		var ret string
 		return ret
 	}
-	return *o.address
+	return *o.Address
 }
 
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *From) GetAddressOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.address) {
+	if o == nil || utils.IsNil(o.Address) {
 		return nil, false
 	}
-	return o.address, true
+	return o.Address, true
 }
 
 // HasAddress returns a boolean if a field has been set.
 func (o *From) HasAddress() bool {
-	if o != nil && !utils.IsNil(o.address) {
+	if o != nil && !utils.IsNil(o.Address) {
 		return true
 	}
 
 	return false
 }
 
-// Address gets a reference to the given string and assigns it to the address field.
-// address:  Specify the email address that you want to send from
-func (o *From) Address(v string) *From {
-	o.address = &v
+// SetAddress gets a reference to the given string and assigns it to the address field.
+// Address:  Specify the email address that you want to send from
+func (o *From) SetAddress(v string) *From {
+	o.Address = &v
 	return o
 }
 
 // GetAlias returns the Alias field value if set, zero value otherwise.
 func (o *From) GetAlias() string {
-	if o == nil || utils.IsNil(o.alias) {
+	if o == nil || utils.IsNil(o.Alias) {
 		var ret string
 		return ret
 	}
-	return *o.alias
+	return *o.Alias
 }
 
 // GetAliasOk returns a tuple with the Alias field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *From) GetAliasOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.alias) {
+	if o == nil || utils.IsNil(o.Alias) {
 		return nil, false
 	}
-	return o.alias, true
+	return o.Alias, true
 }
 
 // HasAlias returns a boolean if a field has been set.
 func (o *From) HasAlias() bool {
-	if o != nil && !utils.IsNil(o.alias) {
+	if o != nil && !utils.IsNil(o.Alias) {
 		return true
 	}
 
 	return false
 }
 
-// Alias gets a reference to the given string and assigns it to the alias field.
-// alias:  The alias is the email alias to show after sending the email
-func (o *From) Alias(v string) *From {
-	o.alias = &v
+// SetAlias gets a reference to the given string and assigns it to the alias field.
+// Alias:  The alias is the email alias to show after sending the email
+func (o *From) SetAlias(v string) *From {
+	o.Alias = &v
 	return o
 }
 
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *From) GetHost() string {
-	if o == nil || utils.IsNil(o.host) {
+	if o == nil || utils.IsNil(o.Host) {
 		var ret string
 		return ret
 	}
-	return *o.host
+	return *o.Host
 }
 
 // GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *From) GetHostOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.host) {
+	if o == nil || utils.IsNil(o.Host) {
 		return nil, false
 	}
-	return o.host, true
+	return o.Host, true
 }
 
 // HasHost returns a boolean if a field has been set.
 func (o *From) HasHost() bool {
-	if o != nil && !utils.IsNil(o.host) {
+	if o != nil && !utils.IsNil(o.Host) {
 		return true
 	}
 
 	return false
 }
 
-// Host gets a reference to the given string and assigns it to the host field.
-// host:  Specify the host of your email
-func (o *From) Host(v string) *From {
-	o.host = &v
+// SetHost gets a reference to the given string and assigns it to the host field.
+// Host:  Specify the host of your email
+func (o *From) SetHost(v string) *From {
+	o.Host = &v
 	return o
 }
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *From) GetPassword() Password {
-	if o == nil || utils.IsNil(o.password) {
+	if o == nil || utils.IsNil(o.Password) {
 		var ret Password
 		return ret
 	}
-	return *o.password
+	return *o.Password
 }
 
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *From) GetPasswordOk() (*Password, bool) {
-	if o == nil || utils.IsNil(o.password) {
+	if o == nil || utils.IsNil(o.Password) {
 		return nil, false
 	}
-	return o.password, true
+	return o.Password, true
 }
 
 // HasPassword returns a boolean if a field has been set.
 func (o *From) HasPassword() bool {
-	if o != nil && !utils.IsNil(o.password) {
+	if o != nil && !utils.IsNil(o.Password) {
 		return true
 	}
 
 	return false
 }
 
-// Password gets a reference to the given Password and assigns it to the password field.
-// password:
-func (o *From) Password(v Password) *From {
-	o.password = &v
+// SetPassword gets a reference to the given Password and assigns it to the password field.
+// Password:
+func (o *From) SetPassword(v Password) *From {
+	o.Password = &v
 	return o
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *From) GetPort() int32 {
-	if o == nil || utils.IsNil(o.port) {
+	if o == nil || utils.IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
-	return *o.port
+	return *o.Port
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *From) GetPortOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.port) {
+	if o == nil || utils.IsNil(o.Port) {
 		return nil, false
 	}
-	return o.port, true
+	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *From) HasPort() bool {
-	if o != nil && !utils.IsNil(o.port) {
+	if o != nil && !utils.IsNil(o.Port) {
 		return true
 	}
 
 	return false
 }
 
-// Port gets a reference to the given int32 and assigns it to the port field.
-// port:  Specify the port of the email host, default to 587
-func (o *From) Port(v int32) *From {
-	o.port = &v
+// SetPort gets a reference to the given int32 and assigns it to the port field.
+// Port:  Specify the port of the email host, default to 587
+func (o *From) SetPort(v int32) *From {
+	o.Port = &v
 	return o
 }
 
@@ -233,20 +233,20 @@ func (o From) MarshalJSON() ([]byte, error) {
 
 func (o From) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.address) {
-		toSerialize["address"] = o.address
+	if !utils.IsNil(o.Address) {
+		toSerialize["address"] = o.Address
 	}
-	if !utils.IsNil(o.alias) {
-		toSerialize["alias"] = o.alias
+	if !utils.IsNil(o.Alias) {
+		toSerialize["alias"] = o.Alias
 	}
-	if !utils.IsNil(o.host) {
-		toSerialize["host"] = o.host
+	if !utils.IsNil(o.Host) {
+		toSerialize["host"] = o.Host
 	}
-	if !utils.IsNil(o.password) {
-		toSerialize["password"] = o.password
+	if !utils.IsNil(o.Password) {
+		toSerialize["password"] = o.Password
 	}
-	if !utils.IsNil(o.port) {
-		toSerialize["port"] = o.port
+	if !utils.IsNil(o.Port) {
+		toSerialize["port"] = o.Port
 	}
 	return toSerialize, nil
 }

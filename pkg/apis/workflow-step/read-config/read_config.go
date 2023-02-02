@@ -28,18 +28,17 @@ var _ utils.MappedNullable = &ReadConfigSpec{}
 // ReadConfigSpec struct for ReadConfigSpec
 type ReadConfigSpec struct {
 	// Specify the name of the config.
-	name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// Specify the namespace of the config.
-	namespace *string `json:"namespace,omitempty"`
+	Namespace *string `json:"namespace,omitempty"`
 }
 
 // NewReadConfigSpecWith instantiates a new ReadConfigSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReadConfigSpecWith(name string) *ReadConfigSpec {
+func NewReadConfigSpecWith() *ReadConfigSpec {
 	this := ReadConfigSpec{}
-	this.name = name
 	return &this
 }
 
@@ -51,62 +50,71 @@ func NewReadConfigSpec() *ReadConfigSpec {
 	return &this
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *ReadConfigWorkflowStep) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.name
+	return *o.Properties.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReadConfigWorkflowStep) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		return nil, false
 	}
-	return &o.Properties.name, true
+	return o.Properties.Name, true
 }
 
-// Name sets field value
-func (o *ReadConfigWorkflowStep) Name(v string) *ReadConfigWorkflowStep {
-	o.Properties.name = v
-	return o
-}
-
-// GetNamespace returns the Namespace field value if set, zero value otherwise.
-func (o *ReadConfigWorkflowStep) GetNamespace() string {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
-		var ret string
-		return ret
-	}
-	return *o.Properties.namespace
-}
-
-// GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ReadConfigWorkflowStep) GetNamespaceOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
-		return nil, false
-	}
-	return o.Properties.namespace, true
-}
-
-// HasNamespace returns a boolean if a field has been set.
-func (o *ReadConfigWorkflowStep) HasNamespace() bool {
-	if o != nil && !utils.IsNil(o.Properties.namespace) {
+// HasName returns a boolean if a field has been set.
+func (o *ReadConfigWorkflowStep) HasName() bool {
+	if o != nil && !utils.IsNil(o.Properties.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Namespace gets a reference to the given string and assigns it to the namespace field.
-// namespace:  Specify the namespace of the config.
-func (o *ReadConfigWorkflowStep) Namespace(v string) *ReadConfigWorkflowStep {
-	o.Properties.namespace = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:  Specify the name of the config.
+func (o *ReadConfigWorkflowStep) SetName(v string) *ReadConfigWorkflowStep {
+	o.Properties.Name = &v
+	return o
+}
+
+// GetNamespace returns the Namespace field value if set, zero value otherwise.
+func (o *ReadConfigWorkflowStep) GetNamespace() string {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
+		var ret string
+		return ret
+	}
+	return *o.Properties.Namespace
+}
+
+// GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ReadConfigWorkflowStep) GetNamespaceOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
+		return nil, false
+	}
+	return o.Properties.Namespace, true
+}
+
+// HasNamespace returns a boolean if a field has been set.
+func (o *ReadConfigWorkflowStep) HasNamespace() bool {
+	if o != nil && !utils.IsNil(o.Properties.Namespace) {
+		return true
+	}
+
+	return false
+}
+
+// SetNamespace gets a reference to the given string and assigns it to the namespace field.
+// Namespace:  Specify the namespace of the config.
+func (o *ReadConfigWorkflowStep) SetNamespace(v string) *ReadConfigWorkflowStep {
+	o.Properties.Namespace = &v
 	return o
 }
 
@@ -120,9 +128,11 @@ func (o ReadConfigSpec) MarshalJSON() ([]byte, error) {
 
 func (o ReadConfigSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.name
-	if !utils.IsNil(o.namespace) {
-		toSerialize["namespace"] = o.namespace
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !utils.IsNil(o.Namespace) {
+		toSerialize["namespace"] = o.Namespace
 	}
 	return toSerialize, nil
 }

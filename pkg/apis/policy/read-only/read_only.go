@@ -27,7 +27,7 @@ var _ utils.MappedNullable = &ReadOnlySpec{}
 // ReadOnlySpec struct for ReadOnlySpec
 type ReadOnlySpec struct {
 	// Specify the list of rules to control read only strategy at resource level. The selected resource will be read-only to the current application. If the target resource does not exist, error will be raised.
-	rules []PolicyRule `json:"rules,omitempty"`
+	Rules []PolicyRule `json:"rules,omitempty"`
 }
 
 // NewReadOnlySpecWith instantiates a new ReadOnlySpec object
@@ -49,35 +49,35 @@ func NewReadOnlySpec() *ReadOnlySpec {
 
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *ReadOnlyPolicy) GetRules() []PolicyRule {
-	if o == nil || utils.IsNil(o.Properties.rules) {
+	if o == nil || utils.IsNil(o.Properties.Rules) {
 		var ret []PolicyRule
 		return ret
 	}
-	return o.Properties.rules
+	return o.Properties.Rules
 }
 
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReadOnlyPolicy) GetRulesOk() ([]PolicyRule, bool) {
-	if o == nil || utils.IsNil(o.Properties.rules) {
+	if o == nil || utils.IsNil(o.Properties.Rules) {
 		return nil, false
 	}
-	return o.Properties.rules, true
+	return o.Properties.Rules, true
 }
 
 // HasRules returns a boolean if a field has been set.
 func (o *ReadOnlyPolicy) HasRules() bool {
-	if o != nil && !utils.IsNil(o.Properties.rules) {
+	if o != nil && !utils.IsNil(o.Properties.Rules) {
 		return true
 	}
 
 	return false
 }
 
-// Rules gets a reference to the given []PolicyRule and assigns it to the rules field.
-// rules:  Specify the list of rules to control read only strategy at resource level. The selected resource will be read-only to the current application. If the target resource does not exist, error will be raised.
-func (o *ReadOnlyPolicy) Rules(v []PolicyRule) *ReadOnlyPolicy {
-	o.Properties.rules = v
+// SetRules gets a reference to the given []PolicyRule and assigns it to the rules field.
+// Rules:  Specify the list of rules to control read only strategy at resource level. The selected resource will be read-only to the current application. If the target resource does not exist, error will be raised.
+func (o *ReadOnlyPolicy) SetRules(v []PolicyRule) *ReadOnlyPolicy {
+	o.Properties.Rules = v
 	return o
 }
 
@@ -91,8 +91,8 @@ func (o ReadOnlySpec) MarshalJSON() ([]byte, error) {
 
 func (o ReadOnlySpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.rules) {
-		toSerialize["rules"] = o.rules
+	if !utils.IsNil(o.Rules) {
+		toSerialize["rules"] = o.Rules
 	}
 	return toSerialize, nil
 }

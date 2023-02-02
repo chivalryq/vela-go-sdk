@@ -22,7 +22,7 @@ var _ utils.MappedNullable = &ContainerImageSpecOneOf{}
 // ContainerImageSpecOneOf struct for ContainerImageSpecOneOf
 type ContainerImageSpecOneOf struct {
 	// Specify the container image for multiple containers
-	containers []PatchParams `json:"containers"`
+	Containers []PatchParams `json:"containers"`
 }
 
 // NewContainerImageSpecOneOfWith instantiates a new ContainerImageSpecOneOf object
@@ -31,7 +31,7 @@ type ContainerImageSpecOneOf struct {
 // will change when the set of required properties is changed
 func NewContainerImageSpecOneOfWith(containers []PatchParams) *ContainerImageSpecOneOf {
 	this := ContainerImageSpecOneOf{}
-	this.containers = containers
+	this.Containers = containers
 	return &this
 }
 
@@ -50,7 +50,7 @@ func (o *ContainerImageSpecOneOf) GetContainers() []PatchParams {
 		return ret
 	}
 
-	return o.containers
+	return o.Containers
 }
 
 // GetContainersOk returns a tuple with the Containers field value
@@ -59,12 +59,12 @@ func (o *ContainerImageSpecOneOf) GetContainersOk() ([]PatchParams, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.containers, true
+	return o.Containers, true
 }
 
-// Containers sets field value
-func (o *ContainerImageSpecOneOf) Containers(v []PatchParams) *ContainerImageSpecOneOf {
-	o.containers = v
+// SetContainers sets field value
+func (o *ContainerImageSpecOneOf) SetContainers(v []PatchParams) *ContainerImageSpecOneOf {
+	o.Containers = v
 	return o
 }
 
@@ -78,7 +78,7 @@ func (o ContainerImageSpecOneOf) MarshalJSON() ([]byte, error) {
 
 func (o ContainerImageSpecOneOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["containers"] = o.containers
+	toSerialize["containers"] = o.Containers
 	return toSerialize, nil
 }
 

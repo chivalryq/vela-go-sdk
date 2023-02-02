@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &Pvc{}
 // Pvc struct for Pvc
 type Pvc struct {
 	// The name of the PVC
-	claimName *string `json:"claimName,omitempty"`
-	mountPath *string `json:"mountPath,omitempty"`
-	name      *string `json:"name,omitempty"`
-	subPath   *string `json:"subPath,omitempty"`
+	ClaimName *string `json:"claimName,omitempty"`
+	MountPath *string `json:"mountPath,omitempty"`
+	Name      *string `json:"name,omitempty"`
+	SubPath   *string `json:"subPath,omitempty"`
 }
 
 // NewPvcWith instantiates a new Pvc object
@@ -47,137 +47,137 @@ func NewPvc() *Pvc {
 
 // GetClaimName returns the ClaimName field value if set, zero value otherwise.
 func (o *Pvc) GetClaimName() string {
-	if o == nil || utils.IsNil(o.claimName) {
+	if o == nil || utils.IsNil(o.ClaimName) {
 		var ret string
 		return ret
 	}
-	return *o.claimName
+	return *o.ClaimName
 }
 
 // GetClaimNameOk returns a tuple with the ClaimName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pvc) GetClaimNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.claimName) {
+	if o == nil || utils.IsNil(o.ClaimName) {
 		return nil, false
 	}
-	return o.claimName, true
+	return o.ClaimName, true
 }
 
 // HasClaimName returns a boolean if a field has been set.
 func (o *Pvc) HasClaimName() bool {
-	if o != nil && !utils.IsNil(o.claimName) {
+	if o != nil && !utils.IsNil(o.ClaimName) {
 		return true
 	}
 
 	return false
 }
 
-// ClaimName gets a reference to the given string and assigns it to the claimName field.
-// claimName:  The name of the PVC
-func (o *Pvc) ClaimName(v string) *Pvc {
-	o.claimName = &v
+// SetClaimName gets a reference to the given string and assigns it to the claimName field.
+// ClaimName:  The name of the PVC
+func (o *Pvc) SetClaimName(v string) *Pvc {
+	o.ClaimName = &v
 	return o
 }
 
 // GetMountPath returns the MountPath field value if set, zero value otherwise.
 func (o *Pvc) GetMountPath() string {
-	if o == nil || utils.IsNil(o.mountPath) {
+	if o == nil || utils.IsNil(o.MountPath) {
 		var ret string
 		return ret
 	}
-	return *o.mountPath
+	return *o.MountPath
 }
 
 // GetMountPathOk returns a tuple with the MountPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pvc) GetMountPathOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.mountPath) {
+	if o == nil || utils.IsNil(o.MountPath) {
 		return nil, false
 	}
-	return o.mountPath, true
+	return o.MountPath, true
 }
 
 // HasMountPath returns a boolean if a field has been set.
 func (o *Pvc) HasMountPath() bool {
-	if o != nil && !utils.IsNil(o.mountPath) {
+	if o != nil && !utils.IsNil(o.MountPath) {
 		return true
 	}
 
 	return false
 }
 
-// MountPath gets a reference to the given string and assigns it to the mountPath field.
-// mountPath:
-func (o *Pvc) MountPath(v string) *Pvc {
-	o.mountPath = &v
+// SetMountPath gets a reference to the given string and assigns it to the mountPath field.
+// MountPath:
+func (o *Pvc) SetMountPath(v string) *Pvc {
+	o.MountPath = &v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Pvc) GetName() string {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.name
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pvc) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Pvc) HasName() bool {
-	if o != nil && !utils.IsNil(o.name) {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:
-func (o *Pvc) Name(v string) *Pvc {
-	o.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:
+func (o *Pvc) SetName(v string) *Pvc {
+	o.Name = &v
 	return o
 }
 
 // GetSubPath returns the SubPath field value if set, zero value otherwise.
 func (o *Pvc) GetSubPath() string {
-	if o == nil || utils.IsNil(o.subPath) {
+	if o == nil || utils.IsNil(o.SubPath) {
 		var ret string
 		return ret
 	}
-	return *o.subPath
+	return *o.SubPath
 }
 
 // GetSubPathOk returns a tuple with the SubPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pvc) GetSubPathOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.subPath) {
+	if o == nil || utils.IsNil(o.SubPath) {
 		return nil, false
 	}
-	return o.subPath, true
+	return o.SubPath, true
 }
 
 // HasSubPath returns a boolean if a field has been set.
 func (o *Pvc) HasSubPath() bool {
-	if o != nil && !utils.IsNil(o.subPath) {
+	if o != nil && !utils.IsNil(o.SubPath) {
 		return true
 	}
 
 	return false
 }
 
-// SubPath gets a reference to the given string and assigns it to the subPath field.
-// subPath:
-func (o *Pvc) SubPath(v string) *Pvc {
-	o.subPath = &v
+// SetSubPath gets a reference to the given string and assigns it to the subPath field.
+// SubPath:
+func (o *Pvc) SetSubPath(v string) *Pvc {
+	o.SubPath = &v
 	return o
 }
 
@@ -191,17 +191,17 @@ func (o Pvc) MarshalJSON() ([]byte, error) {
 
 func (o Pvc) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.claimName) {
-		toSerialize["claimName"] = o.claimName
+	if !utils.IsNil(o.ClaimName) {
+		toSerialize["claimName"] = o.ClaimName
 	}
-	if !utils.IsNil(o.mountPath) {
-		toSerialize["mountPath"] = o.mountPath
+	if !utils.IsNil(o.MountPath) {
+		toSerialize["mountPath"] = o.MountPath
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if !utils.IsNil(o.subPath) {
-		toSerialize["subPath"] = o.subPath
+	if !utils.IsNil(o.SubPath) {
+		toSerialize["subPath"] = o.SubPath
 	}
 	return toSerialize, nil
 }

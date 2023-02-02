@@ -21,11 +21,11 @@ var _ utils.MappedNullable = &HttpGet{}
 
 // HttpGet Instructions for assessing container health by executing an HTTP GET request. Either this attribute or the exec attribute or the tcpSocket attribute MUST be specified. This attribute is mutually exclusive with both the exec attribute and the tcpSocket attribute.
 type HttpGet struct {
-	httpHeaders []HttpHeaders `json:"httpHeaders,omitempty"`
+	HttpHeaders []HttpHeaders `json:"httpHeaders,omitempty"`
 	// The endpoint, relative to the port, to which the HTTP GET request should be directed.
-	path *string `json:"path,omitempty"`
+	Path *string `json:"path,omitempty"`
 	// The TCP socket within the container to which the HTTP GET request should be directed.
-	port *int32 `json:"port,omitempty"`
+	Port *int32 `json:"port,omitempty"`
 }
 
 // NewHttpGetWith instantiates a new HttpGet object
@@ -47,103 +47,103 @@ func NewHttpGet() *HttpGet {
 
 // GetHttpHeaders returns the HttpHeaders field value if set, zero value otherwise.
 func (o *HttpGet) GetHttpHeaders() []HttpHeaders {
-	if o == nil || utils.IsNil(o.httpHeaders) {
+	if o == nil || utils.IsNil(o.HttpHeaders) {
 		var ret []HttpHeaders
 		return ret
 	}
-	return o.httpHeaders
+	return o.HttpHeaders
 }
 
 // GetHttpHeadersOk returns a tuple with the HttpHeaders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HttpGet) GetHttpHeadersOk() ([]HttpHeaders, bool) {
-	if o == nil || utils.IsNil(o.httpHeaders) {
+	if o == nil || utils.IsNil(o.HttpHeaders) {
 		return nil, false
 	}
-	return o.httpHeaders, true
+	return o.HttpHeaders, true
 }
 
 // HasHttpHeaders returns a boolean if a field has been set.
 func (o *HttpGet) HasHttpHeaders() bool {
-	if o != nil && !utils.IsNil(o.httpHeaders) {
+	if o != nil && !utils.IsNil(o.HttpHeaders) {
 		return true
 	}
 
 	return false
 }
 
-// HttpHeaders gets a reference to the given []HttpHeaders and assigns it to the httpHeaders field.
-// httpHeaders:
-func (o *HttpGet) HttpHeaders(v []HttpHeaders) *HttpGet {
-	o.httpHeaders = v
+// SetHttpHeaders gets a reference to the given []HttpHeaders and assigns it to the httpHeaders field.
+// HttpHeaders:
+func (o *HttpGet) SetHttpHeaders(v []HttpHeaders) *HttpGet {
+	o.HttpHeaders = v
 	return o
 }
 
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *HttpGet) GetPath() string {
-	if o == nil || utils.IsNil(o.path) {
+	if o == nil || utils.IsNil(o.Path) {
 		var ret string
 		return ret
 	}
-	return *o.path
+	return *o.Path
 }
 
 // GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HttpGet) GetPathOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.path) {
+	if o == nil || utils.IsNil(o.Path) {
 		return nil, false
 	}
-	return o.path, true
+	return o.Path, true
 }
 
 // HasPath returns a boolean if a field has been set.
 func (o *HttpGet) HasPath() bool {
-	if o != nil && !utils.IsNil(o.path) {
+	if o != nil && !utils.IsNil(o.Path) {
 		return true
 	}
 
 	return false
 }
 
-// Path gets a reference to the given string and assigns it to the path field.
-// path:  The endpoint, relative to the port, to which the HTTP GET request should be directed.
-func (o *HttpGet) Path(v string) *HttpGet {
-	o.path = &v
+// SetPath gets a reference to the given string and assigns it to the path field.
+// Path:  The endpoint, relative to the port, to which the HTTP GET request should be directed.
+func (o *HttpGet) SetPath(v string) *HttpGet {
+	o.Path = &v
 	return o
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *HttpGet) GetPort() int32 {
-	if o == nil || utils.IsNil(o.port) {
+	if o == nil || utils.IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
-	return *o.port
+	return *o.Port
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HttpGet) GetPortOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.port) {
+	if o == nil || utils.IsNil(o.Port) {
 		return nil, false
 	}
-	return o.port, true
+	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *HttpGet) HasPort() bool {
-	if o != nil && !utils.IsNil(o.port) {
+	if o != nil && !utils.IsNil(o.Port) {
 		return true
 	}
 
 	return false
 }
 
-// Port gets a reference to the given int32 and assigns it to the port field.
-// port:  The TCP socket within the container to which the HTTP GET request should be directed.
-func (o *HttpGet) Port(v int32) *HttpGet {
-	o.port = &v
+// SetPort gets a reference to the given int32 and assigns it to the port field.
+// Port:  The TCP socket within the container to which the HTTP GET request should be directed.
+func (o *HttpGet) SetPort(v int32) *HttpGet {
+	o.Port = &v
 	return o
 }
 
@@ -157,14 +157,14 @@ func (o HttpGet) MarshalJSON() ([]byte, error) {
 
 func (o HttpGet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.httpHeaders) {
-		toSerialize["httpHeaders"] = o.httpHeaders
+	if !utils.IsNil(o.HttpHeaders) {
+		toSerialize["httpHeaders"] = o.HttpHeaders
 	}
-	if !utils.IsNil(o.path) {
-		toSerialize["path"] = o.path
+	if !utils.IsNil(o.Path) {
+		toSerialize["path"] = o.Path
 	}
-	if !utils.IsNil(o.port) {
-		toSerialize["port"] = o.port
+	if !utils.IsNil(o.Port) {
+		toSerialize["port"] = o.Port
 	}
 	return toSerialize, nil
 }

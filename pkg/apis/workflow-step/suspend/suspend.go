@@ -28,7 +28,7 @@ var _ utils.MappedNullable = &SuspendSpec{}
 // SuspendSpec struct for SuspendSpec
 type SuspendSpec struct {
 	// Specify the wait duration time to resume workflow such as \"30s\", \"1min\" or \"2m15s\"
-	duration *string `json:"duration,omitempty"`
+	Duration *string `json:"duration,omitempty"`
 }
 
 // NewSuspendSpecWith instantiates a new SuspendSpec object
@@ -50,35 +50,35 @@ func NewSuspendSpec() *SuspendSpec {
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *SuspendWorkflowStep) GetDuration() string {
-	if o == nil || utils.IsNil(o.Properties.duration) {
+	if o == nil || utils.IsNil(o.Properties.Duration) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.duration
+	return *o.Properties.Duration
 }
 
 // GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SuspendWorkflowStep) GetDurationOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.duration) {
+	if o == nil || utils.IsNil(o.Properties.Duration) {
 		return nil, false
 	}
-	return o.Properties.duration, true
+	return o.Properties.Duration, true
 }
 
 // HasDuration returns a boolean if a field has been set.
 func (o *SuspendWorkflowStep) HasDuration() bool {
-	if o != nil && !utils.IsNil(o.Properties.duration) {
+	if o != nil && !utils.IsNil(o.Properties.Duration) {
 		return true
 	}
 
 	return false
 }
 
-// Duration gets a reference to the given string and assigns it to the duration field.
-// duration:  Specify the wait duration time to resume workflow such as \"30s\", \"1min\" or \"2m15s\"
-func (o *SuspendWorkflowStep) Duration(v string) *SuspendWorkflowStep {
-	o.Properties.duration = &v
+// SetDuration gets a reference to the given string and assigns it to the duration field.
+// Duration:  Specify the wait duration time to resume workflow such as \"30s\", \"1min\" or \"2m15s\"
+func (o *SuspendWorkflowStep) SetDuration(v string) *SuspendWorkflowStep {
+	o.Properties.Duration = &v
 	return o
 }
 
@@ -92,8 +92,8 @@ func (o SuspendSpec) MarshalJSON() ([]byte, error) {
 
 func (o SuspendSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.duration) {
-		toSerialize["duration"] = o.duration
+	if !utils.IsNil(o.Duration) {
+		toSerialize["duration"] = o.Duration
 	}
 	return toSerialize, nil
 }

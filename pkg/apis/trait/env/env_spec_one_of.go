@@ -22,7 +22,7 @@ var _ utils.MappedNullable = &EnvSpecOneOf{}
 // EnvSpecOneOf struct for EnvSpecOneOf
 type EnvSpecOneOf struct {
 	// Specify the environment variables for multiple containers
-	containers []PatchParams `json:"containers"`
+	Containers []PatchParams `json:"containers"`
 }
 
 // NewEnvSpecOneOfWith instantiates a new EnvSpecOneOf object
@@ -31,7 +31,7 @@ type EnvSpecOneOf struct {
 // will change when the set of required properties is changed
 func NewEnvSpecOneOfWith(containers []PatchParams) *EnvSpecOneOf {
 	this := EnvSpecOneOf{}
-	this.containers = containers
+	this.Containers = containers
 	return &this
 }
 
@@ -50,7 +50,7 @@ func (o *EnvSpecOneOf) GetContainers() []PatchParams {
 		return ret
 	}
 
-	return o.containers
+	return o.Containers
 }
 
 // GetContainersOk returns a tuple with the Containers field value
@@ -59,12 +59,12 @@ func (o *EnvSpecOneOf) GetContainersOk() ([]PatchParams, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.containers, true
+	return o.Containers, true
 }
 
-// Containers sets field value
-func (o *EnvSpecOneOf) Containers(v []PatchParams) *EnvSpecOneOf {
-	o.containers = v
+// SetContainers sets field value
+func (o *EnvSpecOneOf) SetContainers(v []PatchParams) *EnvSpecOneOf {
+	o.Containers = v
 	return o
 }
 
@@ -78,7 +78,7 @@ func (o EnvSpecOneOf) MarshalJSON() ([]byte, error) {
 
 func (o EnvSpecOneOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["containers"] = o.containers
+	toSerialize["containers"] = o.Containers
 	return toSerialize, nil
 }
 

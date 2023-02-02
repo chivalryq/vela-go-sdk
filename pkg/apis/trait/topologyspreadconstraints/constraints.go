@@ -21,21 +21,21 @@ var _ utils.MappedNullable = &Constraints{}
 
 // Constraints struct for Constraints
 type Constraints struct {
-	labelSelector *LabSelector `json:"labelSelector,omitempty"`
+	LabelSelector *LabSelector `json:"labelSelector,omitempty"`
 	// A list of pod label keys to select the pods over which spreading will be calculated
-	matchLabelKeys []string `json:"matchLabelKeys,omitempty"`
+	MatchLabelKeys []string `json:"matchLabelKeys,omitempty"`
 	// Describe the degree to which Pods may be unevenly distributed
-	maxSkew *int32 `json:"maxSkew,omitempty"`
+	MaxSkew *int32 `json:"maxSkew,omitempty"`
 	// Indicate a minimum number of eligible domains
-	minDomains *int32 `json:"minDomains,omitempty"`
+	MinDomains *int32 `json:"minDomains,omitempty"`
 	// Indicate how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew
-	nodeAffinityPolicy *string `json:"nodeAffinityPolicy,omitempty"`
+	NodeAffinityPolicy *string `json:"nodeAffinityPolicy,omitempty"`
 	// Indicate how we will treat node taints when calculating pod topology spread skew
-	nodeTaintsPolicy *string `json:"nodeTaintsPolicy,omitempty"`
+	NodeTaintsPolicy *string `json:"nodeTaintsPolicy,omitempty"`
 	// Specify the key of node labels
-	topologyKey *string `json:"topologyKey,omitempty"`
+	TopologyKey *string `json:"topologyKey,omitempty"`
 	// Indicate how to deal with a Pod if it doesn't satisfy the spread constraint
-	whenUnsatisfiable *string `json:"whenUnsatisfiable,omitempty"`
+	WhenUnsatisfiable *string `json:"whenUnsatisfiable,omitempty"`
 }
 
 // NewConstraintsWith instantiates a new Constraints object
@@ -45,11 +45,11 @@ type Constraints struct {
 func NewConstraintsWith() *Constraints {
 	this := Constraints{}
 	var nodeAffinityPolicy string = "Honor"
-	this.nodeAffinityPolicy = &nodeAffinityPolicy
+	this.NodeAffinityPolicy = &nodeAffinityPolicy
 	var nodeTaintsPolicy string = "Honor"
-	this.nodeTaintsPolicy = &nodeTaintsPolicy
+	this.NodeTaintsPolicy = &nodeTaintsPolicy
 	var whenUnsatisfiable string = "DoNotSchedule"
-	this.whenUnsatisfiable = &whenUnsatisfiable
+	this.WhenUnsatisfiable = &whenUnsatisfiable
 	return &this
 }
 
@@ -59,283 +59,283 @@ func NewConstraintsWith() *Constraints {
 func NewConstraints() *Constraints {
 	this := Constraints{}
 	var nodeAffinityPolicy string = "Honor"
-	this.nodeAffinityPolicy = &nodeAffinityPolicy
+	this.NodeAffinityPolicy = &nodeAffinityPolicy
 	var nodeTaintsPolicy string = "Honor"
-	this.nodeTaintsPolicy = &nodeTaintsPolicy
+	this.NodeTaintsPolicy = &nodeTaintsPolicy
 	var whenUnsatisfiable string = "DoNotSchedule"
-	this.whenUnsatisfiable = &whenUnsatisfiable
+	this.WhenUnsatisfiable = &whenUnsatisfiable
 	return &this
 }
 
 // GetLabelSelector returns the LabelSelector field value if set, zero value otherwise.
 func (o *Constraints) GetLabelSelector() LabSelector {
-	if o == nil || utils.IsNil(o.labelSelector) {
+	if o == nil || utils.IsNil(o.LabelSelector) {
 		var ret LabSelector
 		return ret
 	}
-	return *o.labelSelector
+	return *o.LabelSelector
 }
 
 // GetLabelSelectorOk returns a tuple with the LabelSelector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Constraints) GetLabelSelectorOk() (*LabSelector, bool) {
-	if o == nil || utils.IsNil(o.labelSelector) {
+	if o == nil || utils.IsNil(o.LabelSelector) {
 		return nil, false
 	}
-	return o.labelSelector, true
+	return o.LabelSelector, true
 }
 
 // HasLabelSelector returns a boolean if a field has been set.
 func (o *Constraints) HasLabelSelector() bool {
-	if o != nil && !utils.IsNil(o.labelSelector) {
+	if o != nil && !utils.IsNil(o.LabelSelector) {
 		return true
 	}
 
 	return false
 }
 
-// LabelSelector gets a reference to the given LabSelector and assigns it to the labelSelector field.
-// labelSelector:
-func (o *Constraints) LabelSelector(v LabSelector) *Constraints {
-	o.labelSelector = &v
+// SetLabelSelector gets a reference to the given LabSelector and assigns it to the labelSelector field.
+// LabelSelector:
+func (o *Constraints) SetLabelSelector(v LabSelector) *Constraints {
+	o.LabelSelector = &v
 	return o
 }
 
 // GetMatchLabelKeys returns the MatchLabelKeys field value if set, zero value otherwise.
 func (o *Constraints) GetMatchLabelKeys() []string {
-	if o == nil || utils.IsNil(o.matchLabelKeys) {
+	if o == nil || utils.IsNil(o.MatchLabelKeys) {
 		var ret []string
 		return ret
 	}
-	return o.matchLabelKeys
+	return o.MatchLabelKeys
 }
 
 // GetMatchLabelKeysOk returns a tuple with the MatchLabelKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Constraints) GetMatchLabelKeysOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.matchLabelKeys) {
+	if o == nil || utils.IsNil(o.MatchLabelKeys) {
 		return nil, false
 	}
-	return o.matchLabelKeys, true
+	return o.MatchLabelKeys, true
 }
 
 // HasMatchLabelKeys returns a boolean if a field has been set.
 func (o *Constraints) HasMatchLabelKeys() bool {
-	if o != nil && !utils.IsNil(o.matchLabelKeys) {
+	if o != nil && !utils.IsNil(o.MatchLabelKeys) {
 		return true
 	}
 
 	return false
 }
 
-// MatchLabelKeys gets a reference to the given []string and assigns it to the matchLabelKeys field.
-// matchLabelKeys:  A list of pod label keys to select the pods over which spreading will be calculated
-func (o *Constraints) MatchLabelKeys(v []string) *Constraints {
-	o.matchLabelKeys = v
+// SetMatchLabelKeys gets a reference to the given []string and assigns it to the matchLabelKeys field.
+// MatchLabelKeys:  A list of pod label keys to select the pods over which spreading will be calculated
+func (o *Constraints) SetMatchLabelKeys(v []string) *Constraints {
+	o.MatchLabelKeys = v
 	return o
 }
 
 // GetMaxSkew returns the MaxSkew field value if set, zero value otherwise.
 func (o *Constraints) GetMaxSkew() int32 {
-	if o == nil || utils.IsNil(o.maxSkew) {
+	if o == nil || utils.IsNil(o.MaxSkew) {
 		var ret int32
 		return ret
 	}
-	return *o.maxSkew
+	return *o.MaxSkew
 }
 
 // GetMaxSkewOk returns a tuple with the MaxSkew field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Constraints) GetMaxSkewOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.maxSkew) {
+	if o == nil || utils.IsNil(o.MaxSkew) {
 		return nil, false
 	}
-	return o.maxSkew, true
+	return o.MaxSkew, true
 }
 
 // HasMaxSkew returns a boolean if a field has been set.
 func (o *Constraints) HasMaxSkew() bool {
-	if o != nil && !utils.IsNil(o.maxSkew) {
+	if o != nil && !utils.IsNil(o.MaxSkew) {
 		return true
 	}
 
 	return false
 }
 
-// MaxSkew gets a reference to the given int32 and assigns it to the maxSkew field.
-// maxSkew:  Describe the degree to which Pods may be unevenly distributed
-func (o *Constraints) MaxSkew(v int32) *Constraints {
-	o.maxSkew = &v
+// SetMaxSkew gets a reference to the given int32 and assigns it to the maxSkew field.
+// MaxSkew:  Describe the degree to which Pods may be unevenly distributed
+func (o *Constraints) SetMaxSkew(v int32) *Constraints {
+	o.MaxSkew = &v
 	return o
 }
 
 // GetMinDomains returns the MinDomains field value if set, zero value otherwise.
 func (o *Constraints) GetMinDomains() int32 {
-	if o == nil || utils.IsNil(o.minDomains) {
+	if o == nil || utils.IsNil(o.MinDomains) {
 		var ret int32
 		return ret
 	}
-	return *o.minDomains
+	return *o.MinDomains
 }
 
 // GetMinDomainsOk returns a tuple with the MinDomains field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Constraints) GetMinDomainsOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.minDomains) {
+	if o == nil || utils.IsNil(o.MinDomains) {
 		return nil, false
 	}
-	return o.minDomains, true
+	return o.MinDomains, true
 }
 
 // HasMinDomains returns a boolean if a field has been set.
 func (o *Constraints) HasMinDomains() bool {
-	if o != nil && !utils.IsNil(o.minDomains) {
+	if o != nil && !utils.IsNil(o.MinDomains) {
 		return true
 	}
 
 	return false
 }
 
-// MinDomains gets a reference to the given int32 and assigns it to the minDomains field.
-// minDomains:  Indicate a minimum number of eligible domains
-func (o *Constraints) MinDomains(v int32) *Constraints {
-	o.minDomains = &v
+// SetMinDomains gets a reference to the given int32 and assigns it to the minDomains field.
+// MinDomains:  Indicate a minimum number of eligible domains
+func (o *Constraints) SetMinDomains(v int32) *Constraints {
+	o.MinDomains = &v
 	return o
 }
 
 // GetNodeAffinityPolicy returns the NodeAffinityPolicy field value if set, zero value otherwise.
 func (o *Constraints) GetNodeAffinityPolicy() string {
-	if o == nil || utils.IsNil(o.nodeAffinityPolicy) {
+	if o == nil || utils.IsNil(o.NodeAffinityPolicy) {
 		var ret string
 		return ret
 	}
-	return *o.nodeAffinityPolicy
+	return *o.NodeAffinityPolicy
 }
 
 // GetNodeAffinityPolicyOk returns a tuple with the NodeAffinityPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Constraints) GetNodeAffinityPolicyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.nodeAffinityPolicy) {
+	if o == nil || utils.IsNil(o.NodeAffinityPolicy) {
 		return nil, false
 	}
-	return o.nodeAffinityPolicy, true
+	return o.NodeAffinityPolicy, true
 }
 
 // HasNodeAffinityPolicy returns a boolean if a field has been set.
 func (o *Constraints) HasNodeAffinityPolicy() bool {
-	if o != nil && !utils.IsNil(o.nodeAffinityPolicy) {
+	if o != nil && !utils.IsNil(o.NodeAffinityPolicy) {
 		return true
 	}
 
 	return false
 }
 
-// NodeAffinityPolicy gets a reference to the given string and assigns it to the nodeAffinityPolicy field.
-// nodeAffinityPolicy:  Indicate how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew
-func (o *Constraints) NodeAffinityPolicy(v string) *Constraints {
-	o.nodeAffinityPolicy = &v
+// SetNodeAffinityPolicy gets a reference to the given string and assigns it to the nodeAffinityPolicy field.
+// NodeAffinityPolicy:  Indicate how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew
+func (o *Constraints) SetNodeAffinityPolicy(v string) *Constraints {
+	o.NodeAffinityPolicy = &v
 	return o
 }
 
 // GetNodeTaintsPolicy returns the NodeTaintsPolicy field value if set, zero value otherwise.
 func (o *Constraints) GetNodeTaintsPolicy() string {
-	if o == nil || utils.IsNil(o.nodeTaintsPolicy) {
+	if o == nil || utils.IsNil(o.NodeTaintsPolicy) {
 		var ret string
 		return ret
 	}
-	return *o.nodeTaintsPolicy
+	return *o.NodeTaintsPolicy
 }
 
 // GetNodeTaintsPolicyOk returns a tuple with the NodeTaintsPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Constraints) GetNodeTaintsPolicyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.nodeTaintsPolicy) {
+	if o == nil || utils.IsNil(o.NodeTaintsPolicy) {
 		return nil, false
 	}
-	return o.nodeTaintsPolicy, true
+	return o.NodeTaintsPolicy, true
 }
 
 // HasNodeTaintsPolicy returns a boolean if a field has been set.
 func (o *Constraints) HasNodeTaintsPolicy() bool {
-	if o != nil && !utils.IsNil(o.nodeTaintsPolicy) {
+	if o != nil && !utils.IsNil(o.NodeTaintsPolicy) {
 		return true
 	}
 
 	return false
 }
 
-// NodeTaintsPolicy gets a reference to the given string and assigns it to the nodeTaintsPolicy field.
-// nodeTaintsPolicy:  Indicate how we will treat node taints when calculating pod topology spread skew
-func (o *Constraints) NodeTaintsPolicy(v string) *Constraints {
-	o.nodeTaintsPolicy = &v
+// SetNodeTaintsPolicy gets a reference to the given string and assigns it to the nodeTaintsPolicy field.
+// NodeTaintsPolicy:  Indicate how we will treat node taints when calculating pod topology spread skew
+func (o *Constraints) SetNodeTaintsPolicy(v string) *Constraints {
+	o.NodeTaintsPolicy = &v
 	return o
 }
 
 // GetTopologyKey returns the TopologyKey field value if set, zero value otherwise.
 func (o *Constraints) GetTopologyKey() string {
-	if o == nil || utils.IsNil(o.topologyKey) {
+	if o == nil || utils.IsNil(o.TopologyKey) {
 		var ret string
 		return ret
 	}
-	return *o.topologyKey
+	return *o.TopologyKey
 }
 
 // GetTopologyKeyOk returns a tuple with the TopologyKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Constraints) GetTopologyKeyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.topologyKey) {
+	if o == nil || utils.IsNil(o.TopologyKey) {
 		return nil, false
 	}
-	return o.topologyKey, true
+	return o.TopologyKey, true
 }
 
 // HasTopologyKey returns a boolean if a field has been set.
 func (o *Constraints) HasTopologyKey() bool {
-	if o != nil && !utils.IsNil(o.topologyKey) {
+	if o != nil && !utils.IsNil(o.TopologyKey) {
 		return true
 	}
 
 	return false
 }
 
-// TopologyKey gets a reference to the given string and assigns it to the topologyKey field.
-// topologyKey:  Specify the key of node labels
-func (o *Constraints) TopologyKey(v string) *Constraints {
-	o.topologyKey = &v
+// SetTopologyKey gets a reference to the given string and assigns it to the topologyKey field.
+// TopologyKey:  Specify the key of node labels
+func (o *Constraints) SetTopologyKey(v string) *Constraints {
+	o.TopologyKey = &v
 	return o
 }
 
 // GetWhenUnsatisfiable returns the WhenUnsatisfiable field value if set, zero value otherwise.
 func (o *Constraints) GetWhenUnsatisfiable() string {
-	if o == nil || utils.IsNil(o.whenUnsatisfiable) {
+	if o == nil || utils.IsNil(o.WhenUnsatisfiable) {
 		var ret string
 		return ret
 	}
-	return *o.whenUnsatisfiable
+	return *o.WhenUnsatisfiable
 }
 
 // GetWhenUnsatisfiableOk returns a tuple with the WhenUnsatisfiable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Constraints) GetWhenUnsatisfiableOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.whenUnsatisfiable) {
+	if o == nil || utils.IsNil(o.WhenUnsatisfiable) {
 		return nil, false
 	}
-	return o.whenUnsatisfiable, true
+	return o.WhenUnsatisfiable, true
 }
 
 // HasWhenUnsatisfiable returns a boolean if a field has been set.
 func (o *Constraints) HasWhenUnsatisfiable() bool {
-	if o != nil && !utils.IsNil(o.whenUnsatisfiable) {
+	if o != nil && !utils.IsNil(o.WhenUnsatisfiable) {
 		return true
 	}
 
 	return false
 }
 
-// WhenUnsatisfiable gets a reference to the given string and assigns it to the whenUnsatisfiable field.
-// whenUnsatisfiable:  Indicate how to deal with a Pod if it doesn't satisfy the spread constraint
-func (o *Constraints) WhenUnsatisfiable(v string) *Constraints {
-	o.whenUnsatisfiable = &v
+// SetWhenUnsatisfiable gets a reference to the given string and assigns it to the whenUnsatisfiable field.
+// WhenUnsatisfiable:  Indicate how to deal with a Pod if it doesn't satisfy the spread constraint
+func (o *Constraints) SetWhenUnsatisfiable(v string) *Constraints {
+	o.WhenUnsatisfiable = &v
 	return o
 }
 
@@ -349,29 +349,29 @@ func (o Constraints) MarshalJSON() ([]byte, error) {
 
 func (o Constraints) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.labelSelector) {
-		toSerialize["labelSelector"] = o.labelSelector
+	if !utils.IsNil(o.LabelSelector) {
+		toSerialize["labelSelector"] = o.LabelSelector
 	}
-	if !utils.IsNil(o.matchLabelKeys) {
-		toSerialize["matchLabelKeys"] = o.matchLabelKeys
+	if !utils.IsNil(o.MatchLabelKeys) {
+		toSerialize["matchLabelKeys"] = o.MatchLabelKeys
 	}
-	if !utils.IsNil(o.maxSkew) {
-		toSerialize["maxSkew"] = o.maxSkew
+	if !utils.IsNil(o.MaxSkew) {
+		toSerialize["maxSkew"] = o.MaxSkew
 	}
-	if !utils.IsNil(o.minDomains) {
-		toSerialize["minDomains"] = o.minDomains
+	if !utils.IsNil(o.MinDomains) {
+		toSerialize["minDomains"] = o.MinDomains
 	}
-	if !utils.IsNil(o.nodeAffinityPolicy) {
-		toSerialize["nodeAffinityPolicy"] = o.nodeAffinityPolicy
+	if !utils.IsNil(o.NodeAffinityPolicy) {
+		toSerialize["nodeAffinityPolicy"] = o.NodeAffinityPolicy
 	}
-	if !utils.IsNil(o.nodeTaintsPolicy) {
-		toSerialize["nodeTaintsPolicy"] = o.nodeTaintsPolicy
+	if !utils.IsNil(o.NodeTaintsPolicy) {
+		toSerialize["nodeTaintsPolicy"] = o.NodeTaintsPolicy
 	}
-	if !utils.IsNil(o.topologyKey) {
-		toSerialize["topologyKey"] = o.topologyKey
+	if !utils.IsNil(o.TopologyKey) {
+		toSerialize["topologyKey"] = o.TopologyKey
 	}
-	if !utils.IsNil(o.whenUnsatisfiable) {
-		toSerialize["whenUnsatisfiable"] = o.whenUnsatisfiable
+	if !utils.IsNil(o.WhenUnsatisfiable) {
+		toSerialize["whenUnsatisfiable"] = o.WhenUnsatisfiable
 	}
 	return toSerialize, nil
 }

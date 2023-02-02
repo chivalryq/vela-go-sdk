@@ -28,17 +28,17 @@ var _ utils.MappedNullable = &ExportServiceSpec{}
 // ExportServiceSpec struct for ExportServiceSpec
 type ExportServiceSpec struct {
 	// Specify the ip to be export
-	ip *string `json:"ip,omitempty"`
+	Ip *string `json:"ip,omitempty"`
 	// Specify the name of the export destination
-	name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	// Specify the namespace of the export destination
-	namespace *string `json:"namespace,omitempty"`
+	Namespace *string `json:"namespace,omitempty"`
 	// Specify the port to be used in service
-	port *int32 `json:"port,omitempty"`
+	Port *int32 `json:"port,omitempty"`
 	// Specify the port to be export
-	targetPort *int32 `json:"targetPort,omitempty"`
+	TargetPort *int32 `json:"targetPort,omitempty"`
 	// Specify the topology to export
-	topology *string `json:"topology,omitempty"`
+	Topology *string `json:"topology,omitempty"`
 }
 
 // NewExportServiceSpecWith instantiates a new ExportServiceSpec object
@@ -60,205 +60,205 @@ func NewExportServiceSpec() *ExportServiceSpec {
 
 // GetIp returns the Ip field value if set, zero value otherwise.
 func (o *ExportServiceWorkflowStep) GetIp() string {
-	if o == nil || utils.IsNil(o.Properties.ip) {
+	if o == nil || utils.IsNil(o.Properties.Ip) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.ip
+	return *o.Properties.Ip
 }
 
 // GetIpOk returns a tuple with the Ip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportServiceWorkflowStep) GetIpOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.ip) {
+	if o == nil || utils.IsNil(o.Properties.Ip) {
 		return nil, false
 	}
-	return o.Properties.ip, true
+	return o.Properties.Ip, true
 }
 
 // HasIp returns a boolean if a field has been set.
 func (o *ExportServiceWorkflowStep) HasIp() bool {
-	if o != nil && !utils.IsNil(o.Properties.ip) {
+	if o != nil && !utils.IsNil(o.Properties.Ip) {
 		return true
 	}
 
 	return false
 }
 
-// Ip gets a reference to the given string and assigns it to the ip field.
-// ip:  Specify the ip to be export
-func (o *ExportServiceWorkflowStep) Ip(v string) *ExportServiceWorkflowStep {
-	o.Properties.ip = &v
+// SetIp gets a reference to the given string and assigns it to the ip field.
+// Ip:  Specify the ip to be export
+func (o *ExportServiceWorkflowStep) SetIp(v string) *ExportServiceWorkflowStep {
+	o.Properties.Ip = &v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ExportServiceWorkflowStep) GetName() string {
-	if o == nil || utils.IsNil(o.Properties.name) {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.name
+	return *o.Properties.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportServiceWorkflowStep) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.name) {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		return nil, false
 	}
-	return o.Properties.name, true
+	return o.Properties.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *ExportServiceWorkflowStep) HasName() bool {
-	if o != nil && !utils.IsNil(o.Properties.name) {
+	if o != nil && !utils.IsNil(o.Properties.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:  Specify the name of the export destination
-func (o *ExportServiceWorkflowStep) Name(v string) *ExportServiceWorkflowStep {
-	o.Properties.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:  Specify the name of the export destination
+func (o *ExportServiceWorkflowStep) SetName(v string) *ExportServiceWorkflowStep {
+	o.Properties.Name = &v
 	return o
 }
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *ExportServiceWorkflowStep) GetNamespace() string {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.namespace
+	return *o.Properties.Namespace
 }
 
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportServiceWorkflowStep) GetNamespaceOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		return nil, false
 	}
-	return o.Properties.namespace, true
+	return o.Properties.Namespace, true
 }
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *ExportServiceWorkflowStep) HasNamespace() bool {
-	if o != nil && !utils.IsNil(o.Properties.namespace) {
+	if o != nil && !utils.IsNil(o.Properties.Namespace) {
 		return true
 	}
 
 	return false
 }
 
-// Namespace gets a reference to the given string and assigns it to the namespace field.
-// namespace:  Specify the namespace of the export destination
-func (o *ExportServiceWorkflowStep) Namespace(v string) *ExportServiceWorkflowStep {
-	o.Properties.namespace = &v
+// SetNamespace gets a reference to the given string and assigns it to the namespace field.
+// Namespace:  Specify the namespace of the export destination
+func (o *ExportServiceWorkflowStep) SetNamespace(v string) *ExportServiceWorkflowStep {
+	o.Properties.Namespace = &v
 	return o
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *ExportServiceWorkflowStep) GetPort() int32 {
-	if o == nil || utils.IsNil(o.Properties.port) {
+	if o == nil || utils.IsNil(o.Properties.Port) {
 		var ret int32
 		return ret
 	}
-	return *o.Properties.port
+	return *o.Properties.Port
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportServiceWorkflowStep) GetPortOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.Properties.port) {
+	if o == nil || utils.IsNil(o.Properties.Port) {
 		return nil, false
 	}
-	return o.Properties.port, true
+	return o.Properties.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *ExportServiceWorkflowStep) HasPort() bool {
-	if o != nil && !utils.IsNil(o.Properties.port) {
+	if o != nil && !utils.IsNil(o.Properties.Port) {
 		return true
 	}
 
 	return false
 }
 
-// Port gets a reference to the given int32 and assigns it to the port field.
-// port:  Specify the port to be used in service
-func (o *ExportServiceWorkflowStep) Port(v int32) *ExportServiceWorkflowStep {
-	o.Properties.port = &v
+// SetPort gets a reference to the given int32 and assigns it to the port field.
+// Port:  Specify the port to be used in service
+func (o *ExportServiceWorkflowStep) SetPort(v int32) *ExportServiceWorkflowStep {
+	o.Properties.Port = &v
 	return o
 }
 
 // GetTargetPort returns the TargetPort field value if set, zero value otherwise.
 func (o *ExportServiceWorkflowStep) GetTargetPort() int32 {
-	if o == nil || utils.IsNil(o.Properties.targetPort) {
+	if o == nil || utils.IsNil(o.Properties.TargetPort) {
 		var ret int32
 		return ret
 	}
-	return *o.Properties.targetPort
+	return *o.Properties.TargetPort
 }
 
 // GetTargetPortOk returns a tuple with the TargetPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportServiceWorkflowStep) GetTargetPortOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.Properties.targetPort) {
+	if o == nil || utils.IsNil(o.Properties.TargetPort) {
 		return nil, false
 	}
-	return o.Properties.targetPort, true
+	return o.Properties.TargetPort, true
 }
 
 // HasTargetPort returns a boolean if a field has been set.
 func (o *ExportServiceWorkflowStep) HasTargetPort() bool {
-	if o != nil && !utils.IsNil(o.Properties.targetPort) {
+	if o != nil && !utils.IsNil(o.Properties.TargetPort) {
 		return true
 	}
 
 	return false
 }
 
-// TargetPort gets a reference to the given int32 and assigns it to the targetPort field.
-// targetPort:  Specify the port to be export
-func (o *ExportServiceWorkflowStep) TargetPort(v int32) *ExportServiceWorkflowStep {
-	o.Properties.targetPort = &v
+// SetTargetPort gets a reference to the given int32 and assigns it to the targetPort field.
+// TargetPort:  Specify the port to be export
+func (o *ExportServiceWorkflowStep) SetTargetPort(v int32) *ExportServiceWorkflowStep {
+	o.Properties.TargetPort = &v
 	return o
 }
 
 // GetTopology returns the Topology field value if set, zero value otherwise.
 func (o *ExportServiceWorkflowStep) GetTopology() string {
-	if o == nil || utils.IsNil(o.Properties.topology) {
+	if o == nil || utils.IsNil(o.Properties.Topology) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.topology
+	return *o.Properties.Topology
 }
 
 // GetTopologyOk returns a tuple with the Topology field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportServiceWorkflowStep) GetTopologyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.topology) {
+	if o == nil || utils.IsNil(o.Properties.Topology) {
 		return nil, false
 	}
-	return o.Properties.topology, true
+	return o.Properties.Topology, true
 }
 
 // HasTopology returns a boolean if a field has been set.
 func (o *ExportServiceWorkflowStep) HasTopology() bool {
-	if o != nil && !utils.IsNil(o.Properties.topology) {
+	if o != nil && !utils.IsNil(o.Properties.Topology) {
 		return true
 	}
 
 	return false
 }
 
-// Topology gets a reference to the given string and assigns it to the topology field.
-// topology:  Specify the topology to export
-func (o *ExportServiceWorkflowStep) Topology(v string) *ExportServiceWorkflowStep {
-	o.Properties.topology = &v
+// SetTopology gets a reference to the given string and assigns it to the topology field.
+// Topology:  Specify the topology to export
+func (o *ExportServiceWorkflowStep) SetTopology(v string) *ExportServiceWorkflowStep {
+	o.Properties.Topology = &v
 	return o
 }
 
@@ -272,23 +272,23 @@ func (o ExportServiceSpec) MarshalJSON() ([]byte, error) {
 
 func (o ExportServiceSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.ip) {
-		toSerialize["ip"] = o.ip
+	if !utils.IsNil(o.Ip) {
+		toSerialize["ip"] = o.Ip
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if !utils.IsNil(o.namespace) {
-		toSerialize["namespace"] = o.namespace
+	if !utils.IsNil(o.Namespace) {
+		toSerialize["namespace"] = o.Namespace
 	}
-	if !utils.IsNil(o.port) {
-		toSerialize["port"] = o.port
+	if !utils.IsNil(o.Port) {
+		toSerialize["port"] = o.Port
 	}
-	if !utils.IsNil(o.targetPort) {
-		toSerialize["targetPort"] = o.targetPort
+	if !utils.IsNil(o.TargetPort) {
+		toSerialize["targetPort"] = o.TargetPort
 	}
-	if !utils.IsNil(o.topology) {
-		toSerialize["topology"] = o.topology
+	if !utils.IsNil(o.Topology) {
+		toSerialize["topology"] = o.Topology
 	}
 	return toSerialize, nil
 }

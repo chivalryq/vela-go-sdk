@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &HttpHeaders{}
 
 // HttpHeaders struct for HttpHeaders
 type HttpHeaders struct {
-	name  *string `json:"name,omitempty"`
-	value *string `json:"value,omitempty"`
+	Name  *string `json:"name,omitempty"`
+	Value *string `json:"value,omitempty"`
 }
 
 // NewHttpHeadersWith instantiates a new HttpHeaders object
@@ -44,69 +44,69 @@ func NewHttpHeaders() *HttpHeaders {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *HttpHeaders) GetName() string {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.name
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HttpHeaders) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *HttpHeaders) HasName() bool {
-	if o != nil && !utils.IsNil(o.name) {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:
-func (o *HttpHeaders) Name(v string) *HttpHeaders {
-	o.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:
+func (o *HttpHeaders) SetName(v string) *HttpHeaders {
+	o.Name = &v
 	return o
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *HttpHeaders) GetValue() string {
-	if o == nil || utils.IsNil(o.value) {
+	if o == nil || utils.IsNil(o.Value) {
 		var ret string
 		return ret
 	}
-	return *o.value
+	return *o.Value
 }
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HttpHeaders) GetValueOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.value) {
+	if o == nil || utils.IsNil(o.Value) {
 		return nil, false
 	}
-	return o.value, true
+	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
 func (o *HttpHeaders) HasValue() bool {
-	if o != nil && !utils.IsNil(o.value) {
+	if o != nil && !utils.IsNil(o.Value) {
 		return true
 	}
 
 	return false
 }
 
-// Value gets a reference to the given string and assigns it to the value field.
-// value:
-func (o *HttpHeaders) Value(v string) *HttpHeaders {
-	o.value = &v
+// SetValue gets a reference to the given string and assigns it to the value field.
+// Value:
+func (o *HttpHeaders) SetValue(v string) *HttpHeaders {
+	o.Value = &v
 	return o
 }
 
@@ -120,11 +120,11 @@ func (o HttpHeaders) MarshalJSON() ([]byte, error) {
 
 func (o HttpHeaders) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if !utils.IsNil(o.value) {
-		toSerialize["value"] = o.value
+	if !utils.IsNil(o.Value) {
+		toSerialize["value"] = o.Value
 	}
 	return toSerialize, nil
 }

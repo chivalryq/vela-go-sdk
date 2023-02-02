@@ -27,19 +27,19 @@ var _ utils.MappedNullable = &SidecarSpec{}
 // SidecarSpec struct for SidecarSpec
 type SidecarSpec struct {
 	// Specify the args in the sidecar
-	args []string `json:"args,omitempty"`
+	Args []string `json:"args,omitempty"`
 	// Specify the commands run in the sidecar
-	cmd []string `json:"cmd,omitempty"`
+	Cmd []string `json:"cmd,omitempty"`
 	// Specify the env in the sidecar
-	env []Env `json:"env,omitempty"`
+	Env []Env `json:"env,omitempty"`
 	// Specify the image of sidecar container
-	image         *string      `json:"image,omitempty"`
-	livenessProbe *HealthProbe `json:"livenessProbe,omitempty"`
+	Image         *string      `json:"image,omitempty"`
+	LivenessProbe *HealthProbe `json:"livenessProbe,omitempty"`
 	// Specify the name of sidecar container
-	name           *string      `json:"name,omitempty"`
-	readinessProbe *HealthProbe `json:"readinessProbe,omitempty"`
+	Name           *string      `json:"name,omitempty"`
+	ReadinessProbe *HealthProbe `json:"readinessProbe,omitempty"`
 	// Specify the shared volume path
-	volumes []Volumes `json:"volumes,omitempty"`
+	Volumes []Volumes `json:"volumes,omitempty"`
 }
 
 // NewSidecarSpecWith instantiates a new SidecarSpec object
@@ -61,273 +61,273 @@ func NewSidecarSpec() *SidecarSpec {
 
 // GetArgs returns the Args field value if set, zero value otherwise.
 func (o *SidecarTrait) GetArgs() []string {
-	if o == nil || utils.IsNil(o.Properties.args) {
+	if o == nil || utils.IsNil(o.Properties.Args) {
 		var ret []string
 		return ret
 	}
-	return o.Properties.args
+	return o.Properties.Args
 }
 
 // GetArgsOk returns a tuple with the Args field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SidecarTrait) GetArgsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.args) {
+	if o == nil || utils.IsNil(o.Properties.Args) {
 		return nil, false
 	}
-	return o.Properties.args, true
+	return o.Properties.Args, true
 }
 
 // HasArgs returns a boolean if a field has been set.
 func (o *SidecarTrait) HasArgs() bool {
-	if o != nil && !utils.IsNil(o.Properties.args) {
+	if o != nil && !utils.IsNil(o.Properties.Args) {
 		return true
 	}
 
 	return false
 }
 
-// Args gets a reference to the given []string and assigns it to the args field.
-// args:  Specify the args in the sidecar
-func (o *SidecarTrait) Args(v []string) *SidecarTrait {
-	o.Properties.args = v
+// SetArgs gets a reference to the given []string and assigns it to the args field.
+// Args:  Specify the args in the sidecar
+func (o *SidecarTrait) SetArgs(v []string) *SidecarTrait {
+	o.Properties.Args = v
 	return o
 }
 
 // GetCmd returns the Cmd field value if set, zero value otherwise.
 func (o *SidecarTrait) GetCmd() []string {
-	if o == nil || utils.IsNil(o.Properties.cmd) {
+	if o == nil || utils.IsNil(o.Properties.Cmd) {
 		var ret []string
 		return ret
 	}
-	return o.Properties.cmd
+	return o.Properties.Cmd
 }
 
 // GetCmdOk returns a tuple with the Cmd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SidecarTrait) GetCmdOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.cmd) {
+	if o == nil || utils.IsNil(o.Properties.Cmd) {
 		return nil, false
 	}
-	return o.Properties.cmd, true
+	return o.Properties.Cmd, true
 }
 
 // HasCmd returns a boolean if a field has been set.
 func (o *SidecarTrait) HasCmd() bool {
-	if o != nil && !utils.IsNil(o.Properties.cmd) {
+	if o != nil && !utils.IsNil(o.Properties.Cmd) {
 		return true
 	}
 
 	return false
 }
 
-// Cmd gets a reference to the given []string and assigns it to the cmd field.
-// cmd:  Specify the commands run in the sidecar
-func (o *SidecarTrait) Cmd(v []string) *SidecarTrait {
-	o.Properties.cmd = v
+// SetCmd gets a reference to the given []string and assigns it to the cmd field.
+// Cmd:  Specify the commands run in the sidecar
+func (o *SidecarTrait) SetCmd(v []string) *SidecarTrait {
+	o.Properties.Cmd = v
 	return o
 }
 
 // GetEnv returns the Env field value if set, zero value otherwise.
 func (o *SidecarTrait) GetEnv() []Env {
-	if o == nil || utils.IsNil(o.Properties.env) {
+	if o == nil || utils.IsNil(o.Properties.Env) {
 		var ret []Env
 		return ret
 	}
-	return o.Properties.env
+	return o.Properties.Env
 }
 
 // GetEnvOk returns a tuple with the Env field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SidecarTrait) GetEnvOk() ([]Env, bool) {
-	if o == nil || utils.IsNil(o.Properties.env) {
+	if o == nil || utils.IsNil(o.Properties.Env) {
 		return nil, false
 	}
-	return o.Properties.env, true
+	return o.Properties.Env, true
 }
 
 // HasEnv returns a boolean if a field has been set.
 func (o *SidecarTrait) HasEnv() bool {
-	if o != nil && !utils.IsNil(o.Properties.env) {
+	if o != nil && !utils.IsNil(o.Properties.Env) {
 		return true
 	}
 
 	return false
 }
 
-// Env gets a reference to the given []Env and assigns it to the env field.
-// env:  Specify the env in the sidecar
-func (o *SidecarTrait) Env(v []Env) *SidecarTrait {
-	o.Properties.env = v
+// SetEnv gets a reference to the given []Env and assigns it to the env field.
+// Env:  Specify the env in the sidecar
+func (o *SidecarTrait) SetEnv(v []Env) *SidecarTrait {
+	o.Properties.Env = v
 	return o
 }
 
 // GetImage returns the Image field value if set, zero value otherwise.
 func (o *SidecarTrait) GetImage() string {
-	if o == nil || utils.IsNil(o.Properties.image) {
+	if o == nil || utils.IsNil(o.Properties.Image) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.image
+	return *o.Properties.Image
 }
 
 // GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SidecarTrait) GetImageOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.image) {
+	if o == nil || utils.IsNil(o.Properties.Image) {
 		return nil, false
 	}
-	return o.Properties.image, true
+	return o.Properties.Image, true
 }
 
 // HasImage returns a boolean if a field has been set.
 func (o *SidecarTrait) HasImage() bool {
-	if o != nil && !utils.IsNil(o.Properties.image) {
+	if o != nil && !utils.IsNil(o.Properties.Image) {
 		return true
 	}
 
 	return false
 }
 
-// Image gets a reference to the given string and assigns it to the image field.
-// image:  Specify the image of sidecar container
-func (o *SidecarTrait) Image(v string) *SidecarTrait {
-	o.Properties.image = &v
+// SetImage gets a reference to the given string and assigns it to the image field.
+// Image:  Specify the image of sidecar container
+func (o *SidecarTrait) SetImage(v string) *SidecarTrait {
+	o.Properties.Image = &v
 	return o
 }
 
 // GetLivenessProbe returns the LivenessProbe field value if set, zero value otherwise.
 func (o *SidecarTrait) GetLivenessProbe() HealthProbe {
-	if o == nil || utils.IsNil(o.Properties.livenessProbe) {
+	if o == nil || utils.IsNil(o.Properties.LivenessProbe) {
 		var ret HealthProbe
 		return ret
 	}
-	return *o.Properties.livenessProbe
+	return *o.Properties.LivenessProbe
 }
 
 // GetLivenessProbeOk returns a tuple with the LivenessProbe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SidecarTrait) GetLivenessProbeOk() (*HealthProbe, bool) {
-	if o == nil || utils.IsNil(o.Properties.livenessProbe) {
+	if o == nil || utils.IsNil(o.Properties.LivenessProbe) {
 		return nil, false
 	}
-	return o.Properties.livenessProbe, true
+	return o.Properties.LivenessProbe, true
 }
 
 // HasLivenessProbe returns a boolean if a field has been set.
 func (o *SidecarTrait) HasLivenessProbe() bool {
-	if o != nil && !utils.IsNil(o.Properties.livenessProbe) {
+	if o != nil && !utils.IsNil(o.Properties.LivenessProbe) {
 		return true
 	}
 
 	return false
 }
 
-// LivenessProbe gets a reference to the given HealthProbe and assigns it to the livenessProbe field.
-// livenessProbe:
-func (o *SidecarTrait) LivenessProbe(v HealthProbe) *SidecarTrait {
-	o.Properties.livenessProbe = &v
+// SetLivenessProbe gets a reference to the given HealthProbe and assigns it to the livenessProbe field.
+// LivenessProbe:
+func (o *SidecarTrait) SetLivenessProbe(v HealthProbe) *SidecarTrait {
+	o.Properties.LivenessProbe = &v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SidecarTrait) GetName() string {
-	if o == nil || utils.IsNil(o.Properties.name) {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.name
+	return *o.Properties.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SidecarTrait) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.name) {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		return nil, false
 	}
-	return o.Properties.name, true
+	return o.Properties.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *SidecarTrait) HasName() bool {
-	if o != nil && !utils.IsNil(o.Properties.name) {
+	if o != nil && !utils.IsNil(o.Properties.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:  Specify the name of sidecar container
-func (o *SidecarTrait) Name(v string) *SidecarTrait {
-	o.Properties.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:  Specify the name of sidecar container
+func (o *SidecarTrait) SetName(v string) *SidecarTrait {
+	o.Properties.Name = &v
 	return o
 }
 
 // GetReadinessProbe returns the ReadinessProbe field value if set, zero value otherwise.
 func (o *SidecarTrait) GetReadinessProbe() HealthProbe {
-	if o == nil || utils.IsNil(o.Properties.readinessProbe) {
+	if o == nil || utils.IsNil(o.Properties.ReadinessProbe) {
 		var ret HealthProbe
 		return ret
 	}
-	return *o.Properties.readinessProbe
+	return *o.Properties.ReadinessProbe
 }
 
 // GetReadinessProbeOk returns a tuple with the ReadinessProbe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SidecarTrait) GetReadinessProbeOk() (*HealthProbe, bool) {
-	if o == nil || utils.IsNil(o.Properties.readinessProbe) {
+	if o == nil || utils.IsNil(o.Properties.ReadinessProbe) {
 		return nil, false
 	}
-	return o.Properties.readinessProbe, true
+	return o.Properties.ReadinessProbe, true
 }
 
 // HasReadinessProbe returns a boolean if a field has been set.
 func (o *SidecarTrait) HasReadinessProbe() bool {
-	if o != nil && !utils.IsNil(o.Properties.readinessProbe) {
+	if o != nil && !utils.IsNil(o.Properties.ReadinessProbe) {
 		return true
 	}
 
 	return false
 }
 
-// ReadinessProbe gets a reference to the given HealthProbe and assigns it to the readinessProbe field.
-// readinessProbe:
-func (o *SidecarTrait) ReadinessProbe(v HealthProbe) *SidecarTrait {
-	o.Properties.readinessProbe = &v
+// SetReadinessProbe gets a reference to the given HealthProbe and assigns it to the readinessProbe field.
+// ReadinessProbe:
+func (o *SidecarTrait) SetReadinessProbe(v HealthProbe) *SidecarTrait {
+	o.Properties.ReadinessProbe = &v
 	return o
 }
 
 // GetVolumes returns the Volumes field value if set, zero value otherwise.
 func (o *SidecarTrait) GetVolumes() []Volumes {
-	if o == nil || utils.IsNil(o.Properties.volumes) {
+	if o == nil || utils.IsNil(o.Properties.Volumes) {
 		var ret []Volumes
 		return ret
 	}
-	return o.Properties.volumes
+	return o.Properties.Volumes
 }
 
 // GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SidecarTrait) GetVolumesOk() ([]Volumes, bool) {
-	if o == nil || utils.IsNil(o.Properties.volumes) {
+	if o == nil || utils.IsNil(o.Properties.Volumes) {
 		return nil, false
 	}
-	return o.Properties.volumes, true
+	return o.Properties.Volumes, true
 }
 
 // HasVolumes returns a boolean if a field has been set.
 func (o *SidecarTrait) HasVolumes() bool {
-	if o != nil && !utils.IsNil(o.Properties.volumes) {
+	if o != nil && !utils.IsNil(o.Properties.Volumes) {
 		return true
 	}
 
 	return false
 }
 
-// Volumes gets a reference to the given []Volumes and assigns it to the volumes field.
-// volumes:  Specify the shared volume path
-func (o *SidecarTrait) Volumes(v []Volumes) *SidecarTrait {
-	o.Properties.volumes = v
+// SetVolumes gets a reference to the given []Volumes and assigns it to the volumes field.
+// Volumes:  Specify the shared volume path
+func (o *SidecarTrait) SetVolumes(v []Volumes) *SidecarTrait {
+	o.Properties.Volumes = v
 	return o
 }
 
@@ -341,29 +341,29 @@ func (o SidecarSpec) MarshalJSON() ([]byte, error) {
 
 func (o SidecarSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.args) {
-		toSerialize["args"] = o.args
+	if !utils.IsNil(o.Args) {
+		toSerialize["args"] = o.Args
 	}
-	if !utils.IsNil(o.cmd) {
-		toSerialize["cmd"] = o.cmd
+	if !utils.IsNil(o.Cmd) {
+		toSerialize["cmd"] = o.Cmd
 	}
-	if !utils.IsNil(o.env) {
-		toSerialize["env"] = o.env
+	if !utils.IsNil(o.Env) {
+		toSerialize["env"] = o.Env
 	}
-	if !utils.IsNil(o.image) {
-		toSerialize["image"] = o.image
+	if !utils.IsNil(o.Image) {
+		toSerialize["image"] = o.Image
 	}
-	if !utils.IsNil(o.livenessProbe) {
-		toSerialize["livenessProbe"] = o.livenessProbe
+	if !utils.IsNil(o.LivenessProbe) {
+		toSerialize["livenessProbe"] = o.LivenessProbe
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if !utils.IsNil(o.readinessProbe) {
-		toSerialize["readinessProbe"] = o.readinessProbe
+	if !utils.IsNil(o.ReadinessProbe) {
+		toSerialize["readinessProbe"] = o.ReadinessProbe
 	}
-	if !utils.IsNil(o.volumes) {
-		toSerialize["volumes"] = o.volumes
+	if !utils.IsNil(o.Volumes) {
+		toSerialize["volumes"] = o.Volumes
 	}
 	return toSerialize, nil
 }

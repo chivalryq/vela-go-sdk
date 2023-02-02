@@ -28,8 +28,8 @@ var _ utils.MappedNullable = &WebhookSpec{}
 // WebhookSpec struct for WebhookSpec
 type WebhookSpec struct {
 	// Specify the data you want to send
-	data map[string]interface{} `json:"data,omitempty"`
-	url  *Url                   `json:"url,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty"`
+	Url  *Url                   `json:"url,omitempty"`
 }
 
 // NewWebhookSpecWith instantiates a new WebhookSpec object
@@ -51,69 +51,69 @@ func NewWebhookSpec() *WebhookSpec {
 
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *WebhookWorkflowStep) GetData() map[string]interface{} {
-	if o == nil || utils.IsNil(o.Properties.data) {
+	if o == nil || utils.IsNil(o.Properties.Data) {
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.Properties.data
+	return o.Properties.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookWorkflowStep) GetDataOk() (map[string]interface{}, bool) {
-	if o == nil || utils.IsNil(o.Properties.data) {
+	if o == nil || utils.IsNil(o.Properties.Data) {
 		return map[string]interface{}{}, false
 	}
-	return o.Properties.data, true
+	return o.Properties.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
 func (o *WebhookWorkflowStep) HasData() bool {
-	if o != nil && !utils.IsNil(o.Properties.data) {
+	if o != nil && !utils.IsNil(o.Properties.Data) {
 		return true
 	}
 
 	return false
 }
 
-// Data gets a reference to the given map[string]interface{} and assigns it to the data field.
-// data:  Specify the data you want to send
-func (o *WebhookWorkflowStep) Data(v map[string]interface{}) *WebhookWorkflowStep {
-	o.Properties.data = v
+// SetData gets a reference to the given map[string]interface{} and assigns it to the data field.
+// Data:  Specify the data you want to send
+func (o *WebhookWorkflowStep) SetData(v map[string]interface{}) *WebhookWorkflowStep {
+	o.Properties.Data = v
 	return o
 }
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *WebhookWorkflowStep) GetUrl() Url {
-	if o == nil || utils.IsNil(o.Properties.url) {
+	if o == nil || utils.IsNil(o.Properties.Url) {
 		var ret Url
 		return ret
 	}
-	return *o.Properties.url
+	return *o.Properties.Url
 }
 
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookWorkflowStep) GetUrlOk() (*Url, bool) {
-	if o == nil || utils.IsNil(o.Properties.url) {
+	if o == nil || utils.IsNil(o.Properties.Url) {
 		return nil, false
 	}
-	return o.Properties.url, true
+	return o.Properties.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *WebhookWorkflowStep) HasUrl() bool {
-	if o != nil && !utils.IsNil(o.Properties.url) {
+	if o != nil && !utils.IsNil(o.Properties.Url) {
 		return true
 	}
 
 	return false
 }
 
-// Url gets a reference to the given Url and assigns it to the url field.
-// url:
-func (o *WebhookWorkflowStep) Url(v Url) *WebhookWorkflowStep {
-	o.Properties.url = &v
+// SetUrl gets a reference to the given Url and assigns it to the url field.
+// Url:
+func (o *WebhookWorkflowStep) SetUrl(v Url) *WebhookWorkflowStep {
+	o.Properties.Url = &v
 	return o
 }
 
@@ -127,11 +127,11 @@ func (o WebhookSpec) MarshalJSON() ([]byte, error) {
 
 func (o WebhookSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.data) {
-		toSerialize["data"] = o.data
+	if !utils.IsNil(o.Data) {
+		toSerialize["data"] = o.Data
 	}
-	if !utils.IsNil(o.url) {
-		toSerialize["url"] = o.url
+	if !utils.IsNil(o.Url) {
+		toSerialize["url"] = o.Url
 	}
 	return toSerialize, nil
 }

@@ -26,8 +26,8 @@ var _ utils.MappedNullable = &LifecycleSpec{}
 
 // LifecycleSpec struct for LifecycleSpec
 type LifecycleSpec struct {
-	postStart *LifeCycleHandler `json:"postStart,omitempty"`
-	preStop   *LifeCycleHandler `json:"preStop,omitempty"`
+	PostStart *LifeCycleHandler `json:"postStart,omitempty"`
+	PreStop   *LifeCycleHandler `json:"preStop,omitempty"`
 }
 
 // NewLifecycleSpecWith instantiates a new LifecycleSpec object
@@ -49,69 +49,69 @@ func NewLifecycleSpec() *LifecycleSpec {
 
 // GetPostStart returns the PostStart field value if set, zero value otherwise.
 func (o *LifecycleTrait) GetPostStart() LifeCycleHandler {
-	if o == nil || utils.IsNil(o.Properties.postStart) {
+	if o == nil || utils.IsNil(o.Properties.PostStart) {
 		var ret LifeCycleHandler
 		return ret
 	}
-	return *o.Properties.postStart
+	return *o.Properties.PostStart
 }
 
 // GetPostStartOk returns a tuple with the PostStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LifecycleTrait) GetPostStartOk() (*LifeCycleHandler, bool) {
-	if o == nil || utils.IsNil(o.Properties.postStart) {
+	if o == nil || utils.IsNil(o.Properties.PostStart) {
 		return nil, false
 	}
-	return o.Properties.postStart, true
+	return o.Properties.PostStart, true
 }
 
 // HasPostStart returns a boolean if a field has been set.
 func (o *LifecycleTrait) HasPostStart() bool {
-	if o != nil && !utils.IsNil(o.Properties.postStart) {
+	if o != nil && !utils.IsNil(o.Properties.PostStart) {
 		return true
 	}
 
 	return false
 }
 
-// PostStart gets a reference to the given LifeCycleHandler and assigns it to the postStart field.
-// postStart:
-func (o *LifecycleTrait) PostStart(v LifeCycleHandler) *LifecycleTrait {
-	o.Properties.postStart = &v
+// SetPostStart gets a reference to the given LifeCycleHandler and assigns it to the postStart field.
+// PostStart:
+func (o *LifecycleTrait) SetPostStart(v LifeCycleHandler) *LifecycleTrait {
+	o.Properties.PostStart = &v
 	return o
 }
 
 // GetPreStop returns the PreStop field value if set, zero value otherwise.
 func (o *LifecycleTrait) GetPreStop() LifeCycleHandler {
-	if o == nil || utils.IsNil(o.Properties.preStop) {
+	if o == nil || utils.IsNil(o.Properties.PreStop) {
 		var ret LifeCycleHandler
 		return ret
 	}
-	return *o.Properties.preStop
+	return *o.Properties.PreStop
 }
 
 // GetPreStopOk returns a tuple with the PreStop field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LifecycleTrait) GetPreStopOk() (*LifeCycleHandler, bool) {
-	if o == nil || utils.IsNil(o.Properties.preStop) {
+	if o == nil || utils.IsNil(o.Properties.PreStop) {
 		return nil, false
 	}
-	return o.Properties.preStop, true
+	return o.Properties.PreStop, true
 }
 
 // HasPreStop returns a boolean if a field has been set.
 func (o *LifecycleTrait) HasPreStop() bool {
-	if o != nil && !utils.IsNil(o.Properties.preStop) {
+	if o != nil && !utils.IsNil(o.Properties.PreStop) {
 		return true
 	}
 
 	return false
 }
 
-// PreStop gets a reference to the given LifeCycleHandler and assigns it to the preStop field.
-// preStop:
-func (o *LifecycleTrait) PreStop(v LifeCycleHandler) *LifecycleTrait {
-	o.Properties.preStop = &v
+// SetPreStop gets a reference to the given LifeCycleHandler and assigns it to the preStop field.
+// PreStop:
+func (o *LifecycleTrait) SetPreStop(v LifeCycleHandler) *LifecycleTrait {
+	o.Properties.PreStop = &v
 	return o
 }
 
@@ -125,11 +125,11 @@ func (o LifecycleSpec) MarshalJSON() ([]byte, error) {
 
 func (o LifecycleSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.postStart) {
-		toSerialize["postStart"] = o.postStart
+	if !utils.IsNil(o.PostStart) {
+		toSerialize["postStart"] = o.PostStart
 	}
-	if !utils.IsNil(o.preStop) {
-		toSerialize["preStop"] = o.preStop
+	if !utils.IsNil(o.PreStop) {
+		toSerialize["preStop"] = o.PreStop
 	}
 	return toSerialize, nil
 }

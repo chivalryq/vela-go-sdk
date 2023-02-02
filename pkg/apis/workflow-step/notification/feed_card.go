@@ -21,7 +21,7 @@ var _ utils.MappedNullable = &FeedCard{}
 
 // FeedCard struct for FeedCard
 type FeedCard struct {
-	links []Link `json:"links,omitempty"`
+	Links []Link `json:"links,omitempty"`
 }
 
 // NewFeedCardWith instantiates a new FeedCard object
@@ -43,35 +43,35 @@ func NewFeedCard() *FeedCard {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *FeedCard) GetLinks() []Link {
-	if o == nil || utils.IsNil(o.links) {
+	if o == nil || utils.IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
-	return o.links
+	return o.Links
 }
 
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FeedCard) GetLinksOk() ([]Link, bool) {
-	if o == nil || utils.IsNil(o.links) {
+	if o == nil || utils.IsNil(o.Links) {
 		return nil, false
 	}
-	return o.links, true
+	return o.Links, true
 }
 
 // HasLinks returns a boolean if a field has been set.
 func (o *FeedCard) HasLinks() bool {
-	if o != nil && !utils.IsNil(o.links) {
+	if o != nil && !utils.IsNil(o.Links) {
 		return true
 	}
 
 	return false
 }
 
-// Links gets a reference to the given []Link and assigns it to the links field.
-// links:
-func (o *FeedCard) Links(v []Link) *FeedCard {
-	o.links = v
+// SetLinks gets a reference to the given []Link and assigns it to the links field.
+// Links:
+func (o *FeedCard) SetLinks(v []Link) *FeedCard {
+	o.Links = v
 	return o
 }
 
@@ -85,8 +85,8 @@ func (o FeedCard) MarshalJSON() ([]byte, error) {
 
 func (o FeedCard) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.links) {
-		toSerialize["links"] = o.links
+	if !utils.IsNil(o.Links) {
+		toSerialize["links"] = o.Links
 	}
 	return toSerialize, nil
 }

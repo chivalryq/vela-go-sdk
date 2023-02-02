@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &AlibabaProviderAllOf{}
 
 // AlibabaProviderAllOf struct for AlibabaProviderAllOf
 type AlibabaProviderAllOf struct {
-	name  string `json:"name"`
-	type_ string `json:"type"`
+	Name string `json:"name"`
+	Type string `json:"type"`
 }
 
 // NewAlibabaProviderAllOfWith instantiates a new AlibabaProviderAllOf object
@@ -31,8 +31,8 @@ type AlibabaProviderAllOf struct {
 // will change when the set of required properties is changed
 func NewAlibabaProviderAllOfWith(name string, type_ string) *AlibabaProviderAllOf {
 	this := AlibabaProviderAllOf{}
-	this.name = name
-	this.type_ = type_
+	this.Name = name
+	this.Type = type_
 	return &this
 }
 
@@ -42,7 +42,7 @@ func NewAlibabaProviderAllOfWith(name string, type_ string) *AlibabaProviderAllO
 func NewAlibabaProviderAllOf() *AlibabaProviderAllOf {
 	this := AlibabaProviderAllOf{}
 	var name string = "alibaba-provider"
-	this.name = name
+	this.Name = name
 	return &this
 }
 
@@ -53,7 +53,7 @@ func (o *AlibabaProviderAllOf) GetName() string {
 		return ret
 	}
 
-	return o.name
+	return o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value
@@ -62,12 +62,12 @@ func (o *AlibabaProviderAllOf) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.name, true
+	return &o.Name, true
 }
 
-// Name sets field value
-func (o *AlibabaProviderAllOf) Name(v string) *AlibabaProviderAllOf {
-	o.name = v
+// SetName sets field value
+func (o *AlibabaProviderAllOf) SetName(v string) *AlibabaProviderAllOf {
+	o.Name = v
 	return o
 }
 
@@ -78,7 +78,7 @@ func (o *AlibabaProviderAllOf) GetType() string {
 		return ret
 	}
 
-	return o.type_
+	return o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value
@@ -87,12 +87,12 @@ func (o *AlibabaProviderAllOf) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.type_, true
+	return &o.Type, true
 }
 
-// Type sets field value
-func (o *AlibabaProviderAllOf) Type(v string) *AlibabaProviderAllOf {
-	o.type_ = v
+// SetType sets field value
+func (o *AlibabaProviderAllOf) SetType(v string) *AlibabaProviderAllOf {
+	o.Type = v
 	return o
 }
 
@@ -106,8 +106,8 @@ func (o AlibabaProviderAllOf) MarshalJSON() ([]byte, error) {
 
 func (o AlibabaProviderAllOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.name
-	toSerialize["type"] = o.type_
+	toSerialize["name"] = o.Name
+	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 

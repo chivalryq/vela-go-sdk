@@ -22,15 +22,15 @@ var _ utils.MappedNullable = &PatchParams{}
 // PatchParams struct for PatchParams
 type PatchParams struct {
 	// Specify the args to add in the target container, existing args will be kept, cannot be used with `args`
-	addArgs []string `json:"addArgs,omitempty"`
+	AddArgs []string `json:"addArgs,omitempty"`
 	// Specify the args to use in the target container, if set, it will override existing args
-	args []string `json:"args,omitempty"`
+	Args []string `json:"args,omitempty"`
 	// Specify the command to use in the target container, if not set, it will not be changed
-	command []string `json:"command,omitempty"`
+	Command []string `json:"command,omitempty"`
 	// Specify the name of the target container, if not set, use the component name
-	containerName *string `json:"containerName,omitempty"`
+	ContainerName *string `json:"containerName,omitempty"`
 	// Specify the existing args to delete in the target container, cannot be used with `args`
-	delArgs []string `json:"delArgs,omitempty"`
+	DelArgs []string `json:"delArgs,omitempty"`
 }
 
 // NewPatchParamsWith instantiates a new PatchParams object
@@ -40,7 +40,7 @@ type PatchParams struct {
 func NewPatchParamsWith() *PatchParams {
 	this := PatchParams{}
 	var containerName string = ""
-	this.containerName = &containerName
+	this.ContainerName = &containerName
 	return &this
 }
 
@@ -50,7 +50,7 @@ func NewPatchParamsWith() *PatchParams {
 func NewPatchParams() *PatchParams {
 	this := PatchParams{}
 	var containerName string = ""
-	this.containerName = &containerName
+	this.ContainerName = &containerName
 	return &this
 }
 
@@ -60,32 +60,32 @@ func (o *PatchParams) GetAddArgs() []string {
 		var ret []string
 		return ret
 	}
-	return o.addArgs
+	return o.AddArgs
 }
 
 // GetAddArgsOk returns a tuple with the AddArgs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PatchParams) GetAddArgsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.addArgs) {
+	if o == nil || utils.IsNil(o.AddArgs) {
 		return nil, false
 	}
-	return o.addArgs, true
+	return o.AddArgs, true
 }
 
 // HasAddArgs returns a boolean if a field has been set.
 func (o *PatchParams) HasAddArgs() bool {
-	if o != nil && utils.IsNil(o.addArgs) {
+	if o != nil && utils.IsNil(o.AddArgs) {
 		return true
 	}
 
 	return false
 }
 
-// AddArgs gets a reference to the given []string and assigns it to the addArgs field.
-// addArgs:  Specify the args to add in the target container, existing args will be kept, cannot be used with `args`
-func (o *PatchParams) AddArgs(v []string) *PatchParams {
-	o.addArgs = v
+// SetAddArgs gets a reference to the given []string and assigns it to the addArgs field.
+// AddArgs:  Specify the args to add in the target container, existing args will be kept, cannot be used with `args`
+func (o *PatchParams) SetAddArgs(v []string) *PatchParams {
+	o.AddArgs = v
 	return o
 }
 
@@ -95,32 +95,32 @@ func (o *PatchParams) GetArgs() []string {
 		var ret []string
 		return ret
 	}
-	return o.args
+	return o.Args
 }
 
 // GetArgsOk returns a tuple with the Args field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PatchParams) GetArgsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.args) {
+	if o == nil || utils.IsNil(o.Args) {
 		return nil, false
 	}
-	return o.args, true
+	return o.Args, true
 }
 
 // HasArgs returns a boolean if a field has been set.
 func (o *PatchParams) HasArgs() bool {
-	if o != nil && utils.IsNil(o.args) {
+	if o != nil && utils.IsNil(o.Args) {
 		return true
 	}
 
 	return false
 }
 
-// Args gets a reference to the given []string and assigns it to the args field.
-// args:  Specify the args to use in the target container, if set, it will override existing args
-func (o *PatchParams) Args(v []string) *PatchParams {
-	o.args = v
+// SetArgs gets a reference to the given []string and assigns it to the args field.
+// Args:  Specify the args to use in the target container, if set, it will override existing args
+func (o *PatchParams) SetArgs(v []string) *PatchParams {
+	o.Args = v
 	return o
 }
 
@@ -130,66 +130,66 @@ func (o *PatchParams) GetCommand() []string {
 		var ret []string
 		return ret
 	}
-	return o.command
+	return o.Command
 }
 
 // GetCommandOk returns a tuple with the Command field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PatchParams) GetCommandOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.command) {
+	if o == nil || utils.IsNil(o.Command) {
 		return nil, false
 	}
-	return o.command, true
+	return o.Command, true
 }
 
 // HasCommand returns a boolean if a field has been set.
 func (o *PatchParams) HasCommand() bool {
-	if o != nil && utils.IsNil(o.command) {
+	if o != nil && utils.IsNil(o.Command) {
 		return true
 	}
 
 	return false
 }
 
-// Command gets a reference to the given []string and assigns it to the command field.
-// command:  Specify the command to use in the target container, if not set, it will not be changed
-func (o *PatchParams) Command(v []string) *PatchParams {
-	o.command = v
+// SetCommand gets a reference to the given []string and assigns it to the command field.
+// Command:  Specify the command to use in the target container, if not set, it will not be changed
+func (o *PatchParams) SetCommand(v []string) *PatchParams {
+	o.Command = v
 	return o
 }
 
 // GetContainerName returns the ContainerName field value if set, zero value otherwise.
 func (o *PatchParams) GetContainerName() string {
-	if o == nil || utils.IsNil(o.containerName) {
+	if o == nil || utils.IsNil(o.ContainerName) {
 		var ret string
 		return ret
 	}
-	return *o.containerName
+	return *o.ContainerName
 }
 
 // GetContainerNameOk returns a tuple with the ContainerName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchParams) GetContainerNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.containerName) {
+	if o == nil || utils.IsNil(o.ContainerName) {
 		return nil, false
 	}
-	return o.containerName, true
+	return o.ContainerName, true
 }
 
 // HasContainerName returns a boolean if a field has been set.
 func (o *PatchParams) HasContainerName() bool {
-	if o != nil && !utils.IsNil(o.containerName) {
+	if o != nil && !utils.IsNil(o.ContainerName) {
 		return true
 	}
 
 	return false
 }
 
-// ContainerName gets a reference to the given string and assigns it to the containerName field.
-// containerName:  Specify the name of the target container, if not set, use the component name
-func (o *PatchParams) ContainerName(v string) *PatchParams {
-	o.containerName = &v
+// SetContainerName gets a reference to the given string and assigns it to the containerName field.
+// ContainerName:  Specify the name of the target container, if not set, use the component name
+func (o *PatchParams) SetContainerName(v string) *PatchParams {
+	o.ContainerName = &v
 	return o
 }
 
@@ -199,32 +199,32 @@ func (o *PatchParams) GetDelArgs() []string {
 		var ret []string
 		return ret
 	}
-	return o.delArgs
+	return o.DelArgs
 }
 
 // GetDelArgsOk returns a tuple with the DelArgs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PatchParams) GetDelArgsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.delArgs) {
+	if o == nil || utils.IsNil(o.DelArgs) {
 		return nil, false
 	}
-	return o.delArgs, true
+	return o.DelArgs, true
 }
 
 // HasDelArgs returns a boolean if a field has been set.
 func (o *PatchParams) HasDelArgs() bool {
-	if o != nil && utils.IsNil(o.delArgs) {
+	if o != nil && utils.IsNil(o.DelArgs) {
 		return true
 	}
 
 	return false
 }
 
-// DelArgs gets a reference to the given []string and assigns it to the delArgs field.
-// delArgs:  Specify the existing args to delete in the target container, cannot be used with `args`
-func (o *PatchParams) DelArgs(v []string) *PatchParams {
-	o.delArgs = v
+// SetDelArgs gets a reference to the given []string and assigns it to the delArgs field.
+// DelArgs:  Specify the existing args to delete in the target container, cannot be used with `args`
+func (o *PatchParams) SetDelArgs(v []string) *PatchParams {
+	o.DelArgs = v
 	return o
 }
 
@@ -238,20 +238,20 @@ func (o PatchParams) MarshalJSON() ([]byte, error) {
 
 func (o PatchParams) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.addArgs != nil {
-		toSerialize["addArgs"] = o.addArgs
+	if o.AddArgs != nil {
+		toSerialize["addArgs"] = o.AddArgs
 	}
-	if o.args != nil {
-		toSerialize["args"] = o.args
+	if o.Args != nil {
+		toSerialize["args"] = o.Args
 	}
-	if o.command != nil {
-		toSerialize["command"] = o.command
+	if o.Command != nil {
+		toSerialize["command"] = o.Command
 	}
-	if !utils.IsNil(o.containerName) {
-		toSerialize["containerName"] = o.containerName
+	if !utils.IsNil(o.ContainerName) {
+		toSerialize["containerName"] = o.ContainerName
 	}
-	if o.delArgs != nil {
-		toSerialize["delArgs"] = o.delArgs
+	if o.DelArgs != nil {
+		toSerialize["delArgs"] = o.DelArgs
 	}
 	return toSerialize, nil
 }

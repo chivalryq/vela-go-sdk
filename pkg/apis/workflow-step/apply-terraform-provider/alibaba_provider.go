@@ -21,11 +21,11 @@ var _ utils.MappedNullable = &AlibabaProvider{}
 
 // AlibabaProvider struct for AlibabaProvider
 type AlibabaProvider struct {
-	accessKey *string `json:"accessKey,omitempty"`
-	region    *string `json:"region,omitempty"`
-	secretKey *string `json:"secretKey,omitempty"`
-	name      string  `json:"name"`
-	type_     string  `json:"type"`
+	AccessKey *string `json:"accessKey,omitempty"`
+	Region    *string `json:"region,omitempty"`
+	SecretKey *string `json:"secretKey,omitempty"`
+	Name      string  `json:"name"`
+	Type      string  `json:"type"`
 }
 
 // NewAlibabaProviderWith instantiates a new AlibabaProvider object
@@ -34,8 +34,8 @@ type AlibabaProvider struct {
 // will change when the set of required properties is changed
 func NewAlibabaProviderWith(name string, type_ string) *AlibabaProvider {
 	this := AlibabaProvider{}
-	this.name = name
-	this.type_ = type_
+	this.Name = name
+	this.Type = type_
 	return &this
 }
 
@@ -45,109 +45,109 @@ func NewAlibabaProviderWith(name string, type_ string) *AlibabaProvider {
 func NewAlibabaProvider() *AlibabaProvider {
 	this := AlibabaProvider{}
 	var name string = "alibaba-provider"
-	this.name = name
+	this.Name = name
 	return &this
 }
 
 // GetAccessKey returns the AccessKey field value if set, zero value otherwise.
 func (o *AlibabaProvider) GetAccessKey() string {
-	if o == nil || utils.IsNil(o.accessKey) {
+	if o == nil || utils.IsNil(o.AccessKey) {
 		var ret string
 		return ret
 	}
-	return *o.accessKey
+	return *o.AccessKey
 }
 
 // GetAccessKeyOk returns a tuple with the AccessKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlibabaProvider) GetAccessKeyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.accessKey) {
+	if o == nil || utils.IsNil(o.AccessKey) {
 		return nil, false
 	}
-	return o.accessKey, true
+	return o.AccessKey, true
 }
 
 // HasAccessKey returns a boolean if a field has been set.
 func (o *AlibabaProvider) HasAccessKey() bool {
-	if o != nil && !utils.IsNil(o.accessKey) {
+	if o != nil && !utils.IsNil(o.AccessKey) {
 		return true
 	}
 
 	return false
 }
 
-// AccessKey gets a reference to the given string and assigns it to the accessKey field.
-// accessKey:
-func (o *AlibabaProvider) AccessKey(v string) *AlibabaProvider {
-	o.accessKey = &v
+// SetAccessKey gets a reference to the given string and assigns it to the accessKey field.
+// AccessKey:
+func (o *AlibabaProvider) SetAccessKey(v string) *AlibabaProvider {
+	o.AccessKey = &v
 	return o
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *AlibabaProvider) GetRegion() string {
-	if o == nil || utils.IsNil(o.region) {
+	if o == nil || utils.IsNil(o.Region) {
 		var ret string
 		return ret
 	}
-	return *o.region
+	return *o.Region
 }
 
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlibabaProvider) GetRegionOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.region) {
+	if o == nil || utils.IsNil(o.Region) {
 		return nil, false
 	}
-	return o.region, true
+	return o.Region, true
 }
 
 // HasRegion returns a boolean if a field has been set.
 func (o *AlibabaProvider) HasRegion() bool {
-	if o != nil && !utils.IsNil(o.region) {
+	if o != nil && !utils.IsNil(o.Region) {
 		return true
 	}
 
 	return false
 }
 
-// Region gets a reference to the given string and assigns it to the region field.
-// region:
-func (o *AlibabaProvider) Region(v string) *AlibabaProvider {
-	o.region = &v
+// SetRegion gets a reference to the given string and assigns it to the region field.
+// Region:
+func (o *AlibabaProvider) SetRegion(v string) *AlibabaProvider {
+	o.Region = &v
 	return o
 }
 
 // GetSecretKey returns the SecretKey field value if set, zero value otherwise.
 func (o *AlibabaProvider) GetSecretKey() string {
-	if o == nil || utils.IsNil(o.secretKey) {
+	if o == nil || utils.IsNil(o.SecretKey) {
 		var ret string
 		return ret
 	}
-	return *o.secretKey
+	return *o.SecretKey
 }
 
 // GetSecretKeyOk returns a tuple with the SecretKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlibabaProvider) GetSecretKeyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.secretKey) {
+	if o == nil || utils.IsNil(o.SecretKey) {
 		return nil, false
 	}
-	return o.secretKey, true
+	return o.SecretKey, true
 }
 
 // HasSecretKey returns a boolean if a field has been set.
 func (o *AlibabaProvider) HasSecretKey() bool {
-	if o != nil && !utils.IsNil(o.secretKey) {
+	if o != nil && !utils.IsNil(o.SecretKey) {
 		return true
 	}
 
 	return false
 }
 
-// SecretKey gets a reference to the given string and assigns it to the secretKey field.
-// secretKey:
-func (o *AlibabaProvider) SecretKey(v string) *AlibabaProvider {
-	o.secretKey = &v
+// SetSecretKey gets a reference to the given string and assigns it to the secretKey field.
+// SecretKey:
+func (o *AlibabaProvider) SetSecretKey(v string) *AlibabaProvider {
+	o.SecretKey = &v
 	return o
 }
 
@@ -158,7 +158,7 @@ func (o *AlibabaProvider) GetName() string {
 		return ret
 	}
 
-	return o.name
+	return o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value
@@ -167,12 +167,12 @@ func (o *AlibabaProvider) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.name, true
+	return &o.Name, true
 }
 
-// Name sets field value
-func (o *AlibabaProvider) Name(v string) *AlibabaProvider {
-	o.name = v
+// SetName sets field value
+func (o *AlibabaProvider) SetName(v string) *AlibabaProvider {
+	o.Name = v
 	return o
 }
 
@@ -183,7 +183,7 @@ func (o *AlibabaProvider) GetType() string {
 		return ret
 	}
 
-	return o.type_
+	return o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value
@@ -192,12 +192,12 @@ func (o *AlibabaProvider) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.type_, true
+	return &o.Type, true
 }
 
-// Type sets field value
-func (o *AlibabaProvider) Type(v string) *AlibabaProvider {
-	o.type_ = v
+// SetType sets field value
+func (o *AlibabaProvider) SetType(v string) *AlibabaProvider {
+	o.Type = v
 	return o
 }
 
@@ -211,17 +211,17 @@ func (o AlibabaProvider) MarshalJSON() ([]byte, error) {
 
 func (o AlibabaProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.accessKey) {
-		toSerialize["accessKey"] = o.accessKey
+	if !utils.IsNil(o.AccessKey) {
+		toSerialize["accessKey"] = o.AccessKey
 	}
-	if !utils.IsNil(o.region) {
-		toSerialize["region"] = o.region
+	if !utils.IsNil(o.Region) {
+		toSerialize["region"] = o.Region
 	}
-	if !utils.IsNil(o.secretKey) {
-		toSerialize["secretKey"] = o.secretKey
+	if !utils.IsNil(o.SecretKey) {
+		toSerialize["secretKey"] = o.SecretKey
 	}
-	toSerialize["name"] = o.name
-	toSerialize["type"] = o.type_
+	toSerialize["name"] = o.Name
+	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 

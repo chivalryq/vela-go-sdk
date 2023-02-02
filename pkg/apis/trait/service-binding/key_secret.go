@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &KeySecret{}
 
 // KeySecret struct for KeySecret
 type KeySecret struct {
-	key    *string `json:"key,omitempty"`
-	secret *string `json:"secret,omitempty"`
+	Key    *string `json:"key,omitempty"`
+	Secret *string `json:"secret,omitempty"`
 }
 
 // NewKeySecretWith instantiates a new KeySecret object
@@ -44,69 +44,69 @@ func NewKeySecret() *KeySecret {
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *KeySecret) GetKey() string {
-	if o == nil || utils.IsNil(o.key) {
+	if o == nil || utils.IsNil(o.Key) {
 		var ret string
 		return ret
 	}
-	return *o.key
+	return *o.Key
 }
 
 // GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KeySecret) GetKeyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.key) {
+	if o == nil || utils.IsNil(o.Key) {
 		return nil, false
 	}
-	return o.key, true
+	return o.Key, true
 }
 
 // HasKey returns a boolean if a field has been set.
 func (o *KeySecret) HasKey() bool {
-	if o != nil && !utils.IsNil(o.key) {
+	if o != nil && !utils.IsNil(o.Key) {
 		return true
 	}
 
 	return false
 }
 
-// Key gets a reference to the given string and assigns it to the key field.
-// key:
-func (o *KeySecret) Key(v string) *KeySecret {
-	o.key = &v
+// SetKey gets a reference to the given string and assigns it to the key field.
+// Key:
+func (o *KeySecret) SetKey(v string) *KeySecret {
+	o.Key = &v
 	return o
 }
 
 // GetSecret returns the Secret field value if set, zero value otherwise.
 func (o *KeySecret) GetSecret() string {
-	if o == nil || utils.IsNil(o.secret) {
+	if o == nil || utils.IsNil(o.Secret) {
 		var ret string
 		return ret
 	}
-	return *o.secret
+	return *o.Secret
 }
 
 // GetSecretOk returns a tuple with the Secret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KeySecret) GetSecretOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.secret) {
+	if o == nil || utils.IsNil(o.Secret) {
 		return nil, false
 	}
-	return o.secret, true
+	return o.Secret, true
 }
 
 // HasSecret returns a boolean if a field has been set.
 func (o *KeySecret) HasSecret() bool {
-	if o != nil && !utils.IsNil(o.secret) {
+	if o != nil && !utils.IsNil(o.Secret) {
 		return true
 	}
 
 	return false
 }
 
-// Secret gets a reference to the given string and assigns it to the secret field.
-// secret:
-func (o *KeySecret) Secret(v string) *KeySecret {
-	o.secret = &v
+// SetSecret gets a reference to the given string and assigns it to the secret field.
+// Secret:
+func (o *KeySecret) SetSecret(v string) *KeySecret {
+	o.Secret = &v
 	return o
 }
 
@@ -120,11 +120,11 @@ func (o KeySecret) MarshalJSON() ([]byte, error) {
 
 func (o KeySecret) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.key) {
-		toSerialize["key"] = o.key
+	if !utils.IsNil(o.Key) {
+		toSerialize["key"] = o.Key
 	}
-	if !utils.IsNil(o.secret) {
-		toSerialize["secret"] = o.secret
+	if !utils.IsNil(o.Secret) {
+		toSerialize["secret"] = o.Secret
 	}
 	return toSerialize, nil
 }

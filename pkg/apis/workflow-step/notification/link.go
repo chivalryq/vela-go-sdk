@@ -21,10 +21,10 @@ var _ utils.MappedNullable = &Link{}
 
 // Link struct for Link
 type Link struct {
-	messageUrl *string `json:"messageUrl,omitempty"`
-	picUrl     *string `json:"picUrl,omitempty"`
-	text       *string `json:"text,omitempty"`
-	title      *string `json:"title,omitempty"`
+	MessageUrl *string `json:"messageUrl,omitempty"`
+	PicUrl     *string `json:"picUrl,omitempty"`
+	Text       *string `json:"text,omitempty"`
+	Title      *string `json:"title,omitempty"`
 }
 
 // NewLinkWith instantiates a new Link object
@@ -46,137 +46,137 @@ func NewLink() *Link {
 
 // GetMessageUrl returns the MessageUrl field value if set, zero value otherwise.
 func (o *Link) GetMessageUrl() string {
-	if o == nil || utils.IsNil(o.messageUrl) {
+	if o == nil || utils.IsNil(o.MessageUrl) {
 		var ret string
 		return ret
 	}
-	return *o.messageUrl
+	return *o.MessageUrl
 }
 
 // GetMessageUrlOk returns a tuple with the MessageUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Link) GetMessageUrlOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.messageUrl) {
+	if o == nil || utils.IsNil(o.MessageUrl) {
 		return nil, false
 	}
-	return o.messageUrl, true
+	return o.MessageUrl, true
 }
 
 // HasMessageUrl returns a boolean if a field has been set.
 func (o *Link) HasMessageUrl() bool {
-	if o != nil && !utils.IsNil(o.messageUrl) {
+	if o != nil && !utils.IsNil(o.MessageUrl) {
 		return true
 	}
 
 	return false
 }
 
-// MessageUrl gets a reference to the given string and assigns it to the messageUrl field.
-// messageUrl:
-func (o *Link) MessageUrl(v string) *Link {
-	o.messageUrl = &v
+// SetMessageUrl gets a reference to the given string and assigns it to the messageUrl field.
+// MessageUrl:
+func (o *Link) SetMessageUrl(v string) *Link {
+	o.MessageUrl = &v
 	return o
 }
 
 // GetPicUrl returns the PicUrl field value if set, zero value otherwise.
 func (o *Link) GetPicUrl() string {
-	if o == nil || utils.IsNil(o.picUrl) {
+	if o == nil || utils.IsNil(o.PicUrl) {
 		var ret string
 		return ret
 	}
-	return *o.picUrl
+	return *o.PicUrl
 }
 
 // GetPicUrlOk returns a tuple with the PicUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Link) GetPicUrlOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.picUrl) {
+	if o == nil || utils.IsNil(o.PicUrl) {
 		return nil, false
 	}
-	return o.picUrl, true
+	return o.PicUrl, true
 }
 
 // HasPicUrl returns a boolean if a field has been set.
 func (o *Link) HasPicUrl() bool {
-	if o != nil && !utils.IsNil(o.picUrl) {
+	if o != nil && !utils.IsNil(o.PicUrl) {
 		return true
 	}
 
 	return false
 }
 
-// PicUrl gets a reference to the given string and assigns it to the picUrl field.
-// picUrl:
-func (o *Link) PicUrl(v string) *Link {
-	o.picUrl = &v
+// SetPicUrl gets a reference to the given string and assigns it to the picUrl field.
+// PicUrl:
+func (o *Link) SetPicUrl(v string) *Link {
+	o.PicUrl = &v
 	return o
 }
 
 // GetText returns the Text field value if set, zero value otherwise.
 func (o *Link) GetText() string {
-	if o == nil || utils.IsNil(o.text) {
+	if o == nil || utils.IsNil(o.Text) {
 		var ret string
 		return ret
 	}
-	return *o.text
+	return *o.Text
 }
 
 // GetTextOk returns a tuple with the Text field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Link) GetTextOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.text) {
+	if o == nil || utils.IsNil(o.Text) {
 		return nil, false
 	}
-	return o.text, true
+	return o.Text, true
 }
 
 // HasText returns a boolean if a field has been set.
 func (o *Link) HasText() bool {
-	if o != nil && !utils.IsNil(o.text) {
+	if o != nil && !utils.IsNil(o.Text) {
 		return true
 	}
 
 	return false
 }
 
-// Text gets a reference to the given string and assigns it to the text field.
-// text:
-func (o *Link) Text(v string) *Link {
-	o.text = &v
+// SetText gets a reference to the given string and assigns it to the text field.
+// Text:
+func (o *Link) SetText(v string) *Link {
+	o.Text = &v
 	return o
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *Link) GetTitle() string {
-	if o == nil || utils.IsNil(o.title) {
+	if o == nil || utils.IsNil(o.Title) {
 		var ret string
 		return ret
 	}
-	return *o.title
+	return *o.Title
 }
 
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Link) GetTitleOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.title) {
+	if o == nil || utils.IsNil(o.Title) {
 		return nil, false
 	}
-	return o.title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
 func (o *Link) HasTitle() bool {
-	if o != nil && !utils.IsNil(o.title) {
+	if o != nil && !utils.IsNil(o.Title) {
 		return true
 	}
 
 	return false
 }
 
-// Title gets a reference to the given string and assigns it to the title field.
-// title:
-func (o *Link) Title(v string) *Link {
-	o.title = &v
+// SetTitle gets a reference to the given string and assigns it to the title field.
+// Title:
+func (o *Link) SetTitle(v string) *Link {
+	o.Title = &v
 	return o
 }
 
@@ -190,17 +190,17 @@ func (o Link) MarshalJSON() ([]byte, error) {
 
 func (o Link) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.messageUrl) {
-		toSerialize["messageUrl"] = o.messageUrl
+	if !utils.IsNil(o.MessageUrl) {
+		toSerialize["messageUrl"] = o.MessageUrl
 	}
-	if !utils.IsNil(o.picUrl) {
-		toSerialize["picUrl"] = o.picUrl
+	if !utils.IsNil(o.PicUrl) {
+		toSerialize["picUrl"] = o.PicUrl
 	}
-	if !utils.IsNil(o.text) {
-		toSerialize["text"] = o.text
+	if !utils.IsNil(o.Text) {
+		toSerialize["text"] = o.Text
 	}
-	if !utils.IsNil(o.title) {
-		toSerialize["title"] = o.title
+	if !utils.IsNil(o.Title) {
+		toSerialize["title"] = o.Title
 	}
 	return toSerialize, nil
 }

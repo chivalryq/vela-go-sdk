@@ -22,7 +22,7 @@ var _ utils.MappedNullable = &StartupProbeSpecOneOf{}
 // StartupProbeSpecOneOf struct for StartupProbeSpecOneOf
 type StartupProbeSpecOneOf struct {
 	// Specify the startup probe for multiple containers
-	probes []StartupProbeParams `json:"probes"`
+	Probes []StartupProbeParams `json:"probes"`
 }
 
 // NewStartupProbeSpecOneOfWith instantiates a new StartupProbeSpecOneOf object
@@ -31,7 +31,7 @@ type StartupProbeSpecOneOf struct {
 // will change when the set of required properties is changed
 func NewStartupProbeSpecOneOfWith(probes []StartupProbeParams) *StartupProbeSpecOneOf {
 	this := StartupProbeSpecOneOf{}
-	this.probes = probes
+	this.Probes = probes
 	return &this
 }
 
@@ -50,7 +50,7 @@ func (o *StartupProbeSpecOneOf) GetProbes() []StartupProbeParams {
 		return ret
 	}
 
-	return o.probes
+	return o.Probes
 }
 
 // GetProbesOk returns a tuple with the Probes field value
@@ -59,12 +59,12 @@ func (o *StartupProbeSpecOneOf) GetProbesOk() ([]StartupProbeParams, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.probes, true
+	return o.Probes, true
 }
 
-// Probes sets field value
-func (o *StartupProbeSpecOneOf) Probes(v []StartupProbeParams) *StartupProbeSpecOneOf {
-	o.probes = v
+// SetProbes sets field value
+func (o *StartupProbeSpecOneOf) SetProbes(v []StartupProbeParams) *StartupProbeSpecOneOf {
+	o.Probes = v
 	return o
 }
 
@@ -78,7 +78,7 @@ func (o StartupProbeSpecOneOf) MarshalJSON() ([]byte, error) {
 
 func (o StartupProbeSpecOneOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["probes"] = o.probes
+	toSerialize["probes"] = o.Probes
 	return toSerialize, nil
 }
 

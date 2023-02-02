@@ -27,24 +27,24 @@ var _ utils.MappedNullable = &WorkerSpec{}
 // WorkerSpec struct for WorkerSpec
 type WorkerSpec struct {
 	// Commands to run in the container
-	cmd []string `json:"cmd,omitempty"`
+	Cmd []string `json:"cmd,omitempty"`
 	// Number of CPU units for the service, like `0.5` (0.5 CPU core), `1` (1 CPU core)
-	cpu *string `json:"cpu,omitempty"`
+	Cpu *string `json:"cpu,omitempty"`
 	// Define arguments by using environment variables
-	env []Env `json:"env,omitempty"`
+	Env []Env `json:"env,omitempty"`
 	// Which image would you like to use for your service +short=i
-	image *string `json:"image,omitempty"`
+	Image *string `json:"image,omitempty"`
 	// Specify image pull policy for your service
-	imagePullPolicy *string `json:"imagePullPolicy,omitempty"`
+	ImagePullPolicy *string `json:"imagePullPolicy,omitempty"`
 	// Specify image pull secrets for your service
-	imagePullSecrets []string     `json:"imagePullSecrets,omitempty"`
-	livenessProbe    *HealthProbe `json:"livenessProbe,omitempty"`
+	ImagePullSecrets []string     `json:"imagePullSecrets,omitempty"`
+	LivenessProbe    *HealthProbe `json:"livenessProbe,omitempty"`
 	// Specifies the attributes of the memory resource required for the container.
-	memory         *string       `json:"memory,omitempty"`
-	readinessProbe *HealthProbe  `json:"readinessProbe,omitempty"`
-	volumeMounts   *VolumeMounts `json:"volumeMounts,omitempty"`
+	Memory         *string       `json:"memory,omitempty"`
+	ReadinessProbe *HealthProbe  `json:"readinessProbe,omitempty"`
+	VolumeMounts   *VolumeMounts `json:"volumeMounts,omitempty"`
 	// Deprecated field, use volumeMounts instead.
-	volumes []Volumes `json:"volumes,omitempty"`
+	Volumes []Volumes `json:"volumes,omitempty"`
 }
 
 // NewWorkerSpecWith instantiates a new WorkerSpec object
@@ -66,375 +66,375 @@ func NewWorkerSpec() *WorkerSpec {
 
 // GetCmd returns the Cmd field value if set, zero value otherwise.
 func (o *WorkerComponent) GetCmd() []string {
-	if o == nil || utils.IsNil(o.Properties.cmd) {
+	if o == nil || utils.IsNil(o.Properties.Cmd) {
 		var ret []string
 		return ret
 	}
-	return o.Properties.cmd
+	return o.Properties.Cmd
 }
 
 // GetCmdOk returns a tuple with the Cmd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkerComponent) GetCmdOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.cmd) {
+	if o == nil || utils.IsNil(o.Properties.Cmd) {
 		return nil, false
 	}
-	return o.Properties.cmd, true
+	return o.Properties.Cmd, true
 }
 
 // HasCmd returns a boolean if a field has been set.
 func (o *WorkerComponent) HasCmd() bool {
-	if o != nil && !utils.IsNil(o.Properties.cmd) {
+	if o != nil && !utils.IsNil(o.Properties.Cmd) {
 		return true
 	}
 
 	return false
 }
 
-// Cmd gets a reference to the given []string and assigns it to the cmd field.
-// cmd:  Commands to run in the container
-func (o *WorkerComponent) Cmd(v []string) *WorkerComponent {
-	o.Properties.cmd = v
+// SetCmd gets a reference to the given []string and assigns it to the cmd field.
+// Cmd:  Commands to run in the container
+func (o *WorkerComponent) SetCmd(v []string) *WorkerComponent {
+	o.Properties.Cmd = v
 	return o
 }
 
 // GetCpu returns the Cpu field value if set, zero value otherwise.
 func (o *WorkerComponent) GetCpu() string {
-	if o == nil || utils.IsNil(o.Properties.cpu) {
+	if o == nil || utils.IsNil(o.Properties.Cpu) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.cpu
+	return *o.Properties.Cpu
 }
 
 // GetCpuOk returns a tuple with the Cpu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkerComponent) GetCpuOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.cpu) {
+	if o == nil || utils.IsNil(o.Properties.Cpu) {
 		return nil, false
 	}
-	return o.Properties.cpu, true
+	return o.Properties.Cpu, true
 }
 
 // HasCpu returns a boolean if a field has been set.
 func (o *WorkerComponent) HasCpu() bool {
-	if o != nil && !utils.IsNil(o.Properties.cpu) {
+	if o != nil && !utils.IsNil(o.Properties.Cpu) {
 		return true
 	}
 
 	return false
 }
 
-// Cpu gets a reference to the given string and assigns it to the cpu field.
-// cpu:  Number of CPU units for the service, like `0.5` (0.5 CPU core), `1` (1 CPU core)
-func (o *WorkerComponent) Cpu(v string) *WorkerComponent {
-	o.Properties.cpu = &v
+// SetCpu gets a reference to the given string and assigns it to the cpu field.
+// Cpu:  Number of CPU units for the service, like `0.5` (0.5 CPU core), `1` (1 CPU core)
+func (o *WorkerComponent) SetCpu(v string) *WorkerComponent {
+	o.Properties.Cpu = &v
 	return o
 }
 
 // GetEnv returns the Env field value if set, zero value otherwise.
 func (o *WorkerComponent) GetEnv() []Env {
-	if o == nil || utils.IsNil(o.Properties.env) {
+	if o == nil || utils.IsNil(o.Properties.Env) {
 		var ret []Env
 		return ret
 	}
-	return o.Properties.env
+	return o.Properties.Env
 }
 
 // GetEnvOk returns a tuple with the Env field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkerComponent) GetEnvOk() ([]Env, bool) {
-	if o == nil || utils.IsNil(o.Properties.env) {
+	if o == nil || utils.IsNil(o.Properties.Env) {
 		return nil, false
 	}
-	return o.Properties.env, true
+	return o.Properties.Env, true
 }
 
 // HasEnv returns a boolean if a field has been set.
 func (o *WorkerComponent) HasEnv() bool {
-	if o != nil && !utils.IsNil(o.Properties.env) {
+	if o != nil && !utils.IsNil(o.Properties.Env) {
 		return true
 	}
 
 	return false
 }
 
-// Env gets a reference to the given []Env and assigns it to the env field.
-// env:  Define arguments by using environment variables
-func (o *WorkerComponent) Env(v []Env) *WorkerComponent {
-	o.Properties.env = v
+// SetEnv gets a reference to the given []Env and assigns it to the env field.
+// Env:  Define arguments by using environment variables
+func (o *WorkerComponent) SetEnv(v []Env) *WorkerComponent {
+	o.Properties.Env = v
 	return o
 }
 
 // GetImage returns the Image field value if set, zero value otherwise.
 func (o *WorkerComponent) GetImage() string {
-	if o == nil || utils.IsNil(o.Properties.image) {
+	if o == nil || utils.IsNil(o.Properties.Image) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.image
+	return *o.Properties.Image
 }
 
 // GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkerComponent) GetImageOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.image) {
+	if o == nil || utils.IsNil(o.Properties.Image) {
 		return nil, false
 	}
-	return o.Properties.image, true
+	return o.Properties.Image, true
 }
 
 // HasImage returns a boolean if a field has been set.
 func (o *WorkerComponent) HasImage() bool {
-	if o != nil && !utils.IsNil(o.Properties.image) {
+	if o != nil && !utils.IsNil(o.Properties.Image) {
 		return true
 	}
 
 	return false
 }
 
-// Image gets a reference to the given string and assigns it to the image field.
-// image:  Which image would you like to use for your service +short=i
-func (o *WorkerComponent) Image(v string) *WorkerComponent {
-	o.Properties.image = &v
+// SetImage gets a reference to the given string and assigns it to the image field.
+// Image:  Which image would you like to use for your service +short=i
+func (o *WorkerComponent) SetImage(v string) *WorkerComponent {
+	o.Properties.Image = &v
 	return o
 }
 
 // GetImagePullPolicy returns the ImagePullPolicy field value if set, zero value otherwise.
 func (o *WorkerComponent) GetImagePullPolicy() string {
-	if o == nil || utils.IsNil(o.Properties.imagePullPolicy) {
+	if o == nil || utils.IsNil(o.Properties.ImagePullPolicy) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.imagePullPolicy
+	return *o.Properties.ImagePullPolicy
 }
 
 // GetImagePullPolicyOk returns a tuple with the ImagePullPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkerComponent) GetImagePullPolicyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.imagePullPolicy) {
+	if o == nil || utils.IsNil(o.Properties.ImagePullPolicy) {
 		return nil, false
 	}
-	return o.Properties.imagePullPolicy, true
+	return o.Properties.ImagePullPolicy, true
 }
 
 // HasImagePullPolicy returns a boolean if a field has been set.
 func (o *WorkerComponent) HasImagePullPolicy() bool {
-	if o != nil && !utils.IsNil(o.Properties.imagePullPolicy) {
+	if o != nil && !utils.IsNil(o.Properties.ImagePullPolicy) {
 		return true
 	}
 
 	return false
 }
 
-// ImagePullPolicy gets a reference to the given string and assigns it to the imagePullPolicy field.
-// imagePullPolicy:  Specify image pull policy for your service
-func (o *WorkerComponent) ImagePullPolicy(v string) *WorkerComponent {
-	o.Properties.imagePullPolicy = &v
+// SetImagePullPolicy gets a reference to the given string and assigns it to the imagePullPolicy field.
+// ImagePullPolicy:  Specify image pull policy for your service
+func (o *WorkerComponent) SetImagePullPolicy(v string) *WorkerComponent {
+	o.Properties.ImagePullPolicy = &v
 	return o
 }
 
 // GetImagePullSecrets returns the ImagePullSecrets field value if set, zero value otherwise.
 func (o *WorkerComponent) GetImagePullSecrets() []string {
-	if o == nil || utils.IsNil(o.Properties.imagePullSecrets) {
+	if o == nil || utils.IsNil(o.Properties.ImagePullSecrets) {
 		var ret []string
 		return ret
 	}
-	return o.Properties.imagePullSecrets
+	return o.Properties.ImagePullSecrets
 }
 
 // GetImagePullSecretsOk returns a tuple with the ImagePullSecrets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkerComponent) GetImagePullSecretsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.imagePullSecrets) {
+	if o == nil || utils.IsNil(o.Properties.ImagePullSecrets) {
 		return nil, false
 	}
-	return o.Properties.imagePullSecrets, true
+	return o.Properties.ImagePullSecrets, true
 }
 
 // HasImagePullSecrets returns a boolean if a field has been set.
 func (o *WorkerComponent) HasImagePullSecrets() bool {
-	if o != nil && !utils.IsNil(o.Properties.imagePullSecrets) {
+	if o != nil && !utils.IsNil(o.Properties.ImagePullSecrets) {
 		return true
 	}
 
 	return false
 }
 
-// ImagePullSecrets gets a reference to the given []string and assigns it to the imagePullSecrets field.
-// imagePullSecrets:  Specify image pull secrets for your service
-func (o *WorkerComponent) ImagePullSecrets(v []string) *WorkerComponent {
-	o.Properties.imagePullSecrets = v
+// SetImagePullSecrets gets a reference to the given []string and assigns it to the imagePullSecrets field.
+// ImagePullSecrets:  Specify image pull secrets for your service
+func (o *WorkerComponent) SetImagePullSecrets(v []string) *WorkerComponent {
+	o.Properties.ImagePullSecrets = v
 	return o
 }
 
 // GetLivenessProbe returns the LivenessProbe field value if set, zero value otherwise.
 func (o *WorkerComponent) GetLivenessProbe() HealthProbe {
-	if o == nil || utils.IsNil(o.Properties.livenessProbe) {
+	if o == nil || utils.IsNil(o.Properties.LivenessProbe) {
 		var ret HealthProbe
 		return ret
 	}
-	return *o.Properties.livenessProbe
+	return *o.Properties.LivenessProbe
 }
 
 // GetLivenessProbeOk returns a tuple with the LivenessProbe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkerComponent) GetLivenessProbeOk() (*HealthProbe, bool) {
-	if o == nil || utils.IsNil(o.Properties.livenessProbe) {
+	if o == nil || utils.IsNil(o.Properties.LivenessProbe) {
 		return nil, false
 	}
-	return o.Properties.livenessProbe, true
+	return o.Properties.LivenessProbe, true
 }
 
 // HasLivenessProbe returns a boolean if a field has been set.
 func (o *WorkerComponent) HasLivenessProbe() bool {
-	if o != nil && !utils.IsNil(o.Properties.livenessProbe) {
+	if o != nil && !utils.IsNil(o.Properties.LivenessProbe) {
 		return true
 	}
 
 	return false
 }
 
-// LivenessProbe gets a reference to the given HealthProbe and assigns it to the livenessProbe field.
-// livenessProbe:
-func (o *WorkerComponent) LivenessProbe(v HealthProbe) *WorkerComponent {
-	o.Properties.livenessProbe = &v
+// SetLivenessProbe gets a reference to the given HealthProbe and assigns it to the livenessProbe field.
+// LivenessProbe:
+func (o *WorkerComponent) SetLivenessProbe(v HealthProbe) *WorkerComponent {
+	o.Properties.LivenessProbe = &v
 	return o
 }
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
 func (o *WorkerComponent) GetMemory() string {
-	if o == nil || utils.IsNil(o.Properties.memory) {
+	if o == nil || utils.IsNil(o.Properties.Memory) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.memory
+	return *o.Properties.Memory
 }
 
 // GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkerComponent) GetMemoryOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.memory) {
+	if o == nil || utils.IsNil(o.Properties.Memory) {
 		return nil, false
 	}
-	return o.Properties.memory, true
+	return o.Properties.Memory, true
 }
 
 // HasMemory returns a boolean if a field has been set.
 func (o *WorkerComponent) HasMemory() bool {
-	if o != nil && !utils.IsNil(o.Properties.memory) {
+	if o != nil && !utils.IsNil(o.Properties.Memory) {
 		return true
 	}
 
 	return false
 }
 
-// Memory gets a reference to the given string and assigns it to the memory field.
-// memory:  Specifies the attributes of the memory resource required for the container.
-func (o *WorkerComponent) Memory(v string) *WorkerComponent {
-	o.Properties.memory = &v
+// SetMemory gets a reference to the given string and assigns it to the memory field.
+// Memory:  Specifies the attributes of the memory resource required for the container.
+func (o *WorkerComponent) SetMemory(v string) *WorkerComponent {
+	o.Properties.Memory = &v
 	return o
 }
 
 // GetReadinessProbe returns the ReadinessProbe field value if set, zero value otherwise.
 func (o *WorkerComponent) GetReadinessProbe() HealthProbe {
-	if o == nil || utils.IsNil(o.Properties.readinessProbe) {
+	if o == nil || utils.IsNil(o.Properties.ReadinessProbe) {
 		var ret HealthProbe
 		return ret
 	}
-	return *o.Properties.readinessProbe
+	return *o.Properties.ReadinessProbe
 }
 
 // GetReadinessProbeOk returns a tuple with the ReadinessProbe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkerComponent) GetReadinessProbeOk() (*HealthProbe, bool) {
-	if o == nil || utils.IsNil(o.Properties.readinessProbe) {
+	if o == nil || utils.IsNil(o.Properties.ReadinessProbe) {
 		return nil, false
 	}
-	return o.Properties.readinessProbe, true
+	return o.Properties.ReadinessProbe, true
 }
 
 // HasReadinessProbe returns a boolean if a field has been set.
 func (o *WorkerComponent) HasReadinessProbe() bool {
-	if o != nil && !utils.IsNil(o.Properties.readinessProbe) {
+	if o != nil && !utils.IsNil(o.Properties.ReadinessProbe) {
 		return true
 	}
 
 	return false
 }
 
-// ReadinessProbe gets a reference to the given HealthProbe and assigns it to the readinessProbe field.
-// readinessProbe:
-func (o *WorkerComponent) ReadinessProbe(v HealthProbe) *WorkerComponent {
-	o.Properties.readinessProbe = &v
+// SetReadinessProbe gets a reference to the given HealthProbe and assigns it to the readinessProbe field.
+// ReadinessProbe:
+func (o *WorkerComponent) SetReadinessProbe(v HealthProbe) *WorkerComponent {
+	o.Properties.ReadinessProbe = &v
 	return o
 }
 
 // GetVolumeMounts returns the VolumeMounts field value if set, zero value otherwise.
 func (o *WorkerComponent) GetVolumeMounts() VolumeMounts {
-	if o == nil || utils.IsNil(o.Properties.volumeMounts) {
+	if o == nil || utils.IsNil(o.Properties.VolumeMounts) {
 		var ret VolumeMounts
 		return ret
 	}
-	return *o.Properties.volumeMounts
+	return *o.Properties.VolumeMounts
 }
 
 // GetVolumeMountsOk returns a tuple with the VolumeMounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkerComponent) GetVolumeMountsOk() (*VolumeMounts, bool) {
-	if o == nil || utils.IsNil(o.Properties.volumeMounts) {
+	if o == nil || utils.IsNil(o.Properties.VolumeMounts) {
 		return nil, false
 	}
-	return o.Properties.volumeMounts, true
+	return o.Properties.VolumeMounts, true
 }
 
 // HasVolumeMounts returns a boolean if a field has been set.
 func (o *WorkerComponent) HasVolumeMounts() bool {
-	if o != nil && !utils.IsNil(o.Properties.volumeMounts) {
+	if o != nil && !utils.IsNil(o.Properties.VolumeMounts) {
 		return true
 	}
 
 	return false
 }
 
-// VolumeMounts gets a reference to the given VolumeMounts and assigns it to the volumeMounts field.
-// volumeMounts:
-func (o *WorkerComponent) VolumeMounts(v VolumeMounts) *WorkerComponent {
-	o.Properties.volumeMounts = &v
+// SetVolumeMounts gets a reference to the given VolumeMounts and assigns it to the volumeMounts field.
+// VolumeMounts:
+func (o *WorkerComponent) SetVolumeMounts(v VolumeMounts) *WorkerComponent {
+	o.Properties.VolumeMounts = &v
 	return o
 }
 
 // GetVolumes returns the Volumes field value if set, zero value otherwise.
 func (o *WorkerComponent) GetVolumes() []Volumes {
-	if o == nil || utils.IsNil(o.Properties.volumes) {
+	if o == nil || utils.IsNil(o.Properties.Volumes) {
 		var ret []Volumes
 		return ret
 	}
-	return o.Properties.volumes
+	return o.Properties.Volumes
 }
 
 // GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkerComponent) GetVolumesOk() ([]Volumes, bool) {
-	if o == nil || utils.IsNil(o.Properties.volumes) {
+	if o == nil || utils.IsNil(o.Properties.Volumes) {
 		return nil, false
 	}
-	return o.Properties.volumes, true
+	return o.Properties.Volumes, true
 }
 
 // HasVolumes returns a boolean if a field has been set.
 func (o *WorkerComponent) HasVolumes() bool {
-	if o != nil && !utils.IsNil(o.Properties.volumes) {
+	if o != nil && !utils.IsNil(o.Properties.Volumes) {
 		return true
 	}
 
 	return false
 }
 
-// Volumes gets a reference to the given []Volumes and assigns it to the volumes field.
-// volumes:  Deprecated field, use volumeMounts instead.
-func (o *WorkerComponent) Volumes(v []Volumes) *WorkerComponent {
-	o.Properties.volumes = v
+// SetVolumes gets a reference to the given []Volumes and assigns it to the volumes field.
+// Volumes:  Deprecated field, use volumeMounts instead.
+func (o *WorkerComponent) SetVolumes(v []Volumes) *WorkerComponent {
+	o.Properties.Volumes = v
 	return o
 }
 
@@ -448,38 +448,38 @@ func (o WorkerSpec) MarshalJSON() ([]byte, error) {
 
 func (o WorkerSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.cmd) {
-		toSerialize["cmd"] = o.cmd
+	if !utils.IsNil(o.Cmd) {
+		toSerialize["cmd"] = o.Cmd
 	}
-	if !utils.IsNil(o.cpu) {
-		toSerialize["cpu"] = o.cpu
+	if !utils.IsNil(o.Cpu) {
+		toSerialize["cpu"] = o.Cpu
 	}
-	if !utils.IsNil(o.env) {
-		toSerialize["env"] = o.env
+	if !utils.IsNil(o.Env) {
+		toSerialize["env"] = o.Env
 	}
-	if !utils.IsNil(o.image) {
-		toSerialize["image"] = o.image
+	if !utils.IsNil(o.Image) {
+		toSerialize["image"] = o.Image
 	}
-	if !utils.IsNil(o.imagePullPolicy) {
-		toSerialize["imagePullPolicy"] = o.imagePullPolicy
+	if !utils.IsNil(o.ImagePullPolicy) {
+		toSerialize["imagePullPolicy"] = o.ImagePullPolicy
 	}
-	if !utils.IsNil(o.imagePullSecrets) {
-		toSerialize["imagePullSecrets"] = o.imagePullSecrets
+	if !utils.IsNil(o.ImagePullSecrets) {
+		toSerialize["imagePullSecrets"] = o.ImagePullSecrets
 	}
-	if !utils.IsNil(o.livenessProbe) {
-		toSerialize["livenessProbe"] = o.livenessProbe
+	if !utils.IsNil(o.LivenessProbe) {
+		toSerialize["livenessProbe"] = o.LivenessProbe
 	}
-	if !utils.IsNil(o.memory) {
-		toSerialize["memory"] = o.memory
+	if !utils.IsNil(o.Memory) {
+		toSerialize["memory"] = o.Memory
 	}
-	if !utils.IsNil(o.readinessProbe) {
-		toSerialize["readinessProbe"] = o.readinessProbe
+	if !utils.IsNil(o.ReadinessProbe) {
+		toSerialize["readinessProbe"] = o.ReadinessProbe
 	}
-	if !utils.IsNil(o.volumeMounts) {
-		toSerialize["volumeMounts"] = o.volumeMounts
+	if !utils.IsNil(o.VolumeMounts) {
+		toSerialize["volumeMounts"] = o.VolumeMounts
 	}
-	if !utils.IsNil(o.volumes) {
-		toSerialize["volumes"] = o.volumes
+	if !utils.IsNil(o.Volumes) {
+		toSerialize["volumes"] = o.Volumes
 	}
 	return toSerialize, nil
 }

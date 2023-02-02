@@ -27,7 +27,7 @@ var _ utils.MappedNullable = &TakeOverSpec{}
 // TakeOverSpec struct for TakeOverSpec
 type TakeOverSpec struct {
 	// Specify the list of rules to control take over strategy at resource level. The selected resource will be able to be taken over by the current application when the resource belongs to no one.
-	rules []PolicyRule `json:"rules,omitempty"`
+	Rules []PolicyRule `json:"rules,omitempty"`
 }
 
 // NewTakeOverSpecWith instantiates a new TakeOverSpec object
@@ -49,35 +49,35 @@ func NewTakeOverSpec() *TakeOverSpec {
 
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *TakeOverPolicy) GetRules() []PolicyRule {
-	if o == nil || utils.IsNil(o.Properties.rules) {
+	if o == nil || utils.IsNil(o.Properties.Rules) {
 		var ret []PolicyRule
 		return ret
 	}
-	return o.Properties.rules
+	return o.Properties.Rules
 }
 
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TakeOverPolicy) GetRulesOk() ([]PolicyRule, bool) {
-	if o == nil || utils.IsNil(o.Properties.rules) {
+	if o == nil || utils.IsNil(o.Properties.Rules) {
 		return nil, false
 	}
-	return o.Properties.rules, true
+	return o.Properties.Rules, true
 }
 
 // HasRules returns a boolean if a field has been set.
 func (o *TakeOverPolicy) HasRules() bool {
-	if o != nil && !utils.IsNil(o.Properties.rules) {
+	if o != nil && !utils.IsNil(o.Properties.Rules) {
 		return true
 	}
 
 	return false
 }
 
-// Rules gets a reference to the given []PolicyRule and assigns it to the rules field.
-// rules:  Specify the list of rules to control take over strategy at resource level. The selected resource will be able to be taken over by the current application when the resource belongs to no one.
-func (o *TakeOverPolicy) Rules(v []PolicyRule) *TakeOverPolicy {
-	o.Properties.rules = v
+// SetRules gets a reference to the given []PolicyRule and assigns it to the rules field.
+// Rules:  Specify the list of rules to control take over strategy at resource level. The selected resource will be able to be taken over by the current application when the resource belongs to no one.
+func (o *TakeOverPolicy) SetRules(v []PolicyRule) *TakeOverPolicy {
+	o.Properties.Rules = v
 	return o
 }
 
@@ -91,8 +91,8 @@ func (o TakeOverSpec) MarshalJSON() ([]byte, error) {
 
 func (o TakeOverSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.rules) {
-		toSerialize["rules"] = o.rules
+	if !utils.IsNil(o.Rules) {
+		toSerialize["rules"] = o.Rules
 	}
 	return toSerialize, nil
 }

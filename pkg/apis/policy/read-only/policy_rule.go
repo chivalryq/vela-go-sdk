@@ -22,7 +22,7 @@ var _ utils.MappedNullable = &PolicyRule{}
 // PolicyRule struct for PolicyRule
 type PolicyRule struct {
 	// Specify how to select the targets of the rule
-	selector []RuleSelector `json:"selector,omitempty"`
+	Selector []RuleSelector `json:"selector,omitempty"`
 }
 
 // NewPolicyRuleWith instantiates a new PolicyRule object
@@ -44,35 +44,35 @@ func NewPolicyRule() *PolicyRule {
 
 // GetSelector returns the Selector field value if set, zero value otherwise.
 func (o *PolicyRule) GetSelector() []RuleSelector {
-	if o == nil || utils.IsNil(o.selector) {
+	if o == nil || utils.IsNil(o.Selector) {
 		var ret []RuleSelector
 		return ret
 	}
-	return o.selector
+	return o.Selector
 }
 
 // GetSelectorOk returns a tuple with the Selector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PolicyRule) GetSelectorOk() ([]RuleSelector, bool) {
-	if o == nil || utils.IsNil(o.selector) {
+	if o == nil || utils.IsNil(o.Selector) {
 		return nil, false
 	}
-	return o.selector, true
+	return o.Selector, true
 }
 
 // HasSelector returns a boolean if a field has been set.
 func (o *PolicyRule) HasSelector() bool {
-	if o != nil && !utils.IsNil(o.selector) {
+	if o != nil && !utils.IsNil(o.Selector) {
 		return true
 	}
 
 	return false
 }
 
-// Selector gets a reference to the given []RuleSelector and assigns it to the selector field.
-// selector:  Specify how to select the targets of the rule
-func (o *PolicyRule) Selector(v []RuleSelector) *PolicyRule {
-	o.selector = v
+// SetSelector gets a reference to the given []RuleSelector and assigns it to the selector field.
+// Selector:  Specify how to select the targets of the rule
+func (o *PolicyRule) SetSelector(v []RuleSelector) *PolicyRule {
+	o.Selector = v
 	return o
 }
 
@@ -86,8 +86,8 @@ func (o PolicyRule) MarshalJSON() ([]byte, error) {
 
 func (o PolicyRule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.selector) {
-		toSerialize["selector"] = o.selector
+	if !utils.IsNil(o.Selector) {
+		toSerialize["selector"] = o.Selector
 	}
 	return toSerialize, nil
 }

@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &GarbageCollectPolicyRule{}
 // GarbageCollectPolicyRule struct for GarbageCollectPolicyRule
 type GarbageCollectPolicyRule struct {
 	// Specify how to select the targets of the rule
-	selector []ResourcePolicyRuleSelector `json:"selector,omitempty"`
+	Selector []ResourcePolicyRuleSelector `json:"selector,omitempty"`
 	// Specify the strategy for target resource to recycle
-	strategy *string `json:"strategy,omitempty"`
+	Strategy *string `json:"strategy,omitempty"`
 }
 
 // NewGarbageCollectPolicyRuleWith instantiates a new GarbageCollectPolicyRule object
@@ -34,7 +34,7 @@ type GarbageCollectPolicyRule struct {
 func NewGarbageCollectPolicyRuleWith() *GarbageCollectPolicyRule {
 	this := GarbageCollectPolicyRule{}
 	var strategy string = "onAppUpdate"
-	this.strategy = &strategy
+	this.Strategy = &strategy
 	return &this
 }
 
@@ -44,75 +44,75 @@ func NewGarbageCollectPolicyRuleWith() *GarbageCollectPolicyRule {
 func NewGarbageCollectPolicyRule() *GarbageCollectPolicyRule {
 	this := GarbageCollectPolicyRule{}
 	var strategy string = "onAppUpdate"
-	this.strategy = &strategy
+	this.Strategy = &strategy
 	return &this
 }
 
 // GetSelector returns the Selector field value if set, zero value otherwise.
 func (o *GarbageCollectPolicyRule) GetSelector() []ResourcePolicyRuleSelector {
-	if o == nil || utils.IsNil(o.selector) {
+	if o == nil || utils.IsNil(o.Selector) {
 		var ret []ResourcePolicyRuleSelector
 		return ret
 	}
-	return o.selector
+	return o.Selector
 }
 
 // GetSelectorOk returns a tuple with the Selector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GarbageCollectPolicyRule) GetSelectorOk() ([]ResourcePolicyRuleSelector, bool) {
-	if o == nil || utils.IsNil(o.selector) {
+	if o == nil || utils.IsNil(o.Selector) {
 		return nil, false
 	}
-	return o.selector, true
+	return o.Selector, true
 }
 
 // HasSelector returns a boolean if a field has been set.
 func (o *GarbageCollectPolicyRule) HasSelector() bool {
-	if o != nil && !utils.IsNil(o.selector) {
+	if o != nil && !utils.IsNil(o.Selector) {
 		return true
 	}
 
 	return false
 }
 
-// Selector gets a reference to the given []ResourcePolicyRuleSelector and assigns it to the selector field.
-// selector:  Specify how to select the targets of the rule
-func (o *GarbageCollectPolicyRule) Selector(v []ResourcePolicyRuleSelector) *GarbageCollectPolicyRule {
-	o.selector = v
+// SetSelector gets a reference to the given []ResourcePolicyRuleSelector and assigns it to the selector field.
+// Selector:  Specify how to select the targets of the rule
+func (o *GarbageCollectPolicyRule) SetSelector(v []ResourcePolicyRuleSelector) *GarbageCollectPolicyRule {
+	o.Selector = v
 	return o
 }
 
 // GetStrategy returns the Strategy field value if set, zero value otherwise.
 func (o *GarbageCollectPolicyRule) GetStrategy() string {
-	if o == nil || utils.IsNil(o.strategy) {
+	if o == nil || utils.IsNil(o.Strategy) {
 		var ret string
 		return ret
 	}
-	return *o.strategy
+	return *o.Strategy
 }
 
 // GetStrategyOk returns a tuple with the Strategy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GarbageCollectPolicyRule) GetStrategyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.strategy) {
+	if o == nil || utils.IsNil(o.Strategy) {
 		return nil, false
 	}
-	return o.strategy, true
+	return o.Strategy, true
 }
 
 // HasStrategy returns a boolean if a field has been set.
 func (o *GarbageCollectPolicyRule) HasStrategy() bool {
-	if o != nil && !utils.IsNil(o.strategy) {
+	if o != nil && !utils.IsNil(o.Strategy) {
 		return true
 	}
 
 	return false
 }
 
-// Strategy gets a reference to the given string and assigns it to the strategy field.
-// strategy:  Specify the strategy for target resource to recycle
-func (o *GarbageCollectPolicyRule) Strategy(v string) *GarbageCollectPolicyRule {
-	o.strategy = &v
+// SetStrategy gets a reference to the given string and assigns it to the strategy field.
+// Strategy:  Specify the strategy for target resource to recycle
+func (o *GarbageCollectPolicyRule) SetStrategy(v string) *GarbageCollectPolicyRule {
+	o.Strategy = &v
 	return o
 }
 
@@ -126,11 +126,11 @@ func (o GarbageCollectPolicyRule) MarshalJSON() ([]byte, error) {
 
 func (o GarbageCollectPolicyRule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.selector) {
-		toSerialize["selector"] = o.selector
+	if !utils.IsNil(o.Selector) {
+		toSerialize["selector"] = o.Selector
 	}
-	if !utils.IsNil(o.strategy) {
-		toSerialize["strategy"] = o.strategy
+	if !utils.IsNil(o.Strategy) {
+		toSerialize["strategy"] = o.Strategy
 	}
 	return toSerialize, nil
 }

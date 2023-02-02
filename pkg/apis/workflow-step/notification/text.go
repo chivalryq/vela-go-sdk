@@ -21,7 +21,7 @@ var _ utils.MappedNullable = &Text{}
 
 // Text Specify the message content of dingtalk notification
 type Text struct {
-	content *string `json:"content,omitempty"`
+	Content *string `json:"content,omitempty"`
 }
 
 // NewTextWith instantiates a new Text object
@@ -43,35 +43,35 @@ func NewText() *Text {
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *Text) GetContent() string {
-	if o == nil || utils.IsNil(o.content) {
+	if o == nil || utils.IsNil(o.Content) {
 		var ret string
 		return ret
 	}
-	return *o.content
+	return *o.Content
 }
 
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Text) GetContentOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.content) {
+	if o == nil || utils.IsNil(o.Content) {
 		return nil, false
 	}
-	return o.content, true
+	return o.Content, true
 }
 
 // HasContent returns a boolean if a field has been set.
 func (o *Text) HasContent() bool {
-	if o != nil && !utils.IsNil(o.content) {
+	if o != nil && !utils.IsNil(o.Content) {
 		return true
 	}
 
 	return false
 }
 
-// Content gets a reference to the given string and assigns it to the content field.
-// content:
-func (o *Text) Content(v string) *Text {
-	o.content = &v
+// SetContent gets a reference to the given string and assigns it to the content field.
+// Content:
+func (o *Text) SetContent(v string) *Text {
+	o.Content = &v
 	return o
 }
 
@@ -85,8 +85,8 @@ func (o Text) MarshalJSON() ([]byte, error) {
 
 func (o Text) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.content) {
-		toSerialize["content"] = o.content
+	if !utils.IsNil(o.Content) {
+		toSerialize["content"] = o.Content
 	}
 	return toSerialize, nil
 }

@@ -22,17 +22,17 @@ var _ utils.MappedNullable = &Privileges{}
 // Privileges struct for Privileges
 type Privileges struct {
 	// Specify the apiGroups of the resource
-	apiGroups []string `json:"apiGroups,omitempty"`
+	ApiGroups []string `json:"apiGroups,omitempty"`
 	// Specify the resource url to be allowed
-	nonResourceURLs []string `json:"nonResourceURLs,omitempty"`
+	NonResourceURLs []string `json:"nonResourceURLs,omitempty"`
 	// Specify the resourceNames to be allowed
-	resourceNames []string `json:"resourceNames,omitempty"`
+	ResourceNames []string `json:"resourceNames,omitempty"`
 	// Specify the resources to be allowed
-	resources []string `json:"resources,omitempty"`
+	Resources []string `json:"resources,omitempty"`
 	// Specify the scope of the privileges, default to be namespace scope
-	scope *string `json:"scope,omitempty"`
+	Scope *string `json:"scope,omitempty"`
 	// Specify the verbs to be allowed for the resource
-	verbs []string `json:"verbs,omitempty"`
+	Verbs []string `json:"verbs,omitempty"`
 }
 
 // NewPrivilegesWith instantiates a new Privileges object
@@ -42,7 +42,7 @@ type Privileges struct {
 func NewPrivilegesWith() *Privileges {
 	this := Privileges{}
 	var scope string = "namespace"
-	this.scope = &scope
+	this.Scope = &scope
 	return &this
 }
 
@@ -52,211 +52,211 @@ func NewPrivilegesWith() *Privileges {
 func NewPrivileges() *Privileges {
 	this := Privileges{}
 	var scope string = "namespace"
-	this.scope = &scope
+	this.Scope = &scope
 	return &this
 }
 
 // GetApiGroups returns the ApiGroups field value if set, zero value otherwise.
 func (o *Privileges) GetApiGroups() []string {
-	if o == nil || utils.IsNil(o.apiGroups) {
+	if o == nil || utils.IsNil(o.ApiGroups) {
 		var ret []string
 		return ret
 	}
-	return o.apiGroups
+	return o.ApiGroups
 }
 
 // GetApiGroupsOk returns a tuple with the ApiGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Privileges) GetApiGroupsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.apiGroups) {
+	if o == nil || utils.IsNil(o.ApiGroups) {
 		return nil, false
 	}
-	return o.apiGroups, true
+	return o.ApiGroups, true
 }
 
 // HasApiGroups returns a boolean if a field has been set.
 func (o *Privileges) HasApiGroups() bool {
-	if o != nil && !utils.IsNil(o.apiGroups) {
+	if o != nil && !utils.IsNil(o.ApiGroups) {
 		return true
 	}
 
 	return false
 }
 
-// ApiGroups gets a reference to the given []string and assigns it to the apiGroups field.
-// apiGroups:  Specify the apiGroups of the resource
-func (o *Privileges) ApiGroups(v []string) *Privileges {
-	o.apiGroups = v
+// SetApiGroups gets a reference to the given []string and assigns it to the apiGroups field.
+// ApiGroups:  Specify the apiGroups of the resource
+func (o *Privileges) SetApiGroups(v []string) *Privileges {
+	o.ApiGroups = v
 	return o
 }
 
 // GetNonResourceURLs returns the NonResourceURLs field value if set, zero value otherwise.
 func (o *Privileges) GetNonResourceURLs() []string {
-	if o == nil || utils.IsNil(o.nonResourceURLs) {
+	if o == nil || utils.IsNil(o.NonResourceURLs) {
 		var ret []string
 		return ret
 	}
-	return o.nonResourceURLs
+	return o.NonResourceURLs
 }
 
 // GetNonResourceURLsOk returns a tuple with the NonResourceURLs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Privileges) GetNonResourceURLsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.nonResourceURLs) {
+	if o == nil || utils.IsNil(o.NonResourceURLs) {
 		return nil, false
 	}
-	return o.nonResourceURLs, true
+	return o.NonResourceURLs, true
 }
 
 // HasNonResourceURLs returns a boolean if a field has been set.
 func (o *Privileges) HasNonResourceURLs() bool {
-	if o != nil && !utils.IsNil(o.nonResourceURLs) {
+	if o != nil && !utils.IsNil(o.NonResourceURLs) {
 		return true
 	}
 
 	return false
 }
 
-// NonResourceURLs gets a reference to the given []string and assigns it to the nonResourceURLs field.
-// nonResourceURLs:  Specify the resource url to be allowed
-func (o *Privileges) NonResourceURLs(v []string) *Privileges {
-	o.nonResourceURLs = v
+// SetNonResourceURLs gets a reference to the given []string and assigns it to the nonResourceURLs field.
+// NonResourceURLs:  Specify the resource url to be allowed
+func (o *Privileges) SetNonResourceURLs(v []string) *Privileges {
+	o.NonResourceURLs = v
 	return o
 }
 
 // GetResourceNames returns the ResourceNames field value if set, zero value otherwise.
 func (o *Privileges) GetResourceNames() []string {
-	if o == nil || utils.IsNil(o.resourceNames) {
+	if o == nil || utils.IsNil(o.ResourceNames) {
 		var ret []string
 		return ret
 	}
-	return o.resourceNames
+	return o.ResourceNames
 }
 
 // GetResourceNamesOk returns a tuple with the ResourceNames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Privileges) GetResourceNamesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.resourceNames) {
+	if o == nil || utils.IsNil(o.ResourceNames) {
 		return nil, false
 	}
-	return o.resourceNames, true
+	return o.ResourceNames, true
 }
 
 // HasResourceNames returns a boolean if a field has been set.
 func (o *Privileges) HasResourceNames() bool {
-	if o != nil && !utils.IsNil(o.resourceNames) {
+	if o != nil && !utils.IsNil(o.ResourceNames) {
 		return true
 	}
 
 	return false
 }
 
-// ResourceNames gets a reference to the given []string and assigns it to the resourceNames field.
-// resourceNames:  Specify the resourceNames to be allowed
-func (o *Privileges) ResourceNames(v []string) *Privileges {
-	o.resourceNames = v
+// SetResourceNames gets a reference to the given []string and assigns it to the resourceNames field.
+// ResourceNames:  Specify the resourceNames to be allowed
+func (o *Privileges) SetResourceNames(v []string) *Privileges {
+	o.ResourceNames = v
 	return o
 }
 
 // GetResources returns the Resources field value if set, zero value otherwise.
 func (o *Privileges) GetResources() []string {
-	if o == nil || utils.IsNil(o.resources) {
+	if o == nil || utils.IsNil(o.Resources) {
 		var ret []string
 		return ret
 	}
-	return o.resources
+	return o.Resources
 }
 
 // GetResourcesOk returns a tuple with the Resources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Privileges) GetResourcesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.resources) {
+	if o == nil || utils.IsNil(o.Resources) {
 		return nil, false
 	}
-	return o.resources, true
+	return o.Resources, true
 }
 
 // HasResources returns a boolean if a field has been set.
 func (o *Privileges) HasResources() bool {
-	if o != nil && !utils.IsNil(o.resources) {
+	if o != nil && !utils.IsNil(o.Resources) {
 		return true
 	}
 
 	return false
 }
 
-// Resources gets a reference to the given []string and assigns it to the resources field.
-// resources:  Specify the resources to be allowed
-func (o *Privileges) Resources(v []string) *Privileges {
-	o.resources = v
+// SetResources gets a reference to the given []string and assigns it to the resources field.
+// Resources:  Specify the resources to be allowed
+func (o *Privileges) SetResources(v []string) *Privileges {
+	o.Resources = v
 	return o
 }
 
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *Privileges) GetScope() string {
-	if o == nil || utils.IsNil(o.scope) {
+	if o == nil || utils.IsNil(o.Scope) {
 		var ret string
 		return ret
 	}
-	return *o.scope
+	return *o.Scope
 }
 
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Privileges) GetScopeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.scope) {
+	if o == nil || utils.IsNil(o.Scope) {
 		return nil, false
 	}
-	return o.scope, true
+	return o.Scope, true
 }
 
 // HasScope returns a boolean if a field has been set.
 func (o *Privileges) HasScope() bool {
-	if o != nil && !utils.IsNil(o.scope) {
+	if o != nil && !utils.IsNil(o.Scope) {
 		return true
 	}
 
 	return false
 }
 
-// Scope gets a reference to the given string and assigns it to the scope field.
-// scope:  Specify the scope of the privileges, default to be namespace scope
-func (o *Privileges) Scope(v string) *Privileges {
-	o.scope = &v
+// SetScope gets a reference to the given string and assigns it to the scope field.
+// Scope:  Specify the scope of the privileges, default to be namespace scope
+func (o *Privileges) SetScope(v string) *Privileges {
+	o.Scope = &v
 	return o
 }
 
 // GetVerbs returns the Verbs field value if set, zero value otherwise.
 func (o *Privileges) GetVerbs() []string {
-	if o == nil || utils.IsNil(o.verbs) {
+	if o == nil || utils.IsNil(o.Verbs) {
 		var ret []string
 		return ret
 	}
-	return o.verbs
+	return o.Verbs
 }
 
 // GetVerbsOk returns a tuple with the Verbs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Privileges) GetVerbsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.verbs) {
+	if o == nil || utils.IsNil(o.Verbs) {
 		return nil, false
 	}
-	return o.verbs, true
+	return o.Verbs, true
 }
 
 // HasVerbs returns a boolean if a field has been set.
 func (o *Privileges) HasVerbs() bool {
-	if o != nil && !utils.IsNil(o.verbs) {
+	if o != nil && !utils.IsNil(o.Verbs) {
 		return true
 	}
 
 	return false
 }
 
-// Verbs gets a reference to the given []string and assigns it to the verbs field.
-// verbs:  Specify the verbs to be allowed for the resource
-func (o *Privileges) Verbs(v []string) *Privileges {
-	o.verbs = v
+// SetVerbs gets a reference to the given []string and assigns it to the verbs field.
+// Verbs:  Specify the verbs to be allowed for the resource
+func (o *Privileges) SetVerbs(v []string) *Privileges {
+	o.Verbs = v
 	return o
 }
 
@@ -270,23 +270,23 @@ func (o Privileges) MarshalJSON() ([]byte, error) {
 
 func (o Privileges) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.apiGroups) {
-		toSerialize["apiGroups"] = o.apiGroups
+	if !utils.IsNil(o.ApiGroups) {
+		toSerialize["apiGroups"] = o.ApiGroups
 	}
-	if !utils.IsNil(o.nonResourceURLs) {
-		toSerialize["nonResourceURLs"] = o.nonResourceURLs
+	if !utils.IsNil(o.NonResourceURLs) {
+		toSerialize["nonResourceURLs"] = o.NonResourceURLs
 	}
-	if !utils.IsNil(o.resourceNames) {
-		toSerialize["resourceNames"] = o.resourceNames
+	if !utils.IsNil(o.ResourceNames) {
+		toSerialize["resourceNames"] = o.ResourceNames
 	}
-	if !utils.IsNil(o.resources) {
-		toSerialize["resources"] = o.resources
+	if !utils.IsNil(o.Resources) {
+		toSerialize["resources"] = o.Resources
 	}
-	if !utils.IsNil(o.scope) {
-		toSerialize["scope"] = o.scope
+	if !utils.IsNil(o.Scope) {
+		toSerialize["scope"] = o.Scope
 	}
-	if !utils.IsNil(o.verbs) {
-		toSerialize["verbs"] = o.verbs
+	if !utils.IsNil(o.Verbs) {
+		toSerialize["verbs"] = o.Verbs
 	}
 	return toSerialize, nil
 }

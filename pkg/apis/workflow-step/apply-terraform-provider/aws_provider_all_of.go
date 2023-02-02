@@ -21,9 +21,9 @@ var _ utils.MappedNullable = &AWSProviderAllOf{}
 
 // AWSProviderAllOf struct for AWSProviderAllOf
 type AWSProviderAllOf struct {
-	name  string `json:"name"`
-	token string `json:"token"`
-	type_ string `json:"type"`
+	Name  string `json:"name"`
+	Token string `json:"token"`
+	Type  string `json:"type"`
 }
 
 // NewAWSProviderAllOfWith instantiates a new AWSProviderAllOf object
@@ -32,9 +32,9 @@ type AWSProviderAllOf struct {
 // will change when the set of required properties is changed
 func NewAWSProviderAllOfWith(name string, token string, type_ string) *AWSProviderAllOf {
 	this := AWSProviderAllOf{}
-	this.name = name
-	this.token = token
-	this.type_ = type_
+	this.Name = name
+	this.Token = token
+	this.Type = type_
 	return &this
 }
 
@@ -44,9 +44,9 @@ func NewAWSProviderAllOfWith(name string, token string, type_ string) *AWSProvid
 func NewAWSProviderAllOf() *AWSProviderAllOf {
 	this := AWSProviderAllOf{}
 	var name string = "aws-provider"
-	this.name = name
+	this.Name = name
 	var token string = ""
-	this.token = token
+	this.Token = token
 	return &this
 }
 
@@ -57,7 +57,7 @@ func (o *AWSProviderAllOf) GetName() string {
 		return ret
 	}
 
-	return o.name
+	return o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value
@@ -66,12 +66,12 @@ func (o *AWSProviderAllOf) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.name, true
+	return &o.Name, true
 }
 
-// Name sets field value
-func (o *AWSProviderAllOf) Name(v string) *AWSProviderAllOf {
-	o.name = v
+// SetName sets field value
+func (o *AWSProviderAllOf) SetName(v string) *AWSProviderAllOf {
+	o.Name = v
 	return o
 }
 
@@ -82,7 +82,7 @@ func (o *AWSProviderAllOf) GetToken() string {
 		return ret
 	}
 
-	return o.token
+	return o.Token
 }
 
 // GetTokenOk returns a tuple with the Token field value
@@ -91,12 +91,12 @@ func (o *AWSProviderAllOf) GetTokenOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.token, true
+	return &o.Token, true
 }
 
-// Token sets field value
-func (o *AWSProviderAllOf) Token(v string) *AWSProviderAllOf {
-	o.token = v
+// SetToken sets field value
+func (o *AWSProviderAllOf) SetToken(v string) *AWSProviderAllOf {
+	o.Token = v
 	return o
 }
 
@@ -107,7 +107,7 @@ func (o *AWSProviderAllOf) GetType() string {
 		return ret
 	}
 
-	return o.type_
+	return o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value
@@ -116,12 +116,12 @@ func (o *AWSProviderAllOf) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.type_, true
+	return &o.Type, true
 }
 
-// Type sets field value
-func (o *AWSProviderAllOf) Type(v string) *AWSProviderAllOf {
-	o.type_ = v
+// SetType sets field value
+func (o *AWSProviderAllOf) SetType(v string) *AWSProviderAllOf {
+	o.Type = v
 	return o
 }
 
@@ -135,9 +135,9 @@ func (o AWSProviderAllOf) MarshalJSON() ([]byte, error) {
 
 func (o AWSProviderAllOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.name
-	toSerialize["token"] = o.token
-	toSerialize["type"] = o.type_
+	toSerialize["name"] = o.Name
+	toSerialize["token"] = o.Token
+	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 

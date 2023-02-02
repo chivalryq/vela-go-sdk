@@ -21,11 +21,11 @@ var _ utils.MappedNullable = &HttpGet{}
 
 // HttpGet struct for HttpGet
 type HttpGet struct {
-	host        *string       `json:"host,omitempty"`
-	httpHeaders []HttpHeaders `json:"httpHeaders,omitempty"`
-	path        *string       `json:"path,omitempty"`
-	port        *int32        `json:"port,omitempty"`
-	scheme      *string       `json:"scheme,omitempty"`
+	Host        *string       `json:"host,omitempty"`
+	HttpHeaders []HttpHeaders `json:"httpHeaders,omitempty"`
+	Path        *string       `json:"path,omitempty"`
+	Port        *int32        `json:"port,omitempty"`
+	Scheme      *string       `json:"scheme,omitempty"`
 }
 
 // NewHttpGetWith instantiates a new HttpGet object
@@ -35,7 +35,7 @@ type HttpGet struct {
 func NewHttpGetWith() *HttpGet {
 	this := HttpGet{}
 	var scheme string = "HTTP"
-	this.scheme = &scheme
+	this.Scheme = &scheme
 	return &this
 }
 
@@ -45,177 +45,177 @@ func NewHttpGetWith() *HttpGet {
 func NewHttpGet() *HttpGet {
 	this := HttpGet{}
 	var scheme string = "HTTP"
-	this.scheme = &scheme
+	this.Scheme = &scheme
 	return &this
 }
 
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *HttpGet) GetHost() string {
-	if o == nil || utils.IsNil(o.host) {
+	if o == nil || utils.IsNil(o.Host) {
 		var ret string
 		return ret
 	}
-	return *o.host
+	return *o.Host
 }
 
 // GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HttpGet) GetHostOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.host) {
+	if o == nil || utils.IsNil(o.Host) {
 		return nil, false
 	}
-	return o.host, true
+	return o.Host, true
 }
 
 // HasHost returns a boolean if a field has been set.
 func (o *HttpGet) HasHost() bool {
-	if o != nil && !utils.IsNil(o.host) {
+	if o != nil && !utils.IsNil(o.Host) {
 		return true
 	}
 
 	return false
 }
 
-// Host gets a reference to the given string and assigns it to the host field.
-// host:
-func (o *HttpGet) Host(v string) *HttpGet {
-	o.host = &v
+// SetHost gets a reference to the given string and assigns it to the host field.
+// Host:
+func (o *HttpGet) SetHost(v string) *HttpGet {
+	o.Host = &v
 	return o
 }
 
 // GetHttpHeaders returns the HttpHeaders field value if set, zero value otherwise.
 func (o *HttpGet) GetHttpHeaders() []HttpHeaders {
-	if o == nil || utils.IsNil(o.httpHeaders) {
+	if o == nil || utils.IsNil(o.HttpHeaders) {
 		var ret []HttpHeaders
 		return ret
 	}
-	return o.httpHeaders
+	return o.HttpHeaders
 }
 
 // GetHttpHeadersOk returns a tuple with the HttpHeaders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HttpGet) GetHttpHeadersOk() ([]HttpHeaders, bool) {
-	if o == nil || utils.IsNil(o.httpHeaders) {
+	if o == nil || utils.IsNil(o.HttpHeaders) {
 		return nil, false
 	}
-	return o.httpHeaders, true
+	return o.HttpHeaders, true
 }
 
 // HasHttpHeaders returns a boolean if a field has been set.
 func (o *HttpGet) HasHttpHeaders() bool {
-	if o != nil && !utils.IsNil(o.httpHeaders) {
+	if o != nil && !utils.IsNil(o.HttpHeaders) {
 		return true
 	}
 
 	return false
 }
 
-// HttpHeaders gets a reference to the given []HttpHeaders and assigns it to the httpHeaders field.
-// httpHeaders:
-func (o *HttpGet) HttpHeaders(v []HttpHeaders) *HttpGet {
-	o.httpHeaders = v
+// SetHttpHeaders gets a reference to the given []HttpHeaders and assigns it to the httpHeaders field.
+// HttpHeaders:
+func (o *HttpGet) SetHttpHeaders(v []HttpHeaders) *HttpGet {
+	o.HttpHeaders = v
 	return o
 }
 
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *HttpGet) GetPath() string {
-	if o == nil || utils.IsNil(o.path) {
+	if o == nil || utils.IsNil(o.Path) {
 		var ret string
 		return ret
 	}
-	return *o.path
+	return *o.Path
 }
 
 // GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HttpGet) GetPathOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.path) {
+	if o == nil || utils.IsNil(o.Path) {
 		return nil, false
 	}
-	return o.path, true
+	return o.Path, true
 }
 
 // HasPath returns a boolean if a field has been set.
 func (o *HttpGet) HasPath() bool {
-	if o != nil && !utils.IsNil(o.path) {
+	if o != nil && !utils.IsNil(o.Path) {
 		return true
 	}
 
 	return false
 }
 
-// Path gets a reference to the given string and assigns it to the path field.
-// path:
-func (o *HttpGet) Path(v string) *HttpGet {
-	o.path = &v
+// SetPath gets a reference to the given string and assigns it to the path field.
+// Path:
+func (o *HttpGet) SetPath(v string) *HttpGet {
+	o.Path = &v
 	return o
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *HttpGet) GetPort() int32 {
-	if o == nil || utils.IsNil(o.port) {
+	if o == nil || utils.IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
-	return *o.port
+	return *o.Port
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HttpGet) GetPortOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.port) {
+	if o == nil || utils.IsNil(o.Port) {
 		return nil, false
 	}
-	return o.port, true
+	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *HttpGet) HasPort() bool {
-	if o != nil && !utils.IsNil(o.port) {
+	if o != nil && !utils.IsNil(o.Port) {
 		return true
 	}
 
 	return false
 }
 
-// Port gets a reference to the given int32 and assigns it to the port field.
-// port:
-func (o *HttpGet) Port(v int32) *HttpGet {
-	o.port = &v
+// SetPort gets a reference to the given int32 and assigns it to the port field.
+// Port:
+func (o *HttpGet) SetPort(v int32) *HttpGet {
+	o.Port = &v
 	return o
 }
 
 // GetScheme returns the Scheme field value if set, zero value otherwise.
 func (o *HttpGet) GetScheme() string {
-	if o == nil || utils.IsNil(o.scheme) {
+	if o == nil || utils.IsNil(o.Scheme) {
 		var ret string
 		return ret
 	}
-	return *o.scheme
+	return *o.Scheme
 }
 
 // GetSchemeOk returns a tuple with the Scheme field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HttpGet) GetSchemeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.scheme) {
+	if o == nil || utils.IsNil(o.Scheme) {
 		return nil, false
 	}
-	return o.scheme, true
+	return o.Scheme, true
 }
 
 // HasScheme returns a boolean if a field has been set.
 func (o *HttpGet) HasScheme() bool {
-	if o != nil && !utils.IsNil(o.scheme) {
+	if o != nil && !utils.IsNil(o.Scheme) {
 		return true
 	}
 
 	return false
 }
 
-// Scheme gets a reference to the given string and assigns it to the scheme field.
-// scheme:
-func (o *HttpGet) Scheme(v string) *HttpGet {
-	o.scheme = &v
+// SetScheme gets a reference to the given string and assigns it to the scheme field.
+// Scheme:
+func (o *HttpGet) SetScheme(v string) *HttpGet {
+	o.Scheme = &v
 	return o
 }
 
@@ -229,20 +229,20 @@ func (o HttpGet) MarshalJSON() ([]byte, error) {
 
 func (o HttpGet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.host) {
-		toSerialize["host"] = o.host
+	if !utils.IsNil(o.Host) {
+		toSerialize["host"] = o.Host
 	}
-	if !utils.IsNil(o.httpHeaders) {
-		toSerialize["httpHeaders"] = o.httpHeaders
+	if !utils.IsNil(o.HttpHeaders) {
+		toSerialize["httpHeaders"] = o.HttpHeaders
 	}
-	if !utils.IsNil(o.path) {
-		toSerialize["path"] = o.path
+	if !utils.IsNil(o.Path) {
+		toSerialize["path"] = o.Path
 	}
-	if !utils.IsNil(o.port) {
-		toSerialize["port"] = o.port
+	if !utils.IsNil(o.Port) {
+		toSerialize["port"] = o.Port
 	}
-	if !utils.IsNil(o.scheme) {
-		toSerialize["scheme"] = o.scheme
+	if !utils.IsNil(o.Scheme) {
+		toSerialize["scheme"] = o.Scheme
 	}
 	return toSerialize, nil
 }

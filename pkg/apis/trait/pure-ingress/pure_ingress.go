@@ -27,19 +27,17 @@ var _ utils.MappedNullable = &PureIngressSpec{}
 // PureIngressSpec struct for PureIngressSpec
 type PureIngressSpec struct {
 	// Specify the domain you want to expose
-	domain string `json:"domain"`
+	Domain *string `json:"domain,omitempty"`
 	// Specify the mapping relationship between the http path and the workload port
-	http map[string]int32 `json:"http"`
+	Http *map[string]int32 `json:"http,omitempty"`
 }
 
 // NewPureIngressSpecWith instantiates a new PureIngressSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPureIngressSpecWith(domain string, http map[string]int32) *PureIngressSpec {
+func NewPureIngressSpecWith() *PureIngressSpec {
 	this := PureIngressSpec{}
-	this.domain = domain
-	this.http = http
 	return &this
 }
 
@@ -51,53 +49,71 @@ func NewPureIngressSpec() *PureIngressSpec {
 	return &this
 }
 
-// GetDomain returns the Domain field value
+// GetDomain returns the Domain field value if set, zero value otherwise.
 func (o *PureIngressTrait) GetDomain() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Domain) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.domain
+	return *o.Properties.Domain
 }
 
-// GetDomainOk returns a tuple with the Domain field value
+// GetDomainOk returns a tuple with the Domain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PureIngressTrait) GetDomainOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Domain) {
 		return nil, false
 	}
-	return &o.Properties.domain, true
+	return o.Properties.Domain, true
 }
 
-// Domain sets field value
-func (o *PureIngressTrait) Domain(v string) *PureIngressTrait {
-	o.Properties.domain = v
+// HasDomain returns a boolean if a field has been set.
+func (o *PureIngressTrait) HasDomain() bool {
+	if o != nil && !utils.IsNil(o.Properties.Domain) {
+		return true
+	}
+
+	return false
+}
+
+// SetDomain gets a reference to the given string and assigns it to the domain field.
+// Domain:  Specify the domain you want to expose
+func (o *PureIngressTrait) SetDomain(v string) *PureIngressTrait {
+	o.Properties.Domain = &v
 	return o
 }
 
-// GetHttp returns the Http field value
+// GetHttp returns the Http field value if set, zero value otherwise.
 func (o *PureIngressTrait) GetHttp() map[string]int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Http) {
 		var ret map[string]int32
 		return ret
 	}
-
-	return o.Properties.http
+	return *o.Properties.Http
 }
 
-// GetHttpOk returns a tuple with the Http field value
+// GetHttpOk returns a tuple with the Http field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PureIngressTrait) GetHttpOk() (*map[string]int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Http) {
 		return nil, false
 	}
-	return &o.Properties.http, true
+	return o.Properties.Http, true
 }
 
-// Http sets field value
-func (o *PureIngressTrait) Http(v map[string]int32) *PureIngressTrait {
-	o.Properties.http = v
+// HasHttp returns a boolean if a field has been set.
+func (o *PureIngressTrait) HasHttp() bool {
+	if o != nil && !utils.IsNil(o.Properties.Http) {
+		return true
+	}
+
+	return false
+}
+
+// SetHttp gets a reference to the given map[string]int32 and assigns it to the http field.
+// Http:  Specify the mapping relationship between the http path and the workload port
+func (o *PureIngressTrait) SetHttp(v map[string]int32) *PureIngressTrait {
+	o.Properties.Http = &v
 	return o
 }
 
@@ -111,8 +127,12 @@ func (o PureIngressSpec) MarshalJSON() ([]byte, error) {
 
 func (o PureIngressSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["domain"] = o.domain
-	toSerialize["http"] = o.http
+	if !utils.IsNil(o.Domain) {
+		toSerialize["domain"] = o.Domain
+	}
+	if !utils.IsNil(o.Http) {
+		toSerialize["http"] = o.Http
+	}
 	return toSerialize, nil
 }
 

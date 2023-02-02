@@ -21,9 +21,9 @@ var _ utils.MappedNullable = &EmptyDir{}
 
 // EmptyDir struct for EmptyDir
 type EmptyDir struct {
-	medium    *string `json:"medium,omitempty"`
-	mountPath *string `json:"mountPath,omitempty"`
-	name      *string `json:"name,omitempty"`
+	Medium    *string `json:"medium,omitempty"`
+	MountPath *string `json:"mountPath,omitempty"`
+	Name      *string `json:"name,omitempty"`
 }
 
 // NewEmptyDirWith instantiates a new EmptyDir object
@@ -33,7 +33,7 @@ type EmptyDir struct {
 func NewEmptyDirWith() *EmptyDir {
 	this := EmptyDir{}
 	var medium string = ""
-	this.medium = &medium
+	this.Medium = &medium
 	return &this
 }
 
@@ -43,109 +43,109 @@ func NewEmptyDirWith() *EmptyDir {
 func NewEmptyDir() *EmptyDir {
 	this := EmptyDir{}
 	var medium string = ""
-	this.medium = &medium
+	this.Medium = &medium
 	return &this
 }
 
 // GetMedium returns the Medium field value if set, zero value otherwise.
 func (o *EmptyDir) GetMedium() string {
-	if o == nil || utils.IsNil(o.medium) {
+	if o == nil || utils.IsNil(o.Medium) {
 		var ret string
 		return ret
 	}
-	return *o.medium
+	return *o.Medium
 }
 
 // GetMediumOk returns a tuple with the Medium field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmptyDir) GetMediumOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.medium) {
+	if o == nil || utils.IsNil(o.Medium) {
 		return nil, false
 	}
-	return o.medium, true
+	return o.Medium, true
 }
 
 // HasMedium returns a boolean if a field has been set.
 func (o *EmptyDir) HasMedium() bool {
-	if o != nil && !utils.IsNil(o.medium) {
+	if o != nil && !utils.IsNil(o.Medium) {
 		return true
 	}
 
 	return false
 }
 
-// Medium gets a reference to the given string and assigns it to the medium field.
-// medium:
-func (o *EmptyDir) Medium(v string) *EmptyDir {
-	o.medium = &v
+// SetMedium gets a reference to the given string and assigns it to the medium field.
+// Medium:
+func (o *EmptyDir) SetMedium(v string) *EmptyDir {
+	o.Medium = &v
 	return o
 }
 
 // GetMountPath returns the MountPath field value if set, zero value otherwise.
 func (o *EmptyDir) GetMountPath() string {
-	if o == nil || utils.IsNil(o.mountPath) {
+	if o == nil || utils.IsNil(o.MountPath) {
 		var ret string
 		return ret
 	}
-	return *o.mountPath
+	return *o.MountPath
 }
 
 // GetMountPathOk returns a tuple with the MountPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmptyDir) GetMountPathOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.mountPath) {
+	if o == nil || utils.IsNil(o.MountPath) {
 		return nil, false
 	}
-	return o.mountPath, true
+	return o.MountPath, true
 }
 
 // HasMountPath returns a boolean if a field has been set.
 func (o *EmptyDir) HasMountPath() bool {
-	if o != nil && !utils.IsNil(o.mountPath) {
+	if o != nil && !utils.IsNil(o.MountPath) {
 		return true
 	}
 
 	return false
 }
 
-// MountPath gets a reference to the given string and assigns it to the mountPath field.
-// mountPath:
-func (o *EmptyDir) MountPath(v string) *EmptyDir {
-	o.mountPath = &v
+// SetMountPath gets a reference to the given string and assigns it to the mountPath field.
+// MountPath:
+func (o *EmptyDir) SetMountPath(v string) *EmptyDir {
+	o.MountPath = &v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *EmptyDir) GetName() string {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.name
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmptyDir) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *EmptyDir) HasName() bool {
-	if o != nil && !utils.IsNil(o.name) {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:
-func (o *EmptyDir) Name(v string) *EmptyDir {
-	o.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:
+func (o *EmptyDir) SetName(v string) *EmptyDir {
+	o.Name = &v
 	return o
 }
 
@@ -159,14 +159,14 @@ func (o EmptyDir) MarshalJSON() ([]byte, error) {
 
 func (o EmptyDir) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.medium) {
-		toSerialize["medium"] = o.medium
+	if !utils.IsNil(o.Medium) {
+		toSerialize["medium"] = o.Medium
 	}
-	if !utils.IsNil(o.mountPath) {
-		toSerialize["mountPath"] = o.mountPath
+	if !utils.IsNil(o.MountPath) {
+		toSerialize["mountPath"] = o.MountPath
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	return toSerialize, nil
 }

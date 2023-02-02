@@ -21,9 +21,9 @@ var _ utils.MappedNullable = &DataSourceRef{}
 
 // DataSourceRef struct for DataSourceRef
 type DataSourceRef struct {
-	apiGroup *string `json:"apiGroup,omitempty"`
-	kind     *string `json:"kind,omitempty"`
-	name     *string `json:"name,omitempty"`
+	ApiGroup *string `json:"apiGroup,omitempty"`
+	Kind     *string `json:"kind,omitempty"`
+	Name     *string `json:"name,omitempty"`
 }
 
 // NewDataSourceRefWith instantiates a new DataSourceRef object
@@ -45,103 +45,103 @@ func NewDataSourceRef() *DataSourceRef {
 
 // GetApiGroup returns the ApiGroup field value if set, zero value otherwise.
 func (o *DataSourceRef) GetApiGroup() string {
-	if o == nil || utils.IsNil(o.apiGroup) {
+	if o == nil || utils.IsNil(o.ApiGroup) {
 		var ret string
 		return ret
 	}
-	return *o.apiGroup
+	return *o.ApiGroup
 }
 
 // GetApiGroupOk returns a tuple with the ApiGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataSourceRef) GetApiGroupOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.apiGroup) {
+	if o == nil || utils.IsNil(o.ApiGroup) {
 		return nil, false
 	}
-	return o.apiGroup, true
+	return o.ApiGroup, true
 }
 
 // HasApiGroup returns a boolean if a field has been set.
 func (o *DataSourceRef) HasApiGroup() bool {
-	if o != nil && !utils.IsNil(o.apiGroup) {
+	if o != nil && !utils.IsNil(o.ApiGroup) {
 		return true
 	}
 
 	return false
 }
 
-// ApiGroup gets a reference to the given string and assigns it to the apiGroup field.
-// apiGroup:
-func (o *DataSourceRef) ApiGroup(v string) *DataSourceRef {
-	o.apiGroup = &v
+// SetApiGroup gets a reference to the given string and assigns it to the apiGroup field.
+// ApiGroup:
+func (o *DataSourceRef) SetApiGroup(v string) *DataSourceRef {
+	o.ApiGroup = &v
 	return o
 }
 
 // GetKind returns the Kind field value if set, zero value otherwise.
 func (o *DataSourceRef) GetKind() string {
-	if o == nil || utils.IsNil(o.kind) {
+	if o == nil || utils.IsNil(o.Kind) {
 		var ret string
 		return ret
 	}
-	return *o.kind
+	return *o.Kind
 }
 
 // GetKindOk returns a tuple with the Kind field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataSourceRef) GetKindOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.kind) {
+	if o == nil || utils.IsNil(o.Kind) {
 		return nil, false
 	}
-	return o.kind, true
+	return o.Kind, true
 }
 
 // HasKind returns a boolean if a field has been set.
 func (o *DataSourceRef) HasKind() bool {
-	if o != nil && !utils.IsNil(o.kind) {
+	if o != nil && !utils.IsNil(o.Kind) {
 		return true
 	}
 
 	return false
 }
 
-// Kind gets a reference to the given string and assigns it to the kind field.
-// kind:
-func (o *DataSourceRef) Kind(v string) *DataSourceRef {
-	o.kind = &v
+// SetKind gets a reference to the given string and assigns it to the kind field.
+// Kind:
+func (o *DataSourceRef) SetKind(v string) *DataSourceRef {
+	o.Kind = &v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DataSourceRef) GetName() string {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.name
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataSourceRef) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *DataSourceRef) HasName() bool {
-	if o != nil && !utils.IsNil(o.name) {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:
-func (o *DataSourceRef) Name(v string) *DataSourceRef {
-	o.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:
+func (o *DataSourceRef) SetName(v string) *DataSourceRef {
+	o.Name = &v
 	return o
 }
 
@@ -155,14 +155,14 @@ func (o DataSourceRef) MarshalJSON() ([]byte, error) {
 
 func (o DataSourceRef) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.apiGroup) {
-		toSerialize["apiGroup"] = o.apiGroup
+	if !utils.IsNil(o.ApiGroup) {
+		toSerialize["apiGroup"] = o.ApiGroup
 	}
-	if !utils.IsNil(o.kind) {
-		toSerialize["kind"] = o.kind
+	if !utils.IsNil(o.Kind) {
+		toSerialize["kind"] = o.Kind
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	return toSerialize, nil
 }

@@ -28,7 +28,7 @@ var _ utils.MappedNullable = &ApplyRemainingSpec{}
 // ApplyRemainingSpec struct for ApplyRemainingSpec
 type ApplyRemainingSpec struct {
 	// Declare the name of the component
-	exceptions []string `json:"exceptions,omitempty"`
+	Exceptions []string `json:"exceptions,omitempty"`
 }
 
 // NewApplyRemainingSpecWith instantiates a new ApplyRemainingSpec object
@@ -50,35 +50,35 @@ func NewApplyRemainingSpec() *ApplyRemainingSpec {
 
 // GetExceptions returns the Exceptions field value if set, zero value otherwise.
 func (o *ApplyRemainingWorkflowStep) GetExceptions() []string {
-	if o == nil || utils.IsNil(o.Properties.exceptions) {
+	if o == nil || utils.IsNil(o.Properties.Exceptions) {
 		var ret []string
 		return ret
 	}
-	return o.Properties.exceptions
+	return o.Properties.Exceptions
 }
 
 // GetExceptionsOk returns a tuple with the Exceptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplyRemainingWorkflowStep) GetExceptionsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.exceptions) {
+	if o == nil || utils.IsNil(o.Properties.Exceptions) {
 		return nil, false
 	}
-	return o.Properties.exceptions, true
+	return o.Properties.Exceptions, true
 }
 
 // HasExceptions returns a boolean if a field has been set.
 func (o *ApplyRemainingWorkflowStep) HasExceptions() bool {
-	if o != nil && !utils.IsNil(o.Properties.exceptions) {
+	if o != nil && !utils.IsNil(o.Properties.Exceptions) {
 		return true
 	}
 
 	return false
 }
 
-// Exceptions gets a reference to the given []string and assigns it to the exceptions field.
-// exceptions:  Declare the name of the component
-func (o *ApplyRemainingWorkflowStep) Exceptions(v []string) *ApplyRemainingWorkflowStep {
-	o.Properties.exceptions = v
+// SetExceptions gets a reference to the given []string and assigns it to the exceptions field.
+// Exceptions:  Declare the name of the component
+func (o *ApplyRemainingWorkflowStep) SetExceptions(v []string) *ApplyRemainingWorkflowStep {
+	o.Properties.Exceptions = v
 	return o
 }
 
@@ -92,8 +92,8 @@ func (o ApplyRemainingSpec) MarshalJSON() ([]byte, error) {
 
 func (o ApplyRemainingSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.exceptions) {
-		toSerialize["exceptions"] = o.exceptions
+	if !utils.IsNil(o.Exceptions) {
+		toSerialize["exceptions"] = o.Exceptions
 	}
 	return toSerialize, nil
 }

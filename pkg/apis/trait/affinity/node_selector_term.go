@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &NodeSelectorTerm{}
 
 // NodeSelectorTerm struct for NodeSelectorTerm
 type NodeSelectorTerm struct {
-	matchExpressions []NodeSelecor `json:"matchExpressions,omitempty"`
-	matchFields      []NodeSelecor `json:"matchFields,omitempty"`
+	MatchExpressions []NodeSelecor `json:"matchExpressions,omitempty"`
+	MatchFields      []NodeSelecor `json:"matchFields,omitempty"`
 }
 
 // NewNodeSelectorTermWith instantiates a new NodeSelectorTerm object
@@ -44,69 +44,69 @@ func NewNodeSelectorTerm() *NodeSelectorTerm {
 
 // GetMatchExpressions returns the MatchExpressions field value if set, zero value otherwise.
 func (o *NodeSelectorTerm) GetMatchExpressions() []NodeSelecor {
-	if o == nil || utils.IsNil(o.matchExpressions) {
+	if o == nil || utils.IsNil(o.MatchExpressions) {
 		var ret []NodeSelecor
 		return ret
 	}
-	return o.matchExpressions
+	return o.MatchExpressions
 }
 
 // GetMatchExpressionsOk returns a tuple with the MatchExpressions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NodeSelectorTerm) GetMatchExpressionsOk() ([]NodeSelecor, bool) {
-	if o == nil || utils.IsNil(o.matchExpressions) {
+	if o == nil || utils.IsNil(o.MatchExpressions) {
 		return nil, false
 	}
-	return o.matchExpressions, true
+	return o.MatchExpressions, true
 }
 
 // HasMatchExpressions returns a boolean if a field has been set.
 func (o *NodeSelectorTerm) HasMatchExpressions() bool {
-	if o != nil && !utils.IsNil(o.matchExpressions) {
+	if o != nil && !utils.IsNil(o.MatchExpressions) {
 		return true
 	}
 
 	return false
 }
 
-// MatchExpressions gets a reference to the given []NodeSelecor and assigns it to the matchExpressions field.
-// matchExpressions:
-func (o *NodeSelectorTerm) MatchExpressions(v []NodeSelecor) *NodeSelectorTerm {
-	o.matchExpressions = v
+// SetMatchExpressions gets a reference to the given []NodeSelecor and assigns it to the matchExpressions field.
+// MatchExpressions:
+func (o *NodeSelectorTerm) SetMatchExpressions(v []NodeSelecor) *NodeSelectorTerm {
+	o.MatchExpressions = v
 	return o
 }
 
 // GetMatchFields returns the MatchFields field value if set, zero value otherwise.
 func (o *NodeSelectorTerm) GetMatchFields() []NodeSelecor {
-	if o == nil || utils.IsNil(o.matchFields) {
+	if o == nil || utils.IsNil(o.MatchFields) {
 		var ret []NodeSelecor
 		return ret
 	}
-	return o.matchFields
+	return o.MatchFields
 }
 
 // GetMatchFieldsOk returns a tuple with the MatchFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NodeSelectorTerm) GetMatchFieldsOk() ([]NodeSelecor, bool) {
-	if o == nil || utils.IsNil(o.matchFields) {
+	if o == nil || utils.IsNil(o.MatchFields) {
 		return nil, false
 	}
-	return o.matchFields, true
+	return o.MatchFields, true
 }
 
 // HasMatchFields returns a boolean if a field has been set.
 func (o *NodeSelectorTerm) HasMatchFields() bool {
-	if o != nil && !utils.IsNil(o.matchFields) {
+	if o != nil && !utils.IsNil(o.MatchFields) {
 		return true
 	}
 
 	return false
 }
 
-// MatchFields gets a reference to the given []NodeSelecor and assigns it to the matchFields field.
-// matchFields:
-func (o *NodeSelectorTerm) MatchFields(v []NodeSelecor) *NodeSelectorTerm {
-	o.matchFields = v
+// SetMatchFields gets a reference to the given []NodeSelecor and assigns it to the matchFields field.
+// MatchFields:
+func (o *NodeSelectorTerm) SetMatchFields(v []NodeSelecor) *NodeSelectorTerm {
+	o.MatchFields = v
 	return o
 }
 
@@ -120,11 +120,11 @@ func (o NodeSelectorTerm) MarshalJSON() ([]byte, error) {
 
 func (o NodeSelectorTerm) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.matchExpressions) {
-		toSerialize["matchExpressions"] = o.matchExpressions
+	if !utils.IsNil(o.MatchExpressions) {
+		toSerialize["matchExpressions"] = o.MatchExpressions
 	}
-	if !utils.IsNil(o.matchFields) {
-		toSerialize["matchFields"] = o.matchFields
+	if !utils.IsNil(o.MatchFields) {
+		toSerialize["matchFields"] = o.MatchFields
 	}
 	return toSerialize, nil
 }

@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &SourceOneOf1{}
 // SourceOneOf1 struct for SourceOneOf1
 type SourceOneOf1 struct {
 	// specify the path of the terraform configuration
-	path *string `json:"path,omitempty"`
+	Path *string `json:"path,omitempty"`
 	// specify the remote url of the terraform configuration
-	remote string `json:"remote"`
+	Remote string `json:"remote"`
 }
 
 // NewSourceOneOf1With instantiates a new SourceOneOf1 object
@@ -33,7 +33,7 @@ type SourceOneOf1 struct {
 // will change when the set of required properties is changed
 func NewSourceOneOf1With(remote string) *SourceOneOf1 {
 	this := SourceOneOf1{}
-	this.remote = remote
+	this.Remote = remote
 	return &this
 }
 
@@ -43,41 +43,41 @@ func NewSourceOneOf1With(remote string) *SourceOneOf1 {
 func NewSourceOneOf1() *SourceOneOf1 {
 	this := SourceOneOf1{}
 	var remote string = "https://github.com/kubevela-contrib/terraform-modules.git"
-	this.remote = remote
+	this.Remote = remote
 	return &this
 }
 
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *SourceOneOf1) GetPath() string {
-	if o == nil || utils.IsNil(o.path) {
+	if o == nil || utils.IsNil(o.Path) {
 		var ret string
 		return ret
 	}
-	return *o.path
+	return *o.Path
 }
 
 // GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SourceOneOf1) GetPathOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.path) {
+	if o == nil || utils.IsNil(o.Path) {
 		return nil, false
 	}
-	return o.path, true
+	return o.Path, true
 }
 
 // HasPath returns a boolean if a field has been set.
 func (o *SourceOneOf1) HasPath() bool {
-	if o != nil && !utils.IsNil(o.path) {
+	if o != nil && !utils.IsNil(o.Path) {
 		return true
 	}
 
 	return false
 }
 
-// Path gets a reference to the given string and assigns it to the path field.
-// path:  specify the path of the terraform configuration
-func (o *SourceOneOf1) Path(v string) *SourceOneOf1 {
-	o.path = &v
+// SetPath gets a reference to the given string and assigns it to the path field.
+// Path:  specify the path of the terraform configuration
+func (o *SourceOneOf1) SetPath(v string) *SourceOneOf1 {
+	o.Path = &v
 	return o
 }
 
@@ -88,7 +88,7 @@ func (o *SourceOneOf1) GetRemote() string {
 		return ret
 	}
 
-	return o.remote
+	return o.Remote
 }
 
 // GetRemoteOk returns a tuple with the Remote field value
@@ -97,12 +97,12 @@ func (o *SourceOneOf1) GetRemoteOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.remote, true
+	return &o.Remote, true
 }
 
-// Remote sets field value
-func (o *SourceOneOf1) Remote(v string) *SourceOneOf1 {
-	o.remote = v
+// SetRemote sets field value
+func (o *SourceOneOf1) SetRemote(v string) *SourceOneOf1 {
+	o.Remote = v
 	return o
 }
 
@@ -116,10 +116,10 @@ func (o SourceOneOf1) MarshalJSON() ([]byte, error) {
 
 func (o SourceOneOf1) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.path) {
-		toSerialize["path"] = o.path
+	if !utils.IsNil(o.Path) {
+		toSerialize["path"] = o.Path
 	}
-	toSerialize["remote"] = o.remote
+	toSerialize["remote"] = o.Remote
 	return toSerialize, nil
 }
 

@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &Mem{}
 // Mem struct for Mem
 type Mem struct {
 	// Specify resource metrics in terms of percentage(\"Utilization\") or direct value(\"AverageValue\")
-	type_ *string `json:"type,omitempty"`
+	Type *string `json:"type,omitempty"`
 	// Specify  the value of MEM utilization or averageValue
-	value *int32 `json:"value,omitempty"`
+	Value *int32 `json:"value,omitempty"`
 }
 
 // NewMemWith instantiates a new Mem object
@@ -34,9 +34,9 @@ type Mem struct {
 func NewMemWith() *Mem {
 	this := Mem{}
 	var type_ string = "Utilization"
-	this.type_ = &type_
+	this.Type = &type_
 	var value int32 = 50
-	this.value = &value
+	this.Value = &value
 	return &this
 }
 
@@ -46,77 +46,77 @@ func NewMemWith() *Mem {
 func NewMem() *Mem {
 	this := Mem{}
 	var type_ string = "Utilization"
-	this.type_ = &type_
+	this.Type = &type_
 	var value int32 = 50
-	this.value = &value
+	this.Value = &value
 	return &this
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Mem) GetType() string {
-	if o == nil || utils.IsNil(o.type_) {
+	if o == nil || utils.IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-	return *o.type_
+	return *o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Mem) GetTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.type_) {
+	if o == nil || utils.IsNil(o.Type) {
 		return nil, false
 	}
-	return o.type_, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *Mem) HasType() bool {
-	if o != nil && !utils.IsNil(o.type_) {
+	if o != nil && !utils.IsNil(o.Type) {
 		return true
 	}
 
 	return false
 }
 
-// Type gets a reference to the given string and assigns it to the type_ field.
-// type_:  Specify resource metrics in terms of percentage(\"Utilization\") or direct value(\"AverageValue\")
-func (o *Mem) Type(v string) *Mem {
-	o.type_ = &v
+// SetType gets a reference to the given string and assigns it to the type_ field.
+// Type:  Specify resource metrics in terms of percentage(\"Utilization\") or direct value(\"AverageValue\")
+func (o *Mem) SetType(v string) *Mem {
+	o.Type = &v
 	return o
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *Mem) GetValue() int32 {
-	if o == nil || utils.IsNil(o.value) {
+	if o == nil || utils.IsNil(o.Value) {
 		var ret int32
 		return ret
 	}
-	return *o.value
+	return *o.Value
 }
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Mem) GetValueOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.value) {
+	if o == nil || utils.IsNil(o.Value) {
 		return nil, false
 	}
-	return o.value, true
+	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
 func (o *Mem) HasValue() bool {
-	if o != nil && !utils.IsNil(o.value) {
+	if o != nil && !utils.IsNil(o.Value) {
 		return true
 	}
 
 	return false
 }
 
-// Value gets a reference to the given int32 and assigns it to the value field.
-// value:  Specify  the value of MEM utilization or averageValue
-func (o *Mem) Value(v int32) *Mem {
-	o.value = &v
+// SetValue gets a reference to the given int32 and assigns it to the value field.
+// Value:  Specify  the value of MEM utilization or averageValue
+func (o *Mem) SetValue(v int32) *Mem {
+	o.Value = &v
 	return o
 }
 
@@ -130,11 +130,11 @@ func (o Mem) MarshalJSON() ([]byte, error) {
 
 func (o Mem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.type_) {
-		toSerialize["type"] = o.type_
+	if !utils.IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
-	if !utils.IsNil(o.value) {
-		toSerialize["value"] = o.value
+	if !utils.IsNil(o.Value) {
+		toSerialize["value"] = o.Value
 	}
 	return toSerialize, nil
 }

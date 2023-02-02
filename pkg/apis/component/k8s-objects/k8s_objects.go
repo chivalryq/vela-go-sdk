@@ -26,7 +26,7 @@ var _ utils.MappedNullable = &K8sObjectsSpec{}
 
 // K8sObjectsSpec struct for K8sObjectsSpec
 type K8sObjectsSpec struct {
-	objects []map[string]interface{} `json:"objects,omitempty"`
+	Objects []map[string]interface{} `json:"objects,omitempty"`
 }
 
 // NewK8sObjectsSpecWith instantiates a new K8sObjectsSpec object
@@ -48,35 +48,35 @@ func NewK8sObjectsSpec() *K8sObjectsSpec {
 
 // GetObjects returns the Objects field value if set, zero value otherwise.
 func (o *K8sObjectsComponent) GetObjects() []map[string]interface{} {
-	if o == nil || utils.IsNil(o.Properties.objects) {
+	if o == nil || utils.IsNil(o.Properties.Objects) {
 		var ret []map[string]interface{}
 		return ret
 	}
-	return o.Properties.objects
+	return o.Properties.Objects
 }
 
 // GetObjectsOk returns a tuple with the Objects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *K8sObjectsComponent) GetObjectsOk() ([]map[string]interface{}, bool) {
-	if o == nil || utils.IsNil(o.Properties.objects) {
+	if o == nil || utils.IsNil(o.Properties.Objects) {
 		return nil, false
 	}
-	return o.Properties.objects, true
+	return o.Properties.Objects, true
 }
 
 // HasObjects returns a boolean if a field has been set.
 func (o *K8sObjectsComponent) HasObjects() bool {
-	if o != nil && !utils.IsNil(o.Properties.objects) {
+	if o != nil && !utils.IsNil(o.Properties.Objects) {
 		return true
 	}
 
 	return false
 }
 
-// Objects gets a reference to the given []map[string]interface{} and assigns it to the objects field.
-// objects:
-func (o *K8sObjectsComponent) Objects(v []map[string]interface{}) *K8sObjectsComponent {
-	o.Properties.objects = v
+// SetObjects gets a reference to the given []map[string]interface{} and assigns it to the objects field.
+// Objects:
+func (o *K8sObjectsComponent) SetObjects(v []map[string]interface{}) *K8sObjectsComponent {
+	o.Properties.Objects = v
 	return o
 }
 
@@ -90,8 +90,8 @@ func (o K8sObjectsSpec) MarshalJSON() ([]byte, error) {
 
 func (o K8sObjectsSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.objects) {
-		toSerialize["objects"] = o.objects
+	if !utils.IsNil(o.Objects) {
+		toSerialize["objects"] = o.Objects
 	}
 	return toSerialize, nil
 }

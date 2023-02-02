@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &ApplyOnceStrategy{}
 // ApplyOnceStrategy struct for ApplyOnceStrategy
 type ApplyOnceStrategy struct {
 	// When the strategy takes effect,e.g. onUpdate、onStateKeep
-	affect *string `json:"affect,omitempty"`
+	Affect *string `json:"affect,omitempty"`
 	// Specify the path of the resource that allow configuration drift
-	path []string `json:"path,omitempty"`
+	Path []string `json:"path,omitempty"`
 }
 
 // NewApplyOnceStrategyWith instantiates a new ApplyOnceStrategy object
@@ -46,69 +46,69 @@ func NewApplyOnceStrategy() *ApplyOnceStrategy {
 
 // GetAffect returns the Affect field value if set, zero value otherwise.
 func (o *ApplyOnceStrategy) GetAffect() string {
-	if o == nil || utils.IsNil(o.affect) {
+	if o == nil || utils.IsNil(o.Affect) {
 		var ret string
 		return ret
 	}
-	return *o.affect
+	return *o.Affect
 }
 
 // GetAffectOk returns a tuple with the Affect field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplyOnceStrategy) GetAffectOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.affect) {
+	if o == nil || utils.IsNil(o.Affect) {
 		return nil, false
 	}
-	return o.affect, true
+	return o.Affect, true
 }
 
 // HasAffect returns a boolean if a field has been set.
 func (o *ApplyOnceStrategy) HasAffect() bool {
-	if o != nil && !utils.IsNil(o.affect) {
+	if o != nil && !utils.IsNil(o.Affect) {
 		return true
 	}
 
 	return false
 }
 
-// Affect gets a reference to the given string and assigns it to the affect field.
-// affect:  When the strategy takes effect,e.g. onUpdate、onStateKeep
-func (o *ApplyOnceStrategy) Affect(v string) *ApplyOnceStrategy {
-	o.affect = &v
+// SetAffect gets a reference to the given string and assigns it to the affect field.
+// Affect:  When the strategy takes effect,e.g. onUpdate、onStateKeep
+func (o *ApplyOnceStrategy) SetAffect(v string) *ApplyOnceStrategy {
+	o.Affect = &v
 	return o
 }
 
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *ApplyOnceStrategy) GetPath() []string {
-	if o == nil || utils.IsNil(o.path) {
+	if o == nil || utils.IsNil(o.Path) {
 		var ret []string
 		return ret
 	}
-	return o.path
+	return o.Path
 }
 
 // GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplyOnceStrategy) GetPathOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.path) {
+	if o == nil || utils.IsNil(o.Path) {
 		return nil, false
 	}
-	return o.path, true
+	return o.Path, true
 }
 
 // HasPath returns a boolean if a field has been set.
 func (o *ApplyOnceStrategy) HasPath() bool {
-	if o != nil && !utils.IsNil(o.path) {
+	if o != nil && !utils.IsNil(o.Path) {
 		return true
 	}
 
 	return false
 }
 
-// Path gets a reference to the given []string and assigns it to the path field.
-// path:  Specify the path of the resource that allow configuration drift
-func (o *ApplyOnceStrategy) Path(v []string) *ApplyOnceStrategy {
-	o.path = v
+// SetPath gets a reference to the given []string and assigns it to the path field.
+// Path:  Specify the path of the resource that allow configuration drift
+func (o *ApplyOnceStrategy) SetPath(v []string) *ApplyOnceStrategy {
+	o.Path = v
 	return o
 }
 
@@ -122,11 +122,11 @@ func (o ApplyOnceStrategy) MarshalJSON() ([]byte, error) {
 
 func (o ApplyOnceStrategy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.affect) {
-		toSerialize["affect"] = o.affect
+	if !utils.IsNil(o.Affect) {
+		toSerialize["affect"] = o.Affect
 	}
-	if !utils.IsNil(o.path) {
-		toSerialize["path"] = o.path
+	if !utils.IsNil(o.Path) {
+		toSerialize["path"] = o.Path
 	}
 	return toSerialize, nil
 }

@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &Requests{}
 
 // Requests struct for Requests
 type Requests struct {
-	cpu    *string `json:"cpu,omitempty"`
-	memory *string `json:"memory,omitempty"`
+	Cpu    *string `json:"cpu,omitempty"`
+	Memory *string `json:"memory,omitempty"`
 }
 
 // NewRequestsWith instantiates a new Requests object
@@ -32,9 +32,9 @@ type Requests struct {
 func NewRequestsWith() *Requests {
 	this := Requests{}
 	var cpu string = "0.5"
-	this.cpu = &cpu
+	this.Cpu = &cpu
 	var memory string = "512Mi"
-	this.memory = &memory
+	this.Memory = &memory
 	return &this
 }
 
@@ -44,77 +44,77 @@ func NewRequestsWith() *Requests {
 func NewRequests() *Requests {
 	this := Requests{}
 	var cpu string = "0.5"
-	this.cpu = &cpu
+	this.Cpu = &cpu
 	var memory string = "512Mi"
-	this.memory = &memory
+	this.Memory = &memory
 	return &this
 }
 
 // GetCpu returns the Cpu field value if set, zero value otherwise.
 func (o *Requests) GetCpu() string {
-	if o == nil || utils.IsNil(o.cpu) {
+	if o == nil || utils.IsNil(o.Cpu) {
 		var ret string
 		return ret
 	}
-	return *o.cpu
+	return *o.Cpu
 }
 
 // GetCpuOk returns a tuple with the Cpu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Requests) GetCpuOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.cpu) {
+	if o == nil || utils.IsNil(o.Cpu) {
 		return nil, false
 	}
-	return o.cpu, true
+	return o.Cpu, true
 }
 
 // HasCpu returns a boolean if a field has been set.
 func (o *Requests) HasCpu() bool {
-	if o != nil && !utils.IsNil(o.cpu) {
+	if o != nil && !utils.IsNil(o.Cpu) {
 		return true
 	}
 
 	return false
 }
 
-// Cpu gets a reference to the given string and assigns it to the cpu field.
-// cpu:
-func (o *Requests) Cpu(v string) *Requests {
-	o.cpu = &v
+// SetCpu gets a reference to the given string and assigns it to the cpu field.
+// Cpu:
+func (o *Requests) SetCpu(v string) *Requests {
+	o.Cpu = &v
 	return o
 }
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
 func (o *Requests) GetMemory() string {
-	if o == nil || utils.IsNil(o.memory) {
+	if o == nil || utils.IsNil(o.Memory) {
 		var ret string
 		return ret
 	}
-	return *o.memory
+	return *o.Memory
 }
 
 // GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Requests) GetMemoryOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.memory) {
+	if o == nil || utils.IsNil(o.Memory) {
 		return nil, false
 	}
-	return o.memory, true
+	return o.Memory, true
 }
 
 // HasMemory returns a boolean if a field has been set.
 func (o *Requests) HasMemory() bool {
-	if o != nil && !utils.IsNil(o.memory) {
+	if o != nil && !utils.IsNil(o.Memory) {
 		return true
 	}
 
 	return false
 }
 
-// Memory gets a reference to the given string and assigns it to the memory field.
-// memory:
-func (o *Requests) Memory(v string) *Requests {
-	o.memory = &v
+// SetMemory gets a reference to the given string and assigns it to the memory field.
+// Memory:
+func (o *Requests) SetMemory(v string) *Requests {
+	o.Memory = &v
 	return o
 }
 
@@ -128,11 +128,11 @@ func (o Requests) MarshalJSON() ([]byte, error) {
 
 func (o Requests) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.cpu) {
-		toSerialize["cpu"] = o.cpu
+	if !utils.IsNil(o.Cpu) {
+		toSerialize["cpu"] = o.Cpu
 	}
-	if !utils.IsNil(o.memory) {
-		toSerialize["memory"] = o.memory
+	if !utils.IsNil(o.Memory) {
+		toSerialize["memory"] = o.Memory
 	}
 	return toSerialize, nil
 }

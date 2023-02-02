@@ -27,15 +27,15 @@ var _ utils.MappedNullable = &StorageSpec{}
 // StorageSpec struct for StorageSpec
 type StorageSpec struct {
 	// Declare config map type storage
-	configMap []ConfigMap `json:"configMap,omitempty"`
+	ConfigMap []ConfigMap `json:"configMap,omitempty"`
 	// Declare empty dir type storage
-	emptyDir []EmptyDir `json:"emptyDir,omitempty"`
+	EmptyDir []EmptyDir `json:"emptyDir,omitempty"`
 	// Declare host path type storage
-	hostPath []HostPath `json:"hostPath,omitempty"`
+	HostPath []HostPath `json:"hostPath,omitempty"`
 	// Declare pvc type storage
-	pvc []Pvc `json:"pvc,omitempty"`
+	Pvc []Pvc `json:"pvc,omitempty"`
 	// Declare secret type storage
-	secret []Secret `json:"secret,omitempty"`
+	Secret []Secret `json:"secret,omitempty"`
 }
 
 // NewStorageSpecWith instantiates a new StorageSpec object
@@ -57,171 +57,171 @@ func NewStorageSpec() *StorageSpec {
 
 // GetConfigMap returns the ConfigMap field value if set, zero value otherwise.
 func (o *StorageTrait) GetConfigMap() []ConfigMap {
-	if o == nil || utils.IsNil(o.Properties.configMap) {
+	if o == nil || utils.IsNil(o.Properties.ConfigMap) {
 		var ret []ConfigMap
 		return ret
 	}
-	return o.Properties.configMap
+	return o.Properties.ConfigMap
 }
 
 // GetConfigMapOk returns a tuple with the ConfigMap field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StorageTrait) GetConfigMapOk() ([]ConfigMap, bool) {
-	if o == nil || utils.IsNil(o.Properties.configMap) {
+	if o == nil || utils.IsNil(o.Properties.ConfigMap) {
 		return nil, false
 	}
-	return o.Properties.configMap, true
+	return o.Properties.ConfigMap, true
 }
 
 // HasConfigMap returns a boolean if a field has been set.
 func (o *StorageTrait) HasConfigMap() bool {
-	if o != nil && !utils.IsNil(o.Properties.configMap) {
+	if o != nil && !utils.IsNil(o.Properties.ConfigMap) {
 		return true
 	}
 
 	return false
 }
 
-// ConfigMap gets a reference to the given []ConfigMap and assigns it to the configMap field.
-// configMap:  Declare config map type storage
-func (o *StorageTrait) ConfigMap(v []ConfigMap) *StorageTrait {
-	o.Properties.configMap = v
+// SetConfigMap gets a reference to the given []ConfigMap and assigns it to the configMap field.
+// ConfigMap:  Declare config map type storage
+func (o *StorageTrait) SetConfigMap(v []ConfigMap) *StorageTrait {
+	o.Properties.ConfigMap = v
 	return o
 }
 
 // GetEmptyDir returns the EmptyDir field value if set, zero value otherwise.
 func (o *StorageTrait) GetEmptyDir() []EmptyDir {
-	if o == nil || utils.IsNil(o.Properties.emptyDir) {
+	if o == nil || utils.IsNil(o.Properties.EmptyDir) {
 		var ret []EmptyDir
 		return ret
 	}
-	return o.Properties.emptyDir
+	return o.Properties.EmptyDir
 }
 
 // GetEmptyDirOk returns a tuple with the EmptyDir field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StorageTrait) GetEmptyDirOk() ([]EmptyDir, bool) {
-	if o == nil || utils.IsNil(o.Properties.emptyDir) {
+	if o == nil || utils.IsNil(o.Properties.EmptyDir) {
 		return nil, false
 	}
-	return o.Properties.emptyDir, true
+	return o.Properties.EmptyDir, true
 }
 
 // HasEmptyDir returns a boolean if a field has been set.
 func (o *StorageTrait) HasEmptyDir() bool {
-	if o != nil && !utils.IsNil(o.Properties.emptyDir) {
+	if o != nil && !utils.IsNil(o.Properties.EmptyDir) {
 		return true
 	}
 
 	return false
 }
 
-// EmptyDir gets a reference to the given []EmptyDir and assigns it to the emptyDir field.
-// emptyDir:  Declare empty dir type storage
-func (o *StorageTrait) EmptyDir(v []EmptyDir) *StorageTrait {
-	o.Properties.emptyDir = v
+// SetEmptyDir gets a reference to the given []EmptyDir and assigns it to the emptyDir field.
+// EmptyDir:  Declare empty dir type storage
+func (o *StorageTrait) SetEmptyDir(v []EmptyDir) *StorageTrait {
+	o.Properties.EmptyDir = v
 	return o
 }
 
 // GetHostPath returns the HostPath field value if set, zero value otherwise.
 func (o *StorageTrait) GetHostPath() []HostPath {
-	if o == nil || utils.IsNil(o.Properties.hostPath) {
+	if o == nil || utils.IsNil(o.Properties.HostPath) {
 		var ret []HostPath
 		return ret
 	}
-	return o.Properties.hostPath
+	return o.Properties.HostPath
 }
 
 // GetHostPathOk returns a tuple with the HostPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StorageTrait) GetHostPathOk() ([]HostPath, bool) {
-	if o == nil || utils.IsNil(o.Properties.hostPath) {
+	if o == nil || utils.IsNil(o.Properties.HostPath) {
 		return nil, false
 	}
-	return o.Properties.hostPath, true
+	return o.Properties.HostPath, true
 }
 
 // HasHostPath returns a boolean if a field has been set.
 func (o *StorageTrait) HasHostPath() bool {
-	if o != nil && !utils.IsNil(o.Properties.hostPath) {
+	if o != nil && !utils.IsNil(o.Properties.HostPath) {
 		return true
 	}
 
 	return false
 }
 
-// HostPath gets a reference to the given []HostPath and assigns it to the hostPath field.
-// hostPath:  Declare host path type storage
-func (o *StorageTrait) HostPath(v []HostPath) *StorageTrait {
-	o.Properties.hostPath = v
+// SetHostPath gets a reference to the given []HostPath and assigns it to the hostPath field.
+// HostPath:  Declare host path type storage
+func (o *StorageTrait) SetHostPath(v []HostPath) *StorageTrait {
+	o.Properties.HostPath = v
 	return o
 }
 
 // GetPvc returns the Pvc field value if set, zero value otherwise.
 func (o *StorageTrait) GetPvc() []Pvc {
-	if o == nil || utils.IsNil(o.Properties.pvc) {
+	if o == nil || utils.IsNil(o.Properties.Pvc) {
 		var ret []Pvc
 		return ret
 	}
-	return o.Properties.pvc
+	return o.Properties.Pvc
 }
 
 // GetPvcOk returns a tuple with the Pvc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StorageTrait) GetPvcOk() ([]Pvc, bool) {
-	if o == nil || utils.IsNil(o.Properties.pvc) {
+	if o == nil || utils.IsNil(o.Properties.Pvc) {
 		return nil, false
 	}
-	return o.Properties.pvc, true
+	return o.Properties.Pvc, true
 }
 
 // HasPvc returns a boolean if a field has been set.
 func (o *StorageTrait) HasPvc() bool {
-	if o != nil && !utils.IsNil(o.Properties.pvc) {
+	if o != nil && !utils.IsNil(o.Properties.Pvc) {
 		return true
 	}
 
 	return false
 }
 
-// Pvc gets a reference to the given []Pvc and assigns it to the pvc field.
-// pvc:  Declare pvc type storage
-func (o *StorageTrait) Pvc(v []Pvc) *StorageTrait {
-	o.Properties.pvc = v
+// SetPvc gets a reference to the given []Pvc and assigns it to the pvc field.
+// Pvc:  Declare pvc type storage
+func (o *StorageTrait) SetPvc(v []Pvc) *StorageTrait {
+	o.Properties.Pvc = v
 	return o
 }
 
 // GetSecret returns the Secret field value if set, zero value otherwise.
 func (o *StorageTrait) GetSecret() []Secret {
-	if o == nil || utils.IsNil(o.Properties.secret) {
+	if o == nil || utils.IsNil(o.Properties.Secret) {
 		var ret []Secret
 		return ret
 	}
-	return o.Properties.secret
+	return o.Properties.Secret
 }
 
 // GetSecretOk returns a tuple with the Secret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StorageTrait) GetSecretOk() ([]Secret, bool) {
-	if o == nil || utils.IsNil(o.Properties.secret) {
+	if o == nil || utils.IsNil(o.Properties.Secret) {
 		return nil, false
 	}
-	return o.Properties.secret, true
+	return o.Properties.Secret, true
 }
 
 // HasSecret returns a boolean if a field has been set.
 func (o *StorageTrait) HasSecret() bool {
-	if o != nil && !utils.IsNil(o.Properties.secret) {
+	if o != nil && !utils.IsNil(o.Properties.Secret) {
 		return true
 	}
 
 	return false
 }
 
-// Secret gets a reference to the given []Secret and assigns it to the secret field.
-// secret:  Declare secret type storage
-func (o *StorageTrait) Secret(v []Secret) *StorageTrait {
-	o.Properties.secret = v
+// SetSecret gets a reference to the given []Secret and assigns it to the secret field.
+// Secret:  Declare secret type storage
+func (o *StorageTrait) SetSecret(v []Secret) *StorageTrait {
+	o.Properties.Secret = v
 	return o
 }
 
@@ -235,20 +235,20 @@ func (o StorageSpec) MarshalJSON() ([]byte, error) {
 
 func (o StorageSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.configMap) {
-		toSerialize["configMap"] = o.configMap
+	if !utils.IsNil(o.ConfigMap) {
+		toSerialize["configMap"] = o.ConfigMap
 	}
-	if !utils.IsNil(o.emptyDir) {
-		toSerialize["emptyDir"] = o.emptyDir
+	if !utils.IsNil(o.EmptyDir) {
+		toSerialize["emptyDir"] = o.EmptyDir
 	}
-	if !utils.IsNil(o.hostPath) {
-		toSerialize["hostPath"] = o.hostPath
+	if !utils.IsNil(o.HostPath) {
+		toSerialize["hostPath"] = o.HostPath
 	}
-	if !utils.IsNil(o.pvc) {
-		toSerialize["pvc"] = o.pvc
+	if !utils.IsNil(o.Pvc) {
+		toSerialize["pvc"] = o.Pvc
 	}
-	if !utils.IsNil(o.secret) {
-		toSerialize["secret"] = o.secret
+	if !utils.IsNil(o.Secret) {
+		toSerialize["secret"] = o.Secret
 	}
 	return toSerialize, nil
 }

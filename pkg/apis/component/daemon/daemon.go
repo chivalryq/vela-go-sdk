@@ -26,36 +26,36 @@ var _ utils.MappedNullable = &DaemonSpec{}
 
 // DaemonSpec struct for DaemonSpec
 type DaemonSpec struct {
-	addRevisionLabel *bool `json:"addRevisionLabel,omitempty"`
+	AddRevisionLabel *bool `json:"addRevisionLabel,omitempty"`
 	// Specify the annotations in the workload
-	annotations *map[string]string `json:"annotations,omitempty"`
+	Annotations *map[string]string `json:"annotations,omitempty"`
 	// Commands to run in the container
-	cmd []string `json:"cmd,omitempty"`
+	Cmd []string `json:"cmd,omitempty"`
 	// Number of CPU units for the service, like `0.5` (0.5 CPU core), `1` (1 CPU core)
-	cpu *string `json:"cpu,omitempty"`
+	Cpu *string `json:"cpu,omitempty"`
 	// Define arguments by using environment variables
-	env        []Env   `json:"env,omitempty"`
-	exposeType *string `json:"exposeType,omitempty"`
+	Env        []Env   `json:"env,omitempty"`
+	ExposeType *string `json:"exposeType,omitempty"`
 	// Specify the hostAliases to add
-	hostAliases []HostAliases `json:"hostAliases,omitempty"`
+	HostAliases []HostAliases `json:"hostAliases,omitempty"`
 	// Which image would you like to use for your service +short=i
-	image *string `json:"image,omitempty"`
+	Image *string `json:"image,omitempty"`
 	// Specify image pull policy for your service
-	imagePullPolicy *string `json:"imagePullPolicy,omitempty"`
+	ImagePullPolicy *string `json:"imagePullPolicy,omitempty"`
 	// Specify image pull secrets for your service
-	imagePullSecrets []string `json:"imagePullSecrets,omitempty"`
+	ImagePullSecrets []string `json:"imagePullSecrets,omitempty"`
 	// Specify the labels in the workload
-	labels        *map[string]string `json:"labels,omitempty"`
-	livenessProbe *HealthProbe       `json:"livenessProbe,omitempty"`
+	Labels        *map[string]string `json:"labels,omitempty"`
+	LivenessProbe *HealthProbe       `json:"livenessProbe,omitempty"`
 	// Specifies the attributes of the memory resource required for the container.
-	memory *string `json:"memory,omitempty"`
-	port   *int32  `json:"port,omitempty"`
+	Memory *string `json:"memory,omitempty"`
+	Port   *int32  `json:"port,omitempty"`
 	// Which ports do you want customer traffic sent to, defaults to 80
-	ports          []Ports       `json:"ports,omitempty"`
-	readinessProbe *HealthProbe  `json:"readinessProbe,omitempty"`
-	volumeMounts   *VolumeMounts `json:"volumeMounts,omitempty"`
+	Ports          []Ports       `json:"ports,omitempty"`
+	ReadinessProbe *HealthProbe  `json:"readinessProbe,omitempty"`
+	VolumeMounts   *VolumeMounts `json:"volumeMounts,omitempty"`
 	// Deprecated field, use volumeMounts instead.
-	volumes []Volumes `json:"volumes,omitempty"`
+	Volumes []Volumes `json:"volumes,omitempty"`
 }
 
 // NewDaemonSpecWith instantiates a new DaemonSpec object
@@ -65,9 +65,9 @@ type DaemonSpec struct {
 func NewDaemonSpecWith() *DaemonSpec {
 	this := DaemonSpec{}
 	var addRevisionLabel bool = false
-	this.addRevisionLabel = &addRevisionLabel
+	this.AddRevisionLabel = &addRevisionLabel
 	var exposeType string = "ClusterIP"
-	this.exposeType = &exposeType
+	this.ExposeType = &exposeType
 	return &this
 }
 
@@ -77,621 +77,621 @@ func NewDaemonSpecWith() *DaemonSpec {
 func NewDaemonSpec() *DaemonSpec {
 	this := DaemonSpec{}
 	var addRevisionLabel bool = false
-	this.addRevisionLabel = &addRevisionLabel
+	this.AddRevisionLabel = &addRevisionLabel
 	var exposeType string = "ClusterIP"
-	this.exposeType = &exposeType
+	this.ExposeType = &exposeType
 	return &this
 }
 
 // GetAddRevisionLabel returns the AddRevisionLabel field value if set, zero value otherwise.
 func (o *DaemonComponent) GetAddRevisionLabel() bool {
-	if o == nil || utils.IsNil(o.Properties.addRevisionLabel) {
+	if o == nil || utils.IsNil(o.Properties.AddRevisionLabel) {
 		var ret bool
 		return ret
 	}
-	return *o.Properties.addRevisionLabel
+	return *o.Properties.AddRevisionLabel
 }
 
 // GetAddRevisionLabelOk returns a tuple with the AddRevisionLabel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetAddRevisionLabelOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.Properties.addRevisionLabel) {
+	if o == nil || utils.IsNil(o.Properties.AddRevisionLabel) {
 		return nil, false
 	}
-	return o.Properties.addRevisionLabel, true
+	return o.Properties.AddRevisionLabel, true
 }
 
 // HasAddRevisionLabel returns a boolean if a field has been set.
 func (o *DaemonComponent) HasAddRevisionLabel() bool {
-	if o != nil && !utils.IsNil(o.Properties.addRevisionLabel) {
+	if o != nil && !utils.IsNil(o.Properties.AddRevisionLabel) {
 		return true
 	}
 
 	return false
 }
 
-// AddRevisionLabel gets a reference to the given bool and assigns it to the addRevisionLabel field.
-// addRevisionLabel:
-func (o *DaemonComponent) AddRevisionLabel(v bool) *DaemonComponent {
-	o.Properties.addRevisionLabel = &v
+// SetAddRevisionLabel gets a reference to the given bool and assigns it to the addRevisionLabel field.
+// AddRevisionLabel:
+func (o *DaemonComponent) SetAddRevisionLabel(v bool) *DaemonComponent {
+	o.Properties.AddRevisionLabel = &v
 	return o
 }
 
 // GetAnnotations returns the Annotations field value if set, zero value otherwise.
 func (o *DaemonComponent) GetAnnotations() map[string]string {
-	if o == nil || utils.IsNil(o.Properties.annotations) {
+	if o == nil || utils.IsNil(o.Properties.Annotations) {
 		var ret map[string]string
 		return ret
 	}
-	return *o.Properties.annotations
+	return *o.Properties.Annotations
 }
 
 // GetAnnotationsOk returns a tuple with the Annotations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetAnnotationsOk() (*map[string]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.annotations) {
+	if o == nil || utils.IsNil(o.Properties.Annotations) {
 		return nil, false
 	}
-	return o.Properties.annotations, true
+	return o.Properties.Annotations, true
 }
 
 // HasAnnotations returns a boolean if a field has been set.
 func (o *DaemonComponent) HasAnnotations() bool {
-	if o != nil && !utils.IsNil(o.Properties.annotations) {
+	if o != nil && !utils.IsNil(o.Properties.Annotations) {
 		return true
 	}
 
 	return false
 }
 
-// Annotations gets a reference to the given map[string]string and assigns it to the annotations field.
-// annotations:  Specify the annotations in the workload
-func (o *DaemonComponent) Annotations(v map[string]string) *DaemonComponent {
-	o.Properties.annotations = &v
+// SetAnnotations gets a reference to the given map[string]string and assigns it to the annotations field.
+// Annotations:  Specify the annotations in the workload
+func (o *DaemonComponent) SetAnnotations(v map[string]string) *DaemonComponent {
+	o.Properties.Annotations = &v
 	return o
 }
 
 // GetCmd returns the Cmd field value if set, zero value otherwise.
 func (o *DaemonComponent) GetCmd() []string {
-	if o == nil || utils.IsNil(o.Properties.cmd) {
+	if o == nil || utils.IsNil(o.Properties.Cmd) {
 		var ret []string
 		return ret
 	}
-	return o.Properties.cmd
+	return o.Properties.Cmd
 }
 
 // GetCmdOk returns a tuple with the Cmd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetCmdOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.cmd) {
+	if o == nil || utils.IsNil(o.Properties.Cmd) {
 		return nil, false
 	}
-	return o.Properties.cmd, true
+	return o.Properties.Cmd, true
 }
 
 // HasCmd returns a boolean if a field has been set.
 func (o *DaemonComponent) HasCmd() bool {
-	if o != nil && !utils.IsNil(o.Properties.cmd) {
+	if o != nil && !utils.IsNil(o.Properties.Cmd) {
 		return true
 	}
 
 	return false
 }
 
-// Cmd gets a reference to the given []string and assigns it to the cmd field.
-// cmd:  Commands to run in the container
-func (o *DaemonComponent) Cmd(v []string) *DaemonComponent {
-	o.Properties.cmd = v
+// SetCmd gets a reference to the given []string and assigns it to the cmd field.
+// Cmd:  Commands to run in the container
+func (o *DaemonComponent) SetCmd(v []string) *DaemonComponent {
+	o.Properties.Cmd = v
 	return o
 }
 
 // GetCpu returns the Cpu field value if set, zero value otherwise.
 func (o *DaemonComponent) GetCpu() string {
-	if o == nil || utils.IsNil(o.Properties.cpu) {
+	if o == nil || utils.IsNil(o.Properties.Cpu) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.cpu
+	return *o.Properties.Cpu
 }
 
 // GetCpuOk returns a tuple with the Cpu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetCpuOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.cpu) {
+	if o == nil || utils.IsNil(o.Properties.Cpu) {
 		return nil, false
 	}
-	return o.Properties.cpu, true
+	return o.Properties.Cpu, true
 }
 
 // HasCpu returns a boolean if a field has been set.
 func (o *DaemonComponent) HasCpu() bool {
-	if o != nil && !utils.IsNil(o.Properties.cpu) {
+	if o != nil && !utils.IsNil(o.Properties.Cpu) {
 		return true
 	}
 
 	return false
 }
 
-// Cpu gets a reference to the given string and assigns it to the cpu field.
-// cpu:  Number of CPU units for the service, like `0.5` (0.5 CPU core), `1` (1 CPU core)
-func (o *DaemonComponent) Cpu(v string) *DaemonComponent {
-	o.Properties.cpu = &v
+// SetCpu gets a reference to the given string and assigns it to the cpu field.
+// Cpu:  Number of CPU units for the service, like `0.5` (0.5 CPU core), `1` (1 CPU core)
+func (o *DaemonComponent) SetCpu(v string) *DaemonComponent {
+	o.Properties.Cpu = &v
 	return o
 }
 
 // GetEnv returns the Env field value if set, zero value otherwise.
 func (o *DaemonComponent) GetEnv() []Env {
-	if o == nil || utils.IsNil(o.Properties.env) {
+	if o == nil || utils.IsNil(o.Properties.Env) {
 		var ret []Env
 		return ret
 	}
-	return o.Properties.env
+	return o.Properties.Env
 }
 
 // GetEnvOk returns a tuple with the Env field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetEnvOk() ([]Env, bool) {
-	if o == nil || utils.IsNil(o.Properties.env) {
+	if o == nil || utils.IsNil(o.Properties.Env) {
 		return nil, false
 	}
-	return o.Properties.env, true
+	return o.Properties.Env, true
 }
 
 // HasEnv returns a boolean if a field has been set.
 func (o *DaemonComponent) HasEnv() bool {
-	if o != nil && !utils.IsNil(o.Properties.env) {
+	if o != nil && !utils.IsNil(o.Properties.Env) {
 		return true
 	}
 
 	return false
 }
 
-// Env gets a reference to the given []Env and assigns it to the env field.
-// env:  Define arguments by using environment variables
-func (o *DaemonComponent) Env(v []Env) *DaemonComponent {
-	o.Properties.env = v
+// SetEnv gets a reference to the given []Env and assigns it to the env field.
+// Env:  Define arguments by using environment variables
+func (o *DaemonComponent) SetEnv(v []Env) *DaemonComponent {
+	o.Properties.Env = v
 	return o
 }
 
 // GetExposeType returns the ExposeType field value if set, zero value otherwise.
 func (o *DaemonComponent) GetExposeType() string {
-	if o == nil || utils.IsNil(o.Properties.exposeType) {
+	if o == nil || utils.IsNil(o.Properties.ExposeType) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.exposeType
+	return *o.Properties.ExposeType
 }
 
 // GetExposeTypeOk returns a tuple with the ExposeType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetExposeTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.exposeType) {
+	if o == nil || utils.IsNil(o.Properties.ExposeType) {
 		return nil, false
 	}
-	return o.Properties.exposeType, true
+	return o.Properties.ExposeType, true
 }
 
 // HasExposeType returns a boolean if a field has been set.
 func (o *DaemonComponent) HasExposeType() bool {
-	if o != nil && !utils.IsNil(o.Properties.exposeType) {
+	if o != nil && !utils.IsNil(o.Properties.ExposeType) {
 		return true
 	}
 
 	return false
 }
 
-// ExposeType gets a reference to the given string and assigns it to the exposeType field.
-// exposeType:
-func (o *DaemonComponent) ExposeType(v string) *DaemonComponent {
-	o.Properties.exposeType = &v
+// SetExposeType gets a reference to the given string and assigns it to the exposeType field.
+// ExposeType:
+func (o *DaemonComponent) SetExposeType(v string) *DaemonComponent {
+	o.Properties.ExposeType = &v
 	return o
 }
 
 // GetHostAliases returns the HostAliases field value if set, zero value otherwise.
 func (o *DaemonComponent) GetHostAliases() []HostAliases {
-	if o == nil || utils.IsNil(o.Properties.hostAliases) {
+	if o == nil || utils.IsNil(o.Properties.HostAliases) {
 		var ret []HostAliases
 		return ret
 	}
-	return o.Properties.hostAliases
+	return o.Properties.HostAliases
 }
 
 // GetHostAliasesOk returns a tuple with the HostAliases field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetHostAliasesOk() ([]HostAliases, bool) {
-	if o == nil || utils.IsNil(o.Properties.hostAliases) {
+	if o == nil || utils.IsNil(o.Properties.HostAliases) {
 		return nil, false
 	}
-	return o.Properties.hostAliases, true
+	return o.Properties.HostAliases, true
 }
 
 // HasHostAliases returns a boolean if a field has been set.
 func (o *DaemonComponent) HasHostAliases() bool {
-	if o != nil && !utils.IsNil(o.Properties.hostAliases) {
+	if o != nil && !utils.IsNil(o.Properties.HostAliases) {
 		return true
 	}
 
 	return false
 }
 
-// HostAliases gets a reference to the given []HostAliases and assigns it to the hostAliases field.
-// hostAliases:  Specify the hostAliases to add
-func (o *DaemonComponent) HostAliases(v []HostAliases) *DaemonComponent {
-	o.Properties.hostAliases = v
+// SetHostAliases gets a reference to the given []HostAliases and assigns it to the hostAliases field.
+// HostAliases:  Specify the hostAliases to add
+func (o *DaemonComponent) SetHostAliases(v []HostAliases) *DaemonComponent {
+	o.Properties.HostAliases = v
 	return o
 }
 
 // GetImage returns the Image field value if set, zero value otherwise.
 func (o *DaemonComponent) GetImage() string {
-	if o == nil || utils.IsNil(o.Properties.image) {
+	if o == nil || utils.IsNil(o.Properties.Image) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.image
+	return *o.Properties.Image
 }
 
 // GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetImageOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.image) {
+	if o == nil || utils.IsNil(o.Properties.Image) {
 		return nil, false
 	}
-	return o.Properties.image, true
+	return o.Properties.Image, true
 }
 
 // HasImage returns a boolean if a field has been set.
 func (o *DaemonComponent) HasImage() bool {
-	if o != nil && !utils.IsNil(o.Properties.image) {
+	if o != nil && !utils.IsNil(o.Properties.Image) {
 		return true
 	}
 
 	return false
 }
 
-// Image gets a reference to the given string and assigns it to the image field.
-// image:  Which image would you like to use for your service +short=i
-func (o *DaemonComponent) Image(v string) *DaemonComponent {
-	o.Properties.image = &v
+// SetImage gets a reference to the given string and assigns it to the image field.
+// Image:  Which image would you like to use for your service +short=i
+func (o *DaemonComponent) SetImage(v string) *DaemonComponent {
+	o.Properties.Image = &v
 	return o
 }
 
 // GetImagePullPolicy returns the ImagePullPolicy field value if set, zero value otherwise.
 func (o *DaemonComponent) GetImagePullPolicy() string {
-	if o == nil || utils.IsNil(o.Properties.imagePullPolicy) {
+	if o == nil || utils.IsNil(o.Properties.ImagePullPolicy) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.imagePullPolicy
+	return *o.Properties.ImagePullPolicy
 }
 
 // GetImagePullPolicyOk returns a tuple with the ImagePullPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetImagePullPolicyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.imagePullPolicy) {
+	if o == nil || utils.IsNil(o.Properties.ImagePullPolicy) {
 		return nil, false
 	}
-	return o.Properties.imagePullPolicy, true
+	return o.Properties.ImagePullPolicy, true
 }
 
 // HasImagePullPolicy returns a boolean if a field has been set.
 func (o *DaemonComponent) HasImagePullPolicy() bool {
-	if o != nil && !utils.IsNil(o.Properties.imagePullPolicy) {
+	if o != nil && !utils.IsNil(o.Properties.ImagePullPolicy) {
 		return true
 	}
 
 	return false
 }
 
-// ImagePullPolicy gets a reference to the given string and assigns it to the imagePullPolicy field.
-// imagePullPolicy:  Specify image pull policy for your service
-func (o *DaemonComponent) ImagePullPolicy(v string) *DaemonComponent {
-	o.Properties.imagePullPolicy = &v
+// SetImagePullPolicy gets a reference to the given string and assigns it to the imagePullPolicy field.
+// ImagePullPolicy:  Specify image pull policy for your service
+func (o *DaemonComponent) SetImagePullPolicy(v string) *DaemonComponent {
+	o.Properties.ImagePullPolicy = &v
 	return o
 }
 
 // GetImagePullSecrets returns the ImagePullSecrets field value if set, zero value otherwise.
 func (o *DaemonComponent) GetImagePullSecrets() []string {
-	if o == nil || utils.IsNil(o.Properties.imagePullSecrets) {
+	if o == nil || utils.IsNil(o.Properties.ImagePullSecrets) {
 		var ret []string
 		return ret
 	}
-	return o.Properties.imagePullSecrets
+	return o.Properties.ImagePullSecrets
 }
 
 // GetImagePullSecretsOk returns a tuple with the ImagePullSecrets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetImagePullSecretsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.imagePullSecrets) {
+	if o == nil || utils.IsNil(o.Properties.ImagePullSecrets) {
 		return nil, false
 	}
-	return o.Properties.imagePullSecrets, true
+	return o.Properties.ImagePullSecrets, true
 }
 
 // HasImagePullSecrets returns a boolean if a field has been set.
 func (o *DaemonComponent) HasImagePullSecrets() bool {
-	if o != nil && !utils.IsNil(o.Properties.imagePullSecrets) {
+	if o != nil && !utils.IsNil(o.Properties.ImagePullSecrets) {
 		return true
 	}
 
 	return false
 }
 
-// ImagePullSecrets gets a reference to the given []string and assigns it to the imagePullSecrets field.
-// imagePullSecrets:  Specify image pull secrets for your service
-func (o *DaemonComponent) ImagePullSecrets(v []string) *DaemonComponent {
-	o.Properties.imagePullSecrets = v
+// SetImagePullSecrets gets a reference to the given []string and assigns it to the imagePullSecrets field.
+// ImagePullSecrets:  Specify image pull secrets for your service
+func (o *DaemonComponent) SetImagePullSecrets(v []string) *DaemonComponent {
+	o.Properties.ImagePullSecrets = v
 	return o
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
 func (o *DaemonComponent) GetLabels() map[string]string {
-	if o == nil || utils.IsNil(o.Properties.labels) {
+	if o == nil || utils.IsNil(o.Properties.Labels) {
 		var ret map[string]string
 		return ret
 	}
-	return *o.Properties.labels
+	return *o.Properties.Labels
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetLabelsOk() (*map[string]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.labels) {
+	if o == nil || utils.IsNil(o.Properties.Labels) {
 		return nil, false
 	}
-	return o.Properties.labels, true
+	return o.Properties.Labels, true
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *DaemonComponent) HasLabels() bool {
-	if o != nil && !utils.IsNil(o.Properties.labels) {
+	if o != nil && !utils.IsNil(o.Properties.Labels) {
 		return true
 	}
 
 	return false
 }
 
-// Labels gets a reference to the given map[string]string and assigns it to the labels field.
-// labels:  Specify the labels in the workload
-func (o *DaemonComponent) Labels(v map[string]string) *DaemonComponent {
-	o.Properties.labels = &v
+// SetLabels gets a reference to the given map[string]string and assigns it to the labels field.
+// Labels:  Specify the labels in the workload
+func (o *DaemonComponent) SetLabels(v map[string]string) *DaemonComponent {
+	o.Properties.Labels = &v
 	return o
 }
 
 // GetLivenessProbe returns the LivenessProbe field value if set, zero value otherwise.
 func (o *DaemonComponent) GetLivenessProbe() HealthProbe {
-	if o == nil || utils.IsNil(o.Properties.livenessProbe) {
+	if o == nil || utils.IsNil(o.Properties.LivenessProbe) {
 		var ret HealthProbe
 		return ret
 	}
-	return *o.Properties.livenessProbe
+	return *o.Properties.LivenessProbe
 }
 
 // GetLivenessProbeOk returns a tuple with the LivenessProbe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetLivenessProbeOk() (*HealthProbe, bool) {
-	if o == nil || utils.IsNil(o.Properties.livenessProbe) {
+	if o == nil || utils.IsNil(o.Properties.LivenessProbe) {
 		return nil, false
 	}
-	return o.Properties.livenessProbe, true
+	return o.Properties.LivenessProbe, true
 }
 
 // HasLivenessProbe returns a boolean if a field has been set.
 func (o *DaemonComponent) HasLivenessProbe() bool {
-	if o != nil && !utils.IsNil(o.Properties.livenessProbe) {
+	if o != nil && !utils.IsNil(o.Properties.LivenessProbe) {
 		return true
 	}
 
 	return false
 }
 
-// LivenessProbe gets a reference to the given HealthProbe and assigns it to the livenessProbe field.
-// livenessProbe:
-func (o *DaemonComponent) LivenessProbe(v HealthProbe) *DaemonComponent {
-	o.Properties.livenessProbe = &v
+// SetLivenessProbe gets a reference to the given HealthProbe and assigns it to the livenessProbe field.
+// LivenessProbe:
+func (o *DaemonComponent) SetLivenessProbe(v HealthProbe) *DaemonComponent {
+	o.Properties.LivenessProbe = &v
 	return o
 }
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
 func (o *DaemonComponent) GetMemory() string {
-	if o == nil || utils.IsNil(o.Properties.memory) {
+	if o == nil || utils.IsNil(o.Properties.Memory) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.memory
+	return *o.Properties.Memory
 }
 
 // GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetMemoryOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.memory) {
+	if o == nil || utils.IsNil(o.Properties.Memory) {
 		return nil, false
 	}
-	return o.Properties.memory, true
+	return o.Properties.Memory, true
 }
 
 // HasMemory returns a boolean if a field has been set.
 func (o *DaemonComponent) HasMemory() bool {
-	if o != nil && !utils.IsNil(o.Properties.memory) {
+	if o != nil && !utils.IsNil(o.Properties.Memory) {
 		return true
 	}
 
 	return false
 }
 
-// Memory gets a reference to the given string and assigns it to the memory field.
-// memory:  Specifies the attributes of the memory resource required for the container.
-func (o *DaemonComponent) Memory(v string) *DaemonComponent {
-	o.Properties.memory = &v
+// SetMemory gets a reference to the given string and assigns it to the memory field.
+// Memory:  Specifies the attributes of the memory resource required for the container.
+func (o *DaemonComponent) SetMemory(v string) *DaemonComponent {
+	o.Properties.Memory = &v
 	return o
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *DaemonComponent) GetPort() int32 {
-	if o == nil || utils.IsNil(o.Properties.port) {
+	if o == nil || utils.IsNil(o.Properties.Port) {
 		var ret int32
 		return ret
 	}
-	return *o.Properties.port
+	return *o.Properties.Port
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetPortOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.Properties.port) {
+	if o == nil || utils.IsNil(o.Properties.Port) {
 		return nil, false
 	}
-	return o.Properties.port, true
+	return o.Properties.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *DaemonComponent) HasPort() bool {
-	if o != nil && !utils.IsNil(o.Properties.port) {
+	if o != nil && !utils.IsNil(o.Properties.Port) {
 		return true
 	}
 
 	return false
 }
 
-// Port gets a reference to the given int32 and assigns it to the port field.
-// port:
-func (o *DaemonComponent) Port(v int32) *DaemonComponent {
-	o.Properties.port = &v
+// SetPort gets a reference to the given int32 and assigns it to the port field.
+// Port:
+func (o *DaemonComponent) SetPort(v int32) *DaemonComponent {
+	o.Properties.Port = &v
 	return o
 }
 
 // GetPorts returns the Ports field value if set, zero value otherwise.
 func (o *DaemonComponent) GetPorts() []Ports {
-	if o == nil || utils.IsNil(o.Properties.ports) {
+	if o == nil || utils.IsNil(o.Properties.Ports) {
 		var ret []Ports
 		return ret
 	}
-	return o.Properties.ports
+	return o.Properties.Ports
 }
 
 // GetPortsOk returns a tuple with the Ports field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetPortsOk() ([]Ports, bool) {
-	if o == nil || utils.IsNil(o.Properties.ports) {
+	if o == nil || utils.IsNil(o.Properties.Ports) {
 		return nil, false
 	}
-	return o.Properties.ports, true
+	return o.Properties.Ports, true
 }
 
 // HasPorts returns a boolean if a field has been set.
 func (o *DaemonComponent) HasPorts() bool {
-	if o != nil && !utils.IsNil(o.Properties.ports) {
+	if o != nil && !utils.IsNil(o.Properties.Ports) {
 		return true
 	}
 
 	return false
 }
 
-// Ports gets a reference to the given []Ports and assigns it to the ports field.
-// ports:  Which ports do you want customer traffic sent to, defaults to 80
-func (o *DaemonComponent) Ports(v []Ports) *DaemonComponent {
-	o.Properties.ports = v
+// SetPorts gets a reference to the given []Ports and assigns it to the ports field.
+// Ports:  Which ports do you want customer traffic sent to, defaults to 80
+func (o *DaemonComponent) SetPorts(v []Ports) *DaemonComponent {
+	o.Properties.Ports = v
 	return o
 }
 
 // GetReadinessProbe returns the ReadinessProbe field value if set, zero value otherwise.
 func (o *DaemonComponent) GetReadinessProbe() HealthProbe {
-	if o == nil || utils.IsNil(o.Properties.readinessProbe) {
+	if o == nil || utils.IsNil(o.Properties.ReadinessProbe) {
 		var ret HealthProbe
 		return ret
 	}
-	return *o.Properties.readinessProbe
+	return *o.Properties.ReadinessProbe
 }
 
 // GetReadinessProbeOk returns a tuple with the ReadinessProbe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetReadinessProbeOk() (*HealthProbe, bool) {
-	if o == nil || utils.IsNil(o.Properties.readinessProbe) {
+	if o == nil || utils.IsNil(o.Properties.ReadinessProbe) {
 		return nil, false
 	}
-	return o.Properties.readinessProbe, true
+	return o.Properties.ReadinessProbe, true
 }
 
 // HasReadinessProbe returns a boolean if a field has been set.
 func (o *DaemonComponent) HasReadinessProbe() bool {
-	if o != nil && !utils.IsNil(o.Properties.readinessProbe) {
+	if o != nil && !utils.IsNil(o.Properties.ReadinessProbe) {
 		return true
 	}
 
 	return false
 }
 
-// ReadinessProbe gets a reference to the given HealthProbe and assigns it to the readinessProbe field.
-// readinessProbe:
-func (o *DaemonComponent) ReadinessProbe(v HealthProbe) *DaemonComponent {
-	o.Properties.readinessProbe = &v
+// SetReadinessProbe gets a reference to the given HealthProbe and assigns it to the readinessProbe field.
+// ReadinessProbe:
+func (o *DaemonComponent) SetReadinessProbe(v HealthProbe) *DaemonComponent {
+	o.Properties.ReadinessProbe = &v
 	return o
 }
 
 // GetVolumeMounts returns the VolumeMounts field value if set, zero value otherwise.
 func (o *DaemonComponent) GetVolumeMounts() VolumeMounts {
-	if o == nil || utils.IsNil(o.Properties.volumeMounts) {
+	if o == nil || utils.IsNil(o.Properties.VolumeMounts) {
 		var ret VolumeMounts
 		return ret
 	}
-	return *o.Properties.volumeMounts
+	return *o.Properties.VolumeMounts
 }
 
 // GetVolumeMountsOk returns a tuple with the VolumeMounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetVolumeMountsOk() (*VolumeMounts, bool) {
-	if o == nil || utils.IsNil(o.Properties.volumeMounts) {
+	if o == nil || utils.IsNil(o.Properties.VolumeMounts) {
 		return nil, false
 	}
-	return o.Properties.volumeMounts, true
+	return o.Properties.VolumeMounts, true
 }
 
 // HasVolumeMounts returns a boolean if a field has been set.
 func (o *DaemonComponent) HasVolumeMounts() bool {
-	if o != nil && !utils.IsNil(o.Properties.volumeMounts) {
+	if o != nil && !utils.IsNil(o.Properties.VolumeMounts) {
 		return true
 	}
 
 	return false
 }
 
-// VolumeMounts gets a reference to the given VolumeMounts and assigns it to the volumeMounts field.
-// volumeMounts:
-func (o *DaemonComponent) VolumeMounts(v VolumeMounts) *DaemonComponent {
-	o.Properties.volumeMounts = &v
+// SetVolumeMounts gets a reference to the given VolumeMounts and assigns it to the volumeMounts field.
+// VolumeMounts:
+func (o *DaemonComponent) SetVolumeMounts(v VolumeMounts) *DaemonComponent {
+	o.Properties.VolumeMounts = &v
 	return o
 }
 
 // GetVolumes returns the Volumes field value if set, zero value otherwise.
 func (o *DaemonComponent) GetVolumes() []Volumes {
-	if o == nil || utils.IsNil(o.Properties.volumes) {
+	if o == nil || utils.IsNil(o.Properties.Volumes) {
 		var ret []Volumes
 		return ret
 	}
-	return o.Properties.volumes
+	return o.Properties.Volumes
 }
 
 // GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DaemonComponent) GetVolumesOk() ([]Volumes, bool) {
-	if o == nil || utils.IsNil(o.Properties.volumes) {
+	if o == nil || utils.IsNil(o.Properties.Volumes) {
 		return nil, false
 	}
-	return o.Properties.volumes, true
+	return o.Properties.Volumes, true
 }
 
 // HasVolumes returns a boolean if a field has been set.
 func (o *DaemonComponent) HasVolumes() bool {
-	if o != nil && !utils.IsNil(o.Properties.volumes) {
+	if o != nil && !utils.IsNil(o.Properties.Volumes) {
 		return true
 	}
 
 	return false
 }
 
-// Volumes gets a reference to the given []Volumes and assigns it to the volumes field.
-// volumes:  Deprecated field, use volumeMounts instead.
-func (o *DaemonComponent) Volumes(v []Volumes) *DaemonComponent {
-	o.Properties.volumes = v
+// SetVolumes gets a reference to the given []Volumes and assigns it to the volumes field.
+// Volumes:  Deprecated field, use volumeMounts instead.
+func (o *DaemonComponent) SetVolumes(v []Volumes) *DaemonComponent {
+	o.Properties.Volumes = v
 	return o
 }
 
@@ -705,59 +705,59 @@ func (o DaemonSpec) MarshalJSON() ([]byte, error) {
 
 func (o DaemonSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.addRevisionLabel) {
-		toSerialize["addRevisionLabel"] = o.addRevisionLabel
+	if !utils.IsNil(o.AddRevisionLabel) {
+		toSerialize["addRevisionLabel"] = o.AddRevisionLabel
 	}
-	if !utils.IsNil(o.annotations) {
-		toSerialize["annotations"] = o.annotations
+	if !utils.IsNil(o.Annotations) {
+		toSerialize["annotations"] = o.Annotations
 	}
-	if !utils.IsNil(o.cmd) {
-		toSerialize["cmd"] = o.cmd
+	if !utils.IsNil(o.Cmd) {
+		toSerialize["cmd"] = o.Cmd
 	}
-	if !utils.IsNil(o.cpu) {
-		toSerialize["cpu"] = o.cpu
+	if !utils.IsNil(o.Cpu) {
+		toSerialize["cpu"] = o.Cpu
 	}
-	if !utils.IsNil(o.env) {
-		toSerialize["env"] = o.env
+	if !utils.IsNil(o.Env) {
+		toSerialize["env"] = o.Env
 	}
-	if !utils.IsNil(o.exposeType) {
-		toSerialize["exposeType"] = o.exposeType
+	if !utils.IsNil(o.ExposeType) {
+		toSerialize["exposeType"] = o.ExposeType
 	}
-	if !utils.IsNil(o.hostAliases) {
-		toSerialize["hostAliases"] = o.hostAliases
+	if !utils.IsNil(o.HostAliases) {
+		toSerialize["hostAliases"] = o.HostAliases
 	}
-	if !utils.IsNil(o.image) {
-		toSerialize["image"] = o.image
+	if !utils.IsNil(o.Image) {
+		toSerialize["image"] = o.Image
 	}
-	if !utils.IsNil(o.imagePullPolicy) {
-		toSerialize["imagePullPolicy"] = o.imagePullPolicy
+	if !utils.IsNil(o.ImagePullPolicy) {
+		toSerialize["imagePullPolicy"] = o.ImagePullPolicy
 	}
-	if !utils.IsNil(o.imagePullSecrets) {
-		toSerialize["imagePullSecrets"] = o.imagePullSecrets
+	if !utils.IsNil(o.ImagePullSecrets) {
+		toSerialize["imagePullSecrets"] = o.ImagePullSecrets
 	}
-	if !utils.IsNil(o.labels) {
-		toSerialize["labels"] = o.labels
+	if !utils.IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
 	}
-	if !utils.IsNil(o.livenessProbe) {
-		toSerialize["livenessProbe"] = o.livenessProbe
+	if !utils.IsNil(o.LivenessProbe) {
+		toSerialize["livenessProbe"] = o.LivenessProbe
 	}
-	if !utils.IsNil(o.memory) {
-		toSerialize["memory"] = o.memory
+	if !utils.IsNil(o.Memory) {
+		toSerialize["memory"] = o.Memory
 	}
-	if !utils.IsNil(o.port) {
-		toSerialize["port"] = o.port
+	if !utils.IsNil(o.Port) {
+		toSerialize["port"] = o.Port
 	}
-	if !utils.IsNil(o.ports) {
-		toSerialize["ports"] = o.ports
+	if !utils.IsNil(o.Ports) {
+		toSerialize["ports"] = o.Ports
 	}
-	if !utils.IsNil(o.readinessProbe) {
-		toSerialize["readinessProbe"] = o.readinessProbe
+	if !utils.IsNil(o.ReadinessProbe) {
+		toSerialize["readinessProbe"] = o.ReadinessProbe
 	}
-	if !utils.IsNil(o.volumeMounts) {
-		toSerialize["volumeMounts"] = o.volumeMounts
+	if !utils.IsNil(o.VolumeMounts) {
+		toSerialize["volumeMounts"] = o.VolumeMounts
 	}
-	if !utils.IsNil(o.volumes) {
-		toSerialize["volumes"] = o.volumes
+	if !utils.IsNil(o.Volumes) {
+		toSerialize["volumes"] = o.Volumes
 	}
 	return toSerialize, nil
 }

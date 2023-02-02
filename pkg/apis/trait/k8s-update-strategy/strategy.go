@@ -21,9 +21,9 @@ var _ utils.MappedNullable = &Strategy{}
 
 // Strategy Specify the strategy of update
 type Strategy struct {
-	rollingStrategy *RollingStrategy `json:"rollingStrategy,omitempty"`
+	RollingStrategy *RollingStrategy `json:"rollingStrategy,omitempty"`
 	// Specify the strategy type
-	type_ *string `json:"type,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // NewStrategyWith instantiates a new Strategy object
@@ -33,7 +33,7 @@ type Strategy struct {
 func NewStrategyWith() *Strategy {
 	this := Strategy{}
 	var type_ string = "RollingUpdate"
-	this.type_ = &type_
+	this.Type = &type_
 	return &this
 }
 
@@ -43,75 +43,75 @@ func NewStrategyWith() *Strategy {
 func NewStrategy() *Strategy {
 	this := Strategy{}
 	var type_ string = "RollingUpdate"
-	this.type_ = &type_
+	this.Type = &type_
 	return &this
 }
 
 // GetRollingStrategy returns the RollingStrategy field value if set, zero value otherwise.
 func (o *Strategy) GetRollingStrategy() RollingStrategy {
-	if o == nil || utils.IsNil(o.rollingStrategy) {
+	if o == nil || utils.IsNil(o.RollingStrategy) {
 		var ret RollingStrategy
 		return ret
 	}
-	return *o.rollingStrategy
+	return *o.RollingStrategy
 }
 
 // GetRollingStrategyOk returns a tuple with the RollingStrategy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Strategy) GetRollingStrategyOk() (*RollingStrategy, bool) {
-	if o == nil || utils.IsNil(o.rollingStrategy) {
+	if o == nil || utils.IsNil(o.RollingStrategy) {
 		return nil, false
 	}
-	return o.rollingStrategy, true
+	return o.RollingStrategy, true
 }
 
 // HasRollingStrategy returns a boolean if a field has been set.
 func (o *Strategy) HasRollingStrategy() bool {
-	if o != nil && !utils.IsNil(o.rollingStrategy) {
+	if o != nil && !utils.IsNil(o.RollingStrategy) {
 		return true
 	}
 
 	return false
 }
 
-// RollingStrategy gets a reference to the given RollingStrategy and assigns it to the rollingStrategy field.
-// rollingStrategy:
-func (o *Strategy) RollingStrategy(v RollingStrategy) *Strategy {
-	o.rollingStrategy = &v
+// SetRollingStrategy gets a reference to the given RollingStrategy and assigns it to the rollingStrategy field.
+// RollingStrategy:
+func (o *Strategy) SetRollingStrategy(v RollingStrategy) *Strategy {
+	o.RollingStrategy = &v
 	return o
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Strategy) GetType() string {
-	if o == nil || utils.IsNil(o.type_) {
+	if o == nil || utils.IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-	return *o.type_
+	return *o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Strategy) GetTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.type_) {
+	if o == nil || utils.IsNil(o.Type) {
 		return nil, false
 	}
-	return o.type_, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *Strategy) HasType() bool {
-	if o != nil && !utils.IsNil(o.type_) {
+	if o != nil && !utils.IsNil(o.Type) {
 		return true
 	}
 
 	return false
 }
 
-// Type gets a reference to the given string and assigns it to the type_ field.
-// type_:  Specify the strategy type
-func (o *Strategy) Type(v string) *Strategy {
-	o.type_ = &v
+// SetType gets a reference to the given string and assigns it to the type_ field.
+// Type:  Specify the strategy type
+func (o *Strategy) SetType(v string) *Strategy {
+	o.Type = &v
 	return o
 }
 
@@ -125,11 +125,11 @@ func (o Strategy) MarshalJSON() ([]byte, error) {
 
 func (o Strategy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.rollingStrategy) {
-		toSerialize["rollingStrategy"] = o.rollingStrategy
+	if !utils.IsNil(o.RollingStrategy) {
+		toSerialize["rollingStrategy"] = o.RollingStrategy
 	}
-	if !utils.IsNil(o.type_) {
-		toSerialize["type"] = o.type_
+	if !utils.IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
 	return toSerialize, nil
 }

@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &Selector{}
 
 // Selector struct for Selector
 type Selector struct {
-	matchExpressions *MatchExpressions  `json:"matchExpressions,omitempty"`
-	matchLabels      *map[string]string `json:"matchLabels,omitempty"`
+	MatchExpressions *MatchExpressions  `json:"matchExpressions,omitempty"`
+	MatchLabels      *map[string]string `json:"matchLabels,omitempty"`
 }
 
 // NewSelectorWith instantiates a new Selector object
@@ -44,69 +44,69 @@ func NewSelector() *Selector {
 
 // GetMatchExpressions returns the MatchExpressions field value if set, zero value otherwise.
 func (o *Selector) GetMatchExpressions() MatchExpressions {
-	if o == nil || utils.IsNil(o.matchExpressions) {
+	if o == nil || utils.IsNil(o.MatchExpressions) {
 		var ret MatchExpressions
 		return ret
 	}
-	return *o.matchExpressions
+	return *o.MatchExpressions
 }
 
 // GetMatchExpressionsOk returns a tuple with the MatchExpressions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Selector) GetMatchExpressionsOk() (*MatchExpressions, bool) {
-	if o == nil || utils.IsNil(o.matchExpressions) {
+	if o == nil || utils.IsNil(o.MatchExpressions) {
 		return nil, false
 	}
-	return o.matchExpressions, true
+	return o.MatchExpressions, true
 }
 
 // HasMatchExpressions returns a boolean if a field has been set.
 func (o *Selector) HasMatchExpressions() bool {
-	if o != nil && !utils.IsNil(o.matchExpressions) {
+	if o != nil && !utils.IsNil(o.MatchExpressions) {
 		return true
 	}
 
 	return false
 }
 
-// MatchExpressions gets a reference to the given MatchExpressions and assigns it to the matchExpressions field.
-// matchExpressions:
-func (o *Selector) MatchExpressions(v MatchExpressions) *Selector {
-	o.matchExpressions = &v
+// SetMatchExpressions gets a reference to the given MatchExpressions and assigns it to the matchExpressions field.
+// MatchExpressions:
+func (o *Selector) SetMatchExpressions(v MatchExpressions) *Selector {
+	o.MatchExpressions = &v
 	return o
 }
 
 // GetMatchLabels returns the MatchLabels field value if set, zero value otherwise.
 func (o *Selector) GetMatchLabels() map[string]string {
-	if o == nil || utils.IsNil(o.matchLabels) {
+	if o == nil || utils.IsNil(o.MatchLabels) {
 		var ret map[string]string
 		return ret
 	}
-	return *o.matchLabels
+	return *o.MatchLabels
 }
 
 // GetMatchLabelsOk returns a tuple with the MatchLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Selector) GetMatchLabelsOk() (*map[string]string, bool) {
-	if o == nil || utils.IsNil(o.matchLabels) {
+	if o == nil || utils.IsNil(o.MatchLabels) {
 		return nil, false
 	}
-	return o.matchLabels, true
+	return o.MatchLabels, true
 }
 
 // HasMatchLabels returns a boolean if a field has been set.
 func (o *Selector) HasMatchLabels() bool {
-	if o != nil && !utils.IsNil(o.matchLabels) {
+	if o != nil && !utils.IsNil(o.MatchLabels) {
 		return true
 	}
 
 	return false
 }
 
-// MatchLabels gets a reference to the given map[string]string and assigns it to the matchLabels field.
-// matchLabels:
-func (o *Selector) MatchLabels(v map[string]string) *Selector {
-	o.matchLabels = &v
+// SetMatchLabels gets a reference to the given map[string]string and assigns it to the matchLabels field.
+// MatchLabels:
+func (o *Selector) SetMatchLabels(v map[string]string) *Selector {
+	o.MatchLabels = &v
 	return o
 }
 
@@ -120,11 +120,11 @@ func (o Selector) MarshalJSON() ([]byte, error) {
 
 func (o Selector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.matchExpressions) {
-		toSerialize["matchExpressions"] = o.matchExpressions
+	if !utils.IsNil(o.MatchExpressions) {
+		toSerialize["matchExpressions"] = o.MatchExpressions
 	}
-	if !utils.IsNil(o.matchLabels) {
-		toSerialize["matchLabels"] = o.matchLabels
+	if !utils.IsNil(o.MatchLabels) {
+		toSerialize["matchLabels"] = o.MatchLabels
 	}
 	return toSerialize, nil
 }

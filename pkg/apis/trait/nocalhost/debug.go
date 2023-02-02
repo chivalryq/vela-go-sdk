@@ -21,7 +21,7 @@ var _ utils.MappedNullable = &Debug{}
 
 // Debug struct for Debug
 type Debug struct {
-	remoteDebugPort *int32 `json:"remoteDebugPort,omitempty"`
+	RemoteDebugPort *int32 `json:"remoteDebugPort,omitempty"`
 }
 
 // NewDebugWith instantiates a new Debug object
@@ -43,35 +43,35 @@ func NewDebug() *Debug {
 
 // GetRemoteDebugPort returns the RemoteDebugPort field value if set, zero value otherwise.
 func (o *Debug) GetRemoteDebugPort() int32 {
-	if o == nil || utils.IsNil(o.remoteDebugPort) {
+	if o == nil || utils.IsNil(o.RemoteDebugPort) {
 		var ret int32
 		return ret
 	}
-	return *o.remoteDebugPort
+	return *o.RemoteDebugPort
 }
 
 // GetRemoteDebugPortOk returns a tuple with the RemoteDebugPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Debug) GetRemoteDebugPortOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.remoteDebugPort) {
+	if o == nil || utils.IsNil(o.RemoteDebugPort) {
 		return nil, false
 	}
-	return o.remoteDebugPort, true
+	return o.RemoteDebugPort, true
 }
 
 // HasRemoteDebugPort returns a boolean if a field has been set.
 func (o *Debug) HasRemoteDebugPort() bool {
-	if o != nil && !utils.IsNil(o.remoteDebugPort) {
+	if o != nil && !utils.IsNil(o.RemoteDebugPort) {
 		return true
 	}
 
 	return false
 }
 
-// RemoteDebugPort gets a reference to the given int32 and assigns it to the remoteDebugPort field.
-// remoteDebugPort:
-func (o *Debug) RemoteDebugPort(v int32) *Debug {
-	o.remoteDebugPort = &v
+// SetRemoteDebugPort gets a reference to the given int32 and assigns it to the remoteDebugPort field.
+// RemoteDebugPort:
+func (o *Debug) SetRemoteDebugPort(v int32) *Debug {
+	o.RemoteDebugPort = &v
 	return o
 }
 
@@ -85,8 +85,8 @@ func (o Debug) MarshalJSON() ([]byte, error) {
 
 func (o Debug) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.remoteDebugPort) {
-		toSerialize["remoteDebugPort"] = o.remoteDebugPort
+	if !utils.IsNil(o.RemoteDebugPort) {
+		toSerialize["remoteDebugPort"] = o.RemoteDebugPort
 	}
 	return toSerialize, nil
 }

@@ -26,18 +26,18 @@ var _ utils.MappedNullable = &HpaSpec{}
 
 // HpaSpec struct for HpaSpec
 type HpaSpec struct {
-	cpu *Cpu `json:"cpu,omitempty"`
+	Cpu *Cpu `json:"cpu,omitempty"`
 	// Specify the maximum number of of replicas to which the autoscaler can scale up
-	max *int32 `json:"max,omitempty"`
-	mem *Mem   `json:"mem,omitempty"`
+	Max *int32 `json:"max,omitempty"`
+	Mem *Mem   `json:"mem,omitempty"`
 	// Specify the minimal number of replicas to which the autoscaler can scale down
-	min *int32 `json:"min,omitempty"`
+	Min *int32 `json:"min,omitempty"`
 	// Specify custom metrics of pod type
-	podCustomMetrics []PodCustomMetrics `json:"podCustomMetrics,omitempty"`
+	PodCustomMetrics []PodCustomMetrics `json:"podCustomMetrics,omitempty"`
 	// Specify the apiVersion of scale target
-	targetAPIVersion *string `json:"targetAPIVersion,omitempty"`
+	TargetAPIVersion *string `json:"targetAPIVersion,omitempty"`
 	// Specify the kind of scale target
-	targetKind *string `json:"targetKind,omitempty"`
+	TargetKind *string `json:"targetKind,omitempty"`
 }
 
 // NewHpaSpecWith instantiates a new HpaSpec object
@@ -47,13 +47,13 @@ type HpaSpec struct {
 func NewHpaSpecWith() *HpaSpec {
 	this := HpaSpec{}
 	var max int32 = 10
-	this.max = &max
+	this.Max = &max
 	var min int32 = 1
-	this.min = &min
+	this.Min = &min
 	var targetAPIVersion string = "apps/v1"
-	this.targetAPIVersion = &targetAPIVersion
+	this.TargetAPIVersion = &targetAPIVersion
 	var targetKind string = "Deployment"
-	this.targetKind = &targetKind
+	this.TargetKind = &targetKind
 	return &this
 }
 
@@ -63,251 +63,251 @@ func NewHpaSpecWith() *HpaSpec {
 func NewHpaSpec() *HpaSpec {
 	this := HpaSpec{}
 	var max int32 = 10
-	this.max = &max
+	this.Max = &max
 	var min int32 = 1
-	this.min = &min
+	this.Min = &min
 	var targetAPIVersion string = "apps/v1"
-	this.targetAPIVersion = &targetAPIVersion
+	this.TargetAPIVersion = &targetAPIVersion
 	var targetKind string = "Deployment"
-	this.targetKind = &targetKind
+	this.TargetKind = &targetKind
 	return &this
 }
 
 // GetCpu returns the Cpu field value if set, zero value otherwise.
 func (o *HpaTrait) GetCpu() Cpu {
-	if o == nil || utils.IsNil(o.Properties.cpu) {
+	if o == nil || utils.IsNil(o.Properties.Cpu) {
 		var ret Cpu
 		return ret
 	}
-	return *o.Properties.cpu
+	return *o.Properties.Cpu
 }
 
 // GetCpuOk returns a tuple with the Cpu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HpaTrait) GetCpuOk() (*Cpu, bool) {
-	if o == nil || utils.IsNil(o.Properties.cpu) {
+	if o == nil || utils.IsNil(o.Properties.Cpu) {
 		return nil, false
 	}
-	return o.Properties.cpu, true
+	return o.Properties.Cpu, true
 }
 
 // HasCpu returns a boolean if a field has been set.
 func (o *HpaTrait) HasCpu() bool {
-	if o != nil && !utils.IsNil(o.Properties.cpu) {
+	if o != nil && !utils.IsNil(o.Properties.Cpu) {
 		return true
 	}
 
 	return false
 }
 
-// Cpu gets a reference to the given Cpu and assigns it to the cpu field.
-// cpu:
-func (o *HpaTrait) Cpu(v Cpu) *HpaTrait {
-	o.Properties.cpu = &v
+// SetCpu gets a reference to the given Cpu and assigns it to the cpu field.
+// Cpu:
+func (o *HpaTrait) SetCpu(v Cpu) *HpaTrait {
+	o.Properties.Cpu = &v
 	return o
 }
 
 // GetMax returns the Max field value if set, zero value otherwise.
 func (o *HpaTrait) GetMax() int32 {
-	if o == nil || utils.IsNil(o.Properties.max) {
+	if o == nil || utils.IsNil(o.Properties.Max) {
 		var ret int32
 		return ret
 	}
-	return *o.Properties.max
+	return *o.Properties.Max
 }
 
 // GetMaxOk returns a tuple with the Max field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HpaTrait) GetMaxOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.Properties.max) {
+	if o == nil || utils.IsNil(o.Properties.Max) {
 		return nil, false
 	}
-	return o.Properties.max, true
+	return o.Properties.Max, true
 }
 
 // HasMax returns a boolean if a field has been set.
 func (o *HpaTrait) HasMax() bool {
-	if o != nil && !utils.IsNil(o.Properties.max) {
+	if o != nil && !utils.IsNil(o.Properties.Max) {
 		return true
 	}
 
 	return false
 }
 
-// Max gets a reference to the given int32 and assigns it to the max field.
-// max:  Specify the maximum number of of replicas to which the autoscaler can scale up
-func (o *HpaTrait) Max(v int32) *HpaTrait {
-	o.Properties.max = &v
+// SetMax gets a reference to the given int32 and assigns it to the max field.
+// Max:  Specify the maximum number of of replicas to which the autoscaler can scale up
+func (o *HpaTrait) SetMax(v int32) *HpaTrait {
+	o.Properties.Max = &v
 	return o
 }
 
 // GetMem returns the Mem field value if set, zero value otherwise.
 func (o *HpaTrait) GetMem() Mem {
-	if o == nil || utils.IsNil(o.Properties.mem) {
+	if o == nil || utils.IsNil(o.Properties.Mem) {
 		var ret Mem
 		return ret
 	}
-	return *o.Properties.mem
+	return *o.Properties.Mem
 }
 
 // GetMemOk returns a tuple with the Mem field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HpaTrait) GetMemOk() (*Mem, bool) {
-	if o == nil || utils.IsNil(o.Properties.mem) {
+	if o == nil || utils.IsNil(o.Properties.Mem) {
 		return nil, false
 	}
-	return o.Properties.mem, true
+	return o.Properties.Mem, true
 }
 
 // HasMem returns a boolean if a field has been set.
 func (o *HpaTrait) HasMem() bool {
-	if o != nil && !utils.IsNil(o.Properties.mem) {
+	if o != nil && !utils.IsNil(o.Properties.Mem) {
 		return true
 	}
 
 	return false
 }
 
-// Mem gets a reference to the given Mem and assigns it to the mem field.
-// mem:
-func (o *HpaTrait) Mem(v Mem) *HpaTrait {
-	o.Properties.mem = &v
+// SetMem gets a reference to the given Mem and assigns it to the mem field.
+// Mem:
+func (o *HpaTrait) SetMem(v Mem) *HpaTrait {
+	o.Properties.Mem = &v
 	return o
 }
 
 // GetMin returns the Min field value if set, zero value otherwise.
 func (o *HpaTrait) GetMin() int32 {
-	if o == nil || utils.IsNil(o.Properties.min) {
+	if o == nil || utils.IsNil(o.Properties.Min) {
 		var ret int32
 		return ret
 	}
-	return *o.Properties.min
+	return *o.Properties.Min
 }
 
 // GetMinOk returns a tuple with the Min field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HpaTrait) GetMinOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.Properties.min) {
+	if o == nil || utils.IsNil(o.Properties.Min) {
 		return nil, false
 	}
-	return o.Properties.min, true
+	return o.Properties.Min, true
 }
 
 // HasMin returns a boolean if a field has been set.
 func (o *HpaTrait) HasMin() bool {
-	if o != nil && !utils.IsNil(o.Properties.min) {
+	if o != nil && !utils.IsNil(o.Properties.Min) {
 		return true
 	}
 
 	return false
 }
 
-// Min gets a reference to the given int32 and assigns it to the min field.
-// min:  Specify the minimal number of replicas to which the autoscaler can scale down
-func (o *HpaTrait) Min(v int32) *HpaTrait {
-	o.Properties.min = &v
+// SetMin gets a reference to the given int32 and assigns it to the min field.
+// Min:  Specify the minimal number of replicas to which the autoscaler can scale down
+func (o *HpaTrait) SetMin(v int32) *HpaTrait {
+	o.Properties.Min = &v
 	return o
 }
 
 // GetPodCustomMetrics returns the PodCustomMetrics field value if set, zero value otherwise.
 func (o *HpaTrait) GetPodCustomMetrics() []PodCustomMetrics {
-	if o == nil || utils.IsNil(o.Properties.podCustomMetrics) {
+	if o == nil || utils.IsNil(o.Properties.PodCustomMetrics) {
 		var ret []PodCustomMetrics
 		return ret
 	}
-	return o.Properties.podCustomMetrics
+	return o.Properties.PodCustomMetrics
 }
 
 // GetPodCustomMetricsOk returns a tuple with the PodCustomMetrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HpaTrait) GetPodCustomMetricsOk() ([]PodCustomMetrics, bool) {
-	if o == nil || utils.IsNil(o.Properties.podCustomMetrics) {
+	if o == nil || utils.IsNil(o.Properties.PodCustomMetrics) {
 		return nil, false
 	}
-	return o.Properties.podCustomMetrics, true
+	return o.Properties.PodCustomMetrics, true
 }
 
 // HasPodCustomMetrics returns a boolean if a field has been set.
 func (o *HpaTrait) HasPodCustomMetrics() bool {
-	if o != nil && !utils.IsNil(o.Properties.podCustomMetrics) {
+	if o != nil && !utils.IsNil(o.Properties.PodCustomMetrics) {
 		return true
 	}
 
 	return false
 }
 
-// PodCustomMetrics gets a reference to the given []PodCustomMetrics and assigns it to the podCustomMetrics field.
-// podCustomMetrics:  Specify custom metrics of pod type
-func (o *HpaTrait) PodCustomMetrics(v []PodCustomMetrics) *HpaTrait {
-	o.Properties.podCustomMetrics = v
+// SetPodCustomMetrics gets a reference to the given []PodCustomMetrics and assigns it to the podCustomMetrics field.
+// PodCustomMetrics:  Specify custom metrics of pod type
+func (o *HpaTrait) SetPodCustomMetrics(v []PodCustomMetrics) *HpaTrait {
+	o.Properties.PodCustomMetrics = v
 	return o
 }
 
 // GetTargetAPIVersion returns the TargetAPIVersion field value if set, zero value otherwise.
 func (o *HpaTrait) GetTargetAPIVersion() string {
-	if o == nil || utils.IsNil(o.Properties.targetAPIVersion) {
+	if o == nil || utils.IsNil(o.Properties.TargetAPIVersion) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.targetAPIVersion
+	return *o.Properties.TargetAPIVersion
 }
 
 // GetTargetAPIVersionOk returns a tuple with the TargetAPIVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HpaTrait) GetTargetAPIVersionOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.targetAPIVersion) {
+	if o == nil || utils.IsNil(o.Properties.TargetAPIVersion) {
 		return nil, false
 	}
-	return o.Properties.targetAPIVersion, true
+	return o.Properties.TargetAPIVersion, true
 }
 
 // HasTargetAPIVersion returns a boolean if a field has been set.
 func (o *HpaTrait) HasTargetAPIVersion() bool {
-	if o != nil && !utils.IsNil(o.Properties.targetAPIVersion) {
+	if o != nil && !utils.IsNil(o.Properties.TargetAPIVersion) {
 		return true
 	}
 
 	return false
 }
 
-// TargetAPIVersion gets a reference to the given string and assigns it to the targetAPIVersion field.
-// targetAPIVersion:  Specify the apiVersion of scale target
-func (o *HpaTrait) TargetAPIVersion(v string) *HpaTrait {
-	o.Properties.targetAPIVersion = &v
+// SetTargetAPIVersion gets a reference to the given string and assigns it to the targetAPIVersion field.
+// TargetAPIVersion:  Specify the apiVersion of scale target
+func (o *HpaTrait) SetTargetAPIVersion(v string) *HpaTrait {
+	o.Properties.TargetAPIVersion = &v
 	return o
 }
 
 // GetTargetKind returns the TargetKind field value if set, zero value otherwise.
 func (o *HpaTrait) GetTargetKind() string {
-	if o == nil || utils.IsNil(o.Properties.targetKind) {
+	if o == nil || utils.IsNil(o.Properties.TargetKind) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.targetKind
+	return *o.Properties.TargetKind
 }
 
 // GetTargetKindOk returns a tuple with the TargetKind field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HpaTrait) GetTargetKindOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.targetKind) {
+	if o == nil || utils.IsNil(o.Properties.TargetKind) {
 		return nil, false
 	}
-	return o.Properties.targetKind, true
+	return o.Properties.TargetKind, true
 }
 
 // HasTargetKind returns a boolean if a field has been set.
 func (o *HpaTrait) HasTargetKind() bool {
-	if o != nil && !utils.IsNil(o.Properties.targetKind) {
+	if o != nil && !utils.IsNil(o.Properties.TargetKind) {
 		return true
 	}
 
 	return false
 }
 
-// TargetKind gets a reference to the given string and assigns it to the targetKind field.
-// targetKind:  Specify the kind of scale target
-func (o *HpaTrait) TargetKind(v string) *HpaTrait {
-	o.Properties.targetKind = &v
+// SetTargetKind gets a reference to the given string and assigns it to the targetKind field.
+// TargetKind:  Specify the kind of scale target
+func (o *HpaTrait) SetTargetKind(v string) *HpaTrait {
+	o.Properties.TargetKind = &v
 	return o
 }
 
@@ -321,26 +321,26 @@ func (o HpaSpec) MarshalJSON() ([]byte, error) {
 
 func (o HpaSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.cpu) {
-		toSerialize["cpu"] = o.cpu
+	if !utils.IsNil(o.Cpu) {
+		toSerialize["cpu"] = o.Cpu
 	}
-	if !utils.IsNil(o.max) {
-		toSerialize["max"] = o.max
+	if !utils.IsNil(o.Max) {
+		toSerialize["max"] = o.Max
 	}
-	if !utils.IsNil(o.mem) {
-		toSerialize["mem"] = o.mem
+	if !utils.IsNil(o.Mem) {
+		toSerialize["mem"] = o.Mem
 	}
-	if !utils.IsNil(o.min) {
-		toSerialize["min"] = o.min
+	if !utils.IsNil(o.Min) {
+		toSerialize["min"] = o.Min
 	}
-	if !utils.IsNil(o.podCustomMetrics) {
-		toSerialize["podCustomMetrics"] = o.podCustomMetrics
+	if !utils.IsNil(o.PodCustomMetrics) {
+		toSerialize["podCustomMetrics"] = o.PodCustomMetrics
 	}
-	if !utils.IsNil(o.targetAPIVersion) {
-		toSerialize["targetAPIVersion"] = o.targetAPIVersion
+	if !utils.IsNil(o.TargetAPIVersion) {
+		toSerialize["targetAPIVersion"] = o.TargetAPIVersion
 	}
-	if !utils.IsNil(o.targetKind) {
-		toSerialize["targetKind"] = o.targetKind
+	if !utils.IsNil(o.TargetKind) {
+		toSerialize["targetKind"] = o.TargetKind
 	}
 	return toSerialize, nil
 }

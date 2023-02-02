@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &TcpSocket{}
 // TcpSocket Instructions for assessing container startup status by probing a TCP socket. Either this attribute or the exec attribute or the tcpSocket attribute or the httpGet attribute MUST be specified. This attribute is mutually exclusive with the exec attribute and the httpGet attribute and the gRPC attribute.
 type TcpSocket struct {
 	// Host name to connect to, defaults to the pod IP.
-	host *string `json:"host,omitempty"`
+	Host *string `json:"host,omitempty"`
 	// Number or name of the port to access on the container.
-	port *string `json:"port,omitempty"`
+	Port *string `json:"port,omitempty"`
 }
 
 // NewTcpSocketWith instantiates a new TcpSocket object
@@ -46,69 +46,69 @@ func NewTcpSocket() *TcpSocket {
 
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *TcpSocket) GetHost() string {
-	if o == nil || utils.IsNil(o.host) {
+	if o == nil || utils.IsNil(o.Host) {
 		var ret string
 		return ret
 	}
-	return *o.host
+	return *o.Host
 }
 
 // GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TcpSocket) GetHostOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.host) {
+	if o == nil || utils.IsNil(o.Host) {
 		return nil, false
 	}
-	return o.host, true
+	return o.Host, true
 }
 
 // HasHost returns a boolean if a field has been set.
 func (o *TcpSocket) HasHost() bool {
-	if o != nil && !utils.IsNil(o.host) {
+	if o != nil && !utils.IsNil(o.Host) {
 		return true
 	}
 
 	return false
 }
 
-// Host gets a reference to the given string and assigns it to the host field.
-// host:  Host name to connect to, defaults to the pod IP.
-func (o *TcpSocket) Host(v string) *TcpSocket {
-	o.host = &v
+// SetHost gets a reference to the given string and assigns it to the host field.
+// Host:  Host name to connect to, defaults to the pod IP.
+func (o *TcpSocket) SetHost(v string) *TcpSocket {
+	o.Host = &v
 	return o
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *TcpSocket) GetPort() string {
-	if o == nil || utils.IsNil(o.port) {
+	if o == nil || utils.IsNil(o.Port) {
 		var ret string
 		return ret
 	}
-	return *o.port
+	return *o.Port
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TcpSocket) GetPortOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.port) {
+	if o == nil || utils.IsNil(o.Port) {
 		return nil, false
 	}
-	return o.port, true
+	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *TcpSocket) HasPort() bool {
-	if o != nil && !utils.IsNil(o.port) {
+	if o != nil && !utils.IsNil(o.Port) {
 		return true
 	}
 
 	return false
 }
 
-// Port gets a reference to the given string and assigns it to the port field.
-// port:  Number or name of the port to access on the container.
-func (o *TcpSocket) Port(v string) *TcpSocket {
-	o.port = &v
+// SetPort gets a reference to the given string and assigns it to the port field.
+// Port:  Number or name of the port to access on the container.
+func (o *TcpSocket) SetPort(v string) *TcpSocket {
+	o.Port = &v
 	return o
 }
 
@@ -122,11 +122,11 @@ func (o TcpSocket) MarshalJSON() ([]byte, error) {
 
 func (o TcpSocket) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.host) {
-		toSerialize["host"] = o.host
+	if !utils.IsNil(o.Host) {
+		toSerialize["host"] = o.Host
 	}
-	if !utils.IsNil(o.port) {
-		toSerialize["port"] = o.port
+	if !utils.IsNil(o.Port) {
+		toSerialize["port"] = o.Port
 	}
 	return toSerialize, nil
 }

@@ -27,10 +27,10 @@ var _ utils.MappedNullable = &NotificationSpec{}
 
 // NotificationSpec struct for NotificationSpec
 type NotificationSpec struct {
-	dingding *Dingding `json:"dingding,omitempty"`
-	email    *Email    `json:"email,omitempty"`
-	lark     *Lark     `json:"lark,omitempty"`
-	slack    *Slack    `json:"slack,omitempty"`
+	Dingding *Dingding `json:"dingding,omitempty"`
+	Email    *Email    `json:"email,omitempty"`
+	Lark     *Lark     `json:"lark,omitempty"`
+	Slack    *Slack    `json:"slack,omitempty"`
 }
 
 // NewNotificationSpecWith instantiates a new NotificationSpec object
@@ -52,137 +52,137 @@ func NewNotificationSpec() *NotificationSpec {
 
 // GetDingding returns the Dingding field value if set, zero value otherwise.
 func (o *NotificationWorkflowStep) GetDingding() Dingding {
-	if o == nil || utils.IsNil(o.Properties.dingding) {
+	if o == nil || utils.IsNil(o.Properties.Dingding) {
 		var ret Dingding
 		return ret
 	}
-	return *o.Properties.dingding
+	return *o.Properties.Dingding
 }
 
 // GetDingdingOk returns a tuple with the Dingding field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotificationWorkflowStep) GetDingdingOk() (*Dingding, bool) {
-	if o == nil || utils.IsNil(o.Properties.dingding) {
+	if o == nil || utils.IsNil(o.Properties.Dingding) {
 		return nil, false
 	}
-	return o.Properties.dingding, true
+	return o.Properties.Dingding, true
 }
 
 // HasDingding returns a boolean if a field has been set.
 func (o *NotificationWorkflowStep) HasDingding() bool {
-	if o != nil && !utils.IsNil(o.Properties.dingding) {
+	if o != nil && !utils.IsNil(o.Properties.Dingding) {
 		return true
 	}
 
 	return false
 }
 
-// Dingding gets a reference to the given Dingding and assigns it to the dingding field.
-// dingding:
-func (o *NotificationWorkflowStep) Dingding(v Dingding) *NotificationWorkflowStep {
-	o.Properties.dingding = &v
+// SetDingding gets a reference to the given Dingding and assigns it to the dingding field.
+// Dingding:
+func (o *NotificationWorkflowStep) SetDingding(v Dingding) *NotificationWorkflowStep {
+	o.Properties.Dingding = &v
 	return o
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *NotificationWorkflowStep) GetEmail() Email {
-	if o == nil || utils.IsNil(o.Properties.email) {
+	if o == nil || utils.IsNil(o.Properties.Email) {
 		var ret Email
 		return ret
 	}
-	return *o.Properties.email
+	return *o.Properties.Email
 }
 
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotificationWorkflowStep) GetEmailOk() (*Email, bool) {
-	if o == nil || utils.IsNil(o.Properties.email) {
+	if o == nil || utils.IsNil(o.Properties.Email) {
 		return nil, false
 	}
-	return o.Properties.email, true
+	return o.Properties.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *NotificationWorkflowStep) HasEmail() bool {
-	if o != nil && !utils.IsNil(o.Properties.email) {
+	if o != nil && !utils.IsNil(o.Properties.Email) {
 		return true
 	}
 
 	return false
 }
 
-// Email gets a reference to the given Email and assigns it to the email field.
-// email:
-func (o *NotificationWorkflowStep) Email(v Email) *NotificationWorkflowStep {
-	o.Properties.email = &v
+// SetEmail gets a reference to the given Email and assigns it to the email field.
+// Email:
+func (o *NotificationWorkflowStep) SetEmail(v Email) *NotificationWorkflowStep {
+	o.Properties.Email = &v
 	return o
 }
 
 // GetLark returns the Lark field value if set, zero value otherwise.
 func (o *NotificationWorkflowStep) GetLark() Lark {
-	if o == nil || utils.IsNil(o.Properties.lark) {
+	if o == nil || utils.IsNil(o.Properties.Lark) {
 		var ret Lark
 		return ret
 	}
-	return *o.Properties.lark
+	return *o.Properties.Lark
 }
 
 // GetLarkOk returns a tuple with the Lark field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotificationWorkflowStep) GetLarkOk() (*Lark, bool) {
-	if o == nil || utils.IsNil(o.Properties.lark) {
+	if o == nil || utils.IsNil(o.Properties.Lark) {
 		return nil, false
 	}
-	return o.Properties.lark, true
+	return o.Properties.Lark, true
 }
 
 // HasLark returns a boolean if a field has been set.
 func (o *NotificationWorkflowStep) HasLark() bool {
-	if o != nil && !utils.IsNil(o.Properties.lark) {
+	if o != nil && !utils.IsNil(o.Properties.Lark) {
 		return true
 	}
 
 	return false
 }
 
-// Lark gets a reference to the given Lark and assigns it to the lark field.
-// lark:
-func (o *NotificationWorkflowStep) Lark(v Lark) *NotificationWorkflowStep {
-	o.Properties.lark = &v
+// SetLark gets a reference to the given Lark and assigns it to the lark field.
+// Lark:
+func (o *NotificationWorkflowStep) SetLark(v Lark) *NotificationWorkflowStep {
+	o.Properties.Lark = &v
 	return o
 }
 
 // GetSlack returns the Slack field value if set, zero value otherwise.
 func (o *NotificationWorkflowStep) GetSlack() Slack {
-	if o == nil || utils.IsNil(o.Properties.slack) {
+	if o == nil || utils.IsNil(o.Properties.Slack) {
 		var ret Slack
 		return ret
 	}
-	return *o.Properties.slack
+	return *o.Properties.Slack
 }
 
 // GetSlackOk returns a tuple with the Slack field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotificationWorkflowStep) GetSlackOk() (*Slack, bool) {
-	if o == nil || utils.IsNil(o.Properties.slack) {
+	if o == nil || utils.IsNil(o.Properties.Slack) {
 		return nil, false
 	}
-	return o.Properties.slack, true
+	return o.Properties.Slack, true
 }
 
 // HasSlack returns a boolean if a field has been set.
 func (o *NotificationWorkflowStep) HasSlack() bool {
-	if o != nil && !utils.IsNil(o.Properties.slack) {
+	if o != nil && !utils.IsNil(o.Properties.Slack) {
 		return true
 	}
 
 	return false
 }
 
-// Slack gets a reference to the given Slack and assigns it to the slack field.
-// slack:
-func (o *NotificationWorkflowStep) Slack(v Slack) *NotificationWorkflowStep {
-	o.Properties.slack = &v
+// SetSlack gets a reference to the given Slack and assigns it to the slack field.
+// Slack:
+func (o *NotificationWorkflowStep) SetSlack(v Slack) *NotificationWorkflowStep {
+	o.Properties.Slack = &v
 	return o
 }
 
@@ -196,17 +196,17 @@ func (o NotificationSpec) MarshalJSON() ([]byte, error) {
 
 func (o NotificationSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.dingding) {
-		toSerialize["dingding"] = o.dingding
+	if !utils.IsNil(o.Dingding) {
+		toSerialize["dingding"] = o.Dingding
 	}
-	if !utils.IsNil(o.email) {
-		toSerialize["email"] = o.email
+	if !utils.IsNil(o.Email) {
+		toSerialize["email"] = o.Email
 	}
-	if !utils.IsNil(o.lark) {
-		toSerialize["lark"] = o.lark
+	if !utils.IsNil(o.Lark) {
+		toSerialize["lark"] = o.Lark
 	}
-	if !utils.IsNil(o.slack) {
-		toSerialize["slack"] = o.slack
+	if !utils.IsNil(o.Slack) {
+		toSerialize["slack"] = o.Slack
 	}
 	return toSerialize, nil
 }

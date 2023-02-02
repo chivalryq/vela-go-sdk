@@ -26,38 +26,37 @@ var _ utils.MappedNullable = &NocalhostSpec{}
 
 // NocalhostSpec struct for NocalhostSpec
 type NocalhostSpec struct {
-	command              Command                `json:"command"`
-	debug                *Debug                 `json:"debug,omitempty"`
-	env                  []Env                  `json:"env,omitempty"`
-	gitUrl               *string                `json:"gitUrl,omitempty"`
-	hotReload            bool                   `json:"hotReload"`
-	image                Image                  `json:"image"`
-	persistentVolumeDirs []PersistentVolumeDirs `json:"persistentVolumeDirs,omitempty"`
-	port                 int32                  `json:"port"`
-	portForward          []string               `json:"portForward,omitempty"`
-	resources            Resources              `json:"resources"`
-	serviceType          string                 `json:"serviceType"`
-	shell                string                 `json:"shell"`
-	storageClass         *string                `json:"storageClass,omitempty"`
-	sync                 Sync                   `json:"sync"`
-	workDir              string                 `json:"workDir"`
+	Command              *Command               `json:"command,omitempty"`
+	Debug                *Debug                 `json:"debug,omitempty"`
+	Env                  []Env                  `json:"env,omitempty"`
+	GitUrl               *string                `json:"gitUrl,omitempty"`
+	HotReload            *bool                  `json:"hotReload,omitempty"`
+	Image                *Image                 `json:"image,omitempty"`
+	PersistentVolumeDirs []PersistentVolumeDirs `json:"persistentVolumeDirs,omitempty"`
+	Port                 *int32                 `json:"port,omitempty"`
+	PortForward          []string               `json:"portForward,omitempty"`
+	Resources            *Resources             `json:"resources,omitempty"`
+	ServiceType          *string                `json:"serviceType,omitempty"`
+	Shell                *string                `json:"shell,omitempty"`
+	StorageClass         *string                `json:"storageClass,omitempty"`
+	Sync                 *Sync                  `json:"sync,omitempty"`
+	WorkDir              *string                `json:"workDir,omitempty"`
 }
 
 // NewNocalhostSpecWith instantiates a new NocalhostSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNocalhostSpecWith(command Command, hotReload bool, image Image, port int32, resources Resources, serviceType string, shell string, sync Sync, workDir string) *NocalhostSpec {
+func NewNocalhostSpecWith() *NocalhostSpec {
 	this := NocalhostSpec{}
-	this.command = command
-	this.hotReload = hotReload
-	this.image = image
-	this.port = port
-	this.resources = resources
-	this.serviceType = serviceType
-	this.shell = shell
-	this.sync = sync
-	this.workDir = workDir
+	var hotReload bool = true
+	this.HotReload = &hotReload
+	var serviceType string = "deployment"
+	this.ServiceType = &serviceType
+	var shell string = "bash"
+	this.Shell = &shell
+	var workDir string = "/home/nocalhost-dev"
+	this.WorkDir = &workDir
 	return &this
 }
 
@@ -67,442 +66,523 @@ func NewNocalhostSpecWith(command Command, hotReload bool, image Image, port int
 func NewNocalhostSpec() *NocalhostSpec {
 	this := NocalhostSpec{}
 	var hotReload bool = true
-	this.hotReload = hotReload
+	this.HotReload = &hotReload
 	var serviceType string = "deployment"
-	this.serviceType = serviceType
+	this.ServiceType = &serviceType
 	var shell string = "bash"
-	this.shell = shell
+	this.Shell = &shell
 	var workDir string = "/home/nocalhost-dev"
-	this.workDir = workDir
+	this.WorkDir = &workDir
 	return &this
 }
 
-// GetCommand returns the Command field value
+// GetCommand returns the Command field value if set, zero value otherwise.
 func (o *NocalhostTrait) GetCommand() Command {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Command) {
 		var ret Command
 		return ret
 	}
-
-	return o.Properties.command
+	return *o.Properties.Command
 }
 
-// GetCommandOk returns a tuple with the Command field value
+// GetCommandOk returns a tuple with the Command field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NocalhostTrait) GetCommandOk() (*Command, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Command) {
 		return nil, false
 	}
-	return &o.Properties.command, true
+	return o.Properties.Command, true
 }
 
-// Command sets field value
-func (o *NocalhostTrait) Command(v Command) *NocalhostTrait {
-	o.Properties.command = v
+// HasCommand returns a boolean if a field has been set.
+func (o *NocalhostTrait) HasCommand() bool {
+	if o != nil && !utils.IsNil(o.Properties.Command) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommand gets a reference to the given Command and assigns it to the command field.
+// Command:
+func (o *NocalhostTrait) SetCommand(v Command) *NocalhostTrait {
+	o.Properties.Command = &v
 	return o
 }
 
 // GetDebug returns the Debug field value if set, zero value otherwise.
 func (o *NocalhostTrait) GetDebug() Debug {
-	if o == nil || utils.IsNil(o.Properties.debug) {
+	if o == nil || utils.IsNil(o.Properties.Debug) {
 		var ret Debug
 		return ret
 	}
-	return *o.Properties.debug
+	return *o.Properties.Debug
 }
 
 // GetDebugOk returns a tuple with the Debug field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NocalhostTrait) GetDebugOk() (*Debug, bool) {
-	if o == nil || utils.IsNil(o.Properties.debug) {
+	if o == nil || utils.IsNil(o.Properties.Debug) {
 		return nil, false
 	}
-	return o.Properties.debug, true
+	return o.Properties.Debug, true
 }
 
 // HasDebug returns a boolean if a field has been set.
 func (o *NocalhostTrait) HasDebug() bool {
-	if o != nil && !utils.IsNil(o.Properties.debug) {
+	if o != nil && !utils.IsNil(o.Properties.Debug) {
 		return true
 	}
 
 	return false
 }
 
-// Debug gets a reference to the given Debug and assigns it to the debug field.
-// debug:
-func (o *NocalhostTrait) Debug(v Debug) *NocalhostTrait {
-	o.Properties.debug = &v
+// SetDebug gets a reference to the given Debug and assigns it to the debug field.
+// Debug:
+func (o *NocalhostTrait) SetDebug(v Debug) *NocalhostTrait {
+	o.Properties.Debug = &v
 	return o
 }
 
 // GetEnv returns the Env field value if set, zero value otherwise.
 func (o *NocalhostTrait) GetEnv() []Env {
-	if o == nil || utils.IsNil(o.Properties.env) {
+	if o == nil || utils.IsNil(o.Properties.Env) {
 		var ret []Env
 		return ret
 	}
-	return o.Properties.env
+	return o.Properties.Env
 }
 
 // GetEnvOk returns a tuple with the Env field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NocalhostTrait) GetEnvOk() ([]Env, bool) {
-	if o == nil || utils.IsNil(o.Properties.env) {
+	if o == nil || utils.IsNil(o.Properties.Env) {
 		return nil, false
 	}
-	return o.Properties.env, true
+	return o.Properties.Env, true
 }
 
 // HasEnv returns a boolean if a field has been set.
 func (o *NocalhostTrait) HasEnv() bool {
-	if o != nil && !utils.IsNil(o.Properties.env) {
+	if o != nil && !utils.IsNil(o.Properties.Env) {
 		return true
 	}
 
 	return false
 }
 
-// Env gets a reference to the given []Env and assigns it to the env field.
-// env:
-func (o *NocalhostTrait) Env(v []Env) *NocalhostTrait {
-	o.Properties.env = v
+// SetEnv gets a reference to the given []Env and assigns it to the env field.
+// Env:
+func (o *NocalhostTrait) SetEnv(v []Env) *NocalhostTrait {
+	o.Properties.Env = v
 	return o
 }
 
 // GetGitUrl returns the GitUrl field value if set, zero value otherwise.
 func (o *NocalhostTrait) GetGitUrl() string {
-	if o == nil || utils.IsNil(o.Properties.gitUrl) {
+	if o == nil || utils.IsNil(o.Properties.GitUrl) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.gitUrl
+	return *o.Properties.GitUrl
 }
 
 // GetGitUrlOk returns a tuple with the GitUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NocalhostTrait) GetGitUrlOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.gitUrl) {
+	if o == nil || utils.IsNil(o.Properties.GitUrl) {
 		return nil, false
 	}
-	return o.Properties.gitUrl, true
+	return o.Properties.GitUrl, true
 }
 
 // HasGitUrl returns a boolean if a field has been set.
 func (o *NocalhostTrait) HasGitUrl() bool {
-	if o != nil && !utils.IsNil(o.Properties.gitUrl) {
+	if o != nil && !utils.IsNil(o.Properties.GitUrl) {
 		return true
 	}
 
 	return false
 }
 
-// GitUrl gets a reference to the given string and assigns it to the gitUrl field.
-// gitUrl:
-func (o *NocalhostTrait) GitUrl(v string) *NocalhostTrait {
-	o.Properties.gitUrl = &v
+// SetGitUrl gets a reference to the given string and assigns it to the gitUrl field.
+// GitUrl:
+func (o *NocalhostTrait) SetGitUrl(v string) *NocalhostTrait {
+	o.Properties.GitUrl = &v
 	return o
 }
 
-// GetHotReload returns the HotReload field value
+// GetHotReload returns the HotReload field value if set, zero value otherwise.
 func (o *NocalhostTrait) GetHotReload() bool {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.HotReload) {
 		var ret bool
 		return ret
 	}
-
-	return o.Properties.hotReload
+	return *o.Properties.HotReload
 }
 
-// GetHotReloadOk returns a tuple with the HotReload field value
+// GetHotReloadOk returns a tuple with the HotReload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NocalhostTrait) GetHotReloadOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.HotReload) {
 		return nil, false
 	}
-	return &o.Properties.hotReload, true
+	return o.Properties.HotReload, true
 }
 
-// HotReload sets field value
-func (o *NocalhostTrait) HotReload(v bool) *NocalhostTrait {
-	o.Properties.hotReload = v
+// HasHotReload returns a boolean if a field has been set.
+func (o *NocalhostTrait) HasHotReload() bool {
+	if o != nil && !utils.IsNil(o.Properties.HotReload) {
+		return true
+	}
+
+	return false
+}
+
+// SetHotReload gets a reference to the given bool and assigns it to the hotReload field.
+// HotReload:
+func (o *NocalhostTrait) SetHotReload(v bool) *NocalhostTrait {
+	o.Properties.HotReload = &v
 	return o
 }
 
-// GetImage returns the Image field value
+// GetImage returns the Image field value if set, zero value otherwise.
 func (o *NocalhostTrait) GetImage() Image {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Image) {
 		var ret Image
 		return ret
 	}
-
-	return o.Properties.image
+	return *o.Properties.Image
 }
 
-// GetImageOk returns a tuple with the Image field value
+// GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NocalhostTrait) GetImageOk() (*Image, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Image) {
 		return nil, false
 	}
-	return &o.Properties.image, true
+	return o.Properties.Image, true
 }
 
-// Image sets field value
-func (o *NocalhostTrait) Image(v Image) *NocalhostTrait {
-	o.Properties.image = v
+// HasImage returns a boolean if a field has been set.
+func (o *NocalhostTrait) HasImage() bool {
+	if o != nil && !utils.IsNil(o.Properties.Image) {
+		return true
+	}
+
+	return false
+}
+
+// SetImage gets a reference to the given Image and assigns it to the image field.
+// Image:
+func (o *NocalhostTrait) SetImage(v Image) *NocalhostTrait {
+	o.Properties.Image = &v
 	return o
 }
 
 // GetPersistentVolumeDirs returns the PersistentVolumeDirs field value if set, zero value otherwise.
 func (o *NocalhostTrait) GetPersistentVolumeDirs() []PersistentVolumeDirs {
-	if o == nil || utils.IsNil(o.Properties.persistentVolumeDirs) {
+	if o == nil || utils.IsNil(o.Properties.PersistentVolumeDirs) {
 		var ret []PersistentVolumeDirs
 		return ret
 	}
-	return o.Properties.persistentVolumeDirs
+	return o.Properties.PersistentVolumeDirs
 }
 
 // GetPersistentVolumeDirsOk returns a tuple with the PersistentVolumeDirs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NocalhostTrait) GetPersistentVolumeDirsOk() ([]PersistentVolumeDirs, bool) {
-	if o == nil || utils.IsNil(o.Properties.persistentVolumeDirs) {
+	if o == nil || utils.IsNil(o.Properties.PersistentVolumeDirs) {
 		return nil, false
 	}
-	return o.Properties.persistentVolumeDirs, true
+	return o.Properties.PersistentVolumeDirs, true
 }
 
 // HasPersistentVolumeDirs returns a boolean if a field has been set.
 func (o *NocalhostTrait) HasPersistentVolumeDirs() bool {
-	if o != nil && !utils.IsNil(o.Properties.persistentVolumeDirs) {
+	if o != nil && !utils.IsNil(o.Properties.PersistentVolumeDirs) {
 		return true
 	}
 
 	return false
 }
 
-// PersistentVolumeDirs gets a reference to the given []PersistentVolumeDirs and assigns it to the persistentVolumeDirs field.
-// persistentVolumeDirs:
-func (o *NocalhostTrait) PersistentVolumeDirs(v []PersistentVolumeDirs) *NocalhostTrait {
-	o.Properties.persistentVolumeDirs = v
+// SetPersistentVolumeDirs gets a reference to the given []PersistentVolumeDirs and assigns it to the persistentVolumeDirs field.
+// PersistentVolumeDirs:
+func (o *NocalhostTrait) SetPersistentVolumeDirs(v []PersistentVolumeDirs) *NocalhostTrait {
+	o.Properties.PersistentVolumeDirs = v
 	return o
 }
 
-// GetPort returns the Port field value
+// GetPort returns the Port field value if set, zero value otherwise.
 func (o *NocalhostTrait) GetPort() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Port) {
 		var ret int32
 		return ret
 	}
-
-	return o.Properties.port
+	return *o.Properties.Port
 }
 
-// GetPortOk returns a tuple with the Port field value
+// GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NocalhostTrait) GetPortOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Port) {
 		return nil, false
 	}
-	return &o.Properties.port, true
+	return o.Properties.Port, true
 }
 
-// Port sets field value
-func (o *NocalhostTrait) Port(v int32) *NocalhostTrait {
-	o.Properties.port = v
+// HasPort returns a boolean if a field has been set.
+func (o *NocalhostTrait) HasPort() bool {
+	if o != nil && !utils.IsNil(o.Properties.Port) {
+		return true
+	}
+
+	return false
+}
+
+// SetPort gets a reference to the given int32 and assigns it to the port field.
+// Port:
+func (o *NocalhostTrait) SetPort(v int32) *NocalhostTrait {
+	o.Properties.Port = &v
 	return o
 }
 
 // GetPortForward returns the PortForward field value if set, zero value otherwise.
 func (o *NocalhostTrait) GetPortForward() []string {
-	if o == nil || utils.IsNil(o.Properties.portForward) {
+	if o == nil || utils.IsNil(o.Properties.PortForward) {
 		var ret []string
 		return ret
 	}
-	return o.Properties.portForward
+	return o.Properties.PortForward
 }
 
 // GetPortForwardOk returns a tuple with the PortForward field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NocalhostTrait) GetPortForwardOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.portForward) {
+	if o == nil || utils.IsNil(o.Properties.PortForward) {
 		return nil, false
 	}
-	return o.Properties.portForward, true
+	return o.Properties.PortForward, true
 }
 
 // HasPortForward returns a boolean if a field has been set.
 func (o *NocalhostTrait) HasPortForward() bool {
-	if o != nil && !utils.IsNil(o.Properties.portForward) {
+	if o != nil && !utils.IsNil(o.Properties.PortForward) {
 		return true
 	}
 
 	return false
 }
 
-// PortForward gets a reference to the given []string and assigns it to the portForward field.
-// portForward:
-func (o *NocalhostTrait) PortForward(v []string) *NocalhostTrait {
-	o.Properties.portForward = v
+// SetPortForward gets a reference to the given []string and assigns it to the portForward field.
+// PortForward:
+func (o *NocalhostTrait) SetPortForward(v []string) *NocalhostTrait {
+	o.Properties.PortForward = v
 	return o
 }
 
-// GetResources returns the Resources field value
+// GetResources returns the Resources field value if set, zero value otherwise.
 func (o *NocalhostTrait) GetResources() Resources {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Resources) {
 		var ret Resources
 		return ret
 	}
-
-	return o.Properties.resources
+	return *o.Properties.Resources
 }
 
-// GetResourcesOk returns a tuple with the Resources field value
+// GetResourcesOk returns a tuple with the Resources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NocalhostTrait) GetResourcesOk() (*Resources, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Resources) {
 		return nil, false
 	}
-	return &o.Properties.resources, true
+	return o.Properties.Resources, true
 }
 
-// Resources sets field value
-func (o *NocalhostTrait) Resources(v Resources) *NocalhostTrait {
-	o.Properties.resources = v
+// HasResources returns a boolean if a field has been set.
+func (o *NocalhostTrait) HasResources() bool {
+	if o != nil && !utils.IsNil(o.Properties.Resources) {
+		return true
+	}
+
+	return false
+}
+
+// SetResources gets a reference to the given Resources and assigns it to the resources field.
+// Resources:
+func (o *NocalhostTrait) SetResources(v Resources) *NocalhostTrait {
+	o.Properties.Resources = &v
 	return o
 }
 
-// GetServiceType returns the ServiceType field value
+// GetServiceType returns the ServiceType field value if set, zero value otherwise.
 func (o *NocalhostTrait) GetServiceType() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.ServiceType) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.serviceType
+	return *o.Properties.ServiceType
 }
 
-// GetServiceTypeOk returns a tuple with the ServiceType field value
+// GetServiceTypeOk returns a tuple with the ServiceType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NocalhostTrait) GetServiceTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.ServiceType) {
 		return nil, false
 	}
-	return &o.Properties.serviceType, true
+	return o.Properties.ServiceType, true
 }
 
-// ServiceType sets field value
-func (o *NocalhostTrait) ServiceType(v string) *NocalhostTrait {
-	o.Properties.serviceType = v
+// HasServiceType returns a boolean if a field has been set.
+func (o *NocalhostTrait) HasServiceType() bool {
+	if o != nil && !utils.IsNil(o.Properties.ServiceType) {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceType gets a reference to the given string and assigns it to the serviceType field.
+// ServiceType:
+func (o *NocalhostTrait) SetServiceType(v string) *NocalhostTrait {
+	o.Properties.ServiceType = &v
 	return o
 }
 
-// GetShell returns the Shell field value
+// GetShell returns the Shell field value if set, zero value otherwise.
 func (o *NocalhostTrait) GetShell() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Shell) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.shell
+	return *o.Properties.Shell
 }
 
-// GetShellOk returns a tuple with the Shell field value
+// GetShellOk returns a tuple with the Shell field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NocalhostTrait) GetShellOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Shell) {
 		return nil, false
 	}
-	return &o.Properties.shell, true
+	return o.Properties.Shell, true
 }
 
-// Shell sets field value
-func (o *NocalhostTrait) Shell(v string) *NocalhostTrait {
-	o.Properties.shell = v
+// HasShell returns a boolean if a field has been set.
+func (o *NocalhostTrait) HasShell() bool {
+	if o != nil && !utils.IsNil(o.Properties.Shell) {
+		return true
+	}
+
+	return false
+}
+
+// SetShell gets a reference to the given string and assigns it to the shell field.
+// Shell:
+func (o *NocalhostTrait) SetShell(v string) *NocalhostTrait {
+	o.Properties.Shell = &v
 	return o
 }
 
 // GetStorageClass returns the StorageClass field value if set, zero value otherwise.
 func (o *NocalhostTrait) GetStorageClass() string {
-	if o == nil || utils.IsNil(o.Properties.storageClass) {
+	if o == nil || utils.IsNil(o.Properties.StorageClass) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.storageClass
+	return *o.Properties.StorageClass
 }
 
 // GetStorageClassOk returns a tuple with the StorageClass field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NocalhostTrait) GetStorageClassOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.storageClass) {
+	if o == nil || utils.IsNil(o.Properties.StorageClass) {
 		return nil, false
 	}
-	return o.Properties.storageClass, true
+	return o.Properties.StorageClass, true
 }
 
 // HasStorageClass returns a boolean if a field has been set.
 func (o *NocalhostTrait) HasStorageClass() bool {
-	if o != nil && !utils.IsNil(o.Properties.storageClass) {
+	if o != nil && !utils.IsNil(o.Properties.StorageClass) {
 		return true
 	}
 
 	return false
 }
 
-// StorageClass gets a reference to the given string and assigns it to the storageClass field.
-// storageClass:
-func (o *NocalhostTrait) StorageClass(v string) *NocalhostTrait {
-	o.Properties.storageClass = &v
+// SetStorageClass gets a reference to the given string and assigns it to the storageClass field.
+// StorageClass:
+func (o *NocalhostTrait) SetStorageClass(v string) *NocalhostTrait {
+	o.Properties.StorageClass = &v
 	return o
 }
 
-// GetSync returns the Sync field value
+// GetSync returns the Sync field value if set, zero value otherwise.
 func (o *NocalhostTrait) GetSync() Sync {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Sync) {
 		var ret Sync
 		return ret
 	}
-
-	return o.Properties.sync
+	return *o.Properties.Sync
 }
 
-// GetSyncOk returns a tuple with the Sync field value
+// GetSyncOk returns a tuple with the Sync field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NocalhostTrait) GetSyncOk() (*Sync, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Sync) {
 		return nil, false
 	}
-	return &o.Properties.sync, true
+	return o.Properties.Sync, true
 }
 
-// Sync sets field value
-func (o *NocalhostTrait) Sync(v Sync) *NocalhostTrait {
-	o.Properties.sync = v
+// HasSync returns a boolean if a field has been set.
+func (o *NocalhostTrait) HasSync() bool {
+	if o != nil && !utils.IsNil(o.Properties.Sync) {
+		return true
+	}
+
+	return false
+}
+
+// SetSync gets a reference to the given Sync and assigns it to the sync field.
+// Sync:
+func (o *NocalhostTrait) SetSync(v Sync) *NocalhostTrait {
+	o.Properties.Sync = &v
 	return o
 }
 
-// GetWorkDir returns the WorkDir field value
+// GetWorkDir returns the WorkDir field value if set, zero value otherwise.
 func (o *NocalhostTrait) GetWorkDir() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.WorkDir) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.workDir
+	return *o.Properties.WorkDir
 }
 
-// GetWorkDirOk returns a tuple with the WorkDir field value
+// GetWorkDirOk returns a tuple with the WorkDir field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NocalhostTrait) GetWorkDirOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.WorkDir) {
 		return nil, false
 	}
-	return &o.Properties.workDir, true
+	return o.Properties.WorkDir, true
 }
 
-// WorkDir sets field value
-func (o *NocalhostTrait) WorkDir(v string) *NocalhostTrait {
-	o.Properties.workDir = v
+// HasWorkDir returns a boolean if a field has been set.
+func (o *NocalhostTrait) HasWorkDir() bool {
+	if o != nil && !utils.IsNil(o.Properties.WorkDir) {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkDir gets a reference to the given string and assigns it to the workDir field.
+// WorkDir:
+func (o *NocalhostTrait) SetWorkDir(v string) *NocalhostTrait {
+	o.Properties.WorkDir = &v
 	return o
 }
 
@@ -516,33 +596,51 @@ func (o NocalhostSpec) MarshalJSON() ([]byte, error) {
 
 func (o NocalhostSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["command"] = o.command
-	if !utils.IsNil(o.debug) {
-		toSerialize["debug"] = o.debug
+	if !utils.IsNil(o.Command) {
+		toSerialize["command"] = o.Command
 	}
-	if !utils.IsNil(o.env) {
-		toSerialize["env"] = o.env
+	if !utils.IsNil(o.Debug) {
+		toSerialize["debug"] = o.Debug
 	}
-	if !utils.IsNil(o.gitUrl) {
-		toSerialize["gitUrl"] = o.gitUrl
+	if !utils.IsNil(o.Env) {
+		toSerialize["env"] = o.Env
 	}
-	toSerialize["hotReload"] = o.hotReload
-	toSerialize["image"] = o.image
-	if !utils.IsNil(o.persistentVolumeDirs) {
-		toSerialize["persistentVolumeDirs"] = o.persistentVolumeDirs
+	if !utils.IsNil(o.GitUrl) {
+		toSerialize["gitUrl"] = o.GitUrl
 	}
-	toSerialize["port"] = o.port
-	if !utils.IsNil(o.portForward) {
-		toSerialize["portForward"] = o.portForward
+	if !utils.IsNil(o.HotReload) {
+		toSerialize["hotReload"] = o.HotReload
 	}
-	toSerialize["resources"] = o.resources
-	toSerialize["serviceType"] = o.serviceType
-	toSerialize["shell"] = o.shell
-	if !utils.IsNil(o.storageClass) {
-		toSerialize["storageClass"] = o.storageClass
+	if !utils.IsNil(o.Image) {
+		toSerialize["image"] = o.Image
 	}
-	toSerialize["sync"] = o.sync
-	toSerialize["workDir"] = o.workDir
+	if !utils.IsNil(o.PersistentVolumeDirs) {
+		toSerialize["persistentVolumeDirs"] = o.PersistentVolumeDirs
+	}
+	if !utils.IsNil(o.Port) {
+		toSerialize["port"] = o.Port
+	}
+	if !utils.IsNil(o.PortForward) {
+		toSerialize["portForward"] = o.PortForward
+	}
+	if !utils.IsNil(o.Resources) {
+		toSerialize["resources"] = o.Resources
+	}
+	if !utils.IsNil(o.ServiceType) {
+		toSerialize["serviceType"] = o.ServiceType
+	}
+	if !utils.IsNil(o.Shell) {
+		toSerialize["shell"] = o.Shell
+	}
+	if !utils.IsNil(o.StorageClass) {
+		toSerialize["storageClass"] = o.StorageClass
+	}
+	if !utils.IsNil(o.Sync) {
+		toSerialize["sync"] = o.Sync
+	}
+	if !utils.IsNil(o.WorkDir) {
+		toSerialize["workDir"] = o.WorkDir
+	}
 	return toSerialize, nil
 }
 

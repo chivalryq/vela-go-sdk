@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &BaiduProviderAllOf{}
 
 // BaiduProviderAllOf struct for BaiduProviderAllOf
 type BaiduProviderAllOf struct {
-	name  string `json:"name"`
-	type_ string `json:"type"`
+	Name string `json:"name"`
+	Type string `json:"type"`
 }
 
 // NewBaiduProviderAllOfWith instantiates a new BaiduProviderAllOf object
@@ -31,8 +31,8 @@ type BaiduProviderAllOf struct {
 // will change when the set of required properties is changed
 func NewBaiduProviderAllOfWith(name string, type_ string) *BaiduProviderAllOf {
 	this := BaiduProviderAllOf{}
-	this.name = name
-	this.type_ = type_
+	this.Name = name
+	this.Type = type_
 	return &this
 }
 
@@ -42,7 +42,7 @@ func NewBaiduProviderAllOfWith(name string, type_ string) *BaiduProviderAllOf {
 func NewBaiduProviderAllOf() *BaiduProviderAllOf {
 	this := BaiduProviderAllOf{}
 	var name string = "baidu-provider"
-	this.name = name
+	this.Name = name
 	return &this
 }
 
@@ -53,7 +53,7 @@ func (o *BaiduProviderAllOf) GetName() string {
 		return ret
 	}
 
-	return o.name
+	return o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value
@@ -62,12 +62,12 @@ func (o *BaiduProviderAllOf) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.name, true
+	return &o.Name, true
 }
 
-// Name sets field value
-func (o *BaiduProviderAllOf) Name(v string) *BaiduProviderAllOf {
-	o.name = v
+// SetName sets field value
+func (o *BaiduProviderAllOf) SetName(v string) *BaiduProviderAllOf {
+	o.Name = v
 	return o
 }
 
@@ -78,7 +78,7 @@ func (o *BaiduProviderAllOf) GetType() string {
 		return ret
 	}
 
-	return o.type_
+	return o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value
@@ -87,12 +87,12 @@ func (o *BaiduProviderAllOf) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.type_, true
+	return &o.Type, true
 }
 
-// Type sets field value
-func (o *BaiduProviderAllOf) Type(v string) *BaiduProviderAllOf {
-	o.type_ = v
+// SetType sets field value
+func (o *BaiduProviderAllOf) SetType(v string) *BaiduProviderAllOf {
+	o.Type = v
 	return o
 }
 
@@ -106,8 +106,8 @@ func (o BaiduProviderAllOf) MarshalJSON() ([]byte, error) {
 
 func (o BaiduProviderAllOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.name
-	toSerialize["type"] = o.type_
+	toSerialize["name"] = o.Name
+	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 

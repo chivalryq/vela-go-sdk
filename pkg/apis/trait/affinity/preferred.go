@@ -21,9 +21,9 @@ var _ utils.MappedNullable = &Preferred{}
 
 // Preferred struct for Preferred
 type Preferred struct {
-	preference *NodeSelectorTerm `json:"preference,omitempty"`
+	Preference *NodeSelectorTerm `json:"preference,omitempty"`
 	// Specify weight associated with matching the corresponding nodeSelector
-	weight *int32 `json:"weight,omitempty"`
+	Weight *int32 `json:"weight,omitempty"`
 }
 
 // NewPreferredWith instantiates a new Preferred object
@@ -45,69 +45,69 @@ func NewPreferred() *Preferred {
 
 // GetPreference returns the Preference field value if set, zero value otherwise.
 func (o *Preferred) GetPreference() NodeSelectorTerm {
-	if o == nil || utils.IsNil(o.preference) {
+	if o == nil || utils.IsNil(o.Preference) {
 		var ret NodeSelectorTerm
 		return ret
 	}
-	return *o.preference
+	return *o.Preference
 }
 
 // GetPreferenceOk returns a tuple with the Preference field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Preferred) GetPreferenceOk() (*NodeSelectorTerm, bool) {
-	if o == nil || utils.IsNil(o.preference) {
+	if o == nil || utils.IsNil(o.Preference) {
 		return nil, false
 	}
-	return o.preference, true
+	return o.Preference, true
 }
 
 // HasPreference returns a boolean if a field has been set.
 func (o *Preferred) HasPreference() bool {
-	if o != nil && !utils.IsNil(o.preference) {
+	if o != nil && !utils.IsNil(o.Preference) {
 		return true
 	}
 
 	return false
 }
 
-// Preference gets a reference to the given NodeSelectorTerm and assigns it to the preference field.
-// preference:
-func (o *Preferred) Preference(v NodeSelectorTerm) *Preferred {
-	o.preference = &v
+// SetPreference gets a reference to the given NodeSelectorTerm and assigns it to the preference field.
+// Preference:
+func (o *Preferred) SetPreference(v NodeSelectorTerm) *Preferred {
+	o.Preference = &v
 	return o
 }
 
 // GetWeight returns the Weight field value if set, zero value otherwise.
 func (o *Preferred) GetWeight() int32 {
-	if o == nil || utils.IsNil(o.weight) {
+	if o == nil || utils.IsNil(o.Weight) {
 		var ret int32
 		return ret
 	}
-	return *o.weight
+	return *o.Weight
 }
 
 // GetWeightOk returns a tuple with the Weight field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Preferred) GetWeightOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.weight) {
+	if o == nil || utils.IsNil(o.Weight) {
 		return nil, false
 	}
-	return o.weight, true
+	return o.Weight, true
 }
 
 // HasWeight returns a boolean if a field has been set.
 func (o *Preferred) HasWeight() bool {
-	if o != nil && !utils.IsNil(o.weight) {
+	if o != nil && !utils.IsNil(o.Weight) {
 		return true
 	}
 
 	return false
 }
 
-// Weight gets a reference to the given int32 and assigns it to the weight field.
-// weight:  Specify weight associated with matching the corresponding nodeSelector
-func (o *Preferred) Weight(v int32) *Preferred {
-	o.weight = &v
+// SetWeight gets a reference to the given int32 and assigns it to the weight field.
+// Weight:  Specify weight associated with matching the corresponding nodeSelector
+func (o *Preferred) SetWeight(v int32) *Preferred {
+	o.Weight = &v
 	return o
 }
 
@@ -121,11 +121,11 @@ func (o Preferred) MarshalJSON() ([]byte, error) {
 
 func (o Preferred) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.preference) {
-		toSerialize["preference"] = o.preference
+	if !utils.IsNil(o.Preference) {
+		toSerialize["preference"] = o.Preference
 	}
-	if !utils.IsNil(o.weight) {
-		toSerialize["weight"] = o.weight
+	if !utils.IsNil(o.Weight) {
+		toSerialize["weight"] = o.Weight
 	}
 	return toSerialize, nil
 }

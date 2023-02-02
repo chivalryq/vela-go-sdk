@@ -27,9 +27,9 @@ var _ utils.MappedNullable = &ApplyOnceSpec{}
 // ApplyOnceSpec struct for ApplyOnceSpec
 type ApplyOnceSpec struct {
 	// Whether to enable apply-once for the whole application
-	enable *bool `json:"enable,omitempty"`
+	Enable *bool `json:"enable,omitempty"`
 	// Specify the rules for configuring apply-once policy in resource level
-	rules []ApplyOncePolicyRule `json:"rules,omitempty"`
+	Rules []ApplyOncePolicyRule `json:"rules,omitempty"`
 }
 
 // NewApplyOnceSpecWith instantiates a new ApplyOnceSpec object
@@ -39,7 +39,7 @@ type ApplyOnceSpec struct {
 func NewApplyOnceSpecWith() *ApplyOnceSpec {
 	this := ApplyOnceSpec{}
 	var enable bool = false
-	this.enable = &enable
+	this.Enable = &enable
 	return &this
 }
 
@@ -49,75 +49,75 @@ func NewApplyOnceSpecWith() *ApplyOnceSpec {
 func NewApplyOnceSpec() *ApplyOnceSpec {
 	this := ApplyOnceSpec{}
 	var enable bool = false
-	this.enable = &enable
+	this.Enable = &enable
 	return &this
 }
 
 // GetEnable returns the Enable field value if set, zero value otherwise.
 func (o *ApplyOncePolicy) GetEnable() bool {
-	if o == nil || utils.IsNil(o.Properties.enable) {
+	if o == nil || utils.IsNil(o.Properties.Enable) {
 		var ret bool
 		return ret
 	}
-	return *o.Properties.enable
+	return *o.Properties.Enable
 }
 
 // GetEnableOk returns a tuple with the Enable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplyOncePolicy) GetEnableOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.Properties.enable) {
+	if o == nil || utils.IsNil(o.Properties.Enable) {
 		return nil, false
 	}
-	return o.Properties.enable, true
+	return o.Properties.Enable, true
 }
 
 // HasEnable returns a boolean if a field has been set.
 func (o *ApplyOncePolicy) HasEnable() bool {
-	if o != nil && !utils.IsNil(o.Properties.enable) {
+	if o != nil && !utils.IsNil(o.Properties.Enable) {
 		return true
 	}
 
 	return false
 }
 
-// Enable gets a reference to the given bool and assigns it to the enable field.
-// enable:  Whether to enable apply-once for the whole application
-func (o *ApplyOncePolicy) Enable(v bool) *ApplyOncePolicy {
-	o.Properties.enable = &v
+// SetEnable gets a reference to the given bool and assigns it to the enable field.
+// Enable:  Whether to enable apply-once for the whole application
+func (o *ApplyOncePolicy) SetEnable(v bool) *ApplyOncePolicy {
+	o.Properties.Enable = &v
 	return o
 }
 
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *ApplyOncePolicy) GetRules() []ApplyOncePolicyRule {
-	if o == nil || utils.IsNil(o.Properties.rules) {
+	if o == nil || utils.IsNil(o.Properties.Rules) {
 		var ret []ApplyOncePolicyRule
 		return ret
 	}
-	return o.Properties.rules
+	return o.Properties.Rules
 }
 
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplyOncePolicy) GetRulesOk() ([]ApplyOncePolicyRule, bool) {
-	if o == nil || utils.IsNil(o.Properties.rules) {
+	if o == nil || utils.IsNil(o.Properties.Rules) {
 		return nil, false
 	}
-	return o.Properties.rules, true
+	return o.Properties.Rules, true
 }
 
 // HasRules returns a boolean if a field has been set.
 func (o *ApplyOncePolicy) HasRules() bool {
-	if o != nil && !utils.IsNil(o.Properties.rules) {
+	if o != nil && !utils.IsNil(o.Properties.Rules) {
 		return true
 	}
 
 	return false
 }
 
-// Rules gets a reference to the given []ApplyOncePolicyRule and assigns it to the rules field.
-// rules:  Specify the rules for configuring apply-once policy in resource level
-func (o *ApplyOncePolicy) Rules(v []ApplyOncePolicyRule) *ApplyOncePolicy {
-	o.Properties.rules = v
+// SetRules gets a reference to the given []ApplyOncePolicyRule and assigns it to the rules field.
+// Rules:  Specify the rules for configuring apply-once policy in resource level
+func (o *ApplyOncePolicy) SetRules(v []ApplyOncePolicyRule) *ApplyOncePolicy {
+	o.Properties.Rules = v
 	return o
 }
 
@@ -131,11 +131,11 @@ func (o ApplyOnceSpec) MarshalJSON() ([]byte, error) {
 
 func (o ApplyOnceSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.enable) {
-		toSerialize["enable"] = o.enable
+	if !utils.IsNil(o.Enable) {
+		toSerialize["enable"] = o.Enable
 	}
-	if !utils.IsNil(o.rules) {
-		toSerialize["rules"] = o.rules
+	if !utils.IsNil(o.Rules) {
+		toSerialize["rules"] = o.Rules
 	}
 	return toSerialize, nil
 }

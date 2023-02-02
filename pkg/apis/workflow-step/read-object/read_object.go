@@ -28,27 +28,27 @@ var _ utils.MappedNullable = &ReadObjectSpec{}
 // ReadObjectSpec struct for ReadObjectSpec
 type ReadObjectSpec struct {
 	// Specify the apiVersion of the object, defaults to 'core.oam.dev/v1beta1'
-	apiVersion *string `json:"apiVersion,omitempty"`
+	ApiVersion *string `json:"apiVersion,omitempty"`
 	// The cluster you want to apply the resource to, default is the current control plane cluster
-	cluster string `json:"cluster"`
+	Cluster *string `json:"cluster,omitempty"`
 	// Specify the kind of the object, defaults to Application
-	kind *string `json:"kind,omitempty"`
+	Kind *string `json:"kind,omitempty"`
 	// Specify the name of the object
-	name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// The namespace of the resource you want to read
-	namespace *string `json:"namespace,omitempty"`
+	Namespace *string `json:"namespace,omitempty"`
 }
 
 // NewReadObjectSpecWith instantiates a new ReadObjectSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReadObjectSpecWith(cluster string, name string) *ReadObjectSpec {
+func NewReadObjectSpecWith() *ReadObjectSpec {
 	this := ReadObjectSpec{}
-	this.cluster = cluster
-	this.name = name
+	var cluster string = ""
+	this.Cluster = &cluster
 	var namespace string = "default"
-	this.namespace = &namespace
+	this.Namespace = &namespace
 	return &this
 }
 
@@ -58,161 +58,179 @@ func NewReadObjectSpecWith(cluster string, name string) *ReadObjectSpec {
 func NewReadObjectSpec() *ReadObjectSpec {
 	this := ReadObjectSpec{}
 	var cluster string = ""
-	this.cluster = cluster
+	this.Cluster = &cluster
 	var namespace string = "default"
-	this.namespace = &namespace
+	this.Namespace = &namespace
 	return &this
 }
 
 // GetApiVersion returns the ApiVersion field value if set, zero value otherwise.
 func (o *ReadObjectWorkflowStep) GetApiVersion() string {
-	if o == nil || utils.IsNil(o.Properties.apiVersion) {
+	if o == nil || utils.IsNil(o.Properties.ApiVersion) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.apiVersion
+	return *o.Properties.ApiVersion
 }
 
 // GetApiVersionOk returns a tuple with the ApiVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReadObjectWorkflowStep) GetApiVersionOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.apiVersion) {
+	if o == nil || utils.IsNil(o.Properties.ApiVersion) {
 		return nil, false
 	}
-	return o.Properties.apiVersion, true
+	return o.Properties.ApiVersion, true
 }
 
 // HasApiVersion returns a boolean if a field has been set.
 func (o *ReadObjectWorkflowStep) HasApiVersion() bool {
-	if o != nil && !utils.IsNil(o.Properties.apiVersion) {
+	if o != nil && !utils.IsNil(o.Properties.ApiVersion) {
 		return true
 	}
 
 	return false
 }
 
-// ApiVersion gets a reference to the given string and assigns it to the apiVersion field.
-// apiVersion:  Specify the apiVersion of the object, defaults to 'core.oam.dev/v1beta1'
-func (o *ReadObjectWorkflowStep) ApiVersion(v string) *ReadObjectWorkflowStep {
-	o.Properties.apiVersion = &v
+// SetApiVersion gets a reference to the given string and assigns it to the apiVersion field.
+// ApiVersion:  Specify the apiVersion of the object, defaults to 'core.oam.dev/v1beta1'
+func (o *ReadObjectWorkflowStep) SetApiVersion(v string) *ReadObjectWorkflowStep {
+	o.Properties.ApiVersion = &v
 	return o
 }
 
-// GetCluster returns the Cluster field value
+// GetCluster returns the Cluster field value if set, zero value otherwise.
 func (o *ReadObjectWorkflowStep) GetCluster() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Cluster) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.cluster
+	return *o.Properties.Cluster
 }
 
-// GetClusterOk returns a tuple with the Cluster field value
+// GetClusterOk returns a tuple with the Cluster field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReadObjectWorkflowStep) GetClusterOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Cluster) {
 		return nil, false
 	}
-	return &o.Properties.cluster, true
+	return o.Properties.Cluster, true
 }
 
-// Cluster sets field value
-func (o *ReadObjectWorkflowStep) Cluster(v string) *ReadObjectWorkflowStep {
-	o.Properties.cluster = v
+// HasCluster returns a boolean if a field has been set.
+func (o *ReadObjectWorkflowStep) HasCluster() bool {
+	if o != nil && !utils.IsNil(o.Properties.Cluster) {
+		return true
+	}
+
+	return false
+}
+
+// SetCluster gets a reference to the given string and assigns it to the cluster field.
+// Cluster:  The cluster you want to apply the resource to, default is the current control plane cluster
+func (o *ReadObjectWorkflowStep) SetCluster(v string) *ReadObjectWorkflowStep {
+	o.Properties.Cluster = &v
 	return o
 }
 
 // GetKind returns the Kind field value if set, zero value otherwise.
 func (o *ReadObjectWorkflowStep) GetKind() string {
-	if o == nil || utils.IsNil(o.Properties.kind) {
+	if o == nil || utils.IsNil(o.Properties.Kind) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.kind
+	return *o.Properties.Kind
 }
 
 // GetKindOk returns a tuple with the Kind field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReadObjectWorkflowStep) GetKindOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.kind) {
+	if o == nil || utils.IsNil(o.Properties.Kind) {
 		return nil, false
 	}
-	return o.Properties.kind, true
+	return o.Properties.Kind, true
 }
 
 // HasKind returns a boolean if a field has been set.
 func (o *ReadObjectWorkflowStep) HasKind() bool {
-	if o != nil && !utils.IsNil(o.Properties.kind) {
+	if o != nil && !utils.IsNil(o.Properties.Kind) {
 		return true
 	}
 
 	return false
 }
 
-// Kind gets a reference to the given string and assigns it to the kind field.
-// kind:  Specify the kind of the object, defaults to Application
-func (o *ReadObjectWorkflowStep) Kind(v string) *ReadObjectWorkflowStep {
-	o.Properties.kind = &v
+// SetKind gets a reference to the given string and assigns it to the kind field.
+// Kind:  Specify the kind of the object, defaults to Application
+func (o *ReadObjectWorkflowStep) SetKind(v string) *ReadObjectWorkflowStep {
+	o.Properties.Kind = &v
 	return o
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *ReadObjectWorkflowStep) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.name
+	return *o.Properties.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReadObjectWorkflowStep) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		return nil, false
 	}
-	return &o.Properties.name, true
+	return o.Properties.Name, true
 }
 
-// Name sets field value
-func (o *ReadObjectWorkflowStep) Name(v string) *ReadObjectWorkflowStep {
-	o.Properties.name = v
+// HasName returns a boolean if a field has been set.
+func (o *ReadObjectWorkflowStep) HasName() bool {
+	if o != nil && !utils.IsNil(o.Properties.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:  Specify the name of the object
+func (o *ReadObjectWorkflowStep) SetName(v string) *ReadObjectWorkflowStep {
+	o.Properties.Name = &v
 	return o
 }
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *ReadObjectWorkflowStep) GetNamespace() string {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.namespace
+	return *o.Properties.Namespace
 }
 
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReadObjectWorkflowStep) GetNamespaceOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		return nil, false
 	}
-	return o.Properties.namespace, true
+	return o.Properties.Namespace, true
 }
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *ReadObjectWorkflowStep) HasNamespace() bool {
-	if o != nil && !utils.IsNil(o.Properties.namespace) {
+	if o != nil && !utils.IsNil(o.Properties.Namespace) {
 		return true
 	}
 
 	return false
 }
 
-// Namespace gets a reference to the given string and assigns it to the namespace field.
-// namespace:  The namespace of the resource you want to read
-func (o *ReadObjectWorkflowStep) Namespace(v string) *ReadObjectWorkflowStep {
-	o.Properties.namespace = &v
+// SetNamespace gets a reference to the given string and assigns it to the namespace field.
+// Namespace:  The namespace of the resource you want to read
+func (o *ReadObjectWorkflowStep) SetNamespace(v string) *ReadObjectWorkflowStep {
+	o.Properties.Namespace = &v
 	return o
 }
 
@@ -226,16 +244,20 @@ func (o ReadObjectSpec) MarshalJSON() ([]byte, error) {
 
 func (o ReadObjectSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.apiVersion) {
-		toSerialize["apiVersion"] = o.apiVersion
+	if !utils.IsNil(o.ApiVersion) {
+		toSerialize["apiVersion"] = o.ApiVersion
 	}
-	toSerialize["cluster"] = o.cluster
-	if !utils.IsNil(o.kind) {
-		toSerialize["kind"] = o.kind
+	if !utils.IsNil(o.Cluster) {
+		toSerialize["cluster"] = o.Cluster
 	}
-	toSerialize["name"] = o.name
-	if !utils.IsNil(o.namespace) {
-		toSerialize["namespace"] = o.namespace
+	if !utils.IsNil(o.Kind) {
+		toSerialize["kind"] = o.Kind
+	}
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !utils.IsNil(o.Namespace) {
+		toSerialize["namespace"] = o.Namespace
 	}
 	return toSerialize, nil
 }

@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &HostAliases{}
 
 // HostAliases struct for HostAliases
 type HostAliases struct {
-	hostnames []string `json:"hostnames,omitempty"`
-	ip        *string  `json:"ip,omitempty"`
+	Hostnames []string `json:"hostnames,omitempty"`
+	Ip        *string  `json:"ip,omitempty"`
 }
 
 // NewHostAliasesWith instantiates a new HostAliases object
@@ -44,69 +44,69 @@ func NewHostAliases() *HostAliases {
 
 // GetHostnames returns the Hostnames field value if set, zero value otherwise.
 func (o *HostAliases) GetHostnames() []string {
-	if o == nil || utils.IsNil(o.hostnames) {
+	if o == nil || utils.IsNil(o.Hostnames) {
 		var ret []string
 		return ret
 	}
-	return o.hostnames
+	return o.Hostnames
 }
 
 // GetHostnamesOk returns a tuple with the Hostnames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HostAliases) GetHostnamesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.hostnames) {
+	if o == nil || utils.IsNil(o.Hostnames) {
 		return nil, false
 	}
-	return o.hostnames, true
+	return o.Hostnames, true
 }
 
 // HasHostnames returns a boolean if a field has been set.
 func (o *HostAliases) HasHostnames() bool {
-	if o != nil && !utils.IsNil(o.hostnames) {
+	if o != nil && !utils.IsNil(o.Hostnames) {
 		return true
 	}
 
 	return false
 }
 
-// Hostnames gets a reference to the given []string and assigns it to the hostnames field.
-// hostnames:
-func (o *HostAliases) Hostnames(v []string) *HostAliases {
-	o.hostnames = v
+// SetHostnames gets a reference to the given []string and assigns it to the hostnames field.
+// Hostnames:
+func (o *HostAliases) SetHostnames(v []string) *HostAliases {
+	o.Hostnames = v
 	return o
 }
 
 // GetIp returns the Ip field value if set, zero value otherwise.
 func (o *HostAliases) GetIp() string {
-	if o == nil || utils.IsNil(o.ip) {
+	if o == nil || utils.IsNil(o.Ip) {
 		var ret string
 		return ret
 	}
-	return *o.ip
+	return *o.Ip
 }
 
 // GetIpOk returns a tuple with the Ip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HostAliases) GetIpOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.ip) {
+	if o == nil || utils.IsNil(o.Ip) {
 		return nil, false
 	}
-	return o.ip, true
+	return o.Ip, true
 }
 
 // HasIp returns a boolean if a field has been set.
 func (o *HostAliases) HasIp() bool {
-	if o != nil && !utils.IsNil(o.ip) {
+	if o != nil && !utils.IsNil(o.Ip) {
 		return true
 	}
 
 	return false
 }
 
-// Ip gets a reference to the given string and assigns it to the ip field.
-// ip:
-func (o *HostAliases) Ip(v string) *HostAliases {
-	o.ip = &v
+// SetIp gets a reference to the given string and assigns it to the ip field.
+// Ip:
+func (o *HostAliases) SetIp(v string) *HostAliases {
+	o.Ip = &v
 	return o
 }
 
@@ -120,11 +120,11 @@ func (o HostAliases) MarshalJSON() ([]byte, error) {
 
 func (o HostAliases) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.hostnames) {
-		toSerialize["hostnames"] = o.hostnames
+	if !utils.IsNil(o.Hostnames) {
+		toSerialize["hostnames"] = o.Hostnames
 	}
-	if !utils.IsNil(o.ip) {
-		toSerialize["ip"] = o.ip
+	if !utils.IsNil(o.Ip) {
+		toSerialize["ip"] = o.Ip
 	}
 	return toSerialize, nil
 }

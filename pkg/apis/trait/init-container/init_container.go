@@ -27,25 +27,25 @@ var _ utils.MappedNullable = &InitContainerSpec{}
 // InitContainerSpec struct for InitContainerSpec
 type InitContainerSpec struct {
 	// Specify the mount path of app container
-	appMountPath *string `json:"appMountPath,omitempty"`
+	AppMountPath *string `json:"appMountPath,omitempty"`
 	// Specify the args run in the init container
-	args []string `json:"args,omitempty"`
+	Args []string `json:"args,omitempty"`
 	// Specify the commands run in the init container
-	cmd []string `json:"cmd,omitempty"`
+	Cmd []string `json:"cmd,omitempty"`
 	// Specify the env run in the init container
-	env []Env `json:"env,omitempty"`
+	Env []Env `json:"env,omitempty"`
 	// Specify the extra volume mounts for the init container
-	extraVolumeMounts []ExtraVolumeMounts `json:"extraVolumeMounts,omitempty"`
+	ExtraVolumeMounts []ExtraVolumeMounts `json:"extraVolumeMounts,omitempty"`
 	// Specify the image of init container
-	image *string `json:"image,omitempty"`
+	Image *string `json:"image,omitempty"`
 	// Specify image pull policy for your service
-	imagePullPolicy *string `json:"imagePullPolicy,omitempty"`
+	ImagePullPolicy *string `json:"imagePullPolicy,omitempty"`
 	// Specify the mount path of init container
-	initMountPath *string `json:"initMountPath,omitempty"`
+	InitMountPath *string `json:"initMountPath,omitempty"`
 	// Specify the mount name of shared volume
-	mountName *string `json:"mountName,omitempty"`
+	MountName *string `json:"mountName,omitempty"`
 	// Specify the name of init container
-	name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 }
 
 // NewInitContainerSpecWith instantiates a new InitContainerSpec object
@@ -55,9 +55,9 @@ type InitContainerSpec struct {
 func NewInitContainerSpecWith() *InitContainerSpec {
 	this := InitContainerSpec{}
 	var imagePullPolicy string = "IfNotPresent"
-	this.imagePullPolicy = &imagePullPolicy
+	this.ImagePullPolicy = &imagePullPolicy
 	var mountName string = "workdir"
-	this.mountName = &mountName
+	this.MountName = &mountName
 	return &this
 }
 
@@ -67,349 +67,349 @@ func NewInitContainerSpecWith() *InitContainerSpec {
 func NewInitContainerSpec() *InitContainerSpec {
 	this := InitContainerSpec{}
 	var imagePullPolicy string = "IfNotPresent"
-	this.imagePullPolicy = &imagePullPolicy
+	this.ImagePullPolicy = &imagePullPolicy
 	var mountName string = "workdir"
-	this.mountName = &mountName
+	this.MountName = &mountName
 	return &this
 }
 
 // GetAppMountPath returns the AppMountPath field value if set, zero value otherwise.
 func (o *InitContainerTrait) GetAppMountPath() string {
-	if o == nil || utils.IsNil(o.Properties.appMountPath) {
+	if o == nil || utils.IsNil(o.Properties.AppMountPath) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.appMountPath
+	return *o.Properties.AppMountPath
 }
 
 // GetAppMountPathOk returns a tuple with the AppMountPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InitContainerTrait) GetAppMountPathOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.appMountPath) {
+	if o == nil || utils.IsNil(o.Properties.AppMountPath) {
 		return nil, false
 	}
-	return o.Properties.appMountPath, true
+	return o.Properties.AppMountPath, true
 }
 
 // HasAppMountPath returns a boolean if a field has been set.
 func (o *InitContainerTrait) HasAppMountPath() bool {
-	if o != nil && !utils.IsNil(o.Properties.appMountPath) {
+	if o != nil && !utils.IsNil(o.Properties.AppMountPath) {
 		return true
 	}
 
 	return false
 }
 
-// AppMountPath gets a reference to the given string and assigns it to the appMountPath field.
-// appMountPath:  Specify the mount path of app container
-func (o *InitContainerTrait) AppMountPath(v string) *InitContainerTrait {
-	o.Properties.appMountPath = &v
+// SetAppMountPath gets a reference to the given string and assigns it to the appMountPath field.
+// AppMountPath:  Specify the mount path of app container
+func (o *InitContainerTrait) SetAppMountPath(v string) *InitContainerTrait {
+	o.Properties.AppMountPath = &v
 	return o
 }
 
 // GetArgs returns the Args field value if set, zero value otherwise.
 func (o *InitContainerTrait) GetArgs() []string {
-	if o == nil || utils.IsNil(o.Properties.args) {
+	if o == nil || utils.IsNil(o.Properties.Args) {
 		var ret []string
 		return ret
 	}
-	return o.Properties.args
+	return o.Properties.Args
 }
 
 // GetArgsOk returns a tuple with the Args field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InitContainerTrait) GetArgsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.args) {
+	if o == nil || utils.IsNil(o.Properties.Args) {
 		return nil, false
 	}
-	return o.Properties.args, true
+	return o.Properties.Args, true
 }
 
 // HasArgs returns a boolean if a field has been set.
 func (o *InitContainerTrait) HasArgs() bool {
-	if o != nil && !utils.IsNil(o.Properties.args) {
+	if o != nil && !utils.IsNil(o.Properties.Args) {
 		return true
 	}
 
 	return false
 }
 
-// Args gets a reference to the given []string and assigns it to the args field.
-// args:  Specify the args run in the init container
-func (o *InitContainerTrait) Args(v []string) *InitContainerTrait {
-	o.Properties.args = v
+// SetArgs gets a reference to the given []string and assigns it to the args field.
+// Args:  Specify the args run in the init container
+func (o *InitContainerTrait) SetArgs(v []string) *InitContainerTrait {
+	o.Properties.Args = v
 	return o
 }
 
 // GetCmd returns the Cmd field value if set, zero value otherwise.
 func (o *InitContainerTrait) GetCmd() []string {
-	if o == nil || utils.IsNil(o.Properties.cmd) {
+	if o == nil || utils.IsNil(o.Properties.Cmd) {
 		var ret []string
 		return ret
 	}
-	return o.Properties.cmd
+	return o.Properties.Cmd
 }
 
 // GetCmdOk returns a tuple with the Cmd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InitContainerTrait) GetCmdOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.cmd) {
+	if o == nil || utils.IsNil(o.Properties.Cmd) {
 		return nil, false
 	}
-	return o.Properties.cmd, true
+	return o.Properties.Cmd, true
 }
 
 // HasCmd returns a boolean if a field has been set.
 func (o *InitContainerTrait) HasCmd() bool {
-	if o != nil && !utils.IsNil(o.Properties.cmd) {
+	if o != nil && !utils.IsNil(o.Properties.Cmd) {
 		return true
 	}
 
 	return false
 }
 
-// Cmd gets a reference to the given []string and assigns it to the cmd field.
-// cmd:  Specify the commands run in the init container
-func (o *InitContainerTrait) Cmd(v []string) *InitContainerTrait {
-	o.Properties.cmd = v
+// SetCmd gets a reference to the given []string and assigns it to the cmd field.
+// Cmd:  Specify the commands run in the init container
+func (o *InitContainerTrait) SetCmd(v []string) *InitContainerTrait {
+	o.Properties.Cmd = v
 	return o
 }
 
 // GetEnv returns the Env field value if set, zero value otherwise.
 func (o *InitContainerTrait) GetEnv() []Env {
-	if o == nil || utils.IsNil(o.Properties.env) {
+	if o == nil || utils.IsNil(o.Properties.Env) {
 		var ret []Env
 		return ret
 	}
-	return o.Properties.env
+	return o.Properties.Env
 }
 
 // GetEnvOk returns a tuple with the Env field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InitContainerTrait) GetEnvOk() ([]Env, bool) {
-	if o == nil || utils.IsNil(o.Properties.env) {
+	if o == nil || utils.IsNil(o.Properties.Env) {
 		return nil, false
 	}
-	return o.Properties.env, true
+	return o.Properties.Env, true
 }
 
 // HasEnv returns a boolean if a field has been set.
 func (o *InitContainerTrait) HasEnv() bool {
-	if o != nil && !utils.IsNil(o.Properties.env) {
+	if o != nil && !utils.IsNil(o.Properties.Env) {
 		return true
 	}
 
 	return false
 }
 
-// Env gets a reference to the given []Env and assigns it to the env field.
-// env:  Specify the env run in the init container
-func (o *InitContainerTrait) Env(v []Env) *InitContainerTrait {
-	o.Properties.env = v
+// SetEnv gets a reference to the given []Env and assigns it to the env field.
+// Env:  Specify the env run in the init container
+func (o *InitContainerTrait) SetEnv(v []Env) *InitContainerTrait {
+	o.Properties.Env = v
 	return o
 }
 
 // GetExtraVolumeMounts returns the ExtraVolumeMounts field value if set, zero value otherwise.
 func (o *InitContainerTrait) GetExtraVolumeMounts() []ExtraVolumeMounts {
-	if o == nil || utils.IsNil(o.Properties.extraVolumeMounts) {
+	if o == nil || utils.IsNil(o.Properties.ExtraVolumeMounts) {
 		var ret []ExtraVolumeMounts
 		return ret
 	}
-	return o.Properties.extraVolumeMounts
+	return o.Properties.ExtraVolumeMounts
 }
 
 // GetExtraVolumeMountsOk returns a tuple with the ExtraVolumeMounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InitContainerTrait) GetExtraVolumeMountsOk() ([]ExtraVolumeMounts, bool) {
-	if o == nil || utils.IsNil(o.Properties.extraVolumeMounts) {
+	if o == nil || utils.IsNil(o.Properties.ExtraVolumeMounts) {
 		return nil, false
 	}
-	return o.Properties.extraVolumeMounts, true
+	return o.Properties.ExtraVolumeMounts, true
 }
 
 // HasExtraVolumeMounts returns a boolean if a field has been set.
 func (o *InitContainerTrait) HasExtraVolumeMounts() bool {
-	if o != nil && !utils.IsNil(o.Properties.extraVolumeMounts) {
+	if o != nil && !utils.IsNil(o.Properties.ExtraVolumeMounts) {
 		return true
 	}
 
 	return false
 }
 
-// ExtraVolumeMounts gets a reference to the given []ExtraVolumeMounts and assigns it to the extraVolumeMounts field.
-// extraVolumeMounts:  Specify the extra volume mounts for the init container
-func (o *InitContainerTrait) ExtraVolumeMounts(v []ExtraVolumeMounts) *InitContainerTrait {
-	o.Properties.extraVolumeMounts = v
+// SetExtraVolumeMounts gets a reference to the given []ExtraVolumeMounts and assigns it to the extraVolumeMounts field.
+// ExtraVolumeMounts:  Specify the extra volume mounts for the init container
+func (o *InitContainerTrait) SetExtraVolumeMounts(v []ExtraVolumeMounts) *InitContainerTrait {
+	o.Properties.ExtraVolumeMounts = v
 	return o
 }
 
 // GetImage returns the Image field value if set, zero value otherwise.
 func (o *InitContainerTrait) GetImage() string {
-	if o == nil || utils.IsNil(o.Properties.image) {
+	if o == nil || utils.IsNil(o.Properties.Image) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.image
+	return *o.Properties.Image
 }
 
 // GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InitContainerTrait) GetImageOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.image) {
+	if o == nil || utils.IsNil(o.Properties.Image) {
 		return nil, false
 	}
-	return o.Properties.image, true
+	return o.Properties.Image, true
 }
 
 // HasImage returns a boolean if a field has been set.
 func (o *InitContainerTrait) HasImage() bool {
-	if o != nil && !utils.IsNil(o.Properties.image) {
+	if o != nil && !utils.IsNil(o.Properties.Image) {
 		return true
 	}
 
 	return false
 }
 
-// Image gets a reference to the given string and assigns it to the image field.
-// image:  Specify the image of init container
-func (o *InitContainerTrait) Image(v string) *InitContainerTrait {
-	o.Properties.image = &v
+// SetImage gets a reference to the given string and assigns it to the image field.
+// Image:  Specify the image of init container
+func (o *InitContainerTrait) SetImage(v string) *InitContainerTrait {
+	o.Properties.Image = &v
 	return o
 }
 
 // GetImagePullPolicy returns the ImagePullPolicy field value if set, zero value otherwise.
 func (o *InitContainerTrait) GetImagePullPolicy() string {
-	if o == nil || utils.IsNil(o.Properties.imagePullPolicy) {
+	if o == nil || utils.IsNil(o.Properties.ImagePullPolicy) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.imagePullPolicy
+	return *o.Properties.ImagePullPolicy
 }
 
 // GetImagePullPolicyOk returns a tuple with the ImagePullPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InitContainerTrait) GetImagePullPolicyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.imagePullPolicy) {
+	if o == nil || utils.IsNil(o.Properties.ImagePullPolicy) {
 		return nil, false
 	}
-	return o.Properties.imagePullPolicy, true
+	return o.Properties.ImagePullPolicy, true
 }
 
 // HasImagePullPolicy returns a boolean if a field has been set.
 func (o *InitContainerTrait) HasImagePullPolicy() bool {
-	if o != nil && !utils.IsNil(o.Properties.imagePullPolicy) {
+	if o != nil && !utils.IsNil(o.Properties.ImagePullPolicy) {
 		return true
 	}
 
 	return false
 }
 
-// ImagePullPolicy gets a reference to the given string and assigns it to the imagePullPolicy field.
-// imagePullPolicy:  Specify image pull policy for your service
-func (o *InitContainerTrait) ImagePullPolicy(v string) *InitContainerTrait {
-	o.Properties.imagePullPolicy = &v
+// SetImagePullPolicy gets a reference to the given string and assigns it to the imagePullPolicy field.
+// ImagePullPolicy:  Specify image pull policy for your service
+func (o *InitContainerTrait) SetImagePullPolicy(v string) *InitContainerTrait {
+	o.Properties.ImagePullPolicy = &v
 	return o
 }
 
 // GetInitMountPath returns the InitMountPath field value if set, zero value otherwise.
 func (o *InitContainerTrait) GetInitMountPath() string {
-	if o == nil || utils.IsNil(o.Properties.initMountPath) {
+	if o == nil || utils.IsNil(o.Properties.InitMountPath) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.initMountPath
+	return *o.Properties.InitMountPath
 }
 
 // GetInitMountPathOk returns a tuple with the InitMountPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InitContainerTrait) GetInitMountPathOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.initMountPath) {
+	if o == nil || utils.IsNil(o.Properties.InitMountPath) {
 		return nil, false
 	}
-	return o.Properties.initMountPath, true
+	return o.Properties.InitMountPath, true
 }
 
 // HasInitMountPath returns a boolean if a field has been set.
 func (o *InitContainerTrait) HasInitMountPath() bool {
-	if o != nil && !utils.IsNil(o.Properties.initMountPath) {
+	if o != nil && !utils.IsNil(o.Properties.InitMountPath) {
 		return true
 	}
 
 	return false
 }
 
-// InitMountPath gets a reference to the given string and assigns it to the initMountPath field.
-// initMountPath:  Specify the mount path of init container
-func (o *InitContainerTrait) InitMountPath(v string) *InitContainerTrait {
-	o.Properties.initMountPath = &v
+// SetInitMountPath gets a reference to the given string and assigns it to the initMountPath field.
+// InitMountPath:  Specify the mount path of init container
+func (o *InitContainerTrait) SetInitMountPath(v string) *InitContainerTrait {
+	o.Properties.InitMountPath = &v
 	return o
 }
 
 // GetMountName returns the MountName field value if set, zero value otherwise.
 func (o *InitContainerTrait) GetMountName() string {
-	if o == nil || utils.IsNil(o.Properties.mountName) {
+	if o == nil || utils.IsNil(o.Properties.MountName) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.mountName
+	return *o.Properties.MountName
 }
 
 // GetMountNameOk returns a tuple with the MountName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InitContainerTrait) GetMountNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.mountName) {
+	if o == nil || utils.IsNil(o.Properties.MountName) {
 		return nil, false
 	}
-	return o.Properties.mountName, true
+	return o.Properties.MountName, true
 }
 
 // HasMountName returns a boolean if a field has been set.
 func (o *InitContainerTrait) HasMountName() bool {
-	if o != nil && !utils.IsNil(o.Properties.mountName) {
+	if o != nil && !utils.IsNil(o.Properties.MountName) {
 		return true
 	}
 
 	return false
 }
 
-// MountName gets a reference to the given string and assigns it to the mountName field.
-// mountName:  Specify the mount name of shared volume
-func (o *InitContainerTrait) MountName(v string) *InitContainerTrait {
-	o.Properties.mountName = &v
+// SetMountName gets a reference to the given string and assigns it to the mountName field.
+// MountName:  Specify the mount name of shared volume
+func (o *InitContainerTrait) SetMountName(v string) *InitContainerTrait {
+	o.Properties.MountName = &v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *InitContainerTrait) GetName() string {
-	if o == nil || utils.IsNil(o.Properties.name) {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.name
+	return *o.Properties.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InitContainerTrait) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.name) {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		return nil, false
 	}
-	return o.Properties.name, true
+	return o.Properties.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *InitContainerTrait) HasName() bool {
-	if o != nil && !utils.IsNil(o.Properties.name) {
+	if o != nil && !utils.IsNil(o.Properties.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:  Specify the name of init container
-func (o *InitContainerTrait) Name(v string) *InitContainerTrait {
-	o.Properties.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:  Specify the name of init container
+func (o *InitContainerTrait) SetName(v string) *InitContainerTrait {
+	o.Properties.Name = &v
 	return o
 }
 
@@ -423,35 +423,35 @@ func (o InitContainerSpec) MarshalJSON() ([]byte, error) {
 
 func (o InitContainerSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.appMountPath) {
-		toSerialize["appMountPath"] = o.appMountPath
+	if !utils.IsNil(o.AppMountPath) {
+		toSerialize["appMountPath"] = o.AppMountPath
 	}
-	if !utils.IsNil(o.args) {
-		toSerialize["args"] = o.args
+	if !utils.IsNil(o.Args) {
+		toSerialize["args"] = o.Args
 	}
-	if !utils.IsNil(o.cmd) {
-		toSerialize["cmd"] = o.cmd
+	if !utils.IsNil(o.Cmd) {
+		toSerialize["cmd"] = o.Cmd
 	}
-	if !utils.IsNil(o.env) {
-		toSerialize["env"] = o.env
+	if !utils.IsNil(o.Env) {
+		toSerialize["env"] = o.Env
 	}
-	if !utils.IsNil(o.extraVolumeMounts) {
-		toSerialize["extraVolumeMounts"] = o.extraVolumeMounts
+	if !utils.IsNil(o.ExtraVolumeMounts) {
+		toSerialize["extraVolumeMounts"] = o.ExtraVolumeMounts
 	}
-	if !utils.IsNil(o.image) {
-		toSerialize["image"] = o.image
+	if !utils.IsNil(o.Image) {
+		toSerialize["image"] = o.Image
 	}
-	if !utils.IsNil(o.imagePullPolicy) {
-		toSerialize["imagePullPolicy"] = o.imagePullPolicy
+	if !utils.IsNil(o.ImagePullPolicy) {
+		toSerialize["imagePullPolicy"] = o.ImagePullPolicy
 	}
-	if !utils.IsNil(o.initMountPath) {
-		toSerialize["initMountPath"] = o.initMountPath
+	if !utils.IsNil(o.InitMountPath) {
+		toSerialize["initMountPath"] = o.InitMountPath
 	}
-	if !utils.IsNil(o.mountName) {
-		toSerialize["mountName"] = o.mountName
+	if !utils.IsNil(o.MountName) {
+		toSerialize["mountName"] = o.MountName
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	return toSerialize, nil
 }

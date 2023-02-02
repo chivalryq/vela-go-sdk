@@ -22,16 +22,16 @@ func main() {
 			Namespace("default").
 			WithComponents(
 				Webservice("nginx").
-					Image("nginx:latest").
-					Cpu("500m").
+					SetImage("nginx:latest").
+					SetCpu("500m").
 					AddTrait(
 						initcontainer.InitContainer().
-							Name("init").
-							Image("busybox").
-							Cmd([]string{"echo", "hello", "vela"}).
-							AppMountPath("/workdir").
-							InitMountPath("/app/dir"),
-						resource.Resource().Memory("256Mi"),
+							SetName("init").
+							SetImage("busybox").
+							SetCmd([]string{"echo", "hello", "vela"}).
+							SetAppMountPath("/workdir").
+							SetInitMountPath("/app/dir"),
+						resource.Resource().SetMemory("256Mi"),
 					),
 			)
 	//WithWorkflowSteps(
@@ -42,7 +42,6 @@ func main() {
 	//).
 	//WithPolicies(applyonce.ApplyOnce("once").Enable(true))
 
-	// Create component and add traits.
 	appObj := application.Build()
 	marshal, err := json.Marshal(appObj)
 	if err != nil {

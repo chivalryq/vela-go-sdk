@@ -28,19 +28,19 @@ var _ utils.MappedNullable = &CollectServiceEndpointsSpec{}
 // CollectServiceEndpointsSpec struct for CollectServiceEndpointsSpec
 type CollectServiceEndpointsSpec struct {
 	// Filter the component of the endpoints
-	components []string `json:"components,omitempty"`
+	Components []string `json:"components,omitempty"`
 	// Specify the name of the application
-	name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	// Specify the namespace of the application
-	namespace *string `json:"namespace,omitempty"`
+	Namespace *string `json:"namespace,omitempty"`
 	// Filter the endpoint that are only outer
-	outer *bool `json:"outer,omitempty"`
+	Outer *bool `json:"outer,omitempty"`
 	// Filter the port of the endpoints
-	port *int32 `json:"port,omitempty"`
+	Port *int32 `json:"port,omitempty"`
 	// Filter the port name of the endpoints
-	portName *string `json:"portName,omitempty"`
+	PortName *string `json:"portName,omitempty"`
 	// The protocal of endpoint url
-	protocal *string `json:"protocal,omitempty"`
+	Protocal *string `json:"protocal,omitempty"`
 }
 
 // NewCollectServiceEndpointsSpecWith instantiates a new CollectServiceEndpointsSpec object
@@ -50,7 +50,7 @@ type CollectServiceEndpointsSpec struct {
 func NewCollectServiceEndpointsSpecWith() *CollectServiceEndpointsSpec {
 	this := CollectServiceEndpointsSpec{}
 	var protocal string = "http"
-	this.protocal = &protocal
+	this.Protocal = &protocal
 	return &this
 }
 
@@ -60,245 +60,245 @@ func NewCollectServiceEndpointsSpecWith() *CollectServiceEndpointsSpec {
 func NewCollectServiceEndpointsSpec() *CollectServiceEndpointsSpec {
 	this := CollectServiceEndpointsSpec{}
 	var protocal string = "http"
-	this.protocal = &protocal
+	this.Protocal = &protocal
 	return &this
 }
 
 // GetComponents returns the Components field value if set, zero value otherwise.
 func (o *CollectServiceEndpointsWorkflowStep) GetComponents() []string {
-	if o == nil || utils.IsNil(o.Properties.components) {
+	if o == nil || utils.IsNil(o.Properties.Components) {
 		var ret []string
 		return ret
 	}
-	return o.Properties.components
+	return o.Properties.Components
 }
 
 // GetComponentsOk returns a tuple with the Components field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CollectServiceEndpointsWorkflowStep) GetComponentsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.components) {
+	if o == nil || utils.IsNil(o.Properties.Components) {
 		return nil, false
 	}
-	return o.Properties.components, true
+	return o.Properties.Components, true
 }
 
 // HasComponents returns a boolean if a field has been set.
 func (o *CollectServiceEndpointsWorkflowStep) HasComponents() bool {
-	if o != nil && !utils.IsNil(o.Properties.components) {
+	if o != nil && !utils.IsNil(o.Properties.Components) {
 		return true
 	}
 
 	return false
 }
 
-// Components gets a reference to the given []string and assigns it to the components field.
-// components:  Filter the component of the endpoints
-func (o *CollectServiceEndpointsWorkflowStep) Components(v []string) *CollectServiceEndpointsWorkflowStep {
-	o.Properties.components = v
+// SetComponents gets a reference to the given []string and assigns it to the components field.
+// Components:  Filter the component of the endpoints
+func (o *CollectServiceEndpointsWorkflowStep) SetComponents(v []string) *CollectServiceEndpointsWorkflowStep {
+	o.Properties.Components = v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CollectServiceEndpointsWorkflowStep) GetName() string {
-	if o == nil || utils.IsNil(o.Properties.name) {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.name
+	return *o.Properties.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CollectServiceEndpointsWorkflowStep) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.name) {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		return nil, false
 	}
-	return o.Properties.name, true
+	return o.Properties.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CollectServiceEndpointsWorkflowStep) HasName() bool {
-	if o != nil && !utils.IsNil(o.Properties.name) {
+	if o != nil && !utils.IsNil(o.Properties.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:  Specify the name of the application
-func (o *CollectServiceEndpointsWorkflowStep) Name(v string) *CollectServiceEndpointsWorkflowStep {
-	o.Properties.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:  Specify the name of the application
+func (o *CollectServiceEndpointsWorkflowStep) SetName(v string) *CollectServiceEndpointsWorkflowStep {
+	o.Properties.Name = &v
 	return o
 }
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *CollectServiceEndpointsWorkflowStep) GetNamespace() string {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.namespace
+	return *o.Properties.Namespace
 }
 
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CollectServiceEndpointsWorkflowStep) GetNamespaceOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		return nil, false
 	}
-	return o.Properties.namespace, true
+	return o.Properties.Namespace, true
 }
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *CollectServiceEndpointsWorkflowStep) HasNamespace() bool {
-	if o != nil && !utils.IsNil(o.Properties.namespace) {
+	if o != nil && !utils.IsNil(o.Properties.Namespace) {
 		return true
 	}
 
 	return false
 }
 
-// Namespace gets a reference to the given string and assigns it to the namespace field.
-// namespace:  Specify the namespace of the application
-func (o *CollectServiceEndpointsWorkflowStep) Namespace(v string) *CollectServiceEndpointsWorkflowStep {
-	o.Properties.namespace = &v
+// SetNamespace gets a reference to the given string and assigns it to the namespace field.
+// Namespace:  Specify the namespace of the application
+func (o *CollectServiceEndpointsWorkflowStep) SetNamespace(v string) *CollectServiceEndpointsWorkflowStep {
+	o.Properties.Namespace = &v
 	return o
 }
 
 // GetOuter returns the Outer field value if set, zero value otherwise.
 func (o *CollectServiceEndpointsWorkflowStep) GetOuter() bool {
-	if o == nil || utils.IsNil(o.Properties.outer) {
+	if o == nil || utils.IsNil(o.Properties.Outer) {
 		var ret bool
 		return ret
 	}
-	return *o.Properties.outer
+	return *o.Properties.Outer
 }
 
 // GetOuterOk returns a tuple with the Outer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CollectServiceEndpointsWorkflowStep) GetOuterOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.Properties.outer) {
+	if o == nil || utils.IsNil(o.Properties.Outer) {
 		return nil, false
 	}
-	return o.Properties.outer, true
+	return o.Properties.Outer, true
 }
 
 // HasOuter returns a boolean if a field has been set.
 func (o *CollectServiceEndpointsWorkflowStep) HasOuter() bool {
-	if o != nil && !utils.IsNil(o.Properties.outer) {
+	if o != nil && !utils.IsNil(o.Properties.Outer) {
 		return true
 	}
 
 	return false
 }
 
-// Outer gets a reference to the given bool and assigns it to the outer field.
-// outer:  Filter the endpoint that are only outer
-func (o *CollectServiceEndpointsWorkflowStep) Outer(v bool) *CollectServiceEndpointsWorkflowStep {
-	o.Properties.outer = &v
+// SetOuter gets a reference to the given bool and assigns it to the outer field.
+// Outer:  Filter the endpoint that are only outer
+func (o *CollectServiceEndpointsWorkflowStep) SetOuter(v bool) *CollectServiceEndpointsWorkflowStep {
+	o.Properties.Outer = &v
 	return o
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *CollectServiceEndpointsWorkflowStep) GetPort() int32 {
-	if o == nil || utils.IsNil(o.Properties.port) {
+	if o == nil || utils.IsNil(o.Properties.Port) {
 		var ret int32
 		return ret
 	}
-	return *o.Properties.port
+	return *o.Properties.Port
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CollectServiceEndpointsWorkflowStep) GetPortOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.Properties.port) {
+	if o == nil || utils.IsNil(o.Properties.Port) {
 		return nil, false
 	}
-	return o.Properties.port, true
+	return o.Properties.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *CollectServiceEndpointsWorkflowStep) HasPort() bool {
-	if o != nil && !utils.IsNil(o.Properties.port) {
+	if o != nil && !utils.IsNil(o.Properties.Port) {
 		return true
 	}
 
 	return false
 }
 
-// Port gets a reference to the given int32 and assigns it to the port field.
-// port:  Filter the port of the endpoints
-func (o *CollectServiceEndpointsWorkflowStep) Port(v int32) *CollectServiceEndpointsWorkflowStep {
-	o.Properties.port = &v
+// SetPort gets a reference to the given int32 and assigns it to the port field.
+// Port:  Filter the port of the endpoints
+func (o *CollectServiceEndpointsWorkflowStep) SetPort(v int32) *CollectServiceEndpointsWorkflowStep {
+	o.Properties.Port = &v
 	return o
 }
 
 // GetPortName returns the PortName field value if set, zero value otherwise.
 func (o *CollectServiceEndpointsWorkflowStep) GetPortName() string {
-	if o == nil || utils.IsNil(o.Properties.portName) {
+	if o == nil || utils.IsNil(o.Properties.PortName) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.portName
+	return *o.Properties.PortName
 }
 
 // GetPortNameOk returns a tuple with the PortName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CollectServiceEndpointsWorkflowStep) GetPortNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.portName) {
+	if o == nil || utils.IsNil(o.Properties.PortName) {
 		return nil, false
 	}
-	return o.Properties.portName, true
+	return o.Properties.PortName, true
 }
 
 // HasPortName returns a boolean if a field has been set.
 func (o *CollectServiceEndpointsWorkflowStep) HasPortName() bool {
-	if o != nil && !utils.IsNil(o.Properties.portName) {
+	if o != nil && !utils.IsNil(o.Properties.PortName) {
 		return true
 	}
 
 	return false
 }
 
-// PortName gets a reference to the given string and assigns it to the portName field.
-// portName:  Filter the port name of the endpoints
-func (o *CollectServiceEndpointsWorkflowStep) PortName(v string) *CollectServiceEndpointsWorkflowStep {
-	o.Properties.portName = &v
+// SetPortName gets a reference to the given string and assigns it to the portName field.
+// PortName:  Filter the port name of the endpoints
+func (o *CollectServiceEndpointsWorkflowStep) SetPortName(v string) *CollectServiceEndpointsWorkflowStep {
+	o.Properties.PortName = &v
 	return o
 }
 
 // GetProtocal returns the Protocal field value if set, zero value otherwise.
 func (o *CollectServiceEndpointsWorkflowStep) GetProtocal() string {
-	if o == nil || utils.IsNil(o.Properties.protocal) {
+	if o == nil || utils.IsNil(o.Properties.Protocal) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.protocal
+	return *o.Properties.Protocal
 }
 
 // GetProtocalOk returns a tuple with the Protocal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CollectServiceEndpointsWorkflowStep) GetProtocalOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.protocal) {
+	if o == nil || utils.IsNil(o.Properties.Protocal) {
 		return nil, false
 	}
-	return o.Properties.protocal, true
+	return o.Properties.Protocal, true
 }
 
 // HasProtocal returns a boolean if a field has been set.
 func (o *CollectServiceEndpointsWorkflowStep) HasProtocal() bool {
-	if o != nil && !utils.IsNil(o.Properties.protocal) {
+	if o != nil && !utils.IsNil(o.Properties.Protocal) {
 		return true
 	}
 
 	return false
 }
 
-// Protocal gets a reference to the given string and assigns it to the protocal field.
-// protocal:  The protocal of endpoint url
-func (o *CollectServiceEndpointsWorkflowStep) Protocal(v string) *CollectServiceEndpointsWorkflowStep {
-	o.Properties.protocal = &v
+// SetProtocal gets a reference to the given string and assigns it to the protocal field.
+// Protocal:  The protocal of endpoint url
+func (o *CollectServiceEndpointsWorkflowStep) SetProtocal(v string) *CollectServiceEndpointsWorkflowStep {
+	o.Properties.Protocal = &v
 	return o
 }
 
@@ -312,26 +312,26 @@ func (o CollectServiceEndpointsSpec) MarshalJSON() ([]byte, error) {
 
 func (o CollectServiceEndpointsSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.components) {
-		toSerialize["components"] = o.components
+	if !utils.IsNil(o.Components) {
+		toSerialize["components"] = o.Components
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if !utils.IsNil(o.namespace) {
-		toSerialize["namespace"] = o.namespace
+	if !utils.IsNil(o.Namespace) {
+		toSerialize["namespace"] = o.Namespace
 	}
-	if !utils.IsNil(o.outer) {
-		toSerialize["outer"] = o.outer
+	if !utils.IsNil(o.Outer) {
+		toSerialize["outer"] = o.Outer
 	}
-	if !utils.IsNil(o.port) {
-		toSerialize["port"] = o.port
+	if !utils.IsNil(o.Port) {
+		toSerialize["port"] = o.Port
 	}
-	if !utils.IsNil(o.portName) {
-		toSerialize["portName"] = o.portName
+	if !utils.IsNil(o.PortName) {
+		toSerialize["portName"] = o.PortName
 	}
-	if !utils.IsNil(o.protocal) {
-		toSerialize["protocal"] = o.protocal
+	if !utils.IsNil(o.Protocal) {
+		toSerialize["protocal"] = o.Protocal
 	}
 	return toSerialize, nil
 }

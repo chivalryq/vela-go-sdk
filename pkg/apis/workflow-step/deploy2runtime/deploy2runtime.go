@@ -28,7 +28,7 @@ var _ utils.MappedNullable = &Deploy2runtimeSpec{}
 // Deploy2runtimeSpec struct for Deploy2runtimeSpec
 type Deploy2runtimeSpec struct {
 	// Declare the runtime clusters to apply, if empty, all runtime clusters will be used
-	clusters []string `json:"clusters,omitempty"`
+	Clusters []string `json:"clusters,omitempty"`
 }
 
 // NewDeploy2runtimeSpecWith instantiates a new Deploy2runtimeSpec object
@@ -50,35 +50,35 @@ func NewDeploy2runtimeSpec() *Deploy2runtimeSpec {
 
 // GetClusters returns the Clusters field value if set, zero value otherwise.
 func (o *Deploy2runtimeWorkflowStep) GetClusters() []string {
-	if o == nil || utils.IsNil(o.Properties.clusters) {
+	if o == nil || utils.IsNil(o.Properties.Clusters) {
 		var ret []string
 		return ret
 	}
-	return o.Properties.clusters
+	return o.Properties.Clusters
 }
 
 // GetClustersOk returns a tuple with the Clusters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Deploy2runtimeWorkflowStep) GetClustersOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.clusters) {
+	if o == nil || utils.IsNil(o.Properties.Clusters) {
 		return nil, false
 	}
-	return o.Properties.clusters, true
+	return o.Properties.Clusters, true
 }
 
 // HasClusters returns a boolean if a field has been set.
 func (o *Deploy2runtimeWorkflowStep) HasClusters() bool {
-	if o != nil && !utils.IsNil(o.Properties.clusters) {
+	if o != nil && !utils.IsNil(o.Properties.Clusters) {
 		return true
 	}
 
 	return false
 }
 
-// Clusters gets a reference to the given []string and assigns it to the clusters field.
-// clusters:  Declare the runtime clusters to apply, if empty, all runtime clusters will be used
-func (o *Deploy2runtimeWorkflowStep) Clusters(v []string) *Deploy2runtimeWorkflowStep {
-	o.Properties.clusters = v
+// SetClusters gets a reference to the given []string and assigns it to the clusters field.
+// Clusters:  Declare the runtime clusters to apply, if empty, all runtime clusters will be used
+func (o *Deploy2runtimeWorkflowStep) SetClusters(v []string) *Deploy2runtimeWorkflowStep {
+	o.Properties.Clusters = v
 	return o
 }
 
@@ -92,8 +92,8 @@ func (o Deploy2runtimeSpec) MarshalJSON() ([]byte, error) {
 
 func (o Deploy2runtimeSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.clusters) {
-		toSerialize["clusters"] = o.clusters
+	if !utils.IsNil(o.Clusters) {
+		toSerialize["clusters"] = o.Clusters
 	}
 	return toSerialize, nil
 }

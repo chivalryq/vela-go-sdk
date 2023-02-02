@@ -21,7 +21,7 @@ var _ utils.MappedNullable = &Limits{}
 
 // Limits struct for Limits
 type Limits struct {
-	storage *string `json:"storage,omitempty"`
+	Storage *string `json:"storage,omitempty"`
 }
 
 // NewLimitsWith instantiates a new Limits object
@@ -43,35 +43,35 @@ func NewLimits() *Limits {
 
 // GetStorage returns the Storage field value if set, zero value otherwise.
 func (o *Limits) GetStorage() string {
-	if o == nil || utils.IsNil(o.storage) {
+	if o == nil || utils.IsNil(o.Storage) {
 		var ret string
 		return ret
 	}
-	return *o.storage
+	return *o.Storage
 }
 
 // GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Limits) GetStorageOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.storage) {
+	if o == nil || utils.IsNil(o.Storage) {
 		return nil, false
 	}
-	return o.storage, true
+	return o.Storage, true
 }
 
 // HasStorage returns a boolean if a field has been set.
 func (o *Limits) HasStorage() bool {
-	if o != nil && !utils.IsNil(o.storage) {
+	if o != nil && !utils.IsNil(o.Storage) {
 		return true
 	}
 
 	return false
 }
 
-// Storage gets a reference to the given string and assigns it to the storage field.
-// storage:
-func (o *Limits) Storage(v string) *Limits {
-	o.storage = &v
+// SetStorage gets a reference to the given string and assigns it to the storage field.
+// Storage:
+func (o *Limits) SetStorage(v string) *Limits {
+	o.Storage = &v
 	return o
 }
 
@@ -85,8 +85,8 @@ func (o Limits) MarshalJSON() ([]byte, error) {
 
 func (o Limits) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.storage) {
-		toSerialize["storage"] = o.storage
+	if !utils.IsNil(o.Storage) {
+		toSerialize["storage"] = o.Storage
 	}
 	return toSerialize, nil
 }

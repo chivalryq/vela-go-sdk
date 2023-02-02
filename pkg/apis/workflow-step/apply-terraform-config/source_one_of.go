@@ -22,7 +22,7 @@ var _ utils.MappedNullable = &SourceOneOf{}
 // SourceOneOf struct for SourceOneOf
 type SourceOneOf struct {
 	// directly specify the hcl of the terraform configuration
-	hcl string `json:"hcl"`
+	Hcl string `json:"hcl"`
 }
 
 // NewSourceOneOfWith instantiates a new SourceOneOf object
@@ -31,7 +31,7 @@ type SourceOneOf struct {
 // will change when the set of required properties is changed
 func NewSourceOneOfWith(hcl string) *SourceOneOf {
 	this := SourceOneOf{}
-	this.hcl = hcl
+	this.Hcl = hcl
 	return &this
 }
 
@@ -50,7 +50,7 @@ func (o *SourceOneOf) GetHcl() string {
 		return ret
 	}
 
-	return o.hcl
+	return o.Hcl
 }
 
 // GetHclOk returns a tuple with the Hcl field value
@@ -59,12 +59,12 @@ func (o *SourceOneOf) GetHclOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.hcl, true
+	return &o.Hcl, true
 }
 
-// Hcl sets field value
-func (o *SourceOneOf) Hcl(v string) *SourceOneOf {
-	o.hcl = v
+// SetHcl sets field value
+func (o *SourceOneOf) SetHcl(v string) *SourceOneOf {
+	o.Hcl = v
 	return o
 }
 
@@ -78,7 +78,7 @@ func (o SourceOneOf) MarshalJSON() ([]byte, error) {
 
 func (o SourceOneOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["hcl"] = o.hcl
+	toSerialize["hcl"] = o.Hcl
 	return toSerialize, nil
 }
 

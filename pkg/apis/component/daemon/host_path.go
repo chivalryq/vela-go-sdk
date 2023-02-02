@@ -21,11 +21,11 @@ var _ utils.MappedNullable = &HostPath{}
 
 // HostPath struct for HostPath
 type HostPath struct {
-	mountPath        *string `json:"mountPath,omitempty"`
-	mountPropagation *string `json:"mountPropagation,omitempty"`
-	name             *string `json:"name,omitempty"`
-	path             *string `json:"path,omitempty"`
-	readOnly         *bool   `json:"readOnly,omitempty"`
+	MountPath        *string `json:"mountPath,omitempty"`
+	MountPropagation *string `json:"mountPropagation,omitempty"`
+	Name             *string `json:"name,omitempty"`
+	Path             *string `json:"path,omitempty"`
+	ReadOnly         *bool   `json:"readOnly,omitempty"`
 }
 
 // NewHostPathWith instantiates a new HostPath object
@@ -47,171 +47,171 @@ func NewHostPath() *HostPath {
 
 // GetMountPath returns the MountPath field value if set, zero value otherwise.
 func (o *HostPath) GetMountPath() string {
-	if o == nil || utils.IsNil(o.mountPath) {
+	if o == nil || utils.IsNil(o.MountPath) {
 		var ret string
 		return ret
 	}
-	return *o.mountPath
+	return *o.MountPath
 }
 
 // GetMountPathOk returns a tuple with the MountPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HostPath) GetMountPathOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.mountPath) {
+	if o == nil || utils.IsNil(o.MountPath) {
 		return nil, false
 	}
-	return o.mountPath, true
+	return o.MountPath, true
 }
 
 // HasMountPath returns a boolean if a field has been set.
 func (o *HostPath) HasMountPath() bool {
-	if o != nil && !utils.IsNil(o.mountPath) {
+	if o != nil && !utils.IsNil(o.MountPath) {
 		return true
 	}
 
 	return false
 }
 
-// MountPath gets a reference to the given string and assigns it to the mountPath field.
-// mountPath:
-func (o *HostPath) MountPath(v string) *HostPath {
-	o.mountPath = &v
+// SetMountPath gets a reference to the given string and assigns it to the mountPath field.
+// MountPath:
+func (o *HostPath) SetMountPath(v string) *HostPath {
+	o.MountPath = &v
 	return o
 }
 
 // GetMountPropagation returns the MountPropagation field value if set, zero value otherwise.
 func (o *HostPath) GetMountPropagation() string {
-	if o == nil || utils.IsNil(o.mountPropagation) {
+	if o == nil || utils.IsNil(o.MountPropagation) {
 		var ret string
 		return ret
 	}
-	return *o.mountPropagation
+	return *o.MountPropagation
 }
 
 // GetMountPropagationOk returns a tuple with the MountPropagation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HostPath) GetMountPropagationOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.mountPropagation) {
+	if o == nil || utils.IsNil(o.MountPropagation) {
 		return nil, false
 	}
-	return o.mountPropagation, true
+	return o.MountPropagation, true
 }
 
 // HasMountPropagation returns a boolean if a field has been set.
 func (o *HostPath) HasMountPropagation() bool {
-	if o != nil && !utils.IsNil(o.mountPropagation) {
+	if o != nil && !utils.IsNil(o.MountPropagation) {
 		return true
 	}
 
 	return false
 }
 
-// MountPropagation gets a reference to the given string and assigns it to the mountPropagation field.
-// mountPropagation:
-func (o *HostPath) MountPropagation(v string) *HostPath {
-	o.mountPropagation = &v
+// SetMountPropagation gets a reference to the given string and assigns it to the mountPropagation field.
+// MountPropagation:
+func (o *HostPath) SetMountPropagation(v string) *HostPath {
+	o.MountPropagation = &v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *HostPath) GetName() string {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.name
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HostPath) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *HostPath) HasName() bool {
-	if o != nil && !utils.IsNil(o.name) {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:
-func (o *HostPath) Name(v string) *HostPath {
-	o.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:
+func (o *HostPath) SetName(v string) *HostPath {
+	o.Name = &v
 	return o
 }
 
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *HostPath) GetPath() string {
-	if o == nil || utils.IsNil(o.path) {
+	if o == nil || utils.IsNil(o.Path) {
 		var ret string
 		return ret
 	}
-	return *o.path
+	return *o.Path
 }
 
 // GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HostPath) GetPathOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.path) {
+	if o == nil || utils.IsNil(o.Path) {
 		return nil, false
 	}
-	return o.path, true
+	return o.Path, true
 }
 
 // HasPath returns a boolean if a field has been set.
 func (o *HostPath) HasPath() bool {
-	if o != nil && !utils.IsNil(o.path) {
+	if o != nil && !utils.IsNil(o.Path) {
 		return true
 	}
 
 	return false
 }
 
-// Path gets a reference to the given string and assigns it to the path field.
-// path:
-func (o *HostPath) Path(v string) *HostPath {
-	o.path = &v
+// SetPath gets a reference to the given string and assigns it to the path field.
+// Path:
+func (o *HostPath) SetPath(v string) *HostPath {
+	o.Path = &v
 	return o
 }
 
 // GetReadOnly returns the ReadOnly field value if set, zero value otherwise.
 func (o *HostPath) GetReadOnly() bool {
-	if o == nil || utils.IsNil(o.readOnly) {
+	if o == nil || utils.IsNil(o.ReadOnly) {
 		var ret bool
 		return ret
 	}
-	return *o.readOnly
+	return *o.ReadOnly
 }
 
 // GetReadOnlyOk returns a tuple with the ReadOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HostPath) GetReadOnlyOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.readOnly) {
+	if o == nil || utils.IsNil(o.ReadOnly) {
 		return nil, false
 	}
-	return o.readOnly, true
+	return o.ReadOnly, true
 }
 
 // HasReadOnly returns a boolean if a field has been set.
 func (o *HostPath) HasReadOnly() bool {
-	if o != nil && !utils.IsNil(o.readOnly) {
+	if o != nil && !utils.IsNil(o.ReadOnly) {
 		return true
 	}
 
 	return false
 }
 
-// ReadOnly gets a reference to the given bool and assigns it to the readOnly field.
-// readOnly:
-func (o *HostPath) ReadOnly(v bool) *HostPath {
-	o.readOnly = &v
+// SetReadOnly gets a reference to the given bool and assigns it to the readOnly field.
+// ReadOnly:
+func (o *HostPath) SetReadOnly(v bool) *HostPath {
+	o.ReadOnly = &v
 	return o
 }
 
@@ -225,20 +225,20 @@ func (o HostPath) MarshalJSON() ([]byte, error) {
 
 func (o HostPath) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.mountPath) {
-		toSerialize["mountPath"] = o.mountPath
+	if !utils.IsNil(o.MountPath) {
+		toSerialize["mountPath"] = o.MountPath
 	}
-	if !utils.IsNil(o.mountPropagation) {
-		toSerialize["mountPropagation"] = o.mountPropagation
+	if !utils.IsNil(o.MountPropagation) {
+		toSerialize["mountPropagation"] = o.MountPropagation
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if !utils.IsNil(o.path) {
-		toSerialize["path"] = o.path
+	if !utils.IsNil(o.Path) {
+		toSerialize["path"] = o.Path
 	}
-	if !utils.IsNil(o.readOnly) {
-		toSerialize["readOnly"] = o.readOnly
+	if !utils.IsNil(o.ReadOnly) {
+		toSerialize["readOnly"] = o.ReadOnly
 	}
 	return toSerialize, nil
 }

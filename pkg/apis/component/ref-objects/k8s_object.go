@@ -22,17 +22,17 @@ var _ utils.MappedNullable = &K8sObject{}
 // K8sObject struct for K8sObject
 type K8sObject struct {
 	// If specified, fetch the Kubernetes objects from the cluster. Otherwise, fetch from the local cluster.
-	cluster *string `json:"cluster,omitempty"`
+	Cluster *string `json:"cluster,omitempty"`
 	// The group name for the Kubernetes objects
-	group *string `json:"group,omitempty"`
+	Group *string `json:"group,omitempty"`
 	// If specified, fetch the Kubernetes objects according to the label selector, exclusive to name
-	labelSelector *map[string]string `json:"labelSelector,omitempty"`
+	LabelSelector *map[string]string `json:"labelSelector,omitempty"`
 	// If specified, fetch the Kubernetes objects with the name, exclusive to labelSelector
-	name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	// If specified, fetch the Kubernetes objects from the namespace. Otherwise, fetch from the application's namespace.
-	namespace *string `json:"namespace,omitempty"`
+	Namespace *string `json:"namespace,omitempty"`
 	// The resource type for the Kubernetes objects
-	resource *string `json:"resource,omitempty"`
+	Resource *string `json:"resource,omitempty"`
 }
 
 // NewK8sObjectWith instantiates a new K8sObject object
@@ -54,205 +54,205 @@ func NewK8sObject() *K8sObject {
 
 // GetCluster returns the Cluster field value if set, zero value otherwise.
 func (o *K8sObject) GetCluster() string {
-	if o == nil || utils.IsNil(o.cluster) {
+	if o == nil || utils.IsNil(o.Cluster) {
 		var ret string
 		return ret
 	}
-	return *o.cluster
+	return *o.Cluster
 }
 
 // GetClusterOk returns a tuple with the Cluster field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *K8sObject) GetClusterOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.cluster) {
+	if o == nil || utils.IsNil(o.Cluster) {
 		return nil, false
 	}
-	return o.cluster, true
+	return o.Cluster, true
 }
 
 // HasCluster returns a boolean if a field has been set.
 func (o *K8sObject) HasCluster() bool {
-	if o != nil && !utils.IsNil(o.cluster) {
+	if o != nil && !utils.IsNil(o.Cluster) {
 		return true
 	}
 
 	return false
 }
 
-// Cluster gets a reference to the given string and assigns it to the cluster field.
-// cluster:  If specified, fetch the Kubernetes objects from the cluster. Otherwise, fetch from the local cluster.
-func (o *K8sObject) Cluster(v string) *K8sObject {
-	o.cluster = &v
+// SetCluster gets a reference to the given string and assigns it to the cluster field.
+// Cluster:  If specified, fetch the Kubernetes objects from the cluster. Otherwise, fetch from the local cluster.
+func (o *K8sObject) SetCluster(v string) *K8sObject {
+	o.Cluster = &v
 	return o
 }
 
 // GetGroup returns the Group field value if set, zero value otherwise.
 func (o *K8sObject) GetGroup() string {
-	if o == nil || utils.IsNil(o.group) {
+	if o == nil || utils.IsNil(o.Group) {
 		var ret string
 		return ret
 	}
-	return *o.group
+	return *o.Group
 }
 
 // GetGroupOk returns a tuple with the Group field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *K8sObject) GetGroupOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.group) {
+	if o == nil || utils.IsNil(o.Group) {
 		return nil, false
 	}
-	return o.group, true
+	return o.Group, true
 }
 
 // HasGroup returns a boolean if a field has been set.
 func (o *K8sObject) HasGroup() bool {
-	if o != nil && !utils.IsNil(o.group) {
+	if o != nil && !utils.IsNil(o.Group) {
 		return true
 	}
 
 	return false
 }
 
-// Group gets a reference to the given string and assigns it to the group field.
-// group:  The group name for the Kubernetes objects
-func (o *K8sObject) Group(v string) *K8sObject {
-	o.group = &v
+// SetGroup gets a reference to the given string and assigns it to the group field.
+// Group:  The group name for the Kubernetes objects
+func (o *K8sObject) SetGroup(v string) *K8sObject {
+	o.Group = &v
 	return o
 }
 
 // GetLabelSelector returns the LabelSelector field value if set, zero value otherwise.
 func (o *K8sObject) GetLabelSelector() map[string]string {
-	if o == nil || utils.IsNil(o.labelSelector) {
+	if o == nil || utils.IsNil(o.LabelSelector) {
 		var ret map[string]string
 		return ret
 	}
-	return *o.labelSelector
+	return *o.LabelSelector
 }
 
 // GetLabelSelectorOk returns a tuple with the LabelSelector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *K8sObject) GetLabelSelectorOk() (*map[string]string, bool) {
-	if o == nil || utils.IsNil(o.labelSelector) {
+	if o == nil || utils.IsNil(o.LabelSelector) {
 		return nil, false
 	}
-	return o.labelSelector, true
+	return o.LabelSelector, true
 }
 
 // HasLabelSelector returns a boolean if a field has been set.
 func (o *K8sObject) HasLabelSelector() bool {
-	if o != nil && !utils.IsNil(o.labelSelector) {
+	if o != nil && !utils.IsNil(o.LabelSelector) {
 		return true
 	}
 
 	return false
 }
 
-// LabelSelector gets a reference to the given map[string]string and assigns it to the labelSelector field.
-// labelSelector:  If specified, fetch the Kubernetes objects according to the label selector, exclusive to name
-func (o *K8sObject) LabelSelector(v map[string]string) *K8sObject {
-	o.labelSelector = &v
+// SetLabelSelector gets a reference to the given map[string]string and assigns it to the labelSelector field.
+// LabelSelector:  If specified, fetch the Kubernetes objects according to the label selector, exclusive to name
+func (o *K8sObject) SetLabelSelector(v map[string]string) *K8sObject {
+	o.LabelSelector = &v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *K8sObject) GetName() string {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.name
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *K8sObject) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *K8sObject) HasName() bool {
-	if o != nil && !utils.IsNil(o.name) {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:  If specified, fetch the Kubernetes objects with the name, exclusive to labelSelector
-func (o *K8sObject) Name(v string) *K8sObject {
-	o.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:  If specified, fetch the Kubernetes objects with the name, exclusive to labelSelector
+func (o *K8sObject) SetName(v string) *K8sObject {
+	o.Name = &v
 	return o
 }
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *K8sObject) GetNamespace() string {
-	if o == nil || utils.IsNil(o.namespace) {
+	if o == nil || utils.IsNil(o.Namespace) {
 		var ret string
 		return ret
 	}
-	return *o.namespace
+	return *o.Namespace
 }
 
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *K8sObject) GetNamespaceOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.namespace) {
+	if o == nil || utils.IsNil(o.Namespace) {
 		return nil, false
 	}
-	return o.namespace, true
+	return o.Namespace, true
 }
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *K8sObject) HasNamespace() bool {
-	if o != nil && !utils.IsNil(o.namespace) {
+	if o != nil && !utils.IsNil(o.Namespace) {
 		return true
 	}
 
 	return false
 }
 
-// Namespace gets a reference to the given string and assigns it to the namespace field.
-// namespace:  If specified, fetch the Kubernetes objects from the namespace. Otherwise, fetch from the application's namespace.
-func (o *K8sObject) Namespace(v string) *K8sObject {
-	o.namespace = &v
+// SetNamespace gets a reference to the given string and assigns it to the namespace field.
+// Namespace:  If specified, fetch the Kubernetes objects from the namespace. Otherwise, fetch from the application's namespace.
+func (o *K8sObject) SetNamespace(v string) *K8sObject {
+	o.Namespace = &v
 	return o
 }
 
 // GetResource returns the Resource field value if set, zero value otherwise.
 func (o *K8sObject) GetResource() string {
-	if o == nil || utils.IsNil(o.resource) {
+	if o == nil || utils.IsNil(o.Resource) {
 		var ret string
 		return ret
 	}
-	return *o.resource
+	return *o.Resource
 }
 
 // GetResourceOk returns a tuple with the Resource field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *K8sObject) GetResourceOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.resource) {
+	if o == nil || utils.IsNil(o.Resource) {
 		return nil, false
 	}
-	return o.resource, true
+	return o.Resource, true
 }
 
 // HasResource returns a boolean if a field has been set.
 func (o *K8sObject) HasResource() bool {
-	if o != nil && !utils.IsNil(o.resource) {
+	if o != nil && !utils.IsNil(o.Resource) {
 		return true
 	}
 
 	return false
 }
 
-// Resource gets a reference to the given string and assigns it to the resource field.
-// resource:  The resource type for the Kubernetes objects
-func (o *K8sObject) Resource(v string) *K8sObject {
-	o.resource = &v
+// SetResource gets a reference to the given string and assigns it to the resource field.
+// Resource:  The resource type for the Kubernetes objects
+func (o *K8sObject) SetResource(v string) *K8sObject {
+	o.Resource = &v
 	return o
 }
 
@@ -266,23 +266,23 @@ func (o K8sObject) MarshalJSON() ([]byte, error) {
 
 func (o K8sObject) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.cluster) {
-		toSerialize["cluster"] = o.cluster
+	if !utils.IsNil(o.Cluster) {
+		toSerialize["cluster"] = o.Cluster
 	}
-	if !utils.IsNil(o.group) {
-		toSerialize["group"] = o.group
+	if !utils.IsNil(o.Group) {
+		toSerialize["group"] = o.Group
 	}
-	if !utils.IsNil(o.labelSelector) {
-		toSerialize["labelSelector"] = o.labelSelector
+	if !utils.IsNil(o.LabelSelector) {
+		toSerialize["labelSelector"] = o.LabelSelector
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if !utils.IsNil(o.namespace) {
-		toSerialize["namespace"] = o.namespace
+	if !utils.IsNil(o.Namespace) {
+		toSerialize["namespace"] = o.Namespace
 	}
-	if !utils.IsNil(o.resource) {
-		toSerialize["resource"] = o.resource
+	if !utils.IsNil(o.Resource) {
+		toSerialize["resource"] = o.Resource
 	}
 	return toSerialize, nil
 }

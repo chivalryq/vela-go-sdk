@@ -27,11 +27,11 @@ var _ utils.MappedNullable = &ServiceAccountSpec{}
 // ServiceAccountSpec struct for ServiceAccountSpec
 type ServiceAccountSpec struct {
 	// Specify whether to create new ServiceAccount or not
-	create *bool `json:"create,omitempty"`
+	Create *bool `json:"create,omitempty"`
 	// Specify the name of ServiceAccount
-	name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	// Specify the privileges of the ServiceAccount, if not empty, RoleBindings(ClusterRoleBindings) will be created
-	privileges []Privileges `json:"privileges,omitempty"`
+	Privileges []Privileges `json:"privileges,omitempty"`
 }
 
 // NewServiceAccountSpecWith instantiates a new ServiceAccountSpec object
@@ -41,7 +41,7 @@ type ServiceAccountSpec struct {
 func NewServiceAccountSpecWith() *ServiceAccountSpec {
 	this := ServiceAccountSpec{}
 	var create bool = false
-	this.create = &create
+	this.Create = &create
 	return &this
 }
 
@@ -51,109 +51,109 @@ func NewServiceAccountSpecWith() *ServiceAccountSpec {
 func NewServiceAccountSpec() *ServiceAccountSpec {
 	this := ServiceAccountSpec{}
 	var create bool = false
-	this.create = &create
+	this.Create = &create
 	return &this
 }
 
 // GetCreate returns the Create field value if set, zero value otherwise.
 func (o *ServiceAccountTrait) GetCreate() bool {
-	if o == nil || utils.IsNil(o.Properties.create) {
+	if o == nil || utils.IsNil(o.Properties.Create) {
 		var ret bool
 		return ret
 	}
-	return *o.Properties.create
+	return *o.Properties.Create
 }
 
 // GetCreateOk returns a tuple with the Create field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceAccountTrait) GetCreateOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.Properties.create) {
+	if o == nil || utils.IsNil(o.Properties.Create) {
 		return nil, false
 	}
-	return o.Properties.create, true
+	return o.Properties.Create, true
 }
 
 // HasCreate returns a boolean if a field has been set.
 func (o *ServiceAccountTrait) HasCreate() bool {
-	if o != nil && !utils.IsNil(o.Properties.create) {
+	if o != nil && !utils.IsNil(o.Properties.Create) {
 		return true
 	}
 
 	return false
 }
 
-// Create gets a reference to the given bool and assigns it to the create field.
-// create:  Specify whether to create new ServiceAccount or not
-func (o *ServiceAccountTrait) Create(v bool) *ServiceAccountTrait {
-	o.Properties.create = &v
+// SetCreate gets a reference to the given bool and assigns it to the create field.
+// Create:  Specify whether to create new ServiceAccount or not
+func (o *ServiceAccountTrait) SetCreate(v bool) *ServiceAccountTrait {
+	o.Properties.Create = &v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ServiceAccountTrait) GetName() string {
-	if o == nil || utils.IsNil(o.Properties.name) {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.name
+	return *o.Properties.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceAccountTrait) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.name) {
+	if o == nil || utils.IsNil(o.Properties.Name) {
 		return nil, false
 	}
-	return o.Properties.name, true
+	return o.Properties.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *ServiceAccountTrait) HasName() bool {
-	if o != nil && !utils.IsNil(o.Properties.name) {
+	if o != nil && !utils.IsNil(o.Properties.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:  Specify the name of ServiceAccount
-func (o *ServiceAccountTrait) Name(v string) *ServiceAccountTrait {
-	o.Properties.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:  Specify the name of ServiceAccount
+func (o *ServiceAccountTrait) SetName(v string) *ServiceAccountTrait {
+	o.Properties.Name = &v
 	return o
 }
 
 // GetPrivileges returns the Privileges field value if set, zero value otherwise.
 func (o *ServiceAccountTrait) GetPrivileges() []Privileges {
-	if o == nil || utils.IsNil(o.Properties.privileges) {
+	if o == nil || utils.IsNil(o.Properties.Privileges) {
 		var ret []Privileges
 		return ret
 	}
-	return o.Properties.privileges
+	return o.Properties.Privileges
 }
 
 // GetPrivilegesOk returns a tuple with the Privileges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceAccountTrait) GetPrivilegesOk() ([]Privileges, bool) {
-	if o == nil || utils.IsNil(o.Properties.privileges) {
+	if o == nil || utils.IsNil(o.Properties.Privileges) {
 		return nil, false
 	}
-	return o.Properties.privileges, true
+	return o.Properties.Privileges, true
 }
 
 // HasPrivileges returns a boolean if a field has been set.
 func (o *ServiceAccountTrait) HasPrivileges() bool {
-	if o != nil && !utils.IsNil(o.Properties.privileges) {
+	if o != nil && !utils.IsNil(o.Properties.Privileges) {
 		return true
 	}
 
 	return false
 }
 
-// Privileges gets a reference to the given []Privileges and assigns it to the privileges field.
-// privileges:  Specify the privileges of the ServiceAccount, if not empty, RoleBindings(ClusterRoleBindings) will be created
-func (o *ServiceAccountTrait) Privileges(v []Privileges) *ServiceAccountTrait {
-	o.Properties.privileges = v
+// SetPrivileges gets a reference to the given []Privileges and assigns it to the privileges field.
+// Privileges:  Specify the privileges of the ServiceAccount, if not empty, RoleBindings(ClusterRoleBindings) will be created
+func (o *ServiceAccountTrait) SetPrivileges(v []Privileges) *ServiceAccountTrait {
+	o.Properties.Privileges = v
 	return o
 }
 
@@ -167,14 +167,14 @@ func (o ServiceAccountSpec) MarshalJSON() ([]byte, error) {
 
 func (o ServiceAccountSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.create) {
-		toSerialize["create"] = o.create
+	if !utils.IsNil(o.Create) {
+		toSerialize["create"] = o.Create
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if !utils.IsNil(o.privileges) {
-		toSerialize["privileges"] = o.privileges
+	if !utils.IsNil(o.Privileges) {
+		toSerialize["privileges"] = o.Privileges
 	}
 	return toSerialize, nil
 }

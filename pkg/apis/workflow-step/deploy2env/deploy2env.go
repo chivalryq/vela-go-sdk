@@ -28,11 +28,11 @@ var _ utils.MappedNullable = &Deploy2envSpec{}
 // Deploy2envSpec struct for Deploy2envSpec
 type Deploy2envSpec struct {
 	// Declare the name of the env in policy
-	env *string `json:"env,omitempty"`
+	Env *string `json:"env,omitempty"`
 	// components are applied in parallel
-	parallel *bool `json:"parallel,omitempty"`
+	Parallel *bool `json:"parallel,omitempty"`
 	// Declare the name of the env-binding policy, if empty, the first env-binding policy will be used
-	policy *string `json:"policy,omitempty"`
+	Policy *string `json:"policy,omitempty"`
 }
 
 // NewDeploy2envSpecWith instantiates a new Deploy2envSpec object
@@ -42,9 +42,9 @@ type Deploy2envSpec struct {
 func NewDeploy2envSpecWith() *Deploy2envSpec {
 	this := Deploy2envSpec{}
 	var parallel bool = false
-	this.parallel = &parallel
+	this.Parallel = &parallel
 	var policy string = ""
-	this.policy = &policy
+	this.Policy = &policy
 	return &this
 }
 
@@ -54,111 +54,111 @@ func NewDeploy2envSpecWith() *Deploy2envSpec {
 func NewDeploy2envSpec() *Deploy2envSpec {
 	this := Deploy2envSpec{}
 	var parallel bool = false
-	this.parallel = &parallel
+	this.Parallel = &parallel
 	var policy string = ""
-	this.policy = &policy
+	this.Policy = &policy
 	return &this
 }
 
 // GetEnv returns the Env field value if set, zero value otherwise.
 func (o *Deploy2envWorkflowStep) GetEnv() string {
-	if o == nil || utils.IsNil(o.Properties.env) {
+	if o == nil || utils.IsNil(o.Properties.Env) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.env
+	return *o.Properties.Env
 }
 
 // GetEnvOk returns a tuple with the Env field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Deploy2envWorkflowStep) GetEnvOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.env) {
+	if o == nil || utils.IsNil(o.Properties.Env) {
 		return nil, false
 	}
-	return o.Properties.env, true
+	return o.Properties.Env, true
 }
 
 // HasEnv returns a boolean if a field has been set.
 func (o *Deploy2envWorkflowStep) HasEnv() bool {
-	if o != nil && !utils.IsNil(o.Properties.env) {
+	if o != nil && !utils.IsNil(o.Properties.Env) {
 		return true
 	}
 
 	return false
 }
 
-// Env gets a reference to the given string and assigns it to the env field.
-// env:  Declare the name of the env in policy
-func (o *Deploy2envWorkflowStep) Env(v string) *Deploy2envWorkflowStep {
-	o.Properties.env = &v
+// SetEnv gets a reference to the given string and assigns it to the env field.
+// Env:  Declare the name of the env in policy
+func (o *Deploy2envWorkflowStep) SetEnv(v string) *Deploy2envWorkflowStep {
+	o.Properties.Env = &v
 	return o
 }
 
 // GetParallel returns the Parallel field value if set, zero value otherwise.
 func (o *Deploy2envWorkflowStep) GetParallel() bool {
-	if o == nil || utils.IsNil(o.Properties.parallel) {
+	if o == nil || utils.IsNil(o.Properties.Parallel) {
 		var ret bool
 		return ret
 	}
-	return *o.Properties.parallel
+	return *o.Properties.Parallel
 }
 
 // GetParallelOk returns a tuple with the Parallel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Deploy2envWorkflowStep) GetParallelOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.Properties.parallel) {
+	if o == nil || utils.IsNil(o.Properties.Parallel) {
 		return nil, false
 	}
-	return o.Properties.parallel, true
+	return o.Properties.Parallel, true
 }
 
 // HasParallel returns a boolean if a field has been set.
 func (o *Deploy2envWorkflowStep) HasParallel() bool {
-	if o != nil && !utils.IsNil(o.Properties.parallel) {
+	if o != nil && !utils.IsNil(o.Properties.Parallel) {
 		return true
 	}
 
 	return false
 }
 
-// Parallel gets a reference to the given bool and assigns it to the parallel field.
-// parallel:  components are applied in parallel
-func (o *Deploy2envWorkflowStep) Parallel(v bool) *Deploy2envWorkflowStep {
-	o.Properties.parallel = &v
+// SetParallel gets a reference to the given bool and assigns it to the parallel field.
+// Parallel:  components are applied in parallel
+func (o *Deploy2envWorkflowStep) SetParallel(v bool) *Deploy2envWorkflowStep {
+	o.Properties.Parallel = &v
 	return o
 }
 
 // GetPolicy returns the Policy field value if set, zero value otherwise.
 func (o *Deploy2envWorkflowStep) GetPolicy() string {
-	if o == nil || utils.IsNil(o.Properties.policy) {
+	if o == nil || utils.IsNil(o.Properties.Policy) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.policy
+	return *o.Properties.Policy
 }
 
 // GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Deploy2envWorkflowStep) GetPolicyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.policy) {
+	if o == nil || utils.IsNil(o.Properties.Policy) {
 		return nil, false
 	}
-	return o.Properties.policy, true
+	return o.Properties.Policy, true
 }
 
 // HasPolicy returns a boolean if a field has been set.
 func (o *Deploy2envWorkflowStep) HasPolicy() bool {
-	if o != nil && !utils.IsNil(o.Properties.policy) {
+	if o != nil && !utils.IsNil(o.Properties.Policy) {
 		return true
 	}
 
 	return false
 }
 
-// Policy gets a reference to the given string and assigns it to the policy field.
-// policy:  Declare the name of the env-binding policy, if empty, the first env-binding policy will be used
-func (o *Deploy2envWorkflowStep) Policy(v string) *Deploy2envWorkflowStep {
-	o.Properties.policy = &v
+// SetPolicy gets a reference to the given string and assigns it to the policy field.
+// Policy:  Declare the name of the env-binding policy, if empty, the first env-binding policy will be used
+func (o *Deploy2envWorkflowStep) SetPolicy(v string) *Deploy2envWorkflowStep {
+	o.Properties.Policy = &v
 	return o
 }
 
@@ -172,14 +172,14 @@ func (o Deploy2envSpec) MarshalJSON() ([]byte, error) {
 
 func (o Deploy2envSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.env) {
-		toSerialize["env"] = o.env
+	if !utils.IsNil(o.Env) {
+		toSerialize["env"] = o.Env
 	}
-	if !utils.IsNil(o.parallel) {
-		toSerialize["parallel"] = o.parallel
+	if !utils.IsNil(o.Parallel) {
+		toSerialize["parallel"] = o.Parallel
 	}
-	if !utils.IsNil(o.policy) {
-		toSerialize["policy"] = o.policy
+	if !utils.IsNil(o.Policy) {
+		toSerialize["policy"] = o.Policy
 	}
 	return toSerialize, nil
 }

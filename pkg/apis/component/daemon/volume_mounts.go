@@ -22,15 +22,15 @@ var _ utils.MappedNullable = &VolumeMounts{}
 // VolumeMounts struct for VolumeMounts
 type VolumeMounts struct {
 	// Mount ConfigMap type volume
-	configMap []ConfigMap `json:"configMap,omitempty"`
+	ConfigMap []ConfigMap `json:"configMap,omitempty"`
 	// Mount EmptyDir type volume
-	emptyDir []EmptyDir `json:"emptyDir,omitempty"`
+	EmptyDir []EmptyDir `json:"emptyDir,omitempty"`
 	// Mount HostPath type volume
-	hostPath []HostPath `json:"hostPath,omitempty"`
+	HostPath []HostPath `json:"hostPath,omitempty"`
 	// Mount PVC type volume
-	pvc []Pvc `json:"pvc,omitempty"`
+	Pvc []Pvc `json:"pvc,omitempty"`
 	// Mount Secret type volume
-	secret []Secret `json:"secret,omitempty"`
+	Secret []Secret `json:"secret,omitempty"`
 }
 
 // NewVolumeMountsWith instantiates a new VolumeMounts object
@@ -52,171 +52,171 @@ func NewVolumeMounts() *VolumeMounts {
 
 // GetConfigMap returns the ConfigMap field value if set, zero value otherwise.
 func (o *VolumeMounts) GetConfigMap() []ConfigMap {
-	if o == nil || utils.IsNil(o.configMap) {
+	if o == nil || utils.IsNil(o.ConfigMap) {
 		var ret []ConfigMap
 		return ret
 	}
-	return o.configMap
+	return o.ConfigMap
 }
 
 // GetConfigMapOk returns a tuple with the ConfigMap field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VolumeMounts) GetConfigMapOk() ([]ConfigMap, bool) {
-	if o == nil || utils.IsNil(o.configMap) {
+	if o == nil || utils.IsNil(o.ConfigMap) {
 		return nil, false
 	}
-	return o.configMap, true
+	return o.ConfigMap, true
 }
 
 // HasConfigMap returns a boolean if a field has been set.
 func (o *VolumeMounts) HasConfigMap() bool {
-	if o != nil && !utils.IsNil(o.configMap) {
+	if o != nil && !utils.IsNil(o.ConfigMap) {
 		return true
 	}
 
 	return false
 }
 
-// ConfigMap gets a reference to the given []ConfigMap and assigns it to the configMap field.
-// configMap:  Mount ConfigMap type volume
-func (o *VolumeMounts) ConfigMap(v []ConfigMap) *VolumeMounts {
-	o.configMap = v
+// SetConfigMap gets a reference to the given []ConfigMap and assigns it to the configMap field.
+// ConfigMap:  Mount ConfigMap type volume
+func (o *VolumeMounts) SetConfigMap(v []ConfigMap) *VolumeMounts {
+	o.ConfigMap = v
 	return o
 }
 
 // GetEmptyDir returns the EmptyDir field value if set, zero value otherwise.
 func (o *VolumeMounts) GetEmptyDir() []EmptyDir {
-	if o == nil || utils.IsNil(o.emptyDir) {
+	if o == nil || utils.IsNil(o.EmptyDir) {
 		var ret []EmptyDir
 		return ret
 	}
-	return o.emptyDir
+	return o.EmptyDir
 }
 
 // GetEmptyDirOk returns a tuple with the EmptyDir field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VolumeMounts) GetEmptyDirOk() ([]EmptyDir, bool) {
-	if o == nil || utils.IsNil(o.emptyDir) {
+	if o == nil || utils.IsNil(o.EmptyDir) {
 		return nil, false
 	}
-	return o.emptyDir, true
+	return o.EmptyDir, true
 }
 
 // HasEmptyDir returns a boolean if a field has been set.
 func (o *VolumeMounts) HasEmptyDir() bool {
-	if o != nil && !utils.IsNil(o.emptyDir) {
+	if o != nil && !utils.IsNil(o.EmptyDir) {
 		return true
 	}
 
 	return false
 }
 
-// EmptyDir gets a reference to the given []EmptyDir and assigns it to the emptyDir field.
-// emptyDir:  Mount EmptyDir type volume
-func (o *VolumeMounts) EmptyDir(v []EmptyDir) *VolumeMounts {
-	o.emptyDir = v
+// SetEmptyDir gets a reference to the given []EmptyDir and assigns it to the emptyDir field.
+// EmptyDir:  Mount EmptyDir type volume
+func (o *VolumeMounts) SetEmptyDir(v []EmptyDir) *VolumeMounts {
+	o.EmptyDir = v
 	return o
 }
 
 // GetHostPath returns the HostPath field value if set, zero value otherwise.
 func (o *VolumeMounts) GetHostPath() []HostPath {
-	if o == nil || utils.IsNil(o.hostPath) {
+	if o == nil || utils.IsNil(o.HostPath) {
 		var ret []HostPath
 		return ret
 	}
-	return o.hostPath
+	return o.HostPath
 }
 
 // GetHostPathOk returns a tuple with the HostPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VolumeMounts) GetHostPathOk() ([]HostPath, bool) {
-	if o == nil || utils.IsNil(o.hostPath) {
+	if o == nil || utils.IsNil(o.HostPath) {
 		return nil, false
 	}
-	return o.hostPath, true
+	return o.HostPath, true
 }
 
 // HasHostPath returns a boolean if a field has been set.
 func (o *VolumeMounts) HasHostPath() bool {
-	if o != nil && !utils.IsNil(o.hostPath) {
+	if o != nil && !utils.IsNil(o.HostPath) {
 		return true
 	}
 
 	return false
 }
 
-// HostPath gets a reference to the given []HostPath and assigns it to the hostPath field.
-// hostPath:  Mount HostPath type volume
-func (o *VolumeMounts) HostPath(v []HostPath) *VolumeMounts {
-	o.hostPath = v
+// SetHostPath gets a reference to the given []HostPath and assigns it to the hostPath field.
+// HostPath:  Mount HostPath type volume
+func (o *VolumeMounts) SetHostPath(v []HostPath) *VolumeMounts {
+	o.HostPath = v
 	return o
 }
 
 // GetPvc returns the Pvc field value if set, zero value otherwise.
 func (o *VolumeMounts) GetPvc() []Pvc {
-	if o == nil || utils.IsNil(o.pvc) {
+	if o == nil || utils.IsNil(o.Pvc) {
 		var ret []Pvc
 		return ret
 	}
-	return o.pvc
+	return o.Pvc
 }
 
 // GetPvcOk returns a tuple with the Pvc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VolumeMounts) GetPvcOk() ([]Pvc, bool) {
-	if o == nil || utils.IsNil(o.pvc) {
+	if o == nil || utils.IsNil(o.Pvc) {
 		return nil, false
 	}
-	return o.pvc, true
+	return o.Pvc, true
 }
 
 // HasPvc returns a boolean if a field has been set.
 func (o *VolumeMounts) HasPvc() bool {
-	if o != nil && !utils.IsNil(o.pvc) {
+	if o != nil && !utils.IsNil(o.Pvc) {
 		return true
 	}
 
 	return false
 }
 
-// Pvc gets a reference to the given []Pvc and assigns it to the pvc field.
-// pvc:  Mount PVC type volume
-func (o *VolumeMounts) Pvc(v []Pvc) *VolumeMounts {
-	o.pvc = v
+// SetPvc gets a reference to the given []Pvc and assigns it to the pvc field.
+// Pvc:  Mount PVC type volume
+func (o *VolumeMounts) SetPvc(v []Pvc) *VolumeMounts {
+	o.Pvc = v
 	return o
 }
 
 // GetSecret returns the Secret field value if set, zero value otherwise.
 func (o *VolumeMounts) GetSecret() []Secret {
-	if o == nil || utils.IsNil(o.secret) {
+	if o == nil || utils.IsNil(o.Secret) {
 		var ret []Secret
 		return ret
 	}
-	return o.secret
+	return o.Secret
 }
 
 // GetSecretOk returns a tuple with the Secret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VolumeMounts) GetSecretOk() ([]Secret, bool) {
-	if o == nil || utils.IsNil(o.secret) {
+	if o == nil || utils.IsNil(o.Secret) {
 		return nil, false
 	}
-	return o.secret, true
+	return o.Secret, true
 }
 
 // HasSecret returns a boolean if a field has been set.
 func (o *VolumeMounts) HasSecret() bool {
-	if o != nil && !utils.IsNil(o.secret) {
+	if o != nil && !utils.IsNil(o.Secret) {
 		return true
 	}
 
 	return false
 }
 
-// Secret gets a reference to the given []Secret and assigns it to the secret field.
-// secret:  Mount Secret type volume
-func (o *VolumeMounts) Secret(v []Secret) *VolumeMounts {
-	o.secret = v
+// SetSecret gets a reference to the given []Secret and assigns it to the secret field.
+// Secret:  Mount Secret type volume
+func (o *VolumeMounts) SetSecret(v []Secret) *VolumeMounts {
+	o.Secret = v
 	return o
 }
 
@@ -230,20 +230,20 @@ func (o VolumeMounts) MarshalJSON() ([]byte, error) {
 
 func (o VolumeMounts) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.configMap) {
-		toSerialize["configMap"] = o.configMap
+	if !utils.IsNil(o.ConfigMap) {
+		toSerialize["configMap"] = o.ConfigMap
 	}
-	if !utils.IsNil(o.emptyDir) {
-		toSerialize["emptyDir"] = o.emptyDir
+	if !utils.IsNil(o.EmptyDir) {
+		toSerialize["emptyDir"] = o.EmptyDir
 	}
-	if !utils.IsNil(o.hostPath) {
-		toSerialize["hostPath"] = o.hostPath
+	if !utils.IsNil(o.HostPath) {
+		toSerialize["hostPath"] = o.HostPath
 	}
-	if !utils.IsNil(o.pvc) {
-		toSerialize["pvc"] = o.pvc
+	if !utils.IsNil(o.Pvc) {
+		toSerialize["pvc"] = o.Pvc
 	}
-	if !utils.IsNil(o.secret) {
-		toSerialize["secret"] = o.secret
+	if !utils.IsNil(o.Secret) {
+		toSerialize["secret"] = o.Secret
 	}
 	return toSerialize, nil
 }

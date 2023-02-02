@@ -27,7 +27,7 @@ var _ utils.MappedNullable = &SharedResourceSpec{}
 // SharedResourceSpec struct for SharedResourceSpec
 type SharedResourceSpec struct {
 	// Specify the list of rules to control shared-resource strategy at resource level. The selected resource will be sharable across applications. (That means multiple applications can all read it without conflict, but only the first one can write it)
-	rules []SharedResourcePolicyRule `json:"rules,omitempty"`
+	Rules []SharedResourcePolicyRule `json:"rules,omitempty"`
 }
 
 // NewSharedResourceSpecWith instantiates a new SharedResourceSpec object
@@ -49,35 +49,35 @@ func NewSharedResourceSpec() *SharedResourceSpec {
 
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *SharedResourcePolicy) GetRules() []SharedResourcePolicyRule {
-	if o == nil || utils.IsNil(o.Properties.rules) {
+	if o == nil || utils.IsNil(o.Properties.Rules) {
 		var ret []SharedResourcePolicyRule
 		return ret
 	}
-	return o.Properties.rules
+	return o.Properties.Rules
 }
 
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SharedResourcePolicy) GetRulesOk() ([]SharedResourcePolicyRule, bool) {
-	if o == nil || utils.IsNil(o.Properties.rules) {
+	if o == nil || utils.IsNil(o.Properties.Rules) {
 		return nil, false
 	}
-	return o.Properties.rules, true
+	return o.Properties.Rules, true
 }
 
 // HasRules returns a boolean if a field has been set.
 func (o *SharedResourcePolicy) HasRules() bool {
-	if o != nil && !utils.IsNil(o.Properties.rules) {
+	if o != nil && !utils.IsNil(o.Properties.Rules) {
 		return true
 	}
 
 	return false
 }
 
-// Rules gets a reference to the given []SharedResourcePolicyRule and assigns it to the rules field.
-// rules:  Specify the list of rules to control shared-resource strategy at resource level. The selected resource will be sharable across applications. (That means multiple applications can all read it without conflict, but only the first one can write it)
-func (o *SharedResourcePolicy) Rules(v []SharedResourcePolicyRule) *SharedResourcePolicy {
-	o.Properties.rules = v
+// SetRules gets a reference to the given []SharedResourcePolicyRule and assigns it to the rules field.
+// Rules:  Specify the list of rules to control shared-resource strategy at resource level. The selected resource will be sharable across applications. (That means multiple applications can all read it without conflict, but only the first one can write it)
+func (o *SharedResourcePolicy) SetRules(v []SharedResourcePolicyRule) *SharedResourcePolicy {
+	o.Properties.Rules = v
 	return o
 }
 
@@ -91,8 +91,8 @@ func (o SharedResourceSpec) MarshalJSON() ([]byte, error) {
 
 func (o SharedResourceSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.rules) {
-		toSerialize["rules"] = o.rules
+	if !utils.IsNil(o.Rules) {
+		toSerialize["rules"] = o.Rules
 	}
 	return toSerialize, nil
 }

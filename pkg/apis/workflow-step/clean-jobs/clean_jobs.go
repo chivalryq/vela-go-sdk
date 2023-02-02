@@ -27,8 +27,8 @@ var _ utils.MappedNullable = &CleanJobsSpec{}
 
 // CleanJobsSpec struct for CleanJobsSpec
 type CleanJobsSpec struct {
-	labelselector map[string]interface{} `json:"labelselector,omitempty"`
-	namespace     *string                `json:"namespace,omitempty"`
+	Labelselector map[string]interface{} `json:"labelselector,omitempty"`
+	Namespace     *string                `json:"namespace,omitempty"`
 }
 
 // NewCleanJobsSpecWith instantiates a new CleanJobsSpec object
@@ -50,69 +50,69 @@ func NewCleanJobsSpec() *CleanJobsSpec {
 
 // GetLabelselector returns the Labelselector field value if set, zero value otherwise.
 func (o *CleanJobsWorkflowStep) GetLabelselector() map[string]interface{} {
-	if o == nil || utils.IsNil(o.Properties.labelselector) {
+	if o == nil || utils.IsNil(o.Properties.Labelselector) {
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.Properties.labelselector
+	return o.Properties.Labelselector
 }
 
 // GetLabelselectorOk returns a tuple with the Labelselector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CleanJobsWorkflowStep) GetLabelselectorOk() (map[string]interface{}, bool) {
-	if o == nil || utils.IsNil(o.Properties.labelselector) {
+	if o == nil || utils.IsNil(o.Properties.Labelselector) {
 		return map[string]interface{}{}, false
 	}
-	return o.Properties.labelselector, true
+	return o.Properties.Labelselector, true
 }
 
 // HasLabelselector returns a boolean if a field has been set.
 func (o *CleanJobsWorkflowStep) HasLabelselector() bool {
-	if o != nil && !utils.IsNil(o.Properties.labelselector) {
+	if o != nil && !utils.IsNil(o.Properties.Labelselector) {
 		return true
 	}
 
 	return false
 }
 
-// Labelselector gets a reference to the given map[string]interface{} and assigns it to the labelselector field.
-// labelselector:
-func (o *CleanJobsWorkflowStep) Labelselector(v map[string]interface{}) *CleanJobsWorkflowStep {
-	o.Properties.labelselector = v
+// SetLabelselector gets a reference to the given map[string]interface{} and assigns it to the labelselector field.
+// Labelselector:
+func (o *CleanJobsWorkflowStep) SetLabelselector(v map[string]interface{}) *CleanJobsWorkflowStep {
+	o.Properties.Labelselector = v
 	return o
 }
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *CleanJobsWorkflowStep) GetNamespace() string {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.namespace
+	return *o.Properties.Namespace
 }
 
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CleanJobsWorkflowStep) GetNamespaceOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		return nil, false
 	}
-	return o.Properties.namespace, true
+	return o.Properties.Namespace, true
 }
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *CleanJobsWorkflowStep) HasNamespace() bool {
-	if o != nil && !utils.IsNil(o.Properties.namespace) {
+	if o != nil && !utils.IsNil(o.Properties.Namespace) {
 		return true
 	}
 
 	return false
 }
 
-// Namespace gets a reference to the given string and assigns it to the namespace field.
-// namespace:
-func (o *CleanJobsWorkflowStep) Namespace(v string) *CleanJobsWorkflowStep {
-	o.Properties.namespace = &v
+// SetNamespace gets a reference to the given string and assigns it to the namespace field.
+// Namespace:
+func (o *CleanJobsWorkflowStep) SetNamespace(v string) *CleanJobsWorkflowStep {
+	o.Properties.Namespace = &v
 	return o
 }
 
@@ -126,11 +126,11 @@ func (o CleanJobsSpec) MarshalJSON() ([]byte, error) {
 
 func (o CleanJobsSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.labelselector) {
-		toSerialize["labelselector"] = o.labelselector
+	if !utils.IsNil(o.Labelselector) {
+		toSerialize["labelselector"] = o.Labelselector
 	}
-	if !utils.IsNil(o.namespace) {
-		toSerialize["namespace"] = o.namespace
+	if !utils.IsNil(o.Namespace) {
+		toSerialize["namespace"] = o.Namespace
 	}
 	return toSerialize, nil
 }

@@ -21,9 +21,9 @@ var _ utils.MappedNullable = &ECProvider{}
 
 // ECProvider struct for ECProvider
 type ECProvider struct {
-	apiKey *string `json:"apiKey,omitempty"`
-	name   *string `json:"name,omitempty"`
-	type_  *string `json:"type,omitempty"`
+	ApiKey *string `json:"apiKey,omitempty"`
+	Name   *string `json:"name,omitempty"`
+	Type   *string `json:"type,omitempty"`
 }
 
 // NewECProviderWith instantiates a new ECProvider object
@@ -33,9 +33,9 @@ type ECProvider struct {
 func NewECProviderWith() *ECProvider {
 	this := ECProvider{}
 	var apiKey string = ""
-	this.apiKey = &apiKey
+	this.ApiKey = &apiKey
 	var name string = "ec-provider"
-	this.name = &name
+	this.Name = &name
 	return &this
 }
 
@@ -45,111 +45,111 @@ func NewECProviderWith() *ECProvider {
 func NewECProvider() *ECProvider {
 	this := ECProvider{}
 	var apiKey string = ""
-	this.apiKey = &apiKey
+	this.ApiKey = &apiKey
 	var name string = "ec-provider"
-	this.name = &name
+	this.Name = &name
 	return &this
 }
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
 func (o *ECProvider) GetApiKey() string {
-	if o == nil || utils.IsNil(o.apiKey) {
+	if o == nil || utils.IsNil(o.ApiKey) {
 		var ret string
 		return ret
 	}
-	return *o.apiKey
+	return *o.ApiKey
 }
 
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ECProvider) GetApiKeyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.apiKey) {
+	if o == nil || utils.IsNil(o.ApiKey) {
 		return nil, false
 	}
-	return o.apiKey, true
+	return o.ApiKey, true
 }
 
 // HasApiKey returns a boolean if a field has been set.
 func (o *ECProvider) HasApiKey() bool {
-	if o != nil && !utils.IsNil(o.apiKey) {
+	if o != nil && !utils.IsNil(o.ApiKey) {
 		return true
 	}
 
 	return false
 }
 
-// ApiKey gets a reference to the given string and assigns it to the apiKey field.
-// apiKey:
-func (o *ECProvider) ApiKey(v string) *ECProvider {
-	o.apiKey = &v
+// SetApiKey gets a reference to the given string and assigns it to the apiKey field.
+// ApiKey:
+func (o *ECProvider) SetApiKey(v string) *ECProvider {
+	o.ApiKey = &v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ECProvider) GetName() string {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.name
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ECProvider) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *ECProvider) HasName() bool {
-	if o != nil && !utils.IsNil(o.name) {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:
-func (o *ECProvider) Name(v string) *ECProvider {
-	o.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:
+func (o *ECProvider) SetName(v string) *ECProvider {
+	o.Name = &v
 	return o
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ECProvider) GetType() string {
-	if o == nil || utils.IsNil(o.type_) {
+	if o == nil || utils.IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-	return *o.type_
+	return *o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ECProvider) GetTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.type_) {
+	if o == nil || utils.IsNil(o.Type) {
 		return nil, false
 	}
-	return o.type_, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *ECProvider) HasType() bool {
-	if o != nil && !utils.IsNil(o.type_) {
+	if o != nil && !utils.IsNil(o.Type) {
 		return true
 	}
 
 	return false
 }
 
-// Type gets a reference to the given string and assigns it to the type_ field.
-// type_:
-func (o *ECProvider) Type(v string) *ECProvider {
-	o.type_ = &v
+// SetType gets a reference to the given string and assigns it to the type_ field.
+// Type:
+func (o *ECProvider) SetType(v string) *ECProvider {
+	o.Type = &v
 	return o
 }
 
@@ -163,14 +163,14 @@ func (o ECProvider) MarshalJSON() ([]byte, error) {
 
 func (o ECProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.apiKey) {
-		toSerialize["apiKey"] = o.apiKey
+	if !utils.IsNil(o.ApiKey) {
+		toSerialize["apiKey"] = o.ApiKey
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if !utils.IsNil(o.type_) {
-		toSerialize["type"] = o.type_
+	if !utils.IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
 	return toSerialize, nil
 }

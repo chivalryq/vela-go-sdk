@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &Storage{}
 // Storage struct for Storage
 type Storage struct {
 	// Declare host path type storage
-	hostPath []HostPath `json:"hostPath,omitempty"`
+	HostPath []HostPath `json:"hostPath,omitempty"`
 	// Mount Secret type storage
-	secret []Secret `json:"secret,omitempty"`
+	Secret []Secret `json:"secret,omitempty"`
 }
 
 // NewStorageWith instantiates a new Storage object
@@ -46,69 +46,69 @@ func NewStorage() *Storage {
 
 // GetHostPath returns the HostPath field value if set, zero value otherwise.
 func (o *Storage) GetHostPath() []HostPath {
-	if o == nil || utils.IsNil(o.hostPath) {
+	if o == nil || utils.IsNil(o.HostPath) {
 		var ret []HostPath
 		return ret
 	}
-	return o.hostPath
+	return o.HostPath
 }
 
 // GetHostPathOk returns a tuple with the HostPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Storage) GetHostPathOk() ([]HostPath, bool) {
-	if o == nil || utils.IsNil(o.hostPath) {
+	if o == nil || utils.IsNil(o.HostPath) {
 		return nil, false
 	}
-	return o.hostPath, true
+	return o.HostPath, true
 }
 
 // HasHostPath returns a boolean if a field has been set.
 func (o *Storage) HasHostPath() bool {
-	if o != nil && !utils.IsNil(o.hostPath) {
+	if o != nil && !utils.IsNil(o.HostPath) {
 		return true
 	}
 
 	return false
 }
 
-// HostPath gets a reference to the given []HostPath and assigns it to the hostPath field.
-// hostPath:  Declare host path type storage
-func (o *Storage) HostPath(v []HostPath) *Storage {
-	o.hostPath = v
+// SetHostPath gets a reference to the given []HostPath and assigns it to the hostPath field.
+// HostPath:  Declare host path type storage
+func (o *Storage) SetHostPath(v []HostPath) *Storage {
+	o.HostPath = v
 	return o
 }
 
 // GetSecret returns the Secret field value if set, zero value otherwise.
 func (o *Storage) GetSecret() []Secret {
-	if o == nil || utils.IsNil(o.secret) {
+	if o == nil || utils.IsNil(o.Secret) {
 		var ret []Secret
 		return ret
 	}
-	return o.secret
+	return o.Secret
 }
 
 // GetSecretOk returns a tuple with the Secret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Storage) GetSecretOk() ([]Secret, bool) {
-	if o == nil || utils.IsNil(o.secret) {
+	if o == nil || utils.IsNil(o.Secret) {
 		return nil, false
 	}
-	return o.secret, true
+	return o.Secret, true
 }
 
 // HasSecret returns a boolean if a field has been set.
 func (o *Storage) HasSecret() bool {
-	if o != nil && !utils.IsNil(o.secret) {
+	if o != nil && !utils.IsNil(o.Secret) {
 		return true
 	}
 
 	return false
 }
 
-// Secret gets a reference to the given []Secret and assigns it to the secret field.
-// secret:  Mount Secret type storage
-func (o *Storage) Secret(v []Secret) *Storage {
-	o.secret = v
+// SetSecret gets a reference to the given []Secret and assigns it to the secret field.
+// Secret:  Mount Secret type storage
+func (o *Storage) SetSecret(v []Secret) *Storage {
+	o.Secret = v
 	return o
 }
 
@@ -122,11 +122,11 @@ func (o Storage) MarshalJSON() ([]byte, error) {
 
 func (o Storage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.hostPath) {
-		toSerialize["hostPath"] = o.hostPath
+	if !utils.IsNil(o.HostPath) {
+		toSerialize["hostPath"] = o.HostPath
 	}
-	if !utils.IsNil(o.secret) {
-		toSerialize["secret"] = o.secret
+	if !utils.IsNil(o.Secret) {
+		toSerialize["secret"] = o.Secret
 	}
 	return toSerialize, nil
 }

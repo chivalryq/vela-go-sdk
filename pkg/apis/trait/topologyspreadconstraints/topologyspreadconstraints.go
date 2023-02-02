@@ -26,7 +26,7 @@ var _ utils.MappedNullable = &TopologyspreadconstraintsSpec{}
 
 // TopologyspreadconstraintsSpec struct for TopologyspreadconstraintsSpec
 type TopologyspreadconstraintsSpec struct {
-	constraints []Constraints `json:"constraints,omitempty"`
+	Constraints []Constraints `json:"constraints,omitempty"`
 }
 
 // NewTopologyspreadconstraintsSpecWith instantiates a new TopologyspreadconstraintsSpec object
@@ -48,35 +48,35 @@ func NewTopologyspreadconstraintsSpec() *TopologyspreadconstraintsSpec {
 
 // GetConstraints returns the Constraints field value if set, zero value otherwise.
 func (o *TopologyspreadconstraintsTrait) GetConstraints() []Constraints {
-	if o == nil || utils.IsNil(o.Properties.constraints) {
+	if o == nil || utils.IsNil(o.Properties.Constraints) {
 		var ret []Constraints
 		return ret
 	}
-	return o.Properties.constraints
+	return o.Properties.Constraints
 }
 
 // GetConstraintsOk returns a tuple with the Constraints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TopologyspreadconstraintsTrait) GetConstraintsOk() ([]Constraints, bool) {
-	if o == nil || utils.IsNil(o.Properties.constraints) {
+	if o == nil || utils.IsNil(o.Properties.Constraints) {
 		return nil, false
 	}
-	return o.Properties.constraints, true
+	return o.Properties.Constraints, true
 }
 
 // HasConstraints returns a boolean if a field has been set.
 func (o *TopologyspreadconstraintsTrait) HasConstraints() bool {
-	if o != nil && !utils.IsNil(o.Properties.constraints) {
+	if o != nil && !utils.IsNil(o.Properties.Constraints) {
 		return true
 	}
 
 	return false
 }
 
-// Constraints gets a reference to the given []Constraints and assigns it to the constraints field.
-// constraints:
-func (o *TopologyspreadconstraintsTrait) Constraints(v []Constraints) *TopologyspreadconstraintsTrait {
-	o.Properties.constraints = v
+// SetConstraints gets a reference to the given []Constraints and assigns it to the constraints field.
+// Constraints:
+func (o *TopologyspreadconstraintsTrait) SetConstraints(v []Constraints) *TopologyspreadconstraintsTrait {
+	o.Properties.Constraints = v
 	return o
 }
 
@@ -90,8 +90,8 @@ func (o TopologyspreadconstraintsSpec) MarshalJSON() ([]byte, error) {
 
 func (o TopologyspreadconstraintsSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.constraints) {
-		toSerialize["constraints"] = o.constraints
+	if !utils.IsNil(o.Constraints) {
+		toSerialize["constraints"] = o.Constraints
 	}
 	return toSerialize, nil
 }

@@ -27,15 +27,15 @@ var _ utils.MappedNullable = &TopologySpec{}
 // TopologySpec struct for TopologySpec
 type TopologySpec struct {
 	// Ignore empty cluster error
-	allowEmpty *bool `json:"allowEmpty,omitempty"`
+	AllowEmpty *bool `json:"allowEmpty,omitempty"`
 	// Specify the label selector for clusters
-	clusterLabelSelector *map[string]string `json:"clusterLabelSelector,omitempty"`
+	ClusterLabelSelector *map[string]string `json:"clusterLabelSelector,omitempty"`
 	// Deprecated: Use clusterLabelSelector instead.
-	clusterSelector *map[string]string `json:"clusterSelector,omitempty"`
+	ClusterSelector *map[string]string `json:"clusterSelector,omitempty"`
 	// Specify the names of the clusters to select.
-	clusters []string `json:"clusters,omitempty"`
+	Clusters []string `json:"clusters,omitempty"`
 	// Specify the target namespace to deploy in the selected clusters, default inherit the original namespace.
-	namespace *string `json:"namespace,omitempty"`
+	Namespace *string `json:"namespace,omitempty"`
 }
 
 // NewTopologySpecWith instantiates a new TopologySpec object
@@ -57,171 +57,171 @@ func NewTopologySpec() *TopologySpec {
 
 // GetAllowEmpty returns the AllowEmpty field value if set, zero value otherwise.
 func (o *TopologyPolicy) GetAllowEmpty() bool {
-	if o == nil || utils.IsNil(o.Properties.allowEmpty) {
+	if o == nil || utils.IsNil(o.Properties.AllowEmpty) {
 		var ret bool
 		return ret
 	}
-	return *o.Properties.allowEmpty
+	return *o.Properties.AllowEmpty
 }
 
 // GetAllowEmptyOk returns a tuple with the AllowEmpty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TopologyPolicy) GetAllowEmptyOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.Properties.allowEmpty) {
+	if o == nil || utils.IsNil(o.Properties.AllowEmpty) {
 		return nil, false
 	}
-	return o.Properties.allowEmpty, true
+	return o.Properties.AllowEmpty, true
 }
 
 // HasAllowEmpty returns a boolean if a field has been set.
 func (o *TopologyPolicy) HasAllowEmpty() bool {
-	if o != nil && !utils.IsNil(o.Properties.allowEmpty) {
+	if o != nil && !utils.IsNil(o.Properties.AllowEmpty) {
 		return true
 	}
 
 	return false
 }
 
-// AllowEmpty gets a reference to the given bool and assigns it to the allowEmpty field.
-// allowEmpty:  Ignore empty cluster error
-func (o *TopologyPolicy) AllowEmpty(v bool) *TopologyPolicy {
-	o.Properties.allowEmpty = &v
+// SetAllowEmpty gets a reference to the given bool and assigns it to the allowEmpty field.
+// AllowEmpty:  Ignore empty cluster error
+func (o *TopologyPolicy) SetAllowEmpty(v bool) *TopologyPolicy {
+	o.Properties.AllowEmpty = &v
 	return o
 }
 
 // GetClusterLabelSelector returns the ClusterLabelSelector field value if set, zero value otherwise.
 func (o *TopologyPolicy) GetClusterLabelSelector() map[string]string {
-	if o == nil || utils.IsNil(o.Properties.clusterLabelSelector) {
+	if o == nil || utils.IsNil(o.Properties.ClusterLabelSelector) {
 		var ret map[string]string
 		return ret
 	}
-	return *o.Properties.clusterLabelSelector
+	return *o.Properties.ClusterLabelSelector
 }
 
 // GetClusterLabelSelectorOk returns a tuple with the ClusterLabelSelector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TopologyPolicy) GetClusterLabelSelectorOk() (*map[string]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.clusterLabelSelector) {
+	if o == nil || utils.IsNil(o.Properties.ClusterLabelSelector) {
 		return nil, false
 	}
-	return o.Properties.clusterLabelSelector, true
+	return o.Properties.ClusterLabelSelector, true
 }
 
 // HasClusterLabelSelector returns a boolean if a field has been set.
 func (o *TopologyPolicy) HasClusterLabelSelector() bool {
-	if o != nil && !utils.IsNil(o.Properties.clusterLabelSelector) {
+	if o != nil && !utils.IsNil(o.Properties.ClusterLabelSelector) {
 		return true
 	}
 
 	return false
 }
 
-// ClusterLabelSelector gets a reference to the given map[string]string and assigns it to the clusterLabelSelector field.
-// clusterLabelSelector:  Specify the label selector for clusters
-func (o *TopologyPolicy) ClusterLabelSelector(v map[string]string) *TopologyPolicy {
-	o.Properties.clusterLabelSelector = &v
+// SetClusterLabelSelector gets a reference to the given map[string]string and assigns it to the clusterLabelSelector field.
+// ClusterLabelSelector:  Specify the label selector for clusters
+func (o *TopologyPolicy) SetClusterLabelSelector(v map[string]string) *TopologyPolicy {
+	o.Properties.ClusterLabelSelector = &v
 	return o
 }
 
 // GetClusterSelector returns the ClusterSelector field value if set, zero value otherwise.
 func (o *TopologyPolicy) GetClusterSelector() map[string]string {
-	if o == nil || utils.IsNil(o.Properties.clusterSelector) {
+	if o == nil || utils.IsNil(o.Properties.ClusterSelector) {
 		var ret map[string]string
 		return ret
 	}
-	return *o.Properties.clusterSelector
+	return *o.Properties.ClusterSelector
 }
 
 // GetClusterSelectorOk returns a tuple with the ClusterSelector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TopologyPolicy) GetClusterSelectorOk() (*map[string]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.clusterSelector) {
+	if o == nil || utils.IsNil(o.Properties.ClusterSelector) {
 		return nil, false
 	}
-	return o.Properties.clusterSelector, true
+	return o.Properties.ClusterSelector, true
 }
 
 // HasClusterSelector returns a boolean if a field has been set.
 func (o *TopologyPolicy) HasClusterSelector() bool {
-	if o != nil && !utils.IsNil(o.Properties.clusterSelector) {
+	if o != nil && !utils.IsNil(o.Properties.ClusterSelector) {
 		return true
 	}
 
 	return false
 }
 
-// ClusterSelector gets a reference to the given map[string]string and assigns it to the clusterSelector field.
-// clusterSelector:  Deprecated: Use clusterLabelSelector instead.
-func (o *TopologyPolicy) ClusterSelector(v map[string]string) *TopologyPolicy {
-	o.Properties.clusterSelector = &v
+// SetClusterSelector gets a reference to the given map[string]string and assigns it to the clusterSelector field.
+// ClusterSelector:  Deprecated: Use clusterLabelSelector instead.
+func (o *TopologyPolicy) SetClusterSelector(v map[string]string) *TopologyPolicy {
+	o.Properties.ClusterSelector = &v
 	return o
 }
 
 // GetClusters returns the Clusters field value if set, zero value otherwise.
 func (o *TopologyPolicy) GetClusters() []string {
-	if o == nil || utils.IsNil(o.Properties.clusters) {
+	if o == nil || utils.IsNil(o.Properties.Clusters) {
 		var ret []string
 		return ret
 	}
-	return o.Properties.clusters
+	return o.Properties.Clusters
 }
 
 // GetClustersOk returns a tuple with the Clusters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TopologyPolicy) GetClustersOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.clusters) {
+	if o == nil || utils.IsNil(o.Properties.Clusters) {
 		return nil, false
 	}
-	return o.Properties.clusters, true
+	return o.Properties.Clusters, true
 }
 
 // HasClusters returns a boolean if a field has been set.
 func (o *TopologyPolicy) HasClusters() bool {
-	if o != nil && !utils.IsNil(o.Properties.clusters) {
+	if o != nil && !utils.IsNil(o.Properties.Clusters) {
 		return true
 	}
 
 	return false
 }
 
-// Clusters gets a reference to the given []string and assigns it to the clusters field.
-// clusters:  Specify the names of the clusters to select.
-func (o *TopologyPolicy) Clusters(v []string) *TopologyPolicy {
-	o.Properties.clusters = v
+// SetClusters gets a reference to the given []string and assigns it to the clusters field.
+// Clusters:  Specify the names of the clusters to select.
+func (o *TopologyPolicy) SetClusters(v []string) *TopologyPolicy {
+	o.Properties.Clusters = v
 	return o
 }
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *TopologyPolicy) GetNamespace() string {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.namespace
+	return *o.Properties.Namespace
 }
 
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TopologyPolicy) GetNamespaceOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		return nil, false
 	}
-	return o.Properties.namespace, true
+	return o.Properties.Namespace, true
 }
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *TopologyPolicy) HasNamespace() bool {
-	if o != nil && !utils.IsNil(o.Properties.namespace) {
+	if o != nil && !utils.IsNil(o.Properties.Namespace) {
 		return true
 	}
 
 	return false
 }
 
-// Namespace gets a reference to the given string and assigns it to the namespace field.
-// namespace:  Specify the target namespace to deploy in the selected clusters, default inherit the original namespace.
-func (o *TopologyPolicy) Namespace(v string) *TopologyPolicy {
-	o.Properties.namespace = &v
+// SetNamespace gets a reference to the given string and assigns it to the namespace field.
+// Namespace:  Specify the target namespace to deploy in the selected clusters, default inherit the original namespace.
+func (o *TopologyPolicy) SetNamespace(v string) *TopologyPolicy {
+	o.Properties.Namespace = &v
 	return o
 }
 
@@ -235,20 +235,20 @@ func (o TopologySpec) MarshalJSON() ([]byte, error) {
 
 func (o TopologySpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.allowEmpty) {
-		toSerialize["allowEmpty"] = o.allowEmpty
+	if !utils.IsNil(o.AllowEmpty) {
+		toSerialize["allowEmpty"] = o.AllowEmpty
 	}
-	if !utils.IsNil(o.clusterLabelSelector) {
-		toSerialize["clusterLabelSelector"] = o.clusterLabelSelector
+	if !utils.IsNil(o.ClusterLabelSelector) {
+		toSerialize["clusterLabelSelector"] = o.ClusterLabelSelector
 	}
-	if !utils.IsNil(o.clusterSelector) {
-		toSerialize["clusterSelector"] = o.clusterSelector
+	if !utils.IsNil(o.ClusterSelector) {
+		toSerialize["clusterSelector"] = o.ClusterSelector
 	}
-	if !utils.IsNil(o.clusters) {
-		toSerialize["clusters"] = o.clusters
+	if !utils.IsNil(o.Clusters) {
+		toSerialize["clusters"] = o.Clusters
 	}
-	if !utils.IsNil(o.namespace) {
-		toSerialize["namespace"] = o.namespace
+	if !utils.IsNil(o.Namespace) {
+		toSerialize["namespace"] = o.Namespace
 	}
 	return toSerialize, nil
 }

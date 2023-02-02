@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &Attachments{}
 
 // Attachments struct for Attachments
 type Attachments struct {
-	blocks utils.NullableString `json:"blocks,omitempty"`
-	color  *string              `json:"color,omitempty"`
+	Blocks utils.NullableString `json:"blocks,omitempty"`
+	Color  *string              `json:"color,omitempty"`
 }
 
 // NewAttachmentsWith instantiates a new Attachments object
@@ -44,11 +44,11 @@ func NewAttachments() *Attachments {
 
 // GetBlocks returns the Blocks field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Attachments) GetBlocks() string {
-	if o == nil || utils.IsNil(o.blocks.Get()) {
+	if o == nil || utils.IsNil(o.Blocks.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.blocks.Get()
+	return *o.Blocks.Get()
 }
 
 // GetBlocksOk returns a tuple with the Blocks field value if set, nil otherwise
@@ -58,66 +58,66 @@ func (o *Attachments) GetBlocksOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.blocks.Get(), o.blocks.IsSet()
+	return o.Blocks.Get(), o.Blocks.IsSet()
 }
 
 // HasBlocks returns a boolean if a field has been set.
 func (o *Attachments) HasBlocks() bool {
-	if o != nil && o.blocks.IsSet() {
+	if o != nil && o.Blocks.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// Blocks gets a reference to the given utils.NullableString and assigns it to the blocks field.
-// blocks:
-func (o *Attachments) Blocks(v string) *Attachments {
-	o.blocks.Set(&v)
+// SetBlocks gets a reference to the given utils.NullableString and assigns it to the blocks field.
+// Blocks:
+func (o *Attachments) SetBlocks(v string) *Attachments {
+	o.Blocks.Set(&v)
 	return o
 }
 
 // SetBlocksNil sets the value for Blocks to be an explicit nil
 func (o *Attachments) SetBlocksNil() {
-	o.blocks.Set(nil)
+	o.Blocks.Set(nil)
 }
 
 // UnsetBlocks ensures that no value is present for Blocks, not even an explicit nil
 func (o *Attachments) UnsetBlocks() {
-	o.blocks.Unset()
+	o.Blocks.Unset()
 }
 
 // GetColor returns the Color field value if set, zero value otherwise.
 func (o *Attachments) GetColor() string {
-	if o == nil || utils.IsNil(o.color) {
+	if o == nil || utils.IsNil(o.Color) {
 		var ret string
 		return ret
 	}
-	return *o.color
+	return *o.Color
 }
 
 // GetColorOk returns a tuple with the Color field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Attachments) GetColorOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.color) {
+	if o == nil || utils.IsNil(o.Color) {
 		return nil, false
 	}
-	return o.color, true
+	return o.Color, true
 }
 
 // HasColor returns a boolean if a field has been set.
 func (o *Attachments) HasColor() bool {
-	if o != nil && !utils.IsNil(o.color) {
+	if o != nil && !utils.IsNil(o.Color) {
 		return true
 	}
 
 	return false
 }
 
-// Color gets a reference to the given string and assigns it to the color field.
-// color:
-func (o *Attachments) Color(v string) *Attachments {
-	o.color = &v
+// SetColor gets a reference to the given string and assigns it to the color field.
+// Color:
+func (o *Attachments) SetColor(v string) *Attachments {
+	o.Color = &v
 	return o
 }
 
@@ -131,11 +131,11 @@ func (o Attachments) MarshalJSON() ([]byte, error) {
 
 func (o Attachments) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.blocks.IsSet() {
-		toSerialize["blocks"] = o.blocks.Get()
+	if o.Blocks.IsSet() {
+		toSerialize["blocks"] = o.Blocks.Get()
 	}
-	if !utils.IsNil(o.color) {
-		toSerialize["color"] = o.color
+	if !utils.IsNil(o.Color) {
+		toSerialize["color"] = o.Color
 	}
 	return toSerialize, nil
 }

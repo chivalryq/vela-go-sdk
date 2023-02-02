@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &Grpc{}
 // Grpc Instructions for assessing container startup status by probing a gRPC service. Either this attribute or the exec attribute or the grpc attribute or the httpGet attribute MUST be specified. This attribute is mutually exclusive with the exec attribute and the httpGet attribute and the tcpSocket attribute.
 type Grpc struct {
 	// The port number of the gRPC service.
-	port *int32 `json:"port,omitempty"`
+	Port *int32 `json:"port,omitempty"`
 	// The name of the service to place in the gRPC HealthCheckRequest
-	service *string `json:"service,omitempty"`
+	Service *string `json:"service,omitempty"`
 }
 
 // NewGrpcWith instantiates a new Grpc object
@@ -46,69 +46,69 @@ func NewGrpc() *Grpc {
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *Grpc) GetPort() int32 {
-	if o == nil || utils.IsNil(o.port) {
+	if o == nil || utils.IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
-	return *o.port
+	return *o.Port
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Grpc) GetPortOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.port) {
+	if o == nil || utils.IsNil(o.Port) {
 		return nil, false
 	}
-	return o.port, true
+	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *Grpc) HasPort() bool {
-	if o != nil && !utils.IsNil(o.port) {
+	if o != nil && !utils.IsNil(o.Port) {
 		return true
 	}
 
 	return false
 }
 
-// Port gets a reference to the given int32 and assigns it to the port field.
-// port:  The port number of the gRPC service.
-func (o *Grpc) Port(v int32) *Grpc {
-	o.port = &v
+// SetPort gets a reference to the given int32 and assigns it to the port field.
+// Port:  The port number of the gRPC service.
+func (o *Grpc) SetPort(v int32) *Grpc {
+	o.Port = &v
 	return o
 }
 
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *Grpc) GetService() string {
-	if o == nil || utils.IsNil(o.service) {
+	if o == nil || utils.IsNil(o.Service) {
 		var ret string
 		return ret
 	}
-	return *o.service
+	return *o.Service
 }
 
 // GetServiceOk returns a tuple with the Service field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Grpc) GetServiceOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.service) {
+	if o == nil || utils.IsNil(o.Service) {
 		return nil, false
 	}
-	return o.service, true
+	return o.Service, true
 }
 
 // HasService returns a boolean if a field has been set.
 func (o *Grpc) HasService() bool {
-	if o != nil && !utils.IsNil(o.service) {
+	if o != nil && !utils.IsNil(o.Service) {
 		return true
 	}
 
 	return false
 }
 
-// Service gets a reference to the given string and assigns it to the service field.
-// service:  The name of the service to place in the gRPC HealthCheckRequest
-func (o *Grpc) Service(v string) *Grpc {
-	o.service = &v
+// SetService gets a reference to the given string and assigns it to the service field.
+// Service:  The name of the service to place in the gRPC HealthCheckRequest
+func (o *Grpc) SetService(v string) *Grpc {
+	o.Service = &v
 	return o
 }
 
@@ -122,11 +122,11 @@ func (o Grpc) MarshalJSON() ([]byte, error) {
 
 func (o Grpc) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.port) {
-		toSerialize["port"] = o.port
+	if !utils.IsNil(o.Port) {
+		toSerialize["port"] = o.Port
 	}
-	if !utils.IsNil(o.service) {
-		toSerialize["service"] = o.service
+	if !utils.IsNil(o.Service) {
+		toSerialize["service"] = o.Service
 	}
 	return toSerialize, nil
 }

@@ -28,13 +28,13 @@ var _ utils.MappedNullable = &Export2configSpec{}
 // Export2configSpec struct for Export2configSpec
 type Export2configSpec struct {
 	// Specify the cluster of the config map
-	cluster *string `json:"cluster,omitempty"`
+	Cluster *string `json:"cluster,omitempty"`
 	// Specify the name of the config map
-	configName *string `json:"configName,omitempty"`
+	ConfigName *string `json:"configName,omitempty"`
 	// Specify the data of config map
-	data map[string]interface{} `json:"data,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty"`
 	// Specify the namespace of the config map
-	namespace *string `json:"namespace,omitempty"`
+	Namespace *string `json:"namespace,omitempty"`
 }
 
 // NewExport2configSpecWith instantiates a new Export2configSpec object
@@ -44,7 +44,7 @@ type Export2configSpec struct {
 func NewExport2configSpecWith() *Export2configSpec {
 	this := Export2configSpec{}
 	var cluster string = ""
-	this.cluster = &cluster
+	this.Cluster = &cluster
 	return &this
 }
 
@@ -54,143 +54,143 @@ func NewExport2configSpecWith() *Export2configSpec {
 func NewExport2configSpec() *Export2configSpec {
 	this := Export2configSpec{}
 	var cluster string = ""
-	this.cluster = &cluster
+	this.Cluster = &cluster
 	return &this
 }
 
 // GetCluster returns the Cluster field value if set, zero value otherwise.
 func (o *Export2configWorkflowStep) GetCluster() string {
-	if o == nil || utils.IsNil(o.Properties.cluster) {
+	if o == nil || utils.IsNil(o.Properties.Cluster) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.cluster
+	return *o.Properties.Cluster
 }
 
 // GetClusterOk returns a tuple with the Cluster field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Export2configWorkflowStep) GetClusterOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.cluster) {
+	if o == nil || utils.IsNil(o.Properties.Cluster) {
 		return nil, false
 	}
-	return o.Properties.cluster, true
+	return o.Properties.Cluster, true
 }
 
 // HasCluster returns a boolean if a field has been set.
 func (o *Export2configWorkflowStep) HasCluster() bool {
-	if o != nil && !utils.IsNil(o.Properties.cluster) {
+	if o != nil && !utils.IsNil(o.Properties.Cluster) {
 		return true
 	}
 
 	return false
 }
 
-// Cluster gets a reference to the given string and assigns it to the cluster field.
-// cluster:  Specify the cluster of the config map
-func (o *Export2configWorkflowStep) Cluster(v string) *Export2configWorkflowStep {
-	o.Properties.cluster = &v
+// SetCluster gets a reference to the given string and assigns it to the cluster field.
+// Cluster:  Specify the cluster of the config map
+func (o *Export2configWorkflowStep) SetCluster(v string) *Export2configWorkflowStep {
+	o.Properties.Cluster = &v
 	return o
 }
 
 // GetConfigName returns the ConfigName field value if set, zero value otherwise.
 func (o *Export2configWorkflowStep) GetConfigName() string {
-	if o == nil || utils.IsNil(o.Properties.configName) {
+	if o == nil || utils.IsNil(o.Properties.ConfigName) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.configName
+	return *o.Properties.ConfigName
 }
 
 // GetConfigNameOk returns a tuple with the ConfigName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Export2configWorkflowStep) GetConfigNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.configName) {
+	if o == nil || utils.IsNil(o.Properties.ConfigName) {
 		return nil, false
 	}
-	return o.Properties.configName, true
+	return o.Properties.ConfigName, true
 }
 
 // HasConfigName returns a boolean if a field has been set.
 func (o *Export2configWorkflowStep) HasConfigName() bool {
-	if o != nil && !utils.IsNil(o.Properties.configName) {
+	if o != nil && !utils.IsNil(o.Properties.ConfigName) {
 		return true
 	}
 
 	return false
 }
 
-// ConfigName gets a reference to the given string and assigns it to the configName field.
-// configName:  Specify the name of the config map
-func (o *Export2configWorkflowStep) ConfigName(v string) *Export2configWorkflowStep {
-	o.Properties.configName = &v
+// SetConfigName gets a reference to the given string and assigns it to the configName field.
+// ConfigName:  Specify the name of the config map
+func (o *Export2configWorkflowStep) SetConfigName(v string) *Export2configWorkflowStep {
+	o.Properties.ConfigName = &v
 	return o
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *Export2configWorkflowStep) GetData() map[string]interface{} {
-	if o == nil || utils.IsNil(o.Properties.data) {
+	if o == nil || utils.IsNil(o.Properties.Data) {
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.Properties.data
+	return o.Properties.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Export2configWorkflowStep) GetDataOk() (map[string]interface{}, bool) {
-	if o == nil || utils.IsNil(o.Properties.data) {
+	if o == nil || utils.IsNil(o.Properties.Data) {
 		return map[string]interface{}{}, false
 	}
-	return o.Properties.data, true
+	return o.Properties.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
 func (o *Export2configWorkflowStep) HasData() bool {
-	if o != nil && !utils.IsNil(o.Properties.data) {
+	if o != nil && !utils.IsNil(o.Properties.Data) {
 		return true
 	}
 
 	return false
 }
 
-// Data gets a reference to the given map[string]interface{} and assigns it to the data field.
-// data:  Specify the data of config map
-func (o *Export2configWorkflowStep) Data(v map[string]interface{}) *Export2configWorkflowStep {
-	o.Properties.data = v
+// SetData gets a reference to the given map[string]interface{} and assigns it to the data field.
+// Data:  Specify the data of config map
+func (o *Export2configWorkflowStep) SetData(v map[string]interface{}) *Export2configWorkflowStep {
+	o.Properties.Data = v
 	return o
 }
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *Export2configWorkflowStep) GetNamespace() string {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.namespace
+	return *o.Properties.Namespace
 }
 
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Export2configWorkflowStep) GetNamespaceOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.namespace) {
+	if o == nil || utils.IsNil(o.Properties.Namespace) {
 		return nil, false
 	}
-	return o.Properties.namespace, true
+	return o.Properties.Namespace, true
 }
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *Export2configWorkflowStep) HasNamespace() bool {
-	if o != nil && !utils.IsNil(o.Properties.namespace) {
+	if o != nil && !utils.IsNil(o.Properties.Namespace) {
 		return true
 	}
 
 	return false
 }
 
-// Namespace gets a reference to the given string and assigns it to the namespace field.
-// namespace:  Specify the namespace of the config map
-func (o *Export2configWorkflowStep) Namespace(v string) *Export2configWorkflowStep {
-	o.Properties.namespace = &v
+// SetNamespace gets a reference to the given string and assigns it to the namespace field.
+// Namespace:  Specify the namespace of the config map
+func (o *Export2configWorkflowStep) SetNamespace(v string) *Export2configWorkflowStep {
+	o.Properties.Namespace = &v
 	return o
 }
 
@@ -204,17 +204,17 @@ func (o Export2configSpec) MarshalJSON() ([]byte, error) {
 
 func (o Export2configSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.cluster) {
-		toSerialize["cluster"] = o.cluster
+	if !utils.IsNil(o.Cluster) {
+		toSerialize["cluster"] = o.Cluster
 	}
-	if !utils.IsNil(o.configName) {
-		toSerialize["configName"] = o.configName
+	if !utils.IsNil(o.ConfigName) {
+		toSerialize["configName"] = o.ConfigName
 	}
-	if !utils.IsNil(o.data) {
-		toSerialize["data"] = o.data
+	if !utils.IsNil(o.Data) {
+		toSerialize["data"] = o.Data
 	}
-	if !utils.IsNil(o.namespace) {
-		toSerialize["namespace"] = o.namespace
+	if !utils.IsNil(o.Namespace) {
+		toSerialize["namespace"] = o.Namespace
 	}
 	return toSerialize, nil
 }

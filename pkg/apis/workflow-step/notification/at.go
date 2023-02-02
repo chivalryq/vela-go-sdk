@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &At{}
 
 // At struct for At
 type At struct {
-	atMobiles []string `json:"atMobiles,omitempty"`
-	isAtAll   *bool    `json:"isAtAll,omitempty"`
+	AtMobiles []string `json:"atMobiles,omitempty"`
+	IsAtAll   *bool    `json:"isAtAll,omitempty"`
 }
 
 // NewAtWith instantiates a new At object
@@ -48,66 +48,66 @@ func (o *At) GetAtMobiles() []string {
 		var ret []string
 		return ret
 	}
-	return o.atMobiles
+	return o.AtMobiles
 }
 
 // GetAtMobilesOk returns a tuple with the AtMobiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *At) GetAtMobilesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.atMobiles) {
+	if o == nil || utils.IsNil(o.AtMobiles) {
 		return nil, false
 	}
-	return o.atMobiles, true
+	return o.AtMobiles, true
 }
 
 // HasAtMobiles returns a boolean if a field has been set.
 func (o *At) HasAtMobiles() bool {
-	if o != nil && utils.IsNil(o.atMobiles) {
+	if o != nil && utils.IsNil(o.AtMobiles) {
 		return true
 	}
 
 	return false
 }
 
-// AtMobiles gets a reference to the given []string and assigns it to the atMobiles field.
-// atMobiles:
-func (o *At) AtMobiles(v []string) *At {
-	o.atMobiles = v
+// SetAtMobiles gets a reference to the given []string and assigns it to the atMobiles field.
+// AtMobiles:
+func (o *At) SetAtMobiles(v []string) *At {
+	o.AtMobiles = v
 	return o
 }
 
 // GetIsAtAll returns the IsAtAll field value if set, zero value otherwise.
 func (o *At) GetIsAtAll() bool {
-	if o == nil || utils.IsNil(o.isAtAll) {
+	if o == nil || utils.IsNil(o.IsAtAll) {
 		var ret bool
 		return ret
 	}
-	return *o.isAtAll
+	return *o.IsAtAll
 }
 
 // GetIsAtAllOk returns a tuple with the IsAtAll field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *At) GetIsAtAllOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.isAtAll) {
+	if o == nil || utils.IsNil(o.IsAtAll) {
 		return nil, false
 	}
-	return o.isAtAll, true
+	return o.IsAtAll, true
 }
 
 // HasIsAtAll returns a boolean if a field has been set.
 func (o *At) HasIsAtAll() bool {
-	if o != nil && !utils.IsNil(o.isAtAll) {
+	if o != nil && !utils.IsNil(o.IsAtAll) {
 		return true
 	}
 
 	return false
 }
 
-// IsAtAll gets a reference to the given bool and assigns it to the isAtAll field.
-// isAtAll:
-func (o *At) IsAtAll(v bool) *At {
-	o.isAtAll = &v
+// SetIsAtAll gets a reference to the given bool and assigns it to the isAtAll field.
+// IsAtAll:
+func (o *At) SetIsAtAll(v bool) *At {
+	o.IsAtAll = &v
 	return o
 }
 
@@ -121,11 +121,11 @@ func (o At) MarshalJSON() ([]byte, error) {
 
 func (o At) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.atMobiles != nil {
-		toSerialize["atMobiles"] = o.atMobiles
+	if o.AtMobiles != nil {
+		toSerialize["atMobiles"] = o.AtMobiles
 	}
-	if !utils.IsNil(o.isAtAll) {
-		toSerialize["isAtAll"] = o.isAtAll
+	if !utils.IsNil(o.IsAtAll) {
+		toSerialize["isAtAll"] = o.IsAtAll
 	}
 	return toSerialize, nil
 }

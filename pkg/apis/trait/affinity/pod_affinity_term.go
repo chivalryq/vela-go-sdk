@@ -21,10 +21,10 @@ var _ utils.MappedNullable = &PodAffinityTerm{}
 
 // PodAffinityTerm struct for PodAffinityTerm
 type PodAffinityTerm struct {
-	labelSelector     *LabelSelector `json:"labelSelector,omitempty"`
-	namespaceSelector *LabelSelector `json:"namespaceSelector,omitempty"`
-	namespaces        []string       `json:"namespaces,omitempty"`
-	topologyKey       *string        `json:"topologyKey,omitempty"`
+	LabelSelector     *LabelSelector `json:"labelSelector,omitempty"`
+	NamespaceSelector *LabelSelector `json:"namespaceSelector,omitempty"`
+	Namespaces        []string       `json:"namespaces,omitempty"`
+	TopologyKey       *string        `json:"topologyKey,omitempty"`
 }
 
 // NewPodAffinityTermWith instantiates a new PodAffinityTerm object
@@ -46,137 +46,137 @@ func NewPodAffinityTerm() *PodAffinityTerm {
 
 // GetLabelSelector returns the LabelSelector field value if set, zero value otherwise.
 func (o *PodAffinityTerm) GetLabelSelector() LabelSelector {
-	if o == nil || utils.IsNil(o.labelSelector) {
+	if o == nil || utils.IsNil(o.LabelSelector) {
 		var ret LabelSelector
 		return ret
 	}
-	return *o.labelSelector
+	return *o.LabelSelector
 }
 
 // GetLabelSelectorOk returns a tuple with the LabelSelector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PodAffinityTerm) GetLabelSelectorOk() (*LabelSelector, bool) {
-	if o == nil || utils.IsNil(o.labelSelector) {
+	if o == nil || utils.IsNil(o.LabelSelector) {
 		return nil, false
 	}
-	return o.labelSelector, true
+	return o.LabelSelector, true
 }
 
 // HasLabelSelector returns a boolean if a field has been set.
 func (o *PodAffinityTerm) HasLabelSelector() bool {
-	if o != nil && !utils.IsNil(o.labelSelector) {
+	if o != nil && !utils.IsNil(o.LabelSelector) {
 		return true
 	}
 
 	return false
 }
 
-// LabelSelector gets a reference to the given LabelSelector and assigns it to the labelSelector field.
-// labelSelector:
-func (o *PodAffinityTerm) LabelSelector(v LabelSelector) *PodAffinityTerm {
-	o.labelSelector = &v
+// SetLabelSelector gets a reference to the given LabelSelector and assigns it to the labelSelector field.
+// LabelSelector:
+func (o *PodAffinityTerm) SetLabelSelector(v LabelSelector) *PodAffinityTerm {
+	o.LabelSelector = &v
 	return o
 }
 
 // GetNamespaceSelector returns the NamespaceSelector field value if set, zero value otherwise.
 func (o *PodAffinityTerm) GetNamespaceSelector() LabelSelector {
-	if o == nil || utils.IsNil(o.namespaceSelector) {
+	if o == nil || utils.IsNil(o.NamespaceSelector) {
 		var ret LabelSelector
 		return ret
 	}
-	return *o.namespaceSelector
+	return *o.NamespaceSelector
 }
 
 // GetNamespaceSelectorOk returns a tuple with the NamespaceSelector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PodAffinityTerm) GetNamespaceSelectorOk() (*LabelSelector, bool) {
-	if o == nil || utils.IsNil(o.namespaceSelector) {
+	if o == nil || utils.IsNil(o.NamespaceSelector) {
 		return nil, false
 	}
-	return o.namespaceSelector, true
+	return o.NamespaceSelector, true
 }
 
 // HasNamespaceSelector returns a boolean if a field has been set.
 func (o *PodAffinityTerm) HasNamespaceSelector() bool {
-	if o != nil && !utils.IsNil(o.namespaceSelector) {
+	if o != nil && !utils.IsNil(o.NamespaceSelector) {
 		return true
 	}
 
 	return false
 }
 
-// NamespaceSelector gets a reference to the given LabelSelector and assigns it to the namespaceSelector field.
-// namespaceSelector:
-func (o *PodAffinityTerm) NamespaceSelector(v LabelSelector) *PodAffinityTerm {
-	o.namespaceSelector = &v
+// SetNamespaceSelector gets a reference to the given LabelSelector and assigns it to the namespaceSelector field.
+// NamespaceSelector:
+func (o *PodAffinityTerm) SetNamespaceSelector(v LabelSelector) *PodAffinityTerm {
+	o.NamespaceSelector = &v
 	return o
 }
 
 // GetNamespaces returns the Namespaces field value if set, zero value otherwise.
 func (o *PodAffinityTerm) GetNamespaces() []string {
-	if o == nil || utils.IsNil(o.namespaces) {
+	if o == nil || utils.IsNil(o.Namespaces) {
 		var ret []string
 		return ret
 	}
-	return o.namespaces
+	return o.Namespaces
 }
 
 // GetNamespacesOk returns a tuple with the Namespaces field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PodAffinityTerm) GetNamespacesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.namespaces) {
+	if o == nil || utils.IsNil(o.Namespaces) {
 		return nil, false
 	}
-	return o.namespaces, true
+	return o.Namespaces, true
 }
 
 // HasNamespaces returns a boolean if a field has been set.
 func (o *PodAffinityTerm) HasNamespaces() bool {
-	if o != nil && !utils.IsNil(o.namespaces) {
+	if o != nil && !utils.IsNil(o.Namespaces) {
 		return true
 	}
 
 	return false
 }
 
-// Namespaces gets a reference to the given []string and assigns it to the namespaces field.
-// namespaces:
-func (o *PodAffinityTerm) Namespaces(v []string) *PodAffinityTerm {
-	o.namespaces = v
+// SetNamespaces gets a reference to the given []string and assigns it to the namespaces field.
+// Namespaces:
+func (o *PodAffinityTerm) SetNamespaces(v []string) *PodAffinityTerm {
+	o.Namespaces = v
 	return o
 }
 
 // GetTopologyKey returns the TopologyKey field value if set, zero value otherwise.
 func (o *PodAffinityTerm) GetTopologyKey() string {
-	if o == nil || utils.IsNil(o.topologyKey) {
+	if o == nil || utils.IsNil(o.TopologyKey) {
 		var ret string
 		return ret
 	}
-	return *o.topologyKey
+	return *o.TopologyKey
 }
 
 // GetTopologyKeyOk returns a tuple with the TopologyKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PodAffinityTerm) GetTopologyKeyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.topologyKey) {
+	if o == nil || utils.IsNil(o.TopologyKey) {
 		return nil, false
 	}
-	return o.topologyKey, true
+	return o.TopologyKey, true
 }
 
 // HasTopologyKey returns a boolean if a field has been set.
 func (o *PodAffinityTerm) HasTopologyKey() bool {
-	if o != nil && !utils.IsNil(o.topologyKey) {
+	if o != nil && !utils.IsNil(o.TopologyKey) {
 		return true
 	}
 
 	return false
 }
 
-// TopologyKey gets a reference to the given string and assigns it to the topologyKey field.
-// topologyKey:
-func (o *PodAffinityTerm) TopologyKey(v string) *PodAffinityTerm {
-	o.topologyKey = &v
+// SetTopologyKey gets a reference to the given string and assigns it to the topologyKey field.
+// TopologyKey:
+func (o *PodAffinityTerm) SetTopologyKey(v string) *PodAffinityTerm {
+	o.TopologyKey = &v
 	return o
 }
 
@@ -190,17 +190,17 @@ func (o PodAffinityTerm) MarshalJSON() ([]byte, error) {
 
 func (o PodAffinityTerm) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.labelSelector) {
-		toSerialize["labelSelector"] = o.labelSelector
+	if !utils.IsNil(o.LabelSelector) {
+		toSerialize["labelSelector"] = o.LabelSelector
 	}
-	if !utils.IsNil(o.namespaceSelector) {
-		toSerialize["namespaceSelector"] = o.namespaceSelector
+	if !utils.IsNil(o.NamespaceSelector) {
+		toSerialize["namespaceSelector"] = o.NamespaceSelector
 	}
-	if !utils.IsNil(o.namespaces) {
-		toSerialize["namespaces"] = o.namespaces
+	if !utils.IsNil(o.Namespaces) {
+		toSerialize["namespaces"] = o.Namespaces
 	}
-	if !utils.IsNil(o.topologyKey) {
-		toSerialize["topologyKey"] = o.topologyKey
+	if !utils.IsNil(o.TopologyKey) {
+		toSerialize["topologyKey"] = o.TopologyKey
 	}
 	return toSerialize, nil
 }

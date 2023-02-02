@@ -22,7 +22,7 @@ var _ utils.MappedNullable = &Required{}
 // Required Specify the required during scheduling ignored during execution
 type Required struct {
 	// Specify a list of node selector
-	nodeSelectorTerms []NodeSelectorTerm `json:"nodeSelectorTerms,omitempty"`
+	NodeSelectorTerms []NodeSelectorTerm `json:"nodeSelectorTerms,omitempty"`
 }
 
 // NewRequiredWith instantiates a new Required object
@@ -44,35 +44,35 @@ func NewRequired() *Required {
 
 // GetNodeSelectorTerms returns the NodeSelectorTerms field value if set, zero value otherwise.
 func (o *Required) GetNodeSelectorTerms() []NodeSelectorTerm {
-	if o == nil || utils.IsNil(o.nodeSelectorTerms) {
+	if o == nil || utils.IsNil(o.NodeSelectorTerms) {
 		var ret []NodeSelectorTerm
 		return ret
 	}
-	return o.nodeSelectorTerms
+	return o.NodeSelectorTerms
 }
 
 // GetNodeSelectorTermsOk returns a tuple with the NodeSelectorTerms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Required) GetNodeSelectorTermsOk() ([]NodeSelectorTerm, bool) {
-	if o == nil || utils.IsNil(o.nodeSelectorTerms) {
+	if o == nil || utils.IsNil(o.NodeSelectorTerms) {
 		return nil, false
 	}
-	return o.nodeSelectorTerms, true
+	return o.NodeSelectorTerms, true
 }
 
 // HasNodeSelectorTerms returns a boolean if a field has been set.
 func (o *Required) HasNodeSelectorTerms() bool {
-	if o != nil && !utils.IsNil(o.nodeSelectorTerms) {
+	if o != nil && !utils.IsNil(o.NodeSelectorTerms) {
 		return true
 	}
 
 	return false
 }
 
-// NodeSelectorTerms gets a reference to the given []NodeSelectorTerm and assigns it to the nodeSelectorTerms field.
-// nodeSelectorTerms:  Specify a list of node selector
-func (o *Required) NodeSelectorTerms(v []NodeSelectorTerm) *Required {
-	o.nodeSelectorTerms = v
+// SetNodeSelectorTerms gets a reference to the given []NodeSelectorTerm and assigns it to the nodeSelectorTerms field.
+// NodeSelectorTerms:  Specify a list of node selector
+func (o *Required) SetNodeSelectorTerms(v []NodeSelectorTerm) *Required {
+	o.NodeSelectorTerms = v
 	return o
 }
 
@@ -86,8 +86,8 @@ func (o Required) MarshalJSON() ([]byte, error) {
 
 func (o Required) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.nodeSelectorTerms) {
-		toSerialize["nodeSelectorTerms"] = o.nodeSelectorTerms
+	if !utils.IsNil(o.NodeSelectorTerms) {
+		toSerialize["nodeSelectorTerms"] = o.NodeSelectorTerms
 	}
 	return toSerialize, nil
 }

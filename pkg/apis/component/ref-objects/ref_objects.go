@@ -27,9 +27,9 @@ var _ utils.MappedNullable = &RefObjectsSpec{}
 // RefObjectsSpec struct for RefObjectsSpec
 type RefObjectsSpec struct {
 	// If specified, application will fetch native Kubernetes objects according to the object description
-	objects []K8sObject `json:"objects,omitempty"`
+	Objects []K8sObject `json:"objects,omitempty"`
 	// If specified, the objects in the urls will be loaded.
-	urls []string `json:"urls,omitempty"`
+	Urls []string `json:"urls,omitempty"`
 }
 
 // NewRefObjectsSpecWith instantiates a new RefObjectsSpec object
@@ -51,69 +51,69 @@ func NewRefObjectsSpec() *RefObjectsSpec {
 
 // GetObjects returns the Objects field value if set, zero value otherwise.
 func (o *RefObjectsComponent) GetObjects() []K8sObject {
-	if o == nil || utils.IsNil(o.Properties.objects) {
+	if o == nil || utils.IsNil(o.Properties.Objects) {
 		var ret []K8sObject
 		return ret
 	}
-	return o.Properties.objects
+	return o.Properties.Objects
 }
 
 // GetObjectsOk returns a tuple with the Objects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RefObjectsComponent) GetObjectsOk() ([]K8sObject, bool) {
-	if o == nil || utils.IsNil(o.Properties.objects) {
+	if o == nil || utils.IsNil(o.Properties.Objects) {
 		return nil, false
 	}
-	return o.Properties.objects, true
+	return o.Properties.Objects, true
 }
 
 // HasObjects returns a boolean if a field has been set.
 func (o *RefObjectsComponent) HasObjects() bool {
-	if o != nil && !utils.IsNil(o.Properties.objects) {
+	if o != nil && !utils.IsNil(o.Properties.Objects) {
 		return true
 	}
 
 	return false
 }
 
-// Objects gets a reference to the given []K8sObject and assigns it to the objects field.
-// objects:  If specified, application will fetch native Kubernetes objects according to the object description
-func (o *RefObjectsComponent) Objects(v []K8sObject) *RefObjectsComponent {
-	o.Properties.objects = v
+// SetObjects gets a reference to the given []K8sObject and assigns it to the objects field.
+// Objects:  If specified, application will fetch native Kubernetes objects according to the object description
+func (o *RefObjectsComponent) SetObjects(v []K8sObject) *RefObjectsComponent {
+	o.Properties.Objects = v
 	return o
 }
 
 // GetUrls returns the Urls field value if set, zero value otherwise.
 func (o *RefObjectsComponent) GetUrls() []string {
-	if o == nil || utils.IsNil(o.Properties.urls) {
+	if o == nil || utils.IsNil(o.Properties.Urls) {
 		var ret []string
 		return ret
 	}
-	return o.Properties.urls
+	return o.Properties.Urls
 }
 
 // GetUrlsOk returns a tuple with the Urls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RefObjectsComponent) GetUrlsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.urls) {
+	if o == nil || utils.IsNil(o.Properties.Urls) {
 		return nil, false
 	}
-	return o.Properties.urls, true
+	return o.Properties.Urls, true
 }
 
 // HasUrls returns a boolean if a field has been set.
 func (o *RefObjectsComponent) HasUrls() bool {
-	if o != nil && !utils.IsNil(o.Properties.urls) {
+	if o != nil && !utils.IsNil(o.Properties.Urls) {
 		return true
 	}
 
 	return false
 }
 
-// Urls gets a reference to the given []string and assigns it to the urls field.
-// urls:  If specified, the objects in the urls will be loaded.
-func (o *RefObjectsComponent) Urls(v []string) *RefObjectsComponent {
-	o.Properties.urls = v
+// SetUrls gets a reference to the given []string and assigns it to the urls field.
+// Urls:  If specified, the objects in the urls will be loaded.
+func (o *RefObjectsComponent) SetUrls(v []string) *RefObjectsComponent {
+	o.Properties.Urls = v
 	return o
 }
 
@@ -127,11 +127,11 @@ func (o RefObjectsSpec) MarshalJSON() ([]byte, error) {
 
 func (o RefObjectsSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.objects) {
-		toSerialize["objects"] = o.objects
+	if !utils.IsNil(o.Objects) {
+		toSerialize["objects"] = o.Objects
 	}
-	if !utils.IsNil(o.urls) {
-		toSerialize["urls"] = o.urls
+	if !utils.IsNil(o.Urls) {
+		toSerialize["urls"] = o.Urls
 	}
 	return toSerialize, nil
 }

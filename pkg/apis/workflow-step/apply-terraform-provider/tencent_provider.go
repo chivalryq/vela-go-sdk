@@ -21,11 +21,11 @@ var _ utils.MappedNullable = &TencentProvider{}
 
 // TencentProvider struct for TencentProvider
 type TencentProvider struct {
-	name      *string `json:"name,omitempty"`
-	region    *string `json:"region,omitempty"`
-	secretID  *string `json:"secretID,omitempty"`
-	secretKey *string `json:"secretKey,omitempty"`
-	type_     *string `json:"type,omitempty"`
+	Name      *string `json:"name,omitempty"`
+	Region    *string `json:"region,omitempty"`
+	SecretID  *string `json:"secretID,omitempty"`
+	SecretKey *string `json:"secretKey,omitempty"`
+	Type      *string `json:"type,omitempty"`
 }
 
 // NewTencentProviderWith instantiates a new TencentProvider object
@@ -35,7 +35,7 @@ type TencentProvider struct {
 func NewTencentProviderWith() *TencentProvider {
 	this := TencentProvider{}
 	var name string = "tencent-provider"
-	this.name = &name
+	this.Name = &name
 	return &this
 }
 
@@ -45,177 +45,177 @@ func NewTencentProviderWith() *TencentProvider {
 func NewTencentProvider() *TencentProvider {
 	this := TencentProvider{}
 	var name string = "tencent-provider"
-	this.name = &name
+	this.Name = &name
 	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *TencentProvider) GetName() string {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.name
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TencentProvider) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *TencentProvider) HasName() bool {
-	if o != nil && !utils.IsNil(o.name) {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:
-func (o *TencentProvider) Name(v string) *TencentProvider {
-	o.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:
+func (o *TencentProvider) SetName(v string) *TencentProvider {
+	o.Name = &v
 	return o
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *TencentProvider) GetRegion() string {
-	if o == nil || utils.IsNil(o.region) {
+	if o == nil || utils.IsNil(o.Region) {
 		var ret string
 		return ret
 	}
-	return *o.region
+	return *o.Region
 }
 
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TencentProvider) GetRegionOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.region) {
+	if o == nil || utils.IsNil(o.Region) {
 		return nil, false
 	}
-	return o.region, true
+	return o.Region, true
 }
 
 // HasRegion returns a boolean if a field has been set.
 func (o *TencentProvider) HasRegion() bool {
-	if o != nil && !utils.IsNil(o.region) {
+	if o != nil && !utils.IsNil(o.Region) {
 		return true
 	}
 
 	return false
 }
 
-// Region gets a reference to the given string and assigns it to the region field.
-// region:
-func (o *TencentProvider) Region(v string) *TencentProvider {
-	o.region = &v
+// SetRegion gets a reference to the given string and assigns it to the region field.
+// Region:
+func (o *TencentProvider) SetRegion(v string) *TencentProvider {
+	o.Region = &v
 	return o
 }
 
 // GetSecretID returns the SecretID field value if set, zero value otherwise.
 func (o *TencentProvider) GetSecretID() string {
-	if o == nil || utils.IsNil(o.secretID) {
+	if o == nil || utils.IsNil(o.SecretID) {
 		var ret string
 		return ret
 	}
-	return *o.secretID
+	return *o.SecretID
 }
 
 // GetSecretIDOk returns a tuple with the SecretID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TencentProvider) GetSecretIDOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.secretID) {
+	if o == nil || utils.IsNil(o.SecretID) {
 		return nil, false
 	}
-	return o.secretID, true
+	return o.SecretID, true
 }
 
 // HasSecretID returns a boolean if a field has been set.
 func (o *TencentProvider) HasSecretID() bool {
-	if o != nil && !utils.IsNil(o.secretID) {
+	if o != nil && !utils.IsNil(o.SecretID) {
 		return true
 	}
 
 	return false
 }
 
-// SecretID gets a reference to the given string and assigns it to the secretID field.
-// secretID:
-func (o *TencentProvider) SecretID(v string) *TencentProvider {
-	o.secretID = &v
+// SetSecretID gets a reference to the given string and assigns it to the secretID field.
+// SecretID:
+func (o *TencentProvider) SetSecretID(v string) *TencentProvider {
+	o.SecretID = &v
 	return o
 }
 
 // GetSecretKey returns the SecretKey field value if set, zero value otherwise.
 func (o *TencentProvider) GetSecretKey() string {
-	if o == nil || utils.IsNil(o.secretKey) {
+	if o == nil || utils.IsNil(o.SecretKey) {
 		var ret string
 		return ret
 	}
-	return *o.secretKey
+	return *o.SecretKey
 }
 
 // GetSecretKeyOk returns a tuple with the SecretKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TencentProvider) GetSecretKeyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.secretKey) {
+	if o == nil || utils.IsNil(o.SecretKey) {
 		return nil, false
 	}
-	return o.secretKey, true
+	return o.SecretKey, true
 }
 
 // HasSecretKey returns a boolean if a field has been set.
 func (o *TencentProvider) HasSecretKey() bool {
-	if o != nil && !utils.IsNil(o.secretKey) {
+	if o != nil && !utils.IsNil(o.SecretKey) {
 		return true
 	}
 
 	return false
 }
 
-// SecretKey gets a reference to the given string and assigns it to the secretKey field.
-// secretKey:
-func (o *TencentProvider) SecretKey(v string) *TencentProvider {
-	o.secretKey = &v
+// SetSecretKey gets a reference to the given string and assigns it to the secretKey field.
+// SecretKey:
+func (o *TencentProvider) SetSecretKey(v string) *TencentProvider {
+	o.SecretKey = &v
 	return o
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *TencentProvider) GetType() string {
-	if o == nil || utils.IsNil(o.type_) {
+	if o == nil || utils.IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-	return *o.type_
+	return *o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TencentProvider) GetTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.type_) {
+	if o == nil || utils.IsNil(o.Type) {
 		return nil, false
 	}
-	return o.type_, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *TencentProvider) HasType() bool {
-	if o != nil && !utils.IsNil(o.type_) {
+	if o != nil && !utils.IsNil(o.Type) {
 		return true
 	}
 
 	return false
 }
 
-// Type gets a reference to the given string and assigns it to the type_ field.
-// type_:
-func (o *TencentProvider) Type(v string) *TencentProvider {
-	o.type_ = &v
+// SetType gets a reference to the given string and assigns it to the type_ field.
+// Type:
+func (o *TencentProvider) SetType(v string) *TencentProvider {
+	o.Type = &v
 	return o
 }
 
@@ -229,20 +229,20 @@ func (o TencentProvider) MarshalJSON() ([]byte, error) {
 
 func (o TencentProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if !utils.IsNil(o.region) {
-		toSerialize["region"] = o.region
+	if !utils.IsNil(o.Region) {
+		toSerialize["region"] = o.Region
 	}
-	if !utils.IsNil(o.secretID) {
-		toSerialize["secretID"] = o.secretID
+	if !utils.IsNil(o.SecretID) {
+		toSerialize["secretID"] = o.SecretID
 	}
-	if !utils.IsNil(o.secretKey) {
-		toSerialize["secretKey"] = o.secretKey
+	if !utils.IsNil(o.SecretKey) {
+		toSerialize["secretKey"] = o.SecretKey
 	}
-	if !utils.IsNil(o.type_) {
-		toSerialize["type"] = o.type_
+	if !utils.IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
 	return toSerialize, nil
 }

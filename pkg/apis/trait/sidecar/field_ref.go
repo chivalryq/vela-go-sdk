@@ -22,7 +22,7 @@ var _ utils.MappedNullable = &FieldRef{}
 // FieldRef Specify the field reference for env
 type FieldRef struct {
 	// Specify the field path for env
-	fieldPath *string `json:"fieldPath,omitempty"`
+	FieldPath *string `json:"fieldPath,omitempty"`
 }
 
 // NewFieldRefWith instantiates a new FieldRef object
@@ -44,35 +44,35 @@ func NewFieldRef() *FieldRef {
 
 // GetFieldPath returns the FieldPath field value if set, zero value otherwise.
 func (o *FieldRef) GetFieldPath() string {
-	if o == nil || utils.IsNil(o.fieldPath) {
+	if o == nil || utils.IsNil(o.FieldPath) {
 		var ret string
 		return ret
 	}
-	return *o.fieldPath
+	return *o.FieldPath
 }
 
 // GetFieldPathOk returns a tuple with the FieldPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FieldRef) GetFieldPathOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.fieldPath) {
+	if o == nil || utils.IsNil(o.FieldPath) {
 		return nil, false
 	}
-	return o.fieldPath, true
+	return o.FieldPath, true
 }
 
 // HasFieldPath returns a boolean if a field has been set.
 func (o *FieldRef) HasFieldPath() bool {
-	if o != nil && !utils.IsNil(o.fieldPath) {
+	if o != nil && !utils.IsNil(o.FieldPath) {
 		return true
 	}
 
 	return false
 }
 
-// FieldPath gets a reference to the given string and assigns it to the fieldPath field.
-// fieldPath:  Specify the field path for env
-func (o *FieldRef) FieldPath(v string) *FieldRef {
-	o.fieldPath = &v
+// SetFieldPath gets a reference to the given string and assigns it to the fieldPath field.
+// FieldPath:  Specify the field path for env
+func (o *FieldRef) SetFieldPath(v string) *FieldRef {
+	o.FieldPath = &v
 	return o
 }
 
@@ -86,8 +86,8 @@ func (o FieldRef) MarshalJSON() ([]byte, error) {
 
 func (o FieldRef) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.fieldPath) {
-		toSerialize["fieldPath"] = o.fieldPath
+	if !utils.IsNil(o.FieldPath) {
+		toSerialize["fieldPath"] = o.FieldPath
 	}
 	return toSerialize, nil
 }

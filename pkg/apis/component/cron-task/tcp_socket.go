@@ -22,7 +22,7 @@ var _ utils.MappedNullable = &TcpSocket{}
 // TcpSocket Instructions for assessing container health by probing a TCP socket. Either this attribute or the exec attribute or the httpGet attribute MUST be specified. This attribute is mutually exclusive with both the exec attribute and the httpGet attribute.
 type TcpSocket struct {
 	// The TCP socket within the container that should be probed to assess container health.
-	port *int32 `json:"port,omitempty"`
+	Port *int32 `json:"port,omitempty"`
 }
 
 // NewTcpSocketWith instantiates a new TcpSocket object
@@ -44,35 +44,35 @@ func NewTcpSocket() *TcpSocket {
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *TcpSocket) GetPort() int32 {
-	if o == nil || utils.IsNil(o.port) {
+	if o == nil || utils.IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
-	return *o.port
+	return *o.Port
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TcpSocket) GetPortOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.port) {
+	if o == nil || utils.IsNil(o.Port) {
 		return nil, false
 	}
-	return o.port, true
+	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *TcpSocket) HasPort() bool {
-	if o != nil && !utils.IsNil(o.port) {
+	if o != nil && !utils.IsNil(o.Port) {
 		return true
 	}
 
 	return false
 }
 
-// Port gets a reference to the given int32 and assigns it to the port field.
-// port:  The TCP socket within the container that should be probed to assess container health.
-func (o *TcpSocket) Port(v int32) *TcpSocket {
-	o.port = &v
+// SetPort gets a reference to the given int32 and assigns it to the port field.
+// Port:  The TCP socket within the container that should be probed to assess container health.
+func (o *TcpSocket) SetPort(v int32) *TcpSocket {
+	o.Port = &v
 	return o
 }
 
@@ -86,8 +86,8 @@ func (o TcpSocket) MarshalJSON() ([]byte, error) {
 
 func (o TcpSocket) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.port) {
-		toSerialize["port"] = o.port
+	if !utils.IsNil(o.Port) {
+		toSerialize["port"] = o.Port
 	}
 	return toSerialize, nil
 }

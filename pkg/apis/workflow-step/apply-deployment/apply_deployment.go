@@ -27,8 +27,8 @@ var _ utils.MappedNullable = &ApplyDeploymentSpec{}
 
 // ApplyDeploymentSpec struct for ApplyDeploymentSpec
 type ApplyDeploymentSpec struct {
-	cmd   []string `json:"cmd,omitempty"`
-	image *string  `json:"image,omitempty"`
+	Cmd   []string `json:"cmd,omitempty"`
+	Image *string  `json:"image,omitempty"`
 }
 
 // NewApplyDeploymentSpecWith instantiates a new ApplyDeploymentSpec object
@@ -50,69 +50,69 @@ func NewApplyDeploymentSpec() *ApplyDeploymentSpec {
 
 // GetCmd returns the Cmd field value if set, zero value otherwise.
 func (o *ApplyDeploymentWorkflowStep) GetCmd() []string {
-	if o == nil || utils.IsNil(o.Properties.cmd) {
+	if o == nil || utils.IsNil(o.Properties.Cmd) {
 		var ret []string
 		return ret
 	}
-	return o.Properties.cmd
+	return o.Properties.Cmd
 }
 
 // GetCmdOk returns a tuple with the Cmd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplyDeploymentWorkflowStep) GetCmdOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.cmd) {
+	if o == nil || utils.IsNil(o.Properties.Cmd) {
 		return nil, false
 	}
-	return o.Properties.cmd, true
+	return o.Properties.Cmd, true
 }
 
 // HasCmd returns a boolean if a field has been set.
 func (o *ApplyDeploymentWorkflowStep) HasCmd() bool {
-	if o != nil && !utils.IsNil(o.Properties.cmd) {
+	if o != nil && !utils.IsNil(o.Properties.Cmd) {
 		return true
 	}
 
 	return false
 }
 
-// Cmd gets a reference to the given []string and assigns it to the cmd field.
-// cmd:
-func (o *ApplyDeploymentWorkflowStep) Cmd(v []string) *ApplyDeploymentWorkflowStep {
-	o.Properties.cmd = v
+// SetCmd gets a reference to the given []string and assigns it to the cmd field.
+// Cmd:
+func (o *ApplyDeploymentWorkflowStep) SetCmd(v []string) *ApplyDeploymentWorkflowStep {
+	o.Properties.Cmd = v
 	return o
 }
 
 // GetImage returns the Image field value if set, zero value otherwise.
 func (o *ApplyDeploymentWorkflowStep) GetImage() string {
-	if o == nil || utils.IsNil(o.Properties.image) {
+	if o == nil || utils.IsNil(o.Properties.Image) {
 		var ret string
 		return ret
 	}
-	return *o.Properties.image
+	return *o.Properties.Image
 }
 
 // GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplyDeploymentWorkflowStep) GetImageOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.image) {
+	if o == nil || utils.IsNil(o.Properties.Image) {
 		return nil, false
 	}
-	return o.Properties.image, true
+	return o.Properties.Image, true
 }
 
 // HasImage returns a boolean if a field has been set.
 func (o *ApplyDeploymentWorkflowStep) HasImage() bool {
-	if o != nil && !utils.IsNil(o.Properties.image) {
+	if o != nil && !utils.IsNil(o.Properties.Image) {
 		return true
 	}
 
 	return false
 }
 
-// Image gets a reference to the given string and assigns it to the image field.
-// image:
-func (o *ApplyDeploymentWorkflowStep) Image(v string) *ApplyDeploymentWorkflowStep {
-	o.Properties.image = &v
+// SetImage gets a reference to the given string and assigns it to the image field.
+// Image:
+func (o *ApplyDeploymentWorkflowStep) SetImage(v string) *ApplyDeploymentWorkflowStep {
+	o.Properties.Image = &v
 	return o
 }
 
@@ -126,11 +126,11 @@ func (o ApplyDeploymentSpec) MarshalJSON() ([]byte, error) {
 
 func (o ApplyDeploymentSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.cmd) {
-		toSerialize["cmd"] = o.cmd
+	if !utils.IsNil(o.Cmd) {
+		toSerialize["cmd"] = o.Cmd
 	}
-	if !utils.IsNil(o.image) {
-		toSerialize["image"] = o.image
+	if !utils.IsNil(o.Image) {
+		toSerialize["image"] = o.Image
 	}
 	return toSerialize, nil
 }

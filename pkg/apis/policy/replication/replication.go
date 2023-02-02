@@ -27,18 +27,17 @@ var _ utils.MappedNullable = &ReplicationSpec{}
 // ReplicationSpec struct for ReplicationSpec
 type ReplicationSpec struct {
 	// Spicify the keys of replication. Every key coresponds to a replication components
-	keys []string `json:"keys"`
+	Keys []string `json:"keys,omitempty"`
 	// Specify the components which will be replicated.
-	selector []string `json:"selector,omitempty"`
+	Selector []string `json:"selector,omitempty"`
 }
 
 // NewReplicationSpecWith instantiates a new ReplicationSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReplicationSpecWith(keys []string) *ReplicationSpec {
+func NewReplicationSpecWith() *ReplicationSpec {
 	this := ReplicationSpec{}
-	this.keys = keys
 	return &this
 }
 
@@ -50,62 +49,71 @@ func NewReplicationSpec() *ReplicationSpec {
 	return &this
 }
 
-// GetKeys returns the Keys field value
+// GetKeys returns the Keys field value if set, zero value otherwise.
 func (o *ReplicationPolicy) GetKeys() []string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Keys) {
 		var ret []string
 		return ret
 	}
-
-	return o.Properties.keys
+	return o.Properties.Keys
 }
 
-// GetKeysOk returns a tuple with the Keys field value
+// GetKeysOk returns a tuple with the Keys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReplicationPolicy) GetKeysOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Keys) {
 		return nil, false
 	}
-	return o.Properties.keys, true
+	return o.Properties.Keys, true
 }
 
-// Keys sets field value
-func (o *ReplicationPolicy) Keys(v []string) *ReplicationPolicy {
-	o.Properties.keys = v
-	return o
-}
-
-// GetSelector returns the Selector field value if set, zero value otherwise.
-func (o *ReplicationPolicy) GetSelector() []string {
-	if o == nil || utils.IsNil(o.Properties.selector) {
-		var ret []string
-		return ret
-	}
-	return o.Properties.selector
-}
-
-// GetSelectorOk returns a tuple with the Selector field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ReplicationPolicy) GetSelectorOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.selector) {
-		return nil, false
-	}
-	return o.Properties.selector, true
-}
-
-// HasSelector returns a boolean if a field has been set.
-func (o *ReplicationPolicy) HasSelector() bool {
-	if o != nil && !utils.IsNil(o.Properties.selector) {
+// HasKeys returns a boolean if a field has been set.
+func (o *ReplicationPolicy) HasKeys() bool {
+	if o != nil && !utils.IsNil(o.Properties.Keys) {
 		return true
 	}
 
 	return false
 }
 
-// Selector gets a reference to the given []string and assigns it to the selector field.
-// selector:  Specify the components which will be replicated.
-func (o *ReplicationPolicy) Selector(v []string) *ReplicationPolicy {
-	o.Properties.selector = v
+// SetKeys gets a reference to the given []string and assigns it to the keys field.
+// Keys:  Spicify the keys of replication. Every key coresponds to a replication components
+func (o *ReplicationPolicy) SetKeys(v []string) *ReplicationPolicy {
+	o.Properties.Keys = v
+	return o
+}
+
+// GetSelector returns the Selector field value if set, zero value otherwise.
+func (o *ReplicationPolicy) GetSelector() []string {
+	if o == nil || utils.IsNil(o.Properties.Selector) {
+		var ret []string
+		return ret
+	}
+	return o.Properties.Selector
+}
+
+// GetSelectorOk returns a tuple with the Selector field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ReplicationPolicy) GetSelectorOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Properties.Selector) {
+		return nil, false
+	}
+	return o.Properties.Selector, true
+}
+
+// HasSelector returns a boolean if a field has been set.
+func (o *ReplicationPolicy) HasSelector() bool {
+	if o != nil && !utils.IsNil(o.Properties.Selector) {
+		return true
+	}
+
+	return false
+}
+
+// SetSelector gets a reference to the given []string and assigns it to the selector field.
+// Selector:  Specify the components which will be replicated.
+func (o *ReplicationPolicy) SetSelector(v []string) *ReplicationPolicy {
+	o.Properties.Selector = v
 	return o
 }
 
@@ -119,9 +127,11 @@ func (o ReplicationSpec) MarshalJSON() ([]byte, error) {
 
 func (o ReplicationSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["keys"] = o.keys
-	if !utils.IsNil(o.selector) {
-		toSerialize["selector"] = o.selector
+	if !utils.IsNil(o.Keys) {
+		toSerialize["keys"] = o.Keys
+	}
+	if !utils.IsNil(o.Selector) {
+		toSerialize["selector"] = o.Selector
 	}
 	return toSerialize, nil
 }

@@ -27,9 +27,9 @@ var _ utils.MappedNullable = &OverrideSpec{}
 // OverrideSpec struct for OverrideSpec
 type OverrideSpec struct {
 	// Specify the overridden component configuration.
-	components []PatchParams `json:"components,omitempty"`
+	Components []PatchParams `json:"components,omitempty"`
 	// Specify a list of component names to use, if empty, all components will be selected.
-	selector []string `json:"selector,omitempty"`
+	Selector []string `json:"selector,omitempty"`
 }
 
 // NewOverrideSpecWith instantiates a new OverrideSpec object
@@ -51,69 +51,69 @@ func NewOverrideSpec() *OverrideSpec {
 
 // GetComponents returns the Components field value if set, zero value otherwise.
 func (o *OverridePolicy) GetComponents() []PatchParams {
-	if o == nil || utils.IsNil(o.Properties.components) {
+	if o == nil || utils.IsNil(o.Properties.Components) {
 		var ret []PatchParams
 		return ret
 	}
-	return o.Properties.components
+	return o.Properties.Components
 }
 
 // GetComponentsOk returns a tuple with the Components field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OverridePolicy) GetComponentsOk() ([]PatchParams, bool) {
-	if o == nil || utils.IsNil(o.Properties.components) {
+	if o == nil || utils.IsNil(o.Properties.Components) {
 		return nil, false
 	}
-	return o.Properties.components, true
+	return o.Properties.Components, true
 }
 
 // HasComponents returns a boolean if a field has been set.
 func (o *OverridePolicy) HasComponents() bool {
-	if o != nil && !utils.IsNil(o.Properties.components) {
+	if o != nil && !utils.IsNil(o.Properties.Components) {
 		return true
 	}
 
 	return false
 }
 
-// Components gets a reference to the given []PatchParams and assigns it to the components field.
-// components:  Specify the overridden component configuration.
-func (o *OverridePolicy) Components(v []PatchParams) *OverridePolicy {
-	o.Properties.components = v
+// SetComponents gets a reference to the given []PatchParams and assigns it to the components field.
+// Components:  Specify the overridden component configuration.
+func (o *OverridePolicy) SetComponents(v []PatchParams) *OverridePolicy {
+	o.Properties.Components = v
 	return o
 }
 
 // GetSelector returns the Selector field value if set, zero value otherwise.
 func (o *OverridePolicy) GetSelector() []string {
-	if o == nil || utils.IsNil(o.Properties.selector) {
+	if o == nil || utils.IsNil(o.Properties.Selector) {
 		var ret []string
 		return ret
 	}
-	return o.Properties.selector
+	return o.Properties.Selector
 }
 
 // GetSelectorOk returns a tuple with the Selector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OverridePolicy) GetSelectorOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Properties.selector) {
+	if o == nil || utils.IsNil(o.Properties.Selector) {
 		return nil, false
 	}
-	return o.Properties.selector, true
+	return o.Properties.Selector, true
 }
 
 // HasSelector returns a boolean if a field has been set.
 func (o *OverridePolicy) HasSelector() bool {
-	if o != nil && !utils.IsNil(o.Properties.selector) {
+	if o != nil && !utils.IsNil(o.Properties.Selector) {
 		return true
 	}
 
 	return false
 }
 
-// Selector gets a reference to the given []string and assigns it to the selector field.
-// selector:  Specify a list of component names to use, if empty, all components will be selected.
-func (o *OverridePolicy) Selector(v []string) *OverridePolicy {
-	o.Properties.selector = v
+// SetSelector gets a reference to the given []string and assigns it to the selector field.
+// Selector:  Specify a list of component names to use, if empty, all components will be selected.
+func (o *OverridePolicy) SetSelector(v []string) *OverridePolicy {
+	o.Properties.Selector = v
 	return o
 }
 
@@ -127,11 +127,11 @@ func (o OverrideSpec) MarshalJSON() ([]byte, error) {
 
 func (o OverrideSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.components) {
-		toSerialize["components"] = o.components
+	if !utils.IsNil(o.Components) {
+		toSerialize["components"] = o.Components
 	}
-	if !utils.IsNil(o.selector) {
-		toSerialize["selector"] = o.selector
+	if !utils.IsNil(o.Selector) {
+		toSerialize["selector"] = o.Selector
 	}
 	return toSerialize, nil
 }

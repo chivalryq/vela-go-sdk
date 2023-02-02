@@ -21,11 +21,11 @@ var _ utils.MappedNullable = &GCPProvider{}
 
 // GCPProvider struct for GCPProvider
 type GCPProvider struct {
-	credentials *string `json:"credentials,omitempty"`
-	name        *string `json:"name,omitempty"`
-	project     *string `json:"project,omitempty"`
-	region      *string `json:"region,omitempty"`
-	type_       *string `json:"type,omitempty"`
+	Credentials *string `json:"credentials,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	Project     *string `json:"project,omitempty"`
+	Region      *string `json:"region,omitempty"`
+	Type        *string `json:"type,omitempty"`
 }
 
 // NewGCPProviderWith instantiates a new GCPProvider object
@@ -35,7 +35,7 @@ type GCPProvider struct {
 func NewGCPProviderWith() *GCPProvider {
 	this := GCPProvider{}
 	var name string = "gcp-provider"
-	this.name = &name
+	this.Name = &name
 	return &this
 }
 
@@ -45,177 +45,177 @@ func NewGCPProviderWith() *GCPProvider {
 func NewGCPProvider() *GCPProvider {
 	this := GCPProvider{}
 	var name string = "gcp-provider"
-	this.name = &name
+	this.Name = &name
 	return &this
 }
 
 // GetCredentials returns the Credentials field value if set, zero value otherwise.
 func (o *GCPProvider) GetCredentials() string {
-	if o == nil || utils.IsNil(o.credentials) {
+	if o == nil || utils.IsNil(o.Credentials) {
 		var ret string
 		return ret
 	}
-	return *o.credentials
+	return *o.Credentials
 }
 
 // GetCredentialsOk returns a tuple with the Credentials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPProvider) GetCredentialsOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.credentials) {
+	if o == nil || utils.IsNil(o.Credentials) {
 		return nil, false
 	}
-	return o.credentials, true
+	return o.Credentials, true
 }
 
 // HasCredentials returns a boolean if a field has been set.
 func (o *GCPProvider) HasCredentials() bool {
-	if o != nil && !utils.IsNil(o.credentials) {
+	if o != nil && !utils.IsNil(o.Credentials) {
 		return true
 	}
 
 	return false
 }
 
-// Credentials gets a reference to the given string and assigns it to the credentials field.
-// credentials:
-func (o *GCPProvider) Credentials(v string) *GCPProvider {
-	o.credentials = &v
+// SetCredentials gets a reference to the given string and assigns it to the credentials field.
+// Credentials:
+func (o *GCPProvider) SetCredentials(v string) *GCPProvider {
+	o.Credentials = &v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GCPProvider) GetName() string {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.name
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPProvider) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GCPProvider) HasName() bool {
-	if o != nil && !utils.IsNil(o.name) {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:
-func (o *GCPProvider) Name(v string) *GCPProvider {
-	o.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:
+func (o *GCPProvider) SetName(v string) *GCPProvider {
+	o.Name = &v
 	return o
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *GCPProvider) GetProject() string {
-	if o == nil || utils.IsNil(o.project) {
+	if o == nil || utils.IsNil(o.Project) {
 		var ret string
 		return ret
 	}
-	return *o.project
+	return *o.Project
 }
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPProvider) GetProjectOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.project) {
+	if o == nil || utils.IsNil(o.Project) {
 		return nil, false
 	}
-	return o.project, true
+	return o.Project, true
 }
 
 // HasProject returns a boolean if a field has been set.
 func (o *GCPProvider) HasProject() bool {
-	if o != nil && !utils.IsNil(o.project) {
+	if o != nil && !utils.IsNil(o.Project) {
 		return true
 	}
 
 	return false
 }
 
-// Project gets a reference to the given string and assigns it to the project field.
-// project:
-func (o *GCPProvider) Project(v string) *GCPProvider {
-	o.project = &v
+// SetProject gets a reference to the given string and assigns it to the project field.
+// Project:
+func (o *GCPProvider) SetProject(v string) *GCPProvider {
+	o.Project = &v
 	return o
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *GCPProvider) GetRegion() string {
-	if o == nil || utils.IsNil(o.region) {
+	if o == nil || utils.IsNil(o.Region) {
 		var ret string
 		return ret
 	}
-	return *o.region
+	return *o.Region
 }
 
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPProvider) GetRegionOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.region) {
+	if o == nil || utils.IsNil(o.Region) {
 		return nil, false
 	}
-	return o.region, true
+	return o.Region, true
 }
 
 // HasRegion returns a boolean if a field has been set.
 func (o *GCPProvider) HasRegion() bool {
-	if o != nil && !utils.IsNil(o.region) {
+	if o != nil && !utils.IsNil(o.Region) {
 		return true
 	}
 
 	return false
 }
 
-// Region gets a reference to the given string and assigns it to the region field.
-// region:
-func (o *GCPProvider) Region(v string) *GCPProvider {
-	o.region = &v
+// SetRegion gets a reference to the given string and assigns it to the region field.
+// Region:
+func (o *GCPProvider) SetRegion(v string) *GCPProvider {
+	o.Region = &v
 	return o
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GCPProvider) GetType() string {
-	if o == nil || utils.IsNil(o.type_) {
+	if o == nil || utils.IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-	return *o.type_
+	return *o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPProvider) GetTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.type_) {
+	if o == nil || utils.IsNil(o.Type) {
 		return nil, false
 	}
-	return o.type_, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *GCPProvider) HasType() bool {
-	if o != nil && !utils.IsNil(o.type_) {
+	if o != nil && !utils.IsNil(o.Type) {
 		return true
 	}
 
 	return false
 }
 
-// Type gets a reference to the given string and assigns it to the type_ field.
-// type_:
-func (o *GCPProvider) Type(v string) *GCPProvider {
-	o.type_ = &v
+// SetType gets a reference to the given string and assigns it to the type_ field.
+// Type:
+func (o *GCPProvider) SetType(v string) *GCPProvider {
+	o.Type = &v
 	return o
 }
 
@@ -229,20 +229,20 @@ func (o GCPProvider) MarshalJSON() ([]byte, error) {
 
 func (o GCPProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.credentials) {
-		toSerialize["credentials"] = o.credentials
+	if !utils.IsNil(o.Credentials) {
+		toSerialize["credentials"] = o.Credentials
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if !utils.IsNil(o.project) {
-		toSerialize["project"] = o.project
+	if !utils.IsNil(o.Project) {
+		toSerialize["project"] = o.Project
 	}
-	if !utils.IsNil(o.region) {
-		toSerialize["region"] = o.region
+	if !utils.IsNil(o.Region) {
+		toSerialize["region"] = o.Region
 	}
-	if !utils.IsNil(o.type_) {
-		toSerialize["type"] = o.type_
+	if !utils.IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
 	return toSerialize, nil
 }

@@ -21,9 +21,9 @@ var _ utils.MappedNullable = &ProviderBasic{}
 
 // ProviderBasic struct for ProviderBasic
 type ProviderBasic struct {
-	accessKey *string `json:"accessKey,omitempty"`
-	region    *string `json:"region,omitempty"`
-	secretKey *string `json:"secretKey,omitempty"`
+	AccessKey *string `json:"accessKey,omitempty"`
+	Region    *string `json:"region,omitempty"`
+	SecretKey *string `json:"secretKey,omitempty"`
 }
 
 // NewProviderBasicWith instantiates a new ProviderBasic object
@@ -45,103 +45,103 @@ func NewProviderBasic() *ProviderBasic {
 
 // GetAccessKey returns the AccessKey field value if set, zero value otherwise.
 func (o *ProviderBasic) GetAccessKey() string {
-	if o == nil || utils.IsNil(o.accessKey) {
+	if o == nil || utils.IsNil(o.AccessKey) {
 		var ret string
 		return ret
 	}
-	return *o.accessKey
+	return *o.AccessKey
 }
 
 // GetAccessKeyOk returns a tuple with the AccessKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProviderBasic) GetAccessKeyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.accessKey) {
+	if o == nil || utils.IsNil(o.AccessKey) {
 		return nil, false
 	}
-	return o.accessKey, true
+	return o.AccessKey, true
 }
 
 // HasAccessKey returns a boolean if a field has been set.
 func (o *ProviderBasic) HasAccessKey() bool {
-	if o != nil && !utils.IsNil(o.accessKey) {
+	if o != nil && !utils.IsNil(o.AccessKey) {
 		return true
 	}
 
 	return false
 }
 
-// AccessKey gets a reference to the given string and assigns it to the accessKey field.
-// accessKey:
-func (o *ProviderBasic) AccessKey(v string) *ProviderBasic {
-	o.accessKey = &v
+// SetAccessKey gets a reference to the given string and assigns it to the accessKey field.
+// AccessKey:
+func (o *ProviderBasic) SetAccessKey(v string) *ProviderBasic {
+	o.AccessKey = &v
 	return o
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *ProviderBasic) GetRegion() string {
-	if o == nil || utils.IsNil(o.region) {
+	if o == nil || utils.IsNil(o.Region) {
 		var ret string
 		return ret
 	}
-	return *o.region
+	return *o.Region
 }
 
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProviderBasic) GetRegionOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.region) {
+	if o == nil || utils.IsNil(o.Region) {
 		return nil, false
 	}
-	return o.region, true
+	return o.Region, true
 }
 
 // HasRegion returns a boolean if a field has been set.
 func (o *ProviderBasic) HasRegion() bool {
-	if o != nil && !utils.IsNil(o.region) {
+	if o != nil && !utils.IsNil(o.Region) {
 		return true
 	}
 
 	return false
 }
 
-// Region gets a reference to the given string and assigns it to the region field.
-// region:
-func (o *ProviderBasic) Region(v string) *ProviderBasic {
-	o.region = &v
+// SetRegion gets a reference to the given string and assigns it to the region field.
+// Region:
+func (o *ProviderBasic) SetRegion(v string) *ProviderBasic {
+	o.Region = &v
 	return o
 }
 
 // GetSecretKey returns the SecretKey field value if set, zero value otherwise.
 func (o *ProviderBasic) GetSecretKey() string {
-	if o == nil || utils.IsNil(o.secretKey) {
+	if o == nil || utils.IsNil(o.SecretKey) {
 		var ret string
 		return ret
 	}
-	return *o.secretKey
+	return *o.SecretKey
 }
 
 // GetSecretKeyOk returns a tuple with the SecretKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProviderBasic) GetSecretKeyOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.secretKey) {
+	if o == nil || utils.IsNil(o.SecretKey) {
 		return nil, false
 	}
-	return o.secretKey, true
+	return o.SecretKey, true
 }
 
 // HasSecretKey returns a boolean if a field has been set.
 func (o *ProviderBasic) HasSecretKey() bool {
-	if o != nil && !utils.IsNil(o.secretKey) {
+	if o != nil && !utils.IsNil(o.SecretKey) {
 		return true
 	}
 
 	return false
 }
 
-// SecretKey gets a reference to the given string and assigns it to the secretKey field.
-// secretKey:
-func (o *ProviderBasic) SecretKey(v string) *ProviderBasic {
-	o.secretKey = &v
+// SetSecretKey gets a reference to the given string and assigns it to the secretKey field.
+// SecretKey:
+func (o *ProviderBasic) SetSecretKey(v string) *ProviderBasic {
+	o.SecretKey = &v
 	return o
 }
 
@@ -155,14 +155,14 @@ func (o ProviderBasic) MarshalJSON() ([]byte, error) {
 
 func (o ProviderBasic) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.accessKey) {
-		toSerialize["accessKey"] = o.accessKey
+	if !utils.IsNil(o.AccessKey) {
+		toSerialize["accessKey"] = o.AccessKey
 	}
-	if !utils.IsNil(o.region) {
-		toSerialize["region"] = o.region
+	if !utils.IsNil(o.Region) {
+		toSerialize["region"] = o.Region
 	}
-	if !utils.IsNil(o.secretKey) {
-		toSerialize["secretKey"] = o.secretKey
+	if !utils.IsNil(o.SecretKey) {
+		toSerialize["secretKey"] = o.SecretKey
 	}
 	return toSerialize, nil
 }

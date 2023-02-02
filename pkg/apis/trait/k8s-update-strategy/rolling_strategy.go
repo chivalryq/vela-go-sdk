@@ -21,9 +21,9 @@ var _ utils.MappedNullable = &RollingStrategy{}
 
 // RollingStrategy Specify the parameters of rollong update strategy
 type RollingStrategy struct {
-	maxSurge       *string `json:"maxSurge,omitempty"`
-	maxUnavailable *string `json:"maxUnavailable,omitempty"`
-	partition      *int32  `json:"partition,omitempty"`
+	MaxSurge       *string `json:"maxSurge,omitempty"`
+	MaxUnavailable *string `json:"maxUnavailable,omitempty"`
+	Partition      *int32  `json:"partition,omitempty"`
 }
 
 // NewRollingStrategyWith instantiates a new RollingStrategy object
@@ -33,11 +33,11 @@ type RollingStrategy struct {
 func NewRollingStrategyWith() *RollingStrategy {
 	this := RollingStrategy{}
 	var maxSurge string = "25%"
-	this.maxSurge = &maxSurge
+	this.MaxSurge = &maxSurge
 	var maxUnavailable string = "25%"
-	this.maxUnavailable = &maxUnavailable
+	this.MaxUnavailable = &maxUnavailable
 	var partition int32 = 0
-	this.partition = &partition
+	this.Partition = &partition
 	return &this
 }
 
@@ -47,113 +47,113 @@ func NewRollingStrategyWith() *RollingStrategy {
 func NewRollingStrategy() *RollingStrategy {
 	this := RollingStrategy{}
 	var maxSurge string = "25%"
-	this.maxSurge = &maxSurge
+	this.MaxSurge = &maxSurge
 	var maxUnavailable string = "25%"
-	this.maxUnavailable = &maxUnavailable
+	this.MaxUnavailable = &maxUnavailable
 	var partition int32 = 0
-	this.partition = &partition
+	this.Partition = &partition
 	return &this
 }
 
 // GetMaxSurge returns the MaxSurge field value if set, zero value otherwise.
 func (o *RollingStrategy) GetMaxSurge() string {
-	if o == nil || utils.IsNil(o.maxSurge) {
+	if o == nil || utils.IsNil(o.MaxSurge) {
 		var ret string
 		return ret
 	}
-	return *o.maxSurge
+	return *o.MaxSurge
 }
 
 // GetMaxSurgeOk returns a tuple with the MaxSurge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RollingStrategy) GetMaxSurgeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.maxSurge) {
+	if o == nil || utils.IsNil(o.MaxSurge) {
 		return nil, false
 	}
-	return o.maxSurge, true
+	return o.MaxSurge, true
 }
 
 // HasMaxSurge returns a boolean if a field has been set.
 func (o *RollingStrategy) HasMaxSurge() bool {
-	if o != nil && !utils.IsNil(o.maxSurge) {
+	if o != nil && !utils.IsNil(o.MaxSurge) {
 		return true
 	}
 
 	return false
 }
 
-// MaxSurge gets a reference to the given string and assigns it to the maxSurge field.
-// maxSurge:
-func (o *RollingStrategy) MaxSurge(v string) *RollingStrategy {
-	o.maxSurge = &v
+// SetMaxSurge gets a reference to the given string and assigns it to the maxSurge field.
+// MaxSurge:
+func (o *RollingStrategy) SetMaxSurge(v string) *RollingStrategy {
+	o.MaxSurge = &v
 	return o
 }
 
 // GetMaxUnavailable returns the MaxUnavailable field value if set, zero value otherwise.
 func (o *RollingStrategy) GetMaxUnavailable() string {
-	if o == nil || utils.IsNil(o.maxUnavailable) {
+	if o == nil || utils.IsNil(o.MaxUnavailable) {
 		var ret string
 		return ret
 	}
-	return *o.maxUnavailable
+	return *o.MaxUnavailable
 }
 
 // GetMaxUnavailableOk returns a tuple with the MaxUnavailable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RollingStrategy) GetMaxUnavailableOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.maxUnavailable) {
+	if o == nil || utils.IsNil(o.MaxUnavailable) {
 		return nil, false
 	}
-	return o.maxUnavailable, true
+	return o.MaxUnavailable, true
 }
 
 // HasMaxUnavailable returns a boolean if a field has been set.
 func (o *RollingStrategy) HasMaxUnavailable() bool {
-	if o != nil && !utils.IsNil(o.maxUnavailable) {
+	if o != nil && !utils.IsNil(o.MaxUnavailable) {
 		return true
 	}
 
 	return false
 }
 
-// MaxUnavailable gets a reference to the given string and assigns it to the maxUnavailable field.
-// maxUnavailable:
-func (o *RollingStrategy) MaxUnavailable(v string) *RollingStrategy {
-	o.maxUnavailable = &v
+// SetMaxUnavailable gets a reference to the given string and assigns it to the maxUnavailable field.
+// MaxUnavailable:
+func (o *RollingStrategy) SetMaxUnavailable(v string) *RollingStrategy {
+	o.MaxUnavailable = &v
 	return o
 }
 
 // GetPartition returns the Partition field value if set, zero value otherwise.
 func (o *RollingStrategy) GetPartition() int32 {
-	if o == nil || utils.IsNil(o.partition) {
+	if o == nil || utils.IsNil(o.Partition) {
 		var ret int32
 		return ret
 	}
-	return *o.partition
+	return *o.Partition
 }
 
 // GetPartitionOk returns a tuple with the Partition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RollingStrategy) GetPartitionOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.partition) {
+	if o == nil || utils.IsNil(o.Partition) {
 		return nil, false
 	}
-	return o.partition, true
+	return o.Partition, true
 }
 
 // HasPartition returns a boolean if a field has been set.
 func (o *RollingStrategy) HasPartition() bool {
-	if o != nil && !utils.IsNil(o.partition) {
+	if o != nil && !utils.IsNil(o.Partition) {
 		return true
 	}
 
 	return false
 }
 
-// Partition gets a reference to the given int32 and assigns it to the partition field.
-// partition:
-func (o *RollingStrategy) Partition(v int32) *RollingStrategy {
-	o.partition = &v
+// SetPartition gets a reference to the given int32 and assigns it to the partition field.
+// Partition:
+func (o *RollingStrategy) SetPartition(v int32) *RollingStrategy {
+	o.Partition = &v
 	return o
 }
 
@@ -167,14 +167,14 @@ func (o RollingStrategy) MarshalJSON() ([]byte, error) {
 
 func (o RollingStrategy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.maxSurge) {
-		toSerialize["maxSurge"] = o.maxSurge
+	if !utils.IsNil(o.MaxSurge) {
+		toSerialize["maxSurge"] = o.MaxSurge
 	}
-	if !utils.IsNil(o.maxUnavailable) {
-		toSerialize["maxUnavailable"] = o.maxUnavailable
+	if !utils.IsNil(o.MaxUnavailable) {
+		toSerialize["maxUnavailable"] = o.MaxUnavailable
 	}
-	if !utils.IsNil(o.partition) {
-		toSerialize["partition"] = o.partition
+	if !utils.IsNil(o.Partition) {
+		toSerialize["partition"] = o.Partition
 	}
 	return toSerialize, nil
 }

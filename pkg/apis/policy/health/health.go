@@ -27,19 +27,21 @@ var _ utils.MappedNullable = &HealthSpec{}
 // HealthSpec struct for HealthSpec
 type HealthSpec struct {
 	// Specify health checking interval(seconds), default 30s
-	probeInterval int32 `json:"probeInterval"`
+	ProbeInterval *int32 `json:"probeInterval,omitempty"`
 	// Specify health checking timeout(seconds), default 10s
-	probeTimeout int32 `json:"probeTimeout"`
+	ProbeTimeout *int32 `json:"probeTimeout,omitempty"`
 }
 
 // NewHealthSpecWith instantiates a new HealthSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHealthSpecWith(probeInterval int32, probeTimeout int32) *HealthSpec {
+func NewHealthSpecWith() *HealthSpec {
 	this := HealthSpec{}
-	this.probeInterval = probeInterval
-	this.probeTimeout = probeTimeout
+	var probeInterval int32 = 30
+	this.ProbeInterval = &probeInterval
+	var probeTimeout int32 = 10
+	this.ProbeTimeout = &probeTimeout
 	return &this
 }
 
@@ -49,59 +51,77 @@ func NewHealthSpecWith(probeInterval int32, probeTimeout int32) *HealthSpec {
 func NewHealthSpec() *HealthSpec {
 	this := HealthSpec{}
 	var probeInterval int32 = 30
-	this.probeInterval = probeInterval
+	this.ProbeInterval = &probeInterval
 	var probeTimeout int32 = 10
-	this.probeTimeout = probeTimeout
+	this.ProbeTimeout = &probeTimeout
 	return &this
 }
 
-// GetProbeInterval returns the ProbeInterval field value
+// GetProbeInterval returns the ProbeInterval field value if set, zero value otherwise.
 func (o *HealthPolicy) GetProbeInterval() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.ProbeInterval) {
 		var ret int32
 		return ret
 	}
-
-	return o.Properties.probeInterval
+	return *o.Properties.ProbeInterval
 }
 
-// GetProbeIntervalOk returns a tuple with the ProbeInterval field value
+// GetProbeIntervalOk returns a tuple with the ProbeInterval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HealthPolicy) GetProbeIntervalOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.ProbeInterval) {
 		return nil, false
 	}
-	return &o.Properties.probeInterval, true
+	return o.Properties.ProbeInterval, true
 }
 
-// ProbeInterval sets field value
-func (o *HealthPolicy) ProbeInterval(v int32) *HealthPolicy {
-	o.Properties.probeInterval = v
+// HasProbeInterval returns a boolean if a field has been set.
+func (o *HealthPolicy) HasProbeInterval() bool {
+	if o != nil && !utils.IsNil(o.Properties.ProbeInterval) {
+		return true
+	}
+
+	return false
+}
+
+// SetProbeInterval gets a reference to the given int32 and assigns it to the probeInterval field.
+// ProbeInterval:  Specify health checking interval(seconds), default 30s
+func (o *HealthPolicy) SetProbeInterval(v int32) *HealthPolicy {
+	o.Properties.ProbeInterval = &v
 	return o
 }
 
-// GetProbeTimeout returns the ProbeTimeout field value
+// GetProbeTimeout returns the ProbeTimeout field value if set, zero value otherwise.
 func (o *HealthPolicy) GetProbeTimeout() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.ProbeTimeout) {
 		var ret int32
 		return ret
 	}
-
-	return o.Properties.probeTimeout
+	return *o.Properties.ProbeTimeout
 }
 
-// GetProbeTimeoutOk returns a tuple with the ProbeTimeout field value
+// GetProbeTimeoutOk returns a tuple with the ProbeTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HealthPolicy) GetProbeTimeoutOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.ProbeTimeout) {
 		return nil, false
 	}
-	return &o.Properties.probeTimeout, true
+	return o.Properties.ProbeTimeout, true
 }
 
-// ProbeTimeout sets field value
-func (o *HealthPolicy) ProbeTimeout(v int32) *HealthPolicy {
-	o.Properties.probeTimeout = v
+// HasProbeTimeout returns a boolean if a field has been set.
+func (o *HealthPolicy) HasProbeTimeout() bool {
+	if o != nil && !utils.IsNil(o.Properties.ProbeTimeout) {
+		return true
+	}
+
+	return false
+}
+
+// SetProbeTimeout gets a reference to the given int32 and assigns it to the probeTimeout field.
+// ProbeTimeout:  Specify health checking timeout(seconds), default 10s
+func (o *HealthPolicy) SetProbeTimeout(v int32) *HealthPolicy {
+	o.Properties.ProbeTimeout = &v
 	return o
 }
 
@@ -115,8 +135,12 @@ func (o HealthSpec) MarshalJSON() ([]byte, error) {
 
 func (o HealthSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["probeInterval"] = o.probeInterval
-	toSerialize["probeTimeout"] = o.probeTimeout
+	if !utils.IsNil(o.ProbeInterval) {
+		toSerialize["probeInterval"] = o.ProbeInterval
+	}
+	if !utils.IsNil(o.ProbeTimeout) {
+		toSerialize["probeTimeout"] = o.ProbeTimeout
+	}
 	return toSerialize, nil
 }
 

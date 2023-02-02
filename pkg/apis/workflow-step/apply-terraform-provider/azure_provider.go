@@ -21,11 +21,11 @@ var _ utils.MappedNullable = &AzureProvider{}
 
 // AzureProvider struct for AzureProvider
 type AzureProvider struct {
-	clientID       *string `json:"clientID,omitempty"`
-	clientSecret   *string `json:"clientSecret,omitempty"`
-	name           *string `json:"name,omitempty"`
-	subscriptionID *string `json:"subscriptionID,omitempty"`
-	tenantID       *string `json:"tenantID,omitempty"`
+	ClientID       *string `json:"clientID,omitempty"`
+	ClientSecret   *string `json:"clientSecret,omitempty"`
+	Name           *string `json:"name,omitempty"`
+	SubscriptionID *string `json:"subscriptionID,omitempty"`
+	TenantID       *string `json:"tenantID,omitempty"`
 }
 
 // NewAzureProviderWith instantiates a new AzureProvider object
@@ -35,7 +35,7 @@ type AzureProvider struct {
 func NewAzureProviderWith() *AzureProvider {
 	this := AzureProvider{}
 	var name string = "azure-provider"
-	this.name = &name
+	this.Name = &name
 	return &this
 }
 
@@ -45,177 +45,177 @@ func NewAzureProviderWith() *AzureProvider {
 func NewAzureProvider() *AzureProvider {
 	this := AzureProvider{}
 	var name string = "azure-provider"
-	this.name = &name
+	this.Name = &name
 	return &this
 }
 
 // GetClientID returns the ClientID field value if set, zero value otherwise.
 func (o *AzureProvider) GetClientID() string {
-	if o == nil || utils.IsNil(o.clientID) {
+	if o == nil || utils.IsNil(o.ClientID) {
 		var ret string
 		return ret
 	}
-	return *o.clientID
+	return *o.ClientID
 }
 
 // GetClientIDOk returns a tuple with the ClientID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureProvider) GetClientIDOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.clientID) {
+	if o == nil || utils.IsNil(o.ClientID) {
 		return nil, false
 	}
-	return o.clientID, true
+	return o.ClientID, true
 }
 
 // HasClientID returns a boolean if a field has been set.
 func (o *AzureProvider) HasClientID() bool {
-	if o != nil && !utils.IsNil(o.clientID) {
+	if o != nil && !utils.IsNil(o.ClientID) {
 		return true
 	}
 
 	return false
 }
 
-// ClientID gets a reference to the given string and assigns it to the clientID field.
-// clientID:
-func (o *AzureProvider) ClientID(v string) *AzureProvider {
-	o.clientID = &v
+// SetClientID gets a reference to the given string and assigns it to the clientID field.
+// ClientID:
+func (o *AzureProvider) SetClientID(v string) *AzureProvider {
+	o.ClientID = &v
 	return o
 }
 
 // GetClientSecret returns the ClientSecret field value if set, zero value otherwise.
 func (o *AzureProvider) GetClientSecret() string {
-	if o == nil || utils.IsNil(o.clientSecret) {
+	if o == nil || utils.IsNil(o.ClientSecret) {
 		var ret string
 		return ret
 	}
-	return *o.clientSecret
+	return *o.ClientSecret
 }
 
 // GetClientSecretOk returns a tuple with the ClientSecret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureProvider) GetClientSecretOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.clientSecret) {
+	if o == nil || utils.IsNil(o.ClientSecret) {
 		return nil, false
 	}
-	return o.clientSecret, true
+	return o.ClientSecret, true
 }
 
 // HasClientSecret returns a boolean if a field has been set.
 func (o *AzureProvider) HasClientSecret() bool {
-	if o != nil && !utils.IsNil(o.clientSecret) {
+	if o != nil && !utils.IsNil(o.ClientSecret) {
 		return true
 	}
 
 	return false
 }
 
-// ClientSecret gets a reference to the given string and assigns it to the clientSecret field.
-// clientSecret:
-func (o *AzureProvider) ClientSecret(v string) *AzureProvider {
-	o.clientSecret = &v
+// SetClientSecret gets a reference to the given string and assigns it to the clientSecret field.
+// ClientSecret:
+func (o *AzureProvider) SetClientSecret(v string) *AzureProvider {
+	o.ClientSecret = &v
 	return o
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *AzureProvider) GetName() string {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.name
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureProvider) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *AzureProvider) HasName() bool {
-	if o != nil && !utils.IsNil(o.name) {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:
-func (o *AzureProvider) Name(v string) *AzureProvider {
-	o.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:
+func (o *AzureProvider) SetName(v string) *AzureProvider {
+	o.Name = &v
 	return o
 }
 
 // GetSubscriptionID returns the SubscriptionID field value if set, zero value otherwise.
 func (o *AzureProvider) GetSubscriptionID() string {
-	if o == nil || utils.IsNil(o.subscriptionID) {
+	if o == nil || utils.IsNil(o.SubscriptionID) {
 		var ret string
 		return ret
 	}
-	return *o.subscriptionID
+	return *o.SubscriptionID
 }
 
 // GetSubscriptionIDOk returns a tuple with the SubscriptionID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureProvider) GetSubscriptionIDOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.subscriptionID) {
+	if o == nil || utils.IsNil(o.SubscriptionID) {
 		return nil, false
 	}
-	return o.subscriptionID, true
+	return o.SubscriptionID, true
 }
 
 // HasSubscriptionID returns a boolean if a field has been set.
 func (o *AzureProvider) HasSubscriptionID() bool {
-	if o != nil && !utils.IsNil(o.subscriptionID) {
+	if o != nil && !utils.IsNil(o.SubscriptionID) {
 		return true
 	}
 
 	return false
 }
 
-// SubscriptionID gets a reference to the given string and assigns it to the subscriptionID field.
-// subscriptionID:
-func (o *AzureProvider) SubscriptionID(v string) *AzureProvider {
-	o.subscriptionID = &v
+// SetSubscriptionID gets a reference to the given string and assigns it to the subscriptionID field.
+// SubscriptionID:
+func (o *AzureProvider) SetSubscriptionID(v string) *AzureProvider {
+	o.SubscriptionID = &v
 	return o
 }
 
 // GetTenantID returns the TenantID field value if set, zero value otherwise.
 func (o *AzureProvider) GetTenantID() string {
-	if o == nil || utils.IsNil(o.tenantID) {
+	if o == nil || utils.IsNil(o.TenantID) {
 		var ret string
 		return ret
 	}
-	return *o.tenantID
+	return *o.TenantID
 }
 
 // GetTenantIDOk returns a tuple with the TenantID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureProvider) GetTenantIDOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.tenantID) {
+	if o == nil || utils.IsNil(o.TenantID) {
 		return nil, false
 	}
-	return o.tenantID, true
+	return o.TenantID, true
 }
 
 // HasTenantID returns a boolean if a field has been set.
 func (o *AzureProvider) HasTenantID() bool {
-	if o != nil && !utils.IsNil(o.tenantID) {
+	if o != nil && !utils.IsNil(o.TenantID) {
 		return true
 	}
 
 	return false
 }
 
-// TenantID gets a reference to the given string and assigns it to the tenantID field.
-// tenantID:
-func (o *AzureProvider) TenantID(v string) *AzureProvider {
-	o.tenantID = &v
+// SetTenantID gets a reference to the given string and assigns it to the tenantID field.
+// TenantID:
+func (o *AzureProvider) SetTenantID(v string) *AzureProvider {
+	o.TenantID = &v
 	return o
 }
 
@@ -229,20 +229,20 @@ func (o AzureProvider) MarshalJSON() ([]byte, error) {
 
 func (o AzureProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.clientID) {
-		toSerialize["clientID"] = o.clientID
+	if !utils.IsNil(o.ClientID) {
+		toSerialize["clientID"] = o.ClientID
 	}
-	if !utils.IsNil(o.clientSecret) {
-		toSerialize["clientSecret"] = o.clientSecret
+	if !utils.IsNil(o.ClientSecret) {
+		toSerialize["clientSecret"] = o.ClientSecret
 	}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if !utils.IsNil(o.subscriptionID) {
-		toSerialize["subscriptionID"] = o.subscriptionID
+	if !utils.IsNil(o.SubscriptionID) {
+		toSerialize["subscriptionID"] = o.SubscriptionID
 	}
-	if !utils.IsNil(o.tenantID) {
-		toSerialize["tenantID"] = o.tenantID
+	if !utils.IsNil(o.TenantID) {
+		toSerialize["tenantID"] = o.TenantID
 	}
 	return toSerialize, nil
 }

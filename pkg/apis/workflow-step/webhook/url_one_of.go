@@ -21,7 +21,7 @@ var _ utils.MappedNullable = &UrlOneOf{}
 
 // UrlOneOf struct for UrlOneOf
 type UrlOneOf struct {
-	value string `json:"value"`
+	Value string `json:"value"`
 }
 
 // NewUrlOneOfWith instantiates a new UrlOneOf object
@@ -30,7 +30,7 @@ type UrlOneOf struct {
 // will change when the set of required properties is changed
 func NewUrlOneOfWith(value string) *UrlOneOf {
 	this := UrlOneOf{}
-	this.value = value
+	this.Value = value
 	return &this
 }
 
@@ -49,7 +49,7 @@ func (o *UrlOneOf) GetValue() string {
 		return ret
 	}
 
-	return o.value
+	return o.Value
 }
 
 // GetValueOk returns a tuple with the Value field value
@@ -58,12 +58,12 @@ func (o *UrlOneOf) GetValueOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.value, true
+	return &o.Value, true
 }
 
-// Value sets field value
-func (o *UrlOneOf) Value(v string) *UrlOneOf {
-	o.value = v
+// SetValue sets field value
+func (o *UrlOneOf) SetValue(v string) *UrlOneOf {
+	o.Value = v
 	return o
 }
 
@@ -77,7 +77,7 @@ func (o UrlOneOf) MarshalJSON() ([]byte, error) {
 
 func (o UrlOneOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["value"] = o.value
+	toSerialize["value"] = o.Value
 	return toSerialize, nil
 }
 

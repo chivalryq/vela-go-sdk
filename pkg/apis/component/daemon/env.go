@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &Env{}
 // Env struct for Env
 type Env struct {
 	// Environment variable name
-	name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	// The value of the environment variable
-	value     *string    `json:"value,omitempty"`
-	valueFrom *ValueFrom `json:"valueFrom,omitempty"`
+	Value     *string    `json:"value,omitempty"`
+	ValueFrom *ValueFrom `json:"valueFrom,omitempty"`
 }
 
 // NewEnvWith instantiates a new Env object
@@ -47,103 +47,103 @@ func NewEnv() *Env {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Env) GetName() string {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.name
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Env) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.name) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Env) HasName() bool {
-	if o != nil && !utils.IsNil(o.name) {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// Name gets a reference to the given string and assigns it to the name field.
-// name:  Environment variable name
-func (o *Env) Name(v string) *Env {
-	o.name = &v
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:  Environment variable name
+func (o *Env) SetName(v string) *Env {
+	o.Name = &v
 	return o
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *Env) GetValue() string {
-	if o == nil || utils.IsNil(o.value) {
+	if o == nil || utils.IsNil(o.Value) {
 		var ret string
 		return ret
 	}
-	return *o.value
+	return *o.Value
 }
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Env) GetValueOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.value) {
+	if o == nil || utils.IsNil(o.Value) {
 		return nil, false
 	}
-	return o.value, true
+	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
 func (o *Env) HasValue() bool {
-	if o != nil && !utils.IsNil(o.value) {
+	if o != nil && !utils.IsNil(o.Value) {
 		return true
 	}
 
 	return false
 }
 
-// Value gets a reference to the given string and assigns it to the value field.
-// value:  The value of the environment variable
-func (o *Env) Value(v string) *Env {
-	o.value = &v
+// SetValue gets a reference to the given string and assigns it to the value field.
+// Value:  The value of the environment variable
+func (o *Env) SetValue(v string) *Env {
+	o.Value = &v
 	return o
 }
 
 // GetValueFrom returns the ValueFrom field value if set, zero value otherwise.
 func (o *Env) GetValueFrom() ValueFrom {
-	if o == nil || utils.IsNil(o.valueFrom) {
+	if o == nil || utils.IsNil(o.ValueFrom) {
 		var ret ValueFrom
 		return ret
 	}
-	return *o.valueFrom
+	return *o.ValueFrom
 }
 
 // GetValueFromOk returns a tuple with the ValueFrom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Env) GetValueFromOk() (*ValueFrom, bool) {
-	if o == nil || utils.IsNil(o.valueFrom) {
+	if o == nil || utils.IsNil(o.ValueFrom) {
 		return nil, false
 	}
-	return o.valueFrom, true
+	return o.ValueFrom, true
 }
 
 // HasValueFrom returns a boolean if a field has been set.
 func (o *Env) HasValueFrom() bool {
-	if o != nil && !utils.IsNil(o.valueFrom) {
+	if o != nil && !utils.IsNil(o.ValueFrom) {
 		return true
 	}
 
 	return false
 }
 
-// ValueFrom gets a reference to the given ValueFrom and assigns it to the valueFrom field.
-// valueFrom:
-func (o *Env) ValueFrom(v ValueFrom) *Env {
-	o.valueFrom = &v
+// SetValueFrom gets a reference to the given ValueFrom and assigns it to the valueFrom field.
+// ValueFrom:
+func (o *Env) SetValueFrom(v ValueFrom) *Env {
+	o.ValueFrom = &v
 	return o
 }
 
@@ -157,14 +157,14 @@ func (o Env) MarshalJSON() ([]byte, error) {
 
 func (o Env) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.name) {
-		toSerialize["name"] = o.name
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if !utils.IsNil(o.value) {
-		toSerialize["value"] = o.value
+	if !utils.IsNil(o.Value) {
+		toSerialize["value"] = o.Value
 	}
-	if !utils.IsNil(o.valueFrom) {
-		toSerialize["valueFrom"] = o.valueFrom
+	if !utils.IsNil(o.ValueFrom) {
+		toSerialize["valueFrom"] = o.ValueFrom
 	}
 	return toSerialize, nil
 }

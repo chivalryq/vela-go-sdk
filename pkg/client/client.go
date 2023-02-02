@@ -43,10 +43,6 @@ func New(config *rest.Config) (Client, error) {
 	return NewFromClient(clt), nil
 }
 
-func NewFromConfig(config *rest.Config) (Client, error) {
-	return New(config)
-}
-
 func NewDefault() (Client, error) {
 	restConf, err := config.GetConfig()
 	if err != nil {
@@ -54,6 +50,19 @@ func NewDefault() (Client, error) {
 	}
 
 	return New(restConf)
+}
+
+func NewDefaultOrDie() Client {
+	restConf, err := config.GetConfig()
+	if err != nil {
+		panic(err)
+	}
+
+	clt, err := New(restConf)
+	if err != nil {
+		panic(err)
+	}
+	return clt
 }
 
 func NewFromConfigWithOptions(config *rest.Config, options client.Options) (Client, error) {
