@@ -164,6 +164,7 @@ func (t *TopologyspreadconstraintsTrait) FromTrait(from common.ApplicationTrait)
 			return nil, err
 		}
 	}
+	t.Base.Type = TopologyspreadconstraintsType
 	t.Properties = properties
 	return t, nil
 }

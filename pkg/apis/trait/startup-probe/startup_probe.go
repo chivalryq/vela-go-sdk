@@ -184,6 +184,7 @@ func (s *StartupProbeTrait) FromTrait(from common.ApplicationTrait) (*StartupPro
 			return nil, err
 		}
 	}
+	s.Base.Type = StartupProbeType
 	s.Properties = properties
 	return s, nil
 }

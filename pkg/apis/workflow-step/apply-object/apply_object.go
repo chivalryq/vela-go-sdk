@@ -244,6 +244,7 @@ func (a *ApplyObjectWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*
 	a.Base.If = from.If
 	a.Base.Timeout = from.Timeout
 	a.Base.Meta = from.Meta
+	a.Base.Type = ApplyObjectType
 	a.Properties = properties
 	a.Base.SubSteps = subSteps
 	return a, nil
@@ -269,6 +270,7 @@ func (a *ApplyObjectWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubSte
 	a.Base.If = from.If
 	a.Base.Timeout = from.Timeout
 	a.Base.Meta = from.Meta
+	a.Base.Type = ApplyObjectType
 	a.Properties = properties
 	return a, nil
 }
@@ -276,6 +278,14 @@ func (a *ApplyObjectWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubSte
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	a := &ApplyObjectWorkflowStep{}
 	return a.FromWorkflowSubStep(from)
+}
+
+func (a *ApplyObjectWorkflowStep) WorkflowStepName() string {
+	return a.Base.Name
+}
+
+func (a *ApplyObjectWorkflowStep) DefType() string {
+	return ApplyObjectType
 }
 
 func (a *ApplyObjectWorkflowStep) If(_if string) *ApplyObjectWorkflowStep {
@@ -306,12 +316,4 @@ func (a *ApplyObjectWorkflowStep) Inputs(input common.StepInputs) *ApplyObjectWo
 func (a *ApplyObjectWorkflowStep) Outputs(output common.StepOutputs) *ApplyObjectWorkflowStep {
 	a.Base.Outputs = output
 	return a
-}
-
-func (a *ApplyObjectWorkflowStep) DefName() string {
-	return a.Base.Name
-}
-
-func (a *ApplyObjectWorkflowStep) DefType() string {
-	return ApplyObjectType
 }

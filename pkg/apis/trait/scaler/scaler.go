@@ -169,6 +169,7 @@ func (s *ScalerTrait) FromTrait(from common.ApplicationTrait) (*ScalerTrait, err
 			return nil, err
 		}
 	}
+	s.Base.Type = ScalerType
 	s.Properties = properties
 	return s, nil
 }

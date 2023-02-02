@@ -200,6 +200,7 @@ func (p *PrintMessageInStatusWorkflowStep) FromWorkflowStep(from v1beta1.Workflo
 	p.Base.If = from.If
 	p.Base.Timeout = from.Timeout
 	p.Base.Meta = from.Meta
+	p.Base.Type = PrintMessageInStatusType
 	p.Properties = properties
 	p.Base.SubSteps = subSteps
 	return p, nil
@@ -225,6 +226,7 @@ func (p *PrintMessageInStatusWorkflowStep) FromWorkflowSubStep(from common.Workf
 	p.Base.If = from.If
 	p.Base.Timeout = from.Timeout
 	p.Base.Meta = from.Meta
+	p.Base.Type = PrintMessageInStatusType
 	p.Properties = properties
 	return p, nil
 }
@@ -232,6 +234,14 @@ func (p *PrintMessageInStatusWorkflowStep) FromWorkflowSubStep(from common.Workf
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	p := &PrintMessageInStatusWorkflowStep{}
 	return p.FromWorkflowSubStep(from)
+}
+
+func (p *PrintMessageInStatusWorkflowStep) WorkflowStepName() string {
+	return p.Base.Name
+}
+
+func (p *PrintMessageInStatusWorkflowStep) DefType() string {
+	return PrintMessageInStatusType
 }
 
 func (p *PrintMessageInStatusWorkflowStep) If(_if string) *PrintMessageInStatusWorkflowStep {
@@ -262,12 +272,4 @@ func (p *PrintMessageInStatusWorkflowStep) Inputs(input common.StepInputs) *Prin
 func (p *PrintMessageInStatusWorkflowStep) Outputs(output common.StepOutputs) *PrintMessageInStatusWorkflowStep {
 	p.Base.Outputs = output
 	return p
-}
-
-func (p *PrintMessageInStatusWorkflowStep) DefName() string {
-	return p.Base.Name
-}
-
-func (p *PrintMessageInStatusWorkflowStep) DefType() string {
-	return PrintMessageInStatusType
 }

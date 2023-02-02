@@ -712,6 +712,7 @@ func (n *NocalhostTrait) FromTrait(from common.ApplicationTrait) (*NocalhostTrai
 			return nil, err
 		}
 	}
+	n.Base.Type = NocalhostType
 	n.Properties = properties
 	return n, nil
 }

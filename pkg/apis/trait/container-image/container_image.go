@@ -184,6 +184,7 @@ func (c *ContainerImageTrait) FromTrait(from common.ApplicationTrait) (*Containe
 			return nil, err
 		}
 	}
+	c.Base.Type = ContainerImageType
 	c.Properties = properties
 	return c, nil
 }

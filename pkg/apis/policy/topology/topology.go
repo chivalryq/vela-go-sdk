@@ -326,6 +326,7 @@ func (t *TopologyPolicy) FromPolicy(from v1beta1.AppPolicy) (*TopologyPolicy, er
 		}
 	}
 	t.Base.Name = from.Name
+	t.Base.Type = TopologyType
 	t.Properties = properties
 	return t, nil
 }

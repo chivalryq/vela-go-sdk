@@ -853,6 +853,7 @@ func (d *DaemonComponent) FromComponent(from common.ApplicationComponent) (*Daem
 	d.Base.DependsOn = from.DependsOn
 	d.Base.Inputs = from.Inputs
 	d.Base.Outputs = from.Outputs
+	d.Base.Type = DaemonType
 	d.Properties = properties
 	return d, nil
 }
@@ -867,10 +868,39 @@ func (d *DaemonComponent) AddTrait(traits ...apis.Trait) *DaemonComponent {
 	return d
 }
 
-func (d *DaemonComponent) DefName() string {
+func (d *DaemonComponent) GetTrait(_type string) apis.Trait {
+	for _, _t := range d.Base.Traits {
+		if _t.DefType() == _type {
+			return _t
+		}
+	}
+	return nil
+}
+
+func (d *DaemonComponent) ComponentName() string {
 	return d.Base.Name
 }
 
 func (d *DaemonComponent) DefType() string {
 	return DaemonType
+}
+
+func (d *DaemonComponent) DependsOn(dependsOn []string) *DaemonComponent {
+	d.Base.DependsOn = dependsOn
+	return d
+}
+
+func (d *DaemonComponent) Inputs(input common.StepInputs) *DaemonComponent {
+	d.Base.Inputs = input
+	return d
+}
+
+func (d *DaemonComponent) Outputs(output common.StepOutputs) *DaemonComponent {
+	d.Base.Outputs = output
+	return d
+}
+
+func (d *DaemonComponent) AddDependsOn(dependsOn string) *DaemonComponent {
+	d.Base.DependsOn = append(d.Base.DependsOn, dependsOn)
+	return d
 }

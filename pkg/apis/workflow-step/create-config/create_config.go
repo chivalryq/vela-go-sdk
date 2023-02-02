@@ -318,6 +318,7 @@ func (c *CreateConfigWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (
 	c.Base.If = from.If
 	c.Base.Timeout = from.Timeout
 	c.Base.Meta = from.Meta
+	c.Base.Type = CreateConfigType
 	c.Properties = properties
 	c.Base.SubSteps = subSteps
 	return c, nil
@@ -343,6 +344,7 @@ func (c *CreateConfigWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubSt
 	c.Base.If = from.If
 	c.Base.Timeout = from.Timeout
 	c.Base.Meta = from.Meta
+	c.Base.Type = CreateConfigType
 	c.Properties = properties
 	return c, nil
 }
@@ -350,6 +352,14 @@ func (c *CreateConfigWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubSt
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	c := &CreateConfigWorkflowStep{}
 	return c.FromWorkflowSubStep(from)
+}
+
+func (c *CreateConfigWorkflowStep) WorkflowStepName() string {
+	return c.Base.Name
+}
+
+func (c *CreateConfigWorkflowStep) DefType() string {
+	return CreateConfigType
 }
 
 func (c *CreateConfigWorkflowStep) If(_if string) *CreateConfigWorkflowStep {
@@ -380,12 +390,4 @@ func (c *CreateConfigWorkflowStep) Inputs(input common.StepInputs) *CreateConfig
 func (c *CreateConfigWorkflowStep) Outputs(output common.StepOutputs) *CreateConfigWorkflowStep {
 	c.Base.Outputs = output
 	return c
-}
-
-func (c *CreateConfigWorkflowStep) DefName() string {
-	return c.Base.Name
-}
-
-func (c *CreateConfigWorkflowStep) DefType() string {
-	return CreateConfigType
 }

@@ -126,6 +126,7 @@ func (a *AnnotationsTrait) FromTrait(from common.ApplicationTrait) (*Annotations
 			return nil, err
 		}
 	}
+	a.Base.Type = AnnotationsType
 	a.Properties = properties
 	return a, nil
 }

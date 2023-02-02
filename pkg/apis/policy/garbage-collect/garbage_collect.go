@@ -201,6 +201,7 @@ func (g *GarbageCollectPolicy) FromPolicy(from v1beta1.AppPolicy) (*GarbageColle
 		}
 	}
 	g.Base.Name = from.Name
+	g.Base.Type = GarbageCollectType
 	g.Properties = properties
 	return g, nil
 }

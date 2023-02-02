@@ -240,6 +240,7 @@ func (r *ReadConfigWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*R
 	r.Base.If = from.If
 	r.Base.Timeout = from.Timeout
 	r.Base.Meta = from.Meta
+	r.Base.Type = ReadConfigType
 	r.Properties = properties
 	r.Base.SubSteps = subSteps
 	return r, nil
@@ -265,6 +266,7 @@ func (r *ReadConfigWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep
 	r.Base.If = from.If
 	r.Base.Timeout = from.Timeout
 	r.Base.Meta = from.Meta
+	r.Base.Type = ReadConfigType
 	r.Properties = properties
 	return r, nil
 }
@@ -272,6 +274,14 @@ func (r *ReadConfigWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	r := &ReadConfigWorkflowStep{}
 	return r.FromWorkflowSubStep(from)
+}
+
+func (r *ReadConfigWorkflowStep) WorkflowStepName() string {
+	return r.Base.Name
+}
+
+func (r *ReadConfigWorkflowStep) DefType() string {
+	return ReadConfigType
 }
 
 func (r *ReadConfigWorkflowStep) If(_if string) *ReadConfigWorkflowStep {
@@ -302,12 +312,4 @@ func (r *ReadConfigWorkflowStep) Inputs(input common.StepInputs) *ReadConfigWork
 func (r *ReadConfigWorkflowStep) Outputs(output common.StepOutputs) *ReadConfigWorkflowStep {
 	r.Base.Outputs = output
 	return r
-}
-
-func (r *ReadConfigWorkflowStep) DefName() string {
-	return r.Base.Name
-}
-
-func (r *ReadConfigWorkflowStep) DefType() string {
-	return ReadConfigType
 }

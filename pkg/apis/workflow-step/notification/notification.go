@@ -314,6 +314,7 @@ func (n *NotificationWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (
 	n.Base.If = from.If
 	n.Base.Timeout = from.Timeout
 	n.Base.Meta = from.Meta
+	n.Base.Type = NotificationType
 	n.Properties = properties
 	n.Base.SubSteps = subSteps
 	return n, nil
@@ -339,6 +340,7 @@ func (n *NotificationWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubSt
 	n.Base.If = from.If
 	n.Base.Timeout = from.Timeout
 	n.Base.Meta = from.Meta
+	n.Base.Type = NotificationType
 	n.Properties = properties
 	return n, nil
 }
@@ -346,6 +348,14 @@ func (n *NotificationWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubSt
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	n := &NotificationWorkflowStep{}
 	return n.FromWorkflowSubStep(from)
+}
+
+func (n *NotificationWorkflowStep) WorkflowStepName() string {
+	return n.Base.Name
+}
+
+func (n *NotificationWorkflowStep) DefType() string {
+	return NotificationType
 }
 
 func (n *NotificationWorkflowStep) If(_if string) *NotificationWorkflowStep {
@@ -376,12 +386,4 @@ func (n *NotificationWorkflowStep) Inputs(input common.StepInputs) *Notification
 func (n *NotificationWorkflowStep) Outputs(output common.StepOutputs) *NotificationWorkflowStep {
 	n.Base.Outputs = output
 	return n
-}
-
-func (n *NotificationWorkflowStep) DefName() string {
-	return n.Base.Name
-}
-
-func (n *NotificationWorkflowStep) DefType() string {
-	return NotificationType
 }

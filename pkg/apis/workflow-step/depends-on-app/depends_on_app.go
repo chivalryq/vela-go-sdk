@@ -240,6 +240,7 @@ func (d *DependsOnAppWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (
 	d.Base.If = from.If
 	d.Base.Timeout = from.Timeout
 	d.Base.Meta = from.Meta
+	d.Base.Type = DependsOnAppType
 	d.Properties = properties
 	d.Base.SubSteps = subSteps
 	return d, nil
@@ -265,6 +266,7 @@ func (d *DependsOnAppWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubSt
 	d.Base.If = from.If
 	d.Base.Timeout = from.Timeout
 	d.Base.Meta = from.Meta
+	d.Base.Type = DependsOnAppType
 	d.Properties = properties
 	return d, nil
 }
@@ -272,6 +274,14 @@ func (d *DependsOnAppWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubSt
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	d := &DependsOnAppWorkflowStep{}
 	return d.FromWorkflowSubStep(from)
+}
+
+func (d *DependsOnAppWorkflowStep) WorkflowStepName() string {
+	return d.Base.Name
+}
+
+func (d *DependsOnAppWorkflowStep) DefType() string {
+	return DependsOnAppType
 }
 
 func (d *DependsOnAppWorkflowStep) If(_if string) *DependsOnAppWorkflowStep {
@@ -302,12 +312,4 @@ func (d *DependsOnAppWorkflowStep) Inputs(input common.StepInputs) *DependsOnApp
 func (d *DependsOnAppWorkflowStep) Outputs(output common.StepOutputs) *DependsOnAppWorkflowStep {
 	d.Base.Outputs = output
 	return d
-}
-
-func (d *DependsOnAppWorkflowStep) DefName() string {
-	return d.Base.Name
-}
-
-func (d *DependsOnAppWorkflowStep) DefType() string {
-	return DependsOnAppType
 }

@@ -341,6 +341,7 @@ func (c *CpuscalerTrait) FromTrait(from common.ApplicationTrait) (*CpuscalerTrai
 			return nil, err
 		}
 	}
+	c.Base.Type = CpuscalerType
 	c.Properties = properties
 	return c, nil
 }

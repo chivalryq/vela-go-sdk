@@ -701,6 +701,7 @@ func (t *TaskComponent) FromComponent(from common.ApplicationComponent) (*TaskCo
 	t.Base.DependsOn = from.DependsOn
 	t.Base.Inputs = from.Inputs
 	t.Base.Outputs = from.Outputs
+	t.Base.Type = TaskType
 	t.Properties = properties
 	return t, nil
 }
@@ -715,10 +716,39 @@ func (t *TaskComponent) AddTrait(traits ...apis.Trait) *TaskComponent {
 	return t
 }
 
-func (t *TaskComponent) DefName() string {
+func (t *TaskComponent) GetTrait(_type string) apis.Trait {
+	for _, _t := range t.Base.Traits {
+		if _t.DefType() == _type {
+			return _t
+		}
+	}
+	return nil
+}
+
+func (t *TaskComponent) ComponentName() string {
 	return t.Base.Name
 }
 
 func (t *TaskComponent) DefType() string {
 	return TaskType
+}
+
+func (t *TaskComponent) DependsOn(dependsOn []string) *TaskComponent {
+	t.Base.DependsOn = dependsOn
+	return t
+}
+
+func (t *TaskComponent) Inputs(input common.StepInputs) *TaskComponent {
+	t.Base.Inputs = input
+	return t
+}
+
+func (t *TaskComponent) Outputs(output common.StepOutputs) *TaskComponent {
+	t.Base.Outputs = output
+	return t
+}
+
+func (t *TaskComponent) AddDependsOn(dependsOn string) *TaskComponent {
+	t.Base.DependsOn = append(t.Base.DependsOn, dependsOn)
+	return t
 }

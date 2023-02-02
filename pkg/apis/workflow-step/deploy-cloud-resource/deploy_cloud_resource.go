@@ -244,6 +244,7 @@ func (d *DeployCloudResourceWorkflowStep) FromWorkflowStep(from v1beta1.Workflow
 	d.Base.If = from.If
 	d.Base.Timeout = from.Timeout
 	d.Base.Meta = from.Meta
+	d.Base.Type = DeployCloudResourceType
 	d.Properties = properties
 	d.Base.SubSteps = subSteps
 	return d, nil
@@ -269,6 +270,7 @@ func (d *DeployCloudResourceWorkflowStep) FromWorkflowSubStep(from common.Workfl
 	d.Base.If = from.If
 	d.Base.Timeout = from.Timeout
 	d.Base.Meta = from.Meta
+	d.Base.Type = DeployCloudResourceType
 	d.Properties = properties
 	return d, nil
 }
@@ -276,6 +278,14 @@ func (d *DeployCloudResourceWorkflowStep) FromWorkflowSubStep(from common.Workfl
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	d := &DeployCloudResourceWorkflowStep{}
 	return d.FromWorkflowSubStep(from)
+}
+
+func (d *DeployCloudResourceWorkflowStep) WorkflowStepName() string {
+	return d.Base.Name
+}
+
+func (d *DeployCloudResourceWorkflowStep) DefType() string {
+	return DeployCloudResourceType
 }
 
 func (d *DeployCloudResourceWorkflowStep) If(_if string) *DeployCloudResourceWorkflowStep {
@@ -306,12 +316,4 @@ func (d *DeployCloudResourceWorkflowStep) Inputs(input common.StepInputs) *Deplo
 func (d *DeployCloudResourceWorkflowStep) Outputs(output common.StepOutputs) *DeployCloudResourceWorkflowStep {
 	d.Base.Outputs = output
 	return d
-}
-
-func (d *DeployCloudResourceWorkflowStep) DefName() string {
-	return d.Base.Name
-}
-
-func (d *DeployCloudResourceWorkflowStep) DefType() string {
-	return DeployCloudResourceType
 }

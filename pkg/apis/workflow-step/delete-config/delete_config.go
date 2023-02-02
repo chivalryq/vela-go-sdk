@@ -240,6 +240,7 @@ func (d *DeleteConfigWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (
 	d.Base.If = from.If
 	d.Base.Timeout = from.Timeout
 	d.Base.Meta = from.Meta
+	d.Base.Type = DeleteConfigType
 	d.Properties = properties
 	d.Base.SubSteps = subSteps
 	return d, nil
@@ -265,6 +266,7 @@ func (d *DeleteConfigWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubSt
 	d.Base.If = from.If
 	d.Base.Timeout = from.Timeout
 	d.Base.Meta = from.Meta
+	d.Base.Type = DeleteConfigType
 	d.Properties = properties
 	return d, nil
 }
@@ -272,6 +274,14 @@ func (d *DeleteConfigWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubSt
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	d := &DeleteConfigWorkflowStep{}
 	return d.FromWorkflowSubStep(from)
+}
+
+func (d *DeleteConfigWorkflowStep) WorkflowStepName() string {
+	return d.Base.Name
+}
+
+func (d *DeleteConfigWorkflowStep) DefType() string {
+	return DeleteConfigType
 }
 
 func (d *DeleteConfigWorkflowStep) If(_if string) *DeleteConfigWorkflowStep {
@@ -302,12 +312,4 @@ func (d *DeleteConfigWorkflowStep) Inputs(input common.StepInputs) *DeleteConfig
 func (d *DeleteConfigWorkflowStep) Outputs(output common.StepOutputs) *DeleteConfigWorkflowStep {
 	d.Base.Outputs = output
 	return d
-}
-
-func (d *DeleteConfigWorkflowStep) DefName() string {
-	return d.Base.Name
-}
-
-func (d *DeleteConfigWorkflowStep) DefType() string {
-	return DeleteConfigType
 }

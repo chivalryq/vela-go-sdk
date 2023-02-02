@@ -20,6 +20,98 @@ type ApplicationBuilder struct {
 	workflowMode v1beta1.WorkflowExecuteMode
 }
 
+// SetComponent set component to application, use component name to match
+// TODO: behavior when component not found?
+// 1. return error
+// 2. ignore
+// 3. add a new one to application
+func (a *ApplicationBuilder) SetComponent(component Component) Application {
+	for i, c := range a.components {
+		if c.ComponentName() == component.ComponentName() {
+			a.components[i] = component
+			return a
+		}
+	}
+	return a
+}
+
+func (a *ApplicationBuilder) SetWorkflowStep(step WorkflowStep) Application {
+	for i, s := range a.steps {
+		if s.WorkflowStepName() == step.WorkflowStepName() {
+			a.steps[i] = step
+			return a
+		}
+	}
+	return a
+}
+
+func (a *ApplicationBuilder) SetPolicy(policy Policy) Application {
+	for i, p := range a.policies {
+		if p.PolicyName() == policy.PolicyName() {
+			a.policies[i] = policy
+			return a
+		}
+	}
+	return a
+}
+
+func (a *ApplicationBuilder) GetComponentByName(name string) Component {
+	for _, c := range a.components {
+		if c.ComponentName() == name {
+			return c
+		}
+	}
+	return nil
+}
+
+func (a *ApplicationBuilder) GetComponentsByType(typ string) []Component {
+	var result []Component
+	for _, c := range a.components {
+		if c.DefType() == typ {
+			result = append(result, c)
+		}
+	}
+	return result
+}
+
+func (a *ApplicationBuilder) GetWorkflowStepByName(name string) WorkflowStep {
+	for _, s := range a.steps {
+		if s.WorkflowStepName() == name {
+			return s
+		}
+	}
+	return nil
+}
+
+func (a *ApplicationBuilder) GetWorkflowStepsByType(typ string) []WorkflowStep {
+	var result []WorkflowStep
+	for _, s := range a.steps {
+		if s.DefType() == typ {
+			result = append(result, s)
+		}
+	}
+	return result
+}
+
+func (a *ApplicationBuilder) GetPolicyByName(name string) Policy {
+	for _, p := range a.policies {
+		if p.PolicyName() == name {
+			return p
+		}
+	}
+	return nil
+}
+
+func (a *ApplicationBuilder) GetPoliciesByType(typ string) []Policy {
+	var result []Policy
+	for _, p := range a.policies {
+		if p.DefType() == typ {
+			result = append(result, p)
+		}
+	}
+	return result
+}
+
 func (a *ApplicationBuilder) WithWorkflowSteps(step ...WorkflowStep) Application {
 	a.steps = append(a.steps, step...)
 	return a

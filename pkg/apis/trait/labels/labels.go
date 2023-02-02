@@ -126,6 +126,7 @@ func (l *LabelsTrait) FromTrait(from common.ApplicationTrait) (*LabelsTrait, err
 			return nil, err
 		}
 	}
+	l.Base.Type = LabelsType
 	l.Properties = properties
 	return l, nil
 }

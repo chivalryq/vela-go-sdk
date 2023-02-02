@@ -201,6 +201,7 @@ func (s *SuspendWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*Susp
 	s.Base.If = from.If
 	s.Base.Timeout = from.Timeout
 	s.Base.Meta = from.Meta
+	s.Base.Type = SuspendType
 	s.Properties = properties
 	s.Base.SubSteps = subSteps
 	return s, nil
@@ -226,6 +227,7 @@ func (s *SuspendWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (
 	s.Base.If = from.If
 	s.Base.Timeout = from.Timeout
 	s.Base.Meta = from.Meta
+	s.Base.Type = SuspendType
 	s.Properties = properties
 	return s, nil
 }
@@ -233,6 +235,14 @@ func (s *SuspendWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	s := &SuspendWorkflowStep{}
 	return s.FromWorkflowSubStep(from)
+}
+
+func (s *SuspendWorkflowStep) WorkflowStepName() string {
+	return s.Base.Name
+}
+
+func (s *SuspendWorkflowStep) DefType() string {
+	return SuspendType
 }
 
 func (s *SuspendWorkflowStep) If(_if string) *SuspendWorkflowStep {
@@ -263,12 +273,4 @@ func (s *SuspendWorkflowStep) Inputs(input common.StepInputs) *SuspendWorkflowSt
 func (s *SuspendWorkflowStep) Outputs(output common.StepOutputs) *SuspendWorkflowStep {
 	s.Base.Outputs = output
 	return s
-}
-
-func (s *SuspendWorkflowStep) DefName() string {
-	return s.Base.Name
-}
-
-func (s *SuspendWorkflowStep) DefType() string {
-	return SuspendType
 }

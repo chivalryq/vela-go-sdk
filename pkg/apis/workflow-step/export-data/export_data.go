@@ -361,6 +361,7 @@ func (e *ExportDataWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*E
 	e.Base.If = from.If
 	e.Base.Timeout = from.Timeout
 	e.Base.Meta = from.Meta
+	e.Base.Type = ExportDataType
 	e.Properties = properties
 	e.Base.SubSteps = subSteps
 	return e, nil
@@ -386,6 +387,7 @@ func (e *ExportDataWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep
 	e.Base.If = from.If
 	e.Base.Timeout = from.Timeout
 	e.Base.Meta = from.Meta
+	e.Base.Type = ExportDataType
 	e.Properties = properties
 	return e, nil
 }
@@ -393,6 +395,14 @@ func (e *ExportDataWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	e := &ExportDataWorkflowStep{}
 	return e.FromWorkflowSubStep(from)
+}
+
+func (e *ExportDataWorkflowStep) WorkflowStepName() string {
+	return e.Base.Name
+}
+
+func (e *ExportDataWorkflowStep) DefType() string {
+	return ExportDataType
 }
 
 func (e *ExportDataWorkflowStep) If(_if string) *ExportDataWorkflowStep {
@@ -423,12 +433,4 @@ func (e *ExportDataWorkflowStep) Inputs(input common.StepInputs) *ExportDataWork
 func (e *ExportDataWorkflowStep) Outputs(output common.StepOutputs) *ExportDataWorkflowStep {
 	e.Base.Outputs = output
 	return e
-}
-
-func (e *ExportDataWorkflowStep) DefName() string {
-	return e.Base.Name
-}
-
-func (e *ExportDataWorkflowStep) DefType() string {
-	return ExportDataType
 }

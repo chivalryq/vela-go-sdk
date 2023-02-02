@@ -170,6 +170,7 @@ func (s *SharedResourcePolicy) FromPolicy(from v1beta1.AppPolicy) (*SharedResour
 		}
 	}
 	s.Base.Name = from.Name
+	s.Base.Type = SharedResourceType
 	s.Properties = properties
 	return s, nil
 }

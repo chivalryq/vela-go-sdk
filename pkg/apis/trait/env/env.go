@@ -184,6 +184,7 @@ func (e *EnvTrait) FromTrait(from common.ApplicationTrait) (*EnvTrait, error) {
 			return nil, err
 		}
 	}
+	e.Base.Type = EnvType
 	e.Properties = properties
 	return e, nil
 }

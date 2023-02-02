@@ -28,11 +28,11 @@ var _ utils.MappedNullable = &DeploySpec{}
 // DeploySpec struct for DeploySpec
 type DeploySpec struct {
 	// If set to false, the workflow will suspend automatically before this step, default to be true.
-	Auto bool `json:"auto"`
+	Auto *bool `json:"auto,omitempty"`
 	// If set false, this step will apply the components with the terraform workload.
-	IgnoreTerraformComponent bool `json:"ignoreTerraformComponent"`
+	IgnoreTerraformComponent *bool `json:"ignoreTerraformComponent,omitempty"`
 	// Maximum number of concurrent delivered components.
-	Parallelism int32 `json:"parallelism"`
+	Parallelism *int32 `json:"parallelism,omitempty"`
 	// Declare the policies that used for this deployment. If not specified, the components will be deployed to the hub cluster.
 	Policies []string `json:"policies,omitempty"`
 }
@@ -41,11 +41,14 @@ type DeploySpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeploySpecWith(auto bool, ignoreTerraformComponent bool, parallelism int32) *DeploySpec {
+func NewDeploySpecWith() *DeploySpec {
 	this := DeploySpec{}
-	this.Auto = auto
-	this.IgnoreTerraformComponent = ignoreTerraformComponent
-	this.Parallelism = parallelism
+	var auto bool = true
+	this.Auto = &auto
+	var ignoreTerraformComponent bool = true
+	this.IgnoreTerraformComponent = &ignoreTerraformComponent
+	var parallelism int32 = 5
+	this.Parallelism = &parallelism
 	return &this
 }
 
@@ -55,86 +58,113 @@ func NewDeploySpecWith(auto bool, ignoreTerraformComponent bool, parallelism int
 func NewDeploySpec() *DeploySpec {
 	this := DeploySpec{}
 	var auto bool = true
-	this.Auto = auto
+	this.Auto = &auto
 	var ignoreTerraformComponent bool = true
-	this.IgnoreTerraformComponent = ignoreTerraformComponent
+	this.IgnoreTerraformComponent = &ignoreTerraformComponent
 	var parallelism int32 = 5
-	this.Parallelism = parallelism
+	this.Parallelism = &parallelism
 	return &this
 }
 
-// GetAuto returns the Auto field value
+// GetAuto returns the Auto field value if set, zero value otherwise.
 func (o *DeployWorkflowStep) GetAuto() bool {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Auto) {
 		var ret bool
 		return ret
 	}
-
-	return o.Properties.Auto
+	return *o.Properties.Auto
 }
 
-// GetAutoOk returns a tuple with the Auto field value
+// GetAutoOk returns a tuple with the Auto field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeployWorkflowStep) GetAutoOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Auto) {
 		return nil, false
 	}
-	return &o.Properties.Auto, true
+	return o.Properties.Auto, true
 }
 
-// SetAuto sets field value
+// HasAuto returns a boolean if a field has been set.
+func (o *DeployWorkflowStep) HasAuto() bool {
+	if o != nil && !utils.IsNil(o.Properties.Auto) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuto gets a reference to the given bool and assigns it to the auto field.
+// Auto:  If set to false, the workflow will suspend automatically before this step, default to be true.
 func (o *DeployWorkflowStep) SetAuto(v bool) *DeployWorkflowStep {
-	o.Properties.Auto = v
+	o.Properties.Auto = &v
 	return o
 }
 
-// GetIgnoreTerraformComponent returns the IgnoreTerraformComponent field value
+// GetIgnoreTerraformComponent returns the IgnoreTerraformComponent field value if set, zero value otherwise.
 func (o *DeployWorkflowStep) GetIgnoreTerraformComponent() bool {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.IgnoreTerraformComponent) {
 		var ret bool
 		return ret
 	}
-
-	return o.Properties.IgnoreTerraformComponent
+	return *o.Properties.IgnoreTerraformComponent
 }
 
-// GetIgnoreTerraformComponentOk returns a tuple with the IgnoreTerraformComponent field value
+// GetIgnoreTerraformComponentOk returns a tuple with the IgnoreTerraformComponent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeployWorkflowStep) GetIgnoreTerraformComponentOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.IgnoreTerraformComponent) {
 		return nil, false
 	}
-	return &o.Properties.IgnoreTerraformComponent, true
+	return o.Properties.IgnoreTerraformComponent, true
 }
 
-// SetIgnoreTerraformComponent sets field value
+// HasIgnoreTerraformComponent returns a boolean if a field has been set.
+func (o *DeployWorkflowStep) HasIgnoreTerraformComponent() bool {
+	if o != nil && !utils.IsNil(o.Properties.IgnoreTerraformComponent) {
+		return true
+	}
+
+	return false
+}
+
+// SetIgnoreTerraformComponent gets a reference to the given bool and assigns it to the ignoreTerraformComponent field.
+// IgnoreTerraformComponent:  If set false, this step will apply the components with the terraform workload.
 func (o *DeployWorkflowStep) SetIgnoreTerraformComponent(v bool) *DeployWorkflowStep {
-	o.Properties.IgnoreTerraformComponent = v
+	o.Properties.IgnoreTerraformComponent = &v
 	return o
 }
 
-// GetParallelism returns the Parallelism field value
+// GetParallelism returns the Parallelism field value if set, zero value otherwise.
 func (o *DeployWorkflowStep) GetParallelism() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Parallelism) {
 		var ret int32
 		return ret
 	}
-
-	return o.Properties.Parallelism
+	return *o.Properties.Parallelism
 }
 
-// GetParallelismOk returns a tuple with the Parallelism field value
+// GetParallelismOk returns a tuple with the Parallelism field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeployWorkflowStep) GetParallelismOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Parallelism) {
 		return nil, false
 	}
-	return &o.Properties.Parallelism, true
+	return o.Properties.Parallelism, true
 }
 
-// SetParallelism sets field value
+// HasParallelism returns a boolean if a field has been set.
+func (o *DeployWorkflowStep) HasParallelism() bool {
+	if o != nil && !utils.IsNil(o.Properties.Parallelism) {
+		return true
+	}
+
+	return false
+}
+
+// SetParallelism gets a reference to the given int32 and assigns it to the parallelism field.
+// Parallelism:  Maximum number of concurrent delivered components.
 func (o *DeployWorkflowStep) SetParallelism(v int32) *DeployWorkflowStep {
-	o.Properties.Parallelism = v
+	o.Properties.Parallelism = &v
 	return o
 }
 
@@ -182,9 +212,15 @@ func (o DeploySpec) MarshalJSON() ([]byte, error) {
 
 func (o DeploySpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["auto"] = o.Auto
-	toSerialize["ignoreTerraformComponent"] = o.IgnoreTerraformComponent
-	toSerialize["parallelism"] = o.Parallelism
+	if !utils.IsNil(o.Auto) {
+		toSerialize["auto"] = o.Auto
+	}
+	if !utils.IsNil(o.IgnoreTerraformComponent) {
+		toSerialize["ignoreTerraformComponent"] = o.IgnoreTerraformComponent
+	}
+	if !utils.IsNil(o.Parallelism) {
+		toSerialize["parallelism"] = o.Parallelism
+	}
 	if !utils.IsNil(o.Policies) {
 		toSerialize["policies"] = o.Policies
 	}
@@ -294,6 +330,7 @@ func (d *DeployWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*Deplo
 	d.Base.If = from.If
 	d.Base.Timeout = from.Timeout
 	d.Base.Meta = from.Meta
+	d.Base.Type = DeployType
 	d.Properties = properties
 	d.Base.SubSteps = subSteps
 	return d, nil
@@ -319,6 +356,7 @@ func (d *DeployWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*
 	d.Base.If = from.If
 	d.Base.Timeout = from.Timeout
 	d.Base.Meta = from.Meta
+	d.Base.Type = DeployType
 	d.Properties = properties
 	return d, nil
 }
@@ -326,6 +364,14 @@ func (d *DeployWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	d := &DeployWorkflowStep{}
 	return d.FromWorkflowSubStep(from)
+}
+
+func (d *DeployWorkflowStep) WorkflowStepName() string {
+	return d.Base.Name
+}
+
+func (d *DeployWorkflowStep) DefType() string {
+	return DeployType
 }
 
 func (d *DeployWorkflowStep) If(_if string) *DeployWorkflowStep {
@@ -356,12 +402,4 @@ func (d *DeployWorkflowStep) Inputs(input common.StepInputs) *DeployWorkflowStep
 func (d *DeployWorkflowStep) Outputs(output common.StepOutputs) *DeployWorkflowStep {
 	d.Base.Outputs = output
 	return d
-}
-
-func (d *DeployWorkflowStep) DefName() string {
-	return d.Base.Name
-}
-
-func (d *DeployWorkflowStep) DefType() string {
-	return DeployType
 }

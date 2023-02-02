@@ -288,6 +288,7 @@ func (r *ResourceTrait) FromTrait(from common.ApplicationTrait) (*ResourceTrait,
 			return nil, err
 		}
 	}
+	r.Base.Type = ResourceType
 	r.Properties = properties
 	return r, nil
 }

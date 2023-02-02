@@ -524,6 +524,7 @@ func (i *InitContainerTrait) FromTrait(from common.ApplicationTrait) (*InitConta
 			return nil, err
 		}
 	}
+	i.Base.Type = InitContainerType
 	i.Properties = properties
 	return i, nil
 }

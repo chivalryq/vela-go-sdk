@@ -322,6 +322,7 @@ func (e *Export2configWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) 
 	e.Base.If = from.If
 	e.Base.Timeout = from.Timeout
 	e.Base.Meta = from.Meta
+	e.Base.Type = Export2configType
 	e.Properties = properties
 	e.Base.SubSteps = subSteps
 	return e, nil
@@ -347,6 +348,7 @@ func (e *Export2configWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubS
 	e.Base.If = from.If
 	e.Base.Timeout = from.Timeout
 	e.Base.Meta = from.Meta
+	e.Base.Type = Export2configType
 	e.Properties = properties
 	return e, nil
 }
@@ -354,6 +356,14 @@ func (e *Export2configWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubS
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	e := &Export2configWorkflowStep{}
 	return e.FromWorkflowSubStep(from)
+}
+
+func (e *Export2configWorkflowStep) WorkflowStepName() string {
+	return e.Base.Name
+}
+
+func (e *Export2configWorkflowStep) DefType() string {
+	return Export2configType
 }
 
 func (e *Export2configWorkflowStep) If(_if string) *Export2configWorkflowStep {
@@ -384,12 +394,4 @@ func (e *Export2configWorkflowStep) Inputs(input common.StepInputs) *Export2conf
 func (e *Export2configWorkflowStep) Outputs(output common.StepOutputs) *Export2configWorkflowStep {
 	e.Base.Outputs = output
 	return e
-}
-
-func (e *Export2configWorkflowStep) DefName() string {
-	return e.Base.Name
-}
-
-func (e *Export2configWorkflowStep) DefType() string {
-	return Export2configType
 }

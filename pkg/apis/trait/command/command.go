@@ -184,6 +184,7 @@ func (c *CommandTrait) FromTrait(from common.ApplicationTrait) (*CommandTrait, e
 			return nil, err
 		}
 	}
+	c.Base.Type = CommandType
 	c.Properties = properties
 	return c, nil
 }

@@ -209,6 +209,7 @@ func (o *OverridePolicy) FromPolicy(from v1beta1.AppPolicy) (*OverridePolicy, er
 		}
 	}
 	o.Base.Name = from.Name
+	o.Base.Type = OverrideType
 	o.Properties = properties
 	return o, nil
 }

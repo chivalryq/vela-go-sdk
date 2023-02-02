@@ -396,6 +396,7 @@ func (e *ExportServiceWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) 
 	e.Base.If = from.If
 	e.Base.Timeout = from.Timeout
 	e.Base.Meta = from.Meta
+	e.Base.Type = ExportServiceType
 	e.Properties = properties
 	e.Base.SubSteps = subSteps
 	return e, nil
@@ -421,6 +422,7 @@ func (e *ExportServiceWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubS
 	e.Base.If = from.If
 	e.Base.Timeout = from.Timeout
 	e.Base.Meta = from.Meta
+	e.Base.Type = ExportServiceType
 	e.Properties = properties
 	return e, nil
 }
@@ -428,6 +430,14 @@ func (e *ExportServiceWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubS
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	e := &ExportServiceWorkflowStep{}
 	return e.FromWorkflowSubStep(from)
+}
+
+func (e *ExportServiceWorkflowStep) WorkflowStepName() string {
+	return e.Base.Name
+}
+
+func (e *ExportServiceWorkflowStep) DefType() string {
+	return ExportServiceType
 }
 
 func (e *ExportServiceWorkflowStep) If(_if string) *ExportServiceWorkflowStep {
@@ -458,12 +468,4 @@ func (e *ExportServiceWorkflowStep) Inputs(input common.StepInputs) *ExportServi
 func (e *ExportServiceWorkflowStep) Outputs(output common.StepOutputs) *ExportServiceWorkflowStep {
 	e.Base.Outputs = output
 	return e
-}
-
-func (e *ExportServiceWorkflowStep) DefName() string {
-	return e.Base.Name
-}
-
-func (e *ExportServiceWorkflowStep) DefType() string {
-	return ExportServiceType
 }

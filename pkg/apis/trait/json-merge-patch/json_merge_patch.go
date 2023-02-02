@@ -126,6 +126,7 @@ func (j *JSONMergePatchTrait) FromTrait(from common.ApplicationTrait) (*JSONMerg
 			return nil, err
 		}
 	}
+	j.Base.Type = JsonMergePatchType
 	j.Properties = properties
 	return j, nil
 }

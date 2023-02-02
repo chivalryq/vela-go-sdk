@@ -164,6 +164,7 @@ func (j *JSONPatchTrait) FromTrait(from common.ApplicationTrait) (*JSONPatchTrai
 			return nil, err
 		}
 	}
+	j.Base.Type = JsonPatchType
 	j.Properties = properties
 	return j, nil
 }

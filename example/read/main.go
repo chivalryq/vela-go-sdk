@@ -8,7 +8,7 @@ import (
 	runtimeclient "sigs.k8s.io/controller-runtime/pkg/client"
 
 	// TODO(chivalryq) pre-import all types so they can be all registered
-	_ "github.com/chivalryq/vela-go-sdk/pkg/apis/component/webservice"
+	"github.com/chivalryq/vela-go-sdk/pkg/apis/component/webservice"
 	_ "github.com/chivalryq/vela-go-sdk/pkg/apis/trait/init-container"
 	_ "github.com/chivalryq/vela-go-sdk/pkg/apis/trait/resource"
 )
@@ -25,4 +25,15 @@ func main() {
 		panic(err)
 	}
 	fmt.Println(string(marshal))
+
+	wss := app.GetComponentsByType(webservice.WebserviceType)
+	ws := wss[0]
+	w, ok := ws.(*webservice.WebserviceComponent)
+	if !ok {
+		panic("not webservice")
+	}
+	w.SetImage("nginx:1.20")
+	app.SetComponent(w)
+	// Then you can re-apply the application
+
 }

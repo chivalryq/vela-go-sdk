@@ -575,6 +575,7 @@ func (w *WorkerComponent) FromComponent(from common.ApplicationComponent) (*Work
 	w.Base.DependsOn = from.DependsOn
 	w.Base.Inputs = from.Inputs
 	w.Base.Outputs = from.Outputs
+	w.Base.Type = WorkerType
 	w.Properties = properties
 	return w, nil
 }
@@ -589,10 +590,39 @@ func (w *WorkerComponent) AddTrait(traits ...apis.Trait) *WorkerComponent {
 	return w
 }
 
-func (w *WorkerComponent) DefName() string {
+func (w *WorkerComponent) GetTrait(_type string) apis.Trait {
+	for _, _t := range w.Base.Traits {
+		if _t.DefType() == _type {
+			return _t
+		}
+	}
+	return nil
+}
+
+func (w *WorkerComponent) ComponentName() string {
 	return w.Base.Name
 }
 
 func (w *WorkerComponent) DefType() string {
 	return WorkerType
+}
+
+func (w *WorkerComponent) DependsOn(dependsOn []string) *WorkerComponent {
+	w.Base.DependsOn = dependsOn
+	return w
+}
+
+func (w *WorkerComponent) Inputs(input common.StepInputs) *WorkerComponent {
+	w.Base.Inputs = input
+	return w
+}
+
+func (w *WorkerComponent) Outputs(output common.StepOutputs) *WorkerComponent {
+	w.Base.Outputs = output
+	return w
+}
+
+func (w *WorkerComponent) AddDependsOn(dependsOn string) *WorkerComponent {
+	w.Base.DependsOn = append(w.Base.DependsOn, dependsOn)
+	return w
 }

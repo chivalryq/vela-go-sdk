@@ -413,6 +413,7 @@ func (h *HpaTrait) FromTrait(from common.ApplicationTrait) (*HpaTrait, error) {
 			return nil, err
 		}
 	}
+	h.Base.Type = HpaType
 	h.Properties = properties
 	return h, nil
 }

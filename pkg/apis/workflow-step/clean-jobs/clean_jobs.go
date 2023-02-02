@@ -238,6 +238,7 @@ func (c *CleanJobsWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*Cl
 	c.Base.If = from.If
 	c.Base.Timeout = from.Timeout
 	c.Base.Meta = from.Meta
+	c.Base.Type = CleanJobsType
 	c.Properties = properties
 	c.Base.SubSteps = subSteps
 	return c, nil
@@ -263,6 +264,7 @@ func (c *CleanJobsWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep)
 	c.Base.If = from.If
 	c.Base.Timeout = from.Timeout
 	c.Base.Meta = from.Meta
+	c.Base.Type = CleanJobsType
 	c.Properties = properties
 	return c, nil
 }
@@ -270,6 +272,14 @@ func (c *CleanJobsWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep)
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	c := &CleanJobsWorkflowStep{}
 	return c.FromWorkflowSubStep(from)
+}
+
+func (c *CleanJobsWorkflowStep) WorkflowStepName() string {
+	return c.Base.Name
+}
+
+func (c *CleanJobsWorkflowStep) DefType() string {
+	return CleanJobsType
 }
 
 func (c *CleanJobsWorkflowStep) If(_if string) *CleanJobsWorkflowStep {
@@ -300,12 +310,4 @@ func (c *CleanJobsWorkflowStep) Inputs(input common.StepInputs) *CleanJobsWorkfl
 func (c *CleanJobsWorkflowStep) Outputs(output common.StepOutputs) *CleanJobsWorkflowStep {
 	c.Base.Outputs = output
 	return c
-}
-
-func (c *CleanJobsWorkflowStep) DefName() string {
-	return c.Base.Name
-}
-
-func (c *CleanJobsWorkflowStep) DefType() string {
-	return CleanJobsType
 }

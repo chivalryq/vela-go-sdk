@@ -442,6 +442,7 @@ func (e *Export2secretWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) 
 	e.Base.If = from.If
 	e.Base.Timeout = from.Timeout
 	e.Base.Meta = from.Meta
+	e.Base.Type = Export2secretType
 	e.Properties = properties
 	e.Base.SubSteps = subSteps
 	return e, nil
@@ -467,6 +468,7 @@ func (e *Export2secretWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubS
 	e.Base.If = from.If
 	e.Base.Timeout = from.Timeout
 	e.Base.Meta = from.Meta
+	e.Base.Type = Export2secretType
 	e.Properties = properties
 	return e, nil
 }
@@ -474,6 +476,14 @@ func (e *Export2secretWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubS
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	e := &Export2secretWorkflowStep{}
 	return e.FromWorkflowSubStep(from)
+}
+
+func (e *Export2secretWorkflowStep) WorkflowStepName() string {
+	return e.Base.Name
+}
+
+func (e *Export2secretWorkflowStep) DefType() string {
+	return Export2secretType
 }
 
 func (e *Export2secretWorkflowStep) If(_if string) *Export2secretWorkflowStep {
@@ -504,12 +514,4 @@ func (e *Export2secretWorkflowStep) Inputs(input common.StepInputs) *Export2secr
 func (e *Export2secretWorkflowStep) Outputs(output common.StepOutputs) *Export2secretWorkflowStep {
 	e.Base.Outputs = output
 	return e
-}
-
-func (e *Export2secretWorkflowStep) DefName() string {
-	return e.Base.Name
-}
-
-func (e *Export2secretWorkflowStep) DefType() string {
-	return Export2secretType
 }

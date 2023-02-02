@@ -170,6 +170,7 @@ func (r *ReadOnlyPolicy) FromPolicy(from v1beta1.AppPolicy) (*ReadOnlyPolicy, er
 		}
 	}
 	r.Base.Name = from.Name
+	r.Base.Type = ReadOnlyType
 	r.Properties = properties
 	return r, nil
 }

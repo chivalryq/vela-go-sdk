@@ -202,6 +202,7 @@ func (l *LifecycleTrait) FromTrait(from common.ApplicationTrait) (*LifecycleTrai
 			return nil, err
 		}
 	}
+	l.Base.Type = LifecycleType
 	l.Properties = properties
 	return l, nil
 }

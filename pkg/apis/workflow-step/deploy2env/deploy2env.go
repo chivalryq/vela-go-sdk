@@ -287,6 +287,7 @@ func (d *Deploy2envWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*D
 	d.Base.If = from.If
 	d.Base.Timeout = from.Timeout
 	d.Base.Meta = from.Meta
+	d.Base.Type = Deploy2envType
 	d.Properties = properties
 	d.Base.SubSteps = subSteps
 	return d, nil
@@ -312,6 +313,7 @@ func (d *Deploy2envWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep
 	d.Base.If = from.If
 	d.Base.Timeout = from.Timeout
 	d.Base.Meta = from.Meta
+	d.Base.Type = Deploy2envType
 	d.Properties = properties
 	return d, nil
 }
@@ -319,6 +321,14 @@ func (d *Deploy2envWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	d := &Deploy2envWorkflowStep{}
 	return d.FromWorkflowSubStep(from)
+}
+
+func (d *Deploy2envWorkflowStep) WorkflowStepName() string {
+	return d.Base.Name
+}
+
+func (d *Deploy2envWorkflowStep) DefType() string {
+	return Deploy2envType
 }
 
 func (d *Deploy2envWorkflowStep) If(_if string) *Deploy2envWorkflowStep {
@@ -349,12 +359,4 @@ func (d *Deploy2envWorkflowStep) Inputs(input common.StepInputs) *Deploy2envWork
 func (d *Deploy2envWorkflowStep) Outputs(output common.StepOutputs) *Deploy2envWorkflowStep {
 	d.Base.Outputs = output
 	return d
-}
-
-func (d *Deploy2envWorkflowStep) DefName() string {
-	return d.Base.Name
-}
-
-func (d *Deploy2envWorkflowStep) DefType() string {
-	return Deploy2envType
 }

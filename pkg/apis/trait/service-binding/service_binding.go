@@ -27,16 +27,15 @@ var _ utils.MappedNullable = &ServiceBindingSpec{}
 // ServiceBindingSpec struct for ServiceBindingSpec
 type ServiceBindingSpec struct {
 	// The mapping of environment variables to secret
-	EnvMappings map[string]KeySecret `json:"envMappings"`
+	EnvMappings *map[string]KeySecret `json:"envMappings,omitempty"`
 }
 
 // NewServiceBindingSpecWith instantiates a new ServiceBindingSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceBindingSpecWith(envMappings map[string]KeySecret) *ServiceBindingSpec {
+func NewServiceBindingSpecWith() *ServiceBindingSpec {
 	this := ServiceBindingSpec{}
-	this.EnvMappings = envMappings
 	return &this
 }
 
@@ -48,28 +47,37 @@ func NewServiceBindingSpec() *ServiceBindingSpec {
 	return &this
 }
 
-// GetEnvMappings returns the EnvMappings field value
+// GetEnvMappings returns the EnvMappings field value if set, zero value otherwise.
 func (o *ServiceBindingTrait) GetEnvMappings() map[string]KeySecret {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.EnvMappings) {
 		var ret map[string]KeySecret
 		return ret
 	}
-
-	return o.Properties.EnvMappings
+	return *o.Properties.EnvMappings
 }
 
-// GetEnvMappingsOk returns a tuple with the EnvMappings field value
+// GetEnvMappingsOk returns a tuple with the EnvMappings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceBindingTrait) GetEnvMappingsOk() (*map[string]KeySecret, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.EnvMappings) {
 		return nil, false
 	}
-	return &o.Properties.EnvMappings, true
+	return o.Properties.EnvMappings, true
 }
 
-// SetEnvMappings sets field value
+// HasEnvMappings returns a boolean if a field has been set.
+func (o *ServiceBindingTrait) HasEnvMappings() bool {
+	if o != nil && !utils.IsNil(o.Properties.EnvMappings) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnvMappings gets a reference to the given map[string]KeySecret and assigns it to the envMappings field.
+// EnvMappings:  The mapping of environment variables to secret
 func (o *ServiceBindingTrait) SetEnvMappings(v map[string]KeySecret) *ServiceBindingTrait {
-	o.Properties.EnvMappings = v
+	o.Properties.EnvMappings = &v
 	return o
 }
 
@@ -83,7 +91,9 @@ func (o ServiceBindingSpec) MarshalJSON() ([]byte, error) {
 
 func (o ServiceBindingSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["envMappings"] = o.EnvMappings
+	if !utils.IsNil(o.EnvMappings) {
+		toSerialize["envMappings"] = o.EnvMappings
+	}
 	return toSerialize, nil
 }
 
@@ -155,6 +165,7 @@ func (s *ServiceBindingTrait) FromTrait(from common.ApplicationTrait) (*ServiceB
 			return nil, err
 		}
 	}
+	s.Base.Type = ServiceBindingType
 	s.Properties = properties
 	return s, nil
 }

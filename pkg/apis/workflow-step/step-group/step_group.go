@@ -162,6 +162,7 @@ func (s *StepGroupWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*St
 	s.Base.If = from.If
 	s.Base.Timeout = from.Timeout
 	s.Base.Meta = from.Meta
+	s.Base.Type = StepGroupType
 	s.Properties = properties
 	s.Base.SubSteps = subSteps
 	return s, nil
@@ -187,6 +188,7 @@ func (s *StepGroupWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep)
 	s.Base.If = from.If
 	s.Base.Timeout = from.Timeout
 	s.Base.Meta = from.Meta
+	s.Base.Type = StepGroupType
 	s.Properties = properties
 	return s, nil
 }
@@ -194,6 +196,14 @@ func (s *StepGroupWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep)
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	s := &StepGroupWorkflowStep{}
 	return s.FromWorkflowSubStep(from)
+}
+
+func (s *StepGroupWorkflowStep) WorkflowStepName() string {
+	return s.Base.Name
+}
+
+func (s *StepGroupWorkflowStep) DefType() string {
+	return StepGroupType
 }
 
 func (s *StepGroupWorkflowStep) If(_if string) *StepGroupWorkflowStep {
@@ -229,12 +239,4 @@ func (s *StepGroupWorkflowStep) Outputs(output common.StepOutputs) *StepGroupWor
 func (s *StepGroupWorkflowStep) AddSubStep(subStep apis.WorkflowStep) *StepGroupWorkflowStep {
 	s.Base.SubSteps = append(s.Base.SubSteps, subStep)
 	return s
-}
-
-func (s *StepGroupWorkflowStep) DefName() string {
-	return s.Base.Name
-}
-
-func (s *StepGroupWorkflowStep) DefType() string {
-	return StepGroupType
 }

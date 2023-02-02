@@ -217,6 +217,7 @@ func (h *HealthPolicy) FromPolicy(from v1beta1.AppPolicy) (*HealthPolicy, error)
 		}
 	}
 	h.Base.Name = from.Name
+	h.Base.Type = HealthType
 	h.Properties = properties
 	return h, nil
 }

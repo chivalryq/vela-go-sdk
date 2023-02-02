@@ -436,6 +436,7 @@ func (s *SidecarTrait) FromTrait(from common.ApplicationTrait) (*SidecarTrait, e
 			return nil, err
 		}
 	}
+	s.Base.Type = SidecarType
 	s.Properties = properties
 	return s, nil
 }

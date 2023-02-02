@@ -28,22 +28,21 @@ var _ utils.MappedNullable = &ShareCloudResourceSpec{}
 // ShareCloudResourceSpec struct for ShareCloudResourceSpec
 type ShareCloudResourceSpec struct {
 	// Declare the name of the env in policy
-	Env string `json:"env"`
+	Env *string `json:"env,omitempty"`
 	// Declare the location to bind
-	Placements []Placements `json:"placements"`
+	Placements []Placements `json:"placements,omitempty"`
 	// Declare the name of the env-binding policy, if empty, the first env-binding policy will be used
-	Policy string `json:"policy"`
+	Policy *string `json:"policy,omitempty"`
 }
 
 // NewShareCloudResourceSpecWith instantiates a new ShareCloudResourceSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewShareCloudResourceSpecWith(env string, placements []Placements, policy string) *ShareCloudResourceSpec {
+func NewShareCloudResourceSpecWith() *ShareCloudResourceSpec {
 	this := ShareCloudResourceSpec{}
-	this.Env = env
-	this.Placements = placements
-	this.Policy = policy
+	var policy string = ""
+	this.Policy = &policy
 	return &this
 }
 
@@ -53,82 +52,109 @@ func NewShareCloudResourceSpecWith(env string, placements []Placements, policy s
 func NewShareCloudResourceSpec() *ShareCloudResourceSpec {
 	this := ShareCloudResourceSpec{}
 	var policy string = ""
-	this.Policy = policy
+	this.Policy = &policy
 	return &this
 }
 
-// GetEnv returns the Env field value
+// GetEnv returns the Env field value if set, zero value otherwise.
 func (o *ShareCloudResourceWorkflowStep) GetEnv() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Env) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.Env
+	return *o.Properties.Env
 }
 
-// GetEnvOk returns a tuple with the Env field value
+// GetEnvOk returns a tuple with the Env field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ShareCloudResourceWorkflowStep) GetEnvOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Env) {
 		return nil, false
 	}
-	return &o.Properties.Env, true
+	return o.Properties.Env, true
 }
 
-// SetEnv sets field value
+// HasEnv returns a boolean if a field has been set.
+func (o *ShareCloudResourceWorkflowStep) HasEnv() bool {
+	if o != nil && !utils.IsNil(o.Properties.Env) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnv gets a reference to the given string and assigns it to the env field.
+// Env:  Declare the name of the env in policy
 func (o *ShareCloudResourceWorkflowStep) SetEnv(v string) *ShareCloudResourceWorkflowStep {
-	o.Properties.Env = v
+	o.Properties.Env = &v
 	return o
 }
 
-// GetPlacements returns the Placements field value
+// GetPlacements returns the Placements field value if set, zero value otherwise.
 func (o *ShareCloudResourceWorkflowStep) GetPlacements() []Placements {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Placements) {
 		var ret []Placements
 		return ret
 	}
-
 	return o.Properties.Placements
 }
 
-// GetPlacementsOk returns a tuple with the Placements field value
+// GetPlacementsOk returns a tuple with the Placements field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ShareCloudResourceWorkflowStep) GetPlacementsOk() ([]Placements, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Placements) {
 		return nil, false
 	}
 	return o.Properties.Placements, true
 }
 
-// SetPlacements sets field value
+// HasPlacements returns a boolean if a field has been set.
+func (o *ShareCloudResourceWorkflowStep) HasPlacements() bool {
+	if o != nil && !utils.IsNil(o.Properties.Placements) {
+		return true
+	}
+
+	return false
+}
+
+// SetPlacements gets a reference to the given []Placements and assigns it to the placements field.
+// Placements:  Declare the location to bind
 func (o *ShareCloudResourceWorkflowStep) SetPlacements(v []Placements) *ShareCloudResourceWorkflowStep {
 	o.Properties.Placements = v
 	return o
 }
 
-// GetPolicy returns the Policy field value
+// GetPolicy returns the Policy field value if set, zero value otherwise.
 func (o *ShareCloudResourceWorkflowStep) GetPolicy() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Policy) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.Policy
+	return *o.Properties.Policy
 }
 
-// GetPolicyOk returns a tuple with the Policy field value
+// GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ShareCloudResourceWorkflowStep) GetPolicyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Policy) {
 		return nil, false
 	}
-	return &o.Properties.Policy, true
+	return o.Properties.Policy, true
 }
 
-// SetPolicy sets field value
+// HasPolicy returns a boolean if a field has been set.
+func (o *ShareCloudResourceWorkflowStep) HasPolicy() bool {
+	if o != nil && !utils.IsNil(o.Properties.Policy) {
+		return true
+	}
+
+	return false
+}
+
+// SetPolicy gets a reference to the given string and assigns it to the policy field.
+// Policy:  Declare the name of the env-binding policy, if empty, the first env-binding policy will be used
 func (o *ShareCloudResourceWorkflowStep) SetPolicy(v string) *ShareCloudResourceWorkflowStep {
-	o.Properties.Policy = v
+	o.Properties.Policy = &v
 	return o
 }
 
@@ -142,9 +168,15 @@ func (o ShareCloudResourceSpec) MarshalJSON() ([]byte, error) {
 
 func (o ShareCloudResourceSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["env"] = o.Env
-	toSerialize["placements"] = o.Placements
-	toSerialize["policy"] = o.Policy
+	if !utils.IsNil(o.Env) {
+		toSerialize["env"] = o.Env
+	}
+	if !utils.IsNil(o.Placements) {
+		toSerialize["placements"] = o.Placements
+	}
+	if !utils.IsNil(o.Policy) {
+		toSerialize["policy"] = o.Policy
+	}
 	return toSerialize, nil
 }
 
@@ -251,6 +283,7 @@ func (s *ShareCloudResourceWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowS
 	s.Base.If = from.If
 	s.Base.Timeout = from.Timeout
 	s.Base.Meta = from.Meta
+	s.Base.Type = ShareCloudResourceType
 	s.Properties = properties
 	s.Base.SubSteps = subSteps
 	return s, nil
@@ -276,6 +309,7 @@ func (s *ShareCloudResourceWorkflowStep) FromWorkflowSubStep(from common.Workflo
 	s.Base.If = from.If
 	s.Base.Timeout = from.Timeout
 	s.Base.Meta = from.Meta
+	s.Base.Type = ShareCloudResourceType
 	s.Properties = properties
 	return s, nil
 }
@@ -283,6 +317,14 @@ func (s *ShareCloudResourceWorkflowStep) FromWorkflowSubStep(from common.Workflo
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	s := &ShareCloudResourceWorkflowStep{}
 	return s.FromWorkflowSubStep(from)
+}
+
+func (s *ShareCloudResourceWorkflowStep) WorkflowStepName() string {
+	return s.Base.Name
+}
+
+func (s *ShareCloudResourceWorkflowStep) DefType() string {
+	return ShareCloudResourceType
 }
 
 func (s *ShareCloudResourceWorkflowStep) If(_if string) *ShareCloudResourceWorkflowStep {
@@ -313,12 +355,4 @@ func (s *ShareCloudResourceWorkflowStep) Inputs(input common.StepInputs) *ShareC
 func (s *ShareCloudResourceWorkflowStep) Outputs(output common.StepOutputs) *ShareCloudResourceWorkflowStep {
 	s.Base.Outputs = output
 	return s
-}
-
-func (s *ShareCloudResourceWorkflowStep) DefName() string {
-	return s.Base.Name
-}
-
-func (s *ShareCloudResourceWorkflowStep) DefType() string {
-	return ShareCloudResourceType
 }

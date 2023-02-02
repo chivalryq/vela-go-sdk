@@ -204,6 +204,7 @@ func (p *PureIngressTrait) FromTrait(from common.ApplicationTrait) (*PureIngress
 			return nil, err
 		}
 	}
+	p.Base.Type = PureIngressType
 	p.Properties = properties
 	return p, nil
 }

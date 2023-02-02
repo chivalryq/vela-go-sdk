@@ -162,6 +162,7 @@ func (a *ApplyApplicationWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowSte
 	a.Base.If = from.If
 	a.Base.Timeout = from.Timeout
 	a.Base.Meta = from.Meta
+	a.Base.Type = ApplyApplicationType
 	a.Properties = properties
 	a.Base.SubSteps = subSteps
 	return a, nil
@@ -187,6 +188,7 @@ func (a *ApplyApplicationWorkflowStep) FromWorkflowSubStep(from common.WorkflowS
 	a.Base.If = from.If
 	a.Base.Timeout = from.Timeout
 	a.Base.Meta = from.Meta
+	a.Base.Type = ApplyApplicationType
 	a.Properties = properties
 	return a, nil
 }
@@ -194,6 +196,14 @@ func (a *ApplyApplicationWorkflowStep) FromWorkflowSubStep(from common.WorkflowS
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	a := &ApplyApplicationWorkflowStep{}
 	return a.FromWorkflowSubStep(from)
+}
+
+func (a *ApplyApplicationWorkflowStep) WorkflowStepName() string {
+	return a.Base.Name
+}
+
+func (a *ApplyApplicationWorkflowStep) DefType() string {
+	return ApplyApplicationType
 }
 
 func (a *ApplyApplicationWorkflowStep) If(_if string) *ApplyApplicationWorkflowStep {
@@ -224,12 +234,4 @@ func (a *ApplyApplicationWorkflowStep) Inputs(input common.StepInputs) *ApplyApp
 func (a *ApplyApplicationWorkflowStep) Outputs(output common.StepOutputs) *ApplyApplicationWorkflowStep {
 	a.Base.Outputs = output
 	return a
-}
-
-func (a *ApplyApplicationWorkflowStep) DefName() string {
-	return a.Base.Name
-}
-
-func (a *ApplyApplicationWorkflowStep) DefType() string {
-	return ApplyApplicationType
 }

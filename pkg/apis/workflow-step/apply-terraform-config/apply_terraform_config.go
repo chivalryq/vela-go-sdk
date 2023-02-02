@@ -478,6 +478,7 @@ func (a *ApplyTerraformConfigWorkflowStep) FromWorkflowStep(from v1beta1.Workflo
 	a.Base.If = from.If
 	a.Base.Timeout = from.Timeout
 	a.Base.Meta = from.Meta
+	a.Base.Type = ApplyTerraformConfigType
 	a.Properties = properties
 	a.Base.SubSteps = subSteps
 	return a, nil
@@ -503,6 +504,7 @@ func (a *ApplyTerraformConfigWorkflowStep) FromWorkflowSubStep(from common.Workf
 	a.Base.If = from.If
 	a.Base.Timeout = from.Timeout
 	a.Base.Meta = from.Meta
+	a.Base.Type = ApplyTerraformConfigType
 	a.Properties = properties
 	return a, nil
 }
@@ -510,6 +512,14 @@ func (a *ApplyTerraformConfigWorkflowStep) FromWorkflowSubStep(from common.Workf
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	a := &ApplyTerraformConfigWorkflowStep{}
 	return a.FromWorkflowSubStep(from)
+}
+
+func (a *ApplyTerraformConfigWorkflowStep) WorkflowStepName() string {
+	return a.Base.Name
+}
+
+func (a *ApplyTerraformConfigWorkflowStep) DefType() string {
+	return ApplyTerraformConfigType
 }
 
 func (a *ApplyTerraformConfigWorkflowStep) If(_if string) *ApplyTerraformConfigWorkflowStep {
@@ -540,12 +550,4 @@ func (a *ApplyTerraformConfigWorkflowStep) Inputs(input common.StepInputs) *Appl
 func (a *ApplyTerraformConfigWorkflowStep) Outputs(output common.StepOutputs) *ApplyTerraformConfigWorkflowStep {
 	a.Base.Outputs = output
 	return a
-}
-
-func (a *ApplyTerraformConfigWorkflowStep) DefName() string {
-	return a.Base.Name
-}
-
-func (a *ApplyTerraformConfigWorkflowStep) DefType() string {
-	return ApplyTerraformConfigType
 }

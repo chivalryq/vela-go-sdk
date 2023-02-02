@@ -170,6 +170,7 @@ func (t *TakeOverPolicy) FromPolicy(from v1beta1.AppPolicy) (*TakeOverPolicy, er
 		}
 	}
 	t.Base.Name = from.Name
+	t.Base.Type = TakeOverType
 	t.Properties = properties
 	return t, nil
 }

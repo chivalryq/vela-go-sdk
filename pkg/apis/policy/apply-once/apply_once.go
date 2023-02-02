@@ -213,6 +213,7 @@ func (a *ApplyOncePolicy) FromPolicy(from v1beta1.AppPolicy) (*ApplyOncePolicy, 
 		}
 	}
 	a.Base.Name = from.Name
+	a.Base.Type = ApplyOnceType
 	a.Properties = properties
 	return a, nil
 }

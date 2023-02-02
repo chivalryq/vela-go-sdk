@@ -247,6 +247,7 @@ func (s *ServiceAccountTrait) FromTrait(from common.ApplicationTrait) (*ServiceA
 			return nil, err
 		}
 	}
+	s.Base.Type = ServiceAccountType
 	s.Properties = properties
 	return s, nil
 }

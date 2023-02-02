@@ -321,6 +321,7 @@ func (s *StorageTrait) FromTrait(from common.ApplicationTrait) (*StorageTrait, e
 			return nil, err
 		}
 	}
+	s.Base.Type = StorageType
 	s.Properties = properties
 	return s, nil
 }

@@ -873,10 +873,39 @@ func (w *WebserviceComponent) AddTrait(traits ...apis.Trait) *WebserviceComponen
 	return w
 }
 
-func (w *WebserviceComponent) DefName() string {
+func (w *WebserviceComponent) GetTrait(_type string) apis.Trait {
+	for _, _t := range w.Base.Traits {
+		if _t.DefType() == _type {
+			return _t
+		}
+	}
+	return nil
+}
+
+func (w *WebserviceComponent) ComponentName() string {
 	return w.Base.Name
 }
 
 func (w *WebserviceComponent) DefType() string {
 	return WebserviceType
+}
+
+func (w *WebserviceComponent) DependsOn(dependsOn []string) *WebserviceComponent {
+	w.Base.DependsOn = dependsOn
+	return w
+}
+
+func (w *WebserviceComponent) Inputs(input common.StepInputs) *WebserviceComponent {
+	w.Base.Inputs = input
+	return w
+}
+
+func (w *WebserviceComponent) Outputs(output common.StepOutputs) *WebserviceComponent {
+	w.Base.Outputs = output
+	return w
+}
+
+func (w *WebserviceComponent) AddDependsOn(dependsOn string) *WebserviceComponent {
+	w.Base.DependsOn = append(w.Base.DependsOn, dependsOn)
+	return w
 }

@@ -439,6 +439,7 @@ func (c *CollectServiceEndpointsWorkflowStep) FromWorkflowStep(from v1beta1.Work
 	c.Base.If = from.If
 	c.Base.Timeout = from.Timeout
 	c.Base.Meta = from.Meta
+	c.Base.Type = CollectServiceEndpointsType
 	c.Properties = properties
 	c.Base.SubSteps = subSteps
 	return c, nil
@@ -464,6 +465,7 @@ func (c *CollectServiceEndpointsWorkflowStep) FromWorkflowSubStep(from common.Wo
 	c.Base.If = from.If
 	c.Base.Timeout = from.Timeout
 	c.Base.Meta = from.Meta
+	c.Base.Type = CollectServiceEndpointsType
 	c.Properties = properties
 	return c, nil
 }
@@ -471,6 +473,14 @@ func (c *CollectServiceEndpointsWorkflowStep) FromWorkflowSubStep(from common.Wo
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	c := &CollectServiceEndpointsWorkflowStep{}
 	return c.FromWorkflowSubStep(from)
+}
+
+func (c *CollectServiceEndpointsWorkflowStep) WorkflowStepName() string {
+	return c.Base.Name
+}
+
+func (c *CollectServiceEndpointsWorkflowStep) DefType() string {
+	return CollectServiceEndpointsType
 }
 
 func (c *CollectServiceEndpointsWorkflowStep) If(_if string) *CollectServiceEndpointsWorkflowStep {
@@ -501,12 +511,4 @@ func (c *CollectServiceEndpointsWorkflowStep) Inputs(input common.StepInputs) *C
 func (c *CollectServiceEndpointsWorkflowStep) Outputs(output common.StepOutputs) *CollectServiceEndpointsWorkflowStep {
 	c.Base.Outputs = output
 	return c
-}
-
-func (c *CollectServiceEndpointsWorkflowStep) DefName() string {
-	return c.Base.Name
-}
-
-func (c *CollectServiceEndpointsWorkflowStep) DefType() string {
-	return CollectServiceEndpointsType
 }

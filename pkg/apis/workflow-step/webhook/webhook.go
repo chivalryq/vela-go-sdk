@@ -239,6 +239,7 @@ func (w *WebhookWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*Webh
 	w.Base.If = from.If
 	w.Base.Timeout = from.Timeout
 	w.Base.Meta = from.Meta
+	w.Base.Type = WebhookType
 	w.Properties = properties
 	w.Base.SubSteps = subSteps
 	return w, nil
@@ -264,6 +265,7 @@ func (w *WebhookWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (
 	w.Base.If = from.If
 	w.Base.Timeout = from.Timeout
 	w.Base.Meta = from.Meta
+	w.Base.Type = WebhookType
 	w.Properties = properties
 	return w, nil
 }
@@ -271,6 +273,14 @@ func (w *WebhookWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	w := &WebhookWorkflowStep{}
 	return w.FromWorkflowSubStep(from)
+}
+
+func (w *WebhookWorkflowStep) WorkflowStepName() string {
+	return w.Base.Name
+}
+
+func (w *WebhookWorkflowStep) DefType() string {
+	return WebhookType
 }
 
 func (w *WebhookWorkflowStep) If(_if string) *WebhookWorkflowStep {
@@ -301,12 +311,4 @@ func (w *WebhookWorkflowStep) Inputs(input common.StepInputs) *WebhookWorkflowSt
 func (w *WebhookWorkflowStep) Outputs(output common.StepOutputs) *WebhookWorkflowStep {
 	w.Base.Outputs = output
 	return w
-}
-
-func (w *WebhookWorkflowStep) DefName() string {
-	return w.Base.Name
-}
-
-func (w *WebhookWorkflowStep) DefType() string {
-	return WebhookType
 }

@@ -162,6 +162,7 @@ func (a *ApplyApplicationInParallelWorkflowStep) FromWorkflowStep(from v1beta1.W
 	a.Base.If = from.If
 	a.Base.Timeout = from.Timeout
 	a.Base.Meta = from.Meta
+	a.Base.Type = ApplyApplicationInParallelType
 	a.Properties = properties
 	a.Base.SubSteps = subSteps
 	return a, nil
@@ -187,6 +188,7 @@ func (a *ApplyApplicationInParallelWorkflowStep) FromWorkflowSubStep(from common
 	a.Base.If = from.If
 	a.Base.Timeout = from.Timeout
 	a.Base.Meta = from.Meta
+	a.Base.Type = ApplyApplicationInParallelType
 	a.Properties = properties
 	return a, nil
 }
@@ -194,6 +196,14 @@ func (a *ApplyApplicationInParallelWorkflowStep) FromWorkflowSubStep(from common
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	a := &ApplyApplicationInParallelWorkflowStep{}
 	return a.FromWorkflowSubStep(from)
+}
+
+func (a *ApplyApplicationInParallelWorkflowStep) WorkflowStepName() string {
+	return a.Base.Name
+}
+
+func (a *ApplyApplicationInParallelWorkflowStep) DefType() string {
+	return ApplyApplicationInParallelType
 }
 
 func (a *ApplyApplicationInParallelWorkflowStep) If(_if string) *ApplyApplicationInParallelWorkflowStep {
@@ -224,12 +234,4 @@ func (a *ApplyApplicationInParallelWorkflowStep) Inputs(input common.StepInputs)
 func (a *ApplyApplicationInParallelWorkflowStep) Outputs(output common.StepOutputs) *ApplyApplicationInParallelWorkflowStep {
 	a.Base.Outputs = output
 	return a
-}
-
-func (a *ApplyApplicationInParallelWorkflowStep) DefName() string {
-	return a.Base.Name
-}
-
-func (a *ApplyApplicationInParallelWorkflowStep) DefType() string {
-	return ApplyApplicationInParallelType
 }

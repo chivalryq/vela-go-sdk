@@ -227,6 +227,7 @@ func (r *RefObjectsComponent) FromComponent(from common.ApplicationComponent) (*
 	r.Base.DependsOn = from.DependsOn
 	r.Base.Inputs = from.Inputs
 	r.Base.Outputs = from.Outputs
+	r.Base.Type = RefObjectsType
 	r.Properties = properties
 	return r, nil
 }
@@ -241,10 +242,39 @@ func (r *RefObjectsComponent) AddTrait(traits ...apis.Trait) *RefObjectsComponen
 	return r
 }
 
-func (r *RefObjectsComponent) DefName() string {
+func (r *RefObjectsComponent) GetTrait(_type string) apis.Trait {
+	for _, _t := range r.Base.Traits {
+		if _t.DefType() == _type {
+			return _t
+		}
+	}
+	return nil
+}
+
+func (r *RefObjectsComponent) ComponentName() string {
 	return r.Base.Name
 }
 
 func (r *RefObjectsComponent) DefType() string {
 	return RefObjectsType
+}
+
+func (r *RefObjectsComponent) DependsOn(dependsOn []string) *RefObjectsComponent {
+	r.Base.DependsOn = dependsOn
+	return r
+}
+
+func (r *RefObjectsComponent) Inputs(input common.StepInputs) *RefObjectsComponent {
+	r.Base.Inputs = input
+	return r
+}
+
+func (r *RefObjectsComponent) Outputs(output common.StepOutputs) *RefObjectsComponent {
+	r.Base.Outputs = output
+	return r
+}
+
+func (r *RefObjectsComponent) AddDependsOn(dependsOn string) *RefObjectsComponent {
+	r.Base.DependsOn = append(r.Base.DependsOn, dependsOn)
+	return r
 }

@@ -250,6 +250,7 @@ func (k *K8sUpdateStrategyTrait) FromTrait(from common.ApplicationTrait) (*K8sUp
 			return nil, err
 		}
 	}
+	k.Base.Type = K8sUpdateStrategyType
 	k.Properties = properties
 	return k, nil
 }

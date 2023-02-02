@@ -1111,6 +1111,7 @@ func (c *CronTaskComponent) FromComponent(from common.ApplicationComponent) (*Cr
 	c.Base.DependsOn = from.DependsOn
 	c.Base.Inputs = from.Inputs
 	c.Base.Outputs = from.Outputs
+	c.Base.Type = CronTaskType
 	c.Properties = properties
 	return c, nil
 }
@@ -1125,10 +1126,39 @@ func (c *CronTaskComponent) AddTrait(traits ...apis.Trait) *CronTaskComponent {
 	return c
 }
 
-func (c *CronTaskComponent) DefName() string {
+func (c *CronTaskComponent) GetTrait(_type string) apis.Trait {
+	for _, _t := range c.Base.Traits {
+		if _t.DefType() == _type {
+			return _t
+		}
+	}
+	return nil
+}
+
+func (c *CronTaskComponent) ComponentName() string {
 	return c.Base.Name
 }
 
 func (c *CronTaskComponent) DefType() string {
 	return CronTaskType
+}
+
+func (c *CronTaskComponent) DependsOn(dependsOn []string) *CronTaskComponent {
+	c.Base.DependsOn = dependsOn
+	return c
+}
+
+func (c *CronTaskComponent) Inputs(input common.StepInputs) *CronTaskComponent {
+	c.Base.Inputs = input
+	return c
+}
+
+func (c *CronTaskComponent) Outputs(output common.StepOutputs) *CronTaskComponent {
+	c.Base.Outputs = output
+	return c
+}
+
+func (c *CronTaskComponent) AddDependsOn(dependsOn string) *CronTaskComponent {
+	c.Base.DependsOn = append(c.Base.DependsOn, dependsOn)
+	return c
 }

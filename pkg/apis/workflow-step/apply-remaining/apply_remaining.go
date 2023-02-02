@@ -201,6 +201,7 @@ func (a *ApplyRemainingWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep)
 	a.Base.If = from.If
 	a.Base.Timeout = from.Timeout
 	a.Base.Meta = from.Meta
+	a.Base.Type = ApplyRemainingType
 	a.Properties = properties
 	a.Base.SubSteps = subSteps
 	return a, nil
@@ -226,6 +227,7 @@ func (a *ApplyRemainingWorkflowStep) FromWorkflowSubStep(from common.WorkflowSub
 	a.Base.If = from.If
 	a.Base.Timeout = from.Timeout
 	a.Base.Meta = from.Meta
+	a.Base.Type = ApplyRemainingType
 	a.Properties = properties
 	return a, nil
 }
@@ -233,6 +235,14 @@ func (a *ApplyRemainingWorkflowStep) FromWorkflowSubStep(from common.WorkflowSub
 func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
 	a := &ApplyRemainingWorkflowStep{}
 	return a.FromWorkflowSubStep(from)
+}
+
+func (a *ApplyRemainingWorkflowStep) WorkflowStepName() string {
+	return a.Base.Name
+}
+
+func (a *ApplyRemainingWorkflowStep) DefType() string {
+	return ApplyRemainingType
 }
 
 func (a *ApplyRemainingWorkflowStep) If(_if string) *ApplyRemainingWorkflowStep {
@@ -263,12 +273,4 @@ func (a *ApplyRemainingWorkflowStep) Inputs(input common.StepInputs) *ApplyRemai
 func (a *ApplyRemainingWorkflowStep) Outputs(output common.StepOutputs) *ApplyRemainingWorkflowStep {
 	a.Base.Outputs = output
 	return a
-}
-
-func (a *ApplyRemainingWorkflowStep) DefName() string {
-	return a.Base.Name
-}
-
-func (a *ApplyRemainingWorkflowStep) DefType() string {
-	return ApplyRemainingType
 }

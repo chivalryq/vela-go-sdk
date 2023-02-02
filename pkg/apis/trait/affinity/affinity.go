@@ -279,6 +279,7 @@ func (a *AffinityTrait) FromTrait(from common.ApplicationTrait) (*AffinityTrait,
 			return nil, err
 		}
 	}
+	a.Base.Type = AffinityType
 	a.Properties = properties
 	return a, nil
 }

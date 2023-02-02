@@ -247,6 +247,7 @@ func (e *ExposeTrait) FromTrait(from common.ApplicationTrait) (*ExposeTrait, err
 			return nil, err
 		}
 	}
+	e.Base.Type = ExposeType
 	e.Properties = properties
 	return e, nil
 }
