@@ -21,18 +21,16 @@ var _ utils.MappedNullable = &Slack{}
 
 // Slack Please fulfill its url and message if you want to send Slack messages
 type Slack struct {
-	message Message2 `json:"message"`
-	url     Url2     `json:"url"`
+	message *Message2 `json:"message,omitempty"`
+	url     *Url2     `json:"url,omitempty"`
 }
 
 // NewSlackWith instantiates a new Slack object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSlackWith(message Message2, url Url2) *Slack {
+func NewSlackWith() *Slack {
 	this := Slack{}
-	this.message = message
-	this.url = url
 	return &this
 }
 
@@ -44,53 +42,71 @@ func NewSlack() *Slack {
 	return &this
 }
 
-// GetMessage returns the Message field value
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *Slack) GetMessage() Message2 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.message) {
 		var ret Message2
 		return ret
 	}
-
-	return o.message
+	return *o.message
 }
 
-// GetMessageOk returns a tuple with the Message field value
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Slack) GetMessageOk() (*Message2, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.message) {
 		return nil, false
 	}
-	return &o.message, true
+	return o.message, true
 }
 
-// Message sets field value
+// HasMessage returns a boolean if a field has been set.
+func (o *Slack) HasMessage() bool {
+	if o != nil && !utils.IsNil(o.message) {
+		return true
+	}
+
+	return false
+}
+
+// Message gets a reference to the given Message2 and assigns it to the message field.
+// message:
 func (o *Slack) Message(v Message2) *Slack {
-	o.message = v
+	o.message = &v
 	return o
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *Slack) GetUrl() Url2 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.url) {
 		var ret Url2
 		return ret
 	}
-
-	return o.url
+	return *o.url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Slack) GetUrlOk() (*Url2, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.url) {
 		return nil, false
 	}
-	return &o.url, true
+	return o.url, true
 }
 
-// Url sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *Slack) HasUrl() bool {
+	if o != nil && !utils.IsNil(o.url) {
+		return true
+	}
+
+	return false
+}
+
+// Url gets a reference to the given Url2 and assigns it to the url field.
+// url:
 func (o *Slack) Url(v Url2) *Slack {
-	o.url = v
+	o.url = &v
 	return o
 }
 
@@ -104,8 +120,12 @@ func (o Slack) MarshalJSON() ([]byte, error) {
 
 func (o Slack) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["message"] = o.message
-	toSerialize["url"] = o.url
+	if !utils.IsNil(o.message) {
+		toSerialize["message"] = o.message
+	}
+	if !utils.IsNil(o.url) {
+		toSerialize["url"] = o.url
+	}
 	return toSerialize, nil
 }
 

@@ -21,16 +21,15 @@ var _ utils.MappedNullable = &Text{}
 
 // Text Specify the message content of dingtalk notification
 type Text struct {
-	content string `json:"content"`
+	content *string `json:"content,omitempty"`
 }
 
 // NewTextWith instantiates a new Text object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTextWith(content string) *Text {
+func NewTextWith() *Text {
 	this := Text{}
-	this.content = content
 	return &this
 }
 
@@ -42,28 +41,37 @@ func NewText() *Text {
 	return &this
 }
 
-// GetContent returns the Content field value
+// GetContent returns the Content field value if set, zero value otherwise.
 func (o *Text) GetContent() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.content) {
 		var ret string
 		return ret
 	}
-
-	return o.content
+	return *o.content
 }
 
-// GetContentOk returns a tuple with the Content field value
+// GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Text) GetContentOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.content) {
 		return nil, false
 	}
-	return &o.content, true
+	return o.content, true
 }
 
-// Content sets field value
+// HasContent returns a boolean if a field has been set.
+func (o *Text) HasContent() bool {
+	if o != nil && !utils.IsNil(o.content) {
+		return true
+	}
+
+	return false
+}
+
+// Content gets a reference to the given string and assigns it to the content field.
+// content:
 func (o *Text) Content(v string) *Text {
-	o.content = v
+	o.content = &v
 	return o
 }
 
@@ -77,7 +85,9 @@ func (o Text) MarshalJSON() ([]byte, error) {
 
 func (o Text) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["content"] = o.content
+	if !utils.IsNil(o.content) {
+		toSerialize["content"] = o.content
+	}
 	return toSerialize, nil
 }
 

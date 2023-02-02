@@ -22,14 +22,14 @@ var _ utils.MappedNullable = &ConfigMap{}
 // ConfigMap struct for ConfigMap
 type ConfigMap struct {
 	data        map[string]interface{} `json:"data,omitempty"`
-	defaultMode int32                  `json:"defaultMode"`
+	defaultMode *int32                 `json:"defaultMode,omitempty"`
 	items       []Items                `json:"items,omitempty"`
-	mountOnly   bool                   `json:"mountOnly"`
+	mountOnly   *bool                  `json:"mountOnly,omitempty"`
 	mountPath   *string                `json:"mountPath,omitempty"`
 	mountToEnv  *MountToEnv            `json:"mountToEnv,omitempty"`
 	mountToEnvs []MountToEnvs          `json:"mountToEnvs,omitempty"`
-	name        string                 `json:"name"`
-	readOnly    bool                   `json:"readOnly"`
+	name        *string                `json:"name,omitempty"`
+	readOnly    *bool                  `json:"readOnly,omitempty"`
 	subPath     *string                `json:"subPath,omitempty"`
 }
 
@@ -37,12 +37,14 @@ type ConfigMap struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConfigMapWith(defaultMode int32, mountOnly bool, name string, readOnly bool) *ConfigMap {
+func NewConfigMapWith() *ConfigMap {
 	this := ConfigMap{}
-	this.defaultMode = defaultMode
-	this.mountOnly = mountOnly
-	this.name = name
-	this.readOnly = readOnly
+	var defaultMode int32 = 420
+	this.defaultMode = &defaultMode
+	var mountOnly bool = false
+	this.mountOnly = &mountOnly
+	var readOnly bool = false
+	this.readOnly = &readOnly
 	return &this
 }
 
@@ -52,11 +54,11 @@ func NewConfigMapWith(defaultMode int32, mountOnly bool, name string, readOnly b
 func NewConfigMap() *ConfigMap {
 	this := ConfigMap{}
 	var defaultMode int32 = 420
-	this.defaultMode = defaultMode
+	this.defaultMode = &defaultMode
 	var mountOnly bool = false
-	this.mountOnly = mountOnly
+	this.mountOnly = &mountOnly
 	var readOnly bool = false
-	this.readOnly = readOnly
+	this.readOnly = &readOnly
 	return &this
 }
 
@@ -94,28 +96,37 @@ func (o *ConfigMap) Data(v map[string]interface{}) *ConfigMap {
 	return o
 }
 
-// GetDefaultMode returns the DefaultMode field value
+// GetDefaultMode returns the DefaultMode field value if set, zero value otherwise.
 func (o *ConfigMap) GetDefaultMode() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.defaultMode) {
 		var ret int32
 		return ret
 	}
-
-	return o.defaultMode
+	return *o.defaultMode
 }
 
-// GetDefaultModeOk returns a tuple with the DefaultMode field value
+// GetDefaultModeOk returns a tuple with the DefaultMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConfigMap) GetDefaultModeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.defaultMode) {
 		return nil, false
 	}
-	return &o.defaultMode, true
+	return o.defaultMode, true
 }
 
-// DefaultMode sets field value
+// HasDefaultMode returns a boolean if a field has been set.
+func (o *ConfigMap) HasDefaultMode() bool {
+	if o != nil && !utils.IsNil(o.defaultMode) {
+		return true
+	}
+
+	return false
+}
+
+// DefaultMode gets a reference to the given int32 and assigns it to the defaultMode field.
+// defaultMode:
 func (o *ConfigMap) DefaultMode(v int32) *ConfigMap {
-	o.defaultMode = v
+	o.defaultMode = &v
 	return o
 }
 
@@ -153,28 +164,37 @@ func (o *ConfigMap) Items(v []Items) *ConfigMap {
 	return o
 }
 
-// GetMountOnly returns the MountOnly field value
+// GetMountOnly returns the MountOnly field value if set, zero value otherwise.
 func (o *ConfigMap) GetMountOnly() bool {
-	if o == nil {
+	if o == nil || utils.IsNil(o.mountOnly) {
 		var ret bool
 		return ret
 	}
-
-	return o.mountOnly
+	return *o.mountOnly
 }
 
-// GetMountOnlyOk returns a tuple with the MountOnly field value
+// GetMountOnlyOk returns a tuple with the MountOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConfigMap) GetMountOnlyOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.mountOnly) {
 		return nil, false
 	}
-	return &o.mountOnly, true
+	return o.mountOnly, true
 }
 
-// MountOnly sets field value
+// HasMountOnly returns a boolean if a field has been set.
+func (o *ConfigMap) HasMountOnly() bool {
+	if o != nil && !utils.IsNil(o.mountOnly) {
+		return true
+	}
+
+	return false
+}
+
+// MountOnly gets a reference to the given bool and assigns it to the mountOnly field.
+// mountOnly:
 func (o *ConfigMap) MountOnly(v bool) *ConfigMap {
-	o.mountOnly = v
+	o.mountOnly = &v
 	return o
 }
 
@@ -280,53 +300,71 @@ func (o *ConfigMap) MountToEnvs(v []MountToEnvs) *ConfigMap {
 	return o
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *ConfigMap) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		var ret string
 		return ret
 	}
-
-	return o.name
+	return *o.name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConfigMap) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		return nil, false
 	}
-	return &o.name, true
+	return o.name, true
 }
 
-// Name sets field value
+// HasName returns a boolean if a field has been set.
+func (o *ConfigMap) HasName() bool {
+	if o != nil && !utils.IsNil(o.name) {
+		return true
+	}
+
+	return false
+}
+
+// Name gets a reference to the given string and assigns it to the name field.
+// name:
 func (o *ConfigMap) Name(v string) *ConfigMap {
-	o.name = v
+	o.name = &v
 	return o
 }
 
-// GetReadOnly returns the ReadOnly field value
+// GetReadOnly returns the ReadOnly field value if set, zero value otherwise.
 func (o *ConfigMap) GetReadOnly() bool {
-	if o == nil {
+	if o == nil || utils.IsNil(o.readOnly) {
 		var ret bool
 		return ret
 	}
-
-	return o.readOnly
+	return *o.readOnly
 }
 
-// GetReadOnlyOk returns a tuple with the ReadOnly field value
+// GetReadOnlyOk returns a tuple with the ReadOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConfigMap) GetReadOnlyOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.readOnly) {
 		return nil, false
 	}
-	return &o.readOnly, true
+	return o.readOnly, true
 }
 
-// ReadOnly sets field value
+// HasReadOnly returns a boolean if a field has been set.
+func (o *ConfigMap) HasReadOnly() bool {
+	if o != nil && !utils.IsNil(o.readOnly) {
+		return true
+	}
+
+	return false
+}
+
+// ReadOnly gets a reference to the given bool and assigns it to the readOnly field.
+// readOnly:
 func (o *ConfigMap) ReadOnly(v bool) *ConfigMap {
-	o.readOnly = v
+	o.readOnly = &v
 	return o
 }
 
@@ -377,11 +415,15 @@ func (o ConfigMap) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.data) {
 		toSerialize["data"] = o.data
 	}
-	toSerialize["defaultMode"] = o.defaultMode
+	if !utils.IsNil(o.defaultMode) {
+		toSerialize["defaultMode"] = o.defaultMode
+	}
 	if !utils.IsNil(o.items) {
 		toSerialize["items"] = o.items
 	}
-	toSerialize["mountOnly"] = o.mountOnly
+	if !utils.IsNil(o.mountOnly) {
+		toSerialize["mountOnly"] = o.mountOnly
+	}
 	if !utils.IsNil(o.mountPath) {
 		toSerialize["mountPath"] = o.mountPath
 	}
@@ -391,8 +433,12 @@ func (o ConfigMap) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.mountToEnvs) {
 		toSerialize["mountToEnvs"] = o.mountToEnvs
 	}
-	toSerialize["name"] = o.name
-	toSerialize["readOnly"] = o.readOnly
+	if !utils.IsNil(o.name) {
+		toSerialize["name"] = o.name
+	}
+	if !utils.IsNil(o.readOnly) {
+		toSerialize["readOnly"] = o.readOnly
+	}
 	if !utils.IsNil(o.subPath) {
 		toSerialize["subPath"] = o.subPath
 	}

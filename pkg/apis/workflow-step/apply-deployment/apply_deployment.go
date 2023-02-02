@@ -28,16 +28,15 @@ var _ utils.MappedNullable = &ApplyDeploymentSpec{}
 // ApplyDeploymentSpec struct for ApplyDeploymentSpec
 type ApplyDeploymentSpec struct {
 	cmd   []string `json:"cmd,omitempty"`
-	image string   `json:"image"`
+	image *string  `json:"image,omitempty"`
 }
 
 // NewApplyDeploymentSpecWith instantiates a new ApplyDeploymentSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApplyDeploymentSpecWith(image string) *ApplyDeploymentSpec {
+func NewApplyDeploymentSpecWith() *ApplyDeploymentSpec {
 	this := ApplyDeploymentSpec{}
-	this.image = image
 	return &this
 }
 
@@ -83,28 +82,37 @@ func (o *ApplyDeploymentWorkflowStep) Cmd(v []string) *ApplyDeploymentWorkflowSt
 	return o
 }
 
-// GetImage returns the Image field value
+// GetImage returns the Image field value if set, zero value otherwise.
 func (o *ApplyDeploymentWorkflowStep) GetImage() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.image) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.image
+	return *o.Properties.image
 }
 
-// GetImageOk returns a tuple with the Image field value
+// GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplyDeploymentWorkflowStep) GetImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.image) {
 		return nil, false
 	}
-	return &o.Properties.image, true
+	return o.Properties.image, true
 }
 
-// Image sets field value
+// HasImage returns a boolean if a field has been set.
+func (o *ApplyDeploymentWorkflowStep) HasImage() bool {
+	if o != nil && !utils.IsNil(o.Properties.image) {
+		return true
+	}
+
+	return false
+}
+
+// Image gets a reference to the given string and assigns it to the image field.
+// image:
 func (o *ApplyDeploymentWorkflowStep) Image(v string) *ApplyDeploymentWorkflowStep {
-	o.Properties.image = v
+	o.Properties.image = &v
 	return o
 }
 
@@ -121,7 +129,9 @@ func (o ApplyDeploymentSpec) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.cmd) {
 		toSerialize["cmd"] = o.cmd
 	}
-	toSerialize["image"] = o.image
+	if !utils.IsNil(o.image) {
+		toSerialize["image"] = o.image
+	}
 	return toSerialize, nil
 }
 
@@ -176,6 +186,7 @@ type ApplyDeploymentWorkflowStep struct {
 func ApplyDeployment(name string) *ApplyDeploymentWorkflowStep {
 	a := &ApplyDeploymentWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: ApplyDeploymentType,
 	}}
 	return a
 }
@@ -187,7 +198,7 @@ func (a *ApplyDeploymentWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  a.Base.DependsOn,

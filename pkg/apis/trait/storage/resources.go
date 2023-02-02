@@ -21,17 +21,16 @@ var _ utils.MappedNullable = &Resources{}
 
 // Resources struct for Resources
 type Resources struct {
-	limits   *Limits  `json:"limits,omitempty"`
-	requests Requests `json:"requests"`
+	limits   *Limits   `json:"limits,omitempty"`
+	requests *Requests `json:"requests,omitempty"`
 }
 
 // NewResourcesWith instantiates a new Resources object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResourcesWith(requests Requests) *Resources {
+func NewResourcesWith() *Resources {
 	this := Resources{}
-	this.requests = requests
 	return &this
 }
 
@@ -77,28 +76,37 @@ func (o *Resources) Limits(v Limits) *Resources {
 	return o
 }
 
-// GetRequests returns the Requests field value
+// GetRequests returns the Requests field value if set, zero value otherwise.
 func (o *Resources) GetRequests() Requests {
-	if o == nil {
+	if o == nil || utils.IsNil(o.requests) {
 		var ret Requests
 		return ret
 	}
-
-	return o.requests
+	return *o.requests
 }
 
-// GetRequestsOk returns a tuple with the Requests field value
+// GetRequestsOk returns a tuple with the Requests field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Resources) GetRequestsOk() (*Requests, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.requests) {
 		return nil, false
 	}
-	return &o.requests, true
+	return o.requests, true
 }
 
-// Requests sets field value
+// HasRequests returns a boolean if a field has been set.
+func (o *Resources) HasRequests() bool {
+	if o != nil && !utils.IsNil(o.requests) {
+		return true
+	}
+
+	return false
+}
+
+// Requests gets a reference to the given Requests and assigns it to the requests field.
+// requests:
 func (o *Resources) Requests(v Requests) *Resources {
-	o.requests = v
+	o.requests = &v
 	return o
 }
 
@@ -115,7 +123,9 @@ func (o Resources) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.limits) {
 		toSerialize["limits"] = o.limits
 	}
-	toSerialize["requests"] = o.requests
+	if !utils.IsNil(o.requests) {
+		toSerialize["requests"] = o.requests
+	}
 	return toSerialize, nil
 }
 

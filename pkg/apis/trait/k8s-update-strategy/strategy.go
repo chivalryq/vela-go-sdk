@@ -23,16 +23,17 @@ var _ utils.MappedNullable = &Strategy{}
 type Strategy struct {
 	rollingStrategy *RollingStrategy `json:"rollingStrategy,omitempty"`
 	// Specify the strategy type
-	type_ string `json:"type"`
+	type_ *string `json:"type,omitempty"`
 }
 
 // NewStrategyWith instantiates a new Strategy object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStrategyWith(type_ string) *Strategy {
+func NewStrategyWith() *Strategy {
 	this := Strategy{}
-	this.type_ = type_
+	var type_ string = "RollingUpdate"
+	this.type_ = &type_
 	return &this
 }
 
@@ -42,7 +43,7 @@ func NewStrategyWith(type_ string) *Strategy {
 func NewStrategy() *Strategy {
 	this := Strategy{}
 	var type_ string = "RollingUpdate"
-	this.type_ = type_
+	this.type_ = &type_
 	return &this
 }
 
@@ -80,28 +81,37 @@ func (o *Strategy) RollingStrategy(v RollingStrategy) *Strategy {
 	return o
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *Strategy) GetType() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.type_) {
 		var ret string
 		return ret
 	}
-
-	return o.type_
+	return *o.type_
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Strategy) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.type_) {
 		return nil, false
 	}
-	return &o.type_, true
+	return o.type_, true
 }
 
-// Type sets field value
+// HasType returns a boolean if a field has been set.
+func (o *Strategy) HasType() bool {
+	if o != nil && !utils.IsNil(o.type_) {
+		return true
+	}
+
+	return false
+}
+
+// Type gets a reference to the given string and assigns it to the type_ field.
+// type_:  Specify the strategy type
 func (o *Strategy) Type(v string) *Strategy {
-	o.type_ = v
+	o.type_ = &v
 	return o
 }
 
@@ -118,7 +128,9 @@ func (o Strategy) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.rollingStrategy) {
 		toSerialize["rollingStrategy"] = o.rollingStrategy
 	}
-	toSerialize["type"] = o.type_
+	if !utils.IsNil(o.type_) {
+		toSerialize["type"] = o.type_
+	}
 	return toSerialize, nil
 }
 

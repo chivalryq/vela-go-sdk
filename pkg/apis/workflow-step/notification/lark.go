@@ -21,18 +21,16 @@ var _ utils.MappedNullable = &Lark{}
 
 // Lark Please fulfill its url and message if you want to send Lark messages
 type Lark struct {
-	message Message1 `json:"message"`
-	url     Url1     `json:"url"`
+	message *Message1 `json:"message,omitempty"`
+	url     *Url1     `json:"url,omitempty"`
 }
 
 // NewLarkWith instantiates a new Lark object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLarkWith(message Message1, url Url1) *Lark {
+func NewLarkWith() *Lark {
 	this := Lark{}
-	this.message = message
-	this.url = url
 	return &this
 }
 
@@ -44,53 +42,71 @@ func NewLark() *Lark {
 	return &this
 }
 
-// GetMessage returns the Message field value
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *Lark) GetMessage() Message1 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.message) {
 		var ret Message1
 		return ret
 	}
-
-	return o.message
+	return *o.message
 }
 
-// GetMessageOk returns a tuple with the Message field value
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Lark) GetMessageOk() (*Message1, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.message) {
 		return nil, false
 	}
-	return &o.message, true
+	return o.message, true
 }
 
-// Message sets field value
+// HasMessage returns a boolean if a field has been set.
+func (o *Lark) HasMessage() bool {
+	if o != nil && !utils.IsNil(o.message) {
+		return true
+	}
+
+	return false
+}
+
+// Message gets a reference to the given Message1 and assigns it to the message field.
+// message:
 func (o *Lark) Message(v Message1) *Lark {
-	o.message = v
+	o.message = &v
 	return o
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *Lark) GetUrl() Url1 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.url) {
 		var ret Url1
 		return ret
 	}
-
-	return o.url
+	return *o.url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Lark) GetUrlOk() (*Url1, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.url) {
 		return nil, false
 	}
-	return &o.url, true
+	return o.url, true
 }
 
-// Url sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *Lark) HasUrl() bool {
+	if o != nil && !utils.IsNil(o.url) {
+		return true
+	}
+
+	return false
+}
+
+// Url gets a reference to the given Url1 and assigns it to the url field.
+// url:
 func (o *Lark) Url(v Url1) *Lark {
-	o.url = v
+	o.url = &v
 	return o
 }
 
@@ -104,8 +120,12 @@ func (o Lark) MarshalJSON() ([]byte, error) {
 
 func (o Lark) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["message"] = o.message
-	toSerialize["url"] = o.url
+	if !utils.IsNil(o.message) {
+		toSerialize["message"] = o.message
+	}
+	if !utils.IsNil(o.url) {
+		toSerialize["url"] = o.url
+	}
 	return toSerialize, nil
 }
 

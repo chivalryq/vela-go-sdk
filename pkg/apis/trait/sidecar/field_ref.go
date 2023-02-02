@@ -22,16 +22,15 @@ var _ utils.MappedNullable = &FieldRef{}
 // FieldRef Specify the field reference for env
 type FieldRef struct {
 	// Specify the field path for env
-	fieldPath string `json:"fieldPath"`
+	fieldPath *string `json:"fieldPath,omitempty"`
 }
 
 // NewFieldRefWith instantiates a new FieldRef object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFieldRefWith(fieldPath string) *FieldRef {
+func NewFieldRefWith() *FieldRef {
 	this := FieldRef{}
-	this.fieldPath = fieldPath
 	return &this
 }
 
@@ -43,28 +42,37 @@ func NewFieldRef() *FieldRef {
 	return &this
 }
 
-// GetFieldPath returns the FieldPath field value
+// GetFieldPath returns the FieldPath field value if set, zero value otherwise.
 func (o *FieldRef) GetFieldPath() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.fieldPath) {
 		var ret string
 		return ret
 	}
-
-	return o.fieldPath
+	return *o.fieldPath
 }
 
-// GetFieldPathOk returns a tuple with the FieldPath field value
+// GetFieldPathOk returns a tuple with the FieldPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FieldRef) GetFieldPathOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.fieldPath) {
 		return nil, false
 	}
-	return &o.fieldPath, true
+	return o.fieldPath, true
 }
 
-// FieldPath sets field value
+// HasFieldPath returns a boolean if a field has been set.
+func (o *FieldRef) HasFieldPath() bool {
+	if o != nil && !utils.IsNil(o.fieldPath) {
+		return true
+	}
+
+	return false
+}
+
+// FieldPath gets a reference to the given string and assigns it to the fieldPath field.
+// fieldPath:  Specify the field path for env
 func (o *FieldRef) FieldPath(v string) *FieldRef {
-	o.fieldPath = v
+	o.fieldPath = &v
 	return o
 }
 
@@ -78,7 +86,9 @@ func (o FieldRef) MarshalJSON() ([]byte, error) {
 
 func (o FieldRef) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fieldPath"] = o.fieldPath
+	if !utils.IsNil(o.fieldPath) {
+		toSerialize["fieldPath"] = o.fieldPath
+	}
 	return toSerialize, nil
 }
 

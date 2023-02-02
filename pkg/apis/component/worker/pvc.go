@@ -22,20 +22,17 @@ var _ utils.MappedNullable = &Pvc{}
 // Pvc struct for Pvc
 type Pvc struct {
 	// The name of the PVC
-	claimName string `json:"claimName"`
-	mountPath string `json:"mountPath"`
-	name      string `json:"name"`
+	claimName *string `json:"claimName,omitempty"`
+	mountPath *string `json:"mountPath,omitempty"`
+	name      *string `json:"name,omitempty"`
 }
 
 // NewPvcWith instantiates a new Pvc object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPvcWith(claimName string, mountPath string, name string) *Pvc {
+func NewPvcWith() *Pvc {
 	this := Pvc{}
-	this.claimName = claimName
-	this.mountPath = mountPath
-	this.name = name
 	return &this
 }
 
@@ -47,78 +44,105 @@ func NewPvc() *Pvc {
 	return &this
 }
 
-// GetClaimName returns the ClaimName field value
+// GetClaimName returns the ClaimName field value if set, zero value otherwise.
 func (o *Pvc) GetClaimName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.claimName) {
 		var ret string
 		return ret
 	}
-
-	return o.claimName
+	return *o.claimName
 }
 
-// GetClaimNameOk returns a tuple with the ClaimName field value
+// GetClaimNameOk returns a tuple with the ClaimName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pvc) GetClaimNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.claimName) {
 		return nil, false
 	}
-	return &o.claimName, true
+	return o.claimName, true
 }
 
-// ClaimName sets field value
+// HasClaimName returns a boolean if a field has been set.
+func (o *Pvc) HasClaimName() bool {
+	if o != nil && !utils.IsNil(o.claimName) {
+		return true
+	}
+
+	return false
+}
+
+// ClaimName gets a reference to the given string and assigns it to the claimName field.
+// claimName:  The name of the PVC
 func (o *Pvc) ClaimName(v string) *Pvc {
-	o.claimName = v
+	o.claimName = &v
 	return o
 }
 
-// GetMountPath returns the MountPath field value
+// GetMountPath returns the MountPath field value if set, zero value otherwise.
 func (o *Pvc) GetMountPath() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.mountPath) {
 		var ret string
 		return ret
 	}
-
-	return o.mountPath
+	return *o.mountPath
 }
 
-// GetMountPathOk returns a tuple with the MountPath field value
+// GetMountPathOk returns a tuple with the MountPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pvc) GetMountPathOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.mountPath) {
 		return nil, false
 	}
-	return &o.mountPath, true
+	return o.mountPath, true
 }
 
-// MountPath sets field value
+// HasMountPath returns a boolean if a field has been set.
+func (o *Pvc) HasMountPath() bool {
+	if o != nil && !utils.IsNil(o.mountPath) {
+		return true
+	}
+
+	return false
+}
+
+// MountPath gets a reference to the given string and assigns it to the mountPath field.
+// mountPath:
 func (o *Pvc) MountPath(v string) *Pvc {
-	o.mountPath = v
+	o.mountPath = &v
 	return o
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *Pvc) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		var ret string
 		return ret
 	}
-
-	return o.name
+	return *o.name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pvc) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		return nil, false
 	}
-	return &o.name, true
+	return o.name, true
 }
 
-// Name sets field value
+// HasName returns a boolean if a field has been set.
+func (o *Pvc) HasName() bool {
+	if o != nil && !utils.IsNil(o.name) {
+		return true
+	}
+
+	return false
+}
+
+// Name gets a reference to the given string and assigns it to the name field.
+// name:
 func (o *Pvc) Name(v string) *Pvc {
-	o.name = v
+	o.name = &v
 	return o
 }
 
@@ -132,9 +156,15 @@ func (o Pvc) MarshalJSON() ([]byte, error) {
 
 func (o Pvc) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["claimName"] = o.claimName
-	toSerialize["mountPath"] = o.mountPath
-	toSerialize["name"] = o.name
+	if !utils.IsNil(o.claimName) {
+		toSerialize["claimName"] = o.claimName
+	}
+	if !utils.IsNil(o.mountPath) {
+		toSerialize["mountPath"] = o.mountPath
+	}
+	if !utils.IsNil(o.name) {
+		toSerialize["name"] = o.name
+	}
 	return toSerialize, nil
 }
 

@@ -22,16 +22,15 @@ var _ utils.MappedNullable = &TcpSocket{}
 // TcpSocket struct for TcpSocket
 type TcpSocket struct {
 	host *string `json:"host,omitempty"`
-	port int32   `json:"port"`
+	port *int32  `json:"port,omitempty"`
 }
 
 // NewTcpSocketWith instantiates a new TcpSocket object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTcpSocketWith(port int32) *TcpSocket {
+func NewTcpSocketWith() *TcpSocket {
 	this := TcpSocket{}
-	this.port = port
 	return &this
 }
 
@@ -77,28 +76,37 @@ func (o *TcpSocket) Host(v string) *TcpSocket {
 	return o
 }
 
-// GetPort returns the Port field value
+// GetPort returns the Port field value if set, zero value otherwise.
 func (o *TcpSocket) GetPort() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.port) {
 		var ret int32
 		return ret
 	}
-
-	return o.port
+	return *o.port
 }
 
-// GetPortOk returns a tuple with the Port field value
+// GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TcpSocket) GetPortOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.port) {
 		return nil, false
 	}
-	return &o.port, true
+	return o.port, true
 }
 
-// Port sets field value
+// HasPort returns a boolean if a field has been set.
+func (o *TcpSocket) HasPort() bool {
+	if o != nil && !utils.IsNil(o.port) {
+		return true
+	}
+
+	return false
+}
+
+// Port gets a reference to the given int32 and assigns it to the port field.
+// port:
 func (o *TcpSocket) Port(v int32) *TcpSocket {
-	o.port = v
+	o.port = &v
 	return o
 }
 
@@ -115,7 +123,9 @@ func (o TcpSocket) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.host) {
 		toSerialize["host"] = o.host
 	}
-	toSerialize["port"] = o.port
+	if !utils.IsNil(o.port) {
+		toSerialize["port"] = o.port
+	}
 	return toSerialize, nil
 }
 

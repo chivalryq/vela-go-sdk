@@ -22,7 +22,7 @@ var _ utils.MappedNullable = &Grpc{}
 // Grpc Instructions for assessing container startup status by probing a gRPC service. Either this attribute or the exec attribute or the grpc attribute or the httpGet attribute MUST be specified. This attribute is mutually exclusive with the exec attribute and the httpGet attribute and the tcpSocket attribute.
 type Grpc struct {
 	// The port number of the gRPC service.
-	port int32 `json:"port"`
+	port *int32 `json:"port,omitempty"`
 	// The name of the service to place in the gRPC HealthCheckRequest
 	service *string `json:"service,omitempty"`
 }
@@ -31,9 +31,8 @@ type Grpc struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGrpcWith(port int32) *Grpc {
+func NewGrpcWith() *Grpc {
 	this := Grpc{}
-	this.port = port
 	return &this
 }
 
@@ -45,28 +44,37 @@ func NewGrpc() *Grpc {
 	return &this
 }
 
-// GetPort returns the Port field value
+// GetPort returns the Port field value if set, zero value otherwise.
 func (o *Grpc) GetPort() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.port) {
 		var ret int32
 		return ret
 	}
-
-	return o.port
+	return *o.port
 }
 
-// GetPortOk returns a tuple with the Port field value
+// GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Grpc) GetPortOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.port) {
 		return nil, false
 	}
-	return &o.port, true
+	return o.port, true
 }
 
-// Port sets field value
+// HasPort returns a boolean if a field has been set.
+func (o *Grpc) HasPort() bool {
+	if o != nil && !utils.IsNil(o.port) {
+		return true
+	}
+
+	return false
+}
+
+// Port gets a reference to the given int32 and assigns it to the port field.
+// port:  The port number of the gRPC service.
 func (o *Grpc) Port(v int32) *Grpc {
-	o.port = v
+	o.port = &v
 	return o
 }
 
@@ -114,7 +122,9 @@ func (o Grpc) MarshalJSON() ([]byte, error) {
 
 func (o Grpc) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["port"] = o.port
+	if !utils.IsNil(o.port) {
+		toSerialize["port"] = o.port
+	}
 	if !utils.IsNil(o.service) {
 		toSerialize["service"] = o.service
 	}

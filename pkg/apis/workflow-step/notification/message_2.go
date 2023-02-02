@@ -26,7 +26,7 @@ type Message2 struct {
 	// Specify the message text format in markdown for slack notification
 	mrkdwn *bool `json:"mrkdwn,omitempty"`
 	// Specify the message text for slack notification
-	text     string  `json:"text"`
+	text     *string `json:"text,omitempty"`
 	threadTs *string `json:"thread_ts,omitempty"`
 }
 
@@ -34,11 +34,10 @@ type Message2 struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMessage2With(text string) *Message2 {
+func NewMessage2With() *Message2 {
 	this := Message2{}
 	var mrkdwn bool = true
 	this.mrkdwn = &mrkdwn
-	this.text = text
 	return &this
 }
 
@@ -176,28 +175,37 @@ func (o *Message2) Mrkdwn(v bool) *Message2 {
 	return o
 }
 
-// GetText returns the Text field value
+// GetText returns the Text field value if set, zero value otherwise.
 func (o *Message2) GetText() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.text) {
 		var ret string
 		return ret
 	}
-
-	return o.text
+	return *o.text
 }
 
-// GetTextOk returns a tuple with the Text field value
+// GetTextOk returns a tuple with the Text field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Message2) GetTextOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.text) {
 		return nil, false
 	}
-	return &o.text, true
+	return o.text, true
 }
 
-// Text sets field value
+// HasText returns a boolean if a field has been set.
+func (o *Message2) HasText() bool {
+	if o != nil && !utils.IsNil(o.text) {
+		return true
+	}
+
+	return false
+}
+
+// Text gets a reference to the given string and assigns it to the text field.
+// text:  Specify the message text for slack notification
 func (o *Message2) Text(v string) *Message2 {
-	o.text = v
+	o.text = &v
 	return o
 }
 
@@ -254,7 +262,9 @@ func (o Message2) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.mrkdwn) {
 		toSerialize["mrkdwn"] = o.mrkdwn
 	}
-	toSerialize["text"] = o.text
+	if !utils.IsNil(o.text) {
+		toSerialize["text"] = o.text
+	}
 	if !utils.IsNil(o.threadTs) {
 		toSerialize["thread_ts"] = o.threadTs
 	}

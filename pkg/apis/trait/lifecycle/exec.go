@@ -21,16 +21,15 @@ var _ utils.MappedNullable = &Exec{}
 
 // Exec struct for Exec
 type Exec struct {
-	command []string `json:"command"`
+	command []string `json:"command,omitempty"`
 }
 
 // NewExecWith instantiates a new Exec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExecWith(command []string) *Exec {
+func NewExecWith() *Exec {
 	this := Exec{}
-	this.command = command
 	return &this
 }
 
@@ -42,26 +41,35 @@ func NewExec() *Exec {
 	return &this
 }
 
-// GetCommand returns the Command field value
+// GetCommand returns the Command field value if set, zero value otherwise.
 func (o *Exec) GetCommand() []string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.command) {
 		var ret []string
 		return ret
 	}
-
 	return o.command
 }
 
-// GetCommandOk returns a tuple with the Command field value
+// GetCommandOk returns a tuple with the Command field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Exec) GetCommandOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.command) {
 		return nil, false
 	}
 	return o.command, true
 }
 
-// Command sets field value
+// HasCommand returns a boolean if a field has been set.
+func (o *Exec) HasCommand() bool {
+	if o != nil && !utils.IsNil(o.command) {
+		return true
+	}
+
+	return false
+}
+
+// Command gets a reference to the given []string and assigns it to the command field.
+// command:
 func (o *Exec) Command(v []string) *Exec {
 	o.command = v
 	return o
@@ -77,7 +85,9 @@ func (o Exec) MarshalJSON() ([]byte, error) {
 
 func (o Exec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["command"] = o.command
+	if !utils.IsNil(o.command) {
+		toSerialize["command"] = o.command
+	}
 	return toSerialize, nil
 }
 

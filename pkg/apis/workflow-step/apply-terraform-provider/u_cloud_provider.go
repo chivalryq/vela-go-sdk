@@ -21,26 +21,22 @@ var _ utils.MappedNullable = &UCloudProvider{}
 
 // UCloudProvider struct for UCloudProvider
 type UCloudProvider struct {
-	name       string `json:"name"`
-	privateKey string `json:"privateKey"`
-	projectID  string `json:"projectID"`
-	publicKey  string `json:"publicKey"`
-	region     string `json:"region"`
-	type_      string `json:"type"`
+	name       *string `json:"name,omitempty"`
+	privateKey *string `json:"privateKey,omitempty"`
+	projectID  *string `json:"projectID,omitempty"`
+	publicKey  *string `json:"publicKey,omitempty"`
+	region     *string `json:"region,omitempty"`
+	type_      *string `json:"type,omitempty"`
 }
 
 // NewUCloudProviderWith instantiates a new UCloudProvider object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUCloudProviderWith(name string, privateKey string, projectID string, publicKey string, region string, type_ string) *UCloudProvider {
+func NewUCloudProviderWith() *UCloudProvider {
 	this := UCloudProvider{}
-	this.name = name
-	this.privateKey = privateKey
-	this.projectID = projectID
-	this.publicKey = publicKey
-	this.region = region
-	this.type_ = type_
+	var name string = "ucloud-provider"
+	this.name = &name
 	return &this
 }
 
@@ -50,157 +46,211 @@ func NewUCloudProviderWith(name string, privateKey string, projectID string, pub
 func NewUCloudProvider() *UCloudProvider {
 	this := UCloudProvider{}
 	var name string = "ucloud-provider"
-	this.name = name
+	this.name = &name
 	return &this
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *UCloudProvider) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		var ret string
 		return ret
 	}
-
-	return o.name
+	return *o.name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UCloudProvider) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		return nil, false
 	}
-	return &o.name, true
+	return o.name, true
 }
 
-// Name sets field value
+// HasName returns a boolean if a field has been set.
+func (o *UCloudProvider) HasName() bool {
+	if o != nil && !utils.IsNil(o.name) {
+		return true
+	}
+
+	return false
+}
+
+// Name gets a reference to the given string and assigns it to the name field.
+// name:
 func (o *UCloudProvider) Name(v string) *UCloudProvider {
-	o.name = v
+	o.name = &v
 	return o
 }
 
-// GetPrivateKey returns the PrivateKey field value
+// GetPrivateKey returns the PrivateKey field value if set, zero value otherwise.
 func (o *UCloudProvider) GetPrivateKey() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.privateKey) {
 		var ret string
 		return ret
 	}
-
-	return o.privateKey
+	return *o.privateKey
 }
 
-// GetPrivateKeyOk returns a tuple with the PrivateKey field value
+// GetPrivateKeyOk returns a tuple with the PrivateKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UCloudProvider) GetPrivateKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.privateKey) {
 		return nil, false
 	}
-	return &o.privateKey, true
+	return o.privateKey, true
 }
 
-// PrivateKey sets field value
+// HasPrivateKey returns a boolean if a field has been set.
+func (o *UCloudProvider) HasPrivateKey() bool {
+	if o != nil && !utils.IsNil(o.privateKey) {
+		return true
+	}
+
+	return false
+}
+
+// PrivateKey gets a reference to the given string and assigns it to the privateKey field.
+// privateKey:
 func (o *UCloudProvider) PrivateKey(v string) *UCloudProvider {
-	o.privateKey = v
+	o.privateKey = &v
 	return o
 }
 
-// GetProjectID returns the ProjectID field value
+// GetProjectID returns the ProjectID field value if set, zero value otherwise.
 func (o *UCloudProvider) GetProjectID() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.projectID) {
 		var ret string
 		return ret
 	}
-
-	return o.projectID
+	return *o.projectID
 }
 
-// GetProjectIDOk returns a tuple with the ProjectID field value
+// GetProjectIDOk returns a tuple with the ProjectID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UCloudProvider) GetProjectIDOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.projectID) {
 		return nil, false
 	}
-	return &o.projectID, true
+	return o.projectID, true
 }
 
-// ProjectID sets field value
+// HasProjectID returns a boolean if a field has been set.
+func (o *UCloudProvider) HasProjectID() bool {
+	if o != nil && !utils.IsNil(o.projectID) {
+		return true
+	}
+
+	return false
+}
+
+// ProjectID gets a reference to the given string and assigns it to the projectID field.
+// projectID:
 func (o *UCloudProvider) ProjectID(v string) *UCloudProvider {
-	o.projectID = v
+	o.projectID = &v
 	return o
 }
 
-// GetPublicKey returns the PublicKey field value
+// GetPublicKey returns the PublicKey field value if set, zero value otherwise.
 func (o *UCloudProvider) GetPublicKey() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.publicKey) {
 		var ret string
 		return ret
 	}
-
-	return o.publicKey
+	return *o.publicKey
 }
 
-// GetPublicKeyOk returns a tuple with the PublicKey field value
+// GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UCloudProvider) GetPublicKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.publicKey) {
 		return nil, false
 	}
-	return &o.publicKey, true
+	return o.publicKey, true
 }
 
-// PublicKey sets field value
+// HasPublicKey returns a boolean if a field has been set.
+func (o *UCloudProvider) HasPublicKey() bool {
+	if o != nil && !utils.IsNil(o.publicKey) {
+		return true
+	}
+
+	return false
+}
+
+// PublicKey gets a reference to the given string and assigns it to the publicKey field.
+// publicKey:
 func (o *UCloudProvider) PublicKey(v string) *UCloudProvider {
-	o.publicKey = v
+	o.publicKey = &v
 	return o
 }
 
-// GetRegion returns the Region field value
+// GetRegion returns the Region field value if set, zero value otherwise.
 func (o *UCloudProvider) GetRegion() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.region) {
 		var ret string
 		return ret
 	}
-
-	return o.region
+	return *o.region
 }
 
-// GetRegionOk returns a tuple with the Region field value
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UCloudProvider) GetRegionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.region) {
 		return nil, false
 	}
-	return &o.region, true
+	return o.region, true
 }
 
-// Region sets field value
+// HasRegion returns a boolean if a field has been set.
+func (o *UCloudProvider) HasRegion() bool {
+	if o != nil && !utils.IsNil(o.region) {
+		return true
+	}
+
+	return false
+}
+
+// Region gets a reference to the given string and assigns it to the region field.
+// region:
 func (o *UCloudProvider) Region(v string) *UCloudProvider {
-	o.region = v
+	o.region = &v
 	return o
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *UCloudProvider) GetType() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.type_) {
 		var ret string
 		return ret
 	}
-
-	return o.type_
+	return *o.type_
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UCloudProvider) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.type_) {
 		return nil, false
 	}
-	return &o.type_, true
+	return o.type_, true
 }
 
-// Type sets field value
+// HasType returns a boolean if a field has been set.
+func (o *UCloudProvider) HasType() bool {
+	if o != nil && !utils.IsNil(o.type_) {
+		return true
+	}
+
+	return false
+}
+
+// Type gets a reference to the given string and assigns it to the type_ field.
+// type_:
 func (o *UCloudProvider) Type(v string) *UCloudProvider {
-	o.type_ = v
+	o.type_ = &v
 	return o
 }
 
@@ -214,12 +264,24 @@ func (o UCloudProvider) MarshalJSON() ([]byte, error) {
 
 func (o UCloudProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.name
-	toSerialize["privateKey"] = o.privateKey
-	toSerialize["projectID"] = o.projectID
-	toSerialize["publicKey"] = o.publicKey
-	toSerialize["region"] = o.region
-	toSerialize["type"] = o.type_
+	if !utils.IsNil(o.name) {
+		toSerialize["name"] = o.name
+	}
+	if !utils.IsNil(o.privateKey) {
+		toSerialize["privateKey"] = o.privateKey
+	}
+	if !utils.IsNil(o.projectID) {
+		toSerialize["projectID"] = o.projectID
+	}
+	if !utils.IsNil(o.publicKey) {
+		toSerialize["publicKey"] = o.publicKey
+	}
+	if !utils.IsNil(o.region) {
+		toSerialize["region"] = o.region
+	}
+	if !utils.IsNil(o.type_) {
+		toSerialize["type"] = o.type_
+	}
 	return toSerialize, nil
 }
 

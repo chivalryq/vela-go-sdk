@@ -22,26 +22,24 @@ var _ utils.MappedNullable = &From{}
 // From Specify the email info that you want to send from
 type From struct {
 	// Specify the email address that you want to send from
-	address string `json:"address"`
+	address *string `json:"address,omitempty"`
 	// The alias is the email alias to show after sending the email
 	alias *string `json:"alias,omitempty"`
 	// Specify the host of your email
-	host     string   `json:"host"`
-	password Password `json:"password"`
+	host     *string   `json:"host,omitempty"`
+	password *Password `json:"password,omitempty"`
 	// Specify the port of the email host, default to 587
-	port int32 `json:"port"`
+	port *int32 `json:"port,omitempty"`
 }
 
 // NewFromWith instantiates a new From object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFromWith(address string, host string, password Password, port int32) *From {
+func NewFromWith() *From {
 	this := From{}
-	this.address = address
-	this.host = host
-	this.password = password
-	this.port = port
+	var port int32 = 587
+	this.port = &port
 	return &this
 }
 
@@ -51,32 +49,41 @@ func NewFromWith(address string, host string, password Password, port int32) *Fr
 func NewFrom() *From {
 	this := From{}
 	var port int32 = 587
-	this.port = port
+	this.port = &port
 	return &this
 }
 
-// GetAddress returns the Address field value
+// GetAddress returns the Address field value if set, zero value otherwise.
 func (o *From) GetAddress() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.address) {
 		var ret string
 		return ret
 	}
-
-	return o.address
+	return *o.address
 }
 
-// GetAddressOk returns a tuple with the Address field value
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *From) GetAddressOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.address) {
 		return nil, false
 	}
-	return &o.address, true
+	return o.address, true
 }
 
-// Address sets field value
+// HasAddress returns a boolean if a field has been set.
+func (o *From) HasAddress() bool {
+	if o != nil && !utils.IsNil(o.address) {
+		return true
+	}
+
+	return false
+}
+
+// Address gets a reference to the given string and assigns it to the address field.
+// address:  Specify the email address that you want to send from
 func (o *From) Address(v string) *From {
-	o.address = v
+	o.address = &v
 	return o
 }
 
@@ -114,78 +121,105 @@ func (o *From) Alias(v string) *From {
 	return o
 }
 
-// GetHost returns the Host field value
+// GetHost returns the Host field value if set, zero value otherwise.
 func (o *From) GetHost() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.host) {
 		var ret string
 		return ret
 	}
-
-	return o.host
+	return *o.host
 }
 
-// GetHostOk returns a tuple with the Host field value
+// GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *From) GetHostOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.host) {
 		return nil, false
 	}
-	return &o.host, true
+	return o.host, true
 }
 
-// Host sets field value
+// HasHost returns a boolean if a field has been set.
+func (o *From) HasHost() bool {
+	if o != nil && !utils.IsNil(o.host) {
+		return true
+	}
+
+	return false
+}
+
+// Host gets a reference to the given string and assigns it to the host field.
+// host:  Specify the host of your email
 func (o *From) Host(v string) *From {
-	o.host = v
+	o.host = &v
 	return o
 }
 
-// GetPassword returns the Password field value
+// GetPassword returns the Password field value if set, zero value otherwise.
 func (o *From) GetPassword() Password {
-	if o == nil {
+	if o == nil || utils.IsNil(o.password) {
 		var ret Password
 		return ret
 	}
-
-	return o.password
+	return *o.password
 }
 
-// GetPasswordOk returns a tuple with the Password field value
+// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *From) GetPasswordOk() (*Password, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.password) {
 		return nil, false
 	}
-	return &o.password, true
+	return o.password, true
 }
 
-// Password sets field value
+// HasPassword returns a boolean if a field has been set.
+func (o *From) HasPassword() bool {
+	if o != nil && !utils.IsNil(o.password) {
+		return true
+	}
+
+	return false
+}
+
+// Password gets a reference to the given Password and assigns it to the password field.
+// password:
 func (o *From) Password(v Password) *From {
-	o.password = v
+	o.password = &v
 	return o
 }
 
-// GetPort returns the Port field value
+// GetPort returns the Port field value if set, zero value otherwise.
 func (o *From) GetPort() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.port) {
 		var ret int32
 		return ret
 	}
-
-	return o.port
+	return *o.port
 }
 
-// GetPortOk returns a tuple with the Port field value
+// GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *From) GetPortOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.port) {
 		return nil, false
 	}
-	return &o.port, true
+	return o.port, true
 }
 
-// Port sets field value
+// HasPort returns a boolean if a field has been set.
+func (o *From) HasPort() bool {
+	if o != nil && !utils.IsNil(o.port) {
+		return true
+	}
+
+	return false
+}
+
+// Port gets a reference to the given int32 and assigns it to the port field.
+// port:  Specify the port of the email host, default to 587
 func (o *From) Port(v int32) *From {
-	o.port = v
+	o.port = &v
 	return o
 }
 
@@ -199,13 +233,21 @@ func (o From) MarshalJSON() ([]byte, error) {
 
 func (o From) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["address"] = o.address
+	if !utils.IsNil(o.address) {
+		toSerialize["address"] = o.address
+	}
 	if !utils.IsNil(o.alias) {
 		toSerialize["alias"] = o.alias
 	}
-	toSerialize["host"] = o.host
-	toSerialize["password"] = o.password
-	toSerialize["port"] = o.port
+	if !utils.IsNil(o.host) {
+		toSerialize["host"] = o.host
+	}
+	if !utils.IsNil(o.password) {
+		toSerialize["password"] = o.password
+	}
+	if !utils.IsNil(o.port) {
+		toSerialize["port"] = o.port
+	}
 	return toSerialize, nil
 }
 

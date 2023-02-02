@@ -28,19 +28,19 @@ var _ utils.MappedNullable = &ApplyComponentSpec{}
 // ApplyComponentSpec struct for ApplyComponentSpec
 type ApplyComponentSpec struct {
 	// Specify the cluster
-	cluster string `json:"cluster"`
+	cluster *string `json:"cluster,omitempty"`
 	// Specify the component name to apply
-	component string `json:"component"`
+	component *string `json:"component,omitempty"`
 }
 
 // NewApplyComponentSpecWith instantiates a new ApplyComponentSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApplyComponentSpecWith(cluster string, component string) *ApplyComponentSpec {
+func NewApplyComponentSpecWith() *ApplyComponentSpec {
 	this := ApplyComponentSpec{}
-	this.cluster = cluster
-	this.component = component
+	var cluster string = ""
+	this.cluster = &cluster
 	return &this
 }
 
@@ -50,57 +50,75 @@ func NewApplyComponentSpecWith(cluster string, component string) *ApplyComponent
 func NewApplyComponentSpec() *ApplyComponentSpec {
 	this := ApplyComponentSpec{}
 	var cluster string = ""
-	this.cluster = cluster
+	this.cluster = &cluster
 	return &this
 }
 
-// GetCluster returns the Cluster field value
+// GetCluster returns the Cluster field value if set, zero value otherwise.
 func (o *ApplyComponentWorkflowStep) GetCluster() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.cluster) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.cluster
+	return *o.Properties.cluster
 }
 
-// GetClusterOk returns a tuple with the Cluster field value
+// GetClusterOk returns a tuple with the Cluster field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplyComponentWorkflowStep) GetClusterOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.cluster) {
 		return nil, false
 	}
-	return &o.Properties.cluster, true
+	return o.Properties.cluster, true
 }
 
-// Cluster sets field value
+// HasCluster returns a boolean if a field has been set.
+func (o *ApplyComponentWorkflowStep) HasCluster() bool {
+	if o != nil && !utils.IsNil(o.Properties.cluster) {
+		return true
+	}
+
+	return false
+}
+
+// Cluster gets a reference to the given string and assigns it to the cluster field.
+// cluster:  Specify the cluster
 func (o *ApplyComponentWorkflowStep) Cluster(v string) *ApplyComponentWorkflowStep {
-	o.Properties.cluster = v
+	o.Properties.cluster = &v
 	return o
 }
 
-// GetComponent returns the Component field value
+// GetComponent returns the Component field value if set, zero value otherwise.
 func (o *ApplyComponentWorkflowStep) GetComponent() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.component) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.component
+	return *o.Properties.component
 }
 
-// GetComponentOk returns a tuple with the Component field value
+// GetComponentOk returns a tuple with the Component field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplyComponentWorkflowStep) GetComponentOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.component) {
 		return nil, false
 	}
-	return &o.Properties.component, true
+	return o.Properties.component, true
 }
 
-// Component sets field value
+// HasComponent returns a boolean if a field has been set.
+func (o *ApplyComponentWorkflowStep) HasComponent() bool {
+	if o != nil && !utils.IsNil(o.Properties.component) {
+		return true
+	}
+
+	return false
+}
+
+// Component gets a reference to the given string and assigns it to the component field.
+// component:  Specify the component name to apply
 func (o *ApplyComponentWorkflowStep) Component(v string) *ApplyComponentWorkflowStep {
-	o.Properties.component = v
+	o.Properties.component = &v
 	return o
 }
 
@@ -114,8 +132,12 @@ func (o ApplyComponentSpec) MarshalJSON() ([]byte, error) {
 
 func (o ApplyComponentSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["cluster"] = o.cluster
-	toSerialize["component"] = o.component
+	if !utils.IsNil(o.cluster) {
+		toSerialize["cluster"] = o.cluster
+	}
+	if !utils.IsNil(o.component) {
+		toSerialize["component"] = o.component
+	}
 	return toSerialize, nil
 }
 
@@ -170,6 +192,7 @@ type ApplyComponentWorkflowStep struct {
 func ApplyComponent(name string) *ApplyComponentWorkflowStep {
 	a := &ApplyComponentWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: ApplyComponentType,
 	}}
 	return a
 }
@@ -181,7 +204,7 @@ func (a *ApplyComponentWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  a.Base.DependsOn,

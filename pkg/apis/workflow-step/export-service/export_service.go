@@ -28,15 +28,15 @@ var _ utils.MappedNullable = &ExportServiceSpec{}
 // ExportServiceSpec struct for ExportServiceSpec
 type ExportServiceSpec struct {
 	// Specify the ip to be export
-	ip string `json:"ip"`
+	ip *string `json:"ip,omitempty"`
 	// Specify the name of the export destination
 	name *string `json:"name,omitempty"`
 	// Specify the namespace of the export destination
 	namespace *string `json:"namespace,omitempty"`
 	// Specify the port to be used in service
-	port int32 `json:"port"`
+	port *int32 `json:"port,omitempty"`
 	// Specify the port to be export
-	targetPort int32 `json:"targetPort"`
+	targetPort *int32 `json:"targetPort,omitempty"`
 	// Specify the topology to export
 	topology *string `json:"topology,omitempty"`
 }
@@ -45,11 +45,8 @@ type ExportServiceSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExportServiceSpecWith(ip string, port int32, targetPort int32) *ExportServiceSpec {
+func NewExportServiceSpecWith() *ExportServiceSpec {
 	this := ExportServiceSpec{}
-	this.ip = ip
-	this.port = port
-	this.targetPort = targetPort
 	return &this
 }
 
@@ -61,28 +58,37 @@ func NewExportServiceSpec() *ExportServiceSpec {
 	return &this
 }
 
-// GetIp returns the Ip field value
+// GetIp returns the Ip field value if set, zero value otherwise.
 func (o *ExportServiceWorkflowStep) GetIp() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.ip) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.ip
+	return *o.Properties.ip
 }
 
-// GetIpOk returns a tuple with the Ip field value
+// GetIpOk returns a tuple with the Ip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportServiceWorkflowStep) GetIpOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.ip) {
 		return nil, false
 	}
-	return &o.Properties.ip, true
+	return o.Properties.ip, true
 }
 
-// Ip sets field value
+// HasIp returns a boolean if a field has been set.
+func (o *ExportServiceWorkflowStep) HasIp() bool {
+	if o != nil && !utils.IsNil(o.Properties.ip) {
+		return true
+	}
+
+	return false
+}
+
+// Ip gets a reference to the given string and assigns it to the ip field.
+// ip:  Specify the ip to be export
 func (o *ExportServiceWorkflowStep) Ip(v string) *ExportServiceWorkflowStep {
-	o.Properties.ip = v
+	o.Properties.ip = &v
 	return o
 }
 
@@ -154,53 +160,71 @@ func (o *ExportServiceWorkflowStep) Namespace(v string) *ExportServiceWorkflowSt
 	return o
 }
 
-// GetPort returns the Port field value
+// GetPort returns the Port field value if set, zero value otherwise.
 func (o *ExportServiceWorkflowStep) GetPort() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.port) {
 		var ret int32
 		return ret
 	}
-
-	return o.Properties.port
+	return *o.Properties.port
 }
 
-// GetPortOk returns a tuple with the Port field value
+// GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportServiceWorkflowStep) GetPortOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.port) {
 		return nil, false
 	}
-	return &o.Properties.port, true
+	return o.Properties.port, true
 }
 
-// Port sets field value
+// HasPort returns a boolean if a field has been set.
+func (o *ExportServiceWorkflowStep) HasPort() bool {
+	if o != nil && !utils.IsNil(o.Properties.port) {
+		return true
+	}
+
+	return false
+}
+
+// Port gets a reference to the given int32 and assigns it to the port field.
+// port:  Specify the port to be used in service
 func (o *ExportServiceWorkflowStep) Port(v int32) *ExportServiceWorkflowStep {
-	o.Properties.port = v
+	o.Properties.port = &v
 	return o
 }
 
-// GetTargetPort returns the TargetPort field value
+// GetTargetPort returns the TargetPort field value if set, zero value otherwise.
 func (o *ExportServiceWorkflowStep) GetTargetPort() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.targetPort) {
 		var ret int32
 		return ret
 	}
-
-	return o.Properties.targetPort
+	return *o.Properties.targetPort
 }
 
-// GetTargetPortOk returns a tuple with the TargetPort field value
+// GetTargetPortOk returns a tuple with the TargetPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportServiceWorkflowStep) GetTargetPortOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.targetPort) {
 		return nil, false
 	}
-	return &o.Properties.targetPort, true
+	return o.Properties.targetPort, true
 }
 
-// TargetPort sets field value
+// HasTargetPort returns a boolean if a field has been set.
+func (o *ExportServiceWorkflowStep) HasTargetPort() bool {
+	if o != nil && !utils.IsNil(o.Properties.targetPort) {
+		return true
+	}
+
+	return false
+}
+
+// TargetPort gets a reference to the given int32 and assigns it to the targetPort field.
+// targetPort:  Specify the port to be export
 func (o *ExportServiceWorkflowStep) TargetPort(v int32) *ExportServiceWorkflowStep {
-	o.Properties.targetPort = v
+	o.Properties.targetPort = &v
 	return o
 }
 
@@ -248,15 +272,21 @@ func (o ExportServiceSpec) MarshalJSON() ([]byte, error) {
 
 func (o ExportServiceSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["ip"] = o.ip
+	if !utils.IsNil(o.ip) {
+		toSerialize["ip"] = o.ip
+	}
 	if !utils.IsNil(o.name) {
 		toSerialize["name"] = o.name
 	}
 	if !utils.IsNil(o.namespace) {
 		toSerialize["namespace"] = o.namespace
 	}
-	toSerialize["port"] = o.port
-	toSerialize["targetPort"] = o.targetPort
+	if !utils.IsNil(o.port) {
+		toSerialize["port"] = o.port
+	}
+	if !utils.IsNil(o.targetPort) {
+		toSerialize["targetPort"] = o.targetPort
+	}
 	if !utils.IsNil(o.topology) {
 		toSerialize["topology"] = o.topology
 	}
@@ -314,6 +344,7 @@ type ExportServiceWorkflowStep struct {
 func ExportService(name string) *ExportServiceWorkflowStep {
 	e := &ExportServiceWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: ExportServiceType,
 	}}
 	return e
 }
@@ -325,7 +356,7 @@ func (e *ExportServiceWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  e.Base.DependsOn,

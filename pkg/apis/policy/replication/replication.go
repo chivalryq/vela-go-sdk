@@ -176,6 +176,7 @@ type ReplicationPolicy struct {
 func Replication(name string) *ReplicationPolicy {
 	r := &ReplicationPolicy{Base: apis.PolicyBase{
 		Name: name,
+		Type: ReplicationType,
 	}}
 	return r
 }

@@ -21,18 +21,16 @@ var _ utils.MappedNullable = &Dingding{}
 
 // Dingding Please fulfill its url and message if you want to send DingTalk messages
 type Dingding struct {
-	message Message `json:"message"`
-	url     Url     `json:"url"`
+	message *Message `json:"message,omitempty"`
+	url     *Url     `json:"url,omitempty"`
 }
 
 // NewDingdingWith instantiates a new Dingding object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDingdingWith(message Message, url Url) *Dingding {
+func NewDingdingWith() *Dingding {
 	this := Dingding{}
-	this.message = message
-	this.url = url
 	return &this
 }
 
@@ -44,53 +42,71 @@ func NewDingding() *Dingding {
 	return &this
 }
 
-// GetMessage returns the Message field value
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *Dingding) GetMessage() Message {
-	if o == nil {
+	if o == nil || utils.IsNil(o.message) {
 		var ret Message
 		return ret
 	}
-
-	return o.message
+	return *o.message
 }
 
-// GetMessageOk returns a tuple with the Message field value
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Dingding) GetMessageOk() (*Message, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.message) {
 		return nil, false
 	}
-	return &o.message, true
+	return o.message, true
 }
 
-// Message sets field value
+// HasMessage returns a boolean if a field has been set.
+func (o *Dingding) HasMessage() bool {
+	if o != nil && !utils.IsNil(o.message) {
+		return true
+	}
+
+	return false
+}
+
+// Message gets a reference to the given Message and assigns it to the message field.
+// message:
 func (o *Dingding) Message(v Message) *Dingding {
-	o.message = v
+	o.message = &v
 	return o
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *Dingding) GetUrl() Url {
-	if o == nil {
+	if o == nil || utils.IsNil(o.url) {
 		var ret Url
 		return ret
 	}
-
-	return o.url
+	return *o.url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Dingding) GetUrlOk() (*Url, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.url) {
 		return nil, false
 	}
-	return &o.url, true
+	return o.url, true
 }
 
-// Url sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *Dingding) HasUrl() bool {
+	if o != nil && !utils.IsNil(o.url) {
+		return true
+	}
+
+	return false
+}
+
+// Url gets a reference to the given Url and assigns it to the url field.
+// url:
 func (o *Dingding) Url(v Url) *Dingding {
-	o.url = v
+	o.url = &v
 	return o
 }
 
@@ -104,8 +120,12 @@ func (o Dingding) MarshalJSON() ([]byte, error) {
 
 func (o Dingding) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["message"] = o.message
-	toSerialize["url"] = o.url
+	if !utils.IsNil(o.message) {
+		toSerialize["message"] = o.message
+	}
+	if !utils.IsNil(o.url) {
+		toSerialize["url"] = o.url
+	}
 	return toSerialize, nil
 }
 

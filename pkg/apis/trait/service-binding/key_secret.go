@@ -22,16 +22,15 @@ var _ utils.MappedNullable = &KeySecret{}
 // KeySecret struct for KeySecret
 type KeySecret struct {
 	key    *string `json:"key,omitempty"`
-	secret string  `json:"secret"`
+	secret *string `json:"secret,omitempty"`
 }
 
 // NewKeySecretWith instantiates a new KeySecret object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKeySecretWith(secret string) *KeySecret {
+func NewKeySecretWith() *KeySecret {
 	this := KeySecret{}
-	this.secret = secret
 	return &this
 }
 
@@ -77,28 +76,37 @@ func (o *KeySecret) Key(v string) *KeySecret {
 	return o
 }
 
-// GetSecret returns the Secret field value
+// GetSecret returns the Secret field value if set, zero value otherwise.
 func (o *KeySecret) GetSecret() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.secret) {
 		var ret string
 		return ret
 	}
-
-	return o.secret
+	return *o.secret
 }
 
-// GetSecretOk returns a tuple with the Secret field value
+// GetSecretOk returns a tuple with the Secret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KeySecret) GetSecretOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.secret) {
 		return nil, false
 	}
-	return &o.secret, true
+	return o.secret, true
 }
 
-// Secret sets field value
+// HasSecret returns a boolean if a field has been set.
+func (o *KeySecret) HasSecret() bool {
+	if o != nil && !utils.IsNil(o.secret) {
+		return true
+	}
+
+	return false
+}
+
+// Secret gets a reference to the given string and assigns it to the secret field.
+// secret:
 func (o *KeySecret) Secret(v string) *KeySecret {
-	o.secret = v
+	o.secret = &v
 	return o
 }
 
@@ -115,7 +123,9 @@ func (o KeySecret) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.key) {
 		toSerialize["key"] = o.key
 	}
-	toSerialize["secret"] = o.secret
+	if !utils.IsNil(o.secret) {
+		toSerialize["secret"] = o.secret
+	}
 	return toSerialize, nil
 }
 

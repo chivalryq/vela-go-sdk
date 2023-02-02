@@ -147,6 +147,7 @@ type ReadOnlyPolicy struct {
 func ReadOnly(name string) *ReadOnlyPolicy {
 	r := &ReadOnlyPolicy{Base: apis.PolicyBase{
 		Name: name,
+		Type: ReadOnlyType,
 	}}
 	return r
 }

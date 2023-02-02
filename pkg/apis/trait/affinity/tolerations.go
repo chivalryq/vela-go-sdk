@@ -23,7 +23,7 @@ var _ utils.MappedNullable = &Tolerations{}
 type Tolerations struct {
 	effect   *string `json:"effect,omitempty"`
 	key      *string `json:"key,omitempty"`
-	operator string  `json:"operator"`
+	operator *string `json:"operator,omitempty"`
 	// Specify the period of time the toleration
 	tolerationSeconds *int32  `json:"tolerationSeconds,omitempty"`
 	value             *string `json:"value,omitempty"`
@@ -33,9 +33,10 @@ type Tolerations struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTolerationsWith(operator string) *Tolerations {
+func NewTolerationsWith() *Tolerations {
 	this := Tolerations{}
-	this.operator = operator
+	var operator string = "Equal"
+	this.operator = &operator
 	return &this
 }
 
@@ -45,7 +46,7 @@ func NewTolerationsWith(operator string) *Tolerations {
 func NewTolerations() *Tolerations {
 	this := Tolerations{}
 	var operator string = "Equal"
-	this.operator = operator
+	this.operator = &operator
 	return &this
 }
 
@@ -117,28 +118,37 @@ func (o *Tolerations) Key(v string) *Tolerations {
 	return o
 }
 
-// GetOperator returns the Operator field value
+// GetOperator returns the Operator field value if set, zero value otherwise.
 func (o *Tolerations) GetOperator() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.operator) {
 		var ret string
 		return ret
 	}
-
-	return o.operator
+	return *o.operator
 }
 
-// GetOperatorOk returns a tuple with the Operator field value
+// GetOperatorOk returns a tuple with the Operator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Tolerations) GetOperatorOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.operator) {
 		return nil, false
 	}
-	return &o.operator, true
+	return o.operator, true
 }
 
-// Operator sets field value
+// HasOperator returns a boolean if a field has been set.
+func (o *Tolerations) HasOperator() bool {
+	if o != nil && !utils.IsNil(o.operator) {
+		return true
+	}
+
+	return false
+}
+
+// Operator gets a reference to the given string and assigns it to the operator field.
+// operator:
 func (o *Tolerations) Operator(v string) *Tolerations {
-	o.operator = v
+	o.operator = &v
 	return o
 }
 
@@ -226,7 +236,9 @@ func (o Tolerations) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.key) {
 		toSerialize["key"] = o.key
 	}
-	toSerialize["operator"] = o.operator
+	if !utils.IsNil(o.operator) {
+		toSerialize["operator"] = o.operator
+	}
 	if !utils.IsNil(o.tolerationSeconds) {
 		toSerialize["tolerationSeconds"] = o.tolerationSeconds
 	}

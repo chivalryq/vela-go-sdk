@@ -21,17 +21,17 @@ var _ utils.MappedNullable = &Pvc{}
 
 // Pvc struct for Pvc
 type Pvc struct {
-	accessModes      []string       `json:"accessModes"`
+	accessModes      []string       `json:"accessModes,omitempty"`
 	dataSource       *DataSource    `json:"dataSource,omitempty"`
 	dataSourceRef    *DataSourceRef `json:"dataSourceRef,omitempty"`
-	mountOnly        bool           `json:"mountOnly"`
-	mountPath        string         `json:"mountPath"`
-	name             string         `json:"name"`
+	mountOnly        *bool          `json:"mountOnly,omitempty"`
+	mountPath        *string        `json:"mountPath,omitempty"`
+	name             *string        `json:"name,omitempty"`
 	resources        *Resources     `json:"resources,omitempty"`
 	selector         *Selector      `json:"selector,omitempty"`
 	storageClassName *string        `json:"storageClassName,omitempty"`
 	subPath          *string        `json:"subPath,omitempty"`
-	volumeMode       string         `json:"volumeMode"`
+	volumeMode       *string        `json:"volumeMode,omitempty"`
 	volumeName       *string        `json:"volumeName,omitempty"`
 }
 
@@ -39,13 +39,12 @@ type Pvc struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPvcWith(accessModes []string, mountOnly bool, mountPath string, name string, volumeMode string) *Pvc {
+func NewPvcWith() *Pvc {
 	this := Pvc{}
-	this.accessModes = accessModes
-	this.mountOnly = mountOnly
-	this.mountPath = mountPath
-	this.name = name
-	this.volumeMode = volumeMode
+	var mountOnly bool = false
+	this.mountOnly = &mountOnly
+	var volumeMode string = "Filesystem"
+	this.volumeMode = &volumeMode
 	return &this
 }
 
@@ -55,32 +54,41 @@ func NewPvcWith(accessModes []string, mountOnly bool, mountPath string, name str
 func NewPvc() *Pvc {
 	this := Pvc{}
 	var mountOnly bool = false
-	this.mountOnly = mountOnly
+	this.mountOnly = &mountOnly
 	var volumeMode string = "Filesystem"
-	this.volumeMode = volumeMode
+	this.volumeMode = &volumeMode
 	return &this
 }
 
-// GetAccessModes returns the AccessModes field value
+// GetAccessModes returns the AccessModes field value if set, zero value otherwise.
 func (o *Pvc) GetAccessModes() []string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.accessModes) {
 		var ret []string
 		return ret
 	}
-
 	return o.accessModes
 }
 
-// GetAccessModesOk returns a tuple with the AccessModes field value
+// GetAccessModesOk returns a tuple with the AccessModes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pvc) GetAccessModesOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.accessModes) {
 		return nil, false
 	}
 	return o.accessModes, true
 }
 
-// AccessModes sets field value
+// HasAccessModes returns a boolean if a field has been set.
+func (o *Pvc) HasAccessModes() bool {
+	if o != nil && !utils.IsNil(o.accessModes) {
+		return true
+	}
+
+	return false
+}
+
+// AccessModes gets a reference to the given []string and assigns it to the accessModes field.
+// accessModes:
 func (o *Pvc) AccessModes(v []string) *Pvc {
 	o.accessModes = v
 	return o
@@ -154,78 +162,105 @@ func (o *Pvc) DataSourceRef(v DataSourceRef) *Pvc {
 	return o
 }
 
-// GetMountOnly returns the MountOnly field value
+// GetMountOnly returns the MountOnly field value if set, zero value otherwise.
 func (o *Pvc) GetMountOnly() bool {
-	if o == nil {
+	if o == nil || utils.IsNil(o.mountOnly) {
 		var ret bool
 		return ret
 	}
-
-	return o.mountOnly
+	return *o.mountOnly
 }
 
-// GetMountOnlyOk returns a tuple with the MountOnly field value
+// GetMountOnlyOk returns a tuple with the MountOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pvc) GetMountOnlyOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.mountOnly) {
 		return nil, false
 	}
-	return &o.mountOnly, true
+	return o.mountOnly, true
 }
 
-// MountOnly sets field value
+// HasMountOnly returns a boolean if a field has been set.
+func (o *Pvc) HasMountOnly() bool {
+	if o != nil && !utils.IsNil(o.mountOnly) {
+		return true
+	}
+
+	return false
+}
+
+// MountOnly gets a reference to the given bool and assigns it to the mountOnly field.
+// mountOnly:
 func (o *Pvc) MountOnly(v bool) *Pvc {
-	o.mountOnly = v
+	o.mountOnly = &v
 	return o
 }
 
-// GetMountPath returns the MountPath field value
+// GetMountPath returns the MountPath field value if set, zero value otherwise.
 func (o *Pvc) GetMountPath() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.mountPath) {
 		var ret string
 		return ret
 	}
-
-	return o.mountPath
+	return *o.mountPath
 }
 
-// GetMountPathOk returns a tuple with the MountPath field value
+// GetMountPathOk returns a tuple with the MountPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pvc) GetMountPathOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.mountPath) {
 		return nil, false
 	}
-	return &o.mountPath, true
+	return o.mountPath, true
 }
 
-// MountPath sets field value
+// HasMountPath returns a boolean if a field has been set.
+func (o *Pvc) HasMountPath() bool {
+	if o != nil && !utils.IsNil(o.mountPath) {
+		return true
+	}
+
+	return false
+}
+
+// MountPath gets a reference to the given string and assigns it to the mountPath field.
+// mountPath:
 func (o *Pvc) MountPath(v string) *Pvc {
-	o.mountPath = v
+	o.mountPath = &v
 	return o
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *Pvc) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		var ret string
 		return ret
 	}
-
-	return o.name
+	return *o.name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pvc) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		return nil, false
 	}
-	return &o.name, true
+	return o.name, true
 }
 
-// Name sets field value
+// HasName returns a boolean if a field has been set.
+func (o *Pvc) HasName() bool {
+	if o != nil && !utils.IsNil(o.name) {
+		return true
+	}
+
+	return false
+}
+
+// Name gets a reference to the given string and assigns it to the name field.
+// name:
 func (o *Pvc) Name(v string) *Pvc {
-	o.name = v
+	o.name = &v
 	return o
 }
 
@@ -365,28 +400,37 @@ func (o *Pvc) SubPath(v string) *Pvc {
 	return o
 }
 
-// GetVolumeMode returns the VolumeMode field value
+// GetVolumeMode returns the VolumeMode field value if set, zero value otherwise.
 func (o *Pvc) GetVolumeMode() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.volumeMode) {
 		var ret string
 		return ret
 	}
-
-	return o.volumeMode
+	return *o.volumeMode
 }
 
-// GetVolumeModeOk returns a tuple with the VolumeMode field value
+// GetVolumeModeOk returns a tuple with the VolumeMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pvc) GetVolumeModeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.volumeMode) {
 		return nil, false
 	}
-	return &o.volumeMode, true
+	return o.volumeMode, true
 }
 
-// VolumeMode sets field value
+// HasVolumeMode returns a boolean if a field has been set.
+func (o *Pvc) HasVolumeMode() bool {
+	if o != nil && !utils.IsNil(o.volumeMode) {
+		return true
+	}
+
+	return false
+}
+
+// VolumeMode gets a reference to the given string and assigns it to the volumeMode field.
+// volumeMode:
 func (o *Pvc) VolumeMode(v string) *Pvc {
-	o.volumeMode = v
+	o.volumeMode = &v
 	return o
 }
 
@@ -434,16 +478,24 @@ func (o Pvc) MarshalJSON() ([]byte, error) {
 
 func (o Pvc) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["accessModes"] = o.accessModes
+	if !utils.IsNil(o.accessModes) {
+		toSerialize["accessModes"] = o.accessModes
+	}
 	if !utils.IsNil(o.dataSource) {
 		toSerialize["dataSource"] = o.dataSource
 	}
 	if !utils.IsNil(o.dataSourceRef) {
 		toSerialize["dataSourceRef"] = o.dataSourceRef
 	}
-	toSerialize["mountOnly"] = o.mountOnly
-	toSerialize["mountPath"] = o.mountPath
-	toSerialize["name"] = o.name
+	if !utils.IsNil(o.mountOnly) {
+		toSerialize["mountOnly"] = o.mountOnly
+	}
+	if !utils.IsNil(o.mountPath) {
+		toSerialize["mountPath"] = o.mountPath
+	}
+	if !utils.IsNil(o.name) {
+		toSerialize["name"] = o.name
+	}
 	if !utils.IsNil(o.resources) {
 		toSerialize["resources"] = o.resources
 	}
@@ -456,7 +508,9 @@ func (o Pvc) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.subPath) {
 		toSerialize["subPath"] = o.subPath
 	}
-	toSerialize["volumeMode"] = o.volumeMode
+	if !utils.IsNil(o.volumeMode) {
+		toSerialize["volumeMode"] = o.volumeMode
+	}
 	if !utils.IsNil(o.volumeName) {
 		toSerialize["volumeName"] = o.volumeName
 	}

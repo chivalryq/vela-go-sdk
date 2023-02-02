@@ -21,18 +21,16 @@ var _ utils.MappedNullable = &ProviderRef{}
 
 // ProviderRef providerRef specifies the reference to Provider
 type ProviderRef struct {
-	name      string `json:"name"`
-	namespace string `json:"namespace"`
+	name      *string `json:"name,omitempty"`
+	namespace *string `json:"namespace,omitempty"`
 }
 
 // NewProviderRefWith instantiates a new ProviderRef object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProviderRefWith(name string, namespace string) *ProviderRef {
+func NewProviderRefWith() *ProviderRef {
 	this := ProviderRef{}
-	this.name = name
-	this.namespace = namespace
 	return &this
 }
 
@@ -44,53 +42,71 @@ func NewProviderRef() *ProviderRef {
 	return &this
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *ProviderRef) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		var ret string
 		return ret
 	}
-
-	return o.name
+	return *o.name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProviderRef) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		return nil, false
 	}
-	return &o.name, true
+	return o.name, true
 }
 
-// Name sets field value
+// HasName returns a boolean if a field has been set.
+func (o *ProviderRef) HasName() bool {
+	if o != nil && !utils.IsNil(o.name) {
+		return true
+	}
+
+	return false
+}
+
+// Name gets a reference to the given string and assigns it to the name field.
+// name:
 func (o *ProviderRef) Name(v string) *ProviderRef {
-	o.name = v
+	o.name = &v
 	return o
 }
 
-// GetNamespace returns the Namespace field value
+// GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *ProviderRef) GetNamespace() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.namespace) {
 		var ret string
 		return ret
 	}
-
-	return o.namespace
+	return *o.namespace
 }
 
-// GetNamespaceOk returns a tuple with the Namespace field value
+// GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProviderRef) GetNamespaceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.namespace) {
 		return nil, false
 	}
-	return &o.namespace, true
+	return o.namespace, true
 }
 
-// Namespace sets field value
+// HasNamespace returns a boolean if a field has been set.
+func (o *ProviderRef) HasNamespace() bool {
+	if o != nil && !utils.IsNil(o.namespace) {
+		return true
+	}
+
+	return false
+}
+
+// Namespace gets a reference to the given string and assigns it to the namespace field.
+// namespace:
 func (o *ProviderRef) Namespace(v string) *ProviderRef {
-	o.namespace = v
+	o.namespace = &v
 	return o
 }
 
@@ -104,8 +120,12 @@ func (o ProviderRef) MarshalJSON() ([]byte, error) {
 
 func (o ProviderRef) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.name
-	toSerialize["namespace"] = o.namespace
+	if !utils.IsNil(o.name) {
+		toSerialize["name"] = o.name
+	}
+	if !utils.IsNil(o.namespace) {
+		toSerialize["namespace"] = o.namespace
+	}
 	return toSerialize, nil
 }
 

@@ -27,15 +27,15 @@ var _ utils.MappedNullable = &GatewaySpec{}
 // GatewaySpec struct for GatewaySpec
 type GatewaySpec struct {
 	// Specify the class of ingress to use
-	class string `json:"class"`
+	class *string `json:"class,omitempty"`
 	// Set ingress class in '.spec.ingressClassName' instead of 'kubernetes.io/ingress.class' annotation.
-	classInSpec bool `json:"classInSpec"`
+	classInSpec *bool `json:"classInSpec,omitempty"`
 	// Specify the domain you want to expose
 	domain *string `json:"domain,omitempty"`
 	// Specify the host of the ingress gateway, which is used to generate the endpoints when the host is empty.
 	gatewayHost *string `json:"gatewayHost,omitempty"`
 	// Specify the mapping relationship between the http path and the workload port
-	http map[string]int32 `json:"http"`
+	http *map[string]int32 `json:"http,omitempty"`
 	// Specify the secret name you want to quote to use tls.
 	secretName *string `json:"secretName,omitempty"`
 }
@@ -44,11 +44,12 @@ type GatewaySpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGatewaySpecWith(class string, classInSpec bool, http map[string]int32) *GatewaySpec {
+func NewGatewaySpecWith() *GatewaySpec {
 	this := GatewaySpec{}
-	this.class = class
-	this.classInSpec = classInSpec
-	this.http = http
+	var class string = "nginx"
+	this.class = &class
+	var classInSpec bool = false
+	this.classInSpec = &classInSpec
 	return &this
 }
 
@@ -58,59 +59,77 @@ func NewGatewaySpecWith(class string, classInSpec bool, http map[string]int32) *
 func NewGatewaySpec() *GatewaySpec {
 	this := GatewaySpec{}
 	var class string = "nginx"
-	this.class = class
+	this.class = &class
 	var classInSpec bool = false
-	this.classInSpec = classInSpec
+	this.classInSpec = &classInSpec
 	return &this
 }
 
-// GetClass returns the Class field value
+// GetClass returns the Class field value if set, zero value otherwise.
 func (o *GatewayTrait) GetClass() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.class) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.class
+	return *o.Properties.class
 }
 
-// GetClassOk returns a tuple with the Class field value
+// GetClassOk returns a tuple with the Class field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GatewayTrait) GetClassOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.class) {
 		return nil, false
 	}
-	return &o.Properties.class, true
+	return o.Properties.class, true
 }
 
-// Class sets field value
+// HasClass returns a boolean if a field has been set.
+func (o *GatewayTrait) HasClass() bool {
+	if o != nil && !utils.IsNil(o.Properties.class) {
+		return true
+	}
+
+	return false
+}
+
+// Class gets a reference to the given string and assigns it to the class field.
+// class:  Specify the class of ingress to use
 func (o *GatewayTrait) Class(v string) *GatewayTrait {
-	o.Properties.class = v
+	o.Properties.class = &v
 	return o
 }
 
-// GetClassInSpec returns the ClassInSpec field value
+// GetClassInSpec returns the ClassInSpec field value if set, zero value otherwise.
 func (o *GatewayTrait) GetClassInSpec() bool {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.classInSpec) {
 		var ret bool
 		return ret
 	}
-
-	return o.Properties.classInSpec
+	return *o.Properties.classInSpec
 }
 
-// GetClassInSpecOk returns a tuple with the ClassInSpec field value
+// GetClassInSpecOk returns a tuple with the ClassInSpec field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GatewayTrait) GetClassInSpecOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.classInSpec) {
 		return nil, false
 	}
-	return &o.Properties.classInSpec, true
+	return o.Properties.classInSpec, true
 }
 
-// ClassInSpec sets field value
+// HasClassInSpec returns a boolean if a field has been set.
+func (o *GatewayTrait) HasClassInSpec() bool {
+	if o != nil && !utils.IsNil(o.Properties.classInSpec) {
+		return true
+	}
+
+	return false
+}
+
+// ClassInSpec gets a reference to the given bool and assigns it to the classInSpec field.
+// classInSpec:  Set ingress class in '.spec.ingressClassName' instead of 'kubernetes.io/ingress.class' annotation.
 func (o *GatewayTrait) ClassInSpec(v bool) *GatewayTrait {
-	o.Properties.classInSpec = v
+	o.Properties.classInSpec = &v
 	return o
 }
 
@@ -182,28 +201,37 @@ func (o *GatewayTrait) GatewayHost(v string) *GatewayTrait {
 	return o
 }
 
-// GetHttp returns the Http field value
+// GetHttp returns the Http field value if set, zero value otherwise.
 func (o *GatewayTrait) GetHttp() map[string]int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.http) {
 		var ret map[string]int32
 		return ret
 	}
-
-	return o.Properties.http
+	return *o.Properties.http
 }
 
-// GetHttpOk returns a tuple with the Http field value
+// GetHttpOk returns a tuple with the Http field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GatewayTrait) GetHttpOk() (*map[string]int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.http) {
 		return nil, false
 	}
-	return &o.Properties.http, true
+	return o.Properties.http, true
 }
 
-// Http sets field value
+// HasHttp returns a boolean if a field has been set.
+func (o *GatewayTrait) HasHttp() bool {
+	if o != nil && !utils.IsNil(o.Properties.http) {
+		return true
+	}
+
+	return false
+}
+
+// Http gets a reference to the given map[string]int32 and assigns it to the http field.
+// http:  Specify the mapping relationship between the http path and the workload port
 func (o *GatewayTrait) Http(v map[string]int32) *GatewayTrait {
-	o.Properties.http = v
+	o.Properties.http = &v
 	return o
 }
 
@@ -251,15 +279,21 @@ func (o GatewaySpec) MarshalJSON() ([]byte, error) {
 
 func (o GatewaySpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["class"] = o.class
-	toSerialize["classInSpec"] = o.classInSpec
+	if !utils.IsNil(o.class) {
+		toSerialize["class"] = o.class
+	}
+	if !utils.IsNil(o.classInSpec) {
+		toSerialize["classInSpec"] = o.classInSpec
+	}
 	if !utils.IsNil(o.domain) {
 		toSerialize["domain"] = o.domain
 	}
 	if !utils.IsNil(o.gatewayHost) {
 		toSerialize["gatewayHost"] = o.gatewayHost
 	}
-	toSerialize["http"] = o.http
+	if !utils.IsNil(o.http) {
+		toSerialize["http"] = o.http
+	}
 	if !utils.IsNil(o.secretName) {
 		toSerialize["secretName"] = o.secretName
 	}

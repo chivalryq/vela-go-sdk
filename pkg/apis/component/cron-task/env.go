@@ -22,7 +22,7 @@ var _ utils.MappedNullable = &Env{}
 // Env struct for Env
 type Env struct {
 	// Environment variable name
-	name string `json:"name"`
+	name *string `json:"name,omitempty"`
 	// The value of the environment variable
 	value     *string    `json:"value,omitempty"`
 	valueFrom *ValueFrom `json:"valueFrom,omitempty"`
@@ -32,9 +32,8 @@ type Env struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEnvWith(name string) *Env {
+func NewEnvWith() *Env {
 	this := Env{}
-	this.name = name
 	return &this
 }
 
@@ -46,28 +45,37 @@ func NewEnv() *Env {
 	return &this
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *Env) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		var ret string
 		return ret
 	}
-
-	return o.name
+	return *o.name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Env) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		return nil, false
 	}
-	return &o.name, true
+	return o.name, true
 }
 
-// Name sets field value
+// HasName returns a boolean if a field has been set.
+func (o *Env) HasName() bool {
+	if o != nil && !utils.IsNil(o.name) {
+		return true
+	}
+
+	return false
+}
+
+// Name gets a reference to the given string and assigns it to the name field.
+// name:  Environment variable name
 func (o *Env) Name(v string) *Env {
-	o.name = v
+	o.name = &v
 	return o
 }
 
@@ -149,7 +157,9 @@ func (o Env) MarshalJSON() ([]byte, error) {
 
 func (o Env) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.name
+	if !utils.IsNil(o.name) {
+		toSerialize["name"] = o.name
+	}
 	if !utils.IsNil(o.value) {
 		toSerialize["value"] = o.value
 	}

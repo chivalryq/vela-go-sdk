@@ -28,7 +28,7 @@ var _ utils.MappedNullable = &DeleteConfigSpec{}
 // DeleteConfigSpec struct for DeleteConfigSpec
 type DeleteConfigSpec struct {
 	// Specify the name of the config.
-	name string `json:"name"`
+	name *string `json:"name,omitempty"`
 	// Specify the namespace of the config.
 	namespace *string `json:"namespace,omitempty"`
 }
@@ -37,9 +37,8 @@ type DeleteConfigSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeleteConfigSpecWith(name string) *DeleteConfigSpec {
+func NewDeleteConfigSpecWith() *DeleteConfigSpec {
 	this := DeleteConfigSpec{}
-	this.name = name
 	return &this
 }
 
@@ -51,28 +50,37 @@ func NewDeleteConfigSpec() *DeleteConfigSpec {
 	return &this
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *DeleteConfigWorkflowStep) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.name) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.name
+	return *o.Properties.name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeleteConfigWorkflowStep) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.name) {
 		return nil, false
 	}
-	return &o.Properties.name, true
+	return o.Properties.name, true
 }
 
-// Name sets field value
+// HasName returns a boolean if a field has been set.
+func (o *DeleteConfigWorkflowStep) HasName() bool {
+	if o != nil && !utils.IsNil(o.Properties.name) {
+		return true
+	}
+
+	return false
+}
+
+// Name gets a reference to the given string and assigns it to the name field.
+// name:  Specify the name of the config.
 func (o *DeleteConfigWorkflowStep) Name(v string) *DeleteConfigWorkflowStep {
-	o.Properties.name = v
+	o.Properties.name = &v
 	return o
 }
 
@@ -120,7 +128,9 @@ func (o DeleteConfigSpec) MarshalJSON() ([]byte, error) {
 
 func (o DeleteConfigSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.name
+	if !utils.IsNil(o.name) {
+		toSerialize["name"] = o.name
+	}
 	if !utils.IsNil(o.namespace) {
 		toSerialize["namespace"] = o.namespace
 	}
@@ -178,6 +188,7 @@ type DeleteConfigWorkflowStep struct {
 func DeleteConfig(name string) *DeleteConfigWorkflowStep {
 	d := &DeleteConfigWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: DeleteConfigType,
 	}}
 	return d
 }
@@ -189,7 +200,7 @@ func (d *DeleteConfigWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  d.Base.DependsOn,

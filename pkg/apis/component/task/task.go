@@ -31,13 +31,13 @@ type TaskSpec struct {
 	// Commands to run in the container
 	cmd []string `json:"cmd,omitempty"`
 	// Specify number of tasks to run in parallel +short=c
-	count int32 `json:"count"`
+	count *int32 `json:"count,omitempty"`
 	// Number of CPU units for the service, like `0.5` (0.5 CPU core), `1` (1 CPU core)
 	cpu *string `json:"cpu,omitempty"`
 	// Define arguments by using environment variables
 	env []Env `json:"env,omitempty"`
 	// Which image would you like to use for your service +short=i
-	image string `json:"image"`
+	image *string `json:"image,omitempty"`
 	// Specify image pull policy for your service
 	imagePullPolicy *string `json:"imagePullPolicy,omitempty"`
 	// Specify image pull secrets for your service
@@ -49,7 +49,7 @@ type TaskSpec struct {
 	memory         *string      `json:"memory,omitempty"`
 	readinessProbe *HealthProbe `json:"readinessProbe,omitempty"`
 	// Define the job restart policy, the value can only be Never or OnFailure. By default, it's Never.
-	restart string `json:"restart"`
+	restart *string `json:"restart,omitempty"`
 	// Declare volumes and volumeMounts
 	volumes []Volumes `json:"volumes,omitempty"`
 }
@@ -58,11 +58,12 @@ type TaskSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTaskSpecWith(count int32, image string, restart string) *TaskSpec {
+func NewTaskSpecWith() *TaskSpec {
 	this := TaskSpec{}
-	this.count = count
-	this.image = image
-	this.restart = restart
+	var count int32 = 1
+	this.count = &count
+	var restart string = "Never"
+	this.restart = &restart
 	return &this
 }
 
@@ -72,9 +73,9 @@ func NewTaskSpecWith(count int32, image string, restart string) *TaskSpec {
 func NewTaskSpec() *TaskSpec {
 	this := TaskSpec{}
 	var count int32 = 1
-	this.count = count
+	this.count = &count
 	var restart string = "Never"
-	this.restart = restart
+	this.restart = &restart
 	return &this
 }
 
@@ -146,28 +147,37 @@ func (o *TaskComponent) Cmd(v []string) *TaskComponent {
 	return o
 }
 
-// GetCount returns the Count field value
+// GetCount returns the Count field value if set, zero value otherwise.
 func (o *TaskComponent) GetCount() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.count) {
 		var ret int32
 		return ret
 	}
-
-	return o.Properties.count
+	return *o.Properties.count
 }
 
-// GetCountOk returns a tuple with the Count field value
+// GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TaskComponent) GetCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.count) {
 		return nil, false
 	}
-	return &o.Properties.count, true
+	return o.Properties.count, true
 }
 
-// Count sets field value
+// HasCount returns a boolean if a field has been set.
+func (o *TaskComponent) HasCount() bool {
+	if o != nil && !utils.IsNil(o.Properties.count) {
+		return true
+	}
+
+	return false
+}
+
+// Count gets a reference to the given int32 and assigns it to the count field.
+// count:  Specify number of tasks to run in parallel +short=c
 func (o *TaskComponent) Count(v int32) *TaskComponent {
-	o.Properties.count = v
+	o.Properties.count = &v
 	return o
 }
 
@@ -239,28 +249,37 @@ func (o *TaskComponent) Env(v []Env) *TaskComponent {
 	return o
 }
 
-// GetImage returns the Image field value
+// GetImage returns the Image field value if set, zero value otherwise.
 func (o *TaskComponent) GetImage() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.image) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.image
+	return *o.Properties.image
 }
 
-// GetImageOk returns a tuple with the Image field value
+// GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TaskComponent) GetImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.image) {
 		return nil, false
 	}
-	return &o.Properties.image, true
+	return o.Properties.image, true
 }
 
-// Image sets field value
+// HasImage returns a boolean if a field has been set.
+func (o *TaskComponent) HasImage() bool {
+	if o != nil && !utils.IsNil(o.Properties.image) {
+		return true
+	}
+
+	return false
+}
+
+// Image gets a reference to the given string and assigns it to the image field.
+// image:  Which image would you like to use for your service +short=i
 func (o *TaskComponent) Image(v string) *TaskComponent {
-	o.Properties.image = v
+	o.Properties.image = &v
 	return o
 }
 
@@ -468,28 +487,37 @@ func (o *TaskComponent) ReadinessProbe(v HealthProbe) *TaskComponent {
 	return o
 }
 
-// GetRestart returns the Restart field value
+// GetRestart returns the Restart field value if set, zero value otherwise.
 func (o *TaskComponent) GetRestart() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.restart) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.restart
+	return *o.Properties.restart
 }
 
-// GetRestartOk returns a tuple with the Restart field value
+// GetRestartOk returns a tuple with the Restart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TaskComponent) GetRestartOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.restart) {
 		return nil, false
 	}
-	return &o.Properties.restart, true
+	return o.Properties.restart, true
 }
 
-// Restart sets field value
+// HasRestart returns a boolean if a field has been set.
+func (o *TaskComponent) HasRestart() bool {
+	if o != nil && !utils.IsNil(o.Properties.restart) {
+		return true
+	}
+
+	return false
+}
+
+// Restart gets a reference to the given string and assigns it to the restart field.
+// restart:  Define the job restart policy, the value can only be Never or OnFailure. By default, it's Never.
 func (o *TaskComponent) Restart(v string) *TaskComponent {
-	o.Properties.restart = v
+	o.Properties.restart = &v
 	return o
 }
 
@@ -543,14 +571,18 @@ func (o TaskSpec) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.cmd) {
 		toSerialize["cmd"] = o.cmd
 	}
-	toSerialize["count"] = o.count
+	if !utils.IsNil(o.count) {
+		toSerialize["count"] = o.count
+	}
 	if !utils.IsNil(o.cpu) {
 		toSerialize["cpu"] = o.cpu
 	}
 	if !utils.IsNil(o.env) {
 		toSerialize["env"] = o.env
 	}
-	toSerialize["image"] = o.image
+	if !utils.IsNil(o.image) {
+		toSerialize["image"] = o.image
+	}
 	if !utils.IsNil(o.imagePullPolicy) {
 		toSerialize["imagePullPolicy"] = o.imagePullPolicy
 	}
@@ -569,7 +601,9 @@ func (o TaskSpec) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.readinessProbe) {
 		toSerialize["readinessProbe"] = o.readinessProbe
 	}
-	toSerialize["restart"] = o.restart
+	if !utils.IsNil(o.restart) {
+		toSerialize["restart"] = o.restart
+	}
 	if !utils.IsNil(o.volumes) {
 		toSerialize["volumes"] = o.volumes
 	}
@@ -626,6 +660,7 @@ type TaskComponent struct {
 func Task(name string) *TaskComponent {
 	t := &TaskComponent{Base: apis.ComponentBase{
 		Name: name,
+		Type: TaskType,
 	}}
 	return t
 }

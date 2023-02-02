@@ -22,16 +22,15 @@ var _ utils.MappedNullable = &ApplyOncePolicyRule{}
 // ApplyOncePolicyRule struct for ApplyOncePolicyRule
 type ApplyOncePolicyRule struct {
 	selector *ResourcePolicyRuleSelector `json:"selector,omitempty"`
-	strategy ApplyOnceStrategy           `json:"strategy"`
+	strategy *ApplyOnceStrategy          `json:"strategy,omitempty"`
 }
 
 // NewApplyOncePolicyRuleWith instantiates a new ApplyOncePolicyRule object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApplyOncePolicyRuleWith(strategy ApplyOnceStrategy) *ApplyOncePolicyRule {
+func NewApplyOncePolicyRuleWith() *ApplyOncePolicyRule {
 	this := ApplyOncePolicyRule{}
-	this.strategy = strategy
 	return &this
 }
 
@@ -77,28 +76,37 @@ func (o *ApplyOncePolicyRule) Selector(v ResourcePolicyRuleSelector) *ApplyOnceP
 	return o
 }
 
-// GetStrategy returns the Strategy field value
+// GetStrategy returns the Strategy field value if set, zero value otherwise.
 func (o *ApplyOncePolicyRule) GetStrategy() ApplyOnceStrategy {
-	if o == nil {
+	if o == nil || utils.IsNil(o.strategy) {
 		var ret ApplyOnceStrategy
 		return ret
 	}
-
-	return o.strategy
+	return *o.strategy
 }
 
-// GetStrategyOk returns a tuple with the Strategy field value
+// GetStrategyOk returns a tuple with the Strategy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplyOncePolicyRule) GetStrategyOk() (*ApplyOnceStrategy, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.strategy) {
 		return nil, false
 	}
-	return &o.strategy, true
+	return o.strategy, true
 }
 
-// Strategy sets field value
+// HasStrategy returns a boolean if a field has been set.
+func (o *ApplyOncePolicyRule) HasStrategy() bool {
+	if o != nil && !utils.IsNil(o.strategy) {
+		return true
+	}
+
+	return false
+}
+
+// Strategy gets a reference to the given ApplyOnceStrategy and assigns it to the strategy field.
+// strategy:
 func (o *ApplyOncePolicyRule) Strategy(v ApplyOnceStrategy) *ApplyOncePolicyRule {
-	o.strategy = v
+	o.strategy = &v
 	return o
 }
 
@@ -115,7 +123,9 @@ func (o ApplyOncePolicyRule) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.selector) {
 		toSerialize["selector"] = o.selector
 	}
-	toSerialize["strategy"] = o.strategy
+	if !utils.IsNil(o.strategy) {
+		toSerialize["strategy"] = o.strategy
+	}
 	return toSerialize, nil
 }
 

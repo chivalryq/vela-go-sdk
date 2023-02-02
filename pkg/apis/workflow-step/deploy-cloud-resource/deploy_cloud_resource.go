@@ -28,19 +28,19 @@ var _ utils.MappedNullable = &DeployCloudResourceSpec{}
 // DeployCloudResourceSpec struct for DeployCloudResourceSpec
 type DeployCloudResourceSpec struct {
 	// Declare the name of the env in policy
-	env string `json:"env"`
+	env *string `json:"env,omitempty"`
 	// Declare the name of the env-binding policy, if empty, the first env-binding policy will be used
-	policy string `json:"policy"`
+	policy *string `json:"policy,omitempty"`
 }
 
 // NewDeployCloudResourceSpecWith instantiates a new DeployCloudResourceSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeployCloudResourceSpecWith(env string, policy string) *DeployCloudResourceSpec {
+func NewDeployCloudResourceSpecWith() *DeployCloudResourceSpec {
 	this := DeployCloudResourceSpec{}
-	this.env = env
-	this.policy = policy
+	var policy string = ""
+	this.policy = &policy
 	return &this
 }
 
@@ -50,57 +50,75 @@ func NewDeployCloudResourceSpecWith(env string, policy string) *DeployCloudResou
 func NewDeployCloudResourceSpec() *DeployCloudResourceSpec {
 	this := DeployCloudResourceSpec{}
 	var policy string = ""
-	this.policy = policy
+	this.policy = &policy
 	return &this
 }
 
-// GetEnv returns the Env field value
+// GetEnv returns the Env field value if set, zero value otherwise.
 func (o *DeployCloudResourceWorkflowStep) GetEnv() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.env) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.env
+	return *o.Properties.env
 }
 
-// GetEnvOk returns a tuple with the Env field value
+// GetEnvOk returns a tuple with the Env field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeployCloudResourceWorkflowStep) GetEnvOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.env) {
 		return nil, false
 	}
-	return &o.Properties.env, true
+	return o.Properties.env, true
 }
 
-// Env sets field value
+// HasEnv returns a boolean if a field has been set.
+func (o *DeployCloudResourceWorkflowStep) HasEnv() bool {
+	if o != nil && !utils.IsNil(o.Properties.env) {
+		return true
+	}
+
+	return false
+}
+
+// Env gets a reference to the given string and assigns it to the env field.
+// env:  Declare the name of the env in policy
 func (o *DeployCloudResourceWorkflowStep) Env(v string) *DeployCloudResourceWorkflowStep {
-	o.Properties.env = v
+	o.Properties.env = &v
 	return o
 }
 
-// GetPolicy returns the Policy field value
+// GetPolicy returns the Policy field value if set, zero value otherwise.
 func (o *DeployCloudResourceWorkflowStep) GetPolicy() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.policy) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.policy
+	return *o.Properties.policy
 }
 
-// GetPolicyOk returns a tuple with the Policy field value
+// GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeployCloudResourceWorkflowStep) GetPolicyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.policy) {
 		return nil, false
 	}
-	return &o.Properties.policy, true
+	return o.Properties.policy, true
 }
 
-// Policy sets field value
+// HasPolicy returns a boolean if a field has been set.
+func (o *DeployCloudResourceWorkflowStep) HasPolicy() bool {
+	if o != nil && !utils.IsNil(o.Properties.policy) {
+		return true
+	}
+
+	return false
+}
+
+// Policy gets a reference to the given string and assigns it to the policy field.
+// policy:  Declare the name of the env-binding policy, if empty, the first env-binding policy will be used
 func (o *DeployCloudResourceWorkflowStep) Policy(v string) *DeployCloudResourceWorkflowStep {
-	o.Properties.policy = v
+	o.Properties.policy = &v
 	return o
 }
 
@@ -114,8 +132,12 @@ func (o DeployCloudResourceSpec) MarshalJSON() ([]byte, error) {
 
 func (o DeployCloudResourceSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["env"] = o.env
-	toSerialize["policy"] = o.policy
+	if !utils.IsNil(o.env) {
+		toSerialize["env"] = o.env
+	}
+	if !utils.IsNil(o.policy) {
+		toSerialize["policy"] = o.policy
+	}
 	return toSerialize, nil
 }
 
@@ -170,6 +192,7 @@ type DeployCloudResourceWorkflowStep struct {
 func DeployCloudResource(name string) *DeployCloudResourceWorkflowStep {
 	d := &DeployCloudResourceWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: DeployCloudResourceType,
 	}}
 	return d
 }
@@ -181,7 +204,7 @@ func (d *DeployCloudResourceWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  d.Base.DependsOn,

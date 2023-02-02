@@ -22,16 +22,15 @@ var _ utils.MappedNullable = &Exec{}
 // Exec Instructions for assessing container health by executing a command. Either this attribute or the httpGet attribute or the tcpSocket attribute MUST be specified. This attribute is mutually exclusive with both the httpGet attribute and the tcpSocket attribute.
 type Exec struct {
 	// A command to be executed inside the container to assess its health. Each space delimited token of the command is a separate array element. Commands exiting 0 are considered to be successful probes, whilst all other exit codes are considered failures.
-	command []string `json:"command"`
+	command []string `json:"command,omitempty"`
 }
 
 // NewExecWith instantiates a new Exec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExecWith(command []string) *Exec {
+func NewExecWith() *Exec {
 	this := Exec{}
-	this.command = command
 	return &this
 }
 
@@ -43,26 +42,35 @@ func NewExec() *Exec {
 	return &this
 }
 
-// GetCommand returns the Command field value
+// GetCommand returns the Command field value if set, zero value otherwise.
 func (o *Exec) GetCommand() []string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.command) {
 		var ret []string
 		return ret
 	}
-
 	return o.command
 }
 
-// GetCommandOk returns a tuple with the Command field value
+// GetCommandOk returns a tuple with the Command field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Exec) GetCommandOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.command) {
 		return nil, false
 	}
 	return o.command, true
 }
 
-// Command sets field value
+// HasCommand returns a boolean if a field has been set.
+func (o *Exec) HasCommand() bool {
+	if o != nil && !utils.IsNil(o.command) {
+		return true
+	}
+
+	return false
+}
+
+// Command gets a reference to the given []string and assigns it to the command field.
+// command:  A command to be executed inside the container to assess its health. Each space delimited token of the command is a separate array element. Commands exiting 0 are considered to be successful probes, whilst all other exit codes are considered failures.
 func (o *Exec) Command(v []string) *Exec {
 	o.command = v
 	return o
@@ -78,7 +86,9 @@ func (o Exec) MarshalJSON() ([]byte, error) {
 
 func (o Exec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["command"] = o.command
+	if !utils.IsNil(o.command) {
+		toSerialize["command"] = o.command
+	}
 	return toSerialize, nil
 }
 

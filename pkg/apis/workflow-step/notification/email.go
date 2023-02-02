@@ -21,21 +21,18 @@ var _ utils.MappedNullable = &Email{}
 
 // Email Please fulfill its from, to and content if you want to send email
 type Email struct {
-	content Content `json:"content"`
-	from    From    `json:"from"`
+	content *Content `json:"content,omitempty"`
+	from    *From    `json:"from,omitempty"`
 	// Specify the email address that you want to send to
-	to []string `json:"to"`
+	to []string `json:"to,omitempty"`
 }
 
 // NewEmailWith instantiates a new Email object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEmailWith(content Content, from From, to []string) *Email {
+func NewEmailWith() *Email {
 	this := Email{}
-	this.content = content
-	this.from = from
-	this.to = to
 	return &this
 }
 
@@ -47,76 +44,103 @@ func NewEmail() *Email {
 	return &this
 }
 
-// GetContent returns the Content field value
+// GetContent returns the Content field value if set, zero value otherwise.
 func (o *Email) GetContent() Content {
-	if o == nil {
+	if o == nil || utils.IsNil(o.content) {
 		var ret Content
 		return ret
 	}
-
-	return o.content
+	return *o.content
 }
 
-// GetContentOk returns a tuple with the Content field value
+// GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Email) GetContentOk() (*Content, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.content) {
 		return nil, false
 	}
-	return &o.content, true
+	return o.content, true
 }
 
-// Content sets field value
+// HasContent returns a boolean if a field has been set.
+func (o *Email) HasContent() bool {
+	if o != nil && !utils.IsNil(o.content) {
+		return true
+	}
+
+	return false
+}
+
+// Content gets a reference to the given Content and assigns it to the content field.
+// content:
 func (o *Email) Content(v Content) *Email {
-	o.content = v
+	o.content = &v
 	return o
 }
 
-// GetFrom returns the From field value
+// GetFrom returns the From field value if set, zero value otherwise.
 func (o *Email) GetFrom() From {
-	if o == nil {
+	if o == nil || utils.IsNil(o.from) {
 		var ret From
 		return ret
 	}
-
-	return o.from
+	return *o.from
 }
 
-// GetFromOk returns a tuple with the From field value
+// GetFromOk returns a tuple with the From field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Email) GetFromOk() (*From, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.from) {
 		return nil, false
 	}
-	return &o.from, true
+	return o.from, true
 }
 
-// From sets field value
+// HasFrom returns a boolean if a field has been set.
+func (o *Email) HasFrom() bool {
+	if o != nil && !utils.IsNil(o.from) {
+		return true
+	}
+
+	return false
+}
+
+// From gets a reference to the given From and assigns it to the from field.
+// from:
 func (o *Email) From(v From) *Email {
-	o.from = v
+	o.from = &v
 	return o
 }
 
-// GetTo returns the To field value
+// GetTo returns the To field value if set, zero value otherwise.
 func (o *Email) GetTo() []string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.to) {
 		var ret []string
 		return ret
 	}
-
 	return o.to
 }
 
-// GetToOk returns a tuple with the To field value
+// GetToOk returns a tuple with the To field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Email) GetToOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.to) {
 		return nil, false
 	}
 	return o.to, true
 }
 
-// To sets field value
+// HasTo returns a boolean if a field has been set.
+func (o *Email) HasTo() bool {
+	if o != nil && !utils.IsNil(o.to) {
+		return true
+	}
+
+	return false
+}
+
+// To gets a reference to the given []string and assigns it to the to field.
+// to:  Specify the email address that you want to send to
 func (o *Email) To(v []string) *Email {
 	o.to = v
 	return o
@@ -132,9 +156,15 @@ func (o Email) MarshalJSON() ([]byte, error) {
 
 func (o Email) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["content"] = o.content
-	toSerialize["from"] = o.from
-	toSerialize["to"] = o.to
+	if !utils.IsNil(o.content) {
+		toSerialize["content"] = o.content
+	}
+	if !utils.IsNil(o.from) {
+		toSerialize["from"] = o.from
+	}
+	if !utils.IsNil(o.to) {
+		toSerialize["to"] = o.to
+	}
 	return toSerialize, nil
 }
 

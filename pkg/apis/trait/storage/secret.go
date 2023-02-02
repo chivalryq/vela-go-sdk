@@ -22,14 +22,14 @@ var _ utils.MappedNullable = &Secret{}
 // Secret struct for Secret
 type Secret struct {
 	data        map[string]interface{} `json:"data,omitempty"`
-	defaultMode int32                  `json:"defaultMode"`
+	defaultMode *int32                 `json:"defaultMode,omitempty"`
 	items       []Items                `json:"items,omitempty"`
-	mountOnly   bool                   `json:"mountOnly"`
+	mountOnly   *bool                  `json:"mountOnly,omitempty"`
 	mountPath   *string                `json:"mountPath,omitempty"`
 	mountToEnv  *MountToEnv1           `json:"mountToEnv,omitempty"`
 	mountToEnvs []MountToEnvs1         `json:"mountToEnvs,omitempty"`
-	name        string                 `json:"name"`
-	readOnly    bool                   `json:"readOnly"`
+	name        *string                `json:"name,omitempty"`
+	readOnly    *bool                  `json:"readOnly,omitempty"`
 	stringData  map[string]interface{} `json:"stringData,omitempty"`
 	subPath     *string                `json:"subPath,omitempty"`
 }
@@ -38,12 +38,14 @@ type Secret struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSecretWith(defaultMode int32, mountOnly bool, name string, readOnly bool) *Secret {
+func NewSecretWith() *Secret {
 	this := Secret{}
-	this.defaultMode = defaultMode
-	this.mountOnly = mountOnly
-	this.name = name
-	this.readOnly = readOnly
+	var defaultMode int32 = 420
+	this.defaultMode = &defaultMode
+	var mountOnly bool = false
+	this.mountOnly = &mountOnly
+	var readOnly bool = false
+	this.readOnly = &readOnly
 	return &this
 }
 
@@ -53,11 +55,11 @@ func NewSecretWith(defaultMode int32, mountOnly bool, name string, readOnly bool
 func NewSecret() *Secret {
 	this := Secret{}
 	var defaultMode int32 = 420
-	this.defaultMode = defaultMode
+	this.defaultMode = &defaultMode
 	var mountOnly bool = false
-	this.mountOnly = mountOnly
+	this.mountOnly = &mountOnly
 	var readOnly bool = false
-	this.readOnly = readOnly
+	this.readOnly = &readOnly
 	return &this
 }
 
@@ -95,28 +97,37 @@ func (o *Secret) Data(v map[string]interface{}) *Secret {
 	return o
 }
 
-// GetDefaultMode returns the DefaultMode field value
+// GetDefaultMode returns the DefaultMode field value if set, zero value otherwise.
 func (o *Secret) GetDefaultMode() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.defaultMode) {
 		var ret int32
 		return ret
 	}
-
-	return o.defaultMode
+	return *o.defaultMode
 }
 
-// GetDefaultModeOk returns a tuple with the DefaultMode field value
+// GetDefaultModeOk returns a tuple with the DefaultMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetDefaultModeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.defaultMode) {
 		return nil, false
 	}
-	return &o.defaultMode, true
+	return o.defaultMode, true
 }
 
-// DefaultMode sets field value
+// HasDefaultMode returns a boolean if a field has been set.
+func (o *Secret) HasDefaultMode() bool {
+	if o != nil && !utils.IsNil(o.defaultMode) {
+		return true
+	}
+
+	return false
+}
+
+// DefaultMode gets a reference to the given int32 and assigns it to the defaultMode field.
+// defaultMode:
 func (o *Secret) DefaultMode(v int32) *Secret {
-	o.defaultMode = v
+	o.defaultMode = &v
 	return o
 }
 
@@ -154,28 +165,37 @@ func (o *Secret) Items(v []Items) *Secret {
 	return o
 }
 
-// GetMountOnly returns the MountOnly field value
+// GetMountOnly returns the MountOnly field value if set, zero value otherwise.
 func (o *Secret) GetMountOnly() bool {
-	if o == nil {
+	if o == nil || utils.IsNil(o.mountOnly) {
 		var ret bool
 		return ret
 	}
-
-	return o.mountOnly
+	return *o.mountOnly
 }
 
-// GetMountOnlyOk returns a tuple with the MountOnly field value
+// GetMountOnlyOk returns a tuple with the MountOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetMountOnlyOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.mountOnly) {
 		return nil, false
 	}
-	return &o.mountOnly, true
+	return o.mountOnly, true
 }
 
-// MountOnly sets field value
+// HasMountOnly returns a boolean if a field has been set.
+func (o *Secret) HasMountOnly() bool {
+	if o != nil && !utils.IsNil(o.mountOnly) {
+		return true
+	}
+
+	return false
+}
+
+// MountOnly gets a reference to the given bool and assigns it to the mountOnly field.
+// mountOnly:
 func (o *Secret) MountOnly(v bool) *Secret {
-	o.mountOnly = v
+	o.mountOnly = &v
 	return o
 }
 
@@ -281,53 +301,71 @@ func (o *Secret) MountToEnvs(v []MountToEnvs1) *Secret {
 	return o
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *Secret) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		var ret string
 		return ret
 	}
-
-	return o.name
+	return *o.name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		return nil, false
 	}
-	return &o.name, true
+	return o.name, true
 }
 
-// Name sets field value
+// HasName returns a boolean if a field has been set.
+func (o *Secret) HasName() bool {
+	if o != nil && !utils.IsNil(o.name) {
+		return true
+	}
+
+	return false
+}
+
+// Name gets a reference to the given string and assigns it to the name field.
+// name:
 func (o *Secret) Name(v string) *Secret {
-	o.name = v
+	o.name = &v
 	return o
 }
 
-// GetReadOnly returns the ReadOnly field value
+// GetReadOnly returns the ReadOnly field value if set, zero value otherwise.
 func (o *Secret) GetReadOnly() bool {
-	if o == nil {
+	if o == nil || utils.IsNil(o.readOnly) {
 		var ret bool
 		return ret
 	}
-
-	return o.readOnly
+	return *o.readOnly
 }
 
-// GetReadOnlyOk returns a tuple with the ReadOnly field value
+// GetReadOnlyOk returns a tuple with the ReadOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetReadOnlyOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.readOnly) {
 		return nil, false
 	}
-	return &o.readOnly, true
+	return o.readOnly, true
 }
 
-// ReadOnly sets field value
+// HasReadOnly returns a boolean if a field has been set.
+func (o *Secret) HasReadOnly() bool {
+	if o != nil && !utils.IsNil(o.readOnly) {
+		return true
+	}
+
+	return false
+}
+
+// ReadOnly gets a reference to the given bool and assigns it to the readOnly field.
+// readOnly:
 func (o *Secret) ReadOnly(v bool) *Secret {
-	o.readOnly = v
+	o.readOnly = &v
 	return o
 }
 
@@ -412,11 +450,15 @@ func (o Secret) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.data) {
 		toSerialize["data"] = o.data
 	}
-	toSerialize["defaultMode"] = o.defaultMode
+	if !utils.IsNil(o.defaultMode) {
+		toSerialize["defaultMode"] = o.defaultMode
+	}
 	if !utils.IsNil(o.items) {
 		toSerialize["items"] = o.items
 	}
-	toSerialize["mountOnly"] = o.mountOnly
+	if !utils.IsNil(o.mountOnly) {
+		toSerialize["mountOnly"] = o.mountOnly
+	}
 	if !utils.IsNil(o.mountPath) {
 		toSerialize["mountPath"] = o.mountPath
 	}
@@ -426,8 +468,12 @@ func (o Secret) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.mountToEnvs) {
 		toSerialize["mountToEnvs"] = o.mountToEnvs
 	}
-	toSerialize["name"] = o.name
-	toSerialize["readOnly"] = o.readOnly
+	if !utils.IsNil(o.name) {
+		toSerialize["name"] = o.name
+	}
+	if !utils.IsNil(o.readOnly) {
+		toSerialize["readOnly"] = o.readOnly
+	}
 	if !utils.IsNil(o.stringData) {
 		toSerialize["stringData"] = o.stringData
 	}

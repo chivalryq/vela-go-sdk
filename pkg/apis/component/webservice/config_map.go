@@ -21,11 +21,11 @@ var _ utils.MappedNullable = &ConfigMap{}
 
 // ConfigMap struct for ConfigMap
 type ConfigMap struct {
-	cmName      string  `json:"cmName"`
-	defaultMode int32   `json:"defaultMode"`
+	cmName      *string `json:"cmName,omitempty"`
+	defaultMode *int32  `json:"defaultMode,omitempty"`
 	items       []Items `json:"items,omitempty"`
-	mountPath   string  `json:"mountPath"`
-	name        string  `json:"name"`
+	mountPath   *string `json:"mountPath,omitempty"`
+	name        *string `json:"name,omitempty"`
 	subPath     *string `json:"subPath,omitempty"`
 }
 
@@ -33,12 +33,10 @@ type ConfigMap struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConfigMapWith(cmName string, defaultMode int32, mountPath string, name string) *ConfigMap {
+func NewConfigMapWith() *ConfigMap {
 	this := ConfigMap{}
-	this.cmName = cmName
-	this.defaultMode = defaultMode
-	this.mountPath = mountPath
-	this.name = name
+	var defaultMode int32 = 420
+	this.defaultMode = &defaultMode
 	return &this
 }
 
@@ -48,57 +46,75 @@ func NewConfigMapWith(cmName string, defaultMode int32, mountPath string, name s
 func NewConfigMap() *ConfigMap {
 	this := ConfigMap{}
 	var defaultMode int32 = 420
-	this.defaultMode = defaultMode
+	this.defaultMode = &defaultMode
 	return &this
 }
 
-// GetCmName returns the CmName field value
+// GetCmName returns the CmName field value if set, zero value otherwise.
 func (o *ConfigMap) GetCmName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.cmName) {
 		var ret string
 		return ret
 	}
-
-	return o.cmName
+	return *o.cmName
 }
 
-// GetCmNameOk returns a tuple with the CmName field value
+// GetCmNameOk returns a tuple with the CmName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConfigMap) GetCmNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.cmName) {
 		return nil, false
 	}
-	return &o.cmName, true
+	return o.cmName, true
 }
 
-// CmName sets field value
+// HasCmName returns a boolean if a field has been set.
+func (o *ConfigMap) HasCmName() bool {
+	if o != nil && !utils.IsNil(o.cmName) {
+		return true
+	}
+
+	return false
+}
+
+// CmName gets a reference to the given string and assigns it to the cmName field.
+// cmName:
 func (o *ConfigMap) CmName(v string) *ConfigMap {
-	o.cmName = v
+	o.cmName = &v
 	return o
 }
 
-// GetDefaultMode returns the DefaultMode field value
+// GetDefaultMode returns the DefaultMode field value if set, zero value otherwise.
 func (o *ConfigMap) GetDefaultMode() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.defaultMode) {
 		var ret int32
 		return ret
 	}
-
-	return o.defaultMode
+	return *o.defaultMode
 }
 
-// GetDefaultModeOk returns a tuple with the DefaultMode field value
+// GetDefaultModeOk returns a tuple with the DefaultMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConfigMap) GetDefaultModeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.defaultMode) {
 		return nil, false
 	}
-	return &o.defaultMode, true
+	return o.defaultMode, true
 }
 
-// DefaultMode sets field value
+// HasDefaultMode returns a boolean if a field has been set.
+func (o *ConfigMap) HasDefaultMode() bool {
+	if o != nil && !utils.IsNil(o.defaultMode) {
+		return true
+	}
+
+	return false
+}
+
+// DefaultMode gets a reference to the given int32 and assigns it to the defaultMode field.
+// defaultMode:
 func (o *ConfigMap) DefaultMode(v int32) *ConfigMap {
-	o.defaultMode = v
+	o.defaultMode = &v
 	return o
 }
 
@@ -136,53 +152,71 @@ func (o *ConfigMap) Items(v []Items) *ConfigMap {
 	return o
 }
 
-// GetMountPath returns the MountPath field value
+// GetMountPath returns the MountPath field value if set, zero value otherwise.
 func (o *ConfigMap) GetMountPath() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.mountPath) {
 		var ret string
 		return ret
 	}
-
-	return o.mountPath
+	return *o.mountPath
 }
 
-// GetMountPathOk returns a tuple with the MountPath field value
+// GetMountPathOk returns a tuple with the MountPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConfigMap) GetMountPathOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.mountPath) {
 		return nil, false
 	}
-	return &o.mountPath, true
+	return o.mountPath, true
 }
 
-// MountPath sets field value
+// HasMountPath returns a boolean if a field has been set.
+func (o *ConfigMap) HasMountPath() bool {
+	if o != nil && !utils.IsNil(o.mountPath) {
+		return true
+	}
+
+	return false
+}
+
+// MountPath gets a reference to the given string and assigns it to the mountPath field.
+// mountPath:
 func (o *ConfigMap) MountPath(v string) *ConfigMap {
-	o.mountPath = v
+	o.mountPath = &v
 	return o
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *ConfigMap) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		var ret string
 		return ret
 	}
-
-	return o.name
+	return *o.name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConfigMap) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		return nil, false
 	}
-	return &o.name, true
+	return o.name, true
 }
 
-// Name sets field value
+// HasName returns a boolean if a field has been set.
+func (o *ConfigMap) HasName() bool {
+	if o != nil && !utils.IsNil(o.name) {
+		return true
+	}
+
+	return false
+}
+
+// Name gets a reference to the given string and assigns it to the name field.
+// name:
 func (o *ConfigMap) Name(v string) *ConfigMap {
-	o.name = v
+	o.name = &v
 	return o
 }
 
@@ -230,13 +264,21 @@ func (o ConfigMap) MarshalJSON() ([]byte, error) {
 
 func (o ConfigMap) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["cmName"] = o.cmName
-	toSerialize["defaultMode"] = o.defaultMode
+	if !utils.IsNil(o.cmName) {
+		toSerialize["cmName"] = o.cmName
+	}
+	if !utils.IsNil(o.defaultMode) {
+		toSerialize["defaultMode"] = o.defaultMode
+	}
 	if !utils.IsNil(o.items) {
 		toSerialize["items"] = o.items
 	}
-	toSerialize["mountPath"] = o.mountPath
-	toSerialize["name"] = o.name
+	if !utils.IsNil(o.mountPath) {
+		toSerialize["mountPath"] = o.mountPath
+	}
+	if !utils.IsNil(o.name) {
+		toSerialize["name"] = o.name
+	}
 	if !utils.IsNil(o.subPath) {
 		toSerialize["subPath"] = o.subPath
 	}

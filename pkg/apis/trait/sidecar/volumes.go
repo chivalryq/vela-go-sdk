@@ -21,18 +21,16 @@ var _ utils.MappedNullable = &Volumes{}
 
 // Volumes struct for Volumes
 type Volumes struct {
-	name string `json:"name"`
-	path string `json:"path"`
+	name *string `json:"name,omitempty"`
+	path *string `json:"path,omitempty"`
 }
 
 // NewVolumesWith instantiates a new Volumes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVolumesWith(name string, path string) *Volumes {
+func NewVolumesWith() *Volumes {
 	this := Volumes{}
-	this.name = name
-	this.path = path
 	return &this
 }
 
@@ -44,53 +42,71 @@ func NewVolumes() *Volumes {
 	return &this
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *Volumes) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		var ret string
 		return ret
 	}
-
-	return o.name
+	return *o.name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Volumes) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		return nil, false
 	}
-	return &o.name, true
+	return o.name, true
 }
 
-// Name sets field value
+// HasName returns a boolean if a field has been set.
+func (o *Volumes) HasName() bool {
+	if o != nil && !utils.IsNil(o.name) {
+		return true
+	}
+
+	return false
+}
+
+// Name gets a reference to the given string and assigns it to the name field.
+// name:
 func (o *Volumes) Name(v string) *Volumes {
-	o.name = v
+	o.name = &v
 	return o
 }
 
-// GetPath returns the Path field value
+// GetPath returns the Path field value if set, zero value otherwise.
 func (o *Volumes) GetPath() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.path) {
 		var ret string
 		return ret
 	}
-
-	return o.path
+	return *o.path
 }
 
-// GetPathOk returns a tuple with the Path field value
+// GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Volumes) GetPathOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.path) {
 		return nil, false
 	}
-	return &o.path, true
+	return o.path, true
 }
 
-// Path sets field value
+// HasPath returns a boolean if a field has been set.
+func (o *Volumes) HasPath() bool {
+	if o != nil && !utils.IsNil(o.path) {
+		return true
+	}
+
+	return false
+}
+
+// Path gets a reference to the given string and assigns it to the path field.
+// path:
 func (o *Volumes) Path(v string) *Volumes {
-	o.path = v
+	o.path = &v
 	return o
 }
 
@@ -104,8 +120,12 @@ func (o Volumes) MarshalJSON() ([]byte, error) {
 
 func (o Volumes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.name
-	toSerialize["path"] = o.path
+	if !utils.IsNil(o.name) {
+		toSerialize["name"] = o.name
+	}
+	if !utils.IsNil(o.path) {
+		toSerialize["path"] = o.path
+	}
 	return toSerialize, nil
 }
 

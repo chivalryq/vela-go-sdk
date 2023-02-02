@@ -24,16 +24,15 @@ type PodAffinityTerm struct {
 	labelSelector     *LabelSelector `json:"labelSelector,omitempty"`
 	namespaceSelector *LabelSelector `json:"namespaceSelector,omitempty"`
 	namespaces        []string       `json:"namespaces,omitempty"`
-	topologyKey       string         `json:"topologyKey"`
+	topologyKey       *string        `json:"topologyKey,omitempty"`
 }
 
 // NewPodAffinityTermWith instantiates a new PodAffinityTerm object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPodAffinityTermWith(topologyKey string) *PodAffinityTerm {
+func NewPodAffinityTermWith() *PodAffinityTerm {
 	this := PodAffinityTerm{}
-	this.topologyKey = topologyKey
 	return &this
 }
 
@@ -147,28 +146,37 @@ func (o *PodAffinityTerm) Namespaces(v []string) *PodAffinityTerm {
 	return o
 }
 
-// GetTopologyKey returns the TopologyKey field value
+// GetTopologyKey returns the TopologyKey field value if set, zero value otherwise.
 func (o *PodAffinityTerm) GetTopologyKey() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.topologyKey) {
 		var ret string
 		return ret
 	}
-
-	return o.topologyKey
+	return *o.topologyKey
 }
 
-// GetTopologyKeyOk returns a tuple with the TopologyKey field value
+// GetTopologyKeyOk returns a tuple with the TopologyKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PodAffinityTerm) GetTopologyKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.topologyKey) {
 		return nil, false
 	}
-	return &o.topologyKey, true
+	return o.topologyKey, true
 }
 
-// TopologyKey sets field value
+// HasTopologyKey returns a boolean if a field has been set.
+func (o *PodAffinityTerm) HasTopologyKey() bool {
+	if o != nil && !utils.IsNil(o.topologyKey) {
+		return true
+	}
+
+	return false
+}
+
+// TopologyKey gets a reference to the given string and assigns it to the topologyKey field.
+// topologyKey:
 func (o *PodAffinityTerm) TopologyKey(v string) *PodAffinityTerm {
-	o.topologyKey = v
+	o.topologyKey = &v
 	return o
 }
 
@@ -191,7 +199,9 @@ func (o PodAffinityTerm) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.namespaces) {
 		toSerialize["namespaces"] = o.namespaces
 	}
-	toSerialize["topologyKey"] = o.topologyKey
+	if !utils.IsNil(o.topologyKey) {
+		toSerialize["topologyKey"] = o.topologyKey
+	}
 	return toSerialize, nil
 }
 

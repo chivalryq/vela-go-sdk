@@ -21,18 +21,16 @@ var _ utils.MappedNullable = &PersistentVolumeDirs{}
 
 // PersistentVolumeDirs struct for PersistentVolumeDirs
 type PersistentVolumeDirs struct {
-	capacity string `json:"capacity"`
-	path     string `json:"path"`
+	capacity *string `json:"capacity,omitempty"`
+	path     *string `json:"path,omitempty"`
 }
 
 // NewPersistentVolumeDirsWith instantiates a new PersistentVolumeDirs object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPersistentVolumeDirsWith(capacity string, path string) *PersistentVolumeDirs {
+func NewPersistentVolumeDirsWith() *PersistentVolumeDirs {
 	this := PersistentVolumeDirs{}
-	this.capacity = capacity
-	this.path = path
 	return &this
 }
 
@@ -44,53 +42,71 @@ func NewPersistentVolumeDirs() *PersistentVolumeDirs {
 	return &this
 }
 
-// GetCapacity returns the Capacity field value
+// GetCapacity returns the Capacity field value if set, zero value otherwise.
 func (o *PersistentVolumeDirs) GetCapacity() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.capacity) {
 		var ret string
 		return ret
 	}
-
-	return o.capacity
+	return *o.capacity
 }
 
-// GetCapacityOk returns a tuple with the Capacity field value
+// GetCapacityOk returns a tuple with the Capacity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PersistentVolumeDirs) GetCapacityOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.capacity) {
 		return nil, false
 	}
-	return &o.capacity, true
+	return o.capacity, true
 }
 
-// Capacity sets field value
+// HasCapacity returns a boolean if a field has been set.
+func (o *PersistentVolumeDirs) HasCapacity() bool {
+	if o != nil && !utils.IsNil(o.capacity) {
+		return true
+	}
+
+	return false
+}
+
+// Capacity gets a reference to the given string and assigns it to the capacity field.
+// capacity:
 func (o *PersistentVolumeDirs) Capacity(v string) *PersistentVolumeDirs {
-	o.capacity = v
+	o.capacity = &v
 	return o
 }
 
-// GetPath returns the Path field value
+// GetPath returns the Path field value if set, zero value otherwise.
 func (o *PersistentVolumeDirs) GetPath() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.path) {
 		var ret string
 		return ret
 	}
-
-	return o.path
+	return *o.path
 }
 
-// GetPathOk returns a tuple with the Path field value
+// GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PersistentVolumeDirs) GetPathOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.path) {
 		return nil, false
 	}
-	return &o.path, true
+	return o.path, true
 }
 
-// Path sets field value
+// HasPath returns a boolean if a field has been set.
+func (o *PersistentVolumeDirs) HasPath() bool {
+	if o != nil && !utils.IsNil(o.path) {
+		return true
+	}
+
+	return false
+}
+
+// Path gets a reference to the given string and assigns it to the path field.
+// path:
 func (o *PersistentVolumeDirs) Path(v string) *PersistentVolumeDirs {
-	o.path = v
+	o.path = &v
 	return o
 }
 
@@ -104,8 +120,12 @@ func (o PersistentVolumeDirs) MarshalJSON() ([]byte, error) {
 
 func (o PersistentVolumeDirs) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["capacity"] = o.capacity
-	toSerialize["path"] = o.path
+	if !utils.IsNil(o.capacity) {
+		toSerialize["capacity"] = o.capacity
+	}
+	if !utils.IsNil(o.path) {
+		toSerialize["path"] = o.path
+	}
 	return toSerialize, nil
 }
 

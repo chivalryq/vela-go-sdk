@@ -21,23 +21,23 @@ var _ utils.MappedNullable = &Volumes{}
 
 // Volumes struct for Volumes
 type Volumes struct {
-	medium    string `json:"medium"`
-	mountPath string `json:"mountPath"`
-	name      string `json:"name"`
+	medium    *string `json:"medium,omitempty"`
+	mountPath *string `json:"mountPath,omitempty"`
+	name      *string `json:"name,omitempty"`
 	// Specify volume type, options: \"pvc\",\"configMap\",\"secret\",\"emptyDir\", default to emptyDir
-	type_ string `json:"type"`
+	type_ *string `json:"type,omitempty"`
 }
 
 // NewVolumesWith instantiates a new Volumes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVolumesWith(medium string, mountPath string, name string, type_ string) *Volumes {
+func NewVolumesWith() *Volumes {
 	this := Volumes{}
-	this.medium = medium
-	this.mountPath = mountPath
-	this.name = name
-	this.type_ = type_
+	var medium string = ""
+	this.medium = &medium
+	var type_ string = "emptyDir"
+	this.type_ = &type_
 	return &this
 }
 
@@ -47,109 +47,145 @@ func NewVolumesWith(medium string, mountPath string, name string, type_ string) 
 func NewVolumes() *Volumes {
 	this := Volumes{}
 	var medium string = ""
-	this.medium = medium
+	this.medium = &medium
 	var type_ string = "emptyDir"
-	this.type_ = type_
+	this.type_ = &type_
 	return &this
 }
 
-// GetMedium returns the Medium field value
+// GetMedium returns the Medium field value if set, zero value otherwise.
 func (o *Volumes) GetMedium() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.medium) {
 		var ret string
 		return ret
 	}
-
-	return o.medium
+	return *o.medium
 }
 
-// GetMediumOk returns a tuple with the Medium field value
+// GetMediumOk returns a tuple with the Medium field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Volumes) GetMediumOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.medium) {
 		return nil, false
 	}
-	return &o.medium, true
+	return o.medium, true
 }
 
-// Medium sets field value
+// HasMedium returns a boolean if a field has been set.
+func (o *Volumes) HasMedium() bool {
+	if o != nil && !utils.IsNil(o.medium) {
+		return true
+	}
+
+	return false
+}
+
+// Medium gets a reference to the given string and assigns it to the medium field.
+// medium:
 func (o *Volumes) Medium(v string) *Volumes {
-	o.medium = v
+	o.medium = &v
 	return o
 }
 
-// GetMountPath returns the MountPath field value
+// GetMountPath returns the MountPath field value if set, zero value otherwise.
 func (o *Volumes) GetMountPath() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.mountPath) {
 		var ret string
 		return ret
 	}
-
-	return o.mountPath
+	return *o.mountPath
 }
 
-// GetMountPathOk returns a tuple with the MountPath field value
+// GetMountPathOk returns a tuple with the MountPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Volumes) GetMountPathOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.mountPath) {
 		return nil, false
 	}
-	return &o.mountPath, true
+	return o.mountPath, true
 }
 
-// MountPath sets field value
+// HasMountPath returns a boolean if a field has been set.
+func (o *Volumes) HasMountPath() bool {
+	if o != nil && !utils.IsNil(o.mountPath) {
+		return true
+	}
+
+	return false
+}
+
+// MountPath gets a reference to the given string and assigns it to the mountPath field.
+// mountPath:
 func (o *Volumes) MountPath(v string) *Volumes {
-	o.mountPath = v
+	o.mountPath = &v
 	return o
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *Volumes) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		var ret string
 		return ret
 	}
-
-	return o.name
+	return *o.name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Volumes) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		return nil, false
 	}
-	return &o.name, true
+	return o.name, true
 }
 
-// Name sets field value
+// HasName returns a boolean if a field has been set.
+func (o *Volumes) HasName() bool {
+	if o != nil && !utils.IsNil(o.name) {
+		return true
+	}
+
+	return false
+}
+
+// Name gets a reference to the given string and assigns it to the name field.
+// name:
 func (o *Volumes) Name(v string) *Volumes {
-	o.name = v
+	o.name = &v
 	return o
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *Volumes) GetType() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.type_) {
 		var ret string
 		return ret
 	}
-
-	return o.type_
+	return *o.type_
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Volumes) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.type_) {
 		return nil, false
 	}
-	return &o.type_, true
+	return o.type_, true
 }
 
-// Type sets field value
+// HasType returns a boolean if a field has been set.
+func (o *Volumes) HasType() bool {
+	if o != nil && !utils.IsNil(o.type_) {
+		return true
+	}
+
+	return false
+}
+
+// Type gets a reference to the given string and assigns it to the type_ field.
+// type_:  Specify volume type, options: \"pvc\",\"configMap\",\"secret\",\"emptyDir\", default to emptyDir
 func (o *Volumes) Type(v string) *Volumes {
-	o.type_ = v
+	o.type_ = &v
 	return o
 }
 
@@ -163,10 +199,18 @@ func (o Volumes) MarshalJSON() ([]byte, error) {
 
 func (o Volumes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["medium"] = o.medium
-	toSerialize["mountPath"] = o.mountPath
-	toSerialize["name"] = o.name
-	toSerialize["type"] = o.type_
+	if !utils.IsNil(o.medium) {
+		toSerialize["medium"] = o.medium
+	}
+	if !utils.IsNil(o.mountPath) {
+		toSerialize["mountPath"] = o.mountPath
+	}
+	if !utils.IsNil(o.name) {
+		toSerialize["name"] = o.name
+	}
+	if !utils.IsNil(o.type_) {
+		toSerialize["type"] = o.type_
+	}
 	return toSerialize, nil
 }
 

@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &NodeSelecor{}
 
 // NodeSelecor struct for NodeSelecor
 type NodeSelecor struct {
-	key      string   `json:"key"`
-	operator string   `json:"operator"`
+	key      *string  `json:"key,omitempty"`
+	operator *string  `json:"operator,omitempty"`
 	values   []string `json:"values,omitempty"`
 }
 
@@ -30,10 +30,10 @@ type NodeSelecor struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNodeSelecorWith(key string, operator string) *NodeSelecor {
+func NewNodeSelecorWith() *NodeSelecor {
 	this := NodeSelecor{}
-	this.key = key
-	this.operator = operator
+	var operator string = "In"
+	this.operator = &operator
 	return &this
 }
 
@@ -43,57 +43,75 @@ func NewNodeSelecorWith(key string, operator string) *NodeSelecor {
 func NewNodeSelecor() *NodeSelecor {
 	this := NodeSelecor{}
 	var operator string = "In"
-	this.operator = operator
+	this.operator = &operator
 	return &this
 }
 
-// GetKey returns the Key field value
+// GetKey returns the Key field value if set, zero value otherwise.
 func (o *NodeSelecor) GetKey() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.key) {
 		var ret string
 		return ret
 	}
-
-	return o.key
+	return *o.key
 }
 
-// GetKeyOk returns a tuple with the Key field value
+// GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NodeSelecor) GetKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.key) {
 		return nil, false
 	}
-	return &o.key, true
+	return o.key, true
 }
 
-// Key sets field value
+// HasKey returns a boolean if a field has been set.
+func (o *NodeSelecor) HasKey() bool {
+	if o != nil && !utils.IsNil(o.key) {
+		return true
+	}
+
+	return false
+}
+
+// Key gets a reference to the given string and assigns it to the key field.
+// key:
 func (o *NodeSelecor) Key(v string) *NodeSelecor {
-	o.key = v
+	o.key = &v
 	return o
 }
 
-// GetOperator returns the Operator field value
+// GetOperator returns the Operator field value if set, zero value otherwise.
 func (o *NodeSelecor) GetOperator() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.operator) {
 		var ret string
 		return ret
 	}
-
-	return o.operator
+	return *o.operator
 }
 
-// GetOperatorOk returns a tuple with the Operator field value
+// GetOperatorOk returns a tuple with the Operator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NodeSelecor) GetOperatorOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.operator) {
 		return nil, false
 	}
-	return &o.operator, true
+	return o.operator, true
 }
 
-// Operator sets field value
+// HasOperator returns a boolean if a field has been set.
+func (o *NodeSelecor) HasOperator() bool {
+	if o != nil && !utils.IsNil(o.operator) {
+		return true
+	}
+
+	return false
+}
+
+// Operator gets a reference to the given string and assigns it to the operator field.
+// operator:
 func (o *NodeSelecor) Operator(v string) *NodeSelecor {
-	o.operator = v
+	o.operator = &v
 	return o
 }
 
@@ -141,8 +159,12 @@ func (o NodeSelecor) MarshalJSON() ([]byte, error) {
 
 func (o NodeSelecor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["key"] = o.key
-	toSerialize["operator"] = o.operator
+	if !utils.IsNil(o.key) {
+		toSerialize["key"] = o.key
+	}
+	if !utils.IsNil(o.operator) {
+		toSerialize["operator"] = o.operator
+	}
 	if !utils.IsNil(o.values) {
 		toSerialize["values"] = o.values
 	}

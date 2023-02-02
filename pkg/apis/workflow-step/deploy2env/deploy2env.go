@@ -28,22 +28,23 @@ var _ utils.MappedNullable = &Deploy2envSpec{}
 // Deploy2envSpec struct for Deploy2envSpec
 type Deploy2envSpec struct {
 	// Declare the name of the env in policy
-	env string `json:"env"`
+	env *string `json:"env,omitempty"`
 	// components are applied in parallel
-	parallel bool `json:"parallel"`
+	parallel *bool `json:"parallel,omitempty"`
 	// Declare the name of the env-binding policy, if empty, the first env-binding policy will be used
-	policy string `json:"policy"`
+	policy *string `json:"policy,omitempty"`
 }
 
 // NewDeploy2envSpecWith instantiates a new Deploy2envSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeploy2envSpecWith(env string, parallel bool, policy string) *Deploy2envSpec {
+func NewDeploy2envSpecWith() *Deploy2envSpec {
 	this := Deploy2envSpec{}
-	this.env = env
-	this.parallel = parallel
-	this.policy = policy
+	var parallel bool = false
+	this.parallel = &parallel
+	var policy string = ""
+	this.policy = &policy
 	return &this
 }
 
@@ -53,84 +54,111 @@ func NewDeploy2envSpecWith(env string, parallel bool, policy string) *Deploy2env
 func NewDeploy2envSpec() *Deploy2envSpec {
 	this := Deploy2envSpec{}
 	var parallel bool = false
-	this.parallel = parallel
+	this.parallel = &parallel
 	var policy string = ""
-	this.policy = policy
+	this.policy = &policy
 	return &this
 }
 
-// GetEnv returns the Env field value
+// GetEnv returns the Env field value if set, zero value otherwise.
 func (o *Deploy2envWorkflowStep) GetEnv() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.env) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.env
+	return *o.Properties.env
 }
 
-// GetEnvOk returns a tuple with the Env field value
+// GetEnvOk returns a tuple with the Env field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Deploy2envWorkflowStep) GetEnvOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.env) {
 		return nil, false
 	}
-	return &o.Properties.env, true
+	return o.Properties.env, true
 }
 
-// Env sets field value
+// HasEnv returns a boolean if a field has been set.
+func (o *Deploy2envWorkflowStep) HasEnv() bool {
+	if o != nil && !utils.IsNil(o.Properties.env) {
+		return true
+	}
+
+	return false
+}
+
+// Env gets a reference to the given string and assigns it to the env field.
+// env:  Declare the name of the env in policy
 func (o *Deploy2envWorkflowStep) Env(v string) *Deploy2envWorkflowStep {
-	o.Properties.env = v
+	o.Properties.env = &v
 	return o
 }
 
-// GetParallel returns the Parallel field value
+// GetParallel returns the Parallel field value if set, zero value otherwise.
 func (o *Deploy2envWorkflowStep) GetParallel() bool {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.parallel) {
 		var ret bool
 		return ret
 	}
-
-	return o.Properties.parallel
+	return *o.Properties.parallel
 }
 
-// GetParallelOk returns a tuple with the Parallel field value
+// GetParallelOk returns a tuple with the Parallel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Deploy2envWorkflowStep) GetParallelOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.parallel) {
 		return nil, false
 	}
-	return &o.Properties.parallel, true
+	return o.Properties.parallel, true
 }
 
-// Parallel sets field value
+// HasParallel returns a boolean if a field has been set.
+func (o *Deploy2envWorkflowStep) HasParallel() bool {
+	if o != nil && !utils.IsNil(o.Properties.parallel) {
+		return true
+	}
+
+	return false
+}
+
+// Parallel gets a reference to the given bool and assigns it to the parallel field.
+// parallel:  components are applied in parallel
 func (o *Deploy2envWorkflowStep) Parallel(v bool) *Deploy2envWorkflowStep {
-	o.Properties.parallel = v
+	o.Properties.parallel = &v
 	return o
 }
 
-// GetPolicy returns the Policy field value
+// GetPolicy returns the Policy field value if set, zero value otherwise.
 func (o *Deploy2envWorkflowStep) GetPolicy() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.policy) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.policy
+	return *o.Properties.policy
 }
 
-// GetPolicyOk returns a tuple with the Policy field value
+// GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Deploy2envWorkflowStep) GetPolicyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.policy) {
 		return nil, false
 	}
-	return &o.Properties.policy, true
+	return o.Properties.policy, true
 }
 
-// Policy sets field value
+// HasPolicy returns a boolean if a field has been set.
+func (o *Deploy2envWorkflowStep) HasPolicy() bool {
+	if o != nil && !utils.IsNil(o.Properties.policy) {
+		return true
+	}
+
+	return false
+}
+
+// Policy gets a reference to the given string and assigns it to the policy field.
+// policy:  Declare the name of the env-binding policy, if empty, the first env-binding policy will be used
 func (o *Deploy2envWorkflowStep) Policy(v string) *Deploy2envWorkflowStep {
-	o.Properties.policy = v
+	o.Properties.policy = &v
 	return o
 }
 
@@ -144,9 +172,15 @@ func (o Deploy2envSpec) MarshalJSON() ([]byte, error) {
 
 func (o Deploy2envSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["env"] = o.env
-	toSerialize["parallel"] = o.parallel
-	toSerialize["policy"] = o.policy
+	if !utils.IsNil(o.env) {
+		toSerialize["env"] = o.env
+	}
+	if !utils.IsNil(o.parallel) {
+		toSerialize["parallel"] = o.parallel
+	}
+	if !utils.IsNil(o.policy) {
+		toSerialize["policy"] = o.policy
+	}
 	return toSerialize, nil
 }
 
@@ -201,6 +235,7 @@ type Deploy2envWorkflowStep struct {
 func Deploy2env(name string) *Deploy2envWorkflowStep {
 	d := &Deploy2envWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: Deploy2envType,
 	}}
 	return d
 }
@@ -212,7 +247,7 @@ func (d *Deploy2envWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  d.Base.DependsOn,

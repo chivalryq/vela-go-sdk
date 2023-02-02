@@ -28,13 +28,13 @@ var _ utils.MappedNullable = &VelaCliSpec{}
 // VelaCliSpec struct for VelaCliSpec
 type VelaCliSpec struct {
 	// Specify the name of the addon.
-	addonName string `json:"addonName"`
+	addonName *string `json:"addonName,omitempty"`
 	// Specify the vela command
-	command []string `json:"command"`
+	command []string `json:"command,omitempty"`
 	// Specify the image
-	image string `json:"image"`
+	image *string `json:"image,omitempty"`
 	// specify serviceAccountName want to use
-	serviceAccountName string   `json:"serviceAccountName"`
+	serviceAccountName *string  `json:"serviceAccountName,omitempty"`
 	storage            *Storage `json:"storage,omitempty"`
 }
 
@@ -42,12 +42,12 @@ type VelaCliSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVelaCliSpecWith(addonName string, command []string, image string, serviceAccountName string) *VelaCliSpec {
+func NewVelaCliSpecWith() *VelaCliSpec {
 	this := VelaCliSpec{}
-	this.addonName = addonName
-	this.command = command
-	this.image = image
-	this.serviceAccountName = serviceAccountName
+	var image string = "oamdev/vela-cli:v1.6.4"
+	this.image = &image
+	var serviceAccountName string = "kubevela-vela-core"
+	this.serviceAccountName = &serviceAccountName
 	return &this
 }
 
@@ -57,109 +57,145 @@ func NewVelaCliSpecWith(addonName string, command []string, image string, servic
 func NewVelaCliSpec() *VelaCliSpec {
 	this := VelaCliSpec{}
 	var image string = "oamdev/vela-cli:v1.6.4"
-	this.image = image
+	this.image = &image
 	var serviceAccountName string = "kubevela-vela-core"
-	this.serviceAccountName = serviceAccountName
+	this.serviceAccountName = &serviceAccountName
 	return &this
 }
 
-// GetAddonName returns the AddonName field value
+// GetAddonName returns the AddonName field value if set, zero value otherwise.
 func (o *VelaCliWorkflowStep) GetAddonName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.addonName) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.addonName
+	return *o.Properties.addonName
 }
 
-// GetAddonNameOk returns a tuple with the AddonName field value
+// GetAddonNameOk returns a tuple with the AddonName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VelaCliWorkflowStep) GetAddonNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.addonName) {
 		return nil, false
 	}
-	return &o.Properties.addonName, true
+	return o.Properties.addonName, true
 }
 
-// AddonName sets field value
+// HasAddonName returns a boolean if a field has been set.
+func (o *VelaCliWorkflowStep) HasAddonName() bool {
+	if o != nil && !utils.IsNil(o.Properties.addonName) {
+		return true
+	}
+
+	return false
+}
+
+// AddonName gets a reference to the given string and assigns it to the addonName field.
+// addonName:  Specify the name of the addon.
 func (o *VelaCliWorkflowStep) AddonName(v string) *VelaCliWorkflowStep {
-	o.Properties.addonName = v
+	o.Properties.addonName = &v
 	return o
 }
 
-// GetCommand returns the Command field value
+// GetCommand returns the Command field value if set, zero value otherwise.
 func (o *VelaCliWorkflowStep) GetCommand() []string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.command) {
 		var ret []string
 		return ret
 	}
-
 	return o.Properties.command
 }
 
-// GetCommandOk returns a tuple with the Command field value
+// GetCommandOk returns a tuple with the Command field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VelaCliWorkflowStep) GetCommandOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.command) {
 		return nil, false
 	}
 	return o.Properties.command, true
 }
 
-// Command sets field value
+// HasCommand returns a boolean if a field has been set.
+func (o *VelaCliWorkflowStep) HasCommand() bool {
+	if o != nil && !utils.IsNil(o.Properties.command) {
+		return true
+	}
+
+	return false
+}
+
+// Command gets a reference to the given []string and assigns it to the command field.
+// command:  Specify the vela command
 func (o *VelaCliWorkflowStep) Command(v []string) *VelaCliWorkflowStep {
 	o.Properties.command = v
 	return o
 }
 
-// GetImage returns the Image field value
+// GetImage returns the Image field value if set, zero value otherwise.
 func (o *VelaCliWorkflowStep) GetImage() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.image) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.image
+	return *o.Properties.image
 }
 
-// GetImageOk returns a tuple with the Image field value
+// GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VelaCliWorkflowStep) GetImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.image) {
 		return nil, false
 	}
-	return &o.Properties.image, true
+	return o.Properties.image, true
 }
 
-// Image sets field value
+// HasImage returns a boolean if a field has been set.
+func (o *VelaCliWorkflowStep) HasImage() bool {
+	if o != nil && !utils.IsNil(o.Properties.image) {
+		return true
+	}
+
+	return false
+}
+
+// Image gets a reference to the given string and assigns it to the image field.
+// image:  Specify the image
 func (o *VelaCliWorkflowStep) Image(v string) *VelaCliWorkflowStep {
-	o.Properties.image = v
+	o.Properties.image = &v
 	return o
 }
 
-// GetServiceAccountName returns the ServiceAccountName field value
+// GetServiceAccountName returns the ServiceAccountName field value if set, zero value otherwise.
 func (o *VelaCliWorkflowStep) GetServiceAccountName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.serviceAccountName) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.serviceAccountName
+	return *o.Properties.serviceAccountName
 }
 
-// GetServiceAccountNameOk returns a tuple with the ServiceAccountName field value
+// GetServiceAccountNameOk returns a tuple with the ServiceAccountName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VelaCliWorkflowStep) GetServiceAccountNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.serviceAccountName) {
 		return nil, false
 	}
-	return &o.Properties.serviceAccountName, true
+	return o.Properties.serviceAccountName, true
 }
 
-// ServiceAccountName sets field value
+// HasServiceAccountName returns a boolean if a field has been set.
+func (o *VelaCliWorkflowStep) HasServiceAccountName() bool {
+	if o != nil && !utils.IsNil(o.Properties.serviceAccountName) {
+		return true
+	}
+
+	return false
+}
+
+// ServiceAccountName gets a reference to the given string and assigns it to the serviceAccountName field.
+// serviceAccountName:  specify serviceAccountName want to use
 func (o *VelaCliWorkflowStep) ServiceAccountName(v string) *VelaCliWorkflowStep {
-	o.Properties.serviceAccountName = v
+	o.Properties.serviceAccountName = &v
 	return o
 }
 
@@ -207,10 +243,18 @@ func (o VelaCliSpec) MarshalJSON() ([]byte, error) {
 
 func (o VelaCliSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["addonName"] = o.addonName
-	toSerialize["command"] = o.command
-	toSerialize["image"] = o.image
-	toSerialize["serviceAccountName"] = o.serviceAccountName
+	if !utils.IsNil(o.addonName) {
+		toSerialize["addonName"] = o.addonName
+	}
+	if !utils.IsNil(o.command) {
+		toSerialize["command"] = o.command
+	}
+	if !utils.IsNil(o.image) {
+		toSerialize["image"] = o.image
+	}
+	if !utils.IsNil(o.serviceAccountName) {
+		toSerialize["serviceAccountName"] = o.serviceAccountName
+	}
 	if !utils.IsNil(o.storage) {
 		toSerialize["storage"] = o.storage
 	}
@@ -268,6 +312,7 @@ type VelaCliWorkflowStep struct {
 func VelaCli(name string) *VelaCliWorkflowStep {
 	v := &VelaCliWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: VelaCliType,
 	}}
 	return v
 }
@@ -279,7 +324,7 @@ func (v *VelaCliWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  v.Base.DependsOn,

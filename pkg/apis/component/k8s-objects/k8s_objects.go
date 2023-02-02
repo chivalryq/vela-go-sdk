@@ -26,16 +26,15 @@ var _ utils.MappedNullable = &K8sObjectsSpec{}
 
 // K8sObjectsSpec struct for K8sObjectsSpec
 type K8sObjectsSpec struct {
-	objects []map[string]interface{} `json:"objects"`
+	objects []map[string]interface{} `json:"objects,omitempty"`
 }
 
 // NewK8sObjectsSpecWith instantiates a new K8sObjectsSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewK8sObjectsSpecWith(objects []map[string]interface{}) *K8sObjectsSpec {
+func NewK8sObjectsSpecWith() *K8sObjectsSpec {
 	this := K8sObjectsSpec{}
-	this.objects = objects
 	return &this
 }
 
@@ -47,26 +46,35 @@ func NewK8sObjectsSpec() *K8sObjectsSpec {
 	return &this
 }
 
-// GetObjects returns the Objects field value
+// GetObjects returns the Objects field value if set, zero value otherwise.
 func (o *K8sObjectsComponent) GetObjects() []map[string]interface{} {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.objects) {
 		var ret []map[string]interface{}
 		return ret
 	}
-
 	return o.Properties.objects
 }
 
-// GetObjectsOk returns a tuple with the Objects field value
+// GetObjectsOk returns a tuple with the Objects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *K8sObjectsComponent) GetObjectsOk() ([]map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.objects) {
 		return nil, false
 	}
 	return o.Properties.objects, true
 }
 
-// Objects sets field value
+// HasObjects returns a boolean if a field has been set.
+func (o *K8sObjectsComponent) HasObjects() bool {
+	if o != nil && !utils.IsNil(o.Properties.objects) {
+		return true
+	}
+
+	return false
+}
+
+// Objects gets a reference to the given []map[string]interface{} and assigns it to the objects field.
+// objects:
 func (o *K8sObjectsComponent) Objects(v []map[string]interface{}) *K8sObjectsComponent {
 	o.Properties.objects = v
 	return o
@@ -82,7 +90,9 @@ func (o K8sObjectsSpec) MarshalJSON() ([]byte, error) {
 
 func (o K8sObjectsSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["objects"] = o.objects
+	if !utils.IsNil(o.objects) {
+		toSerialize["objects"] = o.objects
+	}
 	return toSerialize, nil
 }
 
@@ -136,6 +146,7 @@ type K8sObjectsComponent struct {
 func K8sObjects(name string) *K8sObjectsComponent {
 	k := &K8sObjectsComponent{Base: apis.ComponentBase{
 		Name: name,
+		Type: K8sObjectsType,
 	}}
 	return k
 }

@@ -24,16 +24,15 @@ type ApplyOnceStrategy struct {
 	// When the strategy takes effect,e.g. onUpdate、onStateKeep
 	affect *string `json:"affect,omitempty"`
 	// Specify the path of the resource that allow configuration drift
-	path []string `json:"path"`
+	path []string `json:"path,omitempty"`
 }
 
 // NewApplyOnceStrategyWith instantiates a new ApplyOnceStrategy object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApplyOnceStrategyWith(path []string) *ApplyOnceStrategy {
+func NewApplyOnceStrategyWith() *ApplyOnceStrategy {
 	this := ApplyOnceStrategy{}
-	this.path = path
 	return &this
 }
 
@@ -79,26 +78,35 @@ func (o *ApplyOnceStrategy) Affect(v string) *ApplyOnceStrategy {
 	return o
 }
 
-// GetPath returns the Path field value
+// GetPath returns the Path field value if set, zero value otherwise.
 func (o *ApplyOnceStrategy) GetPath() []string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.path) {
 		var ret []string
 		return ret
 	}
-
 	return o.path
 }
 
-// GetPathOk returns a tuple with the Path field value
+// GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplyOnceStrategy) GetPathOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.path) {
 		return nil, false
 	}
 	return o.path, true
 }
 
-// Path sets field value
+// HasPath returns a boolean if a field has been set.
+func (o *ApplyOnceStrategy) HasPath() bool {
+	if o != nil && !utils.IsNil(o.path) {
+		return true
+	}
+
+	return false
+}
+
+// Path gets a reference to the given []string and assigns it to the path field.
+// path:  Specify the path of the resource that allow configuration drift
 func (o *ApplyOnceStrategy) Path(v []string) *ApplyOnceStrategy {
 	o.path = v
 	return o
@@ -117,7 +125,9 @@ func (o ApplyOnceStrategy) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.affect) {
 		toSerialize["affect"] = o.affect
 	}
-	toSerialize["path"] = o.path
+	if !utils.IsNil(o.path) {
+		toSerialize["path"] = o.path
+	}
 	return toSerialize, nil
 }
 

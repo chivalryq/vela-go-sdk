@@ -28,9 +28,9 @@ var _ utils.MappedNullable = &CreateConfigSpec{}
 // CreateConfigSpec struct for CreateConfigSpec
 type CreateConfigSpec struct {
 	// Specify the content of the config.
-	config map[string]interface{} `json:"config"`
+	config map[string]interface{} `json:"config,omitempty"`
 	// Specify the name of the config.
-	name string `json:"name"`
+	name *string `json:"name,omitempty"`
 	// Specify the namespace of the config.
 	namespace *string `json:"namespace,omitempty"`
 	// Specify the template of the config.
@@ -41,10 +41,8 @@ type CreateConfigSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateConfigSpecWith(config map[string]interface{}, name string) *CreateConfigSpec {
+func NewCreateConfigSpecWith() *CreateConfigSpec {
 	this := CreateConfigSpec{}
-	this.config = config
-	this.name = name
 	return &this
 }
 
@@ -56,53 +54,71 @@ func NewCreateConfigSpec() *CreateConfigSpec {
 	return &this
 }
 
-// GetConfig returns the Config field value
+// GetConfig returns the Config field value if set, zero value otherwise.
 func (o *CreateConfigWorkflowStep) GetConfig() map[string]interface{} {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.config) {
 		var ret map[string]interface{}
 		return ret
 	}
-
 	return o.Properties.config
 }
 
-// GetConfigOk returns a tuple with the Config field value
+// GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateConfigWorkflowStep) GetConfigOk() (map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.config) {
 		return map[string]interface{}{}, false
 	}
 	return o.Properties.config, true
 }
 
-// Config sets field value
+// HasConfig returns a boolean if a field has been set.
+func (o *CreateConfigWorkflowStep) HasConfig() bool {
+	if o != nil && !utils.IsNil(o.Properties.config) {
+		return true
+	}
+
+	return false
+}
+
+// Config gets a reference to the given map[string]interface{} and assigns it to the config field.
+// config:  Specify the content of the config.
 func (o *CreateConfigWorkflowStep) Config(v map[string]interface{}) *CreateConfigWorkflowStep {
 	o.Properties.config = v
 	return o
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *CreateConfigWorkflowStep) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.name) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.name
+	return *o.Properties.name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateConfigWorkflowStep) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.name) {
 		return nil, false
 	}
-	return &o.Properties.name, true
+	return o.Properties.name, true
 }
 
-// Name sets field value
+// HasName returns a boolean if a field has been set.
+func (o *CreateConfigWorkflowStep) HasName() bool {
+	if o != nil && !utils.IsNil(o.Properties.name) {
+		return true
+	}
+
+	return false
+}
+
+// Name gets a reference to the given string and assigns it to the name field.
+// name:  Specify the name of the config.
 func (o *CreateConfigWorkflowStep) Name(v string) *CreateConfigWorkflowStep {
-	o.Properties.name = v
+	o.Properties.name = &v
 	return o
 }
 
@@ -184,8 +200,12 @@ func (o CreateConfigSpec) MarshalJSON() ([]byte, error) {
 
 func (o CreateConfigSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["config"] = o.config
-	toSerialize["name"] = o.name
+	if !utils.IsNil(o.config) {
+		toSerialize["config"] = o.config
+	}
+	if !utils.IsNil(o.name) {
+		toSerialize["name"] = o.name
+	}
 	if !utils.IsNil(o.namespace) {
 		toSerialize["namespace"] = o.namespace
 	}
@@ -246,6 +266,7 @@ type CreateConfigWorkflowStep struct {
 func CreateConfig(name string) *CreateConfigWorkflowStep {
 	c := &CreateConfigWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: CreateConfigType,
 	}}
 	return c
 }
@@ -257,7 +278,7 @@ func (c *CreateConfigWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  c.Base.DependsOn,

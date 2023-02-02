@@ -84,4 +84,5 @@ type WorkflowStepBase struct {
 
 type PolicyBase struct {
 	Name string
+	Type string
 }

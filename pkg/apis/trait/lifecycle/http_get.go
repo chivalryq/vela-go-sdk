@@ -24,18 +24,18 @@ type HttpGet struct {
 	host        *string       `json:"host,omitempty"`
 	httpHeaders []HttpHeaders `json:"httpHeaders,omitempty"`
 	path        *string       `json:"path,omitempty"`
-	port        int32         `json:"port"`
-	scheme      string        `json:"scheme"`
+	port        *int32        `json:"port,omitempty"`
+	scheme      *string       `json:"scheme,omitempty"`
 }
 
 // NewHttpGetWith instantiates a new HttpGet object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHttpGetWith(port int32, scheme string) *HttpGet {
+func NewHttpGetWith() *HttpGet {
 	this := HttpGet{}
-	this.port = port
-	this.scheme = scheme
+	var scheme string = "HTTP"
+	this.scheme = &scheme
 	return &this
 }
 
@@ -45,7 +45,7 @@ func NewHttpGetWith(port int32, scheme string) *HttpGet {
 func NewHttpGet() *HttpGet {
 	this := HttpGet{}
 	var scheme string = "HTTP"
-	this.scheme = scheme
+	this.scheme = &scheme
 	return &this
 }
 
@@ -151,53 +151,71 @@ func (o *HttpGet) Path(v string) *HttpGet {
 	return o
 }
 
-// GetPort returns the Port field value
+// GetPort returns the Port field value if set, zero value otherwise.
 func (o *HttpGet) GetPort() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.port) {
 		var ret int32
 		return ret
 	}
-
-	return o.port
+	return *o.port
 }
 
-// GetPortOk returns a tuple with the Port field value
+// GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HttpGet) GetPortOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.port) {
 		return nil, false
 	}
-	return &o.port, true
+	return o.port, true
 }
 
-// Port sets field value
+// HasPort returns a boolean if a field has been set.
+func (o *HttpGet) HasPort() bool {
+	if o != nil && !utils.IsNil(o.port) {
+		return true
+	}
+
+	return false
+}
+
+// Port gets a reference to the given int32 and assigns it to the port field.
+// port:
 func (o *HttpGet) Port(v int32) *HttpGet {
-	o.port = v
+	o.port = &v
 	return o
 }
 
-// GetScheme returns the Scheme field value
+// GetScheme returns the Scheme field value if set, zero value otherwise.
 func (o *HttpGet) GetScheme() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.scheme) {
 		var ret string
 		return ret
 	}
-
-	return o.scheme
+	return *o.scheme
 }
 
-// GetSchemeOk returns a tuple with the Scheme field value
+// GetSchemeOk returns a tuple with the Scheme field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HttpGet) GetSchemeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.scheme) {
 		return nil, false
 	}
-	return &o.scheme, true
+	return o.scheme, true
 }
 
-// Scheme sets field value
+// HasScheme returns a boolean if a field has been set.
+func (o *HttpGet) HasScheme() bool {
+	if o != nil && !utils.IsNil(o.scheme) {
+		return true
+	}
+
+	return false
+}
+
+// Scheme gets a reference to the given string and assigns it to the scheme field.
+// scheme:
 func (o *HttpGet) Scheme(v string) *HttpGet {
-	o.scheme = v
+	o.scheme = &v
 	return o
 }
 
@@ -220,8 +238,12 @@ func (o HttpGet) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.path) {
 		toSerialize["path"] = o.path
 	}
-	toSerialize["port"] = o.port
-	toSerialize["scheme"] = o.scheme
+	if !utils.IsNil(o.port) {
+		toSerialize["port"] = o.port
+	}
+	if !utils.IsNil(o.scheme) {
+		toSerialize["scheme"] = o.scheme
+	}
 	return toSerialize, nil
 }
 

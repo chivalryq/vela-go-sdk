@@ -29,16 +29,15 @@ var _ utils.MappedNullable = &WebhookSpec{}
 type WebhookSpec struct {
 	// Specify the data you want to send
 	data map[string]interface{} `json:"data,omitempty"`
-	url  Url                    `json:"url"`
+	url  *Url                   `json:"url,omitempty"`
 }
 
 // NewWebhookSpecWith instantiates a new WebhookSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebhookSpecWith(url Url) *WebhookSpec {
+func NewWebhookSpecWith() *WebhookSpec {
 	this := WebhookSpec{}
-	this.url = url
 	return &this
 }
 
@@ -84,28 +83,37 @@ func (o *WebhookWorkflowStep) Data(v map[string]interface{}) *WebhookWorkflowSte
 	return o
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *WebhookWorkflowStep) GetUrl() Url {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.url) {
 		var ret Url
 		return ret
 	}
-
-	return o.Properties.url
+	return *o.Properties.url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookWorkflowStep) GetUrlOk() (*Url, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.url) {
 		return nil, false
 	}
-	return &o.Properties.url, true
+	return o.Properties.url, true
 }
 
-// Url sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *WebhookWorkflowStep) HasUrl() bool {
+	if o != nil && !utils.IsNil(o.Properties.url) {
+		return true
+	}
+
+	return false
+}
+
+// Url gets a reference to the given Url and assigns it to the url field.
+// url:
 func (o *WebhookWorkflowStep) Url(v Url) *WebhookWorkflowStep {
-	o.Properties.url = v
+	o.Properties.url = &v
 	return o
 }
 
@@ -122,7 +130,9 @@ func (o WebhookSpec) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.data) {
 		toSerialize["data"] = o.data
 	}
-	toSerialize["url"] = o.url
+	if !utils.IsNil(o.url) {
+		toSerialize["url"] = o.url
+	}
 	return toSerialize, nil
 }
 
@@ -177,6 +187,7 @@ type WebhookWorkflowStep struct {
 func Webhook(name string) *WebhookWorkflowStep {
 	w := &WebhookWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: WebhookType,
 	}}
 	return w
 }
@@ -188,7 +199,7 @@ func (w *WebhookWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  w.Base.DependsOn,

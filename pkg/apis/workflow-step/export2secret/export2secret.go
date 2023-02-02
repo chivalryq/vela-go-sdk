@@ -28,16 +28,16 @@ var _ utils.MappedNullable = &Export2secretSpec{}
 // Export2secretSpec struct for Export2secretSpec
 type Export2secretSpec struct {
 	// Specify the cluster of the secret
-	cluster string `json:"cluster"`
+	cluster *string `json:"cluster,omitempty"`
 	// Specify the data of secret
-	data           map[string]interface{} `json:"data"`
+	data           map[string]interface{} `json:"data,omitempty"`
 	dockerRegistry *DockerRegistry        `json:"dockerRegistry,omitempty"`
 	// Specify the kind of the secret
-	kind string `json:"kind"`
+	kind *string `json:"kind,omitempty"`
 	// Specify the namespace of the secret
 	namespace *string `json:"namespace,omitempty"`
 	// Specify the name of the secret
-	secretName string `json:"secretName"`
+	secretName *string `json:"secretName,omitempty"`
 	// Specify the type of the secret
 	type_ *string `json:"type,omitempty"`
 }
@@ -46,12 +46,12 @@ type Export2secretSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExport2secretSpecWith(cluster string, data map[string]interface{}, kind string, secretName string) *Export2secretSpec {
+func NewExport2secretSpecWith() *Export2secretSpec {
 	this := Export2secretSpec{}
-	this.cluster = cluster
-	this.data = data
-	this.kind = kind
-	this.secretName = secretName
+	var cluster string = ""
+	this.cluster = &cluster
+	var kind string = "generic"
+	this.kind = &kind
 	return &this
 }
 
@@ -61,57 +61,75 @@ func NewExport2secretSpecWith(cluster string, data map[string]interface{}, kind 
 func NewExport2secretSpec() *Export2secretSpec {
 	this := Export2secretSpec{}
 	var cluster string = ""
-	this.cluster = cluster
+	this.cluster = &cluster
 	var kind string = "generic"
-	this.kind = kind
+	this.kind = &kind
 	return &this
 }
 
-// GetCluster returns the Cluster field value
+// GetCluster returns the Cluster field value if set, zero value otherwise.
 func (o *Export2secretWorkflowStep) GetCluster() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.cluster) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.cluster
+	return *o.Properties.cluster
 }
 
-// GetClusterOk returns a tuple with the Cluster field value
+// GetClusterOk returns a tuple with the Cluster field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Export2secretWorkflowStep) GetClusterOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.cluster) {
 		return nil, false
 	}
-	return &o.Properties.cluster, true
+	return o.Properties.cluster, true
 }
 
-// Cluster sets field value
+// HasCluster returns a boolean if a field has been set.
+func (o *Export2secretWorkflowStep) HasCluster() bool {
+	if o != nil && !utils.IsNil(o.Properties.cluster) {
+		return true
+	}
+
+	return false
+}
+
+// Cluster gets a reference to the given string and assigns it to the cluster field.
+// cluster:  Specify the cluster of the secret
 func (o *Export2secretWorkflowStep) Cluster(v string) *Export2secretWorkflowStep {
-	o.Properties.cluster = v
+	o.Properties.cluster = &v
 	return o
 }
 
-// GetData returns the Data field value
+// GetData returns the Data field value if set, zero value otherwise.
 func (o *Export2secretWorkflowStep) GetData() map[string]interface{} {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.data) {
 		var ret map[string]interface{}
 		return ret
 	}
-
 	return o.Properties.data
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Export2secretWorkflowStep) GetDataOk() (map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.data) {
 		return map[string]interface{}{}, false
 	}
 	return o.Properties.data, true
 }
 
-// Data sets field value
+// HasData returns a boolean if a field has been set.
+func (o *Export2secretWorkflowStep) HasData() bool {
+	if o != nil && !utils.IsNil(o.Properties.data) {
+		return true
+	}
+
+	return false
+}
+
+// Data gets a reference to the given map[string]interface{} and assigns it to the data field.
+// data:  Specify the data of secret
 func (o *Export2secretWorkflowStep) Data(v map[string]interface{}) *Export2secretWorkflowStep {
 	o.Properties.data = v
 	return o
@@ -151,28 +169,37 @@ func (o *Export2secretWorkflowStep) DockerRegistry(v DockerRegistry) *Export2sec
 	return o
 }
 
-// GetKind returns the Kind field value
+// GetKind returns the Kind field value if set, zero value otherwise.
 func (o *Export2secretWorkflowStep) GetKind() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.kind) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.kind
+	return *o.Properties.kind
 }
 
-// GetKindOk returns a tuple with the Kind field value
+// GetKindOk returns a tuple with the Kind field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Export2secretWorkflowStep) GetKindOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.kind) {
 		return nil, false
 	}
-	return &o.Properties.kind, true
+	return o.Properties.kind, true
 }
 
-// Kind sets field value
+// HasKind returns a boolean if a field has been set.
+func (o *Export2secretWorkflowStep) HasKind() bool {
+	if o != nil && !utils.IsNil(o.Properties.kind) {
+		return true
+	}
+
+	return false
+}
+
+// Kind gets a reference to the given string and assigns it to the kind field.
+// kind:  Specify the kind of the secret
 func (o *Export2secretWorkflowStep) Kind(v string) *Export2secretWorkflowStep {
-	o.Properties.kind = v
+	o.Properties.kind = &v
 	return o
 }
 
@@ -210,28 +237,37 @@ func (o *Export2secretWorkflowStep) Namespace(v string) *Export2secretWorkflowSt
 	return o
 }
 
-// GetSecretName returns the SecretName field value
+// GetSecretName returns the SecretName field value if set, zero value otherwise.
 func (o *Export2secretWorkflowStep) GetSecretName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.secretName) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.secretName
+	return *o.Properties.secretName
 }
 
-// GetSecretNameOk returns a tuple with the SecretName field value
+// GetSecretNameOk returns a tuple with the SecretName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Export2secretWorkflowStep) GetSecretNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.secretName) {
 		return nil, false
 	}
-	return &o.Properties.secretName, true
+	return o.Properties.secretName, true
 }
 
-// SecretName sets field value
+// HasSecretName returns a boolean if a field has been set.
+func (o *Export2secretWorkflowStep) HasSecretName() bool {
+	if o != nil && !utils.IsNil(o.Properties.secretName) {
+		return true
+	}
+
+	return false
+}
+
+// SecretName gets a reference to the given string and assigns it to the secretName field.
+// secretName:  Specify the name of the secret
 func (o *Export2secretWorkflowStep) SecretName(v string) *Export2secretWorkflowStep {
-	o.Properties.secretName = v
+	o.Properties.secretName = &v
 	return o
 }
 
@@ -279,16 +315,24 @@ func (o Export2secretSpec) MarshalJSON() ([]byte, error) {
 
 func (o Export2secretSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["cluster"] = o.cluster
-	toSerialize["data"] = o.data
+	if !utils.IsNil(o.cluster) {
+		toSerialize["cluster"] = o.cluster
+	}
+	if !utils.IsNil(o.data) {
+		toSerialize["data"] = o.data
+	}
 	if !utils.IsNil(o.dockerRegistry) {
 		toSerialize["dockerRegistry"] = o.dockerRegistry
 	}
-	toSerialize["kind"] = o.kind
+	if !utils.IsNil(o.kind) {
+		toSerialize["kind"] = o.kind
+	}
 	if !utils.IsNil(o.namespace) {
 		toSerialize["namespace"] = o.namespace
 	}
-	toSerialize["secretName"] = o.secretName
+	if !utils.IsNil(o.secretName) {
+		toSerialize["secretName"] = o.secretName
+	}
 	if !utils.IsNil(o.type_) {
 		toSerialize["type"] = o.type_
 	}
@@ -346,6 +390,7 @@ type Export2secretWorkflowStep struct {
 func Export2secret(name string) *Export2secretWorkflowStep {
 	e := &Export2secretWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: Export2secretType,
 	}}
 	return e
 }
@@ -357,7 +402,7 @@ func (e *Export2secretWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  e.Base.DependsOn,

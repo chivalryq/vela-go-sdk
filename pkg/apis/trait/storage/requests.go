@@ -21,16 +21,15 @@ var _ utils.MappedNullable = &Requests{}
 
 // Requests struct for Requests
 type Requests struct {
-	storage string `json:"storage"`
+	storage *string `json:"storage,omitempty"`
 }
 
 // NewRequestsWith instantiates a new Requests object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRequestsWith(storage string) *Requests {
+func NewRequestsWith() *Requests {
 	this := Requests{}
-	this.storage = storage
 	return &this
 }
 
@@ -42,28 +41,37 @@ func NewRequests() *Requests {
 	return &this
 }
 
-// GetStorage returns the Storage field value
+// GetStorage returns the Storage field value if set, zero value otherwise.
 func (o *Requests) GetStorage() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.storage) {
 		var ret string
 		return ret
 	}
-
-	return o.storage
+	return *o.storage
 }
 
-// GetStorageOk returns a tuple with the Storage field value
+// GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Requests) GetStorageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.storage) {
 		return nil, false
 	}
-	return &o.storage, true
+	return o.storage, true
 }
 
-// Storage sets field value
+// HasStorage returns a boolean if a field has been set.
+func (o *Requests) HasStorage() bool {
+	if o != nil && !utils.IsNil(o.storage) {
+		return true
+	}
+
+	return false
+}
+
+// Storage gets a reference to the given string and assigns it to the storage field.
+// storage:
 func (o *Requests) Storage(v string) *Requests {
-	o.storage = v
+	o.storage = &v
 	return o
 }
 
@@ -77,7 +85,9 @@ func (o Requests) MarshalJSON() ([]byte, error) {
 
 func (o Requests) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["storage"] = o.storage
+	if !utils.IsNil(o.storage) {
+		toSerialize["storage"] = o.storage
+	}
 	return toSerialize, nil
 }
 

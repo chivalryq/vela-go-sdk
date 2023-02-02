@@ -21,22 +21,19 @@ var _ utils.MappedNullable = &BaiduProvider{}
 
 // BaiduProvider struct for BaiduProvider
 type BaiduProvider struct {
-	accessKey string `json:"accessKey"`
-	region    string `json:"region"`
-	secretKey string `json:"secretKey"`
-	name      string `json:"name"`
-	type_     string `json:"type"`
+	accessKey *string `json:"accessKey,omitempty"`
+	region    *string `json:"region,omitempty"`
+	secretKey *string `json:"secretKey,omitempty"`
+	name      string  `json:"name"`
+	type_     string  `json:"type"`
 }
 
 // NewBaiduProviderWith instantiates a new BaiduProvider object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBaiduProviderWith(accessKey string, region string, secretKey string, name string, type_ string) *BaiduProvider {
+func NewBaiduProviderWith(name string, type_ string) *BaiduProvider {
 	this := BaiduProvider{}
-	this.accessKey = accessKey
-	this.region = region
-	this.secretKey = secretKey
 	this.name = name
 	this.type_ = type_
 	return &this
@@ -52,78 +49,105 @@ func NewBaiduProvider() *BaiduProvider {
 	return &this
 }
 
-// GetAccessKey returns the AccessKey field value
+// GetAccessKey returns the AccessKey field value if set, zero value otherwise.
 func (o *BaiduProvider) GetAccessKey() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.accessKey) {
 		var ret string
 		return ret
 	}
-
-	return o.accessKey
+	return *o.accessKey
 }
 
-// GetAccessKeyOk returns a tuple with the AccessKey field value
+// GetAccessKeyOk returns a tuple with the AccessKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BaiduProvider) GetAccessKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.accessKey) {
 		return nil, false
 	}
-	return &o.accessKey, true
+	return o.accessKey, true
 }
 
-// AccessKey sets field value
+// HasAccessKey returns a boolean if a field has been set.
+func (o *BaiduProvider) HasAccessKey() bool {
+	if o != nil && !utils.IsNil(o.accessKey) {
+		return true
+	}
+
+	return false
+}
+
+// AccessKey gets a reference to the given string and assigns it to the accessKey field.
+// accessKey:
 func (o *BaiduProvider) AccessKey(v string) *BaiduProvider {
-	o.accessKey = v
+	o.accessKey = &v
 	return o
 }
 
-// GetRegion returns the Region field value
+// GetRegion returns the Region field value if set, zero value otherwise.
 func (o *BaiduProvider) GetRegion() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.region) {
 		var ret string
 		return ret
 	}
-
-	return o.region
+	return *o.region
 }
 
-// GetRegionOk returns a tuple with the Region field value
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BaiduProvider) GetRegionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.region) {
 		return nil, false
 	}
-	return &o.region, true
+	return o.region, true
 }
 
-// Region sets field value
+// HasRegion returns a boolean if a field has been set.
+func (o *BaiduProvider) HasRegion() bool {
+	if o != nil && !utils.IsNil(o.region) {
+		return true
+	}
+
+	return false
+}
+
+// Region gets a reference to the given string and assigns it to the region field.
+// region:
 func (o *BaiduProvider) Region(v string) *BaiduProvider {
-	o.region = v
+	o.region = &v
 	return o
 }
 
-// GetSecretKey returns the SecretKey field value
+// GetSecretKey returns the SecretKey field value if set, zero value otherwise.
 func (o *BaiduProvider) GetSecretKey() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.secretKey) {
 		var ret string
 		return ret
 	}
-
-	return o.secretKey
+	return *o.secretKey
 }
 
-// GetSecretKeyOk returns a tuple with the SecretKey field value
+// GetSecretKeyOk returns a tuple with the SecretKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BaiduProvider) GetSecretKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.secretKey) {
 		return nil, false
 	}
-	return &o.secretKey, true
+	return o.secretKey, true
 }
 
-// SecretKey sets field value
+// HasSecretKey returns a boolean if a field has been set.
+func (o *BaiduProvider) HasSecretKey() bool {
+	if o != nil && !utils.IsNil(o.secretKey) {
+		return true
+	}
+
+	return false
+}
+
+// SecretKey gets a reference to the given string and assigns it to the secretKey field.
+// secretKey:
 func (o *BaiduProvider) SecretKey(v string) *BaiduProvider {
-	o.secretKey = v
+	o.secretKey = &v
 	return o
 }
 
@@ -187,9 +211,15 @@ func (o BaiduProvider) MarshalJSON() ([]byte, error) {
 
 func (o BaiduProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["accessKey"] = o.accessKey
-	toSerialize["region"] = o.region
-	toSerialize["secretKey"] = o.secretKey
+	if !utils.IsNil(o.accessKey) {
+		toSerialize["accessKey"] = o.accessKey
+	}
+	if !utils.IsNil(o.region) {
+		toSerialize["region"] = o.region
+	}
+	if !utils.IsNil(o.secretKey) {
+		toSerialize["secretKey"] = o.secretKey
+	}
 	toSerialize["name"] = o.name
 	toSerialize["type"] = o.type_
 	return toSerialize, nil

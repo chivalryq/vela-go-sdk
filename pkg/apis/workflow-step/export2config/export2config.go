@@ -28,11 +28,11 @@ var _ utils.MappedNullable = &Export2configSpec{}
 // Export2configSpec struct for Export2configSpec
 type Export2configSpec struct {
 	// Specify the cluster of the config map
-	cluster string `json:"cluster"`
+	cluster *string `json:"cluster,omitempty"`
 	// Specify the name of the config map
-	configName string `json:"configName"`
+	configName *string `json:"configName,omitempty"`
 	// Specify the data of config map
-	data map[string]interface{} `json:"data"`
+	data map[string]interface{} `json:"data,omitempty"`
 	// Specify the namespace of the config map
 	namespace *string `json:"namespace,omitempty"`
 }
@@ -41,11 +41,10 @@ type Export2configSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExport2configSpecWith(cluster string, configName string, data map[string]interface{}) *Export2configSpec {
+func NewExport2configSpecWith() *Export2configSpec {
 	this := Export2configSpec{}
-	this.cluster = cluster
-	this.configName = configName
-	this.data = data
+	var cluster string = ""
+	this.cluster = &cluster
 	return &this
 }
 
@@ -55,80 +54,107 @@ func NewExport2configSpecWith(cluster string, configName string, data map[string
 func NewExport2configSpec() *Export2configSpec {
 	this := Export2configSpec{}
 	var cluster string = ""
-	this.cluster = cluster
+	this.cluster = &cluster
 	return &this
 }
 
-// GetCluster returns the Cluster field value
+// GetCluster returns the Cluster field value if set, zero value otherwise.
 func (o *Export2configWorkflowStep) GetCluster() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.cluster) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.cluster
+	return *o.Properties.cluster
 }
 
-// GetClusterOk returns a tuple with the Cluster field value
+// GetClusterOk returns a tuple with the Cluster field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Export2configWorkflowStep) GetClusterOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.cluster) {
 		return nil, false
 	}
-	return &o.Properties.cluster, true
+	return o.Properties.cluster, true
 }
 
-// Cluster sets field value
+// HasCluster returns a boolean if a field has been set.
+func (o *Export2configWorkflowStep) HasCluster() bool {
+	if o != nil && !utils.IsNil(o.Properties.cluster) {
+		return true
+	}
+
+	return false
+}
+
+// Cluster gets a reference to the given string and assigns it to the cluster field.
+// cluster:  Specify the cluster of the config map
 func (o *Export2configWorkflowStep) Cluster(v string) *Export2configWorkflowStep {
-	o.Properties.cluster = v
+	o.Properties.cluster = &v
 	return o
 }
 
-// GetConfigName returns the ConfigName field value
+// GetConfigName returns the ConfigName field value if set, zero value otherwise.
 func (o *Export2configWorkflowStep) GetConfigName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.configName) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.configName
+	return *o.Properties.configName
 }
 
-// GetConfigNameOk returns a tuple with the ConfigName field value
+// GetConfigNameOk returns a tuple with the ConfigName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Export2configWorkflowStep) GetConfigNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.configName) {
 		return nil, false
 	}
-	return &o.Properties.configName, true
+	return o.Properties.configName, true
 }
 
-// ConfigName sets field value
+// HasConfigName returns a boolean if a field has been set.
+func (o *Export2configWorkflowStep) HasConfigName() bool {
+	if o != nil && !utils.IsNil(o.Properties.configName) {
+		return true
+	}
+
+	return false
+}
+
+// ConfigName gets a reference to the given string and assigns it to the configName field.
+// configName:  Specify the name of the config map
 func (o *Export2configWorkflowStep) ConfigName(v string) *Export2configWorkflowStep {
-	o.Properties.configName = v
+	o.Properties.configName = &v
 	return o
 }
 
-// GetData returns the Data field value
+// GetData returns the Data field value if set, zero value otherwise.
 func (o *Export2configWorkflowStep) GetData() map[string]interface{} {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.data) {
 		var ret map[string]interface{}
 		return ret
 	}
-
 	return o.Properties.data
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Export2configWorkflowStep) GetDataOk() (map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.data) {
 		return map[string]interface{}{}, false
 	}
 	return o.Properties.data, true
 }
 
-// Data sets field value
+// HasData returns a boolean if a field has been set.
+func (o *Export2configWorkflowStep) HasData() bool {
+	if o != nil && !utils.IsNil(o.Properties.data) {
+		return true
+	}
+
+	return false
+}
+
+// Data gets a reference to the given map[string]interface{} and assigns it to the data field.
+// data:  Specify the data of config map
 func (o *Export2configWorkflowStep) Data(v map[string]interface{}) *Export2configWorkflowStep {
 	o.Properties.data = v
 	return o
@@ -178,9 +204,15 @@ func (o Export2configSpec) MarshalJSON() ([]byte, error) {
 
 func (o Export2configSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["cluster"] = o.cluster
-	toSerialize["configName"] = o.configName
-	toSerialize["data"] = o.data
+	if !utils.IsNil(o.cluster) {
+		toSerialize["cluster"] = o.cluster
+	}
+	if !utils.IsNil(o.configName) {
+		toSerialize["configName"] = o.configName
+	}
+	if !utils.IsNil(o.data) {
+		toSerialize["data"] = o.data
+	}
 	if !utils.IsNil(o.namespace) {
 		toSerialize["namespace"] = o.namespace
 	}
@@ -238,6 +270,7 @@ type Export2configWorkflowStep struct {
 func Export2config(name string) *Export2configWorkflowStep {
 	e := &Export2configWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: Export2configType,
 	}}
 	return e
 }
@@ -249,7 +282,7 @@ func (e *Export2configWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  e.Base.DependsOn,

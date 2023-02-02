@@ -303,6 +303,7 @@ type TopologyPolicy struct {
 func Topology(name string) *TopologyPolicy {
 	t := &TopologyPolicy{Base: apis.PolicyBase{
 		Name: name,
+		Type: TopologyType,
 	}}
 	return t
 }

@@ -33,7 +33,7 @@ type WorkerSpec struct {
 	// Define arguments by using environment variables
 	env []Env `json:"env,omitempty"`
 	// Which image would you like to use for your service +short=i
-	image string `json:"image"`
+	image *string `json:"image,omitempty"`
 	// Specify image pull policy for your service
 	imagePullPolicy *string `json:"imagePullPolicy,omitempty"`
 	// Specify image pull secrets for your service
@@ -51,9 +51,8 @@ type WorkerSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkerSpecWith(image string) *WorkerSpec {
+func NewWorkerSpecWith() *WorkerSpec {
 	this := WorkerSpec{}
-	this.image = image
 	return &this
 }
 
@@ -167,28 +166,37 @@ func (o *WorkerComponent) Env(v []Env) *WorkerComponent {
 	return o
 }
 
-// GetImage returns the Image field value
+// GetImage returns the Image field value if set, zero value otherwise.
 func (o *WorkerComponent) GetImage() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.image) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.image
+	return *o.Properties.image
 }
 
-// GetImageOk returns a tuple with the Image field value
+// GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkerComponent) GetImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.image) {
 		return nil, false
 	}
-	return &o.Properties.image, true
+	return o.Properties.image, true
 }
 
-// Image sets field value
+// HasImage returns a boolean if a field has been set.
+func (o *WorkerComponent) HasImage() bool {
+	if o != nil && !utils.IsNil(o.Properties.image) {
+		return true
+	}
+
+	return false
+}
+
+// Image gets a reference to the given string and assigns it to the image field.
+// image:  Which image would you like to use for your service +short=i
 func (o *WorkerComponent) Image(v string) *WorkerComponent {
-	o.Properties.image = v
+	o.Properties.image = &v
 	return o
 }
 
@@ -449,7 +457,9 @@ func (o WorkerSpec) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.env) {
 		toSerialize["env"] = o.env
 	}
-	toSerialize["image"] = o.image
+	if !utils.IsNil(o.image) {
+		toSerialize["image"] = o.image
+	}
 	if !utils.IsNil(o.imagePullPolicy) {
 		toSerialize["imagePullPolicy"] = o.imagePullPolicy
 	}
@@ -524,6 +534,7 @@ type WorkerComponent struct {
 func Worker(name string) *WorkerComponent {
 	w := &WorkerComponent{Base: apis.ComponentBase{
 		Name: name,
+		Type: WorkerType,
 	}}
 	return w
 }

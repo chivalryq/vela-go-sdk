@@ -28,19 +28,17 @@ var _ utils.MappedNullable = &DependsOnAppSpec{}
 // DependsOnAppSpec struct for DependsOnAppSpec
 type DependsOnAppSpec struct {
 	// Specify the name of the dependent Application
-	name string `json:"name"`
+	name *string `json:"name,omitempty"`
 	// Specify the namespace of the dependent Application
-	namespace string `json:"namespace"`
+	namespace *string `json:"namespace,omitempty"`
 }
 
 // NewDependsOnAppSpecWith instantiates a new DependsOnAppSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDependsOnAppSpecWith(name string, namespace string) *DependsOnAppSpec {
+func NewDependsOnAppSpecWith() *DependsOnAppSpec {
 	this := DependsOnAppSpec{}
-	this.name = name
-	this.namespace = namespace
 	return &this
 }
 
@@ -52,53 +50,71 @@ func NewDependsOnAppSpec() *DependsOnAppSpec {
 	return &this
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *DependsOnAppWorkflowStep) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.name) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.name
+	return *o.Properties.name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DependsOnAppWorkflowStep) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.name) {
 		return nil, false
 	}
-	return &o.Properties.name, true
+	return o.Properties.name, true
 }
 
-// Name sets field value
+// HasName returns a boolean if a field has been set.
+func (o *DependsOnAppWorkflowStep) HasName() bool {
+	if o != nil && !utils.IsNil(o.Properties.name) {
+		return true
+	}
+
+	return false
+}
+
+// Name gets a reference to the given string and assigns it to the name field.
+// name:  Specify the name of the dependent Application
 func (o *DependsOnAppWorkflowStep) Name(v string) *DependsOnAppWorkflowStep {
-	o.Properties.name = v
+	o.Properties.name = &v
 	return o
 }
 
-// GetNamespace returns the Namespace field value
+// GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *DependsOnAppWorkflowStep) GetNamespace() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.namespace) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.namespace
+	return *o.Properties.namespace
 }
 
-// GetNamespaceOk returns a tuple with the Namespace field value
+// GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DependsOnAppWorkflowStep) GetNamespaceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.namespace) {
 		return nil, false
 	}
-	return &o.Properties.namespace, true
+	return o.Properties.namespace, true
 }
 
-// Namespace sets field value
+// HasNamespace returns a boolean if a field has been set.
+func (o *DependsOnAppWorkflowStep) HasNamespace() bool {
+	if o != nil && !utils.IsNil(o.Properties.namespace) {
+		return true
+	}
+
+	return false
+}
+
+// Namespace gets a reference to the given string and assigns it to the namespace field.
+// namespace:  Specify the namespace of the dependent Application
 func (o *DependsOnAppWorkflowStep) Namespace(v string) *DependsOnAppWorkflowStep {
-	o.Properties.namespace = v
+	o.Properties.namespace = &v
 	return o
 }
 
@@ -112,8 +128,12 @@ func (o DependsOnAppSpec) MarshalJSON() ([]byte, error) {
 
 func (o DependsOnAppSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.name
-	toSerialize["namespace"] = o.namespace
+	if !utils.IsNil(o.name) {
+		toSerialize["name"] = o.name
+	}
+	if !utils.IsNil(o.namespace) {
+		toSerialize["namespace"] = o.namespace
+	}
 	return toSerialize, nil
 }
 
@@ -168,6 +188,7 @@ type DependsOnAppWorkflowStep struct {
 func DependsOnApp(name string) *DependsOnAppWorkflowStep {
 	d := &DependsOnAppWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: DependsOnAppType,
 	}}
 	return d
 }
@@ -179,7 +200,7 @@ func (d *DependsOnAppWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  d.Base.DependsOn,

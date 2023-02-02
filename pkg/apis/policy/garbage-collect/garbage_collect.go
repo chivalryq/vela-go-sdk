@@ -27,7 +27,7 @@ var _ utils.MappedNullable = &GarbageCollectSpec{}
 // GarbageCollectSpec struct for GarbageCollectSpec
 type GarbageCollectSpec struct {
 	// If is set, outdated versioned resourcetracker will not be recycled automatically, outdated resources will be kept until resourcetracker be deleted manually
-	keepLegacyResource bool `json:"keepLegacyResource"`
+	keepLegacyResource *bool `json:"keepLegacyResource,omitempty"`
 	// Specify the list of rules to control gc strategy at resource level, if one resource is controlled by multiple rules, first rule will be used
 	rules []GarbageCollectPolicyRule `json:"rules,omitempty"`
 }
@@ -36,9 +36,10 @@ type GarbageCollectSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGarbageCollectSpecWith(keepLegacyResource bool) *GarbageCollectSpec {
+func NewGarbageCollectSpecWith() *GarbageCollectSpec {
 	this := GarbageCollectSpec{}
-	this.keepLegacyResource = keepLegacyResource
+	var keepLegacyResource bool = false
+	this.keepLegacyResource = &keepLegacyResource
 	return &this
 }
 
@@ -48,32 +49,41 @@ func NewGarbageCollectSpecWith(keepLegacyResource bool) *GarbageCollectSpec {
 func NewGarbageCollectSpec() *GarbageCollectSpec {
 	this := GarbageCollectSpec{}
 	var keepLegacyResource bool = false
-	this.keepLegacyResource = keepLegacyResource
+	this.keepLegacyResource = &keepLegacyResource
 	return &this
 }
 
-// GetKeepLegacyResource returns the KeepLegacyResource field value
+// GetKeepLegacyResource returns the KeepLegacyResource field value if set, zero value otherwise.
 func (o *GarbageCollectPolicy) GetKeepLegacyResource() bool {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.keepLegacyResource) {
 		var ret bool
 		return ret
 	}
-
-	return o.Properties.keepLegacyResource
+	return *o.Properties.keepLegacyResource
 }
 
-// GetKeepLegacyResourceOk returns a tuple with the KeepLegacyResource field value
+// GetKeepLegacyResourceOk returns a tuple with the KeepLegacyResource field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GarbageCollectPolicy) GetKeepLegacyResourceOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.keepLegacyResource) {
 		return nil, false
 	}
-	return &o.Properties.keepLegacyResource, true
+	return o.Properties.keepLegacyResource, true
 }
 
-// KeepLegacyResource sets field value
+// HasKeepLegacyResource returns a boolean if a field has been set.
+func (o *GarbageCollectPolicy) HasKeepLegacyResource() bool {
+	if o != nil && !utils.IsNil(o.Properties.keepLegacyResource) {
+		return true
+	}
+
+	return false
+}
+
+// KeepLegacyResource gets a reference to the given bool and assigns it to the keepLegacyResource field.
+// keepLegacyResource:  If is set, outdated versioned resourcetracker will not be recycled automatically, outdated resources will be kept until resourcetracker be deleted manually
 func (o *GarbageCollectPolicy) KeepLegacyResource(v bool) *GarbageCollectPolicy {
-	o.Properties.keepLegacyResource = v
+	o.Properties.keepLegacyResource = &v
 	return o
 }
 
@@ -121,7 +131,9 @@ func (o GarbageCollectSpec) MarshalJSON() ([]byte, error) {
 
 func (o GarbageCollectSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["keepLegacyResource"] = o.keepLegacyResource
+	if !utils.IsNil(o.keepLegacyResource) {
+		toSerialize["keepLegacyResource"] = o.keepLegacyResource
+	}
 	if !utils.IsNil(o.rules) {
 		toSerialize["rules"] = o.rules
 	}
@@ -178,6 +190,7 @@ type GarbageCollectPolicy struct {
 func GarbageCollect(name string) *GarbageCollectPolicy {
 	g := &GarbageCollectPolicy{Base: apis.PolicyBase{
 		Name: name,
+		Type: GarbageCollectType,
 	}}
 	return g
 }

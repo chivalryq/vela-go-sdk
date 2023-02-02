@@ -4,11 +4,15 @@ import (
 	"context"
 	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
+	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/rest"
 	"sigs.k8s.io/controller-runtime/pkg/client"
+	"sigs.k8s.io/controller-runtime/pkg/client/config"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
 )
+
+var schema *runtime.Scheme
 
 type Client interface {
 	Get(ctx context.Context, key client.ObjectKey) (apis.Application, error)
@@ -23,12 +27,16 @@ type clientImpl struct {
 	clt client.Client
 }
 
+func init() {
+	schema = runtime.NewScheme()
+	_ = v1beta1.AddToScheme(schema)
+}
 func NewFromClient(clt client.Client) Client {
 	return &clientImpl{clt: clt}
 }
 
 func New(config *rest.Config) (Client, error) {
-	clt, err := client.New(config, client.Options{})
+	clt, err := client.New(config, client.Options{Scheme: schema})
 	if err != nil {
 		return nil, err
 	}
@@ -37,6 +45,15 @@ func New(config *rest.Config) (Client, error) {
 
 func NewFromConfig(config *rest.Config) (Client, error) {
 	return New(config)
+}
+
+func NewDefault() (Client, error) {
+	restConf, err := config.GetConfig()
+	if err != nil {
+		return nil, err
+	}
+
+	return New(restConf)
 }
 
 func NewFromConfigWithOptions(config *rest.Config, options client.Options) (Client, error) {

@@ -170,6 +170,7 @@ type HealthPolicy struct {
 func Health(name string) *HealthPolicy {
 	h := &HealthPolicy{Base: apis.PolicyBase{
 		Name: name,
+		Type: HealthType,
 	}}
 	return h
 }

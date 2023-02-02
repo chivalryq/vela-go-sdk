@@ -22,19 +22,17 @@ var _ utils.MappedNullable = &PodCustomMetrics{}
 // PodCustomMetrics struct for PodCustomMetrics
 type PodCustomMetrics struct {
 	// Specify name of custom metrics
-	name string `json:"name"`
+	name *string `json:"name,omitempty"`
 	// Specify target value of custom metrics
-	value string `json:"value"`
+	value *string `json:"value,omitempty"`
 }
 
 // NewPodCustomMetricsWith instantiates a new PodCustomMetrics object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPodCustomMetricsWith(name string, value string) *PodCustomMetrics {
+func NewPodCustomMetricsWith() *PodCustomMetrics {
 	this := PodCustomMetrics{}
-	this.name = name
-	this.value = value
 	return &this
 }
 
@@ -46,53 +44,71 @@ func NewPodCustomMetrics() *PodCustomMetrics {
 	return &this
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *PodCustomMetrics) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		var ret string
 		return ret
 	}
-
-	return o.name
+	return *o.name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PodCustomMetrics) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		return nil, false
 	}
-	return &o.name, true
+	return o.name, true
 }
 
-// Name sets field value
+// HasName returns a boolean if a field has been set.
+func (o *PodCustomMetrics) HasName() bool {
+	if o != nil && !utils.IsNil(o.name) {
+		return true
+	}
+
+	return false
+}
+
+// Name gets a reference to the given string and assigns it to the name field.
+// name:  Specify name of custom metrics
 func (o *PodCustomMetrics) Name(v string) *PodCustomMetrics {
-	o.name = v
+	o.name = &v
 	return o
 }
 
-// GetValue returns the Value field value
+// GetValue returns the Value field value if set, zero value otherwise.
 func (o *PodCustomMetrics) GetValue() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.value) {
 		var ret string
 		return ret
 	}
-
-	return o.value
+	return *o.value
 }
 
-// GetValueOk returns a tuple with the Value field value
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PodCustomMetrics) GetValueOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.value) {
 		return nil, false
 	}
-	return &o.value, true
+	return o.value, true
 }
 
-// Value sets field value
+// HasValue returns a boolean if a field has been set.
+func (o *PodCustomMetrics) HasValue() bool {
+	if o != nil && !utils.IsNil(o.value) {
+		return true
+	}
+
+	return false
+}
+
+// Value gets a reference to the given string and assigns it to the value field.
+// value:  Specify target value of custom metrics
 func (o *PodCustomMetrics) Value(v string) *PodCustomMetrics {
-	o.value = v
+	o.value = &v
 	return o
 }
 
@@ -106,8 +122,12 @@ func (o PodCustomMetrics) MarshalJSON() ([]byte, error) {
 
 func (o PodCustomMetrics) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.name
-	toSerialize["value"] = o.value
+	if !utils.IsNil(o.name) {
+		toSerialize["name"] = o.name
+	}
+	if !utils.IsNil(o.value) {
+		toSerialize["value"] = o.value
+	}
 	return toSerialize, nil
 }
 

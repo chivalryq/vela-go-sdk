@@ -28,9 +28,9 @@ var _ utils.MappedNullable = &ExportDataSpec{}
 // ExportDataSpec struct for ExportDataSpec
 type ExportDataSpec struct {
 	// Specify the data to export
-	data map[string]interface{} `json:"data"`
+	data map[string]interface{} `json:"data,omitempty"`
 	// Specify the kind of the export destination
-	kind string `json:"kind"`
+	kind *string `json:"kind,omitempty"`
 	// Specify the name of the export destination
 	name *string `json:"name,omitempty"`
 	// Specify the namespace of the export destination
@@ -43,10 +43,10 @@ type ExportDataSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExportDataSpecWith(data map[string]interface{}, kind string) *ExportDataSpec {
+func NewExportDataSpecWith() *ExportDataSpec {
 	this := ExportDataSpec{}
-	this.data = data
-	this.kind = kind
+	var kind string = "ConfigMap"
+	this.kind = &kind
 	return &this
 }
 
@@ -56,57 +56,75 @@ func NewExportDataSpecWith(data map[string]interface{}, kind string) *ExportData
 func NewExportDataSpec() *ExportDataSpec {
 	this := ExportDataSpec{}
 	var kind string = "ConfigMap"
-	this.kind = kind
+	this.kind = &kind
 	return &this
 }
 
-// GetData returns the Data field value
+// GetData returns the Data field value if set, zero value otherwise.
 func (o *ExportDataWorkflowStep) GetData() map[string]interface{} {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.data) {
 		var ret map[string]interface{}
 		return ret
 	}
-
 	return o.Properties.data
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportDataWorkflowStep) GetDataOk() (map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.data) {
 		return map[string]interface{}{}, false
 	}
 	return o.Properties.data, true
 }
 
-// Data sets field value
+// HasData returns a boolean if a field has been set.
+func (o *ExportDataWorkflowStep) HasData() bool {
+	if o != nil && !utils.IsNil(o.Properties.data) {
+		return true
+	}
+
+	return false
+}
+
+// Data gets a reference to the given map[string]interface{} and assigns it to the data field.
+// data:  Specify the data to export
 func (o *ExportDataWorkflowStep) Data(v map[string]interface{}) *ExportDataWorkflowStep {
 	o.Properties.data = v
 	return o
 }
 
-// GetKind returns the Kind field value
+// GetKind returns the Kind field value if set, zero value otherwise.
 func (o *ExportDataWorkflowStep) GetKind() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.kind) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.kind
+	return *o.Properties.kind
 }
 
-// GetKindOk returns a tuple with the Kind field value
+// GetKindOk returns a tuple with the Kind field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportDataWorkflowStep) GetKindOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.kind) {
 		return nil, false
 	}
-	return &o.Properties.kind, true
+	return o.Properties.kind, true
 }
 
-// Kind sets field value
+// HasKind returns a boolean if a field has been set.
+func (o *ExportDataWorkflowStep) HasKind() bool {
+	if o != nil && !utils.IsNil(o.Properties.kind) {
+		return true
+	}
+
+	return false
+}
+
+// Kind gets a reference to the given string and assigns it to the kind field.
+// kind:  Specify the kind of the export destination
 func (o *ExportDataWorkflowStep) Kind(v string) *ExportDataWorkflowStep {
-	o.Properties.kind = v
+	o.Properties.kind = &v
 	return o
 }
 
@@ -222,8 +240,12 @@ func (o ExportDataSpec) MarshalJSON() ([]byte, error) {
 
 func (o ExportDataSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["data"] = o.data
-	toSerialize["kind"] = o.kind
+	if !utils.IsNil(o.data) {
+		toSerialize["data"] = o.data
+	}
+	if !utils.IsNil(o.kind) {
+		toSerialize["kind"] = o.kind
+	}
 	if !utils.IsNil(o.name) {
 		toSerialize["name"] = o.name
 	}
@@ -287,6 +309,7 @@ type ExportDataWorkflowStep struct {
 func ExportData(name string) *ExportDataWorkflowStep {
 	e := &ExportDataWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: ExportDataType,
 	}}
 	return e
 }
@@ -298,7 +321,7 @@ func (e *ExportDataWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  e.Base.DependsOn,

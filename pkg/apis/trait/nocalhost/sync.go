@@ -21,20 +21,19 @@ var _ utils.MappedNullable = &Sync{}
 
 // Sync struct for Sync
 type Sync struct {
-	filePattern       []string `json:"filePattern"`
-	ignoreFilePattern []string `json:"ignoreFilePattern"`
-	type_             string   `json:"type"`
+	filePattern       []string `json:"filePattern,omitempty"`
+	ignoreFilePattern []string `json:"ignoreFilePattern,omitempty"`
+	type_             *string  `json:"type,omitempty"`
 }
 
 // NewSyncWith instantiates a new Sync object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyncWith(filePattern []string, ignoreFilePattern []string, type_ string) *Sync {
+func NewSyncWith() *Sync {
 	this := Sync{}
-	this.filePattern = filePattern
-	this.ignoreFilePattern = ignoreFilePattern
-	this.type_ = type_
+	var type_ string = "send"
+	this.type_ = &type_
 	return &this
 }
 
@@ -44,82 +43,109 @@ func NewSyncWith(filePattern []string, ignoreFilePattern []string, type_ string)
 func NewSync() *Sync {
 	this := Sync{}
 	var type_ string = "send"
-	this.type_ = type_
+	this.type_ = &type_
 	return &this
 }
 
-// GetFilePattern returns the FilePattern field value
+// GetFilePattern returns the FilePattern field value if set, zero value otherwise.
 func (o *Sync) GetFilePattern() []string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.filePattern) {
 		var ret []string
 		return ret
 	}
-
 	return o.filePattern
 }
 
-// GetFilePatternOk returns a tuple with the FilePattern field value
+// GetFilePatternOk returns a tuple with the FilePattern field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Sync) GetFilePatternOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.filePattern) {
 		return nil, false
 	}
 	return o.filePattern, true
 }
 
-// FilePattern sets field value
+// HasFilePattern returns a boolean if a field has been set.
+func (o *Sync) HasFilePattern() bool {
+	if o != nil && !utils.IsNil(o.filePattern) {
+		return true
+	}
+
+	return false
+}
+
+// FilePattern gets a reference to the given []string and assigns it to the filePattern field.
+// filePattern:
 func (o *Sync) FilePattern(v []string) *Sync {
 	o.filePattern = v
 	return o
 }
 
-// GetIgnoreFilePattern returns the IgnoreFilePattern field value
+// GetIgnoreFilePattern returns the IgnoreFilePattern field value if set, zero value otherwise.
 func (o *Sync) GetIgnoreFilePattern() []string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.ignoreFilePattern) {
 		var ret []string
 		return ret
 	}
-
 	return o.ignoreFilePattern
 }
 
-// GetIgnoreFilePatternOk returns a tuple with the IgnoreFilePattern field value
+// GetIgnoreFilePatternOk returns a tuple with the IgnoreFilePattern field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Sync) GetIgnoreFilePatternOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.ignoreFilePattern) {
 		return nil, false
 	}
 	return o.ignoreFilePattern, true
 }
 
-// IgnoreFilePattern sets field value
+// HasIgnoreFilePattern returns a boolean if a field has been set.
+func (o *Sync) HasIgnoreFilePattern() bool {
+	if o != nil && !utils.IsNil(o.ignoreFilePattern) {
+		return true
+	}
+
+	return false
+}
+
+// IgnoreFilePattern gets a reference to the given []string and assigns it to the ignoreFilePattern field.
+// ignoreFilePattern:
 func (o *Sync) IgnoreFilePattern(v []string) *Sync {
 	o.ignoreFilePattern = v
 	return o
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *Sync) GetType() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.type_) {
 		var ret string
 		return ret
 	}
-
-	return o.type_
+	return *o.type_
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Sync) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.type_) {
 		return nil, false
 	}
-	return &o.type_, true
+	return o.type_, true
 }
 
-// Type sets field value
+// HasType returns a boolean if a field has been set.
+func (o *Sync) HasType() bool {
+	if o != nil && !utils.IsNil(o.type_) {
+		return true
+	}
+
+	return false
+}
+
+// Type gets a reference to the given string and assigns it to the type_ field.
+// type_:
 func (o *Sync) Type(v string) *Sync {
-	o.type_ = v
+	o.type_ = &v
 	return o
 }
 
@@ -133,9 +159,15 @@ func (o Sync) MarshalJSON() ([]byte, error) {
 
 func (o Sync) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["filePattern"] = o.filePattern
-	toSerialize["ignoreFilePattern"] = o.ignoreFilePattern
-	toSerialize["type"] = o.type_
+	if !utils.IsNil(o.filePattern) {
+		toSerialize["filePattern"] = o.filePattern
+	}
+	if !utils.IsNil(o.ignoreFilePattern) {
+		toSerialize["ignoreFilePattern"] = o.ignoreFilePattern
+	}
+	if !utils.IsNil(o.type_) {
+		toSerialize["type"] = o.type_
+	}
 	return toSerialize, nil
 }
 

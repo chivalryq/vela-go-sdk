@@ -30,16 +30,15 @@ type ListConfigSpec struct {
 	// Specify the namespace of the config.
 	namespace *string `json:"namespace,omitempty"`
 	// Specify the template of the config.
-	template string `json:"template"`
+	template *string `json:"template,omitempty"`
 }
 
 // NewListConfigSpecWith instantiates a new ListConfigSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListConfigSpecWith(template string) *ListConfigSpec {
+func NewListConfigSpecWith() *ListConfigSpec {
 	this := ListConfigSpec{}
-	this.template = template
 	return &this
 }
 
@@ -85,28 +84,37 @@ func (o *ListConfigWorkflowStep) Namespace(v string) *ListConfigWorkflowStep {
 	return o
 }
 
-// GetTemplate returns the Template field value
+// GetTemplate returns the Template field value if set, zero value otherwise.
 func (o *ListConfigWorkflowStep) GetTemplate() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.template) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.template
+	return *o.Properties.template
 }
 
-// GetTemplateOk returns a tuple with the Template field value
+// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListConfigWorkflowStep) GetTemplateOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.template) {
 		return nil, false
 	}
-	return &o.Properties.template, true
+	return o.Properties.template, true
 }
 
-// Template sets field value
+// HasTemplate returns a boolean if a field has been set.
+func (o *ListConfigWorkflowStep) HasTemplate() bool {
+	if o != nil && !utils.IsNil(o.Properties.template) {
+		return true
+	}
+
+	return false
+}
+
+// Template gets a reference to the given string and assigns it to the template field.
+// template:  Specify the template of the config.
 func (o *ListConfigWorkflowStep) Template(v string) *ListConfigWorkflowStep {
-	o.Properties.template = v
+	o.Properties.template = &v
 	return o
 }
 
@@ -123,7 +131,9 @@ func (o ListConfigSpec) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.namespace) {
 		toSerialize["namespace"] = o.namespace
 	}
-	toSerialize["template"] = o.template
+	if !utils.IsNil(o.template) {
+		toSerialize["template"] = o.template
+	}
 	return toSerialize, nil
 }
 
@@ -178,6 +188,7 @@ type ListConfigWorkflowStep struct {
 func ListConfig(name string) *ListConfigWorkflowStep {
 	l := &ListConfigWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: ListConfigType,
 	}}
 	return l
 }
@@ -189,7 +200,7 @@ func (l *ListConfigWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  l.Base.DependsOn,

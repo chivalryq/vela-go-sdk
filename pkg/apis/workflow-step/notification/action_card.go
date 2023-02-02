@@ -21,28 +21,21 @@ var _ utils.MappedNullable = &ActionCard{}
 
 // ActionCard struct for ActionCard
 type ActionCard struct {
-	btnOrientation string               `json:"btnOrientation"`
-	btns           utils.NullableString `json:"btns"`
-	hideAvatar     string               `json:"hideAvatar"`
-	singleTitle    string               `json:"singleTitle"`
-	singleURL      string               `json:"singleURL"`
-	text           string               `json:"text"`
-	title          string               `json:"title"`
+	btnOrientation *string              `json:"btnOrientation,omitempty"`
+	btns           utils.NullableString `json:"btns,omitempty"`
+	hideAvatar     *string              `json:"hideAvatar,omitempty"`
+	singleTitle    *string              `json:"singleTitle,omitempty"`
+	singleURL      *string              `json:"singleURL,omitempty"`
+	text           *string              `json:"text,omitempty"`
+	title          *string              `json:"title,omitempty"`
 }
 
 // NewActionCardWith instantiates a new ActionCard object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewActionCardWith(btnOrientation string, btns utils.NullableString, hideAvatar string, singleTitle string, singleURL string, text string, title string) *ActionCard {
+func NewActionCardWith() *ActionCard {
 	this := ActionCard{}
-	this.btnOrientation = btnOrientation
-	this.btns = btns
-	this.hideAvatar = hideAvatar
-	this.singleTitle = singleTitle
-	this.singleURL = singleURL
-	this.text = text
-	this.title = title
 	return &this
 }
 
@@ -54,43 +47,50 @@ func NewActionCard() *ActionCard {
 	return &this
 }
 
-// GetBtnOrientation returns the BtnOrientation field value
+// GetBtnOrientation returns the BtnOrientation field value if set, zero value otherwise.
 func (o *ActionCard) GetBtnOrientation() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.btnOrientation) {
 		var ret string
 		return ret
 	}
-
-	return o.btnOrientation
+	return *o.btnOrientation
 }
 
-// GetBtnOrientationOk returns a tuple with the BtnOrientation field value
+// GetBtnOrientationOk returns a tuple with the BtnOrientation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ActionCard) GetBtnOrientationOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.btnOrientation) {
 		return nil, false
 	}
-	return &o.btnOrientation, true
+	return o.btnOrientation, true
 }
 
-// BtnOrientation sets field value
+// HasBtnOrientation returns a boolean if a field has been set.
+func (o *ActionCard) HasBtnOrientation() bool {
+	if o != nil && !utils.IsNil(o.btnOrientation) {
+		return true
+	}
+
+	return false
+}
+
+// BtnOrientation gets a reference to the given string and assigns it to the btnOrientation field.
+// btnOrientation:
 func (o *ActionCard) BtnOrientation(v string) *ActionCard {
-	o.btnOrientation = v
+	o.btnOrientation = &v
 	return o
 }
 
-// GetBtns returns the Btns field value
-// If the value is explicit nil, the zero value for string will be returned
+// GetBtns returns the Btns field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ActionCard) GetBtns() string {
-	if o == nil || o.btns.Get() == nil {
+	if o == nil || utils.IsNil(o.btns.Get()) {
 		var ret string
 		return ret
 	}
-
 	return *o.btns.Get()
 }
 
-// GetBtnsOk returns a tuple with the Btns field value
+// GetBtnsOk returns a tuple with the Btns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ActionCard) GetBtnsOk() (*string, bool) {
@@ -100,134 +100,199 @@ func (o *ActionCard) GetBtnsOk() (*string, bool) {
 	return o.btns.Get(), o.btns.IsSet()
 }
 
-// Btns sets field value
+// HasBtns returns a boolean if a field has been set.
+func (o *ActionCard) HasBtns() bool {
+	if o != nil && o.btns.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// Btns gets a reference to the given utils.NullableString and assigns it to the btns field.
+// btns:
 func (o *ActionCard) Btns(v string) *ActionCard {
 	o.btns.Set(&v)
 	return o
 }
 
-// GetHideAvatar returns the HideAvatar field value
+// SetBtnsNil sets the value for Btns to be an explicit nil
+func (o *ActionCard) SetBtnsNil() {
+	o.btns.Set(nil)
+}
+
+// UnsetBtns ensures that no value is present for Btns, not even an explicit nil
+func (o *ActionCard) UnsetBtns() {
+	o.btns.Unset()
+}
+
+// GetHideAvatar returns the HideAvatar field value if set, zero value otherwise.
 func (o *ActionCard) GetHideAvatar() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.hideAvatar) {
 		var ret string
 		return ret
 	}
-
-	return o.hideAvatar
+	return *o.hideAvatar
 }
 
-// GetHideAvatarOk returns a tuple with the HideAvatar field value
+// GetHideAvatarOk returns a tuple with the HideAvatar field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ActionCard) GetHideAvatarOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.hideAvatar) {
 		return nil, false
 	}
-	return &o.hideAvatar, true
+	return o.hideAvatar, true
 }
 
-// HideAvatar sets field value
+// HasHideAvatar returns a boolean if a field has been set.
+func (o *ActionCard) HasHideAvatar() bool {
+	if o != nil && !utils.IsNil(o.hideAvatar) {
+		return true
+	}
+
+	return false
+}
+
+// HideAvatar gets a reference to the given string and assigns it to the hideAvatar field.
+// hideAvatar:
 func (o *ActionCard) HideAvatar(v string) *ActionCard {
-	o.hideAvatar = v
+	o.hideAvatar = &v
 	return o
 }
 
-// GetSingleTitle returns the SingleTitle field value
+// GetSingleTitle returns the SingleTitle field value if set, zero value otherwise.
 func (o *ActionCard) GetSingleTitle() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.singleTitle) {
 		var ret string
 		return ret
 	}
-
-	return o.singleTitle
+	return *o.singleTitle
 }
 
-// GetSingleTitleOk returns a tuple with the SingleTitle field value
+// GetSingleTitleOk returns a tuple with the SingleTitle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ActionCard) GetSingleTitleOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.singleTitle) {
 		return nil, false
 	}
-	return &o.singleTitle, true
+	return o.singleTitle, true
 }
 
-// SingleTitle sets field value
+// HasSingleTitle returns a boolean if a field has been set.
+func (o *ActionCard) HasSingleTitle() bool {
+	if o != nil && !utils.IsNil(o.singleTitle) {
+		return true
+	}
+
+	return false
+}
+
+// SingleTitle gets a reference to the given string and assigns it to the singleTitle field.
+// singleTitle:
 func (o *ActionCard) SingleTitle(v string) *ActionCard {
-	o.singleTitle = v
+	o.singleTitle = &v
 	return o
 }
 
-// GetSingleURL returns the SingleURL field value
+// GetSingleURL returns the SingleURL field value if set, zero value otherwise.
 func (o *ActionCard) GetSingleURL() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.singleURL) {
 		var ret string
 		return ret
 	}
-
-	return o.singleURL
+	return *o.singleURL
 }
 
-// GetSingleURLOk returns a tuple with the SingleURL field value
+// GetSingleURLOk returns a tuple with the SingleURL field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ActionCard) GetSingleURLOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.singleURL) {
 		return nil, false
 	}
-	return &o.singleURL, true
+	return o.singleURL, true
 }
 
-// SingleURL sets field value
+// HasSingleURL returns a boolean if a field has been set.
+func (o *ActionCard) HasSingleURL() bool {
+	if o != nil && !utils.IsNil(o.singleURL) {
+		return true
+	}
+
+	return false
+}
+
+// SingleURL gets a reference to the given string and assigns it to the singleURL field.
+// singleURL:
 func (o *ActionCard) SingleURL(v string) *ActionCard {
-	o.singleURL = v
+	o.singleURL = &v
 	return o
 }
 
-// GetText returns the Text field value
+// GetText returns the Text field value if set, zero value otherwise.
 func (o *ActionCard) GetText() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.text) {
 		var ret string
 		return ret
 	}
-
-	return o.text
+	return *o.text
 }
 
-// GetTextOk returns a tuple with the Text field value
+// GetTextOk returns a tuple with the Text field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ActionCard) GetTextOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.text) {
 		return nil, false
 	}
-	return &o.text, true
+	return o.text, true
 }
 
-// Text sets field value
+// HasText returns a boolean if a field has been set.
+func (o *ActionCard) HasText() bool {
+	if o != nil && !utils.IsNil(o.text) {
+		return true
+	}
+
+	return false
+}
+
+// Text gets a reference to the given string and assigns it to the text field.
+// text:
 func (o *ActionCard) Text(v string) *ActionCard {
-	o.text = v
+	o.text = &v
 	return o
 }
 
-// GetTitle returns the Title field value
+// GetTitle returns the Title field value if set, zero value otherwise.
 func (o *ActionCard) GetTitle() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.title) {
 		var ret string
 		return ret
 	}
-
-	return o.title
+	return *o.title
 }
 
-// GetTitleOk returns a tuple with the Title field value
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ActionCard) GetTitleOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.title) {
 		return nil, false
 	}
-	return &o.title, true
+	return o.title, true
 }
 
-// Title sets field value
+// HasTitle returns a boolean if a field has been set.
+func (o *ActionCard) HasTitle() bool {
+	if o != nil && !utils.IsNil(o.title) {
+		return true
+	}
+
+	return false
+}
+
+// Title gets a reference to the given string and assigns it to the title field.
+// title:
 func (o *ActionCard) Title(v string) *ActionCard {
-	o.title = v
+	o.title = &v
 	return o
 }
 
@@ -241,13 +306,27 @@ func (o ActionCard) MarshalJSON() ([]byte, error) {
 
 func (o ActionCard) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["btnOrientation"] = o.btnOrientation
-	toSerialize["btns"] = o.btns.Get()
-	toSerialize["hideAvatar"] = o.hideAvatar
-	toSerialize["singleTitle"] = o.singleTitle
-	toSerialize["singleURL"] = o.singleURL
-	toSerialize["text"] = o.text
-	toSerialize["title"] = o.title
+	if !utils.IsNil(o.btnOrientation) {
+		toSerialize["btnOrientation"] = o.btnOrientation
+	}
+	if o.btns.IsSet() {
+		toSerialize["btns"] = o.btns.Get()
+	}
+	if !utils.IsNil(o.hideAvatar) {
+		toSerialize["hideAvatar"] = o.hideAvatar
+	}
+	if !utils.IsNil(o.singleTitle) {
+		toSerialize["singleTitle"] = o.singleTitle
+	}
+	if !utils.IsNil(o.singleURL) {
+		toSerialize["singleURL"] = o.singleURL
+	}
+	if !utils.IsNil(o.text) {
+		toSerialize["text"] = o.text
+	}
+	if !utils.IsNil(o.title) {
+		toSerialize["title"] = o.title
+	}
 	return toSerialize, nil
 }
 

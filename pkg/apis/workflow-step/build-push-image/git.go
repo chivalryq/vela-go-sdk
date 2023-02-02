@@ -21,18 +21,18 @@ var _ utils.MappedNullable = &Git{}
 
 // Git struct for Git
 type Git struct {
-	branch string `json:"branch"`
-	git    string `json:"git"`
+	branch *string `json:"branch,omitempty"`
+	git    *string `json:"git,omitempty"`
 }
 
 // NewGitWith instantiates a new Git object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGitWith(branch string, git string) *Git {
+func NewGitWith() *Git {
 	this := Git{}
-	this.branch = branch
-	this.git = git
+	var branch string = "master"
+	this.branch = &branch
 	return &this
 }
 
@@ -42,57 +42,75 @@ func NewGitWith(branch string, git string) *Git {
 func NewGit() *Git {
 	this := Git{}
 	var branch string = "master"
-	this.branch = branch
+	this.branch = &branch
 	return &this
 }
 
-// GetBranch returns the Branch field value
+// GetBranch returns the Branch field value if set, zero value otherwise.
 func (o *Git) GetBranch() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.branch) {
 		var ret string
 		return ret
 	}
-
-	return o.branch
+	return *o.branch
 }
 
-// GetBranchOk returns a tuple with the Branch field value
+// GetBranchOk returns a tuple with the Branch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Git) GetBranchOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.branch) {
 		return nil, false
 	}
-	return &o.branch, true
+	return o.branch, true
 }
 
-// Branch sets field value
+// HasBranch returns a boolean if a field has been set.
+func (o *Git) HasBranch() bool {
+	if o != nil && !utils.IsNil(o.branch) {
+		return true
+	}
+
+	return false
+}
+
+// Branch gets a reference to the given string and assigns it to the branch field.
+// branch:
 func (o *Git) Branch(v string) *Git {
-	o.branch = v
+	o.branch = &v
 	return o
 }
 
-// GetGit returns the Git field value
+// GetGit returns the Git field value if set, zero value otherwise.
 func (o *Git) GetGit() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.git) {
 		var ret string
 		return ret
 	}
-
-	return o.git
+	return *o.git
 }
 
-// GetGitOk returns a tuple with the Git field value
+// GetGitOk returns a tuple with the Git field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Git) GetGitOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.git) {
 		return nil, false
 	}
-	return &o.git, true
+	return o.git, true
 }
 
-// Git sets field value
+// HasGit returns a boolean if a field has been set.
+func (o *Git) HasGit() bool {
+	if o != nil && !utils.IsNil(o.git) {
+		return true
+	}
+
+	return false
+}
+
+// Git gets a reference to the given string and assigns it to the git field.
+// git:
 func (o *Git) Git(v string) *Git {
-	o.git = v
+	o.git = &v
 	return o
 }
 
@@ -106,8 +124,12 @@ func (o Git) MarshalJSON() ([]byte, error) {
 
 func (o Git) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["branch"] = o.branch
-	toSerialize["git"] = o.git
+	if !utils.IsNil(o.branch) {
+		toSerialize["branch"] = o.branch
+	}
+	if !utils.IsNil(o.git) {
+		toSerialize["git"] = o.git
+	}
 	return toSerialize, nil
 }
 

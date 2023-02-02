@@ -29,18 +29,18 @@ var _ utils.MappedNullable = &RequestSpec{}
 type RequestSpec struct {
 	body   map[string]interface{} `json:"body,omitempty"`
 	header *map[string]string     `json:"header,omitempty"`
-	method string                 `json:"method"`
-	url    string                 `json:"url"`
+	method *string                `json:"method,omitempty"`
+	url    *string                `json:"url,omitempty"`
 }
 
 // NewRequestSpecWith instantiates a new RequestSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRequestSpecWith(method string, url string) *RequestSpec {
+func NewRequestSpecWith() *RequestSpec {
 	this := RequestSpec{}
-	this.method = method
-	this.url = url
+	var method string = "GET"
+	this.method = &method
 	return &this
 }
 
@@ -50,7 +50,7 @@ func NewRequestSpecWith(method string, url string) *RequestSpec {
 func NewRequestSpec() *RequestSpec {
 	this := RequestSpec{}
 	var method string = "GET"
-	this.method = method
+	this.method = &method
 	return &this
 }
 
@@ -122,53 +122,71 @@ func (o *RequestWorkflowStep) Header(v map[string]string) *RequestWorkflowStep {
 	return o
 }
 
-// GetMethod returns the Method field value
+// GetMethod returns the Method field value if set, zero value otherwise.
 func (o *RequestWorkflowStep) GetMethod() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.method) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.method
+	return *o.Properties.method
 }
 
-// GetMethodOk returns a tuple with the Method field value
+// GetMethodOk returns a tuple with the Method field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RequestWorkflowStep) GetMethodOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.method) {
 		return nil, false
 	}
-	return &o.Properties.method, true
+	return o.Properties.method, true
 }
 
-// Method sets field value
+// HasMethod returns a boolean if a field has been set.
+func (o *RequestWorkflowStep) HasMethod() bool {
+	if o != nil && !utils.IsNil(o.Properties.method) {
+		return true
+	}
+
+	return false
+}
+
+// Method gets a reference to the given string and assigns it to the method field.
+// method:
 func (o *RequestWorkflowStep) Method(v string) *RequestWorkflowStep {
-	o.Properties.method = v
+	o.Properties.method = &v
 	return o
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *RequestWorkflowStep) GetUrl() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.url) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.url
+	return *o.Properties.url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RequestWorkflowStep) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.url) {
 		return nil, false
 	}
-	return &o.Properties.url, true
+	return o.Properties.url, true
 }
 
-// Url sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *RequestWorkflowStep) HasUrl() bool {
+	if o != nil && !utils.IsNil(o.Properties.url) {
+		return true
+	}
+
+	return false
+}
+
+// Url gets a reference to the given string and assigns it to the url field.
+// url:
 func (o *RequestWorkflowStep) Url(v string) *RequestWorkflowStep {
-	o.Properties.url = v
+	o.Properties.url = &v
 	return o
 }
 
@@ -188,8 +206,12 @@ func (o RequestSpec) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.header) {
 		toSerialize["header"] = o.header
 	}
-	toSerialize["method"] = o.method
-	toSerialize["url"] = o.url
+	if !utils.IsNil(o.method) {
+		toSerialize["method"] = o.method
+	}
+	if !utils.IsNil(o.url) {
+		toSerialize["url"] = o.url
+	}
 	return toSerialize, nil
 }
 
@@ -244,6 +266,7 @@ type RequestWorkflowStep struct {
 func Request(name string) *RequestWorkflowStep {
 	r := &RequestWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: RequestType,
 	}}
 	return r
 }
@@ -255,7 +278,7 @@ func (r *RequestWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  r.Base.DependsOn,

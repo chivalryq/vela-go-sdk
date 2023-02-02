@@ -21,16 +21,15 @@ var _ utils.MappedNullable = &Limits{}
 
 // Limits struct for Limits
 type Limits struct {
-	storage string `json:"storage"`
+	storage *string `json:"storage,omitempty"`
 }
 
 // NewLimitsWith instantiates a new Limits object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLimitsWith(storage string) *Limits {
+func NewLimitsWith() *Limits {
 	this := Limits{}
-	this.storage = storage
 	return &this
 }
 
@@ -42,28 +41,37 @@ func NewLimits() *Limits {
 	return &this
 }
 
-// GetStorage returns the Storage field value
+// GetStorage returns the Storage field value if set, zero value otherwise.
 func (o *Limits) GetStorage() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.storage) {
 		var ret string
 		return ret
 	}
-
-	return o.storage
+	return *o.storage
 }
 
-// GetStorageOk returns a tuple with the Storage field value
+// GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Limits) GetStorageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.storage) {
 		return nil, false
 	}
-	return &o.storage, true
+	return o.storage, true
 }
 
-// Storage sets field value
+// HasStorage returns a boolean if a field has been set.
+func (o *Limits) HasStorage() bool {
+	if o != nil && !utils.IsNil(o.storage) {
+		return true
+	}
+
+	return false
+}
+
+// Storage gets a reference to the given string and assigns it to the storage field.
+// storage:
 func (o *Limits) Storage(v string) *Limits {
-	o.storage = v
+	o.storage = &v
 	return o
 }
 
@@ -77,7 +85,9 @@ func (o Limits) MarshalJSON() ([]byte, error) {
 
 func (o Limits) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["storage"] = o.storage
+	if !utils.IsNil(o.storage) {
+		toSerialize["storage"] = o.storage
+	}
 	return toSerialize, nil
 }
 

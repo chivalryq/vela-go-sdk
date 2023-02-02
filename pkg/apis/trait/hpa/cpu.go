@@ -22,19 +22,21 @@ var _ utils.MappedNullable = &Cpu{}
 // Cpu struct for Cpu
 type Cpu struct {
 	// Specify resource metrics in terms of percentage(\"Utilization\") or direct value(\"AverageValue\")
-	type_ string `json:"type"`
+	type_ *string `json:"type,omitempty"`
 	// Specify the value of CPU utilization or averageValue
-	value int32 `json:"value"`
+	value *int32 `json:"value,omitempty"`
 }
 
 // NewCpuWith instantiates a new Cpu object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCpuWith(type_ string, value int32) *Cpu {
+func NewCpuWith() *Cpu {
 	this := Cpu{}
-	this.type_ = type_
-	this.value = value
+	var type_ string = "Utilization"
+	this.type_ = &type_
+	var value int32 = 50
+	this.value = &value
 	return &this
 }
 
@@ -44,59 +46,77 @@ func NewCpuWith(type_ string, value int32) *Cpu {
 func NewCpu() *Cpu {
 	this := Cpu{}
 	var type_ string = "Utilization"
-	this.type_ = type_
+	this.type_ = &type_
 	var value int32 = 50
-	this.value = value
+	this.value = &value
 	return &this
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *Cpu) GetType() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.type_) {
 		var ret string
 		return ret
 	}
-
-	return o.type_
+	return *o.type_
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Cpu) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.type_) {
 		return nil, false
 	}
-	return &o.type_, true
+	return o.type_, true
 }
 
-// Type sets field value
+// HasType returns a boolean if a field has been set.
+func (o *Cpu) HasType() bool {
+	if o != nil && !utils.IsNil(o.type_) {
+		return true
+	}
+
+	return false
+}
+
+// Type gets a reference to the given string and assigns it to the type_ field.
+// type_:  Specify resource metrics in terms of percentage(\"Utilization\") or direct value(\"AverageValue\")
 func (o *Cpu) Type(v string) *Cpu {
-	o.type_ = v
+	o.type_ = &v
 	return o
 }
 
-// GetValue returns the Value field value
+// GetValue returns the Value field value if set, zero value otherwise.
 func (o *Cpu) GetValue() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.value) {
 		var ret int32
 		return ret
 	}
-
-	return o.value
+	return *o.value
 }
 
-// GetValueOk returns a tuple with the Value field value
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Cpu) GetValueOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.value) {
 		return nil, false
 	}
-	return &o.value, true
+	return o.value, true
 }
 
-// Value sets field value
+// HasValue returns a boolean if a field has been set.
+func (o *Cpu) HasValue() bool {
+	if o != nil && !utils.IsNil(o.value) {
+		return true
+	}
+
+	return false
+}
+
+// Value gets a reference to the given int32 and assigns it to the value field.
+// value:  Specify the value of CPU utilization or averageValue
 func (o *Cpu) Value(v int32) *Cpu {
-	o.value = v
+	o.value = &v
 	return o
 }
 
@@ -110,8 +130,12 @@ func (o Cpu) MarshalJSON() ([]byte, error) {
 
 func (o Cpu) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.type_
-	toSerialize["value"] = o.value
+	if !utils.IsNil(o.type_) {
+		toSerialize["type"] = o.type_
+	}
+	if !utils.IsNil(o.value) {
+		toSerialize["value"] = o.value
+	}
 	return toSerialize, nil
 }
 

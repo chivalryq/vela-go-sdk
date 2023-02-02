@@ -22,22 +22,23 @@ var _ utils.MappedNullable = &PatchParams{}
 // PatchParams struct for PatchParams
 type PatchParams struct {
 	// Specify the name of the target container, if not set, use the component name
-	containerName string `json:"containerName"`
+	containerName *string `json:"containerName,omitempty"`
 	// Specify the image of the container
-	image string `json:"image"`
+	image *string `json:"image,omitempty"`
 	// Specify the image pull policy of the container
-	imagePullPolicy string `json:"imagePullPolicy"`
+	imagePullPolicy *string `json:"imagePullPolicy,omitempty"`
 }
 
 // NewPatchParamsWith instantiates a new PatchParams object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPatchParamsWith(containerName string, image string, imagePullPolicy string) *PatchParams {
+func NewPatchParamsWith() *PatchParams {
 	this := PatchParams{}
-	this.containerName = containerName
-	this.image = image
-	this.imagePullPolicy = imagePullPolicy
+	var containerName string = ""
+	this.containerName = &containerName
+	var imagePullPolicy string = ""
+	this.imagePullPolicy = &imagePullPolicy
 	return &this
 }
 
@@ -47,84 +48,111 @@ func NewPatchParamsWith(containerName string, image string, imagePullPolicy stri
 func NewPatchParams() *PatchParams {
 	this := PatchParams{}
 	var containerName string = ""
-	this.containerName = containerName
+	this.containerName = &containerName
 	var imagePullPolicy string = ""
-	this.imagePullPolicy = imagePullPolicy
+	this.imagePullPolicy = &imagePullPolicy
 	return &this
 }
 
-// GetContainerName returns the ContainerName field value
+// GetContainerName returns the ContainerName field value if set, zero value otherwise.
 func (o *PatchParams) GetContainerName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.containerName) {
 		var ret string
 		return ret
 	}
-
-	return o.containerName
+	return *o.containerName
 }
 
-// GetContainerNameOk returns a tuple with the ContainerName field value
+// GetContainerNameOk returns a tuple with the ContainerName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchParams) GetContainerNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.containerName) {
 		return nil, false
 	}
-	return &o.containerName, true
+	return o.containerName, true
 }
 
-// ContainerName sets field value
+// HasContainerName returns a boolean if a field has been set.
+func (o *PatchParams) HasContainerName() bool {
+	if o != nil && !utils.IsNil(o.containerName) {
+		return true
+	}
+
+	return false
+}
+
+// ContainerName gets a reference to the given string and assigns it to the containerName field.
+// containerName:  Specify the name of the target container, if not set, use the component name
 func (o *PatchParams) ContainerName(v string) *PatchParams {
-	o.containerName = v
+	o.containerName = &v
 	return o
 }
 
-// GetImage returns the Image field value
+// GetImage returns the Image field value if set, zero value otherwise.
 func (o *PatchParams) GetImage() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.image) {
 		var ret string
 		return ret
 	}
-
-	return o.image
+	return *o.image
 }
 
-// GetImageOk returns a tuple with the Image field value
+// GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchParams) GetImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.image) {
 		return nil, false
 	}
-	return &o.image, true
+	return o.image, true
 }
 
-// Image sets field value
+// HasImage returns a boolean if a field has been set.
+func (o *PatchParams) HasImage() bool {
+	if o != nil && !utils.IsNil(o.image) {
+		return true
+	}
+
+	return false
+}
+
+// Image gets a reference to the given string and assigns it to the image field.
+// image:  Specify the image of the container
 func (o *PatchParams) Image(v string) *PatchParams {
-	o.image = v
+	o.image = &v
 	return o
 }
 
-// GetImagePullPolicy returns the ImagePullPolicy field value
+// GetImagePullPolicy returns the ImagePullPolicy field value if set, zero value otherwise.
 func (o *PatchParams) GetImagePullPolicy() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.imagePullPolicy) {
 		var ret string
 		return ret
 	}
-
-	return o.imagePullPolicy
+	return *o.imagePullPolicy
 }
 
-// GetImagePullPolicyOk returns a tuple with the ImagePullPolicy field value
+// GetImagePullPolicyOk returns a tuple with the ImagePullPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchParams) GetImagePullPolicyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.imagePullPolicy) {
 		return nil, false
 	}
-	return &o.imagePullPolicy, true
+	return o.imagePullPolicy, true
 }
 
-// ImagePullPolicy sets field value
+// HasImagePullPolicy returns a boolean if a field has been set.
+func (o *PatchParams) HasImagePullPolicy() bool {
+	if o != nil && !utils.IsNil(o.imagePullPolicy) {
+		return true
+	}
+
+	return false
+}
+
+// ImagePullPolicy gets a reference to the given string and assigns it to the imagePullPolicy field.
+// imagePullPolicy:  Specify the image pull policy of the container
 func (o *PatchParams) ImagePullPolicy(v string) *PatchParams {
-	o.imagePullPolicy = v
+	o.imagePullPolicy = &v
 	return o
 }
 
@@ -138,9 +166,15 @@ func (o PatchParams) MarshalJSON() ([]byte, error) {
 
 func (o PatchParams) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["containerName"] = o.containerName
-	toSerialize["image"] = o.image
-	toSerialize["imagePullPolicy"] = o.imagePullPolicy
+	if !utils.IsNil(o.containerName) {
+		toSerialize["containerName"] = o.containerName
+	}
+	if !utils.IsNil(o.image) {
+		toSerialize["image"] = o.image
+	}
+	if !utils.IsNil(o.imagePullPolicy) {
+		toSerialize["imagePullPolicy"] = o.imagePullPolicy
+	}
 	return toSerialize, nil
 }
 

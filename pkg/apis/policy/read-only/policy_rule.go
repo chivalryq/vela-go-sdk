@@ -22,16 +22,15 @@ var _ utils.MappedNullable = &PolicyRule{}
 // PolicyRule struct for PolicyRule
 type PolicyRule struct {
 	// Specify how to select the targets of the rule
-	selector []RuleSelector `json:"selector"`
+	selector []RuleSelector `json:"selector,omitempty"`
 }
 
 // NewPolicyRuleWith instantiates a new PolicyRule object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPolicyRuleWith(selector []RuleSelector) *PolicyRule {
+func NewPolicyRuleWith() *PolicyRule {
 	this := PolicyRule{}
-	this.selector = selector
 	return &this
 }
 
@@ -43,26 +42,35 @@ func NewPolicyRule() *PolicyRule {
 	return &this
 }
 
-// GetSelector returns the Selector field value
+// GetSelector returns the Selector field value if set, zero value otherwise.
 func (o *PolicyRule) GetSelector() []RuleSelector {
-	if o == nil {
+	if o == nil || utils.IsNil(o.selector) {
 		var ret []RuleSelector
 		return ret
 	}
-
 	return o.selector
 }
 
-// GetSelectorOk returns a tuple with the Selector field value
+// GetSelectorOk returns a tuple with the Selector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PolicyRule) GetSelectorOk() ([]RuleSelector, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.selector) {
 		return nil, false
 	}
 	return o.selector, true
 }
 
-// Selector sets field value
+// HasSelector returns a boolean if a field has been set.
+func (o *PolicyRule) HasSelector() bool {
+	if o != nil && !utils.IsNil(o.selector) {
+		return true
+	}
+
+	return false
+}
+
+// Selector gets a reference to the given []RuleSelector and assigns it to the selector field.
+// selector:  Specify how to select the targets of the rule
 func (o *PolicyRule) Selector(v []RuleSelector) *PolicyRule {
 	o.selector = v
 	return o
@@ -78,7 +86,9 @@ func (o PolicyRule) MarshalJSON() ([]byte, error) {
 
 func (o PolicyRule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["selector"] = o.selector
+	if !utils.IsNil(o.selector) {
+		toSerialize["selector"] = o.selector
+	}
 	return toSerialize, nil
 }
 

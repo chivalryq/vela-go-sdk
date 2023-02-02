@@ -30,19 +30,19 @@ type Privileges struct {
 	// Specify the resources to be allowed
 	resources []string `json:"resources,omitempty"`
 	// Specify the scope of the privileges, default to be namespace scope
-	scope string `json:"scope"`
+	scope *string `json:"scope,omitempty"`
 	// Specify the verbs to be allowed for the resource
-	verbs []string `json:"verbs"`
+	verbs []string `json:"verbs,omitempty"`
 }
 
 // NewPrivilegesWith instantiates a new Privileges object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPrivilegesWith(scope string, verbs []string) *Privileges {
+func NewPrivilegesWith() *Privileges {
 	this := Privileges{}
-	this.scope = scope
-	this.verbs = verbs
+	var scope string = "namespace"
+	this.scope = &scope
 	return &this
 }
 
@@ -52,7 +52,7 @@ func NewPrivilegesWith(scope string, verbs []string) *Privileges {
 func NewPrivileges() *Privileges {
 	this := Privileges{}
 	var scope string = "namespace"
-	this.scope = scope
+	this.scope = &scope
 	return &this
 }
 
@@ -192,51 +192,69 @@ func (o *Privileges) Resources(v []string) *Privileges {
 	return o
 }
 
-// GetScope returns the Scope field value
+// GetScope returns the Scope field value if set, zero value otherwise.
 func (o *Privileges) GetScope() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.scope) {
 		var ret string
 		return ret
 	}
-
-	return o.scope
+	return *o.scope
 }
 
-// GetScopeOk returns a tuple with the Scope field value
+// GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Privileges) GetScopeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.scope) {
 		return nil, false
 	}
-	return &o.scope, true
+	return o.scope, true
 }
 
-// Scope sets field value
+// HasScope returns a boolean if a field has been set.
+func (o *Privileges) HasScope() bool {
+	if o != nil && !utils.IsNil(o.scope) {
+		return true
+	}
+
+	return false
+}
+
+// Scope gets a reference to the given string and assigns it to the scope field.
+// scope:  Specify the scope of the privileges, default to be namespace scope
 func (o *Privileges) Scope(v string) *Privileges {
-	o.scope = v
+	o.scope = &v
 	return o
 }
 
-// GetVerbs returns the Verbs field value
+// GetVerbs returns the Verbs field value if set, zero value otherwise.
 func (o *Privileges) GetVerbs() []string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.verbs) {
 		var ret []string
 		return ret
 	}
-
 	return o.verbs
 }
 
-// GetVerbsOk returns a tuple with the Verbs field value
+// GetVerbsOk returns a tuple with the Verbs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Privileges) GetVerbsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.verbs) {
 		return nil, false
 	}
 	return o.verbs, true
 }
 
-// Verbs sets field value
+// HasVerbs returns a boolean if a field has been set.
+func (o *Privileges) HasVerbs() bool {
+	if o != nil && !utils.IsNil(o.verbs) {
+		return true
+	}
+
+	return false
+}
+
+// Verbs gets a reference to the given []string and assigns it to the verbs field.
+// verbs:  Specify the verbs to be allowed for the resource
 func (o *Privileges) Verbs(v []string) *Privileges {
 	o.verbs = v
 	return o
@@ -264,8 +282,12 @@ func (o Privileges) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.resources) {
 		toSerialize["resources"] = o.resources
 	}
-	toSerialize["scope"] = o.scope
-	toSerialize["verbs"] = o.verbs
+	if !utils.IsNil(o.scope) {
+		toSerialize["scope"] = o.scope
+	}
+	if !utils.IsNil(o.verbs) {
+		toSerialize["verbs"] = o.verbs
+	}
 	return toSerialize, nil
 }
 

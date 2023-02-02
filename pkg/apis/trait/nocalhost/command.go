@@ -21,18 +21,16 @@ var _ utils.MappedNullable = &Command{}
 
 // Command struct for Command
 type Command struct {
-	debug []string `json:"debug"`
-	run   []string `json:"run"`
+	debug []string `json:"debug,omitempty"`
+	run   []string `json:"run,omitempty"`
 }
 
 // NewCommandWith instantiates a new Command object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCommandWith(debug []string, run []string) *Command {
+func NewCommandWith() *Command {
 	this := Command{}
-	this.debug = debug
-	this.run = run
 	return &this
 }
 
@@ -44,51 +42,69 @@ func NewCommand() *Command {
 	return &this
 }
 
-// GetDebug returns the Debug field value
+// GetDebug returns the Debug field value if set, zero value otherwise.
 func (o *Command) GetDebug() []string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.debug) {
 		var ret []string
 		return ret
 	}
-
 	return o.debug
 }
 
-// GetDebugOk returns a tuple with the Debug field value
+// GetDebugOk returns a tuple with the Debug field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Command) GetDebugOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.debug) {
 		return nil, false
 	}
 	return o.debug, true
 }
 
-// Debug sets field value
+// HasDebug returns a boolean if a field has been set.
+func (o *Command) HasDebug() bool {
+	if o != nil && !utils.IsNil(o.debug) {
+		return true
+	}
+
+	return false
+}
+
+// Debug gets a reference to the given []string and assigns it to the debug field.
+// debug:
 func (o *Command) Debug(v []string) *Command {
 	o.debug = v
 	return o
 }
 
-// GetRun returns the Run field value
+// GetRun returns the Run field value if set, zero value otherwise.
 func (o *Command) GetRun() []string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.run) {
 		var ret []string
 		return ret
 	}
-
 	return o.run
 }
 
-// GetRunOk returns a tuple with the Run field value
+// GetRunOk returns a tuple with the Run field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Command) GetRunOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.run) {
 		return nil, false
 	}
 	return o.run, true
 }
 
-// Run sets field value
+// HasRun returns a boolean if a field has been set.
+func (o *Command) HasRun() bool {
+	if o != nil && !utils.IsNil(o.run) {
+		return true
+	}
+
+	return false
+}
+
+// Run gets a reference to the given []string and assigns it to the run field.
+// run:
 func (o *Command) Run(v []string) *Command {
 	o.run = v
 	return o
@@ -104,8 +120,12 @@ func (o Command) MarshalJSON() ([]byte, error) {
 
 func (o Command) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["debug"] = o.debug
-	toSerialize["run"] = o.run
+	if !utils.IsNil(o.debug) {
+		toSerialize["debug"] = o.debug
+	}
+	if !utils.IsNil(o.run) {
+		toSerialize["run"] = o.run
+	}
 	return toSerialize, nil
 }
 

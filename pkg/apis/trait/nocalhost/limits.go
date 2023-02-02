@@ -21,18 +21,20 @@ var _ utils.MappedNullable = &Limits{}
 
 // Limits struct for Limits
 type Limits struct {
-	cpu    string `json:"cpu"`
-	memory string `json:"memory"`
+	cpu    *string `json:"cpu,omitempty"`
+	memory *string `json:"memory,omitempty"`
 }
 
 // NewLimitsWith instantiates a new Limits object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLimitsWith(cpu string, memory string) *Limits {
+func NewLimitsWith() *Limits {
 	this := Limits{}
-	this.cpu = cpu
-	this.memory = memory
+	var cpu string = "2"
+	this.cpu = &cpu
+	var memory string = "2Gi"
+	this.memory = &memory
 	return &this
 }
 
@@ -42,59 +44,77 @@ func NewLimitsWith(cpu string, memory string) *Limits {
 func NewLimits() *Limits {
 	this := Limits{}
 	var cpu string = "2"
-	this.cpu = cpu
+	this.cpu = &cpu
 	var memory string = "2Gi"
-	this.memory = memory
+	this.memory = &memory
 	return &this
 }
 
-// GetCpu returns the Cpu field value
+// GetCpu returns the Cpu field value if set, zero value otherwise.
 func (o *Limits) GetCpu() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.cpu) {
 		var ret string
 		return ret
 	}
-
-	return o.cpu
+	return *o.cpu
 }
 
-// GetCpuOk returns a tuple with the Cpu field value
+// GetCpuOk returns a tuple with the Cpu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Limits) GetCpuOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.cpu) {
 		return nil, false
 	}
-	return &o.cpu, true
+	return o.cpu, true
 }
 
-// Cpu sets field value
+// HasCpu returns a boolean if a field has been set.
+func (o *Limits) HasCpu() bool {
+	if o != nil && !utils.IsNil(o.cpu) {
+		return true
+	}
+
+	return false
+}
+
+// Cpu gets a reference to the given string and assigns it to the cpu field.
+// cpu:
 func (o *Limits) Cpu(v string) *Limits {
-	o.cpu = v
+	o.cpu = &v
 	return o
 }
 
-// GetMemory returns the Memory field value
+// GetMemory returns the Memory field value if set, zero value otherwise.
 func (o *Limits) GetMemory() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.memory) {
 		var ret string
 		return ret
 	}
-
-	return o.memory
+	return *o.memory
 }
 
-// GetMemoryOk returns a tuple with the Memory field value
+// GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Limits) GetMemoryOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.memory) {
 		return nil, false
 	}
-	return &o.memory, true
+	return o.memory, true
 }
 
-// Memory sets field value
+// HasMemory returns a boolean if a field has been set.
+func (o *Limits) HasMemory() bool {
+	if o != nil && !utils.IsNil(o.memory) {
+		return true
+	}
+
+	return false
+}
+
+// Memory gets a reference to the given string and assigns it to the memory field.
+// memory:
 func (o *Limits) Memory(v string) *Limits {
-	o.memory = v
+	o.memory = &v
 	return o
 }
 
@@ -108,8 +128,12 @@ func (o Limits) MarshalJSON() ([]byte, error) {
 
 func (o Limits) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["cpu"] = o.cpu
-	toSerialize["memory"] = o.memory
+	if !utils.IsNil(o.cpu) {
+		toSerialize["cpu"] = o.cpu
+	}
+	if !utils.IsNil(o.memory) {
+		toSerialize["memory"] = o.memory
+	}
 	return toSerialize, nil
 }
 

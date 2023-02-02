@@ -28,7 +28,7 @@ type HttpGet struct {
 	// The endpoint, relative to the port, to which the HTTP GET request should be directed.
 	path *string `json:"path,omitempty"`
 	// The port numer to access on the host or container.
-	port int32 `json:"port"`
+	port *int32 `json:"port,omitempty"`
 	// The Scheme to use for connecting to the host.
 	scheme *string `json:"scheme,omitempty"`
 }
@@ -37,9 +37,8 @@ type HttpGet struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHttpGetWith(port int32) *HttpGet {
+func NewHttpGetWith() *HttpGet {
 	this := HttpGet{}
-	this.port = port
 	var scheme string = "HTTP"
 	this.scheme = &scheme
 	return &this
@@ -157,28 +156,37 @@ func (o *HttpGet) Path(v string) *HttpGet {
 	return o
 }
 
-// GetPort returns the Port field value
+// GetPort returns the Port field value if set, zero value otherwise.
 func (o *HttpGet) GetPort() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.port) {
 		var ret int32
 		return ret
 	}
-
-	return o.port
+	return *o.port
 }
 
-// GetPortOk returns a tuple with the Port field value
+// GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HttpGet) GetPortOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.port) {
 		return nil, false
 	}
-	return &o.port, true
+	return o.port, true
 }
 
-// Port sets field value
+// HasPort returns a boolean if a field has been set.
+func (o *HttpGet) HasPort() bool {
+	if o != nil && !utils.IsNil(o.port) {
+		return true
+	}
+
+	return false
+}
+
+// Port gets a reference to the given int32 and assigns it to the port field.
+// port:  The port numer to access on the host or container.
 func (o *HttpGet) Port(v int32) *HttpGet {
-	o.port = v
+	o.port = &v
 	return o
 }
 
@@ -235,7 +243,9 @@ func (o HttpGet) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.path) {
 		toSerialize["path"] = o.path
 	}
-	toSerialize["port"] = o.port
+	if !utils.IsNil(o.port) {
+		toSerialize["port"] = o.port
+	}
 	if !utils.IsNil(o.scheme) {
 		toSerialize["scheme"] = o.scheme
 	}

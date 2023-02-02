@@ -147,6 +147,7 @@ type SharedResourcePolicy struct {
 func SharedResource(name string) *SharedResourcePolicy {
 	s := &SharedResourcePolicy{Base: apis.PolicyBase{
 		Name: name,
+		Type: SharedResourceType,
 	}}
 	return s
 }

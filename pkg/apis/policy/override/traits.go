@@ -22,21 +22,21 @@ var _ utils.MappedNullable = &Traits{}
 // Traits struct for Traits
 type Traits struct {
 	// Specify if the trait should be remove, default false
-	disable bool `json:"disable"`
+	disable *bool `json:"disable,omitempty"`
 	// Specify the properties to override.
 	properties map[string]interface{} `json:"properties,omitempty"`
 	// Specify the type of the trait to be patched.
-	type_ string `json:"type"`
+	type_ *string `json:"type,omitempty"`
 }
 
 // NewTraitsWith instantiates a new Traits object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTraitsWith(disable bool, type_ string) *Traits {
+func NewTraitsWith() *Traits {
 	this := Traits{}
-	this.disable = disable
-	this.type_ = type_
+	var disable bool = false
+	this.disable = &disable
 	return &this
 }
 
@@ -46,32 +46,41 @@ func NewTraitsWith(disable bool, type_ string) *Traits {
 func NewTraits() *Traits {
 	this := Traits{}
 	var disable bool = false
-	this.disable = disable
+	this.disable = &disable
 	return &this
 }
 
-// GetDisable returns the Disable field value
+// GetDisable returns the Disable field value if set, zero value otherwise.
 func (o *Traits) GetDisable() bool {
-	if o == nil {
+	if o == nil || utils.IsNil(o.disable) {
 		var ret bool
 		return ret
 	}
-
-	return o.disable
+	return *o.disable
 }
 
-// GetDisableOk returns a tuple with the Disable field value
+// GetDisableOk returns a tuple with the Disable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Traits) GetDisableOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.disable) {
 		return nil, false
 	}
-	return &o.disable, true
+	return o.disable, true
 }
 
-// Disable sets field value
+// HasDisable returns a boolean if a field has been set.
+func (o *Traits) HasDisable() bool {
+	if o != nil && !utils.IsNil(o.disable) {
+		return true
+	}
+
+	return false
+}
+
+// Disable gets a reference to the given bool and assigns it to the disable field.
+// disable:  Specify if the trait should be remove, default false
 func (o *Traits) Disable(v bool) *Traits {
-	o.disable = v
+	o.disable = &v
 	return o
 }
 
@@ -109,28 +118,37 @@ func (o *Traits) Properties(v map[string]interface{}) *Traits {
 	return o
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *Traits) GetType() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.type_) {
 		var ret string
 		return ret
 	}
-
-	return o.type_
+	return *o.type_
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Traits) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.type_) {
 		return nil, false
 	}
-	return &o.type_, true
+	return o.type_, true
 }
 
-// Type sets field value
+// HasType returns a boolean if a field has been set.
+func (o *Traits) HasType() bool {
+	if o != nil && !utils.IsNil(o.type_) {
+		return true
+	}
+
+	return false
+}
+
+// Type gets a reference to the given string and assigns it to the type_ field.
+// type_:  Specify the type of the trait to be patched.
 func (o *Traits) Type(v string) *Traits {
-	o.type_ = v
+	o.type_ = &v
 	return o
 }
 
@@ -144,11 +162,15 @@ func (o Traits) MarshalJSON() ([]byte, error) {
 
 func (o Traits) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["disable"] = o.disable
+	if !utils.IsNil(o.disable) {
+		toSerialize["disable"] = o.disable
+	}
 	if !utils.IsNil(o.properties) {
 		toSerialize["properties"] = o.properties
 	}
-	toSerialize["type"] = o.type_
+	if !utils.IsNil(o.type_) {
+		toSerialize["type"] = o.type_
+	}
 	return toSerialize, nil
 }
 

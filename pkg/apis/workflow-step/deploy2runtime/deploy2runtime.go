@@ -149,6 +149,7 @@ type Deploy2runtimeWorkflowStep struct {
 func Deploy2runtime(name string) *Deploy2runtimeWorkflowStep {
 	d := &Deploy2runtimeWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: Deploy2runtimeType,
 	}}
 	return d
 }
@@ -160,7 +161,7 @@ func (d *Deploy2runtimeWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  d.Base.DependsOn,

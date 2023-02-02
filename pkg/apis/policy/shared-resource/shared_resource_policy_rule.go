@@ -22,16 +22,15 @@ var _ utils.MappedNullable = &SharedResourcePolicyRule{}
 // SharedResourcePolicyRule struct for SharedResourcePolicyRule
 type SharedResourcePolicyRule struct {
 	// Specify how to select the targets of the rule
-	selector []ResourcePolicyRuleSelector `json:"selector"`
+	selector []ResourcePolicyRuleSelector `json:"selector,omitempty"`
 }
 
 // NewSharedResourcePolicyRuleWith instantiates a new SharedResourcePolicyRule object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSharedResourcePolicyRuleWith(selector []ResourcePolicyRuleSelector) *SharedResourcePolicyRule {
+func NewSharedResourcePolicyRuleWith() *SharedResourcePolicyRule {
 	this := SharedResourcePolicyRule{}
-	this.selector = selector
 	return &this
 }
 
@@ -43,26 +42,35 @@ func NewSharedResourcePolicyRule() *SharedResourcePolicyRule {
 	return &this
 }
 
-// GetSelector returns the Selector field value
+// GetSelector returns the Selector field value if set, zero value otherwise.
 func (o *SharedResourcePolicyRule) GetSelector() []ResourcePolicyRuleSelector {
-	if o == nil {
+	if o == nil || utils.IsNil(o.selector) {
 		var ret []ResourcePolicyRuleSelector
 		return ret
 	}
-
 	return o.selector
 }
 
-// GetSelectorOk returns a tuple with the Selector field value
+// GetSelectorOk returns a tuple with the Selector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SharedResourcePolicyRule) GetSelectorOk() ([]ResourcePolicyRuleSelector, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.selector) {
 		return nil, false
 	}
 	return o.selector, true
 }
 
-// Selector sets field value
+// HasSelector returns a boolean if a field has been set.
+func (o *SharedResourcePolicyRule) HasSelector() bool {
+	if o != nil && !utils.IsNil(o.selector) {
+		return true
+	}
+
+	return false
+}
+
+// Selector gets a reference to the given []ResourcePolicyRuleSelector and assigns it to the selector field.
+// selector:  Specify how to select the targets of the rule
 func (o *SharedResourcePolicyRule) Selector(v []ResourcePolicyRuleSelector) *SharedResourcePolicyRule {
 	o.selector = v
 	return o
@@ -78,7 +86,9 @@ func (o SharedResourcePolicyRule) MarshalJSON() ([]byte, error) {
 
 func (o SharedResourcePolicyRule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["selector"] = o.selector
+	if !utils.IsNil(o.selector) {
+		toSerialize["selector"] = o.selector
+	}
 	return toSerialize, nil
 }
 

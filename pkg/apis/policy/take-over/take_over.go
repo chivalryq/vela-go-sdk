@@ -147,6 +147,7 @@ type TakeOverPolicy struct {
 func TakeOver(name string) *TakeOverPolicy {
 	t := &TakeOverPolicy{Base: apis.PolicyBase{
 		Name: name,
+		Type: TakeOverType,
 	}}
 	return t
 }

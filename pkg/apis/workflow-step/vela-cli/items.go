@@ -21,20 +21,19 @@ var _ utils.MappedNullable = &Items{}
 
 // Items struct for Items
 type Items struct {
-	key  string `json:"key"`
-	mode int32  `json:"mode"`
-	path string `json:"path"`
+	key  *string `json:"key,omitempty"`
+	mode *int32  `json:"mode,omitempty"`
+	path *string `json:"path,omitempty"`
 }
 
 // NewItemsWith instantiates a new Items object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewItemsWith(key string, mode int32, path string) *Items {
+func NewItemsWith() *Items {
 	this := Items{}
-	this.key = key
-	this.mode = mode
-	this.path = path
+	var mode int32 = 511
+	this.mode = &mode
 	return &this
 }
 
@@ -44,82 +43,109 @@ func NewItemsWith(key string, mode int32, path string) *Items {
 func NewItems() *Items {
 	this := Items{}
 	var mode int32 = 511
-	this.mode = mode
+	this.mode = &mode
 	return &this
 }
 
-// GetKey returns the Key field value
+// GetKey returns the Key field value if set, zero value otherwise.
 func (o *Items) GetKey() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.key) {
 		var ret string
 		return ret
 	}
-
-	return o.key
+	return *o.key
 }
 
-// GetKeyOk returns a tuple with the Key field value
+// GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Items) GetKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.key) {
 		return nil, false
 	}
-	return &o.key, true
+	return o.key, true
 }
 
-// Key sets field value
+// HasKey returns a boolean if a field has been set.
+func (o *Items) HasKey() bool {
+	if o != nil && !utils.IsNil(o.key) {
+		return true
+	}
+
+	return false
+}
+
+// Key gets a reference to the given string and assigns it to the key field.
+// key:
 func (o *Items) Key(v string) *Items {
-	o.key = v
+	o.key = &v
 	return o
 }
 
-// GetMode returns the Mode field value
+// GetMode returns the Mode field value if set, zero value otherwise.
 func (o *Items) GetMode() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.mode) {
 		var ret int32
 		return ret
 	}
-
-	return o.mode
+	return *o.mode
 }
 
-// GetModeOk returns a tuple with the Mode field value
+// GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Items) GetModeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.mode) {
 		return nil, false
 	}
-	return &o.mode, true
+	return o.mode, true
 }
 
-// Mode sets field value
+// HasMode returns a boolean if a field has been set.
+func (o *Items) HasMode() bool {
+	if o != nil && !utils.IsNil(o.mode) {
+		return true
+	}
+
+	return false
+}
+
+// Mode gets a reference to the given int32 and assigns it to the mode field.
+// mode:
 func (o *Items) Mode(v int32) *Items {
-	o.mode = v
+	o.mode = &v
 	return o
 }
 
-// GetPath returns the Path field value
+// GetPath returns the Path field value if set, zero value otherwise.
 func (o *Items) GetPath() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.path) {
 		var ret string
 		return ret
 	}
-
-	return o.path
+	return *o.path
 }
 
-// GetPathOk returns a tuple with the Path field value
+// GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Items) GetPathOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.path) {
 		return nil, false
 	}
-	return &o.path, true
+	return o.path, true
 }
 
-// Path sets field value
+// HasPath returns a boolean if a field has been set.
+func (o *Items) HasPath() bool {
+	if o != nil && !utils.IsNil(o.path) {
+		return true
+	}
+
+	return false
+}
+
+// Path gets a reference to the given string and assigns it to the path field.
+// path:
 func (o *Items) Path(v string) *Items {
-	o.path = v
+	o.path = &v
 	return o
 }
 
@@ -133,9 +159,15 @@ func (o Items) MarshalJSON() ([]byte, error) {
 
 func (o Items) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["key"] = o.key
-	toSerialize["mode"] = o.mode
-	toSerialize["path"] = o.path
+	if !utils.IsNil(o.key) {
+		toSerialize["key"] = o.key
+	}
+	if !utils.IsNil(o.mode) {
+		toSerialize["mode"] = o.mode
+	}
+	if !utils.IsNil(o.path) {
+		toSerialize["path"] = o.path
+	}
 	return toSerialize, nil
 }
 

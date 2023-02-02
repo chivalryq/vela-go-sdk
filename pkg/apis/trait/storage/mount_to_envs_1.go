@@ -21,18 +21,16 @@ var _ utils.MappedNullable = &MountToEnvs1{}
 
 // MountToEnvs1 struct for MountToEnvs1
 type MountToEnvs1 struct {
-	envName   string `json:"envName"`
-	secretKey string `json:"secretKey"`
+	envName   *string `json:"envName,omitempty"`
+	secretKey *string `json:"secretKey,omitempty"`
 }
 
 // NewMountToEnvs1With instantiates a new MountToEnvs1 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMountToEnvs1With(envName string, secretKey string) *MountToEnvs1 {
+func NewMountToEnvs1With() *MountToEnvs1 {
 	this := MountToEnvs1{}
-	this.envName = envName
-	this.secretKey = secretKey
 	return &this
 }
 
@@ -44,53 +42,71 @@ func NewMountToEnvs1() *MountToEnvs1 {
 	return &this
 }
 
-// GetEnvName returns the EnvName field value
+// GetEnvName returns the EnvName field value if set, zero value otherwise.
 func (o *MountToEnvs1) GetEnvName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.envName) {
 		var ret string
 		return ret
 	}
-
-	return o.envName
+	return *o.envName
 }
 
-// GetEnvNameOk returns a tuple with the EnvName field value
+// GetEnvNameOk returns a tuple with the EnvName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MountToEnvs1) GetEnvNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.envName) {
 		return nil, false
 	}
-	return &o.envName, true
+	return o.envName, true
 }
 
-// EnvName sets field value
+// HasEnvName returns a boolean if a field has been set.
+func (o *MountToEnvs1) HasEnvName() bool {
+	if o != nil && !utils.IsNil(o.envName) {
+		return true
+	}
+
+	return false
+}
+
+// EnvName gets a reference to the given string and assigns it to the envName field.
+// envName:
 func (o *MountToEnvs1) EnvName(v string) *MountToEnvs1 {
-	o.envName = v
+	o.envName = &v
 	return o
 }
 
-// GetSecretKey returns the SecretKey field value
+// GetSecretKey returns the SecretKey field value if set, zero value otherwise.
 func (o *MountToEnvs1) GetSecretKey() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.secretKey) {
 		var ret string
 		return ret
 	}
-
-	return o.secretKey
+	return *o.secretKey
 }
 
-// GetSecretKeyOk returns a tuple with the SecretKey field value
+// GetSecretKeyOk returns a tuple with the SecretKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MountToEnvs1) GetSecretKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.secretKey) {
 		return nil, false
 	}
-	return &o.secretKey, true
+	return o.secretKey, true
 }
 
-// SecretKey sets field value
+// HasSecretKey returns a boolean if a field has been set.
+func (o *MountToEnvs1) HasSecretKey() bool {
+	if o != nil && !utils.IsNil(o.secretKey) {
+		return true
+	}
+
+	return false
+}
+
+// SecretKey gets a reference to the given string and assigns it to the secretKey field.
+// secretKey:
 func (o *MountToEnvs1) SecretKey(v string) *MountToEnvs1 {
-	o.secretKey = v
+	o.secretKey = &v
 	return o
 }
 
@@ -104,8 +120,12 @@ func (o MountToEnvs1) MarshalJSON() ([]byte, error) {
 
 func (o MountToEnvs1) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["envName"] = o.envName
-	toSerialize["secretKey"] = o.secretKey
+	if !utils.IsNil(o.envName) {
+		toSerialize["envName"] = o.envName
+	}
+	if !utils.IsNil(o.secretKey) {
+		toSerialize["secretKey"] = o.secretKey
+	}
 	return toSerialize, nil
 }
 

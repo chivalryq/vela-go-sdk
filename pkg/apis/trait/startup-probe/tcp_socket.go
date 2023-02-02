@@ -24,16 +24,15 @@ type TcpSocket struct {
 	// Host name to connect to, defaults to the pod IP.
 	host *string `json:"host,omitempty"`
 	// Number or name of the port to access on the container.
-	port string `json:"port"`
+	port *string `json:"port,omitempty"`
 }
 
 // NewTcpSocketWith instantiates a new TcpSocket object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTcpSocketWith(port string) *TcpSocket {
+func NewTcpSocketWith() *TcpSocket {
 	this := TcpSocket{}
-	this.port = port
 	return &this
 }
 
@@ -79,28 +78,37 @@ func (o *TcpSocket) Host(v string) *TcpSocket {
 	return o
 }
 
-// GetPort returns the Port field value
+// GetPort returns the Port field value if set, zero value otherwise.
 func (o *TcpSocket) GetPort() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.port) {
 		var ret string
 		return ret
 	}
-
-	return o.port
+	return *o.port
 }
 
-// GetPortOk returns a tuple with the Port field value
+// GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TcpSocket) GetPortOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.port) {
 		return nil, false
 	}
-	return &o.port, true
+	return o.port, true
 }
 
-// Port sets field value
+// HasPort returns a boolean if a field has been set.
+func (o *TcpSocket) HasPort() bool {
+	if o != nil && !utils.IsNil(o.port) {
+		return true
+	}
+
+	return false
+}
+
+// Port gets a reference to the given string and assigns it to the port field.
+// port:  Number or name of the port to access on the container.
 func (o *TcpSocket) Port(v string) *TcpSocket {
-	o.port = v
+	o.port = &v
 	return o
 }
 
@@ -117,7 +125,9 @@ func (o TcpSocket) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.host) {
 		toSerialize["host"] = o.host
 	}
-	toSerialize["port"] = o.port
+	if !utils.IsNil(o.port) {
+		toSerialize["port"] = o.port
+	}
 	return toSerialize, nil
 }
 

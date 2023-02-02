@@ -27,7 +27,7 @@ type Message struct {
 	link       *Link              `json:"link,omitempty"`
 	markdown   NullableMarkdown   `json:"markdown,omitempty"`
 	// msgType can be text, link, mardown, actionCard, feedCard
-	msgtype string       `json:"msgtype"`
+	msgtype *string      `json:"msgtype,omitempty"`
 	text    NullableText `json:"text,omitempty"`
 }
 
@@ -35,9 +35,10 @@ type Message struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMessageWith(msgtype string) *Message {
+func NewMessageWith() *Message {
 	this := Message{}
-	this.msgtype = msgtype
+	var msgtype string = "text"
+	this.msgtype = &msgtype
 	return &this
 }
 
@@ -47,7 +48,7 @@ func NewMessageWith(msgtype string) *Message {
 func NewMessage() *Message {
 	this := Message{}
 	var msgtype string = "text"
-	this.msgtype = msgtype
+	this.msgtype = &msgtype
 	return &this
 }
 
@@ -254,28 +255,37 @@ func (o *Message) UnsetMarkdown() {
 	o.markdown.Unset()
 }
 
-// GetMsgtype returns the Msgtype field value
+// GetMsgtype returns the Msgtype field value if set, zero value otherwise.
 func (o *Message) GetMsgtype() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.msgtype) {
 		var ret string
 		return ret
 	}
-
-	return o.msgtype
+	return *o.msgtype
 }
 
-// GetMsgtypeOk returns a tuple with the Msgtype field value
+// GetMsgtypeOk returns a tuple with the Msgtype field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Message) GetMsgtypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.msgtype) {
 		return nil, false
 	}
-	return &o.msgtype, true
+	return o.msgtype, true
 }
 
-// Msgtype sets field value
+// HasMsgtype returns a boolean if a field has been set.
+func (o *Message) HasMsgtype() bool {
+	if o != nil && !utils.IsNil(o.msgtype) {
+		return true
+	}
+
+	return false
+}
+
+// Msgtype gets a reference to the given string and assigns it to the msgtype field.
+// msgtype:  msgType can be text, link, mardown, actionCard, feedCard
 func (o *Message) Msgtype(v string) *Message {
-	o.msgtype = v
+	o.msgtype = &v
 	return o
 }
 
@@ -349,7 +359,9 @@ func (o Message) ToMap() (map[string]interface{}, error) {
 	if o.markdown.IsSet() {
 		toSerialize["markdown"] = o.markdown.Get()
 	}
-	toSerialize["msgtype"] = o.msgtype
+	if !utils.IsNil(o.msgtype) {
+		toSerialize["msgtype"] = o.msgtype
+	}
 	if o.text.IsSet() {
 		toSerialize["text"] = o.text.Get()
 	}

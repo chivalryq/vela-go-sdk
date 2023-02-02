@@ -27,16 +27,15 @@ var _ utils.MappedNullable = &PrintMessageInStatusSpec{}
 
 // PrintMessageInStatusSpec struct for PrintMessageInStatusSpec
 type PrintMessageInStatusSpec struct {
-	message string `json:"message"`
+	message *string `json:"message,omitempty"`
 }
 
 // NewPrintMessageInStatusSpecWith instantiates a new PrintMessageInStatusSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPrintMessageInStatusSpecWith(message string) *PrintMessageInStatusSpec {
+func NewPrintMessageInStatusSpecWith() *PrintMessageInStatusSpec {
 	this := PrintMessageInStatusSpec{}
-	this.message = message
 	return &this
 }
 
@@ -48,28 +47,37 @@ func NewPrintMessageInStatusSpec() *PrintMessageInStatusSpec {
 	return &this
 }
 
-// GetMessage returns the Message field value
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *PrintMessageInStatusWorkflowStep) GetMessage() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.message) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.message
+	return *o.Properties.message
 }
 
-// GetMessageOk returns a tuple with the Message field value
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PrintMessageInStatusWorkflowStep) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.message) {
 		return nil, false
 	}
-	return &o.Properties.message, true
+	return o.Properties.message, true
 }
 
-// Message sets field value
+// HasMessage returns a boolean if a field has been set.
+func (o *PrintMessageInStatusWorkflowStep) HasMessage() bool {
+	if o != nil && !utils.IsNil(o.Properties.message) {
+		return true
+	}
+
+	return false
+}
+
+// Message gets a reference to the given string and assigns it to the message field.
+// message:
 func (o *PrintMessageInStatusWorkflowStep) Message(v string) *PrintMessageInStatusWorkflowStep {
-	o.Properties.message = v
+	o.Properties.message = &v
 	return o
 }
 
@@ -83,7 +91,9 @@ func (o PrintMessageInStatusSpec) MarshalJSON() ([]byte, error) {
 
 func (o PrintMessageInStatusSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["message"] = o.message
+	if !utils.IsNil(o.message) {
+		toSerialize["message"] = o.message
+	}
 	return toSerialize, nil
 }
 
@@ -138,6 +148,7 @@ type PrintMessageInStatusWorkflowStep struct {
 func PrintMessageInStatus(name string) *PrintMessageInStatusWorkflowStep {
 	p := &PrintMessageInStatusWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: PrintMessageInStatusType,
 	}}
 	return p
 }
@@ -149,7 +160,7 @@ func (p *PrintMessageInStatusWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  p.Base.DependsOn,

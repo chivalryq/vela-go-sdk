@@ -21,19 +21,17 @@ var _ utils.MappedNullable = &Preferred1{}
 
 // Preferred1 struct for Preferred1
 type Preferred1 struct {
-	podAffinityTerm PodAffinityTerm `json:"podAffinityTerm"`
+	podAffinityTerm *PodAffinityTerm `json:"podAffinityTerm,omitempty"`
 	// Specify weight associated with matching the corresponding podAffinityTerm
-	weight int32 `json:"weight"`
+	weight *int32 `json:"weight,omitempty"`
 }
 
 // NewPreferred1With instantiates a new Preferred1 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPreferred1With(podAffinityTerm PodAffinityTerm, weight int32) *Preferred1 {
+func NewPreferred1With() *Preferred1 {
 	this := Preferred1{}
-	this.podAffinityTerm = podAffinityTerm
-	this.weight = weight
 	return &this
 }
 
@@ -45,53 +43,71 @@ func NewPreferred1() *Preferred1 {
 	return &this
 }
 
-// GetPodAffinityTerm returns the PodAffinityTerm field value
+// GetPodAffinityTerm returns the PodAffinityTerm field value if set, zero value otherwise.
 func (o *Preferred1) GetPodAffinityTerm() PodAffinityTerm {
-	if o == nil {
+	if o == nil || utils.IsNil(o.podAffinityTerm) {
 		var ret PodAffinityTerm
 		return ret
 	}
-
-	return o.podAffinityTerm
+	return *o.podAffinityTerm
 }
 
-// GetPodAffinityTermOk returns a tuple with the PodAffinityTerm field value
+// GetPodAffinityTermOk returns a tuple with the PodAffinityTerm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Preferred1) GetPodAffinityTermOk() (*PodAffinityTerm, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.podAffinityTerm) {
 		return nil, false
 	}
-	return &o.podAffinityTerm, true
+	return o.podAffinityTerm, true
 }
 
-// PodAffinityTerm sets field value
+// HasPodAffinityTerm returns a boolean if a field has been set.
+func (o *Preferred1) HasPodAffinityTerm() bool {
+	if o != nil && !utils.IsNil(o.podAffinityTerm) {
+		return true
+	}
+
+	return false
+}
+
+// PodAffinityTerm gets a reference to the given PodAffinityTerm and assigns it to the podAffinityTerm field.
+// podAffinityTerm:
 func (o *Preferred1) PodAffinityTerm(v PodAffinityTerm) *Preferred1 {
-	o.podAffinityTerm = v
+	o.podAffinityTerm = &v
 	return o
 }
 
-// GetWeight returns the Weight field value
+// GetWeight returns the Weight field value if set, zero value otherwise.
 func (o *Preferred1) GetWeight() int32 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.weight) {
 		var ret int32
 		return ret
 	}
-
-	return o.weight
+	return *o.weight
 }
 
-// GetWeightOk returns a tuple with the Weight field value
+// GetWeightOk returns a tuple with the Weight field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Preferred1) GetWeightOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.weight) {
 		return nil, false
 	}
-	return &o.weight, true
+	return o.weight, true
 }
 
-// Weight sets field value
+// HasWeight returns a boolean if a field has been set.
+func (o *Preferred1) HasWeight() bool {
+	if o != nil && !utils.IsNil(o.weight) {
+		return true
+	}
+
+	return false
+}
+
+// Weight gets a reference to the given int32 and assigns it to the weight field.
+// weight:  Specify weight associated with matching the corresponding podAffinityTerm
 func (o *Preferred1) Weight(v int32) *Preferred1 {
-	o.weight = v
+	o.weight = &v
 	return o
 }
 
@@ -105,8 +121,12 @@ func (o Preferred1) MarshalJSON() ([]byte, error) {
 
 func (o Preferred1) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["podAffinityTerm"] = o.podAffinityTerm
-	toSerialize["weight"] = o.weight
+	if !utils.IsNil(o.podAffinityTerm) {
+		toSerialize["podAffinityTerm"] = o.podAffinityTerm
+	}
+	if !utils.IsNil(o.weight) {
+		toSerialize["weight"] = o.weight
+	}
 	return toSerialize, nil
 }
 

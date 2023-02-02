@@ -186,6 +186,7 @@ type RefObjectsComponent struct {
 func RefObjects(name string) *RefObjectsComponent {
 	r := &RefObjectsComponent{Base: apis.ComponentBase{
 		Name: name,
+		Type: RefObjectsType,
 	}}
 	return r
 }

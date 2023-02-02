@@ -28,16 +28,15 @@ var _ utils.MappedNullable = &CleanJobsSpec{}
 // CleanJobsSpec struct for CleanJobsSpec
 type CleanJobsSpec struct {
 	labelselector map[string]interface{} `json:"labelselector,omitempty"`
-	namespace     string                 `json:"namespace"`
+	namespace     *string                `json:"namespace,omitempty"`
 }
 
 // NewCleanJobsSpecWith instantiates a new CleanJobsSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCleanJobsSpecWith(namespace string) *CleanJobsSpec {
+func NewCleanJobsSpecWith() *CleanJobsSpec {
 	this := CleanJobsSpec{}
-	this.namespace = namespace
 	return &this
 }
 
@@ -83,28 +82,37 @@ func (o *CleanJobsWorkflowStep) Labelselector(v map[string]interface{}) *CleanJo
 	return o
 }
 
-// GetNamespace returns the Namespace field value
+// GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *CleanJobsWorkflowStep) GetNamespace() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.namespace) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.namespace
+	return *o.Properties.namespace
 }
 
-// GetNamespaceOk returns a tuple with the Namespace field value
+// GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CleanJobsWorkflowStep) GetNamespaceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.namespace) {
 		return nil, false
 	}
-	return &o.Properties.namespace, true
+	return o.Properties.namespace, true
 }
 
-// Namespace sets field value
+// HasNamespace returns a boolean if a field has been set.
+func (o *CleanJobsWorkflowStep) HasNamespace() bool {
+	if o != nil && !utils.IsNil(o.Properties.namespace) {
+		return true
+	}
+
+	return false
+}
+
+// Namespace gets a reference to the given string and assigns it to the namespace field.
+// namespace:
 func (o *CleanJobsWorkflowStep) Namespace(v string) *CleanJobsWorkflowStep {
-	o.Properties.namespace = v
+	o.Properties.namespace = &v
 	return o
 }
 
@@ -121,7 +129,9 @@ func (o CleanJobsSpec) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.labelselector) {
 		toSerialize["labelselector"] = o.labelselector
 	}
-	toSerialize["namespace"] = o.namespace
+	if !utils.IsNil(o.namespace) {
+		toSerialize["namespace"] = o.namespace
+	}
 	return toSerialize, nil
 }
 
@@ -176,6 +186,7 @@ type CleanJobsWorkflowStep struct {
 func CleanJobs(name string) *CleanJobsWorkflowStep {
 	c := &CleanJobsWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: CleanJobsType,
 	}}
 	return c
 }
@@ -187,7 +198,7 @@ func (c *CleanJobsWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  c.Base.DependsOn,

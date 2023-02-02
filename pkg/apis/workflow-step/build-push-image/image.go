@@ -22,19 +22,19 @@ var _ utils.MappedNullable = &Image{}
 // Image Specify the credentials to access image registry
 type Image struct {
 	// Specify the secret key
-	key string `json:"key"`
+	key *string `json:"key,omitempty"`
 	// Specify the secret name
-	name string `json:"name"`
+	name *string `json:"name,omitempty"`
 }
 
 // NewImageWith instantiates a new Image object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewImageWith(key string, name string) *Image {
+func NewImageWith() *Image {
 	this := Image{}
-	this.key = key
-	this.name = name
+	var key string = ".dockerconfigjson"
+	this.key = &key
 	return &this
 }
 
@@ -44,57 +44,75 @@ func NewImageWith(key string, name string) *Image {
 func NewImage() *Image {
 	this := Image{}
 	var key string = ".dockerconfigjson"
-	this.key = key
+	this.key = &key
 	return &this
 }
 
-// GetKey returns the Key field value
+// GetKey returns the Key field value if set, zero value otherwise.
 func (o *Image) GetKey() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.key) {
 		var ret string
 		return ret
 	}
-
-	return o.key
+	return *o.key
 }
 
-// GetKeyOk returns a tuple with the Key field value
+// GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Image) GetKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.key) {
 		return nil, false
 	}
-	return &o.key, true
+	return o.key, true
 }
 
-// Key sets field value
+// HasKey returns a boolean if a field has been set.
+func (o *Image) HasKey() bool {
+	if o != nil && !utils.IsNil(o.key) {
+		return true
+	}
+
+	return false
+}
+
+// Key gets a reference to the given string and assigns it to the key field.
+// key:  Specify the secret key
 func (o *Image) Key(v string) *Image {
-	o.key = v
+	o.key = &v
 	return o
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *Image) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		var ret string
 		return ret
 	}
-
-	return o.name
+	return *o.name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Image) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		return nil, false
 	}
-	return &o.name, true
+	return o.name, true
 }
 
-// Name sets field value
+// HasName returns a boolean if a field has been set.
+func (o *Image) HasName() bool {
+	if o != nil && !utils.IsNil(o.name) {
+		return true
+	}
+
+	return false
+}
+
+// Name gets a reference to the given string and assigns it to the name field.
+// name:  Specify the secret name
 func (o *Image) Name(v string) *Image {
-	o.name = v
+	o.name = &v
 	return o
 }
 
@@ -108,8 +126,12 @@ func (o Image) MarshalJSON() ([]byte, error) {
 
 func (o Image) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["key"] = o.key
-	toSerialize["name"] = o.name
+	if !utils.IsNil(o.key) {
+		toSerialize["key"] = o.key
+	}
+	if !utils.IsNil(o.name) {
+		toSerialize["name"] = o.name
+	}
 	return toSerialize, nil
 }
 

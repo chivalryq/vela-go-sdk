@@ -21,18 +21,16 @@ var _ utils.MappedNullable = &WriteConnectionSecretToRef{}
 
 // WriteConnectionSecretToRef this specifies the namespace and name of a secret to which any connection details for this managed resource should be written.
 type WriteConnectionSecretToRef struct {
-	name      string `json:"name"`
-	namespace string `json:"namespace"`
+	name      *string `json:"name,omitempty"`
+	namespace *string `json:"namespace,omitempty"`
 }
 
 // NewWriteConnectionSecretToRefWith instantiates a new WriteConnectionSecretToRef object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWriteConnectionSecretToRefWith(name string, namespace string) *WriteConnectionSecretToRef {
+func NewWriteConnectionSecretToRefWith() *WriteConnectionSecretToRef {
 	this := WriteConnectionSecretToRef{}
-	this.name = name
-	this.namespace = namespace
 	return &this
 }
 
@@ -44,53 +42,71 @@ func NewWriteConnectionSecretToRef() *WriteConnectionSecretToRef {
 	return &this
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *WriteConnectionSecretToRef) GetName() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		var ret string
 		return ret
 	}
-
-	return o.name
+	return *o.name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WriteConnectionSecretToRef) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.name) {
 		return nil, false
 	}
-	return &o.name, true
+	return o.name, true
 }
 
-// Name sets field value
+// HasName returns a boolean if a field has been set.
+func (o *WriteConnectionSecretToRef) HasName() bool {
+	if o != nil && !utils.IsNil(o.name) {
+		return true
+	}
+
+	return false
+}
+
+// Name gets a reference to the given string and assigns it to the name field.
+// name:
 func (o *WriteConnectionSecretToRef) Name(v string) *WriteConnectionSecretToRef {
-	o.name = v
+	o.name = &v
 	return o
 }
 
-// GetNamespace returns the Namespace field value
+// GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *WriteConnectionSecretToRef) GetNamespace() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.namespace) {
 		var ret string
 		return ret
 	}
-
-	return o.namespace
+	return *o.namespace
 }
 
-// GetNamespaceOk returns a tuple with the Namespace field value
+// GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WriteConnectionSecretToRef) GetNamespaceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.namespace) {
 		return nil, false
 	}
-	return &o.namespace, true
+	return o.namespace, true
 }
 
-// Namespace sets field value
+// HasNamespace returns a boolean if a field has been set.
+func (o *WriteConnectionSecretToRef) HasNamespace() bool {
+	if o != nil && !utils.IsNil(o.namespace) {
+		return true
+	}
+
+	return false
+}
+
+// Namespace gets a reference to the given string and assigns it to the namespace field.
+// namespace:
 func (o *WriteConnectionSecretToRef) Namespace(v string) *WriteConnectionSecretToRef {
-	o.namespace = v
+	o.namespace = &v
 	return o
 }
 
@@ -104,8 +120,12 @@ func (o WriteConnectionSecretToRef) MarshalJSON() ([]byte, error) {
 
 func (o WriteConnectionSecretToRef) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.name
-	toSerialize["namespace"] = o.namespace
+	if !utils.IsNil(o.name) {
+		toSerialize["name"] = o.name
+	}
+	if !utils.IsNil(o.namespace) {
+		toSerialize["namespace"] = o.namespace
+	}
 	return toSerialize, nil
 }
 

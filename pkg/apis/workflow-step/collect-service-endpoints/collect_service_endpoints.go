@@ -40,16 +40,17 @@ type CollectServiceEndpointsSpec struct {
 	// Filter the port name of the endpoints
 	portName *string `json:"portName,omitempty"`
 	// The protocal of endpoint url
-	protocal string `json:"protocal"`
+	protocal *string `json:"protocal,omitempty"`
 }
 
 // NewCollectServiceEndpointsSpecWith instantiates a new CollectServiceEndpointsSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCollectServiceEndpointsSpecWith(protocal string) *CollectServiceEndpointsSpec {
+func NewCollectServiceEndpointsSpecWith() *CollectServiceEndpointsSpec {
 	this := CollectServiceEndpointsSpec{}
-	this.protocal = protocal
+	var protocal string = "http"
+	this.protocal = &protocal
 	return &this
 }
 
@@ -59,7 +60,7 @@ func NewCollectServiceEndpointsSpecWith(protocal string) *CollectServiceEndpoint
 func NewCollectServiceEndpointsSpec() *CollectServiceEndpointsSpec {
 	this := CollectServiceEndpointsSpec{}
 	var protocal string = "http"
-	this.protocal = protocal
+	this.protocal = &protocal
 	return &this
 }
 
@@ -267,28 +268,37 @@ func (o *CollectServiceEndpointsWorkflowStep) PortName(v string) *CollectService
 	return o
 }
 
-// GetProtocal returns the Protocal field value
+// GetProtocal returns the Protocal field value if set, zero value otherwise.
 func (o *CollectServiceEndpointsWorkflowStep) GetProtocal() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.protocal) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.protocal
+	return *o.Properties.protocal
 }
 
-// GetProtocalOk returns a tuple with the Protocal field value
+// GetProtocalOk returns a tuple with the Protocal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CollectServiceEndpointsWorkflowStep) GetProtocalOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.protocal) {
 		return nil, false
 	}
-	return &o.Properties.protocal, true
+	return o.Properties.protocal, true
 }
 
-// Protocal sets field value
+// HasProtocal returns a boolean if a field has been set.
+func (o *CollectServiceEndpointsWorkflowStep) HasProtocal() bool {
+	if o != nil && !utils.IsNil(o.Properties.protocal) {
+		return true
+	}
+
+	return false
+}
+
+// Protocal gets a reference to the given string and assigns it to the protocal field.
+// protocal:  The protocal of endpoint url
 func (o *CollectServiceEndpointsWorkflowStep) Protocal(v string) *CollectServiceEndpointsWorkflowStep {
-	o.Properties.protocal = v
+	o.Properties.protocal = &v
 	return o
 }
 
@@ -320,7 +330,9 @@ func (o CollectServiceEndpointsSpec) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.portName) {
 		toSerialize["portName"] = o.portName
 	}
-	toSerialize["protocal"] = o.protocal
+	if !utils.IsNil(o.protocal) {
+		toSerialize["protocal"] = o.protocal
+	}
 	return toSerialize, nil
 }
 
@@ -375,6 +387,7 @@ type CollectServiceEndpointsWorkflowStep struct {
 func CollectServiceEndpoints(name string) *CollectServiceEndpointsWorkflowStep {
 	c := &CollectServiceEndpointsWorkflowStep{Base: apis.WorkflowStepBase{
 		Name: name,
+		Type: CollectServiceEndpointsType,
 	}}
 	return c
 }
@@ -386,7 +399,7 @@ func (c *CollectServiceEndpointsWorkflowStep) Build() v1beta1.WorkflowStep {
 	}
 	subSteps := make([]common.WorkflowSubStep, 0)
 	for _, _s := range _subSteps {
-		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties})
+		subSteps = append(subSteps, common.WorkflowSubStep{Name: _s.Name, DependsOn: _s.DependsOn, Inputs: _s.Inputs, Outputs: _s.Outputs, If: _s.If, Timeout: _s.Timeout, Meta: _s.Meta, Properties: _s.Properties, Type: _s.Type})
 	}
 	res := v1beta1.WorkflowStep{
 		DependsOn:  c.Base.DependsOn,
