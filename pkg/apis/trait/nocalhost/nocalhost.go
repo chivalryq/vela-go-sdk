@@ -623,6 +623,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return n.FromTrait(from)
 }
 
-func (n *NocalhostTrait) Type() string {
+func (n *NocalhostTrait) DefType() string {
 	return NocalhostType
 }

@@ -135,6 +135,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return l.FromTrait(from)
 }
 
-func (l *LabelsTrait) Type() string {
+func (l *LabelsTrait) DefType() string {
 	return LabelsType
 }

@@ -316,10 +316,10 @@ func (d *Deploy2envWorkflowStep) Outputs(output common.StepOutputs) *Deploy2envW
 	return d
 }
 
-func (d *Deploy2envWorkflowStep) Name() string {
+func (d *Deploy2envWorkflowStep) DefName() string {
 	return d.Base.Name
 }
 
-func (d *Deploy2envWorkflowStep) Type() string {
+func (d *Deploy2envWorkflowStep) DefType() string {
 	return Deploy2envType
 }

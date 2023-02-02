@@ -429,10 +429,10 @@ func (e *ExportServiceWorkflowStep) Outputs(output common.StepOutputs) *ExportSe
 	return e
 }
 
-func (e *ExportServiceWorkflowStep) Name() string {
+func (e *ExportServiceWorkflowStep) DefName() string {
 	return e.Base.Name
 }
 
-func (e *ExportServiceWorkflowStep) Type() string {
+func (e *ExportServiceWorkflowStep) DefType() string {
 	return ExportServiceType
 }

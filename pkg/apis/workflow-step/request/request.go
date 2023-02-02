@@ -359,10 +359,10 @@ func (r *RequestWorkflowStep) Outputs(output common.StepOutputs) *RequestWorkflo
 	return r
 }
 
-func (r *RequestWorkflowStep) Name() string {
+func (r *RequestWorkflowStep) DefName() string {
 	return r.Base.Name
 }
 
-func (r *RequestWorkflowStep) Type() string {
+func (r *RequestWorkflowStep) DefType() string {
 	return RequestType
 }

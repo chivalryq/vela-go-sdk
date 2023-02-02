@@ -291,10 +291,10 @@ func (a *ApplyDeploymentWorkflowStep) Outputs(output common.StepOutputs) *ApplyD
 	return a
 }
 
-func (a *ApplyDeploymentWorkflowStep) Name() string {
+func (a *ApplyDeploymentWorkflowStep) DefName() string {
 	return a.Base.Name
 }
 
-func (a *ApplyDeploymentWorkflowStep) Type() string {
+func (a *ApplyDeploymentWorkflowStep) DefType() string {
 	return ApplyDeploymentType
 }

@@ -330,6 +330,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return s.FromTrait(from)
 }
 
-func (s *StorageTrait) Type() string {
+func (s *StorageTrait) DefType() string {
 	return StorageType
 }

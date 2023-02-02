@@ -293,10 +293,10 @@ func (g *GenerateJdbcConnectionWorkflowStep) Outputs(output common.StepOutputs) 
 	return g
 }
 
-func (g *GenerateJdbcConnectionWorkflowStep) Name() string {
+func (g *GenerateJdbcConnectionWorkflowStep) DefName() string {
 	return g.Base.Name
 }
 
-func (g *GenerateJdbcConnectionWorkflowStep) Type() string {
+func (g *GenerateJdbcConnectionWorkflowStep) DefType() string {
 	return GenerateJdbcConnectionType
 }

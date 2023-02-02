@@ -230,10 +230,10 @@ func (s *StepGroupWorkflowStep) AddSubStep(subStep apis.WorkflowStep) *StepGroup
 	return s
 }
 
-func (s *StepGroupWorkflowStep) Name() string {
+func (s *StepGroupWorkflowStep) DefName() string {
 	return s.Base.Name
 }
 
-func (s *StepGroupWorkflowStep) Type() string {
+func (s *StepGroupWorkflowStep) DefType() string {
 	return StepGroupType
 }

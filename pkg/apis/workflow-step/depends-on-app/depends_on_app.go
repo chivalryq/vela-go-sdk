@@ -283,10 +283,10 @@ func (d *DependsOnAppWorkflowStep) Outputs(output common.StepOutputs) *DependsOn
 	return d
 }
 
-func (d *DependsOnAppWorkflowStep) Name() string {
+func (d *DependsOnAppWorkflowStep) DefName() string {
 	return d.Base.Name
 }
 
-func (d *DependsOnAppWorkflowStep) Type() string {
+func (d *DependsOnAppWorkflowStep) DefType() string {
 	return DependsOnAppType
 }

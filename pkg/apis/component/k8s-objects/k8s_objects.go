@@ -159,11 +159,11 @@ func (k *K8sObjectsComponent) Build() common.ApplicationComponent {
 
 func (k *K8sObjectsComponent) FromComponent(from common.ApplicationComponent) (*K8sObjectsComponent, error) {
 	for _, trait := range from.Traits {
-		t, err := sdkcommon.FromTrait(&trait)
+		_t, err := sdkcommon.FromTrait(&trait)
 		if err != nil {
 			return nil, err
 		}
-		k.Base.Traits = append(k.Base.Traits, t)
+		k.Base.Traits = append(k.Base.Traits, _t)
 	}
 	var properties K8sObjectsSpec
 	if from.Properties != nil {
@@ -190,10 +190,10 @@ func (k *K8sObjectsComponent) AddTrait(traits ...apis.Trait) *K8sObjectsComponen
 	return k
 }
 
-func (k *K8sObjectsComponent) Name() string {
+func (k *K8sObjectsComponent) DefName() string {
 	return k.Base.Name
 }
 
-func (k *K8sObjectsComponent) Type() string {
+func (k *K8sObjectsComponent) DefType() string {
 	return K8sObjectsType
 }

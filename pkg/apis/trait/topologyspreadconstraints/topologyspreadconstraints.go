@@ -163,6 +163,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return t.FromTrait(from)
 }
 
-func (t *TopologyspreadconstraintsTrait) Type() string {
+func (t *TopologyspreadconstraintsTrait) DefType() string {
 	return TopologyspreadconstraintsType
 }

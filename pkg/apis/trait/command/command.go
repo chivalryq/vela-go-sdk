@@ -193,6 +193,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return c.FromTrait(from)
 }
 
-func (c *CommandTrait) Type() string {
+func (c *CommandTrait) DefType() string {
 	return CommandType
 }

@@ -285,10 +285,10 @@ func (a *ApplyComponentWorkflowStep) Outputs(output common.StepOutputs) *ApplyCo
 	return a
 }
 
-func (a *ApplyComponentWorkflowStep) Name() string {
+func (a *ApplyComponentWorkflowStep) DefName() string {
 	return a.Base.Name
 }
 
-func (a *ApplyComponentWorkflowStep) Type() string {
+func (a *ApplyComponentWorkflowStep) DefType() string {
 	return ApplyComponentType
 }

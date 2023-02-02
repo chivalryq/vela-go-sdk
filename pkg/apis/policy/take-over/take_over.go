@@ -178,6 +178,6 @@ func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
 	return t.FromPolicy(from)
 }
 
-func (t *TakeOverPolicy) Type() string {
+func (t *TakeOverPolicy) DefType() string {
 	return TakeOverType
 }

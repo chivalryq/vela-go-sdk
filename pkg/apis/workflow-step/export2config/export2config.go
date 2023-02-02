@@ -353,10 +353,10 @@ func (e *Export2configWorkflowStep) Outputs(output common.StepOutputs) *Export2c
 	return e
 }
 
-func (e *Export2configWorkflowStep) Name() string {
+func (e *Export2configWorkflowStep) DefName() string {
 	return e.Base.Name
 }
 
-func (e *Export2configWorkflowStep) Type() string {
+func (e *Export2configWorkflowStep) DefType() string {
 	return Export2configType
 }

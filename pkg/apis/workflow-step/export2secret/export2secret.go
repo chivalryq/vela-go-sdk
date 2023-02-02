@@ -461,10 +461,10 @@ func (e *Export2secretWorkflowStep) Outputs(output common.StepOutputs) *Export2s
 	return e
 }
 
-func (e *Export2secretWorkflowStep) Name() string {
+func (e *Export2secretWorkflowStep) DefName() string {
 	return e.Base.Name
 }
 
-func (e *Export2secretWorkflowStep) Type() string {
+func (e *Export2secretWorkflowStep) DefType() string {
 	return Export2secretType
 }

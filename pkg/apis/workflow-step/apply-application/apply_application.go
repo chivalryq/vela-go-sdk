@@ -225,10 +225,10 @@ func (a *ApplyApplicationWorkflowStep) Outputs(output common.StepOutputs) *Apply
 	return a
 }
 
-func (a *ApplyApplicationWorkflowStep) Name() string {
+func (a *ApplyApplicationWorkflowStep) DefName() string {
 	return a.Base.Name
 }
 
-func (a *ApplyApplicationWorkflowStep) Type() string {
+func (a *ApplyApplicationWorkflowStep) DefType() string {
 	return ApplyApplicationType
 }

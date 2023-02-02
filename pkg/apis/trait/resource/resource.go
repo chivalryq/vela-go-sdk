@@ -297,6 +297,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return r.FromTrait(from)
 }
 
-func (r *ResourceTrait) Type() string {
+func (r *ResourceTrait) DefType() string {
 	return ResourceType
 }

@@ -285,10 +285,10 @@ func (a *ApplyObjectWorkflowStep) Outputs(output common.StepOutputs) *ApplyObjec
 	return a
 }
 
-func (a *ApplyObjectWorkflowStep) Name() string {
+func (a *ApplyObjectWorkflowStep) DefName() string {
 	return a.Base.Name
 }
 
-func (a *ApplyObjectWorkflowStep) Type() string {
+func (a *ApplyObjectWorkflowStep) DefType() string {
 	return ApplyObjectType
 }

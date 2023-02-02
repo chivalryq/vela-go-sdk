@@ -209,6 +209,6 @@ func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
 	return a.FromPolicy(from)
 }
 
-func (a *ApplyOncePolicy) Type() string {
+func (a *ApplyOncePolicy) DefType() string {
 	return ApplyOnceType
 }

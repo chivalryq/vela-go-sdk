@@ -135,6 +135,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return a.FromTrait(from)
 }
 
-func (a *AnnotationsTrait) Type() string {
+func (a *AnnotationsTrait) DefType() string {
 	return AnnotationsType
 }

@@ -25,29 +25,25 @@ type Application interface {
 }
 
 type Component interface {
-	Name() string
-	Type() string
+	DefName() string
+	DefType() string
 	Build() common.ApplicationComponent
 }
 
 type Trait interface {
-	Type() string
+	DefType() string
 	Build() common.ApplicationTrait
 }
 
 type WorkflowStep interface {
-	Name() string
-	Type() string
+	DefName() string
+	DefType() string
 	Build() v1beta1.WorkflowStep
 }
 
 type Policy interface {
-	Type() string
+	DefType() string
 	Build() v1beta1.AppPolicy
-}
-
-type WorkflowSubStep interface {
-	Build() common.WorkflowSubStep
 }
 
 type ComponentBase struct {

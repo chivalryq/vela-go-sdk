@@ -264,10 +264,10 @@ func (d *Deploy2runtimeWorkflowStep) Outputs(output common.StepOutputs) *Deploy2
 	return d
 }
 
-func (d *Deploy2runtimeWorkflowStep) Name() string {
+func (d *Deploy2runtimeWorkflowStep) DefName() string {
 	return d.Base.Name
 }
 
-func (d *Deploy2runtimeWorkflowStep) Type() string {
+func (d *Deploy2runtimeWorkflowStep) DefType() string {
 	return Deploy2runtimeType
 }

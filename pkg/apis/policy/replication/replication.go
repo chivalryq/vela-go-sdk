@@ -207,6 +207,6 @@ func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
 	return r.FromPolicy(from)
 }
 
-func (r *ReplicationPolicy) Type() string {
+func (r *ReplicationPolicy) DefType() string {
 	return ReplicationType
 }

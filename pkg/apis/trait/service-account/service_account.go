@@ -234,6 +234,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return s.FromTrait(from)
 }
 
-func (s *ServiceAccountTrait) Type() string {
+func (s *ServiceAccountTrait) DefType() string {
 	return ServiceAccountType
 }

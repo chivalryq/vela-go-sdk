@@ -211,6 +211,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return l.FromTrait(from)
 }
 
-func (l *LifecycleTrait) Type() string {
+func (l *LifecycleTrait) DefType() string {
 	return LifecycleType
 }

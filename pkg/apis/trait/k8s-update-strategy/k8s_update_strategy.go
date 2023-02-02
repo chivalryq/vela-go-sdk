@@ -225,6 +225,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return k.FromTrait(from)
 }
 
-func (k *K8sUpdateStrategyTrait) Type() string {
+func (k *K8sUpdateStrategyTrait) DefType() string {
 	return K8sUpdateStrategyType
 }

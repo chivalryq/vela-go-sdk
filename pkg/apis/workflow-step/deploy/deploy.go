@@ -357,10 +357,10 @@ func (d *DeployWorkflowStep) Outputs(output common.StepOutputs) *DeployWorkflowS
 	return d
 }
 
-func (d *DeployWorkflowStep) Name() string {
+func (d *DeployWorkflowStep) DefName() string {
 	return d.Base.Name
 }
 
-func (d *DeployWorkflowStep) Type() string {
+func (d *DeployWorkflowStep) DefType() string {
 	return DeployType
 }

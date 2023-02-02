@@ -253,10 +253,10 @@ func (p *PrintMessageInStatusWorkflowStep) Outputs(output common.StepOutputs) *P
 	return p
 }
 
-func (p *PrintMessageInStatusWorkflowStep) Name() string {
+func (p *PrintMessageInStatusWorkflowStep) DefName() string {
 	return p.Base.Name
 }
 
-func (p *PrintMessageInStatusWorkflowStep) Type() string {
+func (p *PrintMessageInStatusWorkflowStep) DefType() string {
 	return PrintMessageInStatusType
 }

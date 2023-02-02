@@ -207,6 +207,6 @@ func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
 	return o.FromPolicy(from)
 }
 
-func (o *OverridePolicy) Type() string {
+func (o *OverridePolicy) DefType() string {
 	return OverrideType
 }

@@ -264,10 +264,10 @@ func (s *SuspendWorkflowStep) Outputs(output common.StepOutputs) *SuspendWorkflo
 	return s
 }
 
-func (s *SuspendWorkflowStep) Name() string {
+func (s *SuspendWorkflowStep) DefName() string {
 	return s.Base.Name
 }
 
-func (s *SuspendWorkflowStep) Type() string {
+func (s *SuspendWorkflowStep) DefType() string {
 	return SuspendType
 }

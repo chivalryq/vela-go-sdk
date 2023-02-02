@@ -135,6 +135,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return j.FromTrait(from)
 }
 
-func (j *JSONMergePatchTrait) Type() string {
+func (j *JSONMergePatchTrait) DefType() string {
 	return JsonMergePatchType
 }

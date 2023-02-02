@@ -178,6 +178,6 @@ func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
 	return r.FromPolicy(from)
 }
 
-func (r *ReadOnlyPolicy) Type() string {
+func (r *ReadOnlyPolicy) DefType() string {
 	return ReadOnlyType
 }

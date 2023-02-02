@@ -178,6 +178,6 @@ func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
 	return s.FromPolicy(from)
 }
 
-func (s *SharedResourcePolicy) Type() string {
+func (s *SharedResourcePolicy) DefType() string {
 	return SharedResourceType
 }

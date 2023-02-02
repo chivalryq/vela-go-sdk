@@ -293,10 +293,10 @@ func (d *DeleteConfigWorkflowStep) Outputs(output common.StepOutputs) *DeleteCon
 	return d
 }
 
-func (d *DeleteConfigWorkflowStep) Name() string {
+func (d *DeleteConfigWorkflowStep) DefName() string {
 	return d.Base.Name
 }
 
-func (d *DeleteConfigWorkflowStep) Type() string {
+func (d *DeleteConfigWorkflowStep) DefType() string {
 	return DeleteConfigType
 }

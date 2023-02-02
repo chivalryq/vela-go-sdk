@@ -285,10 +285,10 @@ func (d *DeployCloudResourceWorkflowStep) Outputs(output common.StepOutputs) *De
 	return d
 }
 
-func (d *DeployCloudResourceWorkflowStep) Name() string {
+func (d *DeployCloudResourceWorkflowStep) DefName() string {
 	return d.Base.Name
 }
 
-func (d *DeployCloudResourceWorkflowStep) Type() string {
+func (d *DeployCloudResourceWorkflowStep) DefType() string {
 	return DeployCloudResourceType
 }

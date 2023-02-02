@@ -334,6 +334,6 @@ func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
 	return t.FromPolicy(from)
 }
 
-func (t *TopologyPolicy) Type() string {
+func (t *TopologyPolicy) DefType() string {
 	return TopologyType
 }

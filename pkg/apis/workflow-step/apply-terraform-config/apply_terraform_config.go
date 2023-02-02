@@ -497,10 +497,10 @@ func (a *ApplyTerraformConfigWorkflowStep) Outputs(output common.StepOutputs) *A
 	return a
 }
 
-func (a *ApplyTerraformConfigWorkflowStep) Name() string {
+func (a *ApplyTerraformConfigWorkflowStep) DefName() string {
 	return a.Base.Name
 }
 
-func (a *ApplyTerraformConfigWorkflowStep) Type() string {
+func (a *ApplyTerraformConfigWorkflowStep) DefType() string {
 	return ApplyTerraformConfigType
 }

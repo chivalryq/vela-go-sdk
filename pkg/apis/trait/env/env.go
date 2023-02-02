@@ -193,6 +193,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return e.FromTrait(from)
 }
 
-func (e *EnvTrait) Type() string {
+func (e *EnvTrait) DefType() string {
 	return EnvType
 }

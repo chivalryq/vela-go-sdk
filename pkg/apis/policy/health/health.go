@@ -201,6 +201,6 @@ func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
 	return h.FromPolicy(from)
 }
 
-func (h *HealthPolicy) Type() string {
+func (h *HealthPolicy) DefType() string {
 	return HealthType
 }

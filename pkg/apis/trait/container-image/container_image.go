@@ -193,6 +193,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return c.FromTrait(from)
 }
 
-func (c *ContainerImageTrait) Type() string {
+func (c *ContainerImageTrait) DefType() string {
 	return ContainerImageType
 }

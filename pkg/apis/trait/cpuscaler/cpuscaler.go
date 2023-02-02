@@ -290,6 +290,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return c.FromTrait(from)
 }
 
-func (c *CpuscalerTrait) Type() string {
+func (c *CpuscalerTrait) DefType() string {
 	return CpuscalerType
 }

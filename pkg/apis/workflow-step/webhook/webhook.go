@@ -292,10 +292,10 @@ func (w *WebhookWorkflowStep) Outputs(output common.StepOutputs) *WebhookWorkflo
 	return w
 }
 
-func (w *WebhookWorkflowStep) Name() string {
+func (w *WebhookWorkflowStep) DefName() string {
 	return w.Base.Name
 }
 
-func (w *WebhookWorkflowStep) Type() string {
+func (w *WebhookWorkflowStep) DefType() string {
 	return WebhookType
 }

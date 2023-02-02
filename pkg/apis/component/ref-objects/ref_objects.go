@@ -209,11 +209,11 @@ func (r *RefObjectsComponent) Build() common.ApplicationComponent {
 
 func (r *RefObjectsComponent) FromComponent(from common.ApplicationComponent) (*RefObjectsComponent, error) {
 	for _, trait := range from.Traits {
-		t, err := sdkcommon.FromTrait(&trait)
+		_t, err := sdkcommon.FromTrait(&trait)
 		if err != nil {
 			return nil, err
 		}
-		r.Base.Traits = append(r.Base.Traits, t)
+		r.Base.Traits = append(r.Base.Traits, _t)
 	}
 	var properties RefObjectsSpec
 	if from.Properties != nil {
@@ -240,10 +240,10 @@ func (r *RefObjectsComponent) AddTrait(traits ...apis.Trait) *RefObjectsComponen
 	return r
 }
 
-func (r *RefObjectsComponent) Name() string {
+func (r *RefObjectsComponent) DefName() string {
 	return r.Base.Name
 }
 
-func (r *RefObjectsComponent) Type() string {
+func (r *RefObjectsComponent) DefType() string {
 	return RefObjectsType
 }

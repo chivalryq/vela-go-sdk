@@ -163,6 +163,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return j.FromTrait(from)
 }
 
-func (j *JSONPatchTrait) Type() string {
+func (j *JSONPatchTrait) DefType() string {
 	return JsonPatchType
 }

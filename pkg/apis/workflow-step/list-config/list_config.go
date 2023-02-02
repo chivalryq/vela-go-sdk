@@ -293,10 +293,10 @@ func (l *ListConfigWorkflowStep) Outputs(output common.StepOutputs) *ListConfigW
 	return l
 }
 
-func (l *ListConfigWorkflowStep) Name() string {
+func (l *ListConfigWorkflowStep) DefName() string {
 	return l.Base.Name
 }
 
-func (l *ListConfigWorkflowStep) Type() string {
+func (l *ListConfigWorkflowStep) DefType() string {
 	return ListConfigType
 }

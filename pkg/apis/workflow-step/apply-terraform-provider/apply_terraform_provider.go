@@ -463,10 +463,10 @@ func (a *ApplyTerraformProviderWorkflowStep) Outputs(output common.StepOutputs) 
 	return a
 }
 
-func (a *ApplyTerraformProviderWorkflowStep) Name() string {
+func (a *ApplyTerraformProviderWorkflowStep) DefName() string {
 	return a.Base.Name
 }
 
-func (a *ApplyTerraformProviderWorkflowStep) Type() string {
+func (a *ApplyTerraformProviderWorkflowStep) DefType() string {
 	return ApplyTerraformProviderType
 }

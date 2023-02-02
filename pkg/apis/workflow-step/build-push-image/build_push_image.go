@@ -491,10 +491,10 @@ func (b *BuildPushImageWorkflowStep) Outputs(output common.StepOutputs) *BuildPu
 	return b
 }
 
-func (b *BuildPushImageWorkflowStep) Name() string {
+func (b *BuildPushImageWorkflowStep) DefName() string {
 	return b.Base.Name
 }
 
-func (b *BuildPushImageWorkflowStep) Type() string {
+func (b *BuildPushImageWorkflowStep) DefType() string {
 	return BuildPushImageType
 }

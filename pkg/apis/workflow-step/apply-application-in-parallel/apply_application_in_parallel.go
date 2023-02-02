@@ -225,10 +225,10 @@ func (a *ApplyApplicationInParallelWorkflowStep) Outputs(output common.StepOutpu
 	return a
 }
 
-func (a *ApplyApplicationInParallelWorkflowStep) Name() string {
+func (a *ApplyApplicationInParallelWorkflowStep) DefName() string {
 	return a.Base.Name
 }
 
-func (a *ApplyApplicationInParallelWorkflowStep) Type() string {
+func (a *ApplyApplicationInParallelWorkflowStep) DefType() string {
 	return ApplyApplicationInParallelType
 }

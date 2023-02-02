@@ -193,6 +193,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return s.FromTrait(from)
 }
 
-func (s *StartupProbeTrait) Type() string {
+func (s *StartupProbeTrait) DefType() string {
 	return StartupProbeType
 }

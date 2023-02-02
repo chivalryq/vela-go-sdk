@@ -364,6 +364,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return h.FromTrait(from)
 }
 
-func (h *HpaTrait) Type() string {
+func (h *HpaTrait) DefType() string {
 	return HpaType
 }

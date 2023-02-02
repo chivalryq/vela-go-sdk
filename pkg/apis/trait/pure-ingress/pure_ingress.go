@@ -193,6 +193,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return p.FromTrait(from)
 }
 
-func (p *PureIngressTrait) Type() string {
+func (p *PureIngressTrait) DefType() string {
 	return PureIngressType
 }

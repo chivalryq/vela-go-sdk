@@ -288,6 +288,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return a.FromTrait(from)
 }
 
-func (a *AffinityTrait) Type() string {
+func (a *AffinityTrait) DefType() string {
 	return AffinityType
 }

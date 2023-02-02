@@ -402,10 +402,10 @@ func (e *ExportDataWorkflowStep) Outputs(output common.StepOutputs) *ExportDataW
 	return e
 }
 
-func (e *ExportDataWorkflowStep) Name() string {
+func (e *ExportDataWorkflowStep) DefName() string {
 	return e.Base.Name
 }
 
-func (e *ExportDataWorkflowStep) Type() string {
+func (e *ExportDataWorkflowStep) DefType() string {
 	return ExportDataType
 }

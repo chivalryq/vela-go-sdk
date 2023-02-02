@@ -291,10 +291,10 @@ func (c *CleanJobsWorkflowStep) Outputs(output common.StepOutputs) *CleanJobsWor
 	return c
 }
 
-func (c *CleanJobsWorkflowStep) Name() string {
+func (c *CleanJobsWorkflowStep) DefName() string {
 	return c.Base.Name
 }
 
-func (c *CleanJobsWorkflowStep) Type() string {
+func (c *CleanJobsWorkflowStep) DefType() string {
 	return CleanJobsType
 }

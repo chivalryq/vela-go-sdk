@@ -166,6 +166,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return s.FromTrait(from)
 }
 
-func (s *ScalerTrait) Type() string {
+func (s *ScalerTrait) DefType() string {
 	return ScalerType
 }

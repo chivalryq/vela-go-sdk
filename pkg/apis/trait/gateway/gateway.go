@@ -343,6 +343,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return g.FromTrait(from)
 }
 
-func (g *GatewayTrait) Type() string {
+func (g *GatewayTrait) DefType() string {
 	return GatewayType
 }

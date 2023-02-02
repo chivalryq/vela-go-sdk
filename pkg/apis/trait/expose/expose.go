@@ -224,6 +224,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return e.FromTrait(from)
 }
 
-func (e *ExposeTrait) Type() string {
+func (e *ExposeTrait) DefType() string {
 	return ExposeType
 }

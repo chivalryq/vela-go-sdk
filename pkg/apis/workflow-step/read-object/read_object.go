@@ -406,10 +406,10 @@ func (r *ReadObjectWorkflowStep) Outputs(output common.StepOutputs) *ReadObjectW
 	return r
 }
 
-func (r *ReadObjectWorkflowStep) Name() string {
+func (r *ReadObjectWorkflowStep) DefName() string {
 	return r.Base.Name
 }
 
-func (r *ReadObjectWorkflowStep) Type() string {
+func (r *ReadObjectWorkflowStep) DefType() string {
 	return ReadObjectType
 }

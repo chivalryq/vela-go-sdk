@@ -840,11 +840,11 @@ func (w *WebserviceComponent) Build() common.ApplicationComponent {
 
 func (w *WebserviceComponent) FromComponent(from common.ApplicationComponent) (*WebserviceComponent, error) {
 	for _, trait := range from.Traits {
-		t, err := sdkcommon.FromTrait(&trait)
+		_t, err := sdkcommon.FromTrait(&trait)
 		if err != nil {
 			return nil, err
 		}
-		w.Base.Traits = append(w.Base.Traits, t)
+		w.Base.Traits = append(w.Base.Traits, _t)
 	}
 	var properties WebserviceSpec
 	if from.Properties != nil {
@@ -871,10 +871,10 @@ func (w *WebserviceComponent) AddTrait(traits ...apis.Trait) *WebserviceComponen
 	return w
 }
 
-func (w *WebserviceComponent) Name() string {
+func (w *WebserviceComponent) DefName() string {
 	return w.Base.Name
 }
 
-func (w *WebserviceComponent) Type() string {
+func (w *WebserviceComponent) DefType() string {
 	return WebserviceType
 }

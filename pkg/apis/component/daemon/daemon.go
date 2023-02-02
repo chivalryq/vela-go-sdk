@@ -801,11 +801,11 @@ func (d *DaemonComponent) Build() common.ApplicationComponent {
 
 func (d *DaemonComponent) FromComponent(from common.ApplicationComponent) (*DaemonComponent, error) {
 	for _, trait := range from.Traits {
-		t, err := sdkcommon.FromTrait(&trait)
+		_t, err := sdkcommon.FromTrait(&trait)
 		if err != nil {
 			return nil, err
 		}
-		d.Base.Traits = append(d.Base.Traits, t)
+		d.Base.Traits = append(d.Base.Traits, _t)
 	}
 	var properties DaemonSpec
 	if from.Properties != nil {
@@ -832,10 +832,10 @@ func (d *DaemonComponent) AddTrait(traits ...apis.Trait) *DaemonComponent {
 	return d
 }
 
-func (d *DaemonComponent) Name() string {
+func (d *DaemonComponent) DefName() string {
 	return d.Base.Name
 }
 
-func (d *DaemonComponent) Type() string {
+func (d *DaemonComponent) DefType() string {
 	return DaemonType
 }

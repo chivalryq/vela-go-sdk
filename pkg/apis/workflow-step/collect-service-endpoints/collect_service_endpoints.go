@@ -490,10 +490,10 @@ func (c *CollectServiceEndpointsWorkflowStep) Outputs(output common.StepOutputs)
 	return c
 }
 
-func (c *CollectServiceEndpointsWorkflowStep) Name() string {
+func (c *CollectServiceEndpointsWorkflowStep) DefName() string {
 	return c.Base.Name
 }
 
-func (c *CollectServiceEndpointsWorkflowStep) Type() string {
+func (c *CollectServiceEndpointsWorkflowStep) DefType() string {
 	return CollectServiceEndpointsType
 }

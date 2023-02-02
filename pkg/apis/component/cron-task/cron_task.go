@@ -989,11 +989,11 @@ func (c *CronTaskComponent) Build() common.ApplicationComponent {
 
 func (c *CronTaskComponent) FromComponent(from common.ApplicationComponent) (*CronTaskComponent, error) {
 	for _, trait := range from.Traits {
-		t, err := sdkcommon.FromTrait(&trait)
+		_t, err := sdkcommon.FromTrait(&trait)
 		if err != nil {
 			return nil, err
 		}
-		c.Base.Traits = append(c.Base.Traits, t)
+		c.Base.Traits = append(c.Base.Traits, _t)
 	}
 	var properties CronTaskSpec
 	if from.Properties != nil {
@@ -1020,10 +1020,10 @@ func (c *CronTaskComponent) AddTrait(traits ...apis.Trait) *CronTaskComponent {
 	return c
 }
 
-func (c *CronTaskComponent) Name() string {
+func (c *CronTaskComponent) DefName() string {
 	return c.Base.Name
 }
 
-func (c *CronTaskComponent) Type() string {
+func (c *CronTaskComponent) DefType() string {
 	return CronTaskType
 }

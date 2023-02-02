@@ -377,10 +377,10 @@ func (n *NotificationWorkflowStep) Outputs(output common.StepOutputs) *Notificat
 	return n
 }
 
-func (n *NotificationWorkflowStep) Name() string {
+func (n *NotificationWorkflowStep) DefName() string {
 	return n.Base.Name
 }
 
-func (n *NotificationWorkflowStep) Type() string {
+func (n *NotificationWorkflowStep) DefType() string {
 	return NotificationType
 }

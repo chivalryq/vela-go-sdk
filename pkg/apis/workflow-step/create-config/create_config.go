@@ -361,10 +361,10 @@ func (c *CreateConfigWorkflowStep) Outputs(output common.StepOutputs) *CreateCon
 	return c
 }
 
-func (c *CreateConfigWorkflowStep) Name() string {
+func (c *CreateConfigWorkflowStep) DefName() string {
 	return c.Base.Name
 }
 
-func (c *CreateConfigWorkflowStep) Type() string {
+func (c *CreateConfigWorkflowStep) DefType() string {
 	return CreateConfigType
 }

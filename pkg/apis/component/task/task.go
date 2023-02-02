@@ -649,11 +649,11 @@ func (t *TaskComponent) Build() common.ApplicationComponent {
 
 func (t *TaskComponent) FromComponent(from common.ApplicationComponent) (*TaskComponent, error) {
 	for _, trait := range from.Traits {
-		t, err := sdkcommon.FromTrait(&trait)
+		_t, err := sdkcommon.FromTrait(&trait)
 		if err != nil {
 			return nil, err
 		}
-		t.Base.Traits = append(t.Base.Traits, t)
+		t.Base.Traits = append(t.Base.Traits, _t)
 	}
 	var properties TaskSpec
 	if from.Properties != nil {
@@ -680,10 +680,10 @@ func (t *TaskComponent) AddTrait(traits ...apis.Trait) *TaskComponent {
 	return t
 }
 
-func (t *TaskComponent) Name() string {
+func (t *TaskComponent) DefName() string {
 	return t.Base.Name
 }
 
-func (t *TaskComponent) Type() string {
+func (t *TaskComponent) DefType() string {
 	return TaskType
 }

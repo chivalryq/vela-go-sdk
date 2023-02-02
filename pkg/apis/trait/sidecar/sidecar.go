@@ -425,6 +425,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return s.FromTrait(from)
 }
 
-func (s *SidecarTrait) Type() string {
+func (s *SidecarTrait) DefType() string {
 	return SidecarType
 }

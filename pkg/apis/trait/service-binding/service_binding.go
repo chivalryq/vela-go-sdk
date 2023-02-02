@@ -164,6 +164,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return s.FromTrait(from)
 }
 
-func (s *ServiceBindingTrait) Type() string {
+func (s *ServiceBindingTrait) DefType() string {
 	return ServiceBindingType
 }

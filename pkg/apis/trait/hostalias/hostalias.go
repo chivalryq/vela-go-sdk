@@ -164,6 +164,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return h.FromTrait(from)
 }
 
-func (h *HostaliasTrait) Type() string {
+func (h *HostaliasTrait) DefType() string {
 	return HostaliasType
 }

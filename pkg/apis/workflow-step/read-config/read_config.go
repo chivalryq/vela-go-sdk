@@ -293,10 +293,10 @@ func (r *ReadConfigWorkflowStep) Outputs(output common.StepOutputs) *ReadConfigW
 	return r
 }
 
-func (r *ReadConfigWorkflowStep) Name() string {
+func (r *ReadConfigWorkflowStep) DefName() string {
 	return r.Base.Name
 }
 
-func (r *ReadConfigWorkflowStep) Type() string {
+func (r *ReadConfigWorkflowStep) DefType() string {
 	return ReadConfigType
 }

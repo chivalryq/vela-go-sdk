@@ -264,10 +264,10 @@ func (a *ApplyRemainingWorkflowStep) Outputs(output common.StepOutputs) *ApplyRe
 	return a
 }
 
-func (a *ApplyRemainingWorkflowStep) Name() string {
+func (a *ApplyRemainingWorkflowStep) DefName() string {
 	return a.Base.Name
 }
 
-func (a *ApplyRemainingWorkflowStep) Type() string {
+func (a *ApplyRemainingWorkflowStep) DefType() string {
 	return ApplyRemainingType
 }

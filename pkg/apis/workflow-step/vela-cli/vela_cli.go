@@ -383,10 +383,10 @@ func (v *VelaCliWorkflowStep) Outputs(output common.StepOutputs) *VelaCliWorkflo
 	return v
 }
 
-func (v *VelaCliWorkflowStep) Name() string {
+func (v *VelaCliWorkflowStep) DefName() string {
 	return v.Base.Name
 }
 
-func (v *VelaCliWorkflowStep) Type() string {
+func (v *VelaCliWorkflowStep) DefType() string {
 	return VelaCliType
 }

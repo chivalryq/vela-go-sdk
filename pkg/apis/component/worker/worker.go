@@ -547,11 +547,11 @@ func (w *WorkerComponent) Build() common.ApplicationComponent {
 
 func (w *WorkerComponent) FromComponent(from common.ApplicationComponent) (*WorkerComponent, error) {
 	for _, trait := range from.Traits {
-		t, err := sdkcommon.FromTrait(&trait)
+		_t, err := sdkcommon.FromTrait(&trait)
 		if err != nil {
 			return nil, err
 		}
-		w.Base.Traits = append(w.Base.Traits, t)
+		w.Base.Traits = append(w.Base.Traits, _t)
 	}
 	var properties WorkerSpec
 	if from.Properties != nil {
@@ -578,10 +578,10 @@ func (w *WorkerComponent) AddTrait(traits ...apis.Trait) *WorkerComponent {
 	return w
 }
 
-func (w *WorkerComponent) Name() string {
+func (w *WorkerComponent) DefName() string {
 	return w.Base.Name
 }
 
-func (w *WorkerComponent) Type() string {
+func (w *WorkerComponent) DefType() string {
 	return WorkerType
 }

@@ -314,10 +314,10 @@ func (s *ShareCloudResourceWorkflowStep) Outputs(output common.StepOutputs) *Sha
 	return s
 }
 
-func (s *ShareCloudResourceWorkflowStep) Name() string {
+func (s *ShareCloudResourceWorkflowStep) DefName() string {
 	return s.Base.Name
 }
 
-func (s *ShareCloudResourceWorkflowStep) Type() string {
+func (s *ShareCloudResourceWorkflowStep) DefType() string {
 	return ShareCloudResourceType
 }

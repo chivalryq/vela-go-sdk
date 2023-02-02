@@ -459,6 +459,6 @@ func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
 	return i.FromTrait(from)
 }
 
-func (i *InitContainerTrait) Type() string {
+func (i *InitContainerTrait) DefType() string {
 	return InitContainerType
 }

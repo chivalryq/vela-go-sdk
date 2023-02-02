@@ -209,6 +209,6 @@ func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
 	return g.FromPolicy(from)
 }
 
-func (g *GarbageCollectPolicy) Type() string {
+func (g *GarbageCollectPolicy) DefType() string {
 	return GarbageCollectType
 }
