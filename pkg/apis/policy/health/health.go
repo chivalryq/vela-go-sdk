@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -157,6 +158,10 @@ func (v *NullableHealthSpec) UnmarshalJSON(src []byte) error {
 
 const HealthType = "health"
 
+func init() {
+	sdkcommon.RegisterPolicy(HealthType, FromPolicy)
+}
+
 type HealthPolicy struct {
 	Base       apis.PolicyBase
 	Properties HealthSpec
@@ -176,6 +181,24 @@ func (h *HealthPolicy) Build() v1beta1.AppPolicy {
 		Type:       HealthType,
 	}
 	return res
+}
+
+func (h *HealthPolicy) FromPolicy(from v1beta1.AppPolicy) (*HealthPolicy, error) {
+	var properties HealthSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	h.Base.Name = from.Name
+	h.Properties = properties
+	return h, nil
+}
+
+func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
+	h := &HealthPolicy{}
+	return h.FromPolicy(from)
 }
 
 func (h *HealthPolicy) Type() string {

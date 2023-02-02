@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -254,6 +255,11 @@ func (v *NullableVelaCliSpec) UnmarshalJSON(src []byte) error {
 
 const VelaCliType = "vela-cli"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(VelaCliType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(VelaCliType, FromWorkflowSubStep)
+}
+
 type VelaCliWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties VelaCliSpec
@@ -288,6 +294,63 @@ func (v *VelaCliWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       VelaCliType,
 	}
 	return res
+}
+
+func (v *VelaCliWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*VelaCliWorkflowStep, error) {
+	var properties VelaCliSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := v.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	v.Base.Name = from.Name
+	v.Base.DependsOn = from.DependsOn
+	v.Base.Inputs = from.Inputs
+	v.Base.Outputs = from.Outputs
+	v.Base.If = from.If
+	v.Base.Timeout = from.Timeout
+	v.Base.Meta = from.Meta
+	v.Properties = properties
+	v.Base.SubSteps = subSteps
+	return v, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	v := &VelaCliWorkflowStep{}
+	return v.FromWorkflowStep(from)
+}
+
+func (v *VelaCliWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*VelaCliWorkflowStep, error) {
+	var properties VelaCliSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	v.Base.Name = from.Name
+	v.Base.DependsOn = from.DependsOn
+	v.Base.Inputs = from.Inputs
+	v.Base.Outputs = from.Outputs
+	v.Base.If = from.If
+	v.Base.Timeout = from.Timeout
+	v.Base.Meta = from.Meta
+	v.Properties = properties
+	return v, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	v := &VelaCliWorkflowStep{}
+	return v.FromWorkflowSubStep(from)
 }
 
 func (v *VelaCliWorkflowStep) If(_if string) *VelaCliWorkflowStep {

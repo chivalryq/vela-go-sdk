@@ -19,6 +19,7 @@ import (
 	"fmt"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -153,6 +154,10 @@ func (v *NullableContainerImageSpec) UnmarshalJSON(src []byte) error {
 
 const ContainerImageType = "container-image"
 
+func init() {
+	sdkcommon.RegisterTrait(ContainerImageType, FromTrait)
+}
+
 type ContainerImageTrait struct {
 	Base       apis.TraitBase
 	Properties ContainerImageSpec
@@ -169,6 +174,23 @@ func (c *ContainerImageTrait) Build() common.ApplicationTrait {
 		Type:       ContainerImageType,
 	}
 	return res
+}
+
+func (c *ContainerImageTrait) FromTrait(from common.ApplicationTrait) (*ContainerImageTrait, error) {
+	var properties ContainerImageSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	c.Properties = properties
+	return c, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	c := &ContainerImageTrait{}
+	return c.FromTrait(from)
 }
 
 func (c *ContainerImageTrait) Type() string {

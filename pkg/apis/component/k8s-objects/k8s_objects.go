@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -123,6 +124,10 @@ func (v *NullableK8sObjectsSpec) UnmarshalJSON(src []byte) error {
 
 const K8sObjectsType = "k8s-objects"
 
+func init() {
+	sdkcommon.RegisterComponent(K8sObjectsType, FromComponent)
+}
+
 type K8sObjectsComponent struct {
 	Base       apis.ComponentBase
 	Properties K8sObjectsSpec
@@ -150,6 +155,34 @@ func (k *K8sObjectsComponent) Build() common.ApplicationComponent {
 		Type:       K8sObjectsType,
 	}
 	return res
+}
+
+func (k *K8sObjectsComponent) FromComponent(from common.ApplicationComponent) (*K8sObjectsComponent, error) {
+	for _, trait := range from.Traits {
+		t, err := sdkcommon.FromTrait(&trait)
+		if err != nil {
+			return nil, err
+		}
+		k.Base.Traits = append(k.Base.Traits, t)
+	}
+	var properties K8sObjectsSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	k.Base.Name = from.Name
+	k.Base.DependsOn = from.DependsOn
+	k.Base.Inputs = from.Inputs
+	k.Base.Outputs = from.Outputs
+	k.Properties = properties
+	return k, nil
+}
+
+func FromComponent(from common.ApplicationComponent) (apis.Component, error) {
+	k := &K8sObjectsComponent{}
+	return k.FromComponent(from)
 }
 
 func (k *K8sObjectsComponent) AddTrait(traits ...apis.Trait) *K8sObjectsComponent {

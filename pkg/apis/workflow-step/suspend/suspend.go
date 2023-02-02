@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -135,6 +136,11 @@ func (v *NullableSuspendSpec) UnmarshalJSON(src []byte) error {
 
 const SuspendType = "suspend"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(SuspendType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(SuspendType, FromWorkflowSubStep)
+}
+
 type SuspendWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties SuspendSpec
@@ -169,6 +175,63 @@ func (s *SuspendWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       SuspendType,
 	}
 	return res
+}
+
+func (s *SuspendWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*SuspendWorkflowStep, error) {
+	var properties SuspendSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := s.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	s.Base.Name = from.Name
+	s.Base.DependsOn = from.DependsOn
+	s.Base.Inputs = from.Inputs
+	s.Base.Outputs = from.Outputs
+	s.Base.If = from.If
+	s.Base.Timeout = from.Timeout
+	s.Base.Meta = from.Meta
+	s.Properties = properties
+	s.Base.SubSteps = subSteps
+	return s, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	s := &SuspendWorkflowStep{}
+	return s.FromWorkflowStep(from)
+}
+
+func (s *SuspendWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*SuspendWorkflowStep, error) {
+	var properties SuspendSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	s.Base.Name = from.Name
+	s.Base.DependsOn = from.DependsOn
+	s.Base.Inputs = from.Inputs
+	s.Base.Outputs = from.Outputs
+	s.Base.If = from.If
+	s.Base.Timeout = from.Timeout
+	s.Base.Meta = from.Meta
+	s.Properties = properties
+	return s, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	s := &SuspendWorkflowStep{}
+	return s.FromWorkflowSubStep(from)
 }
 
 func (s *SuspendWorkflowStep) If(_if string) *SuspendWorkflowStep {

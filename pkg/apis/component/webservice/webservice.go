@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -804,6 +805,10 @@ func (v *NullableWebserviceSpec) UnmarshalJSON(src []byte) error {
 
 const WebserviceType = "webservice"
 
+func init() {
+	sdkcommon.RegisterComponent(WebserviceType, FromComponent)
+}
+
 type WebserviceComponent struct {
 	Base       apis.ComponentBase
 	Properties WebserviceSpec
@@ -831,6 +836,34 @@ func (w *WebserviceComponent) Build() common.ApplicationComponent {
 		Type:       WebserviceType,
 	}
 	return res
+}
+
+func (w *WebserviceComponent) FromComponent(from common.ApplicationComponent) (*WebserviceComponent, error) {
+	for _, trait := range from.Traits {
+		t, err := sdkcommon.FromTrait(&trait)
+		if err != nil {
+			return nil, err
+		}
+		w.Base.Traits = append(w.Base.Traits, t)
+	}
+	var properties WebserviceSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	w.Base.Name = from.Name
+	w.Base.DependsOn = from.DependsOn
+	w.Base.Inputs = from.Inputs
+	w.Base.Outputs = from.Outputs
+	w.Properties = properties
+	return w, nil
+}
+
+func FromComponent(from common.ApplicationComponent) (apis.Component, error) {
+	w := &WebserviceComponent{}
+	return w.FromComponent(from)
 }
 
 func (w *WebserviceComponent) AddTrait(traits ...apis.Trait) *WebserviceComponent {

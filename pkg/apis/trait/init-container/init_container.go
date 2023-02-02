@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -419,6 +420,10 @@ func (v *NullableInitContainerSpec) UnmarshalJSON(src []byte) error {
 
 const InitContainerType = "init-container"
 
+func init() {
+	sdkcommon.RegisterTrait(InitContainerType, FromTrait)
+}
+
 type InitContainerTrait struct {
 	Base       apis.TraitBase
 	Properties InitContainerSpec
@@ -435,6 +440,23 @@ func (i *InitContainerTrait) Build() common.ApplicationTrait {
 		Type:       InitContainerType,
 	}
 	return res
+}
+
+func (i *InitContainerTrait) FromTrait(from common.ApplicationTrait) (*InitContainerTrait, error) {
+	var properties InitContainerSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	i.Properties = properties
+	return i, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	i := &InitContainerTrait{}
+	return i.FromTrait(from)
 }
 
 func (i *InitContainerTrait) Type() string {

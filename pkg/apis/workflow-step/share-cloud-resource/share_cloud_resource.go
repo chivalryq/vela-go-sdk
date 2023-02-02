@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -185,6 +186,11 @@ func (v *NullableShareCloudResourceSpec) UnmarshalJSON(src []byte) error {
 
 const ShareCloudResourceType = "share-cloud-resource"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(ShareCloudResourceType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(ShareCloudResourceType, FromWorkflowSubStep)
+}
+
 type ShareCloudResourceWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties ShareCloudResourceSpec
@@ -219,6 +225,63 @@ func (s *ShareCloudResourceWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       ShareCloudResourceType,
 	}
 	return res
+}
+
+func (s *ShareCloudResourceWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*ShareCloudResourceWorkflowStep, error) {
+	var properties ShareCloudResourceSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := s.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	s.Base.Name = from.Name
+	s.Base.DependsOn = from.DependsOn
+	s.Base.Inputs = from.Inputs
+	s.Base.Outputs = from.Outputs
+	s.Base.If = from.If
+	s.Base.Timeout = from.Timeout
+	s.Base.Meta = from.Meta
+	s.Properties = properties
+	s.Base.SubSteps = subSteps
+	return s, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	s := &ShareCloudResourceWorkflowStep{}
+	return s.FromWorkflowStep(from)
+}
+
+func (s *ShareCloudResourceWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*ShareCloudResourceWorkflowStep, error) {
+	var properties ShareCloudResourceSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	s.Base.Name = from.Name
+	s.Base.DependsOn = from.DependsOn
+	s.Base.Inputs = from.Inputs
+	s.Base.Outputs = from.Outputs
+	s.Base.If = from.If
+	s.Base.Timeout = from.Timeout
+	s.Base.Meta = from.Meta
+	s.Properties = properties
+	return s, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	s := &ShareCloudResourceWorkflowStep{}
+	return s.FromWorkflowSubStep(from)
 }
 
 func (s *ShareCloudResourceWorkflowStep) If(_if string) *ShareCloudResourceWorkflowStep {

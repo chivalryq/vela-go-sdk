@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -96,6 +97,11 @@ func (v *NullableApplyApplicationInParallelSpec) UnmarshalJSON(src []byte) error
 
 const ApplyApplicationInParallelType = "apply-application-in-parallel"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(ApplyApplicationInParallelType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(ApplyApplicationInParallelType, FromWorkflowSubStep)
+}
+
 type ApplyApplicationInParallelWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties ApplyApplicationInParallelSpec
@@ -130,6 +136,63 @@ func (a *ApplyApplicationInParallelWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       ApplyApplicationInParallelType,
 	}
 	return res
+}
+
+func (a *ApplyApplicationInParallelWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*ApplyApplicationInParallelWorkflowStep, error) {
+	var properties ApplyApplicationInParallelSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := a.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	a.Base.Name = from.Name
+	a.Base.DependsOn = from.DependsOn
+	a.Base.Inputs = from.Inputs
+	a.Base.Outputs = from.Outputs
+	a.Base.If = from.If
+	a.Base.Timeout = from.Timeout
+	a.Base.Meta = from.Meta
+	a.Properties = properties
+	a.Base.SubSteps = subSteps
+	return a, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	a := &ApplyApplicationInParallelWorkflowStep{}
+	return a.FromWorkflowStep(from)
+}
+
+func (a *ApplyApplicationInParallelWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*ApplyApplicationInParallelWorkflowStep, error) {
+	var properties ApplyApplicationInParallelSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	a.Base.Name = from.Name
+	a.Base.DependsOn = from.DependsOn
+	a.Base.Inputs = from.Inputs
+	a.Base.Outputs = from.Outputs
+	a.Base.If = from.If
+	a.Base.Timeout = from.Timeout
+	a.Base.Meta = from.Meta
+	a.Properties = properties
+	return a, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	a := &ApplyApplicationInParallelWorkflowStep{}
+	return a.FromWorkflowSubStep(from)
 }
 
 func (a *ApplyApplicationInParallelWorkflowStep) If(_if string) *ApplyApplicationInParallelWorkflowStep {

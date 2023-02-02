@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -95,6 +96,10 @@ func (v *NullableLabelsSpec) UnmarshalJSON(src []byte) error {
 
 const LabelsType = "labels"
 
+func init() {
+	sdkcommon.RegisterTrait(LabelsType, FromTrait)
+}
+
 type LabelsTrait struct {
 	Base       apis.TraitBase
 	Properties LabelsSpec
@@ -111,6 +116,23 @@ func (l *LabelsTrait) Build() common.ApplicationTrait {
 		Type:       LabelsType,
 	}
 	return res
+}
+
+func (l *LabelsTrait) FromTrait(from common.ApplicationTrait) (*LabelsTrait, error) {
+	var properties LabelsSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	l.Properties = properties
+	return l, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	l := &LabelsTrait{}
+	return l.FromTrait(from)
 }
 
 func (l *LabelsTrait) Type() string {

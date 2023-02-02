@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -163,6 +164,10 @@ func (v *NullableOverrideSpec) UnmarshalJSON(src []byte) error {
 
 const OverrideType = "override"
 
+func init() {
+	sdkcommon.RegisterPolicy(OverrideType, FromPolicy)
+}
+
 type OverridePolicy struct {
 	Base       apis.PolicyBase
 	Properties OverrideSpec
@@ -182,6 +187,24 @@ func (o *OverridePolicy) Build() v1beta1.AppPolicy {
 		Type:       OverrideType,
 	}
 	return res
+}
+
+func (o *OverridePolicy) FromPolicy(from v1beta1.AppPolicy) (*OverridePolicy, error) {
+	var properties OverrideSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	o.Base.Name = from.Name
+	o.Properties = properties
+	return o, nil
+}
+
+func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
+	o := &OverridePolicy{}
+	return o.FromPolicy(from)
 }
 
 func (o *OverridePolicy) Type() string {

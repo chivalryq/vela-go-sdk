@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -124,6 +125,11 @@ func (v *NullablePrintMessageInStatusSpec) UnmarshalJSON(src []byte) error {
 
 const PrintMessageInStatusType = "print-message-in-status"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(PrintMessageInStatusType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(PrintMessageInStatusType, FromWorkflowSubStep)
+}
+
 type PrintMessageInStatusWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties PrintMessageInStatusSpec
@@ -158,6 +164,63 @@ func (p *PrintMessageInStatusWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       PrintMessageInStatusType,
 	}
 	return res
+}
+
+func (p *PrintMessageInStatusWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*PrintMessageInStatusWorkflowStep, error) {
+	var properties PrintMessageInStatusSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := p.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	p.Base.Name = from.Name
+	p.Base.DependsOn = from.DependsOn
+	p.Base.Inputs = from.Inputs
+	p.Base.Outputs = from.Outputs
+	p.Base.If = from.If
+	p.Base.Timeout = from.Timeout
+	p.Base.Meta = from.Meta
+	p.Properties = properties
+	p.Base.SubSteps = subSteps
+	return p, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	p := &PrintMessageInStatusWorkflowStep{}
+	return p.FromWorkflowStep(from)
+}
+
+func (p *PrintMessageInStatusWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*PrintMessageInStatusWorkflowStep, error) {
+	var properties PrintMessageInStatusSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	p.Base.Name = from.Name
+	p.Base.DependsOn = from.DependsOn
+	p.Base.Inputs = from.Inputs
+	p.Base.Outputs = from.Outputs
+	p.Base.If = from.If
+	p.Base.Timeout = from.Timeout
+	p.Base.Meta = from.Meta
+	p.Properties = properties
+	return p, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	p := &PrintMessageInStatusWorkflowStep{}
+	return p.FromWorkflowSubStep(from)
 }
 
 func (p *PrintMessageInStatusWorkflowStep) If(_if string) *PrintMessageInStatusWorkflowStep {

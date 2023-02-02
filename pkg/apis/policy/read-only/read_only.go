@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -134,6 +135,10 @@ func (v *NullableReadOnlySpec) UnmarshalJSON(src []byte) error {
 
 const ReadOnlyType = "read-only"
 
+func init() {
+	sdkcommon.RegisterPolicy(ReadOnlyType, FromPolicy)
+}
+
 type ReadOnlyPolicy struct {
 	Base       apis.PolicyBase
 	Properties ReadOnlySpec
@@ -153,6 +158,24 @@ func (r *ReadOnlyPolicy) Build() v1beta1.AppPolicy {
 		Type:       ReadOnlyType,
 	}
 	return res
+}
+
+func (r *ReadOnlyPolicy) FromPolicy(from v1beta1.AppPolicy) (*ReadOnlyPolicy, error) {
+	var properties ReadOnlySpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	r.Base.Name = from.Name
+	r.Properties = properties
+	return r, nil
+}
+
+func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
+	r := &ReadOnlyPolicy{}
+	return r.FromPolicy(from)
 }
 
 func (r *ReadOnlyPolicy) Type() string {

@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -257,6 +258,10 @@ func (v *NullableResourceSpec) UnmarshalJSON(src []byte) error {
 
 const ResourceType = "resource"
 
+func init() {
+	sdkcommon.RegisterTrait(ResourceType, FromTrait)
+}
+
 type ResourceTrait struct {
 	Base       apis.TraitBase
 	Properties ResourceSpec
@@ -273,6 +278,23 @@ func (r *ResourceTrait) Build() common.ApplicationTrait {
 		Type:       ResourceType,
 	}
 	return res
+}
+
+func (r *ResourceTrait) FromTrait(from common.ApplicationTrait) (*ResourceTrait, error) {
+	var properties ResourceSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	r.Properties = properties
+	return r, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	r := &ResourceTrait{}
+	return r.FromTrait(from)
 }
 
 func (r *ResourceTrait) Type() string {

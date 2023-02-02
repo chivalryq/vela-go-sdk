@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -300,6 +301,11 @@ func (v *NullableExportServiceSpec) UnmarshalJSON(src []byte) error {
 
 const ExportServiceType = "export-service"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(ExportServiceType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(ExportServiceType, FromWorkflowSubStep)
+}
+
 type ExportServiceWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties ExportServiceSpec
@@ -334,6 +340,63 @@ func (e *ExportServiceWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       ExportServiceType,
 	}
 	return res
+}
+
+func (e *ExportServiceWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*ExportServiceWorkflowStep, error) {
+	var properties ExportServiceSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := e.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	e.Base.Name = from.Name
+	e.Base.DependsOn = from.DependsOn
+	e.Base.Inputs = from.Inputs
+	e.Base.Outputs = from.Outputs
+	e.Base.If = from.If
+	e.Base.Timeout = from.Timeout
+	e.Base.Meta = from.Meta
+	e.Properties = properties
+	e.Base.SubSteps = subSteps
+	return e, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	e := &ExportServiceWorkflowStep{}
+	return e.FromWorkflowStep(from)
+}
+
+func (e *ExportServiceWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*ExportServiceWorkflowStep, error) {
+	var properties ExportServiceSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	e.Base.Name = from.Name
+	e.Base.DependsOn = from.DependsOn
+	e.Base.Inputs = from.Inputs
+	e.Base.Outputs = from.Outputs
+	e.Base.If = from.If
+	e.Base.Timeout = from.Timeout
+	e.Base.Meta = from.Meta
+	e.Properties = properties
+	return e, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	e := &ExportServiceWorkflowStep{}
+	return e.FromWorkflowSubStep(from)
 }
 
 func (e *ExportServiceWorkflowStep) If(_if string) *ExportServiceWorkflowStep {

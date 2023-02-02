@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -185,6 +186,10 @@ func (v *NullableK8sUpdateStrategySpec) UnmarshalJSON(src []byte) error {
 
 const K8sUpdateStrategyType = "k8s-update-strategy"
 
+func init() {
+	sdkcommon.RegisterTrait(K8sUpdateStrategyType, FromTrait)
+}
+
 type K8sUpdateStrategyTrait struct {
 	Base       apis.TraitBase
 	Properties K8sUpdateStrategySpec
@@ -201,6 +206,23 @@ func (k *K8sUpdateStrategyTrait) Build() common.ApplicationTrait {
 		Type:       K8sUpdateStrategyType,
 	}
 	return res
+}
+
+func (k *K8sUpdateStrategyTrait) FromTrait(from common.ApplicationTrait) (*K8sUpdateStrategyTrait, error) {
+	var properties K8sUpdateStrategySpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	k.Properties = properties
+	return k, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	k := &K8sUpdateStrategyTrait{}
+	return k.FromTrait(from)
 }
 
 func (k *K8sUpdateStrategyTrait) Type() string {

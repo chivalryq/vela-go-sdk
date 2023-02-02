@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -124,6 +125,10 @@ func (v *NullableServiceBindingSpec) UnmarshalJSON(src []byte) error {
 
 const ServiceBindingType = "service-binding"
 
+func init() {
+	sdkcommon.RegisterTrait(ServiceBindingType, FromTrait)
+}
+
 type ServiceBindingTrait struct {
 	Base       apis.TraitBase
 	Properties ServiceBindingSpec
@@ -140,6 +145,23 @@ func (s *ServiceBindingTrait) Build() common.ApplicationTrait {
 		Type:       ServiceBindingType,
 	}
 	return res
+}
+
+func (s *ServiceBindingTrait) FromTrait(from common.ApplicationTrait) (*ServiceBindingTrait, error) {
+	var properties ServiceBindingSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	s.Properties = properties
+	return s, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	s := &ServiceBindingTrait{}
+	return s.FromTrait(from)
 }
 
 func (s *ServiceBindingTrait) Type() string {

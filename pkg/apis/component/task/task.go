@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -613,6 +614,10 @@ func (v *NullableTaskSpec) UnmarshalJSON(src []byte) error {
 
 const TaskType = "task"
 
+func init() {
+	sdkcommon.RegisterComponent(TaskType, FromComponent)
+}
+
 type TaskComponent struct {
 	Base       apis.ComponentBase
 	Properties TaskSpec
@@ -640,6 +645,34 @@ func (t *TaskComponent) Build() common.ApplicationComponent {
 		Type:       TaskType,
 	}
 	return res
+}
+
+func (t *TaskComponent) FromComponent(from common.ApplicationComponent) (*TaskComponent, error) {
+	for _, trait := range from.Traits {
+		t, err := sdkcommon.FromTrait(&trait)
+		if err != nil {
+			return nil, err
+		}
+		t.Base.Traits = append(t.Base.Traits, t)
+	}
+	var properties TaskSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	t.Base.Name = from.Name
+	t.Base.DependsOn = from.DependsOn
+	t.Base.Inputs = from.Inputs
+	t.Base.Outputs = from.Outputs
+	t.Properties = properties
+	return t, nil
+}
+
+func FromComponent(from common.ApplicationComponent) (apis.Component, error) {
+	t := &TaskComponent{}
+	return t.FromComponent(from)
 }
 
 func (t *TaskComponent) AddTrait(traits ...apis.Trait) *TaskComponent {

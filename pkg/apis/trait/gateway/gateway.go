@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -303,6 +304,10 @@ func (v *NullableGatewaySpec) UnmarshalJSON(src []byte) error {
 
 const GatewayType = "gateway"
 
+func init() {
+	sdkcommon.RegisterTrait(GatewayType, FromTrait)
+}
+
 type GatewayTrait struct {
 	Base       apis.TraitBase
 	Properties GatewaySpec
@@ -319,6 +324,23 @@ func (g *GatewayTrait) Build() common.ApplicationTrait {
 		Type:       GatewayType,
 	}
 	return res
+}
+
+func (g *GatewayTrait) FromTrait(from common.ApplicationTrait) (*GatewayTrait, error) {
+	var properties GatewaySpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	g.Properties = properties
+	return g, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	g := &GatewayTrait{}
+	return g.FromTrait(from)
 }
 
 func (g *GatewayTrait) Type() string {

@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -171,6 +172,10 @@ func (v *NullableLifecycleSpec) UnmarshalJSON(src []byte) error {
 
 const LifecycleType = "lifecycle"
 
+func init() {
+	sdkcommon.RegisterTrait(LifecycleType, FromTrait)
+}
+
 type LifecycleTrait struct {
 	Base       apis.TraitBase
 	Properties LifecycleSpec
@@ -187,6 +192,23 @@ func (l *LifecycleTrait) Build() common.ApplicationTrait {
 		Type:       LifecycleType,
 	}
 	return res
+}
+
+func (l *LifecycleTrait) FromTrait(from common.ApplicationTrait) (*LifecycleTrait, error) {
+	var properties LifecycleSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	l.Properties = properties
+	return l, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	l := &LifecycleTrait{}
+	return l.FromTrait(from)
 }
 
 func (l *LifecycleTrait) Type() string {

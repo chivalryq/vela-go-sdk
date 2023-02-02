@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -154,6 +155,11 @@ func (v *NullableDependsOnAppSpec) UnmarshalJSON(src []byte) error {
 
 const DependsOnAppType = "depends-on-app"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(DependsOnAppType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(DependsOnAppType, FromWorkflowSubStep)
+}
+
 type DependsOnAppWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties DependsOnAppSpec
@@ -188,6 +194,63 @@ func (d *DependsOnAppWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       DependsOnAppType,
 	}
 	return res
+}
+
+func (d *DependsOnAppWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*DependsOnAppWorkflowStep, error) {
+	var properties DependsOnAppSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := d.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	d.Base.Name = from.Name
+	d.Base.DependsOn = from.DependsOn
+	d.Base.Inputs = from.Inputs
+	d.Base.Outputs = from.Outputs
+	d.Base.If = from.If
+	d.Base.Timeout = from.Timeout
+	d.Base.Meta = from.Meta
+	d.Properties = properties
+	d.Base.SubSteps = subSteps
+	return d, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	d := &DependsOnAppWorkflowStep{}
+	return d.FromWorkflowStep(from)
+}
+
+func (d *DependsOnAppWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*DependsOnAppWorkflowStep, error) {
+	var properties DependsOnAppSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	d.Base.Name = from.Name
+	d.Base.DependsOn = from.DependsOn
+	d.Base.Inputs = from.Inputs
+	d.Base.Outputs = from.Outputs
+	d.Base.If = from.If
+	d.Base.Timeout = from.Timeout
+	d.Base.Meta = from.Meta
+	d.Properties = properties
+	return d, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	d := &DependsOnAppWorkflowStep{}
+	return d.FromWorkflowSubStep(from)
 }
 
 func (d *DependsOnAppWorkflowStep) If(_if string) *DependsOnAppWorkflowStep {

@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -156,6 +157,11 @@ func (v *NullableApplyObjectSpec) UnmarshalJSON(src []byte) error {
 
 const ApplyObjectType = "apply-object"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(ApplyObjectType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(ApplyObjectType, FromWorkflowSubStep)
+}
+
 type ApplyObjectWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties ApplyObjectSpec
@@ -190,6 +196,63 @@ func (a *ApplyObjectWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       ApplyObjectType,
 	}
 	return res
+}
+
+func (a *ApplyObjectWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*ApplyObjectWorkflowStep, error) {
+	var properties ApplyObjectSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := a.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	a.Base.Name = from.Name
+	a.Base.DependsOn = from.DependsOn
+	a.Base.Inputs = from.Inputs
+	a.Base.Outputs = from.Outputs
+	a.Base.If = from.If
+	a.Base.Timeout = from.Timeout
+	a.Base.Meta = from.Meta
+	a.Properties = properties
+	a.Base.SubSteps = subSteps
+	return a, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	a := &ApplyObjectWorkflowStep{}
+	return a.FromWorkflowStep(from)
+}
+
+func (a *ApplyObjectWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*ApplyObjectWorkflowStep, error) {
+	var properties ApplyObjectSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	a.Base.Name = from.Name
+	a.Base.DependsOn = from.DependsOn
+	a.Base.Inputs = from.Inputs
+	a.Base.Outputs = from.Outputs
+	a.Base.If = from.If
+	a.Base.Timeout = from.Timeout
+	a.Base.Meta = from.Meta
+	a.Properties = properties
+	return a, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	a := &ApplyObjectWorkflowStep{}
+	return a.FromWorkflowSubStep(from)
 }
 
 func (a *ApplyObjectWorkflowStep) If(_if string) *ApplyObjectWorkflowStep {

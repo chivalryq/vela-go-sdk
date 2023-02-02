@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -162,6 +163,11 @@ func (v *NullableCleanJobsSpec) UnmarshalJSON(src []byte) error {
 
 const CleanJobsType = "clean-jobs"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(CleanJobsType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(CleanJobsType, FromWorkflowSubStep)
+}
+
 type CleanJobsWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties CleanJobsSpec
@@ -196,6 +202,63 @@ func (c *CleanJobsWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       CleanJobsType,
 	}
 	return res
+}
+
+func (c *CleanJobsWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*CleanJobsWorkflowStep, error) {
+	var properties CleanJobsSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := c.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	c.Base.Name = from.Name
+	c.Base.DependsOn = from.DependsOn
+	c.Base.Inputs = from.Inputs
+	c.Base.Outputs = from.Outputs
+	c.Base.If = from.If
+	c.Base.Timeout = from.Timeout
+	c.Base.Meta = from.Meta
+	c.Properties = properties
+	c.Base.SubSteps = subSteps
+	return c, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	c := &CleanJobsWorkflowStep{}
+	return c.FromWorkflowStep(from)
+}
+
+func (c *CleanJobsWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*CleanJobsWorkflowStep, error) {
+	var properties CleanJobsSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	c.Base.Name = from.Name
+	c.Base.DependsOn = from.DependsOn
+	c.Base.Inputs = from.Inputs
+	c.Base.Outputs = from.Outputs
+	c.Base.If = from.If
+	c.Base.Timeout = from.Timeout
+	c.Base.Meta = from.Meta
+	c.Properties = properties
+	return c, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	c := &CleanJobsWorkflowStep{}
+	return c.FromWorkflowSubStep(from)
 }
 
 func (c *CleanJobsWorkflowStep) If(_if string) *CleanJobsWorkflowStep {

@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -95,6 +96,10 @@ func (v *NullableJsonMergePatchSpec) UnmarshalJSON(src []byte) error {
 
 const JsonMergePatchType = "json-merge-patch"
 
+func init() {
+	sdkcommon.RegisterTrait(JsonMergePatchType, FromTrait)
+}
+
 type JSONMergePatchTrait struct {
 	Base       apis.TraitBase
 	Properties JsonMergePatchSpec
@@ -111,6 +116,23 @@ func (j *JSONMergePatchTrait) Build() common.ApplicationTrait {
 		Type:       JsonMergePatchType,
 	}
 	return res
+}
+
+func (j *JSONMergePatchTrait) FromTrait(from common.ApplicationTrait) (*JSONMergePatchTrait, error) {
+	var properties JsonMergePatchSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	j.Properties = properties
+	return j, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	j := &JSONMergePatchTrait{}
+	return j.FromTrait(from)
 }
 
 func (j *JSONMergePatchTrait) Type() string {

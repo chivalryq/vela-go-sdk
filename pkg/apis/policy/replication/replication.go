@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -163,6 +164,10 @@ func (v *NullableReplicationSpec) UnmarshalJSON(src []byte) error {
 
 const ReplicationType = "replication"
 
+func init() {
+	sdkcommon.RegisterPolicy(ReplicationType, FromPolicy)
+}
+
 type ReplicationPolicy struct {
 	Base       apis.PolicyBase
 	Properties ReplicationSpec
@@ -182,6 +187,24 @@ func (r *ReplicationPolicy) Build() v1beta1.AppPolicy {
 		Type:       ReplicationType,
 	}
 	return res
+}
+
+func (r *ReplicationPolicy) FromPolicy(from v1beta1.AppPolicy) (*ReplicationPolicy, error) {
+	var properties ReplicationSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	r.Base.Name = from.Name
+	r.Properties = properties
+	return r, nil
+}
+
+func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
+	r := &ReplicationPolicy{}
+	return r.FromPolicy(from)
 }
 
 func (r *ReplicationPolicy) Type() string {

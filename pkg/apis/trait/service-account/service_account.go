@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -194,6 +195,10 @@ func (v *NullableServiceAccountSpec) UnmarshalJSON(src []byte) error {
 
 const ServiceAccountType = "service-account"
 
+func init() {
+	sdkcommon.RegisterTrait(ServiceAccountType, FromTrait)
+}
+
 type ServiceAccountTrait struct {
 	Base       apis.TraitBase
 	Properties ServiceAccountSpec
@@ -210,6 +215,23 @@ func (s *ServiceAccountTrait) Build() common.ApplicationTrait {
 		Type:       ServiceAccountType,
 	}
 	return res
+}
+
+func (s *ServiceAccountTrait) FromTrait(from common.ApplicationTrait) (*ServiceAccountTrait, error) {
+	var properties ServiceAccountSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	s.Properties = properties
+	return s, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	s := &ServiceAccountTrait{}
+	return s.FromTrait(from)
 }
 
 func (s *ServiceAccountTrait) Type() string {

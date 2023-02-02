@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -153,6 +154,10 @@ func (v *NullablePureIngressSpec) UnmarshalJSON(src []byte) error {
 
 const PureIngressType = "pure-ingress"
 
+func init() {
+	sdkcommon.RegisterTrait(PureIngressType, FromTrait)
+}
+
 type PureIngressTrait struct {
 	Base       apis.TraitBase
 	Properties PureIngressSpec
@@ -169,6 +174,23 @@ func (p *PureIngressTrait) Build() common.ApplicationTrait {
 		Type:       PureIngressType,
 	}
 	return res
+}
+
+func (p *PureIngressTrait) FromTrait(from common.ApplicationTrait) (*PureIngressTrait, error) {
+	var properties PureIngressSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	p.Properties = properties
+	return p, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	p := &PureIngressTrait{}
+	return p.FromTrait(from)
 }
 
 func (p *PureIngressTrait) Type() string {

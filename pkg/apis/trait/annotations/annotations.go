@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -95,6 +96,10 @@ func (v *NullableAnnotationsSpec) UnmarshalJSON(src []byte) error {
 
 const AnnotationsType = "annotations"
 
+func init() {
+	sdkcommon.RegisterTrait(AnnotationsType, FromTrait)
+}
+
 type AnnotationsTrait struct {
 	Base       apis.TraitBase
 	Properties AnnotationsSpec
@@ -111,6 +116,23 @@ func (a *AnnotationsTrait) Build() common.ApplicationTrait {
 		Type:       AnnotationsType,
 	}
 	return res
+}
+
+func (a *AnnotationsTrait) FromTrait(from common.ApplicationTrait) (*AnnotationsTrait, error) {
+	var properties AnnotationsSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	a.Properties = properties
+	return a, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	a := &AnnotationsTrait{}
+	return a.FromTrait(from)
 }
 
 func (a *AnnotationsTrait) Type() string {

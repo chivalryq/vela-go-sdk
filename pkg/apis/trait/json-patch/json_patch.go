@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -123,6 +124,10 @@ func (v *NullableJsonPatchSpec) UnmarshalJSON(src []byte) error {
 
 const JsonPatchType = "json-patch"
 
+func init() {
+	sdkcommon.RegisterTrait(JsonPatchType, FromTrait)
+}
+
 type JSONPatchTrait struct {
 	Base       apis.TraitBase
 	Properties JsonPatchSpec
@@ -139,6 +144,23 @@ func (j *JSONPatchTrait) Build() common.ApplicationTrait {
 		Type:       JsonPatchType,
 	}
 	return res
+}
+
+func (j *JSONPatchTrait) FromTrait(from common.ApplicationTrait) (*JSONPatchTrait, error) {
+	var properties JsonPatchSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	j.Properties = properties
+	return j, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	j := &JSONPatchTrait{}
+	return j.FromTrait(from)
 }
 
 func (j *JSONPatchTrait) Type() string {

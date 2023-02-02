@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -123,6 +124,10 @@ func (v *NullableTopologyspreadconstraintsSpec) UnmarshalJSON(src []byte) error 
 
 const TopologyspreadconstraintsType = "topologyspreadconstraints"
 
+func init() {
+	sdkcommon.RegisterTrait(TopologyspreadconstraintsType, FromTrait)
+}
+
 type TopologyspreadconstraintsTrait struct {
 	Base       apis.TraitBase
 	Properties TopologyspreadconstraintsSpec
@@ -139,6 +144,23 @@ func (t *TopologyspreadconstraintsTrait) Build() common.ApplicationTrait {
 		Type:       TopologyspreadconstraintsType,
 	}
 	return res
+}
+
+func (t *TopologyspreadconstraintsTrait) FromTrait(from common.ApplicationTrait) (*TopologyspreadconstraintsTrait, error) {
+	var properties TopologyspreadconstraintsSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	t.Properties = properties
+	return t, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	t := &TopologyspreadconstraintsTrait{}
+	return t.FromTrait(from)
 }
 
 func (t *TopologyspreadconstraintsTrait) Type() string {

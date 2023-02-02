@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -368,6 +369,11 @@ func (v *NullableApplyTerraformConfigSpec) UnmarshalJSON(src []byte) error {
 
 const ApplyTerraformConfigType = "apply-terraform-config"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(ApplyTerraformConfigType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(ApplyTerraformConfigType, FromWorkflowSubStep)
+}
+
 type ApplyTerraformConfigWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties ApplyTerraformConfigSpec
@@ -402,6 +408,63 @@ func (a *ApplyTerraformConfigWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       ApplyTerraformConfigType,
 	}
 	return res
+}
+
+func (a *ApplyTerraformConfigWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*ApplyTerraformConfigWorkflowStep, error) {
+	var properties ApplyTerraformConfigSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := a.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	a.Base.Name = from.Name
+	a.Base.DependsOn = from.DependsOn
+	a.Base.Inputs = from.Inputs
+	a.Base.Outputs = from.Outputs
+	a.Base.If = from.If
+	a.Base.Timeout = from.Timeout
+	a.Base.Meta = from.Meta
+	a.Properties = properties
+	a.Base.SubSteps = subSteps
+	return a, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	a := &ApplyTerraformConfigWorkflowStep{}
+	return a.FromWorkflowStep(from)
+}
+
+func (a *ApplyTerraformConfigWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*ApplyTerraformConfigWorkflowStep, error) {
+	var properties ApplyTerraformConfigSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	a.Base.Name = from.Name
+	a.Base.DependsOn = from.DependsOn
+	a.Base.Inputs = from.Inputs
+	a.Base.Outputs = from.Outputs
+	a.Base.If = from.If
+	a.Base.Timeout = from.Timeout
+	a.Base.Meta = from.Meta
+	a.Properties = properties
+	return a, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	a := &ApplyTerraformConfigWorkflowStep{}
+	return a.FromWorkflowSubStep(from)
 }
 
 func (a *ApplyTerraformConfigWorkflowStep) If(_if string) *ApplyTerraformConfigWorkflowStep {

@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -163,6 +164,11 @@ func (v *NullableWebhookSpec) UnmarshalJSON(src []byte) error {
 
 const WebhookType = "webhook"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(WebhookType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(WebhookType, FromWorkflowSubStep)
+}
+
 type WebhookWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties WebhookSpec
@@ -197,6 +203,63 @@ func (w *WebhookWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       WebhookType,
 	}
 	return res
+}
+
+func (w *WebhookWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*WebhookWorkflowStep, error) {
+	var properties WebhookSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := w.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	w.Base.Name = from.Name
+	w.Base.DependsOn = from.DependsOn
+	w.Base.Inputs = from.Inputs
+	w.Base.Outputs = from.Outputs
+	w.Base.If = from.If
+	w.Base.Timeout = from.Timeout
+	w.Base.Meta = from.Meta
+	w.Properties = properties
+	w.Base.SubSteps = subSteps
+	return w, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	w := &WebhookWorkflowStep{}
+	return w.FromWorkflowStep(from)
+}
+
+func (w *WebhookWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*WebhookWorkflowStep, error) {
+	var properties WebhookSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	w.Base.Name = from.Name
+	w.Base.DependsOn = from.DependsOn
+	w.Base.Inputs = from.Inputs
+	w.Base.Outputs = from.Outputs
+	w.Base.If = from.If
+	w.Base.Timeout = from.Timeout
+	w.Base.Meta = from.Meta
+	w.Properties = properties
+	return w, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	w := &WebhookWorkflowStep{}
+	return w.FromWorkflowSubStep(from)
 }
 
 func (w *WebhookWorkflowStep) If(_if string) *WebhookWorkflowStep {

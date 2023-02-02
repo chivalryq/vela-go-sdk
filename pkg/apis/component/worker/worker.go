@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -511,6 +512,10 @@ func (v *NullableWorkerSpec) UnmarshalJSON(src []byte) error {
 
 const WorkerType = "worker"
 
+func init() {
+	sdkcommon.RegisterComponent(WorkerType, FromComponent)
+}
+
 type WorkerComponent struct {
 	Base       apis.ComponentBase
 	Properties WorkerSpec
@@ -538,6 +543,34 @@ func (w *WorkerComponent) Build() common.ApplicationComponent {
 		Type:       WorkerType,
 	}
 	return res
+}
+
+func (w *WorkerComponent) FromComponent(from common.ApplicationComponent) (*WorkerComponent, error) {
+	for _, trait := range from.Traits {
+		t, err := sdkcommon.FromTrait(&trait)
+		if err != nil {
+			return nil, err
+		}
+		w.Base.Traits = append(w.Base.Traits, t)
+	}
+	var properties WorkerSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	w.Base.Name = from.Name
+	w.Base.DependsOn = from.DependsOn
+	w.Base.Inputs = from.Inputs
+	w.Base.Outputs = from.Outputs
+	w.Properties = properties
+	return w, nil
+}
+
+func FromComponent(from common.ApplicationComponent) (apis.Component, error) {
+	w := &WorkerComponent{}
+	return w.FromComponent(from)
 }
 
 func (w *WorkerComponent) AddTrait(traits ...apis.Trait) *WorkerComponent {

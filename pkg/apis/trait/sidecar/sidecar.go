@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -385,6 +386,10 @@ func (v *NullableSidecarSpec) UnmarshalJSON(src []byte) error {
 
 const SidecarType = "sidecar"
 
+func init() {
+	sdkcommon.RegisterTrait(SidecarType, FromTrait)
+}
+
 type SidecarTrait struct {
 	Base       apis.TraitBase
 	Properties SidecarSpec
@@ -401,6 +406,23 @@ func (s *SidecarTrait) Build() common.ApplicationTrait {
 		Type:       SidecarType,
 	}
 	return res
+}
+
+func (s *SidecarTrait) FromTrait(from common.ApplicationTrait) (*SidecarTrait, error) {
+	var properties SidecarSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	s.Properties = properties
+	return s, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	s := &SidecarTrait{}
+	return s.FromTrait(from)
 }
 
 func (s *SidecarTrait) Type() string {

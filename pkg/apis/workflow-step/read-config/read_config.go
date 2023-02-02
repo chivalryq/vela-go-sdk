@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -164,6 +165,11 @@ func (v *NullableReadConfigSpec) UnmarshalJSON(src []byte) error {
 
 const ReadConfigType = "read-config"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(ReadConfigType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(ReadConfigType, FromWorkflowSubStep)
+}
+
 type ReadConfigWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties ReadConfigSpec
@@ -198,6 +204,63 @@ func (r *ReadConfigWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       ReadConfigType,
 	}
 	return res
+}
+
+func (r *ReadConfigWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*ReadConfigWorkflowStep, error) {
+	var properties ReadConfigSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := r.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	r.Base.Name = from.Name
+	r.Base.DependsOn = from.DependsOn
+	r.Base.Inputs = from.Inputs
+	r.Base.Outputs = from.Outputs
+	r.Base.If = from.If
+	r.Base.Timeout = from.Timeout
+	r.Base.Meta = from.Meta
+	r.Properties = properties
+	r.Base.SubSteps = subSteps
+	return r, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	r := &ReadConfigWorkflowStep{}
+	return r.FromWorkflowStep(from)
+}
+
+func (r *ReadConfigWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*ReadConfigWorkflowStep, error) {
+	var properties ReadConfigSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	r.Base.Name = from.Name
+	r.Base.DependsOn = from.DependsOn
+	r.Base.Inputs = from.Inputs
+	r.Base.Outputs = from.Outputs
+	r.Base.If = from.If
+	r.Base.Timeout = from.Timeout
+	r.Base.Meta = from.Meta
+	r.Properties = properties
+	return r, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	r := &ReadConfigWorkflowStep{}
+	return r.FromWorkflowSubStep(from)
 }
 
 func (r *ReadConfigWorkflowStep) If(_if string) *ReadConfigWorkflowStep {

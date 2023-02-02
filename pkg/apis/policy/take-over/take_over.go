@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -134,6 +135,10 @@ func (v *NullableTakeOverSpec) UnmarshalJSON(src []byte) error {
 
 const TakeOverType = "take-over"
 
+func init() {
+	sdkcommon.RegisterPolicy(TakeOverType, FromPolicy)
+}
+
 type TakeOverPolicy struct {
 	Base       apis.PolicyBase
 	Properties TakeOverSpec
@@ -153,6 +158,24 @@ func (t *TakeOverPolicy) Build() v1beta1.AppPolicy {
 		Type:       TakeOverType,
 	}
 	return res
+}
+
+func (t *TakeOverPolicy) FromPolicy(from v1beta1.AppPolicy) (*TakeOverPolicy, error) {
+	var properties TakeOverSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	t.Base.Name = from.Name
+	t.Properties = properties
+	return t, nil
+}
+
+func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
+	t := &TakeOverPolicy{}
+	return t.FromPolicy(from)
 }
 
 func (t *TakeOverPolicy) Type() string {

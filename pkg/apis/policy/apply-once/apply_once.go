@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -165,6 +166,10 @@ func (v *NullableApplyOnceSpec) UnmarshalJSON(src []byte) error {
 
 const ApplyOnceType = "apply-once"
 
+func init() {
+	sdkcommon.RegisterPolicy(ApplyOnceType, FromPolicy)
+}
+
 type ApplyOncePolicy struct {
 	Base       apis.PolicyBase
 	Properties ApplyOnceSpec
@@ -184,6 +189,24 @@ func (a *ApplyOncePolicy) Build() v1beta1.AppPolicy {
 		Type:       ApplyOnceType,
 	}
 	return res
+}
+
+func (a *ApplyOncePolicy) FromPolicy(from v1beta1.AppPolicy) (*ApplyOncePolicy, error) {
+	var properties ApplyOnceSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	a.Base.Name = from.Name
+	a.Properties = properties
+	return a, nil
+}
+
+func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
+	a := &ApplyOncePolicy{}
+	return a.FromPolicy(from)
 }
 
 func (a *ApplyOncePolicy) Type() string {

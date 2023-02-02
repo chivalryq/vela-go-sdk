@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -583,6 +584,10 @@ func (v *NullableNocalhostSpec) UnmarshalJSON(src []byte) error {
 
 const NocalhostType = "nocalhost"
 
+func init() {
+	sdkcommon.RegisterTrait(NocalhostType, FromTrait)
+}
+
 type NocalhostTrait struct {
 	Base       apis.TraitBase
 	Properties NocalhostSpec
@@ -599,6 +604,23 @@ func (n *NocalhostTrait) Build() common.ApplicationTrait {
 		Type:       NocalhostType,
 	}
 	return res
+}
+
+func (n *NocalhostTrait) FromTrait(from common.ApplicationTrait) (*NocalhostTrait, error) {
+	var properties NocalhostSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	n.Properties = properties
+	return n, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	n := &NocalhostTrait{}
+	return n.FromTrait(from)
 }
 
 func (n *NocalhostTrait) Type() string {

@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -126,6 +127,10 @@ func (v *NullableScalerSpec) UnmarshalJSON(src []byte) error {
 
 const ScalerType = "scaler"
 
+func init() {
+	sdkcommon.RegisterTrait(ScalerType, FromTrait)
+}
+
 type ScalerTrait struct {
 	Base       apis.TraitBase
 	Properties ScalerSpec
@@ -142,6 +147,23 @@ func (s *ScalerTrait) Build() common.ApplicationTrait {
 		Type:       ScalerType,
 	}
 	return res
+}
+
+func (s *ScalerTrait) FromTrait(from common.ApplicationTrait) (*ScalerTrait, error) {
+	var properties ScalerSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	s.Properties = properties
+	return s, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	s := &ScalerTrait{}
+	return s.FromTrait(from)
 }
 
 func (s *ScalerTrait) Type() string {

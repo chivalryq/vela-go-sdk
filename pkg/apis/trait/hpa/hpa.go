@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -324,6 +325,10 @@ func (v *NullableHpaSpec) UnmarshalJSON(src []byte) error {
 
 const HpaType = "hpa"
 
+func init() {
+	sdkcommon.RegisterTrait(HpaType, FromTrait)
+}
+
 type HpaTrait struct {
 	Base       apis.TraitBase
 	Properties HpaSpec
@@ -340,6 +345,23 @@ func (h *HpaTrait) Build() common.ApplicationTrait {
 		Type:       HpaType,
 	}
 	return res
+}
+
+func (h *HpaTrait) FromTrait(from common.ApplicationTrait) (*HpaTrait, error) {
+	var properties HpaSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	h.Properties = properties
+	return h, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	h := &HpaTrait{}
+	return h.FromTrait(from)
 }
 
 func (h *HpaTrait) Type() string {

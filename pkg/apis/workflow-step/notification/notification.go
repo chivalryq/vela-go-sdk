@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -248,6 +249,11 @@ func (v *NullableNotificationSpec) UnmarshalJSON(src []byte) error {
 
 const NotificationType = "notification"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(NotificationType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(NotificationType, FromWorkflowSubStep)
+}
+
 type NotificationWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties NotificationSpec
@@ -282,6 +288,63 @@ func (n *NotificationWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       NotificationType,
 	}
 	return res
+}
+
+func (n *NotificationWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*NotificationWorkflowStep, error) {
+	var properties NotificationSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := n.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	n.Base.Name = from.Name
+	n.Base.DependsOn = from.DependsOn
+	n.Base.Inputs = from.Inputs
+	n.Base.Outputs = from.Outputs
+	n.Base.If = from.If
+	n.Base.Timeout = from.Timeout
+	n.Base.Meta = from.Meta
+	n.Properties = properties
+	n.Base.SubSteps = subSteps
+	return n, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	n := &NotificationWorkflowStep{}
+	return n.FromWorkflowStep(from)
+}
+
+func (n *NotificationWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*NotificationWorkflowStep, error) {
+	var properties NotificationSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	n.Base.Name = from.Name
+	n.Base.DependsOn = from.DependsOn
+	n.Base.Inputs = from.Inputs
+	n.Base.Outputs = from.Outputs
+	n.Base.If = from.If
+	n.Base.Timeout = from.Timeout
+	n.Base.Meta = from.Meta
+	n.Properties = properties
+	return n, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	n := &NotificationWorkflowStep{}
+	return n.FromWorkflowSubStep(from)
 }
 
 func (n *NotificationWorkflowStep) If(_if string) *NotificationWorkflowStep {

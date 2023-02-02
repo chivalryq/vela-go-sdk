@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -184,6 +185,10 @@ func (v *NullableExposeSpec) UnmarshalJSON(src []byte) error {
 
 const ExposeType = "expose"
 
+func init() {
+	sdkcommon.RegisterTrait(ExposeType, FromTrait)
+}
+
 type ExposeTrait struct {
 	Base       apis.TraitBase
 	Properties ExposeSpec
@@ -200,6 +205,23 @@ func (e *ExposeTrait) Build() common.ApplicationTrait {
 		Type:       ExposeType,
 	}
 	return res
+}
+
+func (e *ExposeTrait) FromTrait(from common.ApplicationTrait) (*ExposeTrait, error) {
+	var properties ExposeSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	e.Properties = properties
+	return e, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	e := &ExposeTrait{}
+	return e.FromTrait(from)
 }
 
 func (e *ExposeTrait) Type() string {

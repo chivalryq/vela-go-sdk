@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -248,6 +249,10 @@ func (v *NullableAffinitySpec) UnmarshalJSON(src []byte) error {
 
 const AffinityType = "affinity"
 
+func init() {
+	sdkcommon.RegisterTrait(AffinityType, FromTrait)
+}
+
 type AffinityTrait struct {
 	Base       apis.TraitBase
 	Properties AffinitySpec
@@ -264,6 +269,23 @@ func (a *AffinityTrait) Build() common.ApplicationTrait {
 		Type:       AffinityType,
 	}
 	return res
+}
+
+func (a *AffinityTrait) FromTrait(from common.ApplicationTrait) (*AffinityTrait, error) {
+	var properties AffinitySpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	a.Properties = properties
+	return a, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	a := &AffinityTrait{}
+	return a.FromTrait(from)
 }
 
 func (a *AffinityTrait) Type() string {

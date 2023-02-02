@@ -19,6 +19,7 @@ import (
 	"fmt"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -153,6 +154,10 @@ func (v *NullableEnvSpec) UnmarshalJSON(src []byte) error {
 
 const EnvType = "env"
 
+func init() {
+	sdkcommon.RegisterTrait(EnvType, FromTrait)
+}
+
 type EnvTrait struct {
 	Base       apis.TraitBase
 	Properties EnvSpec
@@ -169,6 +174,23 @@ func (e *EnvTrait) Build() common.ApplicationTrait {
 		Type:       EnvType,
 	}
 	return res
+}
+
+func (e *EnvTrait) FromTrait(from common.ApplicationTrait) (*EnvTrait, error) {
+	var properties EnvSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	e.Properties = properties
+	return e, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	e := &EnvTrait{}
+	return e.FromTrait(from)
 }
 
 func (e *EnvTrait) Type() string {

@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -228,6 +229,11 @@ func (v *NullableDeploySpec) UnmarshalJSON(src []byte) error {
 
 const DeployType = "deploy"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(DeployType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(DeployType, FromWorkflowSubStep)
+}
+
 type DeployWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties DeploySpec
@@ -262,6 +268,63 @@ func (d *DeployWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       DeployType,
 	}
 	return res
+}
+
+func (d *DeployWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*DeployWorkflowStep, error) {
+	var properties DeploySpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := d.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	d.Base.Name = from.Name
+	d.Base.DependsOn = from.DependsOn
+	d.Base.Inputs = from.Inputs
+	d.Base.Outputs = from.Outputs
+	d.Base.If = from.If
+	d.Base.Timeout = from.Timeout
+	d.Base.Meta = from.Meta
+	d.Properties = properties
+	d.Base.SubSteps = subSteps
+	return d, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	d := &DeployWorkflowStep{}
+	return d.FromWorkflowStep(from)
+}
+
+func (d *DeployWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*DeployWorkflowStep, error) {
+	var properties DeploySpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	d.Base.Name = from.Name
+	d.Base.DependsOn = from.DependsOn
+	d.Base.Inputs = from.Inputs
+	d.Base.Outputs = from.Outputs
+	d.Base.If = from.If
+	d.Base.Timeout = from.Timeout
+	d.Base.Meta = from.Meta
+	d.Properties = properties
+	return d, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	d := &DeployWorkflowStep{}
+	return d.FromWorkflowSubStep(from)
 }
 
 func (d *DeployWorkflowStep) If(_if string) *DeployWorkflowStep {

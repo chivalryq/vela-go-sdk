@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -362,6 +363,11 @@ func (v *NullableBuildPushImageSpec) UnmarshalJSON(src []byte) error {
 
 const BuildPushImageType = "build-push-image"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(BuildPushImageType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(BuildPushImageType, FromWorkflowSubStep)
+}
+
 type BuildPushImageWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties BuildPushImageSpec
@@ -396,6 +402,63 @@ func (b *BuildPushImageWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       BuildPushImageType,
 	}
 	return res
+}
+
+func (b *BuildPushImageWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*BuildPushImageWorkflowStep, error) {
+	var properties BuildPushImageSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := b.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	b.Base.Name = from.Name
+	b.Base.DependsOn = from.DependsOn
+	b.Base.Inputs = from.Inputs
+	b.Base.Outputs = from.Outputs
+	b.Base.If = from.If
+	b.Base.Timeout = from.Timeout
+	b.Base.Meta = from.Meta
+	b.Properties = properties
+	b.Base.SubSteps = subSteps
+	return b, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	b := &BuildPushImageWorkflowStep{}
+	return b.FromWorkflowStep(from)
+}
+
+func (b *BuildPushImageWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*BuildPushImageWorkflowStep, error) {
+	var properties BuildPushImageSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	b.Base.Name = from.Name
+	b.Base.DependsOn = from.DependsOn
+	b.Base.Inputs = from.Inputs
+	b.Base.Outputs = from.Outputs
+	b.Base.If = from.If
+	b.Base.Timeout = from.Timeout
+	b.Base.Meta = from.Meta
+	b.Properties = properties
+	return b, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	b := &BuildPushImageWorkflowStep{}
+	return b.FromWorkflowSubStep(from)
 }
 
 func (b *BuildPushImageWorkflowStep) If(_if string) *BuildPushImageWorkflowStep {

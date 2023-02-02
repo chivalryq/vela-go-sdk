@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -290,6 +291,10 @@ func (v *NullableStorageSpec) UnmarshalJSON(src []byte) error {
 
 const StorageType = "storage"
 
+func init() {
+	sdkcommon.RegisterTrait(StorageType, FromTrait)
+}
+
 type StorageTrait struct {
 	Base       apis.TraitBase
 	Properties StorageSpec
@@ -306,6 +311,23 @@ func (s *StorageTrait) Build() common.ApplicationTrait {
 		Type:       StorageType,
 	}
 	return res
+}
+
+func (s *StorageTrait) FromTrait(from common.ApplicationTrait) (*StorageTrait, error) {
+	var properties StorageSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	s.Properties = properties
+	return s, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	s := &StorageTrait{}
+	return s.FromTrait(from)
 }
 
 func (s *StorageTrait) Type() string {

@@ -19,6 +19,7 @@ import (
 	"fmt"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -153,6 +154,10 @@ func (v *NullableStartupProbeSpec) UnmarshalJSON(src []byte) error {
 
 const StartupProbeType = "startup-probe"
 
+func init() {
+	sdkcommon.RegisterTrait(StartupProbeType, FromTrait)
+}
+
 type StartupProbeTrait struct {
 	Base       apis.TraitBase
 	Properties StartupProbeSpec
@@ -169,6 +174,23 @@ func (s *StartupProbeTrait) Build() common.ApplicationTrait {
 		Type:       StartupProbeType,
 	}
 	return res
+}
+
+func (s *StartupProbeTrait) FromTrait(from common.ApplicationTrait) (*StartupProbeTrait, error) {
+	var properties StartupProbeSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	s.Properties = properties
+	return s, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	s := &StartupProbeTrait{}
+	return s.FromTrait(from)
 }
 
 func (s *StartupProbeTrait) Type() string {

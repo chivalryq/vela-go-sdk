@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -953,6 +954,10 @@ func (v *NullableCronTaskSpec) UnmarshalJSON(src []byte) error {
 
 const CronTaskType = "cron-task"
 
+func init() {
+	sdkcommon.RegisterComponent(CronTaskType, FromComponent)
+}
+
 type CronTaskComponent struct {
 	Base       apis.ComponentBase
 	Properties CronTaskSpec
@@ -980,6 +985,34 @@ func (c *CronTaskComponent) Build() common.ApplicationComponent {
 		Type:       CronTaskType,
 	}
 	return res
+}
+
+func (c *CronTaskComponent) FromComponent(from common.ApplicationComponent) (*CronTaskComponent, error) {
+	for _, trait := range from.Traits {
+		t, err := sdkcommon.FromTrait(&trait)
+		if err != nil {
+			return nil, err
+		}
+		c.Base.Traits = append(c.Base.Traits, t)
+	}
+	var properties CronTaskSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	c.Base.Name = from.Name
+	c.Base.DependsOn = from.DependsOn
+	c.Base.Inputs = from.Inputs
+	c.Base.Outputs = from.Outputs
+	c.Properties = properties
+	return c, nil
+}
+
+func FromComponent(from common.ApplicationComponent) (apis.Component, error) {
+	c := &CronTaskComponent{}
+	return c.FromComponent(from)
 }
 
 func (c *CronTaskComponent) AddTrait(traits ...apis.Trait) *CronTaskComponent {

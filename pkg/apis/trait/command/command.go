@@ -19,6 +19,7 @@ import (
 	"fmt"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -153,6 +154,10 @@ func (v *NullableCommandSpec) UnmarshalJSON(src []byte) error {
 
 const CommandType = "command"
 
+func init() {
+	sdkcommon.RegisterTrait(CommandType, FromTrait)
+}
+
 type CommandTrait struct {
 	Base       apis.TraitBase
 	Properties CommandSpec
@@ -169,6 +174,23 @@ func (c *CommandTrait) Build() common.ApplicationTrait {
 		Type:       CommandType,
 	}
 	return res
+}
+
+func (c *CommandTrait) FromTrait(from common.ApplicationTrait) (*CommandTrait, error) {
+	var properties CommandSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	c.Properties = properties
+	return c, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	c := &CommandTrait{}
+	return c.FromTrait(from)
 }
 
 func (c *CommandTrait) Type() string {

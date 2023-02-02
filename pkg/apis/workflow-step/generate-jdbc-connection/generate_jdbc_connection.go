@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -164,6 +165,11 @@ func (v *NullableGenerateJdbcConnectionSpec) UnmarshalJSON(src []byte) error {
 
 const GenerateJdbcConnectionType = "generate-jdbc-connection"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(GenerateJdbcConnectionType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(GenerateJdbcConnectionType, FromWorkflowSubStep)
+}
+
 type GenerateJdbcConnectionWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties GenerateJdbcConnectionSpec
@@ -198,6 +204,63 @@ func (g *GenerateJdbcConnectionWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       GenerateJdbcConnectionType,
 	}
 	return res
+}
+
+func (g *GenerateJdbcConnectionWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*GenerateJdbcConnectionWorkflowStep, error) {
+	var properties GenerateJdbcConnectionSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := g.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	g.Base.Name = from.Name
+	g.Base.DependsOn = from.DependsOn
+	g.Base.Inputs = from.Inputs
+	g.Base.Outputs = from.Outputs
+	g.Base.If = from.If
+	g.Base.Timeout = from.Timeout
+	g.Base.Meta = from.Meta
+	g.Properties = properties
+	g.Base.SubSteps = subSteps
+	return g, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	g := &GenerateJdbcConnectionWorkflowStep{}
+	return g.FromWorkflowStep(from)
+}
+
+func (g *GenerateJdbcConnectionWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*GenerateJdbcConnectionWorkflowStep, error) {
+	var properties GenerateJdbcConnectionSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	g.Base.Name = from.Name
+	g.Base.DependsOn = from.DependsOn
+	g.Base.Inputs = from.Inputs
+	g.Base.Outputs = from.Outputs
+	g.Base.If = from.If
+	g.Base.Timeout = from.Timeout
+	g.Base.Meta = from.Meta
+	g.Properties = properties
+	return g, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	g := &GenerateJdbcConnectionWorkflowStep{}
+	return g.FromWorkflowSubStep(from)
 }
 
 func (g *GenerateJdbcConnectionWorkflowStep) If(_if string) *GenerateJdbcConnectionWorkflowStep {

@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -124,6 +125,10 @@ func (v *NullableHostaliasSpec) UnmarshalJSON(src []byte) error {
 
 const HostaliasType = "hostalias"
 
+func init() {
+	sdkcommon.RegisterTrait(HostaliasType, FromTrait)
+}
+
 type HostaliasTrait struct {
 	Base       apis.TraitBase
 	Properties HostaliasSpec
@@ -140,6 +145,23 @@ func (h *HostaliasTrait) Build() common.ApplicationTrait {
 		Type:       HostaliasType,
 	}
 	return res
+}
+
+func (h *HostaliasTrait) FromTrait(from common.ApplicationTrait) (*HostaliasTrait, error) {
+	var properties HostaliasSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	h.Properties = properties
+	return h, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	h := &HostaliasTrait{}
+	return h.FromTrait(from)
 }
 
 func (h *HostaliasTrait) Type() string {

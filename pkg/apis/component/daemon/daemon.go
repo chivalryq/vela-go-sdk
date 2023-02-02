@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -765,6 +766,10 @@ func (v *NullableDaemonSpec) UnmarshalJSON(src []byte) error {
 
 const DaemonType = "daemon"
 
+func init() {
+	sdkcommon.RegisterComponent(DaemonType, FromComponent)
+}
+
 type DaemonComponent struct {
 	Base       apis.ComponentBase
 	Properties DaemonSpec
@@ -792,6 +797,34 @@ func (d *DaemonComponent) Build() common.ApplicationComponent {
 		Type:       DaemonType,
 	}
 	return res
+}
+
+func (d *DaemonComponent) FromComponent(from common.ApplicationComponent) (*DaemonComponent, error) {
+	for _, trait := range from.Traits {
+		t, err := sdkcommon.FromTrait(&trait)
+		if err != nil {
+			return nil, err
+		}
+		d.Base.Traits = append(d.Base.Traits, t)
+	}
+	var properties DaemonSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	d.Base.Name = from.Name
+	d.Base.DependsOn = from.DependsOn
+	d.Base.Inputs = from.Inputs
+	d.Base.Outputs = from.Outputs
+	d.Properties = properties
+	return d, nil
+}
+
+func FromComponent(from common.ApplicationComponent) (apis.Component, error) {
+	d := &DaemonComponent{}
+	return d.FromComponent(from)
 }
 
 func (d *DaemonComponent) AddTrait(traits ...apis.Trait) *DaemonComponent {

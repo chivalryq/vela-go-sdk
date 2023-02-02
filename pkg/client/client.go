@@ -57,8 +57,20 @@ func (c clientImpl) Get(ctx context.Context, key client.ObjectKey) (apis.Applica
 }
 
 func (c clientImpl) List(ctx context.Context, opts client.ListOption) ([]apis.Application, error) {
-	//TODO implement me
-	panic("implement me")
+	_appList := &v1beta1.ApplicationList{}
+	err := c.clt.List(ctx, _appList, opts)
+	if err != nil {
+		return nil, err
+	}
+	var apps []apis.Application
+	for _, app := range _appList.Items {
+		_app, err := sdkcommon.FromK8sObject(&app)
+		if err != nil {
+			return nil, err
+		}
+		apps = append(apps, _app)
+	}
+	return apps, nil
 }
 
 func (c clientImpl) Create(ctx context.Context, app apis.Application) error {

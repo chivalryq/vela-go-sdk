@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -290,6 +291,10 @@ func (v *NullableTopologySpec) UnmarshalJSON(src []byte) error {
 
 const TopologyType = "topology"
 
+func init() {
+	sdkcommon.RegisterPolicy(TopologyType, FromPolicy)
+}
+
 type TopologyPolicy struct {
 	Base       apis.PolicyBase
 	Properties TopologySpec
@@ -309,6 +314,24 @@ func (t *TopologyPolicy) Build() v1beta1.AppPolicy {
 		Type:       TopologyType,
 	}
 	return res
+}
+
+func (t *TopologyPolicy) FromPolicy(from v1beta1.AppPolicy) (*TopologyPolicy, error) {
+	var properties TopologySpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	t.Base.Name = from.Name
+	t.Properties = properties
+	return t, nil
+}
+
+func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
+	t := &TopologyPolicy{}
+	return t.FromPolicy(from)
 }
 
 func (t *TopologyPolicy) Type() string {

@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -361,6 +362,11 @@ func (v *NullableCollectServiceEndpointsSpec) UnmarshalJSON(src []byte) error {
 
 const CollectServiceEndpointsType = "collect-service-endpoints"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(CollectServiceEndpointsType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(CollectServiceEndpointsType, FromWorkflowSubStep)
+}
+
 type CollectServiceEndpointsWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties CollectServiceEndpointsSpec
@@ -395,6 +401,63 @@ func (c *CollectServiceEndpointsWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       CollectServiceEndpointsType,
 	}
 	return res
+}
+
+func (c *CollectServiceEndpointsWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*CollectServiceEndpointsWorkflowStep, error) {
+	var properties CollectServiceEndpointsSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := c.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	c.Base.Name = from.Name
+	c.Base.DependsOn = from.DependsOn
+	c.Base.Inputs = from.Inputs
+	c.Base.Outputs = from.Outputs
+	c.Base.If = from.If
+	c.Base.Timeout = from.Timeout
+	c.Base.Meta = from.Meta
+	c.Properties = properties
+	c.Base.SubSteps = subSteps
+	return c, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	c := &CollectServiceEndpointsWorkflowStep{}
+	return c.FromWorkflowStep(from)
+}
+
+func (c *CollectServiceEndpointsWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*CollectServiceEndpointsWorkflowStep, error) {
+	var properties CollectServiceEndpointsSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	c.Base.Name = from.Name
+	c.Base.DependsOn = from.DependsOn
+	c.Base.Inputs = from.Inputs
+	c.Base.Outputs = from.Outputs
+	c.Base.If = from.If
+	c.Base.Timeout = from.Timeout
+	c.Base.Meta = from.Meta
+	c.Properties = properties
+	return c, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	c := &CollectServiceEndpointsWorkflowStep{}
+	return c.FromWorkflowSubStep(from)
 }
 
 func (c *CollectServiceEndpointsWorkflowStep) If(_if string) *CollectServiceEndpointsWorkflowStep {

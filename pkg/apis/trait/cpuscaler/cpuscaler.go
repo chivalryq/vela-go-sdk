@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -250,6 +251,10 @@ func (v *NullableCpuscalerSpec) UnmarshalJSON(src []byte) error {
 
 const CpuscalerType = "cpuscaler"
 
+func init() {
+	sdkcommon.RegisterTrait(CpuscalerType, FromTrait)
+}
+
 type CpuscalerTrait struct {
 	Base       apis.TraitBase
 	Properties CpuscalerSpec
@@ -266,6 +271,23 @@ func (c *CpuscalerTrait) Build() common.ApplicationTrait {
 		Type:       CpuscalerType,
 	}
 	return res
+}
+
+func (c *CpuscalerTrait) FromTrait(from common.ApplicationTrait) (*CpuscalerTrait, error) {
+	var properties CpuscalerSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	c.Properties = properties
+	return c, nil
+}
+
+func FromTrait(from common.ApplicationTrait) (apis.Trait, error) {
+	c := &CpuscalerTrait{}
+	return c.FromTrait(from)
 }
 
 func (c *CpuscalerTrait) Type() string {

@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -134,6 +135,10 @@ func (v *NullableSharedResourceSpec) UnmarshalJSON(src []byte) error {
 
 const SharedResourceType = "shared-resource"
 
+func init() {
+	sdkcommon.RegisterPolicy(SharedResourceType, FromPolicy)
+}
+
 type SharedResourcePolicy struct {
 	Base       apis.PolicyBase
 	Properties SharedResourceSpec
@@ -153,6 +158,24 @@ func (s *SharedResourcePolicy) Build() v1beta1.AppPolicy {
 		Type:       SharedResourceType,
 	}
 	return res
+}
+
+func (s *SharedResourcePolicy) FromPolicy(from v1beta1.AppPolicy) (*SharedResourcePolicy, error) {
+	var properties SharedResourceSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	s.Base.Name = from.Name
+	s.Properties = properties
+	return s, nil
+}
+
+func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
+	s := &SharedResourcePolicy{}
+	return s.FromPolicy(from)
 }
 
 func (s *SharedResourcePolicy) Type() string {

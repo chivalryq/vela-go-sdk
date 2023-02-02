@@ -18,6 +18,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -96,6 +97,11 @@ func (v *NullableStepGroupSpec) UnmarshalJSON(src []byte) error {
 
 const StepGroupType = "step-group"
 
+func init() {
+	sdkcommon.RegisterWorkflowStep(StepGroupType, FromWorkflowStep)
+	sdkcommon.RegisterWorkflowSubStep(StepGroupType, FromWorkflowSubStep)
+}
+
 type StepGroupWorkflowStep struct {
 	Base       apis.WorkflowStepBase
 	Properties StepGroupSpec
@@ -130,6 +136,63 @@ func (s *StepGroupWorkflowStep) Build() v1beta1.WorkflowStep {
 		Type:       StepGroupType,
 	}
 	return res
+}
+
+func (s *StepGroupWorkflowStep) FromWorkflowStep(from v1beta1.WorkflowStep) (*StepGroupWorkflowStep, error) {
+	var properties StepGroupSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	subSteps := make([]apis.WorkflowStep, 0)
+	for _, _s := range from.SubSteps {
+		subStep, err := s.FromWorkflowSubStep(_s)
+		if err != nil {
+			return nil, err
+		}
+		subSteps = append(subSteps, subStep)
+	}
+	s.Base.Name = from.Name
+	s.Base.DependsOn = from.DependsOn
+	s.Base.Inputs = from.Inputs
+	s.Base.Outputs = from.Outputs
+	s.Base.If = from.If
+	s.Base.Timeout = from.Timeout
+	s.Base.Meta = from.Meta
+	s.Properties = properties
+	s.Base.SubSteps = subSteps
+	return s, nil
+}
+
+func FromWorkflowStep(from v1beta1.WorkflowStep) (apis.WorkflowStep, error) {
+	s := &StepGroupWorkflowStep{}
+	return s.FromWorkflowStep(from)
+}
+
+func (s *StepGroupWorkflowStep) FromWorkflowSubStep(from common.WorkflowSubStep) (*StepGroupWorkflowStep, error) {
+	var properties StepGroupSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	s.Base.Name = from.Name
+	s.Base.DependsOn = from.DependsOn
+	s.Base.Inputs = from.Inputs
+	s.Base.Outputs = from.Outputs
+	s.Base.If = from.If
+	s.Base.Timeout = from.Timeout
+	s.Base.Meta = from.Meta
+	s.Properties = properties
+	return s, nil
+}
+
+func FromWorkflowSubStep(from common.WorkflowSubStep) (apis.WorkflowStep, error) {
+	s := &StepGroupWorkflowStep{}
+	return s.FromWorkflowSubStep(from)
 }
 
 func (s *StepGroupWorkflowStep) If(_if string) *StepGroupWorkflowStep {

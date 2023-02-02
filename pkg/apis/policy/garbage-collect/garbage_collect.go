@@ -17,6 +17,7 @@ import (
 	"github.com/oam-dev/kubevela-core-api/pkg/oam/util"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis"
+	sdkcommon "github.com/chivalryq/vela-go-sdk/pkg/apis/common"
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/utils"
 )
 
@@ -165,6 +166,10 @@ func (v *NullableGarbageCollectSpec) UnmarshalJSON(src []byte) error {
 
 const GarbageCollectType = "garbage-collect"
 
+func init() {
+	sdkcommon.RegisterPolicy(GarbageCollectType, FromPolicy)
+}
+
 type GarbageCollectPolicy struct {
 	Base       apis.PolicyBase
 	Properties GarbageCollectSpec
@@ -184,6 +189,24 @@ func (g *GarbageCollectPolicy) Build() v1beta1.AppPolicy {
 		Type:       GarbageCollectType,
 	}
 	return res
+}
+
+func (g *GarbageCollectPolicy) FromPolicy(from v1beta1.AppPolicy) (*GarbageCollectPolicy, error) {
+	var properties GarbageCollectSpec
+	if from.Properties != nil {
+		err := json.Unmarshal(from.Properties.Raw, &properties)
+		if err != nil {
+			return nil, err
+		}
+	}
+	g.Base.Name = from.Name
+	g.Properties = properties
+	return g, nil
+}
+
+func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
+	g := &GarbageCollectPolicy{}
+	return g.FromPolicy(from)
 }
 
 func (g *GarbageCollectPolicy) Type() string {
