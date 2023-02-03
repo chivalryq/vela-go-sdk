@@ -27,16 +27,15 @@ var _ utils.MappedNullable = &KustomizeJsonPatchSpec{}
 // KustomizeJsonPatchSpec struct for KustomizeJsonPatchSpec
 type KustomizeJsonPatchSpec struct {
 	// A list of JSON6902 patch.
-	PatchesJson []JsonPatchItem `json:"patchesJson"`
+	PatchesJson []JsonPatchItem `json:"patchesJson,omitempty"`
 }
 
 // NewKustomizeJsonPatchSpecWith instantiates a new KustomizeJsonPatchSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKustomizeJsonPatchSpecWith(patchesJson []JsonPatchItem) *KustomizeJsonPatchSpec {
+func NewKustomizeJsonPatchSpecWith() *KustomizeJsonPatchSpec {
 	this := KustomizeJsonPatchSpec{}
-	this.PatchesJson = patchesJson
 	return &this
 }
 
@@ -58,26 +57,35 @@ func NewKustomizeJsonPatchSpecs(ps ...*KustomizeJsonPatchSpec) []KustomizeJsonPa
 	return objs
 }
 
-// GetPatchesJson returns the PatchesJson field value
+// GetPatchesJson returns the PatchesJson field value if set, zero value otherwise.
 func (o *KustomizeJSONPatchTrait) GetPatchesJson() []JsonPatchItem {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.PatchesJson) {
 		var ret []JsonPatchItem
 		return ret
 	}
-
 	return o.Properties.PatchesJson
 }
 
-// GetPatchesJsonOk returns a tuple with the PatchesJson field value
+// GetPatchesJsonOk returns a tuple with the PatchesJson field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KustomizeJSONPatchTrait) GetPatchesJsonOk() ([]JsonPatchItem, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.PatchesJson) {
 		return nil, false
 	}
 	return o.Properties.PatchesJson, true
 }
 
-// SetPatchesJson sets field value
+// HasPatchesJson returns a boolean if a field has been set.
+func (o *KustomizeJSONPatchTrait) HasPatchesJson() bool {
+	if o != nil && !utils.IsNil(o.Properties.PatchesJson) {
+		return true
+	}
+
+	return false
+}
+
+// SetPatchesJson gets a reference to the given []JsonPatchItem and assigns it to the patchesJson field.
+// PatchesJson:  A list of JSON6902 patch.
 func (o *KustomizeJSONPatchTrait) SetPatchesJson(v []JsonPatchItem) *KustomizeJSONPatchTrait {
 	o.Properties.PatchesJson = v
 	return o
@@ -93,7 +101,9 @@ func (o KustomizeJsonPatchSpec) MarshalJSON() ([]byte, error) {
 
 func (o KustomizeJsonPatchSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["patchesJson"] = o.PatchesJson
+	if !utils.IsNil(o.PatchesJson) {
+		toSerialize["patchesJson"] = o.PatchesJson
+	}
 	return toSerialize, nil
 }
 

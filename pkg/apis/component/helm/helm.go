@@ -27,20 +27,20 @@ var _ utils.MappedNullable = &HelmSpec{}
 // HelmSpec struct for HelmSpec
 type HelmSpec struct {
 	// 1.The relative path to helm chart for git/oss source. 2. chart name for helm resource 3. relative path for chart package(e.g. ./charts/podinfo-1.2.3.tgz)
-	Chart *string `json:"chart,omitempty"`
-	Git   *Git    `json:"git,omitempty"`
+	Chart string `json:"chart"`
+	Git   *Git   `json:"git,omitempty"`
 	// The timeout for operation `helm install`, optional
-	InstallTimeout *string `json:"installTimeout,omitempty"`
+	InstallTimeout string `json:"installTimeout"`
 	// The  Interval at which to reconcile the Helm release, default to 30s
-	Interval *string `json:"interval,omitempty"`
-	Oss      *Oss    `json:"oss,omitempty"`
+	Interval string `json:"interval"`
+	Oss      *Oss   `json:"oss,omitempty"`
 	// The interval at which to check for repository/bucket and release updates, default to 5m
-	PullInterval *string `json:"pullInterval,omitempty"`
+	PullInterval string `json:"pullInterval"`
 	// The release name
 	ReleaseName *string `json:"releaseName,omitempty"`
-	RepoType    *string `json:"repoType,omitempty"`
+	RepoType    string  `json:"repoType"`
 	// Retry times when install/upgrade fail.
-	Retries *int32 `json:"retries,omitempty"`
+	Retries int32 `json:"retries"`
 	// The name of the secret containing authentication credentials
 	SecretRef *string `json:"secretRef,omitempty"`
 	// The name of the source already existed
@@ -50,32 +50,28 @@ type HelmSpec struct {
 	// The timeout for operations like download index/clone repository, optional
 	Timeout *string `json:"timeout,omitempty"`
 	// The Git or Helm repository URL, OSS endpoint, accept HTTP/S or SSH address as git url,
-	Url    *string                `json:"url,omitempty"`
+	Url    string                 `json:"url"`
 	Values map[string]interface{} `json:"values,omitempty"`
 	// Alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef.Values files are merged in the order of this list with the last file overriding the first.
 	ValuesFiles []string `json:"valuesFiles,omitempty"`
 	// Chart version
-	Version *string `json:"version,omitempty"`
+	Version string `json:"version"`
 }
 
 // NewHelmSpecWith instantiates a new HelmSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHelmSpecWith() *HelmSpec {
+func NewHelmSpecWith(chart string, installTimeout string, interval string, pullInterval string, repoType string, retries int32, url string, version string) *HelmSpec {
 	this := HelmSpec{}
-	var installTimeout string = "10m"
-	this.InstallTimeout = &installTimeout
-	var interval string = "30s"
-	this.Interval = &interval
-	var pullInterval string = "5m"
-	this.PullInterval = &pullInterval
-	var repoType string = "helm"
-	this.RepoType = &repoType
-	var retries int32 = 3
-	this.Retries = &retries
-	var version string = "*"
-	this.Version = &version
+	this.Chart = chart
+	this.InstallTimeout = installTimeout
+	this.Interval = interval
+	this.PullInterval = pullInterval
+	this.RepoType = repoType
+	this.Retries = retries
+	this.Url = url
+	this.Version = version
 	return &this
 }
 
@@ -85,17 +81,17 @@ func NewHelmSpecWith() *HelmSpec {
 func NewHelmSpec() *HelmSpec {
 	this := HelmSpec{}
 	var installTimeout string = "10m"
-	this.InstallTimeout = &installTimeout
+	this.InstallTimeout = installTimeout
 	var interval string = "30s"
-	this.Interval = &interval
+	this.Interval = interval
 	var pullInterval string = "5m"
-	this.PullInterval = &pullInterval
+	this.PullInterval = pullInterval
 	var repoType string = "helm"
-	this.RepoType = &repoType
+	this.RepoType = repoType
 	var retries int32 = 3
-	this.Retries = &retries
+	this.Retries = retries
 	var version string = "*"
-	this.Version = &version
+	this.Version = version
 	return &this
 }
 
@@ -109,37 +105,28 @@ func NewHelmSpecs(ps ...*HelmSpec) []HelmSpec {
 	return objs
 }
 
-// GetChart returns the Chart field value if set, zero value otherwise.
+// GetChart returns the Chart field value
 func (o *HelmComponent) GetChart() string {
-	if o == nil || utils.IsNil(o.Properties.Chart) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Properties.Chart
+
+	return o.Properties.Chart
 }
 
-// GetChartOk returns a tuple with the Chart field value if set, nil otherwise
+// GetChartOk returns a tuple with the Chart field value
 // and a boolean to check if the value has been set.
 func (o *HelmComponent) GetChartOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.Chart) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Properties.Chart, true
+	return &o.Properties.Chart, true
 }
 
-// HasChart returns a boolean if a field has been set.
-func (o *HelmComponent) HasChart() bool {
-	if o != nil && !utils.IsNil(o.Properties.Chart) {
-		return true
-	}
-
-	return false
-}
-
-// SetChart gets a reference to the given string and assigns it to the chart field.
-// Chart:  1.The relative path to helm chart for git/oss source. 2. chart name for helm resource 3. relative path for chart package(e.g. ./charts/podinfo-1.2.3.tgz)
+// SetChart sets field value
 func (o *HelmComponent) SetChart(v string) *HelmComponent {
-	o.Properties.Chart = &v
+	o.Properties.Chart = v
 	return o
 }
 
@@ -177,71 +164,53 @@ func (o *HelmComponent) SetGit(v Git) *HelmComponent {
 	return o
 }
 
-// GetInstallTimeout returns the InstallTimeout field value if set, zero value otherwise.
+// GetInstallTimeout returns the InstallTimeout field value
 func (o *HelmComponent) GetInstallTimeout() string {
-	if o == nil || utils.IsNil(o.Properties.InstallTimeout) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Properties.InstallTimeout
+
+	return o.Properties.InstallTimeout
 }
 
-// GetInstallTimeoutOk returns a tuple with the InstallTimeout field value if set, nil otherwise
+// GetInstallTimeoutOk returns a tuple with the InstallTimeout field value
 // and a boolean to check if the value has been set.
 func (o *HelmComponent) GetInstallTimeoutOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.InstallTimeout) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Properties.InstallTimeout, true
+	return &o.Properties.InstallTimeout, true
 }
 
-// HasInstallTimeout returns a boolean if a field has been set.
-func (o *HelmComponent) HasInstallTimeout() bool {
-	if o != nil && !utils.IsNil(o.Properties.InstallTimeout) {
-		return true
-	}
-
-	return false
-}
-
-// SetInstallTimeout gets a reference to the given string and assigns it to the installTimeout field.
-// InstallTimeout:  The timeout for operation `helm install`, optional
+// SetInstallTimeout sets field value
 func (o *HelmComponent) SetInstallTimeout(v string) *HelmComponent {
-	o.Properties.InstallTimeout = &v
+	o.Properties.InstallTimeout = v
 	return o
 }
 
-// GetInterval returns the Interval field value if set, zero value otherwise.
+// GetInterval returns the Interval field value
 func (o *HelmComponent) GetInterval() string {
-	if o == nil || utils.IsNil(o.Properties.Interval) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Properties.Interval
+
+	return o.Properties.Interval
 }
 
-// GetIntervalOk returns a tuple with the Interval field value if set, nil otherwise
+// GetIntervalOk returns a tuple with the Interval field value
 // and a boolean to check if the value has been set.
 func (o *HelmComponent) GetIntervalOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.Interval) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Properties.Interval, true
+	return &o.Properties.Interval, true
 }
 
-// HasInterval returns a boolean if a field has been set.
-func (o *HelmComponent) HasInterval() bool {
-	if o != nil && !utils.IsNil(o.Properties.Interval) {
-		return true
-	}
-
-	return false
-}
-
-// SetInterval gets a reference to the given string and assigns it to the interval field.
-// Interval:  The  Interval at which to reconcile the Helm release, default to 30s
+// SetInterval sets field value
 func (o *HelmComponent) SetInterval(v string) *HelmComponent {
-	o.Properties.Interval = &v
+	o.Properties.Interval = v
 	return o
 }
 
@@ -279,37 +248,28 @@ func (o *HelmComponent) SetOss(v Oss) *HelmComponent {
 	return o
 }
 
-// GetPullInterval returns the PullInterval field value if set, zero value otherwise.
+// GetPullInterval returns the PullInterval field value
 func (o *HelmComponent) GetPullInterval() string {
-	if o == nil || utils.IsNil(o.Properties.PullInterval) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Properties.PullInterval
+
+	return o.Properties.PullInterval
 }
 
-// GetPullIntervalOk returns a tuple with the PullInterval field value if set, nil otherwise
+// GetPullIntervalOk returns a tuple with the PullInterval field value
 // and a boolean to check if the value has been set.
 func (o *HelmComponent) GetPullIntervalOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.PullInterval) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Properties.PullInterval, true
+	return &o.Properties.PullInterval, true
 }
 
-// HasPullInterval returns a boolean if a field has been set.
-func (o *HelmComponent) HasPullInterval() bool {
-	if o != nil && !utils.IsNil(o.Properties.PullInterval) {
-		return true
-	}
-
-	return false
-}
-
-// SetPullInterval gets a reference to the given string and assigns it to the pullInterval field.
-// PullInterval:  The interval at which to check for repository/bucket and release updates, default to 5m
+// SetPullInterval sets field value
 func (o *HelmComponent) SetPullInterval(v string) *HelmComponent {
-	o.Properties.PullInterval = &v
+	o.Properties.PullInterval = v
 	return o
 }
 
@@ -347,71 +307,53 @@ func (o *HelmComponent) SetReleaseName(v string) *HelmComponent {
 	return o
 }
 
-// GetRepoType returns the RepoType field value if set, zero value otherwise.
+// GetRepoType returns the RepoType field value
 func (o *HelmComponent) GetRepoType() string {
-	if o == nil || utils.IsNil(o.Properties.RepoType) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Properties.RepoType
+
+	return o.Properties.RepoType
 }
 
-// GetRepoTypeOk returns a tuple with the RepoType field value if set, nil otherwise
+// GetRepoTypeOk returns a tuple with the RepoType field value
 // and a boolean to check if the value has been set.
 func (o *HelmComponent) GetRepoTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.RepoType) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Properties.RepoType, true
+	return &o.Properties.RepoType, true
 }
 
-// HasRepoType returns a boolean if a field has been set.
-func (o *HelmComponent) HasRepoType() bool {
-	if o != nil && !utils.IsNil(o.Properties.RepoType) {
-		return true
-	}
-
-	return false
-}
-
-// SetRepoType gets a reference to the given string and assigns it to the repoType field.
-// RepoType:
+// SetRepoType sets field value
 func (o *HelmComponent) SetRepoType(v string) *HelmComponent {
-	o.Properties.RepoType = &v
+	o.Properties.RepoType = v
 	return o
 }
 
-// GetRetries returns the Retries field value if set, zero value otherwise.
+// GetRetries returns the Retries field value
 func (o *HelmComponent) GetRetries() int32 {
-	if o == nil || utils.IsNil(o.Properties.Retries) {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Properties.Retries
+
+	return o.Properties.Retries
 }
 
-// GetRetriesOk returns a tuple with the Retries field value if set, nil otherwise
+// GetRetriesOk returns a tuple with the Retries field value
 // and a boolean to check if the value has been set.
 func (o *HelmComponent) GetRetriesOk() (*int32, bool) {
-	if o == nil || utils.IsNil(o.Properties.Retries) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Properties.Retries, true
+	return &o.Properties.Retries, true
 }
 
-// HasRetries returns a boolean if a field has been set.
-func (o *HelmComponent) HasRetries() bool {
-	if o != nil && !utils.IsNil(o.Properties.Retries) {
-		return true
-	}
-
-	return false
-}
-
-// SetRetries gets a reference to the given int32 and assigns it to the retries field.
-// Retries:  Retry times when install/upgrade fail.
+// SetRetries sets field value
 func (o *HelmComponent) SetRetries(v int32) *HelmComponent {
-	o.Properties.Retries = &v
+	o.Properties.Retries = v
 	return o
 }
 
@@ -551,37 +493,28 @@ func (o *HelmComponent) SetTimeout(v string) *HelmComponent {
 	return o
 }
 
-// GetUrl returns the Url field value if set, zero value otherwise.
+// GetUrl returns the Url field value
 func (o *HelmComponent) GetUrl() string {
-	if o == nil || utils.IsNil(o.Properties.Url) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Properties.Url
+
+	return o.Properties.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
+// GetUrlOk returns a tuple with the Url field value
 // and a boolean to check if the value has been set.
 func (o *HelmComponent) GetUrlOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.Url) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Properties.Url, true
+	return &o.Properties.Url, true
 }
 
-// HasUrl returns a boolean if a field has been set.
-func (o *HelmComponent) HasUrl() bool {
-	if o != nil && !utils.IsNil(o.Properties.Url) {
-		return true
-	}
-
-	return false
-}
-
-// SetUrl gets a reference to the given string and assigns it to the url field.
-// Url:  The Git or Helm repository URL, OSS endpoint, accept HTTP/S or SSH address as git url,
+// SetUrl sets field value
 func (o *HelmComponent) SetUrl(v string) *HelmComponent {
-	o.Properties.Url = &v
+	o.Properties.Url = v
 	return o
 }
 
@@ -653,37 +586,28 @@ func (o *HelmComponent) SetValuesFiles(v []string) *HelmComponent {
 	return o
 }
 
-// GetVersion returns the Version field value if set, zero value otherwise.
+// GetVersion returns the Version field value
 func (o *HelmComponent) GetVersion() string {
-	if o == nil || utils.IsNil(o.Properties.Version) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Properties.Version
+
+	return o.Properties.Version
 }
 
-// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
 func (o *HelmComponent) GetVersionOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.Version) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Properties.Version, true
+	return &o.Properties.Version, true
 }
 
-// HasVersion returns a boolean if a field has been set.
-func (o *HelmComponent) HasVersion() bool {
-	if o != nil && !utils.IsNil(o.Properties.Version) {
-		return true
-	}
-
-	return false
-}
-
-// SetVersion gets a reference to the given string and assigns it to the version field.
-// Version:  Chart version
+// SetVersion sets field value
 func (o *HelmComponent) SetVersion(v string) *HelmComponent {
-	o.Properties.Version = &v
+	o.Properties.Version = v
 	return o
 }
 
@@ -697,33 +621,21 @@ func (o HelmSpec) MarshalJSON() ([]byte, error) {
 
 func (o HelmSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.Chart) {
-		toSerialize["chart"] = o.Chart
-	}
+	toSerialize["chart"] = o.Chart
 	if !utils.IsNil(o.Git) {
 		toSerialize["git"] = o.Git
 	}
-	if !utils.IsNil(o.InstallTimeout) {
-		toSerialize["installTimeout"] = o.InstallTimeout
-	}
-	if !utils.IsNil(o.Interval) {
-		toSerialize["interval"] = o.Interval
-	}
+	toSerialize["installTimeout"] = o.InstallTimeout
+	toSerialize["interval"] = o.Interval
 	if !utils.IsNil(o.Oss) {
 		toSerialize["oss"] = o.Oss
 	}
-	if !utils.IsNil(o.PullInterval) {
-		toSerialize["pullInterval"] = o.PullInterval
-	}
+	toSerialize["pullInterval"] = o.PullInterval
 	if !utils.IsNil(o.ReleaseName) {
 		toSerialize["releaseName"] = o.ReleaseName
 	}
-	if !utils.IsNil(o.RepoType) {
-		toSerialize["repoType"] = o.RepoType
-	}
-	if !utils.IsNil(o.Retries) {
-		toSerialize["retries"] = o.Retries
-	}
+	toSerialize["repoType"] = o.RepoType
+	toSerialize["retries"] = o.Retries
 	if !utils.IsNil(o.SecretRef) {
 		toSerialize["secretRef"] = o.SecretRef
 	}
@@ -736,18 +648,14 @@ func (o HelmSpec) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.Timeout) {
 		toSerialize["timeout"] = o.Timeout
 	}
-	if !utils.IsNil(o.Url) {
-		toSerialize["url"] = o.Url
-	}
+	toSerialize["url"] = o.Url
 	if !utils.IsNil(o.Values) {
 		toSerialize["values"] = o.Values
 	}
 	if !utils.IsNil(o.ValuesFiles) {
 		toSerialize["valuesFiles"] = o.ValuesFiles
 	}
-	if !utils.IsNil(o.Version) {
-		toSerialize["version"] = o.Version
-	}
+	toSerialize["version"] = o.Version
 	return toSerialize, nil
 }
 
