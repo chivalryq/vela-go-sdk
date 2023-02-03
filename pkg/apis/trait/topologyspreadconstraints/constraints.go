@@ -67,6 +67,16 @@ func NewConstraints() *Constraints {
 	return &this
 }
 
+// NewConstraintss converts a list Constraints pointers to objects.
+// This is helpful when the SetConstraints requires a list of objects
+func NewConstraintss(ps ...*Constraints) []Constraints {
+	objs := []Constraints{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetLabelSelector returns the LabelSelector field value if set, zero value otherwise.
 func (o *Constraints) GetLabelSelector() LabSelector {
 	if o == nil || utils.IsNil(o.LabelSelector) {

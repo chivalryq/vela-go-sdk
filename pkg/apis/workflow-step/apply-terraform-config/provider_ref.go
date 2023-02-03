@@ -42,6 +42,16 @@ func NewProviderRef() *ProviderRef {
 	return &this
 }
 
+// NewProviderRefs converts a list ProviderRef pointers to objects.
+// This is helpful when the SetProviderRef requires a list of objects
+func NewProviderRefs(ps ...*ProviderRef) []ProviderRef {
+	objs := []ProviderRef{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ProviderRef) GetName() string {
 	if o == nil || utils.IsNil(o.Name) {

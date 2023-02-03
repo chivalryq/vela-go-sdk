@@ -42,6 +42,16 @@ func NewValueFrom() *ValueFrom {
 	return &this
 }
 
+// NewValueFroms converts a list ValueFrom pointers to objects.
+// This is helpful when the SetValueFrom requires a list of objects
+func NewValueFroms(ps ...*ValueFrom) []ValueFrom {
+	objs := []ValueFrom{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetConfigMapKeyRef returns the ConfigMapKeyRef field value if set, zero value otherwise.
 func (o *ValueFrom) GetConfigMapKeyRef() ConfigMapKeyRef {
 	if o == nil || utils.IsNil(o.ConfigMapKeyRef) {

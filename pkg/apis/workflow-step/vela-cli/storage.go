@@ -44,6 +44,16 @@ func NewStorage() *Storage {
 	return &this
 }
 
+// NewStorages converts a list Storage pointers to objects.
+// This is helpful when the SetStorage requires a list of objects
+func NewStorages(ps ...*Storage) []Storage {
+	objs := []Storage{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetHostPath returns the HostPath field value if set, zero value otherwise.
 func (o *Storage) GetHostPath() []HostPath {
 	if o == nil || utils.IsNil(o.HostPath) {

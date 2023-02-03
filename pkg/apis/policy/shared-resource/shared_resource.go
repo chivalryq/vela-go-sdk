@@ -47,6 +47,16 @@ func NewSharedResourceSpec() *SharedResourceSpec {
 	return &this
 }
 
+// NewSharedResourceSpecs converts a list SharedResourceSpec pointers to objects.
+// This is helpful when the SetSharedResourceSpec requires a list of objects
+func NewSharedResourceSpecs(ps ...*SharedResourceSpec) []SharedResourceSpec {
+	objs := []SharedResourceSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *SharedResourcePolicy) GetRules() []SharedResourcePolicyRule {
 	if o == nil || utils.IsNil(o.Properties.Rules) {
@@ -178,6 +188,10 @@ func (s *SharedResourcePolicy) FromPolicy(from v1beta1.AppPolicy) (*SharedResour
 func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
 	s := &SharedResourcePolicy{}
 	return s.FromPolicy(from)
+}
+
+func (s *SharedResourcePolicy) PolicyName() string {
+	return s.Base.Name
 }
 
 func (s *SharedResourcePolicy) DefType() string {

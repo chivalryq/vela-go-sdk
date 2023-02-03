@@ -51,6 +51,16 @@ func NewScalerSpec() *ScalerSpec {
 	return &this
 }
 
+// NewScalerSpecs converts a list ScalerSpec pointers to objects.
+// This is helpful when the SetScalerSpec requires a list of objects
+func NewScalerSpecs(ps ...*ScalerSpec) []ScalerSpec {
+	objs := []ScalerSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetReplicas returns the Replicas field value if set, zero value otherwise.
 func (o *ScalerTrait) GetReplicas() int32 {
 	if o == nil || utils.IsNil(o.Properties.Replicas) {

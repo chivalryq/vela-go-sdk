@@ -42,6 +42,16 @@ func NewApplyOncePolicyRule() *ApplyOncePolicyRule {
 	return &this
 }
 
+// NewApplyOncePolicyRules converts a list ApplyOncePolicyRule pointers to objects.
+// This is helpful when the SetApplyOncePolicyRule requires a list of objects
+func NewApplyOncePolicyRules(ps ...*ApplyOncePolicyRule) []ApplyOncePolicyRule {
+	objs := []ApplyOncePolicyRule{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetSelector returns the Selector field value if set, zero value otherwise.
 func (o *ApplyOncePolicyRule) GetSelector() ResourcePolicyRuleSelector {
 	if o == nil || utils.IsNil(o.Selector) {

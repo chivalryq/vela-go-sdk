@@ -42,6 +42,16 @@ func NewKeySecret() *KeySecret {
 	return &this
 }
 
+// NewKeySecrets converts a list KeySecret pointers to objects.
+// This is helpful when the SetKeySecret requires a list of objects
+func NewKeySecrets(ps ...*KeySecret) []KeySecret {
+	objs := []KeySecret{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *KeySecret) GetKey() string {
 	if o == nil || utils.IsNil(o.Key) {

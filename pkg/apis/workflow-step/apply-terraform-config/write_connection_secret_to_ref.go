@@ -42,6 +42,16 @@ func NewWriteConnectionSecretToRef() *WriteConnectionSecretToRef {
 	return &this
 }
 
+// NewWriteConnectionSecretToRefs converts a list WriteConnectionSecretToRef pointers to objects.
+// This is helpful when the SetWriteConnectionSecretToRef requires a list of objects
+func NewWriteConnectionSecretToRefs(ps ...*WriteConnectionSecretToRef) []WriteConnectionSecretToRef {
+	objs := []WriteConnectionSecretToRef{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *WriteConnectionSecretToRef) GetName() string {
 	if o == nil || utils.IsNil(o.Name) {

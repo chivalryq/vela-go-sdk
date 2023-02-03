@@ -46,6 +46,16 @@ func NewJsonPatchSpec() *JsonPatchSpec {
 	return &this
 }
 
+// NewJsonPatchSpecs converts a list JsonPatchSpec pointers to objects.
+// This is helpful when the SetJsonPatchSpec requires a list of objects
+func NewJsonPatchSpecs(ps ...*JsonPatchSpec) []JsonPatchSpec {
+	objs := []JsonPatchSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetOperations returns the Operations field value if set, zero value otherwise.
 func (o *JSONPatchTrait) GetOperations() []map[string]interface{} {
 	if o == nil || utils.IsNil(o.Properties.Operations) {

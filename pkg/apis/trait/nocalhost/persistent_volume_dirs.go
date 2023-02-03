@@ -42,6 +42,16 @@ func NewPersistentVolumeDirs() *PersistentVolumeDirs {
 	return &this
 }
 
+// NewPersistentVolumeDirss converts a list PersistentVolumeDirs pointers to objects.
+// This is helpful when the SetPersistentVolumeDirs requires a list of objects
+func NewPersistentVolumeDirss(ps ...*PersistentVolumeDirs) []PersistentVolumeDirs {
+	objs := []PersistentVolumeDirs{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetCapacity returns the Capacity field value if set, zero value otherwise.
 func (o *PersistentVolumeDirs) GetCapacity() string {
 	if o == nil || utils.IsNil(o.Capacity) {

@@ -42,6 +42,16 @@ func NewSharedResourcePolicyRule() *SharedResourcePolicyRule {
 	return &this
 }
 
+// NewSharedResourcePolicyRules converts a list SharedResourcePolicyRule pointers to objects.
+// This is helpful when the SetSharedResourcePolicyRule requires a list of objects
+func NewSharedResourcePolicyRules(ps ...*SharedResourcePolicyRule) []SharedResourcePolicyRule {
+	objs := []SharedResourcePolicyRule{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetSelector returns the Selector field value if set, zero value otherwise.
 func (o *SharedResourcePolicyRule) GetSelector() []ResourcePolicyRuleSelector {
 	if o == nil || utils.IsNil(o.Selector) {

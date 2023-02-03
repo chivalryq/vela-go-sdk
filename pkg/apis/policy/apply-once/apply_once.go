@@ -53,6 +53,16 @@ func NewApplyOnceSpec() *ApplyOnceSpec {
 	return &this
 }
 
+// NewApplyOnceSpecs converts a list ApplyOnceSpec pointers to objects.
+// This is helpful when the SetApplyOnceSpec requires a list of objects
+func NewApplyOnceSpecs(ps ...*ApplyOnceSpec) []ApplyOnceSpec {
+	objs := []ApplyOnceSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetEnable returns the Enable field value if set, zero value otherwise.
 func (o *ApplyOncePolicy) GetEnable() bool {
 	if o == nil || utils.IsNil(o.Properties.Enable) {
@@ -221,6 +231,10 @@ func (a *ApplyOncePolicy) FromPolicy(from v1beta1.AppPolicy) (*ApplyOncePolicy, 
 func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
 	a := &ApplyOncePolicy{}
 	return a.FromPolicy(from)
+}
+
+func (a *ApplyOncePolicy) PolicyName() string {
+	return a.Base.Name
 }
 
 func (a *ApplyOncePolicy) DefType() string {

@@ -43,6 +43,16 @@ func NewDataSource() *DataSource {
 	return &this
 }
 
+// NewDataSources converts a list DataSource pointers to objects.
+// This is helpful when the SetDataSource requires a list of objects
+func NewDataSources(ps ...*DataSource) []DataSource {
+	objs := []DataSource{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetApiGroup returns the ApiGroup field value if set, zero value otherwise.
 func (o *DataSource) GetApiGroup() string {
 	if o == nil || utils.IsNil(o.ApiGroup) {

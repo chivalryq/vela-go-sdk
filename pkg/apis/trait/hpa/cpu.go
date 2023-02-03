@@ -52,6 +52,16 @@ func NewCpu() *Cpu {
 	return &this
 }
 
+// NewCpus converts a list Cpu pointers to objects.
+// This is helpful when the SetCpu requires a list of objects
+func NewCpus(ps ...*Cpu) []Cpu {
+	objs := []Cpu{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Cpu) GetType() string {
 	if o == nil || utils.IsNil(o.Type) {

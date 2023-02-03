@@ -60,6 +60,16 @@ func NewDeploy2envSpec() *Deploy2envSpec {
 	return &this
 }
 
+// NewDeploy2envSpecs converts a list Deploy2envSpec pointers to objects.
+// This is helpful when the SetDeploy2envSpec requires a list of objects
+func NewDeploy2envSpecs(ps ...*Deploy2envSpec) []Deploy2envSpec {
+	objs := []Deploy2envSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetEnv returns the Env field value if set, zero value otherwise.
 func (o *Deploy2envWorkflowStep) GetEnv() string {
 	if o == nil || utils.IsNil(o.Properties.Env) {

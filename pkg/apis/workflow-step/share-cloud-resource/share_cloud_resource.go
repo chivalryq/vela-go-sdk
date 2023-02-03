@@ -56,6 +56,16 @@ func NewShareCloudResourceSpec() *ShareCloudResourceSpec {
 	return &this
 }
 
+// NewShareCloudResourceSpecs converts a list ShareCloudResourceSpec pointers to objects.
+// This is helpful when the SetShareCloudResourceSpec requires a list of objects
+func NewShareCloudResourceSpecs(ps ...*ShareCloudResourceSpec) []ShareCloudResourceSpec {
+	objs := []ShareCloudResourceSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetEnv returns the Env field value if set, zero value otherwise.
 func (o *ShareCloudResourceWorkflowStep) GetEnv() string {
 	if o == nil || utils.IsNil(o.Properties.Env) {

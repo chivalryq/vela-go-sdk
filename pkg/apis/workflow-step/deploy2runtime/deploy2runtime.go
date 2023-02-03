@@ -48,6 +48,16 @@ func NewDeploy2runtimeSpec() *Deploy2runtimeSpec {
 	return &this
 }
 
+// NewDeploy2runtimeSpecs converts a list Deploy2runtimeSpec pointers to objects.
+// This is helpful when the SetDeploy2runtimeSpec requires a list of objects
+func NewDeploy2runtimeSpecs(ps ...*Deploy2runtimeSpec) []Deploy2runtimeSpec {
+	objs := []Deploy2runtimeSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetClusters returns the Clusters field value if set, zero value otherwise.
 func (o *Deploy2runtimeWorkflowStep) GetClusters() []string {
 	if o == nil || utils.IsNil(o.Properties.Clusters) {

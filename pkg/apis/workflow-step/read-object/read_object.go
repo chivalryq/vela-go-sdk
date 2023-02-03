@@ -64,6 +64,16 @@ func NewReadObjectSpec() *ReadObjectSpec {
 	return &this
 }
 
+// NewReadObjectSpecs converts a list ReadObjectSpec pointers to objects.
+// This is helpful when the SetReadObjectSpec requires a list of objects
+func NewReadObjectSpecs(ps ...*ReadObjectSpec) []ReadObjectSpec {
+	objs := []ReadObjectSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetApiVersion returns the ApiVersion field value if set, zero value otherwise.
 func (o *ReadObjectWorkflowStep) GetApiVersion() string {
 	if o == nil || utils.IsNil(o.Properties.ApiVersion) {

@@ -55,6 +55,16 @@ func NewExposeSpec() *ExposeSpec {
 	return &this
 }
 
+// NewExposeSpecs converts a list ExposeSpec pointers to objects.
+// This is helpful when the SetExposeSpec requires a list of objects
+func NewExposeSpecs(ps ...*ExposeSpec) []ExposeSpec {
+	objs := []ExposeSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetAnnotations returns the Annotations field value if set, zero value otherwise.
 func (o *ExposeTrait) GetAnnotations() map[string]string {
 	if o == nil || utils.IsNil(o.Properties.Annotations) {

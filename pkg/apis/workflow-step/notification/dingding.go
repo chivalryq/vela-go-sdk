@@ -42,6 +42,16 @@ func NewDingding() *Dingding {
 	return &this
 }
 
+// NewDingdings converts a list Dingding pointers to objects.
+// This is helpful when the SetDingding requires a list of objects
+func NewDingdings(ps ...*Dingding) []Dingding {
+	objs := []Dingding{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *Dingding) GetMessage() Message {
 	if o == nil || utils.IsNil(o.Message) {

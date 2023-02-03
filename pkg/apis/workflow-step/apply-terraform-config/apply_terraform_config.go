@@ -28,16 +28,16 @@ var _ utils.MappedNullable = &ApplyTerraformConfigSpec{}
 // ApplyTerraformConfigSpec struct for ApplyTerraformConfigSpec
 type ApplyTerraformConfigSpec struct {
 	// whether to delete resource
-	DeleteResource *bool `json:"deleteResource,omitempty"`
-	ForceDelete    *bool `json:"forceDelete,omitempty"`
+	DeleteResource bool `json:"deleteResource"`
+	ForceDelete    bool `json:"forceDelete"`
 	// the envs for job
 	JobEnv      map[string]interface{} `json:"jobEnv,omitempty"`
 	ProviderRef *ProviderRef           `json:"providerRef,omitempty"`
 	// region is cloud provider's region. It will override the region in the region field of providerRef
 	Region *string `json:"region,omitempty"`
-	Source *Source `json:"source,omitempty"`
+	Source Source  `json:"source"`
 	// the variable in the configuration
-	Variable                   map[string]interface{}      `json:"variable,omitempty"`
+	Variable                   map[string]interface{}      `json:"variable"`
 	WriteConnectionSecretToRef *WriteConnectionSecretToRef `json:"writeConnectionSecretToRef,omitempty"`
 }
 
@@ -45,12 +45,12 @@ type ApplyTerraformConfigSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApplyTerraformConfigSpecWith() *ApplyTerraformConfigSpec {
+func NewApplyTerraformConfigSpecWith(deleteResource bool, forceDelete bool, source Source, variable map[string]interface{}) *ApplyTerraformConfigSpec {
 	this := ApplyTerraformConfigSpec{}
-	var deleteResource bool = true
-	this.DeleteResource = &deleteResource
-	var forceDelete bool = false
-	this.ForceDelete = &forceDelete
+	this.DeleteResource = deleteResource
+	this.ForceDelete = forceDelete
+	this.Source = source
+	this.Variable = variable
 	return &this
 }
 
@@ -60,77 +60,69 @@ func NewApplyTerraformConfigSpecWith() *ApplyTerraformConfigSpec {
 func NewApplyTerraformConfigSpec() *ApplyTerraformConfigSpec {
 	this := ApplyTerraformConfigSpec{}
 	var deleteResource bool = true
-	this.DeleteResource = &deleteResource
+	this.DeleteResource = deleteResource
 	var forceDelete bool = false
-	this.ForceDelete = &forceDelete
+	this.ForceDelete = forceDelete
 	return &this
 }
 
-// GetDeleteResource returns the DeleteResource field value if set, zero value otherwise.
+// NewApplyTerraformConfigSpecs converts a list ApplyTerraformConfigSpec pointers to objects.
+// This is helpful when the SetApplyTerraformConfigSpec requires a list of objects
+func NewApplyTerraformConfigSpecs(ps ...*ApplyTerraformConfigSpec) []ApplyTerraformConfigSpec {
+	objs := []ApplyTerraformConfigSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
+// GetDeleteResource returns the DeleteResource field value
 func (o *ApplyTerraformConfigWorkflowStep) GetDeleteResource() bool {
-	if o == nil || utils.IsNil(o.Properties.DeleteResource) {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Properties.DeleteResource
+
+	return o.Properties.DeleteResource
 }
 
-// GetDeleteResourceOk returns a tuple with the DeleteResource field value if set, nil otherwise
+// GetDeleteResourceOk returns a tuple with the DeleteResource field value
 // and a boolean to check if the value has been set.
 func (o *ApplyTerraformConfigWorkflowStep) GetDeleteResourceOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.Properties.DeleteResource) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Properties.DeleteResource, true
+	return &o.Properties.DeleteResource, true
 }
 
-// HasDeleteResource returns a boolean if a field has been set.
-func (o *ApplyTerraformConfigWorkflowStep) HasDeleteResource() bool {
-	if o != nil && !utils.IsNil(o.Properties.DeleteResource) {
-		return true
-	}
-
-	return false
-}
-
-// SetDeleteResource gets a reference to the given bool and assigns it to the deleteResource field.
-// DeleteResource:  whether to delete resource
+// SetDeleteResource sets field value
 func (o *ApplyTerraformConfigWorkflowStep) SetDeleteResource(v bool) *ApplyTerraformConfigWorkflowStep {
-	o.Properties.DeleteResource = &v
+	o.Properties.DeleteResource = v
 	return o
 }
 
-// GetForceDelete returns the ForceDelete field value if set, zero value otherwise.
+// GetForceDelete returns the ForceDelete field value
 func (o *ApplyTerraformConfigWorkflowStep) GetForceDelete() bool {
-	if o == nil || utils.IsNil(o.Properties.ForceDelete) {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Properties.ForceDelete
+
+	return o.Properties.ForceDelete
 }
 
-// GetForceDeleteOk returns a tuple with the ForceDelete field value if set, nil otherwise
+// GetForceDeleteOk returns a tuple with the ForceDelete field value
 // and a boolean to check if the value has been set.
 func (o *ApplyTerraformConfigWorkflowStep) GetForceDeleteOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.Properties.ForceDelete) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Properties.ForceDelete, true
+	return &o.Properties.ForceDelete, true
 }
 
-// HasForceDelete returns a boolean if a field has been set.
-func (o *ApplyTerraformConfigWorkflowStep) HasForceDelete() bool {
-	if o != nil && !utils.IsNil(o.Properties.ForceDelete) {
-		return true
-	}
-
-	return false
-}
-
-// SetForceDelete gets a reference to the given bool and assigns it to the forceDelete field.
-// ForceDelete:
+// SetForceDelete sets field value
 func (o *ApplyTerraformConfigWorkflowStep) SetForceDelete(v bool) *ApplyTerraformConfigWorkflowStep {
-	o.Properties.ForceDelete = &v
+	o.Properties.ForceDelete = v
 	return o
 }
 
@@ -236,69 +228,51 @@ func (o *ApplyTerraformConfigWorkflowStep) SetRegion(v string) *ApplyTerraformCo
 	return o
 }
 
-// GetSource returns the Source field value if set, zero value otherwise.
+// GetSource returns the Source field value
 func (o *ApplyTerraformConfigWorkflowStep) GetSource() Source {
-	if o == nil || utils.IsNil(o.Properties.Source) {
+	if o == nil {
 		var ret Source
 		return ret
 	}
-	return *o.Properties.Source
+
+	return o.Properties.Source
 }
 
-// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
+// GetSourceOk returns a tuple with the Source field value
 // and a boolean to check if the value has been set.
 func (o *ApplyTerraformConfigWorkflowStep) GetSourceOk() (*Source, bool) {
-	if o == nil || utils.IsNil(o.Properties.Source) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Properties.Source, true
+	return &o.Properties.Source, true
 }
 
-// HasSource returns a boolean if a field has been set.
-func (o *ApplyTerraformConfigWorkflowStep) HasSource() bool {
-	if o != nil && !utils.IsNil(o.Properties.Source) {
-		return true
-	}
-
-	return false
-}
-
-// SetSource gets a reference to the given Source and assigns it to the source field.
-// Source:
+// SetSource sets field value
 func (o *ApplyTerraformConfigWorkflowStep) SetSource(v Source) *ApplyTerraformConfigWorkflowStep {
-	o.Properties.Source = &v
+	o.Properties.Source = v
 	return o
 }
 
-// GetVariable returns the Variable field value if set, zero value otherwise.
+// GetVariable returns the Variable field value
 func (o *ApplyTerraformConfigWorkflowStep) GetVariable() map[string]interface{} {
-	if o == nil || utils.IsNil(o.Properties.Variable) {
+	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
+
 	return o.Properties.Variable
 }
 
-// GetVariableOk returns a tuple with the Variable field value if set, nil otherwise
+// GetVariableOk returns a tuple with the Variable field value
 // and a boolean to check if the value has been set.
 func (o *ApplyTerraformConfigWorkflowStep) GetVariableOk() (map[string]interface{}, bool) {
-	if o == nil || utils.IsNil(o.Properties.Variable) {
+	if o == nil {
 		return map[string]interface{}{}, false
 	}
 	return o.Properties.Variable, true
 }
 
-// HasVariable returns a boolean if a field has been set.
-func (o *ApplyTerraformConfigWorkflowStep) HasVariable() bool {
-	if o != nil && !utils.IsNil(o.Properties.Variable) {
-		return true
-	}
-
-	return false
-}
-
-// SetVariable gets a reference to the given map[string]interface{} and assigns it to the variable field.
-// Variable:  the variable in the configuration
+// SetVariable sets field value
 func (o *ApplyTerraformConfigWorkflowStep) SetVariable(v map[string]interface{}) *ApplyTerraformConfigWorkflowStep {
 	o.Properties.Variable = v
 	return o
@@ -348,12 +322,8 @@ func (o ApplyTerraformConfigSpec) MarshalJSON() ([]byte, error) {
 
 func (o ApplyTerraformConfigSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.DeleteResource) {
-		toSerialize["deleteResource"] = o.DeleteResource
-	}
-	if !utils.IsNil(o.ForceDelete) {
-		toSerialize["forceDelete"] = o.ForceDelete
-	}
+	toSerialize["deleteResource"] = o.DeleteResource
+	toSerialize["forceDelete"] = o.ForceDelete
 	if !utils.IsNil(o.JobEnv) {
 		toSerialize["jobEnv"] = o.JobEnv
 	}
@@ -363,12 +333,8 @@ func (o ApplyTerraformConfigSpec) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.Region) {
 		toSerialize["region"] = o.Region
 	}
-	if !utils.IsNil(o.Source) {
-		toSerialize["source"] = o.Source
-	}
-	if !utils.IsNil(o.Variable) {
-		toSerialize["variable"] = o.Variable
-	}
+	toSerialize["source"] = o.Source
+	toSerialize["variable"] = o.Variable
 	if !utils.IsNil(o.WriteConnectionSecretToRef) {
 		toSerialize["writeConnectionSecretToRef"] = o.WriteConnectionSecretToRef
 	}

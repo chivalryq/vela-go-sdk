@@ -46,6 +46,16 @@ func NewApplyApplicationSpec() *ApplyApplicationSpec {
 	return &this
 }
 
+// NewApplyApplicationSpecs converts a list ApplyApplicationSpec pointers to objects.
+// This is helpful when the SetApplyApplicationSpec requires a list of objects
+func NewApplyApplicationSpecs(ps ...*ApplyApplicationSpec) []ApplyApplicationSpec {
+	objs := []ApplyApplicationSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 func (o ApplyApplicationSpec) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {

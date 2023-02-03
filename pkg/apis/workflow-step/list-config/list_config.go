@@ -50,6 +50,16 @@ func NewListConfigSpec() *ListConfigSpec {
 	return &this
 }
 
+// NewListConfigSpecs converts a list ListConfigSpec pointers to objects.
+// This is helpful when the SetListConfigSpec requires a list of objects
+func NewListConfigSpecs(ps ...*ListConfigSpec) []ListConfigSpec {
+	objs := []ListConfigSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *ListConfigWorkflowStep) GetNamespace() string {
 	if o == nil || utils.IsNil(o.Properties.Namespace) {

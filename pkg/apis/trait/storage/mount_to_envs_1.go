@@ -42,6 +42,16 @@ func NewMountToEnvs1() *MountToEnvs1 {
 	return &this
 }
 
+// NewMountToEnvs1s converts a list MountToEnvs1 pointers to objects.
+// This is helpful when the SetMountToEnvs1 requires a list of objects
+func NewMountToEnvs1s(ps ...*MountToEnvs1) []MountToEnvs1 {
+	objs := []MountToEnvs1{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetEnvName returns the EnvName field value if set, zero value otherwise.
 func (o *MountToEnvs1) GetEnvName() string {
 	if o == nil || utils.IsNil(o.EnvName) {

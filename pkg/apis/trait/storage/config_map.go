@@ -62,6 +62,16 @@ func NewConfigMap() *ConfigMap {
 	return &this
 }
 
+// NewConfigMaps converts a list ConfigMap pointers to objects.
+// This is helpful when the SetConfigMap requires a list of objects
+func NewConfigMaps(ps ...*ConfigMap) []ConfigMap {
+	objs := []ConfigMap{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *ConfigMap) GetData() map[string]interface{} {
 	if o == nil || utils.IsNil(o.Data) {

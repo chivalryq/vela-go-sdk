@@ -49,6 +49,16 @@ func NewBaiduProvider() *BaiduProvider {
 	return &this
 }
 
+// NewBaiduProviders converts a list BaiduProvider pointers to objects.
+// This is helpful when the SetBaiduProvider requires a list of objects
+func NewBaiduProviders(ps ...*BaiduProvider) []BaiduProvider {
+	objs := []BaiduProvider{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetAccessKey returns the AccessKey field value if set, zero value otherwise.
 func (o *BaiduProvider) GetAccessKey() string {
 	if o == nil || utils.IsNil(o.AccessKey) {

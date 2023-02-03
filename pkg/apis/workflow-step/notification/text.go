@@ -41,6 +41,16 @@ func NewText() *Text {
 	return &this
 }
 
+// NewTexts converts a list Text pointers to objects.
+// This is helpful when the SetText requires a list of objects
+func NewTexts(ps ...*Text) []Text {
+	objs := []Text{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *Text) GetContent() string {
 	if o == nil || utils.IsNil(o.Content) {

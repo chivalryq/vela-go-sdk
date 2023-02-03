@@ -47,6 +47,16 @@ func NewReadOnlySpec() *ReadOnlySpec {
 	return &this
 }
 
+// NewReadOnlySpecs converts a list ReadOnlySpec pointers to objects.
+// This is helpful when the SetReadOnlySpec requires a list of objects
+func NewReadOnlySpecs(ps ...*ReadOnlySpec) []ReadOnlySpec {
+	objs := []ReadOnlySpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *ReadOnlyPolicy) GetRules() []PolicyRule {
 	if o == nil || utils.IsNil(o.Properties.Rules) {
@@ -178,6 +188,10 @@ func (r *ReadOnlyPolicy) FromPolicy(from v1beta1.AppPolicy) (*ReadOnlyPolicy, er
 func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
 	r := &ReadOnlyPolicy{}
 	return r.FromPolicy(from)
+}
+
+func (r *ReadOnlyPolicy) PolicyName() string {
+	return r.Base.Name
 }
 
 func (r *ReadOnlyPolicy) DefType() string {

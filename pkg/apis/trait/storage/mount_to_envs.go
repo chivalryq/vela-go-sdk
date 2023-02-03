@@ -42,6 +42,16 @@ func NewMountToEnvs() *MountToEnvs {
 	return &this
 }
 
+// NewMountToEnvss converts a list MountToEnvs pointers to objects.
+// This is helpful when the SetMountToEnvs requires a list of objects
+func NewMountToEnvss(ps ...*MountToEnvs) []MountToEnvs {
+	objs := []MountToEnvs{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetConfigMapKey returns the ConfigMapKey field value if set, zero value otherwise.
 func (o *MountToEnvs) GetConfigMapKey() string {
 	if o == nil || utils.IsNil(o.ConfigMapKey) {

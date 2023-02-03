@@ -55,6 +55,16 @@ func NewTopologySpec() *TopologySpec {
 	return &this
 }
 
+// NewTopologySpecs converts a list TopologySpec pointers to objects.
+// This is helpful when the SetTopologySpec requires a list of objects
+func NewTopologySpecs(ps ...*TopologySpec) []TopologySpec {
+	objs := []TopologySpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetAllowEmpty returns the AllowEmpty field value if set, zero value otherwise.
 func (o *TopologyPolicy) GetAllowEmpty() bool {
 	if o == nil || utils.IsNil(o.Properties.AllowEmpty) {
@@ -334,6 +344,10 @@ func (t *TopologyPolicy) FromPolicy(from v1beta1.AppPolicy) (*TopologyPolicy, er
 func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
 	t := &TopologyPolicy{}
 	return t.FromPolicy(from)
+}
+
+func (t *TopologyPolicy) PolicyName() string {
+	return t.Base.Name
 }
 
 func (t *TopologyPolicy) DefType() string {

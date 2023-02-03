@@ -48,6 +48,16 @@ func NewSuspendSpec() *SuspendSpec {
 	return &this
 }
 
+// NewSuspendSpecs converts a list SuspendSpec pointers to objects.
+// This is helpful when the SetSuspendSpec requires a list of objects
+func NewSuspendSpecs(ps ...*SuspendSpec) []SuspendSpec {
+	objs := []SuspendSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *SuspendWorkflowStep) GetDuration() string {
 	if o == nil || utils.IsNil(o.Properties.Duration) {

@@ -47,6 +47,16 @@ func NewServiceBindingSpec() *ServiceBindingSpec {
 	return &this
 }
 
+// NewServiceBindingSpecs converts a list ServiceBindingSpec pointers to objects.
+// This is helpful when the SetServiceBindingSpec requires a list of objects
+func NewServiceBindingSpecs(ps ...*ServiceBindingSpec) []ServiceBindingSpec {
+	objs := []ServiceBindingSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetEnvMappings returns the EnvMappings field value if set, zero value otherwise.
 func (o *ServiceBindingTrait) GetEnvMappings() map[string]KeySecret {
 	if o == nil || utils.IsNil(o.Properties.EnvMappings) {

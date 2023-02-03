@@ -44,6 +44,16 @@ func NewEmail() *Email {
 	return &this
 }
 
+// NewEmails converts a list Email pointers to objects.
+// This is helpful when the SetEmail requires a list of objects
+func NewEmails(ps ...*Email) []Email {
+	objs := []Email{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *Email) GetContent() Content {
 	if o == nil || utils.IsNil(o.Content) {

@@ -42,6 +42,16 @@ func NewNodeSelectorTerm() *NodeSelectorTerm {
 	return &this
 }
 
+// NewNodeSelectorTerms converts a list NodeSelectorTerm pointers to objects.
+// This is helpful when the SetNodeSelectorTerm requires a list of objects
+func NewNodeSelectorTerms(ps ...*NodeSelectorTerm) []NodeSelectorTerm {
+	objs := []NodeSelectorTerm{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetMatchExpressions returns the MatchExpressions field value if set, zero value otherwise.
 func (o *NodeSelectorTerm) GetMatchExpressions() []NodeSelecor {
 	if o == nil || utils.IsNil(o.MatchExpressions) {

@@ -54,6 +54,16 @@ func NewDeployCloudResourceSpec() *DeployCloudResourceSpec {
 	return &this
 }
 
+// NewDeployCloudResourceSpecs converts a list DeployCloudResourceSpec pointers to objects.
+// This is helpful when the SetDeployCloudResourceSpec requires a list of objects
+func NewDeployCloudResourceSpecs(ps ...*DeployCloudResourceSpec) []DeployCloudResourceSpec {
+	objs := []DeployCloudResourceSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetEnv returns the Env field value if set, zero value otherwise.
 func (o *DeployCloudResourceWorkflowStep) GetEnv() string {
 	if o == nil || utils.IsNil(o.Properties.Env) {

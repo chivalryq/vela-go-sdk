@@ -27,7 +27,7 @@ var _ utils.MappedNullable = &GarbageCollectSpec{}
 // GarbageCollectSpec struct for GarbageCollectSpec
 type GarbageCollectSpec struct {
 	// If is set, outdated versioned resourcetracker will not be recycled automatically, outdated resources will be kept until resourcetracker be deleted manually
-	KeepLegacyResource bool `json:"keepLegacyResource"`
+	KeepLegacyResource *bool `json:"keepLegacyResource,omitempty"`
 	// Specify the list of rules to control gc strategy at resource level, if one resource is controlled by multiple rules, first rule will be used
 	Rules []GarbageCollectPolicyRule `json:"rules,omitempty"`
 }
@@ -36,9 +36,10 @@ type GarbageCollectSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGarbageCollectSpecWith(keepLegacyResource bool) *GarbageCollectSpec {
+func NewGarbageCollectSpecWith() *GarbageCollectSpec {
 	this := GarbageCollectSpec{}
-	this.KeepLegacyResource = keepLegacyResource
+	var keepLegacyResource bool = false
+	this.KeepLegacyResource = &keepLegacyResource
 	return &this
 }
 
@@ -48,32 +49,51 @@ func NewGarbageCollectSpecWith(keepLegacyResource bool) *GarbageCollectSpec {
 func NewGarbageCollectSpec() *GarbageCollectSpec {
 	this := GarbageCollectSpec{}
 	var keepLegacyResource bool = false
-	this.KeepLegacyResource = keepLegacyResource
+	this.KeepLegacyResource = &keepLegacyResource
 	return &this
 }
 
-// GetKeepLegacyResource returns the KeepLegacyResource field value
+// NewGarbageCollectSpecs converts a list GarbageCollectSpec pointers to objects.
+// This is helpful when the SetGarbageCollectSpec requires a list of objects
+func NewGarbageCollectSpecs(ps ...*GarbageCollectSpec) []GarbageCollectSpec {
+	objs := []GarbageCollectSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
+// GetKeepLegacyResource returns the KeepLegacyResource field value if set, zero value otherwise.
 func (o *GarbageCollectPolicy) GetKeepLegacyResource() bool {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.KeepLegacyResource) {
 		var ret bool
 		return ret
 	}
-
-	return o.Properties.KeepLegacyResource
+	return *o.Properties.KeepLegacyResource
 }
 
-// GetKeepLegacyResourceOk returns a tuple with the KeepLegacyResource field value
+// GetKeepLegacyResourceOk returns a tuple with the KeepLegacyResource field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GarbageCollectPolicy) GetKeepLegacyResourceOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.KeepLegacyResource) {
 		return nil, false
 	}
-	return &o.Properties.KeepLegacyResource, true
+	return o.Properties.KeepLegacyResource, true
 }
 
-// SetKeepLegacyResource sets field value
+// HasKeepLegacyResource returns a boolean if a field has been set.
+func (o *GarbageCollectPolicy) HasKeepLegacyResource() bool {
+	if o != nil && !utils.IsNil(o.Properties.KeepLegacyResource) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeepLegacyResource gets a reference to the given bool and assigns it to the keepLegacyResource field.
+// KeepLegacyResource:  If is set, outdated versioned resourcetracker will not be recycled automatically, outdated resources will be kept until resourcetracker be deleted manually
 func (o *GarbageCollectPolicy) SetKeepLegacyResource(v bool) *GarbageCollectPolicy {
-	o.Properties.KeepLegacyResource = v
+	o.Properties.KeepLegacyResource = &v
 	return o
 }
 
@@ -121,7 +141,9 @@ func (o GarbageCollectSpec) MarshalJSON() ([]byte, error) {
 
 func (o GarbageCollectSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["keepLegacyResource"] = o.KeepLegacyResource
+	if !utils.IsNil(o.KeepLegacyResource) {
+		toSerialize["keepLegacyResource"] = o.KeepLegacyResource
+	}
 	if !utils.IsNil(o.Rules) {
 		toSerialize["rules"] = o.Rules
 	}
@@ -209,6 +231,10 @@ func (g *GarbageCollectPolicy) FromPolicy(from v1beta1.AppPolicy) (*GarbageColle
 func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
 	g := &GarbageCollectPolicy{}
 	return g.FromPolicy(from)
+}
+
+func (g *GarbageCollectPolicy) PolicyName() string {
+	return g.Base.Name
 }
 
 func (g *GarbageCollectPolicy) DefType() string {

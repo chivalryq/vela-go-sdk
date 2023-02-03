@@ -47,6 +47,16 @@ func NewTakeOverSpec() *TakeOverSpec {
 	return &this
 }
 
+// NewTakeOverSpecs converts a list TakeOverSpec pointers to objects.
+// This is helpful when the SetTakeOverSpec requires a list of objects
+func NewTakeOverSpecs(ps ...*TakeOverSpec) []TakeOverSpec {
+	objs := []TakeOverSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *TakeOverPolicy) GetRules() []PolicyRule {
 	if o == nil || utils.IsNil(o.Properties.Rules) {
@@ -178,6 +188,10 @@ func (t *TakeOverPolicy) FromPolicy(from v1beta1.AppPolicy) (*TakeOverPolicy, er
 func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
 	t := &TakeOverPolicy{}
 	return t.FromPolicy(from)
+}
+
+func (t *TakeOverPolicy) PolicyName() string {
+	return t.Base.Name
 }
 
 func (t *TakeOverPolicy) DefType() string {

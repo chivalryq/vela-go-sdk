@@ -50,6 +50,16 @@ func NewReadConfigSpec() *ReadConfigSpec {
 	return &this
 }
 
+// NewReadConfigSpecs converts a list ReadConfigSpec pointers to objects.
+// This is helpful when the SetReadConfigSpec requires a list of objects
+func NewReadConfigSpecs(ps ...*ReadConfigSpec) []ReadConfigSpec {
+	objs := []ReadConfigSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ReadConfigWorkflowStep) GetName() string {
 	if o == nil || utils.IsNil(o.Properties.Name) {

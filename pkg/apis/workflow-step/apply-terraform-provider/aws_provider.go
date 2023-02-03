@@ -53,6 +53,16 @@ func NewAWSProvider() *AWSProvider {
 	return &this
 }
 
+// NewAWSProviders converts a list AWSProvider pointers to objects.
+// This is helpful when the SetAWSProvider requires a list of objects
+func NewAWSProviders(ps ...*AWSProvider) []AWSProvider {
+	objs := []AWSProvider{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetAccessKey returns the AccessKey field value if set, zero value otherwise.
 func (o *AWSProvider) GetAccessKey() string {
 	if o == nil || utils.IsNil(o.AccessKey) {

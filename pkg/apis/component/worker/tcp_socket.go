@@ -42,6 +42,16 @@ func NewTcpSocket() *TcpSocket {
 	return &this
 }
 
+// NewTcpSockets converts a list TcpSocket pointers to objects.
+// This is helpful when the SetTcpSocket requires a list of objects
+func NewTcpSockets(ps ...*TcpSocket) []TcpSocket {
+	objs := []TcpSocket{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *TcpSocket) GetPort() int32 {
 	if o == nil || utils.IsNil(o.Port) {

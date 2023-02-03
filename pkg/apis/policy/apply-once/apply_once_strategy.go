@@ -44,6 +44,16 @@ func NewApplyOnceStrategy() *ApplyOnceStrategy {
 	return &this
 }
 
+// NewApplyOnceStrategys converts a list ApplyOnceStrategy pointers to objects.
+// This is helpful when the SetApplyOnceStrategy requires a list of objects
+func NewApplyOnceStrategys(ps ...*ApplyOnceStrategy) []ApplyOnceStrategy {
+	objs := []ApplyOnceStrategy{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetAffect returns the Affect field value if set, zero value otherwise.
 func (o *ApplyOnceStrategy) GetAffect() string {
 	if o == nil || utils.IsNil(o.Affect) {

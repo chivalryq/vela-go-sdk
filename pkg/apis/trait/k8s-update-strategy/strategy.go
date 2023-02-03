@@ -47,6 +47,16 @@ func NewStrategy() *Strategy {
 	return &this
 }
 
+// NewStrategys converts a list Strategy pointers to objects.
+// This is helpful when the SetStrategy requires a list of objects
+func NewStrategys(ps ...*Strategy) []Strategy {
+	objs := []Strategy{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetRollingStrategy returns the RollingStrategy field value if set, zero value otherwise.
 func (o *Strategy) GetRollingStrategy() RollingStrategy {
 	if o == nil || utils.IsNil(o.RollingStrategy) {

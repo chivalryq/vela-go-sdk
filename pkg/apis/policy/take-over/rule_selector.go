@@ -52,6 +52,16 @@ func NewRuleSelector() *RuleSelector {
 	return &this
 }
 
+// NewRuleSelectors converts a list RuleSelector pointers to objects.
+// This is helpful when the SetRuleSelector requires a list of objects
+func NewRuleSelectors(ps ...*RuleSelector) []RuleSelector {
+	objs := []RuleSelector{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetComponentNames returns the ComponentNames field value if set, zero value otherwise.
 func (o *RuleSelector) GetComponentNames() []string {
 	if o == nil || utils.IsNil(o.ComponentNames) {

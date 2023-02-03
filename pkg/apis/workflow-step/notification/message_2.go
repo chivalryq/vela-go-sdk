@@ -51,6 +51,16 @@ func NewMessage2() *Message2 {
 	return &this
 }
 
+// NewMessage2s converts a list Message2 pointers to objects.
+// This is helpful when the SetMessage2 requires a list of objects
+func NewMessage2s(ps ...*Message2) []Message2 {
+	objs := []Message2{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetAttachments returns the Attachments field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Message2) GetAttachments() Attachments {
 	if o == nil || utils.IsNil(o.Attachments.Get()) {

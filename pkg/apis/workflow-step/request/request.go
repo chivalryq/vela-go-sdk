@@ -54,6 +54,16 @@ func NewRequestSpec() *RequestSpec {
 	return &this
 }
 
+// NewRequestSpecs converts a list RequestSpec pointers to objects.
+// This is helpful when the SetRequestSpec requires a list of objects
+func NewRequestSpecs(ps ...*RequestSpec) []RequestSpec {
+	objs := []RequestSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *RequestWorkflowStep) GetBody() map[string]interface{} {
 	if o == nil || utils.IsNil(o.Properties.Body) {

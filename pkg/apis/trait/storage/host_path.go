@@ -48,6 +48,16 @@ func NewHostPath() *HostPath {
 	return &this
 }
 
+// NewHostPaths converts a list HostPath pointers to objects.
+// This is helpful when the SetHostPath requires a list of objects
+func NewHostPaths(ps ...*HostPath) []HostPath {
+	objs := []HostPath{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetMountPath returns the MountPath field value if set, zero value otherwise.
 func (o *HostPath) GetMountPath() string {
 	if o == nil || utils.IsNil(o.MountPath) {

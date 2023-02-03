@@ -50,6 +50,16 @@ func NewUCloudProvider() *UCloudProvider {
 	return &this
 }
 
+// NewUCloudProviders converts a list UCloudProvider pointers to objects.
+// This is helpful when the SetUCloudProvider requires a list of objects
+func NewUCloudProviders(ps ...*UCloudProvider) []UCloudProvider {
+	objs := []UCloudProvider{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UCloudProvider) GetName() string {
 	if o == nil || utils.IsNil(o.Name) {

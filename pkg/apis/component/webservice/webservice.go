@@ -26,7 +26,7 @@ var _ utils.MappedNullable = &WebserviceSpec{}
 
 // WebserviceSpec struct for WebserviceSpec
 type WebserviceSpec struct {
-	AddRevisionLabel bool `json:"addRevisionLabel"`
+	AddRevisionLabel *bool `json:"addRevisionLabel,omitempty"`
 	// Specify the annotations in the workload
 	Annotations *map[string]string `json:"annotations,omitempty"`
 	// Arguments to the entrypoint
@@ -36,12 +36,12 @@ type WebserviceSpec struct {
 	// Number of CPU units for the service, like `0.5` (0.5 CPU core), `1` (1 CPU core)
 	Cpu *string `json:"cpu,omitempty"`
 	// Define arguments by using environment variables
-	Env        []Env  `json:"env,omitempty"`
-	ExposeType string `json:"exposeType"`
+	Env        []Env   `json:"env,omitempty"`
+	ExposeType *string `json:"exposeType,omitempty"`
 	// Specify the hostAliases to add
 	HostAliases []HostAliases `json:"hostAliases,omitempty"`
 	// Which image would you like to use for your service +short=i
-	Image string `json:"image"`
+	Image *string `json:"image,omitempty"`
 	// Specify image pull policy for your service
 	ImagePullPolicy *string `json:"imagePullPolicy,omitempty"`
 	// Specify image pull secrets for your service
@@ -64,11 +64,12 @@ type WebserviceSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebserviceSpecWith(addRevisionLabel bool, exposeType string, image string) *WebserviceSpec {
+func NewWebserviceSpecWith() *WebserviceSpec {
 	this := WebserviceSpec{}
-	this.AddRevisionLabel = addRevisionLabel
-	this.ExposeType = exposeType
-	this.Image = image
+	var addRevisionLabel bool = false
+	this.AddRevisionLabel = &addRevisionLabel
+	var exposeType string = "ClusterIP"
+	this.ExposeType = &exposeType
 	return &this
 }
 
@@ -78,34 +79,53 @@ func NewWebserviceSpecWith(addRevisionLabel bool, exposeType string, image strin
 func NewWebserviceSpec() *WebserviceSpec {
 	this := WebserviceSpec{}
 	var addRevisionLabel bool = false
-	this.AddRevisionLabel = addRevisionLabel
+	this.AddRevisionLabel = &addRevisionLabel
 	var exposeType string = "ClusterIP"
-	this.ExposeType = exposeType
+	this.ExposeType = &exposeType
 	return &this
 }
 
-// GetAddRevisionLabel returns the AddRevisionLabel field value
+// NewWebserviceSpecs converts a list WebserviceSpec pointers to objects.
+// This is helpful when the SetWebserviceSpec requires a list of objects
+func NewWebserviceSpecs(ps ...*WebserviceSpec) []WebserviceSpec {
+	objs := []WebserviceSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
+// GetAddRevisionLabel returns the AddRevisionLabel field value if set, zero value otherwise.
 func (o *WebserviceComponent) GetAddRevisionLabel() bool {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.AddRevisionLabel) {
 		var ret bool
 		return ret
 	}
-
-	return o.Properties.AddRevisionLabel
+	return *o.Properties.AddRevisionLabel
 }
 
-// GetAddRevisionLabelOk returns a tuple with the AddRevisionLabel field value
+// GetAddRevisionLabelOk returns a tuple with the AddRevisionLabel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebserviceComponent) GetAddRevisionLabelOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.AddRevisionLabel) {
 		return nil, false
 	}
-	return &o.Properties.AddRevisionLabel, true
+	return o.Properties.AddRevisionLabel, true
 }
 
-// SetAddRevisionLabel sets field value
+// HasAddRevisionLabel returns a boolean if a field has been set.
+func (o *WebserviceComponent) HasAddRevisionLabel() bool {
+	if o != nil && !utils.IsNil(o.Properties.AddRevisionLabel) {
+		return true
+	}
+
+	return false
+}
+
+// SetAddRevisionLabel gets a reference to the given bool and assigns it to the addRevisionLabel field.
+// AddRevisionLabel:
 func (o *WebserviceComponent) SetAddRevisionLabel(v bool) *WebserviceComponent {
-	o.Properties.AddRevisionLabel = v
+	o.Properties.AddRevisionLabel = &v
 	return o
 }
 
@@ -279,28 +299,37 @@ func (o *WebserviceComponent) SetEnv(v []Env) *WebserviceComponent {
 	return o
 }
 
-// GetExposeType returns the ExposeType field value
+// GetExposeType returns the ExposeType field value if set, zero value otherwise.
 func (o *WebserviceComponent) GetExposeType() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.ExposeType) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.ExposeType
+	return *o.Properties.ExposeType
 }
 
-// GetExposeTypeOk returns a tuple with the ExposeType field value
+// GetExposeTypeOk returns a tuple with the ExposeType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebserviceComponent) GetExposeTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.ExposeType) {
 		return nil, false
 	}
-	return &o.Properties.ExposeType, true
+	return o.Properties.ExposeType, true
 }
 
-// SetExposeType sets field value
+// HasExposeType returns a boolean if a field has been set.
+func (o *WebserviceComponent) HasExposeType() bool {
+	if o != nil && !utils.IsNil(o.Properties.ExposeType) {
+		return true
+	}
+
+	return false
+}
+
+// SetExposeType gets a reference to the given string and assigns it to the exposeType field.
+// ExposeType:
 func (o *WebserviceComponent) SetExposeType(v string) *WebserviceComponent {
-	o.Properties.ExposeType = v
+	o.Properties.ExposeType = &v
 	return o
 }
 
@@ -338,28 +367,37 @@ func (o *WebserviceComponent) SetHostAliases(v []HostAliases) *WebserviceCompone
 	return o
 }
 
-// GetImage returns the Image field value
+// GetImage returns the Image field value if set, zero value otherwise.
 func (o *WebserviceComponent) GetImage() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Image) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.Image
+	return *o.Properties.Image
 }
 
-// GetImageOk returns a tuple with the Image field value
+// GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebserviceComponent) GetImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Image) {
 		return nil, false
 	}
-	return &o.Properties.Image, true
+	return o.Properties.Image, true
 }
 
-// SetImage sets field value
+// HasImage returns a boolean if a field has been set.
+func (o *WebserviceComponent) HasImage() bool {
+	if o != nil && !utils.IsNil(o.Properties.Image) {
+		return true
+	}
+
+	return false
+}
+
+// SetImage gets a reference to the given string and assigns it to the image field.
+// Image:  Which image would you like to use for your service +short=i
 func (o *WebserviceComponent) SetImage(v string) *WebserviceComponent {
-	o.Properties.Image = v
+	o.Properties.Image = &v
 	return o
 }
 
@@ -713,7 +751,9 @@ func (o WebserviceSpec) MarshalJSON() ([]byte, error) {
 
 func (o WebserviceSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["addRevisionLabel"] = o.AddRevisionLabel
+	if !utils.IsNil(o.AddRevisionLabel) {
+		toSerialize["addRevisionLabel"] = o.AddRevisionLabel
+	}
 	if !utils.IsNil(o.Annotations) {
 		toSerialize["annotations"] = o.Annotations
 	}
@@ -729,11 +769,15 @@ func (o WebserviceSpec) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.Env) {
 		toSerialize["env"] = o.Env
 	}
-	toSerialize["exposeType"] = o.ExposeType
+	if !utils.IsNil(o.ExposeType) {
+		toSerialize["exposeType"] = o.ExposeType
+	}
 	if !utils.IsNil(o.HostAliases) {
 		toSerialize["hostAliases"] = o.HostAliases
 	}
-	toSerialize["image"] = o.Image
+	if !utils.IsNil(o.Image) {
+		toSerialize["image"] = o.Image
+	}
 	if !utils.IsNil(o.ImagePullPolicy) {
 		toSerialize["imagePullPolicy"] = o.ImagePullPolicy
 	}

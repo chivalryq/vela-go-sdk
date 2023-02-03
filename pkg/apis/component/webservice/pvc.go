@@ -45,6 +45,16 @@ func NewPvc() *Pvc {
 	return &this
 }
 
+// NewPvcs converts a list Pvc pointers to objects.
+// This is helpful when the SetPvc requires a list of objects
+func NewPvcs(ps ...*Pvc) []Pvc {
+	objs := []Pvc{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetClaimName returns the ClaimName field value if set, zero value otherwise.
 func (o *Pvc) GetClaimName() string {
 	if o == nil || utils.IsNil(o.ClaimName) {

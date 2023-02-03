@@ -47,6 +47,16 @@ func NewLifecycleSpec() *LifecycleSpec {
 	return &this
 }
 
+// NewLifecycleSpecs converts a list LifecycleSpec pointers to objects.
+// This is helpful when the SetLifecycleSpec requires a list of objects
+func NewLifecycleSpecs(ps ...*LifecycleSpec) []LifecycleSpec {
+	objs := []LifecycleSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetPostStart returns the PostStart field value if set, zero value otherwise.
 func (o *LifecycleTrait) GetPostStart() LifeCycleHandler {
 	if o == nil || utils.IsNil(o.Properties.PostStart) {

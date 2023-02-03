@@ -44,6 +44,16 @@ func NewLink() *Link {
 	return &this
 }
 
+// NewLinks converts a list Link pointers to objects.
+// This is helpful when the SetLink requires a list of objects
+func NewLinks(ps ...*Link) []Link {
+	objs := []Link{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetMessageUrl returns the MessageUrl field value if set, zero value otherwise.
 func (o *Link) GetMessageUrl() string {
 	if o == nil || utils.IsNil(o.MessageUrl) {

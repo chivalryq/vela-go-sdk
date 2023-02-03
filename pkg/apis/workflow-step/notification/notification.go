@@ -50,6 +50,16 @@ func NewNotificationSpec() *NotificationSpec {
 	return &this
 }
 
+// NewNotificationSpecs converts a list NotificationSpec pointers to objects.
+// This is helpful when the SetNotificationSpec requires a list of objects
+func NewNotificationSpecs(ps ...*NotificationSpec) []NotificationSpec {
+	objs := []NotificationSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetDingding returns the Dingding field value if set, zero value otherwise.
 func (o *NotificationWorkflowStep) GetDingding() Dingding {
 	if o == nil || utils.IsNil(o.Properties.Dingding) {

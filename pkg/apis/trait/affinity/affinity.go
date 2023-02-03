@@ -50,6 +50,16 @@ func NewAffinitySpec() *AffinitySpec {
 	return &this
 }
 
+// NewAffinitySpecs converts a list AffinitySpec pointers to objects.
+// This is helpful when the SetAffinitySpec requires a list of objects
+func NewAffinitySpecs(ps ...*AffinitySpec) []AffinitySpec {
+	objs := []AffinitySpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetNodeAffinity returns the NodeAffinity field value if set, zero value otherwise.
 func (o *AffinityTrait) GetNodeAffinity() NodeAffinity {
 	if o == nil || utils.IsNil(o.Properties.NodeAffinity) {

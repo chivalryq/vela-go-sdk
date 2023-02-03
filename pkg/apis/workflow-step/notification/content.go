@@ -44,6 +44,16 @@ func NewContent() *Content {
 	return &this
 }
 
+// NewContents converts a list Content pointers to objects.
+// This is helpful when the SetContent requires a list of objects
+func NewContents(ps ...*Content) []Content {
+	objs := []Content{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *Content) GetBody() string {
 	if o == nil || utils.IsNil(o.Body) {

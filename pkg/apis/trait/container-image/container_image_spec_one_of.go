@@ -43,6 +43,16 @@ func NewContainerImageSpecOneOf() *ContainerImageSpecOneOf {
 	return &this
 }
 
+// NewContainerImageSpecOneOfs converts a list ContainerImageSpecOneOf pointers to objects.
+// This is helpful when the SetContainerImageSpecOneOf requires a list of objects
+func NewContainerImageSpecOneOfs(ps ...*ContainerImageSpecOneOf) []ContainerImageSpecOneOf {
+	objs := []ContainerImageSpecOneOf{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetContainers returns the Containers field value
 func (o *ContainerImageSpecOneOf) GetContainers() []PatchParams {
 	if o == nil {

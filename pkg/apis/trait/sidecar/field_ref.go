@@ -42,6 +42,16 @@ func NewFieldRef() *FieldRef {
 	return &this
 }
 
+// NewFieldRefs converts a list FieldRef pointers to objects.
+// This is helpful when the SetFieldRef requires a list of objects
+func NewFieldRefs(ps ...*FieldRef) []FieldRef {
+	objs := []FieldRef{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetFieldPath returns the FieldPath field value if set, zero value otherwise.
 func (o *FieldRef) GetFieldPath() string {
 	if o == nil || utils.IsNil(o.FieldPath) {

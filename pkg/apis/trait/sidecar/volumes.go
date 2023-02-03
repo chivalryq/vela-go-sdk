@@ -42,6 +42,16 @@ func NewVolumes() *Volumes {
 	return &this
 }
 
+// NewVolumess converts a list Volumes pointers to objects.
+// This is helpful when the SetVolumes requires a list of objects
+func NewVolumess(ps ...*Volumes) []Volumes {
+	objs := []Volumes{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Volumes) GetName() string {
 	if o == nil || utils.IsNil(o.Name) {

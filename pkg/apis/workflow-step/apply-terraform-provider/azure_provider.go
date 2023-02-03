@@ -49,6 +49,16 @@ func NewAzureProvider() *AzureProvider {
 	return &this
 }
 
+// NewAzureProviders converts a list AzureProvider pointers to objects.
+// This is helpful when the SetAzureProvider requires a list of objects
+func NewAzureProviders(ps ...*AzureProvider) []AzureProvider {
+	objs := []AzureProvider{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetClientID returns the ClientID field value if set, zero value otherwise.
 func (o *AzureProvider) GetClientID() string {
 	if o == nil || utils.IsNil(o.ClientID) {

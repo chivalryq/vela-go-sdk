@@ -42,6 +42,16 @@ func NewCredentials() *Credentials {
 	return &this
 }
 
+// NewCredentialss converts a list Credentials pointers to objects.
+// This is helpful when the SetCredentials requires a list of objects
+func NewCredentialss(ps ...*Credentials) []Credentials {
+	objs := []Credentials{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetGit returns the Git field value if set, zero value otherwise.
 func (o *Credentials) GetGit() Git1 {
 	if o == nil || utils.IsNil(o.Git) {

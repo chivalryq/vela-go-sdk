@@ -47,6 +47,16 @@ func NewSourceOneOf1() *SourceOneOf1 {
 	return &this
 }
 
+// NewSourceOneOf1s converts a list SourceOneOf1 pointers to objects.
+// This is helpful when the SetSourceOneOf1 requires a list of objects
+func NewSourceOneOf1s(ps ...*SourceOneOf1) []SourceOneOf1 {
+	objs := []SourceOneOf1{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *SourceOneOf1) GetPath() string {
 	if o == nil || utils.IsNil(o.Path) {

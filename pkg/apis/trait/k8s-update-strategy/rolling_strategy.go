@@ -55,6 +55,16 @@ func NewRollingStrategy() *RollingStrategy {
 	return &this
 }
 
+// NewRollingStrategys converts a list RollingStrategy pointers to objects.
+// This is helpful when the SetRollingStrategy requires a list of objects
+func NewRollingStrategys(ps ...*RollingStrategy) []RollingStrategy {
+	objs := []RollingStrategy{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetMaxSurge returns the MaxSurge field value if set, zero value otherwise.
 func (o *RollingStrategy) GetMaxSurge() string {
 	if o == nil || utils.IsNil(o.MaxSurge) {

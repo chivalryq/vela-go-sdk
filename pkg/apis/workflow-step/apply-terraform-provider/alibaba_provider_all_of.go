@@ -46,6 +46,16 @@ func NewAlibabaProviderAllOf() *AlibabaProviderAllOf {
 	return &this
 }
 
+// NewAlibabaProviderAllOfs converts a list AlibabaProviderAllOf pointers to objects.
+// This is helpful when the SetAlibabaProviderAllOf requires a list of objects
+func NewAlibabaProviderAllOfs(ps ...*AlibabaProviderAllOf) []AlibabaProviderAllOf {
+	objs := []AlibabaProviderAllOf{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetName returns the Name field value
 func (o *AlibabaProviderAllOf) GetName() string {
 	if o == nil {

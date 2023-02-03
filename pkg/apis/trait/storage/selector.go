@@ -42,6 +42,16 @@ func NewSelector() *Selector {
 	return &this
 }
 
+// NewSelectors converts a list Selector pointers to objects.
+// This is helpful when the SetSelector requires a list of objects
+func NewSelectors(ps ...*Selector) []Selector {
+	objs := []Selector{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetMatchExpressions returns the MatchExpressions field value if set, zero value otherwise.
 func (o *Selector) GetMatchExpressions() MatchExpressions {
 	if o == nil || utils.IsNil(o.MatchExpressions) {

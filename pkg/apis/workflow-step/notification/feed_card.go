@@ -41,6 +41,16 @@ func NewFeedCard() *FeedCard {
 	return &this
 }
 
+// NewFeedCards converts a list FeedCard pointers to objects.
+// This is helpful when the SetFeedCard requires a list of objects
+func NewFeedCards(ps ...*FeedCard) []FeedCard {
+	objs := []FeedCard{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *FeedCard) GetLinks() []Link {
 	if o == nil || utils.IsNil(o.Links) {

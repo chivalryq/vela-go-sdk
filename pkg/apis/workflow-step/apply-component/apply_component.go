@@ -54,6 +54,16 @@ func NewApplyComponentSpec() *ApplyComponentSpec {
 	return &this
 }
 
+// NewApplyComponentSpecs converts a list ApplyComponentSpec pointers to objects.
+// This is helpful when the SetApplyComponentSpec requires a list of objects
+func NewApplyComponentSpecs(ps ...*ApplyComponentSpec) []ApplyComponentSpec {
+	objs := []ApplyComponentSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetCluster returns the Cluster field value if set, zero value otherwise.
 func (o *ApplyComponentWorkflowStep) GetCluster() string {
 	if o == nil || utils.IsNil(o.Properties.Cluster) {

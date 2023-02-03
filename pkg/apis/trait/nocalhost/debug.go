@@ -41,6 +41,16 @@ func NewDebug() *Debug {
 	return &this
 }
 
+// NewDebugs converts a list Debug pointers to objects.
+// This is helpful when the SetDebug requires a list of objects
+func NewDebugs(ps ...*Debug) []Debug {
+	objs := []Debug{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetRemoteDebugPort returns the RemoteDebugPort field value if set, zero value otherwise.
 func (o *Debug) GetRemoteDebugPort() int32 {
 	if o == nil || utils.IsNil(o.RemoteDebugPort) {

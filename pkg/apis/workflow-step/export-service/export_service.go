@@ -58,6 +58,16 @@ func NewExportServiceSpec() *ExportServiceSpec {
 	return &this
 }
 
+// NewExportServiceSpecs converts a list ExportServiceSpec pointers to objects.
+// This is helpful when the SetExportServiceSpec requires a list of objects
+func NewExportServiceSpecs(ps ...*ExportServiceSpec) []ExportServiceSpec {
+	objs := []ExportServiceSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetIp returns the Ip field value if set, zero value otherwise.
 func (o *ExportServiceWorkflowStep) GetIp() string {
 	if o == nil || utils.IsNil(o.Properties.Ip) {

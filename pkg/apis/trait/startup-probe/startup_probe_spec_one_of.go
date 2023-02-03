@@ -43,6 +43,16 @@ func NewStartupProbeSpecOneOf() *StartupProbeSpecOneOf {
 	return &this
 }
 
+// NewStartupProbeSpecOneOfs converts a list StartupProbeSpecOneOf pointers to objects.
+// This is helpful when the SetStartupProbeSpecOneOf requires a list of objects
+func NewStartupProbeSpecOneOfs(ps ...*StartupProbeSpecOneOf) []StartupProbeSpecOneOf {
+	objs := []StartupProbeSpecOneOf{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetProbes returns the Probes field value
 func (o *StartupProbeSpecOneOf) GetProbes() []StartupProbeParams {
 	if o == nil {

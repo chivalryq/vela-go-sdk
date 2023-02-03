@@ -43,6 +43,16 @@ func NewPreferred1() *Preferred1 {
 	return &this
 }
 
+// NewPreferred1s converts a list Preferred1 pointers to objects.
+// This is helpful when the SetPreferred1 requires a list of objects
+func NewPreferred1s(ps ...*Preferred1) []Preferred1 {
+	objs := []Preferred1{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetPodAffinityTerm returns the PodAffinityTerm field value if set, zero value otherwise.
 func (o *Preferred1) GetPodAffinityTerm() PodAffinityTerm {
 	if o == nil || utils.IsNil(o.PodAffinityTerm) {

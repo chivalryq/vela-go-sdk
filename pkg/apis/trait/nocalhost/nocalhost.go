@@ -76,6 +76,16 @@ func NewNocalhostSpec() *NocalhostSpec {
 	return &this
 }
 
+// NewNocalhostSpecs converts a list NocalhostSpec pointers to objects.
+// This is helpful when the SetNocalhostSpec requires a list of objects
+func NewNocalhostSpecs(ps ...*NocalhostSpec) []NocalhostSpec {
+	objs := []NocalhostSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetCommand returns the Command field value if set, zero value otherwise.
 func (o *NocalhostTrait) GetCommand() Command {
 	if o == nil || utils.IsNil(o.Properties.Command) {

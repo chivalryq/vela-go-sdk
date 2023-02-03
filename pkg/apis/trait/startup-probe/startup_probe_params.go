@@ -82,6 +82,16 @@ func NewStartupProbeParams() *StartupProbeParams {
 	return &this
 }
 
+// NewStartupProbeParamss converts a list StartupProbeParams pointers to objects.
+// This is helpful when the SetStartupProbeParams requires a list of objects
+func NewStartupProbeParamss(ps ...*StartupProbeParams) []StartupProbeParams {
+	objs := []StartupProbeParams{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetContainerName returns the ContainerName field value if set, zero value otherwise.
 func (o *StartupProbeParams) GetContainerName() string {
 	if o == nil || utils.IsNil(o.ContainerName) {

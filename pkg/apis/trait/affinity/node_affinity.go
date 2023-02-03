@@ -43,6 +43,16 @@ func NewNodeAffinity() *NodeAffinity {
 	return &this
 }
 
+// NewNodeAffinitys converts a list NodeAffinity pointers to objects.
+// This is helpful when the SetNodeAffinity requires a list of objects
+func NewNodeAffinitys(ps ...*NodeAffinity) []NodeAffinity {
+	objs := []NodeAffinity{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetPreferred returns the Preferred field value if set, zero value otherwise.
 func (o *NodeAffinity) GetPreferred() []Preferred {
 	if o == nil || utils.IsNil(o.Preferred) {

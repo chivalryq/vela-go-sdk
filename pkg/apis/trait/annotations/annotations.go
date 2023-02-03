@@ -45,6 +45,16 @@ func NewAnnotationsSpec() *AnnotationsSpec {
 	return &this
 }
 
+// NewAnnotationsSpecs converts a list AnnotationsSpec pointers to objects.
+// This is helpful when the SetAnnotationsSpec requires a list of objects
+func NewAnnotationsSpecs(ps ...*AnnotationsSpec) []AnnotationsSpec {
+	objs := []AnnotationsSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 func (o AnnotationsSpec) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {

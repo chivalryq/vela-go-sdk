@@ -49,6 +49,16 @@ func NewOverrideSpec() *OverrideSpec {
 	return &this
 }
 
+// NewOverrideSpecs converts a list OverrideSpec pointers to objects.
+// This is helpful when the SetOverrideSpec requires a list of objects
+func NewOverrideSpecs(ps ...*OverrideSpec) []OverrideSpec {
+	objs := []OverrideSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetComponents returns the Components field value if set, zero value otherwise.
 func (o *OverridePolicy) GetComponents() []PatchParams {
 	if o == nil || utils.IsNil(o.Properties.Components) {
@@ -217,6 +227,10 @@ func (o *OverridePolicy) FromPolicy(from v1beta1.AppPolicy) (*OverridePolicy, er
 func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
 	o := &OverridePolicy{}
 	return o.FromPolicy(from)
+}
+
+func (o *OverridePolicy) PolicyName() string {
+	return o.Base.Name
 }
 
 func (o *OverridePolicy) DefType() string {

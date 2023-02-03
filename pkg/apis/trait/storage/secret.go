@@ -63,6 +63,16 @@ func NewSecret() *Secret {
 	return &this
 }
 
+// NewSecrets converts a list Secret pointers to objects.
+// This is helpful when the SetSecret requires a list of objects
+func NewSecrets(ps ...*Secret) []Secret {
+	objs := []Secret{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *Secret) GetData() map[string]interface{} {
 	if o == nil || utils.IsNil(o.Data) {

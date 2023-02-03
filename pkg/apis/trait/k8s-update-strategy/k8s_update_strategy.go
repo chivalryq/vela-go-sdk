@@ -58,6 +58,16 @@ func NewK8sUpdateStrategySpec() *K8sUpdateStrategySpec {
 	return &this
 }
 
+// NewK8sUpdateStrategySpecs converts a list K8sUpdateStrategySpec pointers to objects.
+// This is helpful when the SetK8sUpdateStrategySpec requires a list of objects
+func NewK8sUpdateStrategySpecs(ps ...*K8sUpdateStrategySpec) []K8sUpdateStrategySpec {
+	objs := []K8sUpdateStrategySpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetStrategy returns the Strategy field value if set, zero value otherwise.
 func (o *K8sUpdateStrategyTrait) GetStrategy() Strategy {
 	if o == nil || utils.IsNil(o.Properties.Strategy) {

@@ -42,6 +42,16 @@ func NewSlack() *Slack {
 	return &this
 }
 
+// NewSlacks converts a list Slack pointers to objects.
+// This is helpful when the SetSlack requires a list of objects
+func NewSlacks(ps ...*Slack) []Slack {
+	objs := []Slack{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *Slack) GetMessage() Message2 {
 	if o == nil || utils.IsNil(o.Message) {

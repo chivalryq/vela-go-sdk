@@ -64,6 +64,16 @@ func NewWorkerSpec() *WorkerSpec {
 	return &this
 }
 
+// NewWorkerSpecs converts a list WorkerSpec pointers to objects.
+// This is helpful when the SetWorkerSpec requires a list of objects
+func NewWorkerSpecs(ps ...*WorkerSpec) []WorkerSpec {
+	objs := []WorkerSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetCmd returns the Cmd field value if set, zero value otherwise.
 func (o *WorkerComponent) GetCmd() []string {
 	if o == nil || utils.IsNil(o.Properties.Cmd) {

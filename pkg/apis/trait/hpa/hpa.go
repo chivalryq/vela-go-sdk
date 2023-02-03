@@ -73,6 +73,16 @@ func NewHpaSpec() *HpaSpec {
 	return &this
 }
 
+// NewHpaSpecs converts a list HpaSpec pointers to objects.
+// This is helpful when the SetHpaSpec requires a list of objects
+func NewHpaSpecs(ps ...*HpaSpec) []HpaSpec {
+	objs := []HpaSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetCpu returns the Cpu field value if set, zero value otherwise.
 func (o *HpaTrait) GetCpu() Cpu {
 	if o == nil || utils.IsNil(o.Properties.Cpu) {

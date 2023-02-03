@@ -48,6 +48,16 @@ func NewEmptyDir() *EmptyDir {
 	return &this
 }
 
+// NewEmptyDirs converts a list EmptyDir pointers to objects.
+// This is helpful when the SetEmptyDir requires a list of objects
+func NewEmptyDirs(ps ...*EmptyDir) []EmptyDir {
+	objs := []EmptyDir{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetMedium returns the Medium field value if set, zero value otherwise.
 func (o *EmptyDir) GetMedium() string {
 	if o == nil || utils.IsNil(o.Medium) {

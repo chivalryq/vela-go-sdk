@@ -48,6 +48,16 @@ func NewApplyRemainingSpec() *ApplyRemainingSpec {
 	return &this
 }
 
+// NewApplyRemainingSpecs converts a list ApplyRemainingSpec pointers to objects.
+// This is helpful when the SetApplyRemainingSpec requires a list of objects
+func NewApplyRemainingSpecs(ps ...*ApplyRemainingSpec) []ApplyRemainingSpec {
+	objs := []ApplyRemainingSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetExceptions returns the Exceptions field value if set, zero value otherwise.
 func (o *ApplyRemainingWorkflowStep) GetExceptions() []string {
 	if o == nil || utils.IsNil(o.Properties.Exceptions) {

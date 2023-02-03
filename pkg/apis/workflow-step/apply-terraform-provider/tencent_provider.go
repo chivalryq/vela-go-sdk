@@ -49,6 +49,16 @@ func NewTencentProvider() *TencentProvider {
 	return &this
 }
 
+// NewTencentProviders converts a list TencentProvider pointers to objects.
+// This is helpful when the SetTencentProvider requires a list of objects
+func NewTencentProviders(ps ...*TencentProvider) []TencentProvider {
+	objs := []TencentProvider{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *TencentProvider) GetName() string {
 	if o == nil || utils.IsNil(o.Name) {

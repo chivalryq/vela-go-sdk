@@ -10,8 +10,12 @@ import (
 	"k8s.io/apimachinery/pkg/util/json"
 
 	"github.com/chivalryq/vela-go-sdk/pkg/apis/common"
+	"github.com/chivalryq/vela-go-sdk/pkg/apis/component/helm"
 	. "github.com/chivalryq/vela-go-sdk/pkg/apis/component/webservice"
 	initcontainer "github.com/chivalryq/vela-go-sdk/pkg/apis/trait/init-container"
+	bu "github.com/chivalryq/vela-go-sdk/pkg/apis/workflow-step/build-push-image"
+	notify "github.com/chivalryq/vela-go-sdk/pkg/apis/workflow-step/notification"
+	stepgroup "github.com/chivalryq/vela-go-sdk/pkg/apis/workflow-step/step-group"
 )
 
 func main() {
@@ -22,6 +26,12 @@ func main() {
 			Namespace("default").
 			WithComponents(
 				Webservice("nginx").
+					SetEnv(NewEnvs(
+						NewEnv().SetName("test").SetValue("test"),
+					)).
+					SetVolumes(NewVolumess(
+						NewVolumes().SetName("test-volume").SetType("pvc"),
+					)).
 					SetImage("nginx:latest").
 					SetCpu("500m").
 					AddTrait(
@@ -33,13 +43,18 @@ func main() {
 							SetInitMountPath("/app/dir"),
 						resource.Resource().SetMemory("256Mi"),
 					),
+				helm.Helm("helm").
+					SetChart("some-chart").
+					SetRepoType("git").
+					SetGit(*helm.NewGit().SetBranch("branch")).
+					SetUrl("https://github.com/xxx/xxx.git"),
+			).
+			WithWorkflowSteps(
+				stepgroup.StepGroup("group").
+					AddSubStep(bu.BuildPushImage("bp").SetImage("my-image").SetContext(bu.GitAsContext(bu.NewGit().SetBranch("111")))).
+					AddSubStep(notify.Notification("notify")),
+				notify.Notification("single-step"),
 			)
-	//WithWorkflowSteps(
-	//	stepgroup.StepGroup("group").
-	//		AddSubStep(bu.BuildPushImage("bp").Image("my-image").Context(bu.Context{String: utils.PtrString("test")})).
-	//		AddSubStep(notify.Notification("notify")),
-	//	notify.Notification("single-step"),
-	//).
 	//WithPolicies(applyonce.ApplyOnce("once").Enable(true))
 
 	appObj := application.Build()

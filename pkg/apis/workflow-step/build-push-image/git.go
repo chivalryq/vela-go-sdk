@@ -46,6 +46,16 @@ func NewGit() *Git {
 	return &this
 }
 
+// NewGits converts a list Git pointers to objects.
+// This is helpful when the SetGit requires a list of objects
+func NewGits(ps ...*Git) []Git {
+	objs := []Git{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetBranch returns the Branch field value if set, zero value otherwise.
 func (o *Git) GetBranch() string {
 	if o == nil || utils.IsNil(o.Branch) {

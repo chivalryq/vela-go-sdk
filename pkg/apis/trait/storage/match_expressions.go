@@ -43,6 +43,16 @@ func NewMatchExpressions() *MatchExpressions {
 	return &this
 }
 
+// NewMatchExpressionss converts a list MatchExpressions pointers to objects.
+// This is helpful when the SetMatchExpressions requires a list of objects
+func NewMatchExpressionss(ps ...*MatchExpressions) []MatchExpressions {
+	objs := []MatchExpressions{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *MatchExpressions) GetKey() string {
 	if o == nil || utils.IsNil(o.Key) {

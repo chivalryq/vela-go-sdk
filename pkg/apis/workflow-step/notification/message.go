@@ -52,6 +52,16 @@ func NewMessage() *Message {
 	return &this
 }
 
+// NewMessages converts a list Message pointers to objects.
+// This is helpful when the SetMessage requires a list of objects
+func NewMessages(ps ...*Message) []Message {
+	objs := []Message{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetActionCard returns the ActionCard field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Message) GetActionCard() ActionCard {
 	if o == nil || utils.IsNil(o.ActionCard.Get()) {

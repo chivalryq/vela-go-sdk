@@ -43,6 +43,16 @@ func NewDataSourceRef() *DataSourceRef {
 	return &this
 }
 
+// NewDataSourceRefs converts a list DataSourceRef pointers to objects.
+// This is helpful when the SetDataSourceRef requires a list of objects
+func NewDataSourceRefs(ps ...*DataSourceRef) []DataSourceRef {
+	objs := []DataSourceRef{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetApiGroup returns the ApiGroup field value if set, zero value otherwise.
 func (o *DataSourceRef) GetApiGroup() string {
 	if o == nil || utils.IsNil(o.ApiGroup) {

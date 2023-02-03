@@ -41,6 +41,16 @@ func NewRequests() *Requests {
 	return &this
 }
 
+// NewRequestss converts a list Requests pointers to objects.
+// This is helpful when the SetRequests requires a list of objects
+func NewRequestss(ps ...*Requests) []Requests {
+	objs := []Requests{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetStorage returns the Storage field value if set, zero value otherwise.
 func (o *Requests) GetStorage() string {
 	if o == nil || utils.IsNil(o.Storage) {

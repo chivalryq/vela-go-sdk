@@ -56,6 +56,16 @@ func NewPorts() *Ports {
 	return &this
 }
 
+// NewPortss converts a list Ports pointers to objects.
+// This is helpful when the SetPorts requires a list of objects
+func NewPortss(ps ...*Ports) []Ports {
+	objs := []Ports{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetExpose returns the Expose field value if set, zero value otherwise.
 func (o *Ports) GetExpose() bool {
 	if o == nil || utils.IsNil(o.Expose) {

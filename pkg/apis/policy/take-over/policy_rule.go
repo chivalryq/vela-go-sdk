@@ -42,6 +42,16 @@ func NewPolicyRule() *PolicyRule {
 	return &this
 }
 
+// NewPolicyRules converts a list PolicyRule pointers to objects.
+// This is helpful when the SetPolicyRule requires a list of objects
+func NewPolicyRules(ps ...*PolicyRule) []PolicyRule {
+	objs := []PolicyRule{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetSelector returns the Selector field value if set, zero value otherwise.
 func (o *PolicyRule) GetSelector() []RuleSelector {
 	if o == nil || utils.IsNil(o.Selector) {

@@ -48,6 +48,16 @@ func NewCleanJobsSpec() *CleanJobsSpec {
 	return &this
 }
 
+// NewCleanJobsSpecs converts a list CleanJobsSpec pointers to objects.
+// This is helpful when the SetCleanJobsSpec requires a list of objects
+func NewCleanJobsSpecs(ps ...*CleanJobsSpec) []CleanJobsSpec {
+	objs := []CleanJobsSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetLabelselector returns the Labelselector field value if set, zero value otherwise.
 func (o *CleanJobsWorkflowStep) GetLabelselector() map[string]interface{} {
 	if o == nil || utils.IsNil(o.Properties.Labelselector) {

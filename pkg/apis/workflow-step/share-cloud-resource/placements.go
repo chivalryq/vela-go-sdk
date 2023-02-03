@@ -42,6 +42,16 @@ func NewPlacements() *Placements {
 	return &this
 }
 
+// NewPlacementss converts a list Placements pointers to objects.
+// This is helpful when the SetPlacements requires a list of objects
+func NewPlacementss(ps ...*Placements) []Placements {
+	objs := []Placements{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetCluster returns the Cluster field value if set, zero value otherwise.
 func (o *Placements) GetCluster() string {
 	if o == nil || utils.IsNil(o.Cluster) {

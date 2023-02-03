@@ -42,6 +42,16 @@ func NewRequired() *Required {
 	return &this
 }
 
+// NewRequireds converts a list Required pointers to objects.
+// This is helpful when the SetRequired requires a list of objects
+func NewRequireds(ps ...*Required) []Required {
+	objs := []Required{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetNodeSelectorTerms returns the NodeSelectorTerms field value if set, zero value otherwise.
 func (o *Required) GetNodeSelectorTerms() []NodeSelectorTerm {
 	if o == nil || utils.IsNil(o.NodeSelectorTerms) {

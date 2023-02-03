@@ -43,6 +43,16 @@ func NewPasswordOneOf() *PasswordOneOf {
 	return &this
 }
 
+// NewPasswordOneOfs converts a list PasswordOneOf pointers to objects.
+// This is helpful when the SetPasswordOneOf requires a list of objects
+func NewPasswordOneOfs(ps ...*PasswordOneOf) []PasswordOneOf {
+	objs := []PasswordOneOf{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetValue returns the Value field value
 func (o *PasswordOneOf) GetValue() string {
 	if o == nil {

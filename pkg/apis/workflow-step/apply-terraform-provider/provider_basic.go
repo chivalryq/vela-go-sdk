@@ -43,6 +43,16 @@ func NewProviderBasic() *ProviderBasic {
 	return &this
 }
 
+// NewProviderBasics converts a list ProviderBasic pointers to objects.
+// This is helpful when the SetProviderBasic requires a list of objects
+func NewProviderBasics(ps ...*ProviderBasic) []ProviderBasic {
+	objs := []ProviderBasic{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetAccessKey returns the AccessKey field value if set, zero value otherwise.
 func (o *ProviderBasic) GetAccessKey() string {
 	if o == nil || utils.IsNil(o.AccessKey) {

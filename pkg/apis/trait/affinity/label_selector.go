@@ -42,6 +42,16 @@ func NewLabelSelector() *LabelSelector {
 	return &this
 }
 
+// NewLabelSelectors converts a list LabelSelector pointers to objects.
+// This is helpful when the SetLabelSelector requires a list of objects
+func NewLabelSelectors(ps ...*LabelSelector) []LabelSelector {
+	objs := []LabelSelector{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetMatchExpressions returns the MatchExpressions field value if set, zero value otherwise.
 func (o *LabelSelector) GetMatchExpressions() []MatchExpressions {
 	if o == nil || utils.IsNil(o.MatchExpressions) {

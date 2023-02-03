@@ -44,6 +44,16 @@ func NewGrpc() *Grpc {
 	return &this
 }
 
+// NewGrpcs converts a list Grpc pointers to objects.
+// This is helpful when the SetGrpc requires a list of objects
+func NewGrpcs(ps ...*Grpc) []Grpc {
+	objs := []Grpc{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *Grpc) GetPort() int32 {
 	if o == nil || utils.IsNil(o.Port) {

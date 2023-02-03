@@ -48,6 +48,16 @@ func NewApplyDeploymentSpec() *ApplyDeploymentSpec {
 	return &this
 }
 
+// NewApplyDeploymentSpecs converts a list ApplyDeploymentSpec pointers to objects.
+// This is helpful when the SetApplyDeploymentSpec requires a list of objects
+func NewApplyDeploymentSpecs(ps ...*ApplyDeploymentSpec) []ApplyDeploymentSpec {
+	objs := []ApplyDeploymentSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetCmd returns the Cmd field value if set, zero value otherwise.
 func (o *ApplyDeploymentWorkflowStep) GetCmd() []string {
 	if o == nil || utils.IsNil(o.Properties.Cmd) {

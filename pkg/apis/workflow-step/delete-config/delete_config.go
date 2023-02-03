@@ -50,6 +50,16 @@ func NewDeleteConfigSpec() *DeleteConfigSpec {
 	return &this
 }
 
+// NewDeleteConfigSpecs converts a list DeleteConfigSpec pointers to objects.
+// This is helpful when the SetDeleteConfigSpec requires a list of objects
+func NewDeleteConfigSpecs(ps ...*DeleteConfigSpec) []DeleteConfigSpec {
+	objs := []DeleteConfigSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DeleteConfigWorkflowStep) GetName() string {
 	if o == nil || utils.IsNil(o.Properties.Name) {

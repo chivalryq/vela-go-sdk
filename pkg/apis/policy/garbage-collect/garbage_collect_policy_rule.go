@@ -48,6 +48,16 @@ func NewGarbageCollectPolicyRule() *GarbageCollectPolicyRule {
 	return &this
 }
 
+// NewGarbageCollectPolicyRules converts a list GarbageCollectPolicyRule pointers to objects.
+// This is helpful when the SetGarbageCollectPolicyRule requires a list of objects
+func NewGarbageCollectPolicyRules(ps ...*GarbageCollectPolicyRule) []GarbageCollectPolicyRule {
+	objs := []GarbageCollectPolicyRule{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetSelector returns the Selector field value if set, zero value otherwise.
 func (o *GarbageCollectPolicyRule) GetSelector() []ResourcePolicyRuleSelector {
 	if o == nil || utils.IsNil(o.Selector) {

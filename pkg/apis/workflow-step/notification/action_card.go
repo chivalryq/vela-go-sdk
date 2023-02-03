@@ -47,6 +47,16 @@ func NewActionCard() *ActionCard {
 	return &this
 }
 
+// NewActionCards converts a list ActionCard pointers to objects.
+// This is helpful when the SetActionCard requires a list of objects
+func NewActionCards(ps ...*ActionCard) []ActionCard {
+	objs := []ActionCard{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetBtnOrientation returns the BtnOrientation field value if set, zero value otherwise.
 func (o *ActionCard) GetBtnOrientation() string {
 	if o == nil || utils.IsNil(o.BtnOrientation) {

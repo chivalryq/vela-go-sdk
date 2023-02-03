@@ -50,6 +50,16 @@ func NewDependsOnAppSpec() *DependsOnAppSpec {
 	return &this
 }
 
+// NewDependsOnAppSpecs converts a list DependsOnAppSpec pointers to objects.
+// This is helpful when the SetDependsOnAppSpec requires a list of objects
+func NewDependsOnAppSpecs(ps ...*DependsOnAppSpec) []DependsOnAppSpec {
+	objs := []DependsOnAppSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DependsOnAppWorkflowStep) GetName() string {
 	if o == nil || utils.IsNil(o.Properties.Name) {

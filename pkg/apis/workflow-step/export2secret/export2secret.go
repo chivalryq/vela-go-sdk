@@ -67,6 +67,16 @@ func NewExport2secretSpec() *Export2secretSpec {
 	return &this
 }
 
+// NewExport2secretSpecs converts a list Export2secretSpec pointers to objects.
+// This is helpful when the SetExport2secretSpec requires a list of objects
+func NewExport2secretSpecs(ps ...*Export2secretSpec) []Export2secretSpec {
+	objs := []Export2secretSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetCluster returns the Cluster field value if set, zero value otherwise.
 func (o *Export2secretWorkflowStep) GetCluster() string {
 	if o == nil || utils.IsNil(o.Properties.Cluster) {

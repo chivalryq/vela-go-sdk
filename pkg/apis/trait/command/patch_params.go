@@ -54,6 +54,16 @@ func NewPatchParams() *PatchParams {
 	return &this
 }
 
+// NewPatchParamss converts a list PatchParams pointers to objects.
+// This is helpful when the SetPatchParams requires a list of objects
+func NewPatchParamss(ps ...*PatchParams) []PatchParams {
+	objs := []PatchParams{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetAddArgs returns the AddArgs field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PatchParams) GetAddArgs() []string {
 	if o == nil {

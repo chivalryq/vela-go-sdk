@@ -46,6 +46,16 @@ func NewBaiduProviderAllOf() *BaiduProviderAllOf {
 	return &this
 }
 
+// NewBaiduProviderAllOfs converts a list BaiduProviderAllOf pointers to objects.
+// This is helpful when the SetBaiduProviderAllOf requires a list of objects
+func NewBaiduProviderAllOfs(ps ...*BaiduProviderAllOf) []BaiduProviderAllOf {
+	objs := []BaiduProviderAllOf{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetName returns the Name field value
 func (o *BaiduProviderAllOf) GetName() string {
 	if o == nil {

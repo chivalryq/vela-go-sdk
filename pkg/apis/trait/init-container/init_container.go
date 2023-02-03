@@ -73,6 +73,16 @@ func NewInitContainerSpec() *InitContainerSpec {
 	return &this
 }
 
+// NewInitContainerSpecs converts a list InitContainerSpec pointers to objects.
+// This is helpful when the SetInitContainerSpec requires a list of objects
+func NewInitContainerSpecs(ps ...*InitContainerSpec) []InitContainerSpec {
+	objs := []InitContainerSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetAppMountPath returns the AppMountPath field value if set, zero value otherwise.
 func (o *InitContainerTrait) GetAppMountPath() string {
 	if o == nil || utils.IsNil(o.Properties.AppMountPath) {

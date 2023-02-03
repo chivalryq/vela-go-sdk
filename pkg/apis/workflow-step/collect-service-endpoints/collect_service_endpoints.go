@@ -64,6 +64,16 @@ func NewCollectServiceEndpointsSpec() *CollectServiceEndpointsSpec {
 	return &this
 }
 
+// NewCollectServiceEndpointsSpecs converts a list CollectServiceEndpointsSpec pointers to objects.
+// This is helpful when the SetCollectServiceEndpointsSpec requires a list of objects
+func NewCollectServiceEndpointsSpecs(ps ...*CollectServiceEndpointsSpec) []CollectServiceEndpointsSpec {
+	objs := []CollectServiceEndpointsSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetComponents returns the Components field value if set, zero value otherwise.
 func (o *CollectServiceEndpointsWorkflowStep) GetComponents() []string {
 	if o == nil || utils.IsNil(o.Properties.Components) {

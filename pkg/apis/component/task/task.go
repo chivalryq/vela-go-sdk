@@ -79,6 +79,16 @@ func NewTaskSpec() *TaskSpec {
 	return &this
 }
 
+// NewTaskSpecs converts a list TaskSpec pointers to objects.
+// This is helpful when the SetTaskSpec requires a list of objects
+func NewTaskSpecs(ps ...*TaskSpec) []TaskSpec {
+	objs := []TaskSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetAnnotations returns the Annotations field value if set, zero value otherwise.
 func (o *TaskComponent) GetAnnotations() map[string]string {
 	if o == nil || utils.IsNil(o.Properties.Annotations) {

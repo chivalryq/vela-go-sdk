@@ -54,6 +54,16 @@ func NewCreateConfigSpec() *CreateConfigSpec {
 	return &this
 }
 
+// NewCreateConfigSpecs converts a list CreateConfigSpec pointers to objects.
+// This is helpful when the SetCreateConfigSpec requires a list of objects
+func NewCreateConfigSpecs(ps ...*CreateConfigSpec) []CreateConfigSpec {
+	objs := []CreateConfigSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetConfig returns the Config field value if set, zero value otherwise.
 func (o *CreateConfigWorkflowStep) GetConfig() map[string]interface{} {
 	if o == nil || utils.IsNil(o.Properties.Config) {

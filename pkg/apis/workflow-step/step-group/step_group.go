@@ -46,6 +46,16 @@ func NewStepGroupSpec() *StepGroupSpec {
 	return &this
 }
 
+// NewStepGroupSpecs converts a list StepGroupSpec pointers to objects.
+// This is helpful when the SetStepGroupSpec requires a list of objects
+func NewStepGroupSpecs(ps ...*StepGroupSpec) []StepGroupSpec {
+	objs := []StepGroupSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 func (o StepGroupSpec) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {

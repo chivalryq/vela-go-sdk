@@ -52,6 +52,16 @@ func NewMem() *Mem {
 	return &this
 }
 
+// NewMems converts a list Mem pointers to objects.
+// This is helpful when the SetMem requires a list of objects
+func NewMems(ps ...*Mem) []Mem {
+	objs := []Mem{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Mem) GetType() string {
 	if o == nil || utils.IsNil(o.Type) {

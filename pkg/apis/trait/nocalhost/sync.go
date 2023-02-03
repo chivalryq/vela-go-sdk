@@ -47,6 +47,16 @@ func NewSync() *Sync {
 	return &this
 }
 
+// NewSyncs converts a list Sync pointers to objects.
+// This is helpful when the SetSync requires a list of objects
+func NewSyncs(ps ...*Sync) []Sync {
+	objs := []Sync{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetFilePattern returns the FilePattern field value if set, zero value otherwise.
 func (o *Sync) GetFilePattern() []string {
 	if o == nil || utils.IsNil(o.FilePattern) {

@@ -44,6 +44,16 @@ func NewExtraVolumeMounts() *ExtraVolumeMounts {
 	return &this
 }
 
+// NewExtraVolumeMountss converts a list ExtraVolumeMounts pointers to objects.
+// This is helpful when the SetExtraVolumeMounts requires a list of objects
+func NewExtraVolumeMountss(ps ...*ExtraVolumeMounts) []ExtraVolumeMounts {
+	objs := []ExtraVolumeMounts{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetMountPath returns the MountPath field value if set, zero value otherwise.
 func (o *ExtraVolumeMounts) GetMountPath() string {
 	if o == nil || utils.IsNil(o.MountPath) {

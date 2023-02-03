@@ -49,6 +49,16 @@ func NewRefObjectsSpec() *RefObjectsSpec {
 	return &this
 }
 
+// NewRefObjectsSpecs converts a list RefObjectsSpec pointers to objects.
+// This is helpful when the SetRefObjectsSpec requires a list of objects
+func NewRefObjectsSpecs(ps ...*RefObjectsSpec) []RefObjectsSpec {
+	objs := []RefObjectsSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetObjects returns the Objects field value if set, zero value otherwise.
 func (o *RefObjectsComponent) GetObjects() []K8sObject {
 	if o == nil || utils.IsNil(o.Properties.Objects) {

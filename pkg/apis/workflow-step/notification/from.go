@@ -53,6 +53,16 @@ func NewFrom() *From {
 	return &this
 }
 
+// NewFroms converts a list From pointers to objects.
+// This is helpful when the SetFrom requires a list of objects
+func NewFroms(ps ...*From) []From {
+	objs := []From{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *From) GetAddress() string {
 	if o == nil || utils.IsNil(o.Address) {

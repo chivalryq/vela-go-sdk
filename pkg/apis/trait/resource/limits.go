@@ -52,6 +52,16 @@ func NewLimits() *Limits {
 	return &this
 }
 
+// NewLimitss converts a list Limits pointers to objects.
+// This is helpful when the SetLimits requires a list of objects
+func NewLimitss(ps ...*Limits) []Limits {
+	objs := []Limits{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetCpu returns the Cpu field value if set, zero value otherwise.
 func (o *Limits) GetCpu() float32 {
 	if o == nil || utils.IsNil(o.Cpu) {

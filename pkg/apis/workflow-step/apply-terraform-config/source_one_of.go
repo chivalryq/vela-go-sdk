@@ -43,6 +43,16 @@ func NewSourceOneOf() *SourceOneOf {
 	return &this
 }
 
+// NewSourceOneOfs converts a list SourceOneOf pointers to objects.
+// This is helpful when the SetSourceOneOf requires a list of objects
+func NewSourceOneOfs(ps ...*SourceOneOf) []SourceOneOf {
+	objs := []SourceOneOf{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetHcl returns the Hcl field value
 func (o *SourceOneOf) GetHcl() string {
 	if o == nil {

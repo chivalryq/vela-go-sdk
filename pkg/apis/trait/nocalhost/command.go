@@ -42,6 +42,16 @@ func NewCommand() *Command {
 	return &this
 }
 
+// NewCommands converts a list Command pointers to objects.
+// This is helpful when the SetCommand requires a list of objects
+func NewCommands(ps ...*Command) []Command {
+	objs := []Command{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetDebug returns the Debug field value if set, zero value otherwise.
 func (o *Command) GetDebug() []string {
 	if o == nil || utils.IsNil(o.Debug) {

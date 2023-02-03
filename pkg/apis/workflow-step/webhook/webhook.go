@@ -49,6 +49,16 @@ func NewWebhookSpec() *WebhookSpec {
 	return &this
 }
 
+// NewWebhookSpecs converts a list WebhookSpec pointers to objects.
+// This is helpful when the SetWebhookSpec requires a list of objects
+func NewWebhookSpecs(ps ...*WebhookSpec) []WebhookSpec {
+	objs := []WebhookSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *WebhookWorkflowStep) GetData() map[string]interface{} {
 	if o == nil || utils.IsNil(o.Properties.Data) {

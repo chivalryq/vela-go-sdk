@@ -44,6 +44,16 @@ func NewConfigMapKeyRef() *ConfigMapKeyRef {
 	return &this
 }
 
+// NewConfigMapKeyRefs converts a list ConfigMapKeyRef pointers to objects.
+// This is helpful when the SetConfigMapKeyRef requires a list of objects
+func NewConfigMapKeyRefs(ps ...*ConfigMapKeyRef) []ConfigMapKeyRef {
+	objs := []ConfigMapKeyRef{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *ConfigMapKeyRef) GetKey() string {
 	if o == nil || utils.IsNil(o.Key) {

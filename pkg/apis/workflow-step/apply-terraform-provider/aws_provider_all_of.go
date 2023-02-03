@@ -50,6 +50,16 @@ func NewAWSProviderAllOf() *AWSProviderAllOf {
 	return &this
 }
 
+// NewAWSProviderAllOfs converts a list AWSProviderAllOf pointers to objects.
+// This is helpful when the SetAWSProviderAllOf requires a list of objects
+func NewAWSProviderAllOfs(ps ...*AWSProviderAllOf) []AWSProviderAllOf {
+	objs := []AWSProviderAllOf{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetName returns the Name field value
 func (o *AWSProviderAllOf) GetName() string {
 	if o == nil {

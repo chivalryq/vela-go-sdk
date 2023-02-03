@@ -42,6 +42,16 @@ func NewLark() *Lark {
 	return &this
 }
 
+// NewLarks converts a list Lark pointers to objects.
+// This is helpful when the SetLark requires a list of objects
+func NewLarks(ps ...*Lark) []Lark {
+	objs := []Lark{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *Lark) GetMessage() Message1 {
 	if o == nil || utils.IsNil(o.Message) {

@@ -83,6 +83,16 @@ func NewDaemonSpec() *DaemonSpec {
 	return &this
 }
 
+// NewDaemonSpecs converts a list DaemonSpec pointers to objects.
+// This is helpful when the SetDaemonSpec requires a list of objects
+func NewDaemonSpecs(ps ...*DaemonSpec) []DaemonSpec {
+	objs := []DaemonSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetAddRevisionLabel returns the AddRevisionLabel field value if set, zero value otherwise.
 func (o *DaemonComponent) GetAddRevisionLabel() bool {
 	if o == nil || utils.IsNil(o.Properties.AddRevisionLabel) {

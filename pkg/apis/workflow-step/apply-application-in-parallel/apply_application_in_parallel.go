@@ -46,6 +46,16 @@ func NewApplyApplicationInParallelSpec() *ApplyApplicationInParallelSpec {
 	return &this
 }
 
+// NewApplyApplicationInParallelSpecs converts a list ApplyApplicationInParallelSpec pointers to objects.
+// This is helpful when the SetApplyApplicationInParallelSpec requires a list of objects
+func NewApplyApplicationInParallelSpecs(ps ...*ApplyApplicationInParallelSpec) []ApplyApplicationInParallelSpec {
+	objs := []ApplyApplicationInParallelSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 func (o ApplyApplicationInParallelSpec) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {

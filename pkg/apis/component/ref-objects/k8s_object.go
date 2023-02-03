@@ -52,6 +52,16 @@ func NewK8sObject() *K8sObject {
 	return &this
 }
 
+// NewK8sObjects converts a list K8sObject pointers to objects.
+// This is helpful when the SetK8sObject requires a list of objects
+func NewK8sObjects(ps ...*K8sObject) []K8sObject {
+	objs := []K8sObject{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetCluster returns the Cluster field value if set, zero value otherwise.
 func (o *K8sObject) GetCluster() string {
 	if o == nil || utils.IsNil(o.Cluster) {

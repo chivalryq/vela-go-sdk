@@ -60,6 +60,16 @@ func NewExportDataSpec() *ExportDataSpec {
 	return &this
 }
 
+// NewExportDataSpecs converts a list ExportDataSpec pointers to objects.
+// This is helpful when the SetExportDataSpec requires a list of objects
+func NewExportDataSpecs(ps ...*ExportDataSpec) []ExportDataSpec {
+	objs := []ExportDataSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *ExportDataWorkflowStep) GetData() map[string]interface{} {
 	if o == nil || utils.IsNil(o.Properties.Data) {

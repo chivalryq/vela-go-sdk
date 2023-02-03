@@ -55,6 +55,16 @@ func NewStorageSpec() *StorageSpec {
 	return &this
 }
 
+// NewStorageSpecs converts a list StorageSpec pointers to objects.
+// This is helpful when the SetStorageSpec requires a list of objects
+func NewStorageSpecs(ps ...*StorageSpec) []StorageSpec {
+	objs := []StorageSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetConfigMap returns the ConfigMap field value if set, zero value otherwise.
 func (o *StorageTrait) GetConfigMap() []ConfigMap {
 	if o == nil || utils.IsNil(o.Properties.ConfigMap) {

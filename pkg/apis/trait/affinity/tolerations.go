@@ -50,6 +50,16 @@ func NewTolerations() *Tolerations {
 	return &this
 }
 
+// NewTolerationss converts a list Tolerations pointers to objects.
+// This is helpful when the SetTolerations requires a list of objects
+func NewTolerationss(ps ...*Tolerations) []Tolerations {
+	objs := []Tolerations{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetEffect returns the Effect field value if set, zero value otherwise.
 func (o *Tolerations) GetEffect() string {
 	if o == nil || utils.IsNil(o.Effect) {

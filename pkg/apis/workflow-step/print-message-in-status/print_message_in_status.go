@@ -47,6 +47,16 @@ func NewPrintMessageInStatusSpec() *PrintMessageInStatusSpec {
 	return &this
 }
 
+// NewPrintMessageInStatusSpecs converts a list PrintMessageInStatusSpec pointers to objects.
+// This is helpful when the SetPrintMessageInStatusSpec requires a list of objects
+func NewPrintMessageInStatusSpecs(ps ...*PrintMessageInStatusSpec) []PrintMessageInStatusSpec {
+	objs := []PrintMessageInStatusSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *PrintMessageInStatusWorkflowStep) GetMessage() string {
 	if o == nil || utils.IsNil(o.Properties.Message) {

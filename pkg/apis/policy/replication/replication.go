@@ -27,7 +27,7 @@ var _ utils.MappedNullable = &ReplicationSpec{}
 // ReplicationSpec struct for ReplicationSpec
 type ReplicationSpec struct {
 	// Spicify the keys of replication. Every key coresponds to a replication components
-	Keys []string `json:"keys"`
+	Keys []string `json:"keys,omitempty"`
 	// Specify the components which will be replicated.
 	Selector []string `json:"selector,omitempty"`
 }
@@ -36,9 +36,8 @@ type ReplicationSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReplicationSpecWith(keys []string) *ReplicationSpec {
+func NewReplicationSpecWith() *ReplicationSpec {
 	this := ReplicationSpec{}
-	this.Keys = keys
 	return &this
 }
 
@@ -50,26 +49,45 @@ func NewReplicationSpec() *ReplicationSpec {
 	return &this
 }
 
-// GetKeys returns the Keys field value
+// NewReplicationSpecs converts a list ReplicationSpec pointers to objects.
+// This is helpful when the SetReplicationSpec requires a list of objects
+func NewReplicationSpecs(ps ...*ReplicationSpec) []ReplicationSpec {
+	objs := []ReplicationSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
+// GetKeys returns the Keys field value if set, zero value otherwise.
 func (o *ReplicationPolicy) GetKeys() []string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Keys) {
 		var ret []string
 		return ret
 	}
-
 	return o.Properties.Keys
 }
 
-// GetKeysOk returns a tuple with the Keys field value
+// GetKeysOk returns a tuple with the Keys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReplicationPolicy) GetKeysOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Keys) {
 		return nil, false
 	}
 	return o.Properties.Keys, true
 }
 
-// SetKeys sets field value
+// HasKeys returns a boolean if a field has been set.
+func (o *ReplicationPolicy) HasKeys() bool {
+	if o != nil && !utils.IsNil(o.Properties.Keys) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeys gets a reference to the given []string and assigns it to the keys field.
+// Keys:  Spicify the keys of replication. Every key coresponds to a replication components
 func (o *ReplicationPolicy) SetKeys(v []string) *ReplicationPolicy {
 	o.Properties.Keys = v
 	return o
@@ -119,7 +137,9 @@ func (o ReplicationSpec) MarshalJSON() ([]byte, error) {
 
 func (o ReplicationSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["keys"] = o.Keys
+	if !utils.IsNil(o.Keys) {
+		toSerialize["keys"] = o.Keys
+	}
 	if !utils.IsNil(o.Selector) {
 		toSerialize["selector"] = o.Selector
 	}
@@ -207,6 +227,10 @@ func (r *ReplicationPolicy) FromPolicy(from v1beta1.AppPolicy) (*ReplicationPoli
 func FromPolicy(from v1beta1.AppPolicy) (apis.Policy, error) {
 	r := &ReplicationPolicy{}
 	return r.FromPolicy(from)
+}
+
+func (r *ReplicationPolicy) PolicyName() string {
+	return r.Base.Name
 }
 
 func (r *ReplicationPolicy) DefType() string {

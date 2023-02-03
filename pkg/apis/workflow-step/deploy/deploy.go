@@ -66,6 +66,16 @@ func NewDeploySpec() *DeploySpec {
 	return &this
 }
 
+// NewDeploySpecs converts a list DeploySpec pointers to objects.
+// This is helpful when the SetDeploySpec requires a list of objects
+func NewDeploySpecs(ps ...*DeploySpec) []DeploySpec {
+	objs := []DeploySpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetAuto returns the Auto field value if set, zero value otherwise.
 func (o *DeployWorkflowStep) GetAuto() bool {
 	if o == nil || utils.IsNil(o.Properties.Auto) {

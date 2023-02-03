@@ -65,6 +65,16 @@ func NewGatewaySpec() *GatewaySpec {
 	return &this
 }
 
+// NewGatewaySpecs converts a list GatewaySpec pointers to objects.
+// This is helpful when the SetGatewaySpec requires a list of objects
+func NewGatewaySpecs(ps ...*GatewaySpec) []GatewaySpec {
+	objs := []GatewaySpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetClass returns the Class field value if set, zero value otherwise.
 func (o *GatewayTrait) GetClass() string {
 	if o == nil || utils.IsNil(o.Properties.Class) {

@@ -43,6 +43,16 @@ func NewLifeCycleHandler() *LifeCycleHandler {
 	return &this
 }
 
+// NewLifeCycleHandlers converts a list LifeCycleHandler pointers to objects.
+// This is helpful when the SetLifeCycleHandler requires a list of objects
+func NewLifeCycleHandlers(ps ...*LifeCycleHandler) []LifeCycleHandler {
+	objs := []LifeCycleHandler{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetExec returns the Exec field value if set, zero value otherwise.
 func (o *LifeCycleHandler) GetExec() Exec {
 	if o == nil || utils.IsNil(o.Exec) {

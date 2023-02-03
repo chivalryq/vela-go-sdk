@@ -48,6 +48,16 @@ func NewImage() *Image {
 	return &this
 }
 
+// NewImages converts a list Image pointers to objects.
+// This is helpful when the SetImage requires a list of objects
+func NewImages(ps ...*Image) []Image {
+	objs := []Image{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *Image) GetKey() string {
 	if o == nil || utils.IsNil(o.Key) {

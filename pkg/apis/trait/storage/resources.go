@@ -42,6 +42,16 @@ func NewResources() *Resources {
 	return &this
 }
 
+// NewResourcess converts a list Resources pointers to objects.
+// This is helpful when the SetResources requires a list of objects
+func NewResourcess(ps ...*Resources) []Resources {
+	objs := []Resources{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetLimits returns the Limits field value if set, zero value otherwise.
 func (o *Resources) GetLimits() Limits {
 	if o == nil || utils.IsNil(o.Limits) {

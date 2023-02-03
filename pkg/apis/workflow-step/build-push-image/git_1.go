@@ -44,6 +44,16 @@ func NewGit1() *Git1 {
 	return &this
 }
 
+// NewGit1s converts a list Git1 pointers to objects.
+// This is helpful when the SetGit1 requires a list of objects
+func NewGit1s(ps ...*Git1) []Git1 {
+	objs := []Git1{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *Git1) GetKey() string {
 	if o == nil || utils.IsNil(o.Key) {

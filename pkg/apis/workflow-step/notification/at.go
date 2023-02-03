@@ -42,6 +42,16 @@ func NewAt() *At {
 	return &this
 }
 
+// NewAts converts a list At pointers to objects.
+// This is helpful when the SetAt requires a list of objects
+func NewAts(ps ...*At) []At {
+	objs := []At{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetAtMobiles returns the AtMobiles field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *At) GetAtMobiles() []string {
 	if o == nil {

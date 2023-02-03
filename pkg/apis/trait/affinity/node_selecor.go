@@ -47,6 +47,16 @@ func NewNodeSelecor() *NodeSelecor {
 	return &this
 }
 
+// NewNodeSelecors converts a list NodeSelecor pointers to objects.
+// This is helpful when the SetNodeSelecor requires a list of objects
+func NewNodeSelecors(ps ...*NodeSelecor) []NodeSelecor {
+	objs := []NodeSelecor{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *NodeSelecor) GetKey() string {
 	if o == nil || utils.IsNil(o.Key) {

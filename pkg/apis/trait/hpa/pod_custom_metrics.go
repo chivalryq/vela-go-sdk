@@ -44,6 +44,16 @@ func NewPodCustomMetrics() *PodCustomMetrics {
 	return &this
 }
 
+// NewPodCustomMetricss converts a list PodCustomMetrics pointers to objects.
+// This is helpful when the SetPodCustomMetrics requires a list of objects
+func NewPodCustomMetricss(ps ...*PodCustomMetrics) []PodCustomMetrics {
+	objs := []PodCustomMetrics{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PodCustomMetrics) GetName() string {
 	if o == nil || utils.IsNil(o.Name) {

@@ -42,6 +42,16 @@ func NewAttachments() *Attachments {
 	return &this
 }
 
+// NewAttachmentss converts a list Attachments pointers to objects.
+// This is helpful when the SetAttachments requires a list of objects
+func NewAttachmentss(ps ...*Attachments) []Attachments {
+	objs := []Attachments{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetBlocks returns the Blocks field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Attachments) GetBlocks() string {
 	if o == nil || utils.IsNil(o.Blocks.Get()) {

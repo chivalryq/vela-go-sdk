@@ -43,6 +43,16 @@ func NewCommandSpecOneOf() *CommandSpecOneOf {
 	return &this
 }
 
+// NewCommandSpecOneOfs converts a list CommandSpecOneOf pointers to objects.
+// This is helpful when the SetCommandSpecOneOf requires a list of objects
+func NewCommandSpecOneOfs(ps ...*CommandSpecOneOf) []CommandSpecOneOf {
+	objs := []CommandSpecOneOf{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetContainers returns the Containers field value
 func (o *CommandSpecOneOf) GetContainers() []PatchParams {
 	if o == nil {

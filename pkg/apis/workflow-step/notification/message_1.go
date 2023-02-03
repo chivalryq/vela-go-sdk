@@ -44,6 +44,16 @@ func NewMessage1() *Message1 {
 	return &this
 }
 
+// NewMessage1s converts a list Message1 pointers to objects.
+// This is helpful when the SetMessage1 requires a list of objects
+func NewMessage1s(ps ...*Message1) []Message1 {
+	objs := []Message1{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *Message1) GetContent() string {
 	if o == nil || utils.IsNil(o.Content) {

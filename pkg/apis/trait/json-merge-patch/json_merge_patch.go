@@ -45,6 +45,16 @@ func NewJsonMergePatchSpec() *JsonMergePatchSpec {
 	return &this
 }
 
+// NewJsonMergePatchSpecs converts a list JsonMergePatchSpec pointers to objects.
+// This is helpful when the SetJsonMergePatchSpec requires a list of objects
+func NewJsonMergePatchSpecs(ps ...*JsonMergePatchSpec) []JsonMergePatchSpec {
+	objs := []JsonMergePatchSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 func (o JsonMergePatchSpec) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {

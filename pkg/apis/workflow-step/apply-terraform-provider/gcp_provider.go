@@ -49,6 +49,16 @@ func NewGCPProvider() *GCPProvider {
 	return &this
 }
 
+// NewGCPProviders converts a list GCPProvider pointers to objects.
+// This is helpful when the SetGCPProvider requires a list of objects
+func NewGCPProviders(ps ...*GCPProvider) []GCPProvider {
+	objs := []GCPProvider{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetCredentials returns the Credentials field value if set, zero value otherwise.
 func (o *GCPProvider) GetCredentials() string {
 	if o == nil || utils.IsNil(o.Credentials) {

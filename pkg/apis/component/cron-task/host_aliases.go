@@ -42,6 +42,16 @@ func NewHostAliases() *HostAliases {
 	return &this
 }
 
+// NewHostAliasess converts a list HostAliases pointers to objects.
+// This is helpful when the SetHostAliases requires a list of objects
+func NewHostAliasess(ps ...*HostAliases) []HostAliases {
+	objs := []HostAliases{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetHostnames returns the Hostnames field value if set, zero value otherwise.
 func (o *HostAliases) GetHostnames() []string {
 	if o == nil || utils.IsNil(o.Hostnames) {

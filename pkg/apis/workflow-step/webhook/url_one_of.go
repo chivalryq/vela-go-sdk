@@ -42,6 +42,16 @@ func NewUrlOneOf() *UrlOneOf {
 	return &this
 }
 
+// NewUrlOneOfs converts a list UrlOneOf pointers to objects.
+// This is helpful when the SetUrlOneOf requires a list of objects
+func NewUrlOneOfs(ps ...*UrlOneOf) []UrlOneOf {
+	objs := []UrlOneOf{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetValue returns the Value field value
 func (o *UrlOneOf) GetValue() string {
 	if o == nil {

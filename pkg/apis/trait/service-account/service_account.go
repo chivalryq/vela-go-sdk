@@ -55,6 +55,16 @@ func NewServiceAccountSpec() *ServiceAccountSpec {
 	return &this
 }
 
+// NewServiceAccountSpecs converts a list ServiceAccountSpec pointers to objects.
+// This is helpful when the SetServiceAccountSpec requires a list of objects
+func NewServiceAccountSpecs(ps ...*ServiceAccountSpec) []ServiceAccountSpec {
+	objs := []ServiceAccountSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetCreate returns the Create field value if set, zero value otherwise.
 func (o *ServiceAccountTrait) GetCreate() bool {
 	if o == nil || utils.IsNil(o.Properties.Create) {

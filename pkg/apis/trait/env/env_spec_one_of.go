@@ -43,6 +43,16 @@ func NewEnvSpecOneOf() *EnvSpecOneOf {
 	return &this
 }
 
+// NewEnvSpecOneOfs converts a list EnvSpecOneOf pointers to objects.
+// This is helpful when the SetEnvSpecOneOf requires a list of objects
+func NewEnvSpecOneOfs(ps ...*EnvSpecOneOf) []EnvSpecOneOf {
+	objs := []EnvSpecOneOf{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetContainers returns the Containers field value
 func (o *EnvSpecOneOf) GetContainers() []PatchParams {
 	if o == nil {

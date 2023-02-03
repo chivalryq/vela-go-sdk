@@ -49,6 +49,16 @@ func NewAlibabaProvider() *AlibabaProvider {
 	return &this
 }
 
+// NewAlibabaProviders converts a list AlibabaProvider pointers to objects.
+// This is helpful when the SetAlibabaProvider requires a list of objects
+func NewAlibabaProviders(ps ...*AlibabaProvider) []AlibabaProvider {
+	objs := []AlibabaProvider{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetAccessKey returns the AccessKey field value if set, zero value otherwise.
 func (o *AlibabaProvider) GetAccessKey() string {
 	if o == nil || utils.IsNil(o.AccessKey) {

@@ -46,6 +46,16 @@ func NewTopologyspreadconstraintsSpec() *TopologyspreadconstraintsSpec {
 	return &this
 }
 
+// NewTopologyspreadconstraintsSpecs converts a list TopologyspreadconstraintsSpec pointers to objects.
+// This is helpful when the SetTopologyspreadconstraintsSpec requires a list of objects
+func NewTopologyspreadconstraintsSpecs(ps ...*TopologyspreadconstraintsSpec) []TopologyspreadconstraintsSpec {
+	objs := []TopologyspreadconstraintsSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetConstraints returns the Constraints field value if set, zero value otherwise.
 func (o *TopologyspreadconstraintsTrait) GetConstraints() []Constraints {
 	if o == nil || utils.IsNil(o.Properties.Constraints) {

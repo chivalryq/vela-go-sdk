@@ -42,6 +42,16 @@ func NewUrlOneOf1() *UrlOneOf1 {
 	return &this
 }
 
+// NewUrlOneOf1s converts a list UrlOneOf1 pointers to objects.
+// This is helpful when the SetUrlOneOf1 requires a list of objects
+func NewUrlOneOf1s(ps ...*UrlOneOf1) []UrlOneOf1 {
+	objs := []UrlOneOf1{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetSecretRef returns the SecretRef field value
 func (o *UrlOneOf1) GetSecretRef() SecretRef {
 	if o == nil {

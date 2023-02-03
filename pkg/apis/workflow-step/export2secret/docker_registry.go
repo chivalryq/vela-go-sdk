@@ -50,6 +50,16 @@ func NewDockerRegistry() *DockerRegistry {
 	return &this
 }
 
+// NewDockerRegistrys converts a list DockerRegistry pointers to objects.
+// This is helpful when the SetDockerRegistry requires a list of objects
+func NewDockerRegistrys(ps ...*DockerRegistry) []DockerRegistry {
+	objs := []DockerRegistry{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *DockerRegistry) GetPassword() string {
 	if o == nil || utils.IsNil(o.Password) {

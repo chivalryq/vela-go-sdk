@@ -119,6 +119,16 @@ func NewCronTaskSpec() *CronTaskSpec {
 	return &this
 }
 
+// NewCronTaskSpecs converts a list CronTaskSpec pointers to objects.
+// This is helpful when the SetCronTaskSpec requires a list of objects
+func NewCronTaskSpecs(ps ...*CronTaskSpec) []CronTaskSpec {
+	objs := []CronTaskSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetActiveDeadlineSeconds returns the ActiveDeadlineSeconds field value if set, zero value otherwise.
 func (o *CronTaskComponent) GetActiveDeadlineSeconds() int32 {
 	if o == nil || utils.IsNil(o.Properties.ActiveDeadlineSeconds) {

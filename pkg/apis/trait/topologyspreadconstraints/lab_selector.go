@@ -42,6 +42,16 @@ func NewLabSelector() *LabSelector {
 	return &this
 }
 
+// NewLabSelectors converts a list LabSelector pointers to objects.
+// This is helpful when the SetLabSelector requires a list of objects
+func NewLabSelectors(ps ...*LabSelector) []LabSelector {
+	objs := []LabSelector{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetMatchExpressions returns the MatchExpressions field value if set, zero value otherwise.
 func (o *LabSelector) GetMatchExpressions() []MatchExpressions {
 	if o == nil || utils.IsNil(o.MatchExpressions) {

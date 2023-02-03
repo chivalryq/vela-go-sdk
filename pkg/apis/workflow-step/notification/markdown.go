@@ -42,6 +42,16 @@ func NewMarkdown() *Markdown {
 	return &this
 }
 
+// NewMarkdowns converts a list Markdown pointers to objects.
+// This is helpful when the SetMarkdown requires a list of objects
+func NewMarkdowns(ps ...*Markdown) []Markdown {
+	objs := []Markdown{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetText returns the Text field value if set, zero value otherwise.
 func (o *Markdown) GetText() string {
 	if o == nil || utils.IsNil(o.Text) {

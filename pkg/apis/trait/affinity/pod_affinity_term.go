@@ -44,6 +44,16 @@ func NewPodAffinityTerm() *PodAffinityTerm {
 	return &this
 }
 
+// NewPodAffinityTerms converts a list PodAffinityTerm pointers to objects.
+// This is helpful when the SetPodAffinityTerm requires a list of objects
+func NewPodAffinityTerms(ps ...*PodAffinityTerm) []PodAffinityTerm {
+	objs := []PodAffinityTerm{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetLabelSelector returns the LabelSelector field value if set, zero value otherwise.
 func (o *PodAffinityTerm) GetLabelSelector() LabelSelector {
 	if o == nil || utils.IsNil(o.LabelSelector) {

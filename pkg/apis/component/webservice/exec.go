@@ -42,6 +42,16 @@ func NewExec() *Exec {
 	return &this
 }
 
+// NewExecs converts a list Exec pointers to objects.
+// This is helpful when the SetExec requires a list of objects
+func NewExecs(ps ...*Exec) []Exec {
+	objs := []Exec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetCommand returns the Command field value if set, zero value otherwise.
 func (o *Exec) GetCommand() []string {
 	if o == nil || utils.IsNil(o.Command) {

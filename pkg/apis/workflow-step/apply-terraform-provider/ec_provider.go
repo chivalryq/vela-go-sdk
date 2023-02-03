@@ -51,6 +51,16 @@ func NewECProvider() *ECProvider {
 	return &this
 }
 
+// NewECProviders converts a list ECProvider pointers to objects.
+// This is helpful when the SetECProvider requires a list of objects
+func NewECProviders(ps ...*ECProvider) []ECProvider {
+	objs := []ECProvider{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
 func (o *ECProvider) GetApiKey() string {
 	if o == nil || utils.IsNil(o.ApiKey) {

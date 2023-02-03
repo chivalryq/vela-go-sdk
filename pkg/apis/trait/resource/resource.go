@@ -59,6 +59,16 @@ func NewResourceSpec() *ResourceSpec {
 	return &this
 }
 
+// NewResourceSpecs converts a list ResourceSpec pointers to objects.
+// This is helpful when the SetResourceSpec requires a list of objects
+func NewResourceSpecs(ps ...*ResourceSpec) []ResourceSpec {
+	objs := []ResourceSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetCpu returns the Cpu field value if set, zero value otherwise.
 func (o *ResourceTrait) GetCpu() float32 {
 	if o == nil || utils.IsNil(o.Properties.Cpu) {

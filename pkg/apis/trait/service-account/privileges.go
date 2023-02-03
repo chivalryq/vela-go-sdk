@@ -56,6 +56,16 @@ func NewPrivileges() *Privileges {
 	return &this
 }
 
+// NewPrivilegess converts a list Privileges pointers to objects.
+// This is helpful when the SetPrivileges requires a list of objects
+func NewPrivilegess(ps ...*Privileges) []Privileges {
+	objs := []Privileges{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetApiGroups returns the ApiGroups field value if set, zero value otherwise.
 func (o *Privileges) GetApiGroups() []string {
 	if o == nil || utils.IsNil(o.ApiGroups) {

@@ -45,6 +45,16 @@ func NewLabelsSpec() *LabelsSpec {
 	return &this
 }
 
+// NewLabelsSpecs converts a list LabelsSpec pointers to objects.
+// This is helpful when the SetLabelsSpec requires a list of objects
+func NewLabelsSpecs(ps ...*LabelsSpec) []LabelsSpec {
+	objs := []LabelsSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 func (o LabelsSpec) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {

@@ -59,6 +59,16 @@ func NewSidecarSpec() *SidecarSpec {
 	return &this
 }
 
+// NewSidecarSpecs converts a list SidecarSpec pointers to objects.
+// This is helpful when the SetSidecarSpec requires a list of objects
+func NewSidecarSpecs(ps ...*SidecarSpec) []SidecarSpec {
+	objs := []SidecarSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetArgs returns the Args field value if set, zero value otherwise.
 func (o *SidecarTrait) GetArgs() []string {
 	if o == nil || utils.IsNil(o.Properties.Args) {

@@ -45,6 +45,16 @@ func NewEnv() *Env {
 	return &this
 }
 
+// NewEnvs converts a list Env pointers to objects.
+// This is helpful when the SetEnv requires a list of objects
+func NewEnvs(ps ...*Env) []Env {
+	objs := []Env{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Env) GetName() string {
 	if o == nil || utils.IsNil(o.Name) {

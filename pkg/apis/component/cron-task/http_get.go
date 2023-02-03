@@ -45,6 +45,16 @@ func NewHttpGet() *HttpGet {
 	return &this
 }
 
+// NewHttpGets converts a list HttpGet pointers to objects.
+// This is helpful when the SetHttpGet requires a list of objects
+func NewHttpGets(ps ...*HttpGet) []HttpGet {
+	objs := []HttpGet{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetHttpHeaders returns the HttpHeaders field value if set, zero value otherwise.
 func (o *HttpGet) GetHttpHeaders() []HttpHeaders {
 	if o == nil || utils.IsNil(o.HttpHeaders) {

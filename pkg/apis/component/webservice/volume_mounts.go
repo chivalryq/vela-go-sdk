@@ -50,6 +50,16 @@ func NewVolumeMounts() *VolumeMounts {
 	return &this
 }
 
+// NewVolumeMountss converts a list VolumeMounts pointers to objects.
+// This is helpful when the SetVolumeMounts requires a list of objects
+func NewVolumeMountss(ps ...*VolumeMounts) []VolumeMounts {
+	objs := []VolumeMounts{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetConfigMap returns the ConfigMap field value if set, zero value otherwise.
 func (o *VolumeMounts) GetConfigMap() []ConfigMap {
 	if o == nil || utils.IsNil(o.ConfigMap) {

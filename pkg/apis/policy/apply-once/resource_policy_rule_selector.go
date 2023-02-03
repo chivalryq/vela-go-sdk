@@ -52,6 +52,16 @@ func NewResourcePolicyRuleSelector() *ResourcePolicyRuleSelector {
 	return &this
 }
 
+// NewResourcePolicyRuleSelectors converts a list ResourcePolicyRuleSelector pointers to objects.
+// This is helpful when the SetResourcePolicyRuleSelector requires a list of objects
+func NewResourcePolicyRuleSelectors(ps ...*ResourcePolicyRuleSelector) []ResourcePolicyRuleSelector {
+	objs := []ResourcePolicyRuleSelector{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetComponentNames returns the ComponentNames field value if set, zero value otherwise.
 func (o *ResourcePolicyRuleSelector) GetComponentNames() []string {
 	if o == nil || utils.IsNil(o.ComponentNames) {

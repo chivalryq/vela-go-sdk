@@ -44,6 +44,16 @@ func NewSecretKeyRef() *SecretKeyRef {
 	return &this
 }
 
+// NewSecretKeyRefs converts a list SecretKeyRef pointers to objects.
+// This is helpful when the SetSecretKeyRef requires a list of objects
+func NewSecretKeyRefs(ps ...*SecretKeyRef) []SecretKeyRef {
+	objs := []SecretKeyRef{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *SecretKeyRef) GetKey() string {
 	if o == nil || utils.IsNil(o.Key) {

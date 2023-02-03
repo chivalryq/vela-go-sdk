@@ -49,6 +49,16 @@ func NewPureIngressSpec() *PureIngressSpec {
 	return &this
 }
 
+// NewPureIngressSpecs converts a list PureIngressSpec pointers to objects.
+// This is helpful when the SetPureIngressSpec requires a list of objects
+func NewPureIngressSpecs(ps ...*PureIngressSpec) []PureIngressSpec {
+	objs := []PureIngressSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetDomain returns the Domain field value if set, zero value otherwise.
 func (o *PureIngressTrait) GetDomain() string {
 	if o == nil || utils.IsNil(o.Properties.Domain) {

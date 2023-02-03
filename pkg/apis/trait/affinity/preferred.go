@@ -43,6 +43,16 @@ func NewPreferred() *Preferred {
 	return &this
 }
 
+// NewPreferreds converts a list Preferred pointers to objects.
+// This is helpful when the SetPreferred requires a list of objects
+func NewPreferreds(ps ...*Preferred) []Preferred {
+	objs := []Preferred{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetPreference returns the Preference field value if set, zero value otherwise.
 func (o *Preferred) GetPreference() NodeSelectorTerm {
 	if o == nil || utils.IsNil(o.Preference) {

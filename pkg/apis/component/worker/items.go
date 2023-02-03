@@ -47,6 +47,16 @@ func NewItems() *Items {
 	return &this
 }
 
+// NewItemss converts a list Items pointers to objects.
+// This is helpful when the SetItems requires a list of objects
+func NewItemss(ps ...*Items) []Items {
+	objs := []Items{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *Items) GetKey() string {
 	if o == nil || utils.IsNil(o.Key) {

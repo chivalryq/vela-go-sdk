@@ -58,6 +58,16 @@ func NewExport2configSpec() *Export2configSpec {
 	return &this
 }
 
+// NewExport2configSpecs converts a list Export2configSpec pointers to objects.
+// This is helpful when the SetExport2configSpec requires a list of objects
+func NewExport2configSpecs(ps ...*Export2configSpec) []Export2configSpec {
+	objs := []Export2configSpec{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetCluster returns the Cluster field value if set, zero value otherwise.
 func (o *Export2configWorkflowStep) GetCluster() string {
 	if o == nil || utils.IsNil(o.Properties.Cluster) {

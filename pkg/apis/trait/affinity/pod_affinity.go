@@ -44,6 +44,16 @@ func NewPodAffinity() *PodAffinity {
 	return &this
 }
 
+// NewPodAffinitys converts a list PodAffinity pointers to objects.
+// This is helpful when the SetPodAffinity requires a list of objects
+func NewPodAffinitys(ps ...*PodAffinity) []PodAffinity {
+	objs := []PodAffinity{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetPreferred returns the Preferred field value if set, zero value otherwise.
 func (o *PodAffinity) GetPreferred() []Preferred1 {
 	if o == nil || utils.IsNil(o.Preferred) {

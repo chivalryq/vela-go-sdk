@@ -50,6 +50,16 @@ func NewTraits() *Traits {
 	return &this
 }
 
+// NewTraitss converts a list Traits pointers to objects.
+// This is helpful when the SetTraits requires a list of objects
+func NewTraitss(ps ...*Traits) []Traits {
+	objs := []Traits{}
+	for _, p := range ps {
+		objs = append(objs, *p)
+	}
+	return objs
+}
+
 // GetDisable returns the Disable field value if set, zero value otherwise.
 func (o *Traits) GetDisable() bool {
 	if o == nil || utils.IsNil(o.Disable) {
