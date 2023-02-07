@@ -9,10 +9,11 @@ import (
 )
 
 type ApplicationBuilder struct {
-	name        string
-	namespace   string
-	labels      map[string]string
-	annotations map[string]string
+	name            string
+	namespace       string
+	labels          map[string]string
+	annotations     map[string]string
+	resourceVersion string
 
 	components   []Component
 	steps        []WorkflowStep
@@ -202,8 +203,9 @@ func (a *ApplicationBuilder) Build() v1beta1.Application {
 			APIVersion: v1beta1.SchemeGroupVersion.String(),
 		},
 		ObjectMeta: v1.ObjectMeta{
-			Name:      a.name,
-			Namespace: a.namespace,
+			Name:            a.name,
+			Namespace:       a.namespace,
+			ResourceVersion: a.resourceVersion,
 		},
 		Spec: v1beta1.ApplicationSpec{
 			Components: components,
@@ -220,6 +222,8 @@ func FromK8sObject(app *v1beta1.Application) (Application, error) {
 	a := &ApplicationBuilder{}
 	a.Name(app.Name)
 	a.Namespace(app.Namespace)
+	a.resourceVersion = app.ResourceVersion
+
 	for _, comp := range app.Spec.Components {
 		c, err := FromComponent(&comp)
 		if err != nil {
@@ -227,12 +231,14 @@ func FromK8sObject(app *v1beta1.Application) (Application, error) {
 		}
 		a.WithComponents(c)
 	}
-	for _, step := range app.Spec.Workflow.Steps {
-		s, err := FromWorkflowStep(&step)
-		if err != nil {
-			return nil, errors.Wrap(err, "convert workflow step from k8s object")
+	if app.Spec.Workflow != nil {
+		for _, step := range app.Spec.Workflow.Steps {
+			s, err := FromWorkflowStep(&step)
+			if err != nil {
+				return nil, errors.Wrap(err, "convert workflow step from k8s object")
+			}
+			a.WithWorkflowSteps(s)
 		}
-		a.WithWorkflowSteps(s)
 	}
 	for _, policy := range app.Spec.Policies {
 		p, err := FromPolicy(&policy)

@@ -36,4 +36,20 @@ func main() {
 	app.SetComponent(w)
 	// Then you can re-apply the application
 
+	err = clt.Update(ctx, app)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("now the application")
+	now, err := clt.Get(ctx, runtimeclient.ObjectKey{Name: "test-app", Namespace: "default"})
+	if err != nil {
+		panic(err)
+	}
+
+	marshal, err = json.Marshal(now.Build())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(marshal))
 }
