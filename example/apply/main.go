@@ -29,9 +29,9 @@ func main() {
 					SetEnv(NewEnvs(
 						NewEnv().SetName("test").SetValue("test"),
 					)).
-					SetVolumes(NewVolumess(
-						NewVolumes().SetName("test-volume").SetType("pvc"),
-					)).
+					//SetVolumes(NewVolumess(
+					//	NewVolumes().SetName("test-volume").SetType("pvc").SetMountPath("/test"),
+					//)).
 					SetImage("nginx:latest").
 					SetCpu("500m").
 					AddTrait(
