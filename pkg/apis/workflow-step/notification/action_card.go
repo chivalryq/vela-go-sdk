@@ -21,13 +21,13 @@ var _ utils.MappedNullable = &ActionCard{}
 
 // ActionCard struct for ActionCard
 type ActionCard struct {
-	BtnOrientation *string              `json:"btnOrientation,omitempty"`
-	Btns           utils.NullableString `json:"btns,omitempty"`
-	HideAvatar     *string              `json:"hideAvatar,omitempty"`
-	SingleTitle    *string              `json:"singleTitle,omitempty"`
-	SingleURL      *string              `json:"singleURL,omitempty"`
-	Text           *string              `json:"text,omitempty"`
-	Title          *string              `json:"title,omitempty"`
+	BtnOrientation *string `json:"btnOrientation,omitempty"`
+	Btns           []Btns  `json:"btns,omitempty"`
+	HideAvatar     *string `json:"hideAvatar,omitempty"`
+	SingleTitle    *string `json:"singleTitle,omitempty"`
+	SingleURL      *string `json:"singleURL,omitempty"`
+	Text           *string `json:"text,omitempty"`
+	Title          *string `json:"title,omitempty"`
 }
 
 // NewActionCardWith instantiates a new ActionCard object
@@ -91,49 +91,38 @@ func (o *ActionCard) SetBtnOrientation(v string) *ActionCard {
 	return o
 }
 
-// GetBtns returns the Btns field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ActionCard) GetBtns() string {
-	if o == nil || utils.IsNil(o.Btns.Get()) {
-		var ret string
+// GetBtns returns the Btns field value if set, zero value otherwise.
+func (o *ActionCard) GetBtns() []Btns {
+	if o == nil || utils.IsNil(o.Btns) {
+		var ret []Btns
 		return ret
 	}
-	return *o.Btns.Get()
+	return o.Btns
 }
 
 // GetBtnsOk returns a tuple with the Btns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ActionCard) GetBtnsOk() (*string, bool) {
-	if o == nil {
+func (o *ActionCard) GetBtnsOk() ([]Btns, bool) {
+	if o == nil || utils.IsNil(o.Btns) {
 		return nil, false
 	}
-	return o.Btns.Get(), o.Btns.IsSet()
+	return o.Btns, true
 }
 
 // HasBtns returns a boolean if a field has been set.
 func (o *ActionCard) HasBtns() bool {
-	if o != nil && o.Btns.IsSet() {
+	if o != nil && !utils.IsNil(o.Btns) {
 		return true
 	}
 
 	return false
 }
 
-// SetBtns gets a reference to the given utils.NullableString and assigns it to the btns field.
+// SetBtns gets a reference to the given []Btns and assigns it to the btns field.
 // Btns:
-func (o *ActionCard) SetBtns(v string) *ActionCard {
-	o.Btns.Set(&v)
+func (o *ActionCard) SetBtns(v []Btns) *ActionCard {
+	o.Btns = v
 	return o
-}
-
-// SetBtnsNil sets the value for Btns to be an explicit nil
-func (o *ActionCard) SetBtnsNil() {
-	o.Btns.Set(nil)
-}
-
-// UnsetBtns ensures that no value is present for Btns, not even an explicit nil
-func (o *ActionCard) UnsetBtns() {
-	o.Btns.Unset()
 }
 
 // GetHideAvatar returns the HideAvatar field value if set, zero value otherwise.
@@ -319,8 +308,8 @@ func (o ActionCard) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.BtnOrientation) {
 		toSerialize["btnOrientation"] = o.BtnOrientation
 	}
-	if o.Btns.IsSet() {
-		toSerialize["btns"] = o.Btns.Get()
+	if !utils.IsNil(o.Btns) {
+		toSerialize["btns"] = o.Btns
 	}
 	if !utils.IsNil(o.HideAvatar) {
 		toSerialize["hideAvatar"] = o.HideAvatar

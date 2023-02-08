@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &Message2{}
 
 // Message2 Specify the message that you want to sent, refer to [slack messaging](https://api.slack.com/reference/messaging/payload)
 type Message2 struct {
-	Attachments NullableAttachments  `json:"attachments,omitempty"`
-	Blocks      utils.NullableString `json:"blocks,omitempty"`
+	Attachments *Attachments `json:"attachments,omitempty"`
+	Blocks      []Block      `json:"blocks,omitempty"`
 	// Specify the message text format in markdown for slack notification
 	Mrkdwn *bool `json:"mrkdwn,omitempty"`
 	// Specify the message text for slack notification
@@ -61,94 +61,72 @@ func NewMessage2s(ps ...*Message2) []Message2 {
 	return objs
 }
 
-// GetAttachments returns the Attachments field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAttachments returns the Attachments field value if set, zero value otherwise.
 func (o *Message2) GetAttachments() Attachments {
-	if o == nil || utils.IsNil(o.Attachments.Get()) {
+	if o == nil || utils.IsNil(o.Attachments) {
 		var ret Attachments
 		return ret
 	}
-	return *o.Attachments.Get()
+	return *o.Attachments
 }
 
 // GetAttachmentsOk returns a tuple with the Attachments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Message2) GetAttachmentsOk() (*Attachments, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Attachments) {
 		return nil, false
 	}
-	return o.Attachments.Get(), o.Attachments.IsSet()
+	return o.Attachments, true
 }
 
 // HasAttachments returns a boolean if a field has been set.
 func (o *Message2) HasAttachments() bool {
-	if o != nil && o.Attachments.IsSet() {
+	if o != nil && !utils.IsNil(o.Attachments) {
 		return true
 	}
 
 	return false
 }
 
-// SetAttachments gets a reference to the given NullableAttachments and assigns it to the attachments field.
+// SetAttachments gets a reference to the given Attachments and assigns it to the attachments field.
 // Attachments:
 func (o *Message2) SetAttachments(v Attachments) *Message2 {
-	o.Attachments.Set(&v)
+	o.Attachments = &v
 	return o
 }
 
-// SetAttachmentsNil sets the value for Attachments to be an explicit nil
-func (o *Message2) SetAttachmentsNil() {
-	o.Attachments.Set(nil)
-}
-
-// UnsetAttachments ensures that no value is present for Attachments, not even an explicit nil
-func (o *Message2) UnsetAttachments() {
-	o.Attachments.Unset()
-}
-
-// GetBlocks returns the Blocks field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Message2) GetBlocks() string {
-	if o == nil || utils.IsNil(o.Blocks.Get()) {
-		var ret string
+// GetBlocks returns the Blocks field value if set, zero value otherwise.
+func (o *Message2) GetBlocks() []Block {
+	if o == nil || utils.IsNil(o.Blocks) {
+		var ret []Block
 		return ret
 	}
-	return *o.Blocks.Get()
+	return o.Blocks
 }
 
 // GetBlocksOk returns a tuple with the Blocks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Message2) GetBlocksOk() (*string, bool) {
-	if o == nil {
+func (o *Message2) GetBlocksOk() ([]Block, bool) {
+	if o == nil || utils.IsNil(o.Blocks) {
 		return nil, false
 	}
-	return o.Blocks.Get(), o.Blocks.IsSet()
+	return o.Blocks, true
 }
 
 // HasBlocks returns a boolean if a field has been set.
 func (o *Message2) HasBlocks() bool {
-	if o != nil && o.Blocks.IsSet() {
+	if o != nil && !utils.IsNil(o.Blocks) {
 		return true
 	}
 
 	return false
 }
 
-// SetBlocks gets a reference to the given utils.NullableString and assigns it to the blocks field.
+// SetBlocks gets a reference to the given []Block and assigns it to the blocks field.
 // Blocks:
-func (o *Message2) SetBlocks(v string) *Message2 {
-	o.Blocks.Set(&v)
+func (o *Message2) SetBlocks(v []Block) *Message2 {
+	o.Blocks = v
 	return o
-}
-
-// SetBlocksNil sets the value for Blocks to be an explicit nil
-func (o *Message2) SetBlocksNil() {
-	o.Blocks.Set(nil)
-}
-
-// UnsetBlocks ensures that no value is present for Blocks, not even an explicit nil
-func (o *Message2) UnsetBlocks() {
-	o.Blocks.Unset()
 }
 
 // GetMrkdwn returns the Mrkdwn field value if set, zero value otherwise.
@@ -263,11 +241,11 @@ func (o Message2) MarshalJSON() ([]byte, error) {
 
 func (o Message2) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Attachments.IsSet() {
-		toSerialize["attachments"] = o.Attachments.Get()
+	if !utils.IsNil(o.Attachments) {
+		toSerialize["attachments"] = o.Attachments
 	}
-	if o.Blocks.IsSet() {
-		toSerialize["blocks"] = o.Blocks.Get()
+	if !utils.IsNil(o.Blocks) {
+		toSerialize["blocks"] = o.Blocks
 	}
 	if !utils.IsNil(o.Mrkdwn) {
 		toSerialize["mrkdwn"] = o.Mrkdwn

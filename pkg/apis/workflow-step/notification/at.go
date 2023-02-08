@@ -52,9 +52,9 @@ func NewAts(ps ...*At) []At {
 	return objs
 }
 
-// GetAtMobiles returns the AtMobiles field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAtMobiles returns the AtMobiles field value if set, zero value otherwise.
 func (o *At) GetAtMobiles() []string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.AtMobiles) {
 		var ret []string
 		return ret
 	}
@@ -63,7 +63,6 @@ func (o *At) GetAtMobiles() []string {
 
 // GetAtMobilesOk returns a tuple with the AtMobiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *At) GetAtMobilesOk() ([]string, bool) {
 	if o == nil || utils.IsNil(o.AtMobiles) {
 		return nil, false
@@ -73,7 +72,7 @@ func (o *At) GetAtMobilesOk() ([]string, bool) {
 
 // HasAtMobiles returns a boolean if a field has been set.
 func (o *At) HasAtMobiles() bool {
-	if o != nil && utils.IsNil(o.AtMobiles) {
+	if o != nil && !utils.IsNil(o.AtMobiles) {
 		return true
 	}
 
@@ -131,7 +130,7 @@ func (o At) MarshalJSON() ([]byte, error) {
 
 func (o At) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AtMobiles != nil {
+	if !utils.IsNil(o.AtMobiles) {
 		toSerialize["atMobiles"] = o.AtMobiles
 	}
 	if !utils.IsNil(o.IsAtAll) {

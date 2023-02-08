@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &Attachments{}
 
 // Attachments struct for Attachments
 type Attachments struct {
-	Blocks utils.NullableString `json:"blocks,omitempty"`
-	Color  *string              `json:"color,omitempty"`
+	Blocks []Block `json:"blocks,omitempty"`
+	Color  *string `json:"color,omitempty"`
 }
 
 // NewAttachmentsWith instantiates a new Attachments object
@@ -52,49 +52,38 @@ func NewAttachmentss(ps ...*Attachments) []Attachments {
 	return objs
 }
 
-// GetBlocks returns the Blocks field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Attachments) GetBlocks() string {
-	if o == nil || utils.IsNil(o.Blocks.Get()) {
-		var ret string
+// GetBlocks returns the Blocks field value if set, zero value otherwise.
+func (o *Attachments) GetBlocks() []Block {
+	if o == nil || utils.IsNil(o.Blocks) {
+		var ret []Block
 		return ret
 	}
-	return *o.Blocks.Get()
+	return o.Blocks
 }
 
 // GetBlocksOk returns a tuple with the Blocks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Attachments) GetBlocksOk() (*string, bool) {
-	if o == nil {
+func (o *Attachments) GetBlocksOk() ([]Block, bool) {
+	if o == nil || utils.IsNil(o.Blocks) {
 		return nil, false
 	}
-	return o.Blocks.Get(), o.Blocks.IsSet()
+	return o.Blocks, true
 }
 
 // HasBlocks returns a boolean if a field has been set.
 func (o *Attachments) HasBlocks() bool {
-	if o != nil && o.Blocks.IsSet() {
+	if o != nil && !utils.IsNil(o.Blocks) {
 		return true
 	}
 
 	return false
 }
 
-// SetBlocks gets a reference to the given utils.NullableString and assigns it to the blocks field.
+// SetBlocks gets a reference to the given []Block and assigns it to the blocks field.
 // Blocks:
-func (o *Attachments) SetBlocks(v string) *Attachments {
-	o.Blocks.Set(&v)
+func (o *Attachments) SetBlocks(v []Block) *Attachments {
+	o.Blocks = v
 	return o
-}
-
-// SetBlocksNil sets the value for Blocks to be an explicit nil
-func (o *Attachments) SetBlocksNil() {
-	o.Blocks.Set(nil)
-}
-
-// UnsetBlocks ensures that no value is present for Blocks, not even an explicit nil
-func (o *Attachments) UnsetBlocks() {
-	o.Blocks.Unset()
 }
 
 // GetColor returns the Color field value if set, zero value otherwise.
@@ -141,8 +130,8 @@ func (o Attachments) MarshalJSON() ([]byte, error) {
 
 func (o Attachments) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Blocks.IsSet() {
-		toSerialize["blocks"] = o.Blocks.Get()
+	if !utils.IsNil(o.Blocks) {
+		toSerialize["blocks"] = o.Blocks
 	}
 	if !utils.IsNil(o.Color) {
 		toSerialize["color"] = o.Color

@@ -21,14 +21,14 @@ var _ utils.MappedNullable = &Message{}
 
 // Message Specify the message that you want to sent, refer to [dingtalk messaging](https://developers.dingtalk.com/document/robots/custom-robot-access/title-72m-8ag-pqw)
 type Message struct {
-	ActionCard NullableActionCard `json:"actionCard,omitempty"`
-	At         NullableAt         `json:"at,omitempty"`
-	FeedCard   *FeedCard          `json:"feedCard,omitempty"`
-	Link       *Link              `json:"link,omitempty"`
-	Markdown   NullableMarkdown   `json:"markdown,omitempty"`
+	ActionCard *ActionCard `json:"actionCard,omitempty"`
+	At         *At         `json:"at,omitempty"`
+	FeedCard   *FeedCard   `json:"feedCard,omitempty"`
+	Link       *Link       `json:"link,omitempty"`
+	Markdown   *Markdown   `json:"markdown,omitempty"`
 	// msgType can be text, link, mardown, actionCard, feedCard
-	Msgtype *string      `json:"msgtype,omitempty"`
-	Text    NullableText `json:"text,omitempty"`
+	Msgtype *string `json:"msgtype,omitempty"`
+	Text    *Text   `json:"text,omitempty"`
 }
 
 // NewMessageWith instantiates a new Message object
@@ -62,94 +62,72 @@ func NewMessages(ps ...*Message) []Message {
 	return objs
 }
 
-// GetActionCard returns the ActionCard field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetActionCard returns the ActionCard field value if set, zero value otherwise.
 func (o *Message) GetActionCard() ActionCard {
-	if o == nil || utils.IsNil(o.ActionCard.Get()) {
+	if o == nil || utils.IsNil(o.ActionCard) {
 		var ret ActionCard
 		return ret
 	}
-	return *o.ActionCard.Get()
+	return *o.ActionCard
 }
 
 // GetActionCardOk returns a tuple with the ActionCard field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Message) GetActionCardOk() (*ActionCard, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.ActionCard) {
 		return nil, false
 	}
-	return o.ActionCard.Get(), o.ActionCard.IsSet()
+	return o.ActionCard, true
 }
 
 // HasActionCard returns a boolean if a field has been set.
 func (o *Message) HasActionCard() bool {
-	if o != nil && o.ActionCard.IsSet() {
+	if o != nil && !utils.IsNil(o.ActionCard) {
 		return true
 	}
 
 	return false
 }
 
-// SetActionCard gets a reference to the given NullableActionCard and assigns it to the actionCard field.
+// SetActionCard gets a reference to the given ActionCard and assigns it to the actionCard field.
 // ActionCard:
 func (o *Message) SetActionCard(v ActionCard) *Message {
-	o.ActionCard.Set(&v)
+	o.ActionCard = &v
 	return o
 }
 
-// SetActionCardNil sets the value for ActionCard to be an explicit nil
-func (o *Message) SetActionCardNil() {
-	o.ActionCard.Set(nil)
-}
-
-// UnsetActionCard ensures that no value is present for ActionCard, not even an explicit nil
-func (o *Message) UnsetActionCard() {
-	o.ActionCard.Unset()
-}
-
-// GetAt returns the At field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAt returns the At field value if set, zero value otherwise.
 func (o *Message) GetAt() At {
-	if o == nil || utils.IsNil(o.At.Get()) {
+	if o == nil || utils.IsNil(o.At) {
 		var ret At
 		return ret
 	}
-	return *o.At.Get()
+	return *o.At
 }
 
 // GetAtOk returns a tuple with the At field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Message) GetAtOk() (*At, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.At) {
 		return nil, false
 	}
-	return o.At.Get(), o.At.IsSet()
+	return o.At, true
 }
 
 // HasAt returns a boolean if a field has been set.
 func (o *Message) HasAt() bool {
-	if o != nil && o.At.IsSet() {
+	if o != nil && !utils.IsNil(o.At) {
 		return true
 	}
 
 	return false
 }
 
-// SetAt gets a reference to the given NullableAt and assigns it to the at field.
+// SetAt gets a reference to the given At and assigns it to the at field.
 // At:
 func (o *Message) SetAt(v At) *Message {
-	o.At.Set(&v)
+	o.At = &v
 	return o
-}
-
-// SetAtNil sets the value for At to be an explicit nil
-func (o *Message) SetAtNil() {
-	o.At.Set(nil)
-}
-
-// UnsetAt ensures that no value is present for At, not even an explicit nil
-func (o *Message) UnsetAt() {
-	o.At.Unset()
 }
 
 // GetFeedCard returns the FeedCard field value if set, zero value otherwise.
@@ -220,49 +198,38 @@ func (o *Message) SetLink(v Link) *Message {
 	return o
 }
 
-// GetMarkdown returns the Markdown field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMarkdown returns the Markdown field value if set, zero value otherwise.
 func (o *Message) GetMarkdown() Markdown {
-	if o == nil || utils.IsNil(o.Markdown.Get()) {
+	if o == nil || utils.IsNil(o.Markdown) {
 		var ret Markdown
 		return ret
 	}
-	return *o.Markdown.Get()
+	return *o.Markdown
 }
 
 // GetMarkdownOk returns a tuple with the Markdown field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Message) GetMarkdownOk() (*Markdown, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Markdown) {
 		return nil, false
 	}
-	return o.Markdown.Get(), o.Markdown.IsSet()
+	return o.Markdown, true
 }
 
 // HasMarkdown returns a boolean if a field has been set.
 func (o *Message) HasMarkdown() bool {
-	if o != nil && o.Markdown.IsSet() {
+	if o != nil && !utils.IsNil(o.Markdown) {
 		return true
 	}
 
 	return false
 }
 
-// SetMarkdown gets a reference to the given NullableMarkdown and assigns it to the markdown field.
+// SetMarkdown gets a reference to the given Markdown and assigns it to the markdown field.
 // Markdown:
 func (o *Message) SetMarkdown(v Markdown) *Message {
-	o.Markdown.Set(&v)
+	o.Markdown = &v
 	return o
-}
-
-// SetMarkdownNil sets the value for Markdown to be an explicit nil
-func (o *Message) SetMarkdownNil() {
-	o.Markdown.Set(nil)
-}
-
-// UnsetMarkdown ensures that no value is present for Markdown, not even an explicit nil
-func (o *Message) UnsetMarkdown() {
-	o.Markdown.Unset()
 }
 
 // GetMsgtype returns the Msgtype field value if set, zero value otherwise.
@@ -299,49 +266,38 @@ func (o *Message) SetMsgtype(v string) *Message {
 	return o
 }
 
-// GetText returns the Text field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetText returns the Text field value if set, zero value otherwise.
 func (o *Message) GetText() Text {
-	if o == nil || utils.IsNil(o.Text.Get()) {
+	if o == nil || utils.IsNil(o.Text) {
 		var ret Text
 		return ret
 	}
-	return *o.Text.Get()
+	return *o.Text
 }
 
 // GetTextOk returns a tuple with the Text field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Message) GetTextOk() (*Text, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Text) {
 		return nil, false
 	}
-	return o.Text.Get(), o.Text.IsSet()
+	return o.Text, true
 }
 
 // HasText returns a boolean if a field has been set.
 func (o *Message) HasText() bool {
-	if o != nil && o.Text.IsSet() {
+	if o != nil && !utils.IsNil(o.Text) {
 		return true
 	}
 
 	return false
 }
 
-// SetText gets a reference to the given NullableText and assigns it to the text field.
+// SetText gets a reference to the given Text and assigns it to the text field.
 // Text:
 func (o *Message) SetText(v Text) *Message {
-	o.Text.Set(&v)
+	o.Text = &v
 	return o
-}
-
-// SetTextNil sets the value for Text to be an explicit nil
-func (o *Message) SetTextNil() {
-	o.Text.Set(nil)
-}
-
-// UnsetText ensures that no value is present for Text, not even an explicit nil
-func (o *Message) UnsetText() {
-	o.Text.Unset()
 }
 
 func (o Message) MarshalJSON() ([]byte, error) {
@@ -354,11 +310,11 @@ func (o Message) MarshalJSON() ([]byte, error) {
 
 func (o Message) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ActionCard.IsSet() {
-		toSerialize["actionCard"] = o.ActionCard.Get()
+	if !utils.IsNil(o.ActionCard) {
+		toSerialize["actionCard"] = o.ActionCard
 	}
-	if o.At.IsSet() {
-		toSerialize["at"] = o.At.Get()
+	if !utils.IsNil(o.At) {
+		toSerialize["at"] = o.At
 	}
 	if !utils.IsNil(o.FeedCard) {
 		toSerialize["feedCard"] = o.FeedCard
@@ -366,14 +322,14 @@ func (o Message) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.Link) {
 		toSerialize["link"] = o.Link
 	}
-	if o.Markdown.IsSet() {
-		toSerialize["markdown"] = o.Markdown.Get()
+	if !utils.IsNil(o.Markdown) {
+		toSerialize["markdown"] = o.Markdown
 	}
 	if !utils.IsNil(o.Msgtype) {
 		toSerialize["msgtype"] = o.Msgtype
 	}
-	if o.Text.IsSet() {
-		toSerialize["text"] = o.Text.Get()
+	if !utils.IsNil(o.Text) {
+		toSerialize["text"] = o.Text
 	}
 	return toSerialize, nil
 }
