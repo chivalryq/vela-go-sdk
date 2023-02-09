@@ -28,19 +28,19 @@ var _ utils.MappedNullable = &ApplyObjectSpec{}
 // ApplyObjectSpec struct for ApplyObjectSpec
 type ApplyObjectSpec struct {
 	// The cluster you want to apply the resource to, default is the current control plane cluster
-	Cluster string `json:"cluster"`
+	Cluster *string `json:"cluster,omitempty"`
 	// Specify Kubernetes native resource object to be applied
-	Value map[string]interface{} `json:"value"`
+	Value map[string]interface{} `json:"value,omitempty"`
 }
 
 // NewApplyObjectSpecWith instantiates a new ApplyObjectSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApplyObjectSpecWith(cluster string, value map[string]interface{}) *ApplyObjectSpec {
+func NewApplyObjectSpecWith() *ApplyObjectSpec {
 	this := ApplyObjectSpec{}
-	this.Cluster = cluster
-	this.Value = value
+	var cluster string = ""
+	this.Cluster = &cluster
 	return &this
 }
 
@@ -50,7 +50,7 @@ func NewApplyObjectSpecWith(cluster string, value map[string]interface{}) *Apply
 func NewApplyObjectSpec() *ApplyObjectSpec {
 	this := ApplyObjectSpec{}
 	var cluster string = ""
-	this.Cluster = cluster
+	this.Cluster = &cluster
 	return &this
 }
 
@@ -64,51 +64,69 @@ func NewApplyObjectSpecs(ps ...*ApplyObjectSpec) []ApplyObjectSpec {
 	return objs
 }
 
-// GetCluster returns the Cluster field value
+// GetCluster returns the Cluster field value if set, zero value otherwise.
 func (o *ApplyObjectWorkflowStep) GetCluster() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Cluster) {
 		var ret string
 		return ret
 	}
-
-	return o.Properties.Cluster
+	return *o.Properties.Cluster
 }
 
-// GetClusterOk returns a tuple with the Cluster field value
+// GetClusterOk returns a tuple with the Cluster field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplyObjectWorkflowStep) GetClusterOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Cluster) {
 		return nil, false
 	}
-	return &o.Properties.Cluster, true
+	return o.Properties.Cluster, true
 }
 
-// SetCluster sets field value
+// HasCluster returns a boolean if a field has been set.
+func (o *ApplyObjectWorkflowStep) HasCluster() bool {
+	if o != nil && !utils.IsNil(o.Properties.Cluster) {
+		return true
+	}
+
+	return false
+}
+
+// SetCluster gets a reference to the given string and assigns it to the cluster field.
+// Cluster:  The cluster you want to apply the resource to, default is the current control plane cluster
 func (o *ApplyObjectWorkflowStep) SetCluster(v string) *ApplyObjectWorkflowStep {
-	o.Properties.Cluster = v
+	o.Properties.Cluster = &v
 	return o
 }
 
-// GetValue returns the Value field value
+// GetValue returns the Value field value if set, zero value otherwise.
 func (o *ApplyObjectWorkflowStep) GetValue() map[string]interface{} {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Value) {
 		var ret map[string]interface{}
 		return ret
 	}
-
 	return o.Properties.Value
 }
 
-// GetValueOk returns a tuple with the Value field value
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplyObjectWorkflowStep) GetValueOk() (map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.Value) {
 		return map[string]interface{}{}, false
 	}
 	return o.Properties.Value, true
 }
 
-// SetValue sets field value
+// HasValue returns a boolean if a field has been set.
+func (o *ApplyObjectWorkflowStep) HasValue() bool {
+	if o != nil && !utils.IsNil(o.Properties.Value) {
+		return true
+	}
+
+	return false
+}
+
+// SetValue gets a reference to the given map[string]interface{} and assigns it to the value field.
+// Value:  Specify Kubernetes native resource object to be applied
 func (o *ApplyObjectWorkflowStep) SetValue(v map[string]interface{}) *ApplyObjectWorkflowStep {
 	o.Properties.Value = v
 	return o
@@ -124,8 +142,12 @@ func (o ApplyObjectSpec) MarshalJSON() ([]byte, error) {
 
 func (o ApplyObjectSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["cluster"] = o.Cluster
-	toSerialize["value"] = o.Value
+	if !utils.IsNil(o.Cluster) {
+		toSerialize["cluster"] = o.Cluster
+	}
+	if !utils.IsNil(o.Value) {
+		toSerialize["value"] = o.Value
+	}
 	return toSerialize, nil
 }
 

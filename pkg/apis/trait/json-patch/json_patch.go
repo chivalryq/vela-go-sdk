@@ -26,15 +26,16 @@ var _ utils.MappedNullable = &JsonPatchSpec{}
 
 // JsonPatchSpec struct for JsonPatchSpec
 type JsonPatchSpec struct {
-	Operations []map[string]interface{} `json:"operations,omitempty"`
+	Operations []map[string]interface{} `json:"operations"`
 }
 
 // NewJsonPatchSpecWith instantiates a new JsonPatchSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJsonPatchSpecWith() *JsonPatchSpec {
+func NewJsonPatchSpecWith(operations []map[string]interface{}) *JsonPatchSpec {
 	this := JsonPatchSpec{}
+	this.Operations = operations
 	return &this
 }
 
@@ -56,35 +57,26 @@ func NewJsonPatchSpecs(ps ...*JsonPatchSpec) []JsonPatchSpec {
 	return objs
 }
 
-// GetOperations returns the Operations field value if set, zero value otherwise.
+// GetOperations returns the Operations field value
 func (o *JSONPatchTrait) GetOperations() []map[string]interface{} {
-	if o == nil || utils.IsNil(o.Properties.Operations) {
+	if o == nil {
 		var ret []map[string]interface{}
 		return ret
 	}
+
 	return o.Properties.Operations
 }
 
-// GetOperationsOk returns a tuple with the Operations field value if set, nil otherwise
+// GetOperationsOk returns a tuple with the Operations field value
 // and a boolean to check if the value has been set.
 func (o *JSONPatchTrait) GetOperationsOk() ([]map[string]interface{}, bool) {
-	if o == nil || utils.IsNil(o.Properties.Operations) {
+	if o == nil {
 		return nil, false
 	}
 	return o.Properties.Operations, true
 }
 
-// HasOperations returns a boolean if a field has been set.
-func (o *JSONPatchTrait) HasOperations() bool {
-	if o != nil && !utils.IsNil(o.Properties.Operations) {
-		return true
-	}
-
-	return false
-}
-
-// SetOperations gets a reference to the given []map[string]interface{} and assigns it to the operations field.
-// Operations:
+// SetOperations sets field value
 func (o *JSONPatchTrait) SetOperations(v []map[string]interface{}) *JSONPatchTrait {
 	o.Properties.Operations = v
 	return o
@@ -100,9 +92,7 @@ func (o JsonPatchSpec) MarshalJSON() ([]byte, error) {
 
 func (o JsonPatchSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.Operations) {
-		toSerialize["operations"] = o.Operations
-	}
+	toSerialize["operations"] = o.Operations
 	return toSerialize, nil
 }
 

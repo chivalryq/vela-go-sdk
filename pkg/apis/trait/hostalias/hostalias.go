@@ -27,16 +27,15 @@ var _ utils.MappedNullable = &HostaliasSpec{}
 // HostaliasSpec struct for HostaliasSpec
 type HostaliasSpec struct {
 	// Specify the hostAliases to add
-	HostAliases []HostAliases `json:"hostAliases"`
+	HostAliases []HostAliases `json:"hostAliases,omitempty"`
 }
 
 // NewHostaliasSpecWith instantiates a new HostaliasSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHostaliasSpecWith(hostAliases []HostAliases) *HostaliasSpec {
+func NewHostaliasSpecWith() *HostaliasSpec {
 	this := HostaliasSpec{}
-	this.HostAliases = hostAliases
 	return &this
 }
 
@@ -58,26 +57,35 @@ func NewHostaliasSpecs(ps ...*HostaliasSpec) []HostaliasSpec {
 	return objs
 }
 
-// GetHostAliases returns the HostAliases field value
+// GetHostAliases returns the HostAliases field value if set, zero value otherwise.
 func (o *HostaliasTrait) GetHostAliases() []HostAliases {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.HostAliases) {
 		var ret []HostAliases
 		return ret
 	}
-
 	return o.Properties.HostAliases
 }
 
-// GetHostAliasesOk returns a tuple with the HostAliases field value
+// GetHostAliasesOk returns a tuple with the HostAliases field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HostaliasTrait) GetHostAliasesOk() ([]HostAliases, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Properties.HostAliases) {
 		return nil, false
 	}
 	return o.Properties.HostAliases, true
 }
 
-// SetHostAliases sets field value
+// HasHostAliases returns a boolean if a field has been set.
+func (o *HostaliasTrait) HasHostAliases() bool {
+	if o != nil && !utils.IsNil(o.Properties.HostAliases) {
+		return true
+	}
+
+	return false
+}
+
+// SetHostAliases gets a reference to the given []HostAliases and assigns it to the hostAliases field.
+// HostAliases:  Specify the hostAliases to add
 func (o *HostaliasTrait) SetHostAliases(v []HostAliases) *HostaliasTrait {
 	o.Properties.HostAliases = v
 	return o
@@ -93,7 +101,9 @@ func (o HostaliasSpec) MarshalJSON() ([]byte, error) {
 
 func (o HostaliasSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["hostAliases"] = o.HostAliases
+	if !utils.IsNil(o.HostAliases) {
+		toSerialize["hostAliases"] = o.HostAliases
+	}
 	return toSerialize, nil
 }
 

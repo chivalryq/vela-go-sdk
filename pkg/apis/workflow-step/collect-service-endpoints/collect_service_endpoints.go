@@ -40,17 +40,16 @@ type CollectServiceEndpointsSpec struct {
 	// Filter the port name of the endpoints
 	PortName *string `json:"portName,omitempty"`
 	// The protocal of endpoint url
-	Protocal *string `json:"protocal,omitempty"`
+	Protocal string `json:"protocal"`
 }
 
 // NewCollectServiceEndpointsSpecWith instantiates a new CollectServiceEndpointsSpec object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCollectServiceEndpointsSpecWith() *CollectServiceEndpointsSpec {
+func NewCollectServiceEndpointsSpecWith(protocal string) *CollectServiceEndpointsSpec {
 	this := CollectServiceEndpointsSpec{}
-	var protocal string = "http"
-	this.Protocal = &protocal
+	this.Protocal = protocal
 	return &this
 }
 
@@ -60,7 +59,7 @@ func NewCollectServiceEndpointsSpecWith() *CollectServiceEndpointsSpec {
 func NewCollectServiceEndpointsSpec() *CollectServiceEndpointsSpec {
 	this := CollectServiceEndpointsSpec{}
 	var protocal string = "http"
-	this.Protocal = &protocal
+	this.Protocal = protocal
 	return &this
 }
 
@@ -278,37 +277,28 @@ func (o *CollectServiceEndpointsWorkflowStep) SetPortName(v string) *CollectServ
 	return o
 }
 
-// GetProtocal returns the Protocal field value if set, zero value otherwise.
+// GetProtocal returns the Protocal field value
 func (o *CollectServiceEndpointsWorkflowStep) GetProtocal() string {
-	if o == nil || utils.IsNil(o.Properties.Protocal) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Properties.Protocal
+
+	return o.Properties.Protocal
 }
 
-// GetProtocalOk returns a tuple with the Protocal field value if set, nil otherwise
+// GetProtocalOk returns a tuple with the Protocal field value
 // and a boolean to check if the value has been set.
 func (o *CollectServiceEndpointsWorkflowStep) GetProtocalOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.Protocal) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Properties.Protocal, true
+	return &o.Properties.Protocal, true
 }
 
-// HasProtocal returns a boolean if a field has been set.
-func (o *CollectServiceEndpointsWorkflowStep) HasProtocal() bool {
-	if o != nil && !utils.IsNil(o.Properties.Protocal) {
-		return true
-	}
-
-	return false
-}
-
-// SetProtocal gets a reference to the given string and assigns it to the protocal field.
-// Protocal:  The protocal of endpoint url
+// SetProtocal sets field value
 func (o *CollectServiceEndpointsWorkflowStep) SetProtocal(v string) *CollectServiceEndpointsWorkflowStep {
-	o.Properties.Protocal = &v
+	o.Properties.Protocal = v
 	return o
 }
 
@@ -340,9 +330,7 @@ func (o CollectServiceEndpointsSpec) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.PortName) {
 		toSerialize["portName"] = o.PortName
 	}
-	if !utils.IsNil(o.Protocal) {
-		toSerialize["protocal"] = o.Protocal
-	}
+	toSerialize["protocal"] = o.Protocal
 	return toSerialize, nil
 }
 
