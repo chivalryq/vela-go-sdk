@@ -22,20 +22,20 @@ var _ utils.MappedNullable = &BaiduProvider{}
 // BaiduProvider struct for BaiduProvider
 type BaiduProvider struct {
 	AccessKey *string `json:"accessKey,omitempty"`
+	Name      *string `json:"name,omitempty"`
 	Region    *string `json:"region,omitempty"`
 	SecretKey *string `json:"secretKey,omitempty"`
-	Name      string  `json:"name"`
-	Type      string  `json:"type"`
+	Type      *string `json:"type,omitempty"`
 }
 
 // NewBaiduProviderWith instantiates a new BaiduProvider object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBaiduProviderWith(name string, type_ string) *BaiduProvider {
+func NewBaiduProviderWith() *BaiduProvider {
 	this := BaiduProvider{}
-	this.Name = name
-	this.Type = type_
+	var name string = "baidu-provider"
+	this.Name = &name
 	return &this
 }
 
@@ -45,7 +45,7 @@ func NewBaiduProviderWith(name string, type_ string) *BaiduProvider {
 func NewBaiduProvider() *BaiduProvider {
 	this := BaiduProvider{}
 	var name string = "baidu-provider"
-	this.Name = name
+	this.Name = &name
 	return &this
 }
 
@@ -90,6 +90,40 @@ func (o *BaiduProvider) HasAccessKey() bool {
 // AccessKey:
 func (o *BaiduProvider) SetAccessKey(v string) *BaiduProvider {
 	o.AccessKey = &v
+	return o
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *BaiduProvider) GetName() string {
+	if o == nil || utils.IsNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BaiduProvider) GetNameOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *BaiduProvider) HasName() bool {
+	if o != nil && !utils.IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the name field.
+// Name:
+func (o *BaiduProvider) SetName(v string) *BaiduProvider {
+	o.Name = &v
 	return o
 }
 
@@ -161,53 +195,37 @@ func (o *BaiduProvider) SetSecretKey(v string) *BaiduProvider {
 	return o
 }
 
-// GetName returns the Name field value
-func (o *BaiduProvider) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *BaiduProvider) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *BaiduProvider) SetName(v string) *BaiduProvider {
-	o.Name = v
-	return o
-}
-
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *BaiduProvider) GetType() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BaiduProvider) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *BaiduProvider) HasType() bool {
+	if o != nil && !utils.IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the type_ field.
+// Type:
 func (o *BaiduProvider) SetType(v string) *BaiduProvider {
-	o.Type = v
+	o.Type = &v
 	return o
 }
 
@@ -224,14 +242,18 @@ func (o BaiduProvider) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.AccessKey) {
 		toSerialize["accessKey"] = o.AccessKey
 	}
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
 	if !utils.IsNil(o.Region) {
 		toSerialize["region"] = o.Region
 	}
 	if !utils.IsNil(o.SecretKey) {
 		toSerialize["secretKey"] = o.SecretKey
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["type"] = o.Type
+	if !utils.IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
 	return toSerialize, nil
 }
 

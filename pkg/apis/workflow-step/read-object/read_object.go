@@ -30,11 +30,11 @@ type ReadObjectSpec struct {
 	// Specify the apiVersion of the object, defaults to 'core.oam.dev/v1beta1'
 	ApiVersion *string `json:"apiVersion,omitempty"`
 	// The cluster you want to apply the resource to, default is the current control plane cluster
-	Cluster *string `json:"cluster,omitempty"`
+	Cluster string `json:"cluster"`
 	// Specify the kind of the object, defaults to Application
 	Kind *string `json:"kind,omitempty"`
 	// Specify the name of the object
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// The namespace of the resource you want to read
 	Namespace *string `json:"namespace,omitempty"`
 }
@@ -43,10 +43,10 @@ type ReadObjectSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReadObjectSpecWith() *ReadObjectSpec {
+func NewReadObjectSpecWith(cluster string, name string) *ReadObjectSpec {
 	this := ReadObjectSpec{}
-	var cluster string = ""
-	this.Cluster = &cluster
+	this.Cluster = cluster
+	this.Name = name
 	var namespace string = "default"
 	this.Namespace = &namespace
 	return &this
@@ -58,7 +58,7 @@ func NewReadObjectSpecWith() *ReadObjectSpec {
 func NewReadObjectSpec() *ReadObjectSpec {
 	this := ReadObjectSpec{}
 	var cluster string = ""
-	this.Cluster = &cluster
+	this.Cluster = cluster
 	var namespace string = "default"
 	this.Namespace = &namespace
 	return &this
@@ -108,37 +108,28 @@ func (o *ReadObjectWorkflowStep) SetApiVersion(v string) *ReadObjectWorkflowStep
 	return o
 }
 
-// GetCluster returns the Cluster field value if set, zero value otherwise.
+// GetCluster returns the Cluster field value
 func (o *ReadObjectWorkflowStep) GetCluster() string {
-	if o == nil || utils.IsNil(o.Properties.Cluster) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Properties.Cluster
+
+	return o.Properties.Cluster
 }
 
-// GetClusterOk returns a tuple with the Cluster field value if set, nil otherwise
+// GetClusterOk returns a tuple with the Cluster field value
 // and a boolean to check if the value has been set.
 func (o *ReadObjectWorkflowStep) GetClusterOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.Cluster) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Properties.Cluster, true
+	return &o.Properties.Cluster, true
 }
 
-// HasCluster returns a boolean if a field has been set.
-func (o *ReadObjectWorkflowStep) HasCluster() bool {
-	if o != nil && !utils.IsNil(o.Properties.Cluster) {
-		return true
-	}
-
-	return false
-}
-
-// SetCluster gets a reference to the given string and assigns it to the cluster field.
-// Cluster:  The cluster you want to apply the resource to, default is the current control plane cluster
+// SetCluster sets field value
 func (o *ReadObjectWorkflowStep) SetCluster(v string) *ReadObjectWorkflowStep {
-	o.Properties.Cluster = &v
+	o.Properties.Cluster = v
 	return o
 }
 
@@ -176,37 +167,28 @@ func (o *ReadObjectWorkflowStep) SetKind(v string) *ReadObjectWorkflowStep {
 	return o
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *ReadObjectWorkflowStep) GetName() string {
-	if o == nil || utils.IsNil(o.Properties.Name) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Properties.Name
+
+	return o.Properties.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *ReadObjectWorkflowStep) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.Name) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Properties.Name, true
+	return &o.Properties.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *ReadObjectWorkflowStep) HasName() bool {
-	if o != nil && !utils.IsNil(o.Properties.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the name field.
-// Name:  Specify the name of the object
+// SetName sets field value
 func (o *ReadObjectWorkflowStep) SetName(v string) *ReadObjectWorkflowStep {
-	o.Properties.Name = &v
+	o.Properties.Name = v
 	return o
 }
 
@@ -257,15 +239,11 @@ func (o ReadObjectSpec) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.ApiVersion) {
 		toSerialize["apiVersion"] = o.ApiVersion
 	}
-	if !utils.IsNil(o.Cluster) {
-		toSerialize["cluster"] = o.Cluster
-	}
+	toSerialize["cluster"] = o.Cluster
 	if !utils.IsNil(o.Kind) {
 		toSerialize["kind"] = o.Kind
 	}
-	if !utils.IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if !utils.IsNil(o.Namespace) {
 		toSerialize["namespace"] = o.Namespace
 	}

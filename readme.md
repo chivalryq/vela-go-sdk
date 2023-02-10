@@ -1,6 +1,18 @@
-# KubeVela Go SDK [WIP]
+# KubeVela Go SDK
 
-This is a Go SDK for KubeVela. 
+This is a Go SDK for KubeVela generated via vela CLI
+
+## Generating
+
+1. Init the SDK project
+```shell
+vela def gen-api --lang go --output sdk -f /path/to/your/definition/dir --init
+```
+
+2. Generate any definition
+```shell
+vela def gen-api --lang go --output sdk -f /another/definition/dir
+```
 
 ## Features:
 
@@ -17,7 +29,7 @@ This is a Go SDK for KubeVela.
  
 ## Example
 
-See [example](./example) for more details.
+See [example](example) for more details.
 
 ## Future Work
 
