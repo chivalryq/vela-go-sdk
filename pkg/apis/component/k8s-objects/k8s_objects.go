@@ -214,7 +214,7 @@ func (k *K8sObjectsComponent) AddTrait(traits ...apis.Trait) *K8sObjectsComponen
 
 func (k *K8sObjectsComponent) GetTrait(typ string) apis.Trait {
 	for _, _t := range k.Base.Traits {
-		if _t.DefType() == _type {
+		if _t.DefType() == typ {
 			return _t
 		}
 	}

@@ -919,7 +919,7 @@ func (w *WebserviceComponent) AddTrait(traits ...apis.Trait) *WebserviceComponen
 
 func (w *WebserviceComponent) GetTrait(typ string) apis.Trait {
 	for _, _t := range w.Base.Traits {
-		if _t.DefType() == _type {
+		if _t.DefType() == typ {
 			return _t
 		}
 	}

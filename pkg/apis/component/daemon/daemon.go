@@ -880,7 +880,7 @@ func (d *DaemonComponent) AddTrait(traits ...apis.Trait) *DaemonComponent {
 
 func (d *DaemonComponent) GetTrait(typ string) apis.Trait {
 	for _, _t := range d.Base.Traits {
-		if _t.DefType() == _type {
+		if _t.DefType() == typ {
 			return _t
 		}
 	}

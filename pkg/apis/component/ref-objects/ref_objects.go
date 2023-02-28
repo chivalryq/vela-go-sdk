@@ -254,7 +254,7 @@ func (r *RefObjectsComponent) AddTrait(traits ...apis.Trait) *RefObjectsComponen
 
 func (r *RefObjectsComponent) GetTrait(typ string) apis.Trait {
 	for _, _t := range r.Base.Traits {
-		if _t.DefType() == _type {
+		if _t.DefType() == typ {
 			return _t
 		}
 	}

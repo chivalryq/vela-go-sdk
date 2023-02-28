@@ -897,7 +897,7 @@ func (h *HelmComponent) AddTrait(traits ...apis.Trait) *HelmComponent {
 
 func (h *HelmComponent) GetTrait(typ string) apis.Trait {
 	for _, _t := range h.Base.Traits {
-		if _t.DefType() == _type {
+		if _t.DefType() == typ {
 			return _t
 		}
 	}

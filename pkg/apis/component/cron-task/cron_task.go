@@ -1138,7 +1138,7 @@ func (c *CronTaskComponent) AddTrait(traits ...apis.Trait) *CronTaskComponent {
 
 func (c *CronTaskComponent) GetTrait(typ string) apis.Trait {
 	for _, _t := range c.Base.Traits {
-		if _t.DefType() == _type {
+		if _t.DefType() == typ {
 			return _t
 		}
 	}
