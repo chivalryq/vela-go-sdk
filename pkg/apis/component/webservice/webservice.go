@@ -912,7 +912,7 @@ func FromComponent(from common.ApplicationComponent) (apis.Component, error) {
 	return w.FromComponent(from)
 }
 
-func (w *WebserviceComponent) AddTrait(traits ...apis.Trait) *WebserviceComponent {
+func (w *WebserviceComponent) AddTraits(traits ...apis.Trait) *WebserviceComponent {
 	w.Base.Traits = append(w.Base.Traits, traits...)
 	return w
 }

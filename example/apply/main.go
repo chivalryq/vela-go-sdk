@@ -24,7 +24,7 @@ func main() {
 				)).
 				SetImage("nginx:latest").
 				SetCpu("500m").
-				AddTrait(
+				AddTraits(
 					initcontainer.InitContainer().
 						SetName("init").
 						SetImage("busybox").
@@ -52,17 +52,5 @@ func main() {
 		fmt.Println("convert to yaml err", err)
 	}
 	fmt.Println(yaml)
-
-	//clt, err := client.NewDefault()
-	//if err != nil {
-	//	fmt.Println("init client", err)
-	//	return
-	//}
-	//
-	//err = clt.Create(context.Background(), application)
-	//if err != nil {
-	//	fmt.Println("create fail")
-	//	fmt.Println(err)
-	//}
 
 }
