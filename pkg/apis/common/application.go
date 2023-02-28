@@ -17,8 +17,12 @@ limitations under the License.
 package common
 
 import (
+	"gopkg.in/yaml.v3"
+
 	"github.com/pkg/errors"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+
+	. "github.com/chivalryq/vela-go-sdk/pkg/apis"
 
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/common"
 	"github.com/oam-dev/kubevela-core-api/apis/core.oam.dev/v1beta1"
@@ -42,7 +46,7 @@ type ApplicationBuilder struct {
 // 1. return error
 // 2. ignore
 // 3. add a new one to application
-func (a *ApplicationBuilder) SetComponent(component Component) Application {
+func (a *ApplicationBuilder) SetComponent(component Component) TypedApplication {
 	for i, c := range a.components {
 		if c.ComponentName() == component.ComponentName() {
 			a.components[i] = component
@@ -52,7 +56,7 @@ func (a *ApplicationBuilder) SetComponent(component Component) Application {
 	return a
 }
 
-func (a *ApplicationBuilder) SetWorkflowStep(step WorkflowStep) Application {
+func (a *ApplicationBuilder) SetWorkflowStep(step WorkflowStep) TypedApplication {
 	for i, s := range a.steps {
 		if s.WorkflowStepName() == step.WorkflowStepName() {
 			a.steps[i] = step
@@ -62,7 +66,7 @@ func (a *ApplicationBuilder) SetWorkflowStep(step WorkflowStep) Application {
 	return a
 }
 
-func (a *ApplicationBuilder) SetPolicy(policy Policy) Application {
+func (a *ApplicationBuilder) SetPolicy(policy Policy) TypedApplication {
 	for i, p := range a.policies {
 		if p.PolicyName() == policy.PolicyName() {
 			a.policies[i] = policy
@@ -129,46 +133,47 @@ func (a *ApplicationBuilder) GetPoliciesByType(typ string) []Policy {
 	return result
 }
 
-func (a *ApplicationBuilder) WithWorkflowSteps(step ...WorkflowStep) Application {
+// AddWorkflowSteps append workflow steps to application
+func (a *ApplicationBuilder) AddWorkflowSteps(step ...WorkflowStep) TypedApplication {
 	a.steps = append(a.steps, step...)
 	return a
 }
 
-// WithComponents append components to application
-func (a *ApplicationBuilder) WithComponents(component ...Component) Application {
+// AddComponents append components to application
+func (a *ApplicationBuilder) AddComponents(component ...Component) TypedApplication {
 	a.components = append(a.components, component...)
 	return a
 }
 
-// WithPolicies append policies to application
-func (a *ApplicationBuilder) WithPolicies(policy ...Policy) Application {
+// AddPolicies append policies to application
+func (a *ApplicationBuilder) AddPolicies(policy ...Policy) TypedApplication {
 	a.policies = append(a.policies, policy...)
 	return a
 }
 
-// WithWorkflowMode set the workflow mode of application
-func (a *ApplicationBuilder) WithWorkflowMode(steps, subSteps common.WorkflowMode) Application {
+// SetWorkflowMode set the workflow mode of application
+func (a *ApplicationBuilder) SetWorkflowMode(steps, subSteps common.WorkflowMode) TypedApplication {
 	a.workflowMode.Steps = steps
 	a.workflowMode.SubSteps = subSteps
 	return a
 }
 
-func (a *ApplicationBuilder) Name(name string) Application {
+func (a *ApplicationBuilder) Name(name string) TypedApplication {
 	a.name = name
 	return a
 }
 
-func (a *ApplicationBuilder) Namespace(namespace string) Application {
+func (a *ApplicationBuilder) Namespace(namespace string) TypedApplication {
 	a.namespace = namespace
 	return a
 }
 
-func (a *ApplicationBuilder) Labels(labels map[string]string) Application {
+func (a *ApplicationBuilder) Labels(labels map[string]string) TypedApplication {
 	a.labels = labels
 	return a
 }
 
-func (a *ApplicationBuilder) Annotations(annotations map[string]string) Application {
+func (a *ApplicationBuilder) Annotations(annotations map[string]string) TypedApplication {
 	a.annotations = annotations
 	return a
 }
@@ -190,7 +195,7 @@ func (a *ApplicationBuilder) GetAnnotations() map[string]string {
 }
 
 // New creates a new application with the given components.
-func New() Application {
+func New() TypedApplication {
 	app := &ApplicationBuilder{
 		components: make([]Component, 0),
 		steps:      make([]WorkflowStep, 0),
@@ -234,7 +239,16 @@ func (a *ApplicationBuilder) Build() v1beta1.Application {
 	return res
 }
 
-func FromK8sObject(app *v1beta1.Application) (Application, error) {
+func (a *ApplicationBuilder) ToYAML() (string, error) {
+	app := a.Build()
+	marshal, err := yaml.Marshal(app)
+	if err != nil {
+		return "", err
+	}
+	return string(marshal), nil
+}
+
+func FromK8sObject(app *v1beta1.Application) (TypedApplication, error) {
 	a := &ApplicationBuilder{}
 	a.Name(app.Name)
 	a.Namespace(app.Namespace)
@@ -245,7 +259,7 @@ func FromK8sObject(app *v1beta1.Application) (Application, error) {
 		if err != nil {
 			return nil, errors.Wrap(err, "convert component from k8s object")
 		}
-		a.WithComponents(c)
+		a.AddComponents(c)
 	}
 	if app.Spec.Workflow != nil {
 		for _, step := range app.Spec.Workflow.Steps {
@@ -253,7 +267,7 @@ func FromK8sObject(app *v1beta1.Application) (Application, error) {
 			if err != nil {
 				return nil, errors.Wrap(err, "convert workflow step from k8s object")
 			}
-			a.WithWorkflowSteps(s)
+			a.AddWorkflowSteps(s)
 		}
 	}
 	for _, policy := range app.Spec.Policies {
@@ -261,7 +275,7 @@ func FromK8sObject(app *v1beta1.Application) (Application, error) {
 		if err != nil {
 			return nil, errors.Wrap(err, "convert policy from k8s object")
 		}
-		a.WithPolicies(p)
+		a.AddPolicies(p)
 	}
 	return a, nil
 }

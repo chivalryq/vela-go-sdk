@@ -600,7 +600,7 @@ func (w *WorkerComponent) AddTrait(traits ...apis.Trait) *WorkerComponent {
 	return w
 }
 
-func (w *WorkerComponent) GetTrait(_type string) apis.Trait {
+func (w *WorkerComponent) GetTrait(typ string) apis.Trait {
 	for _, _t := range w.Base.Traits {
 		if _t.DefType() == _type {
 			return _t

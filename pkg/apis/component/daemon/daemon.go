@@ -878,7 +878,7 @@ func (d *DaemonComponent) AddTrait(traits ...apis.Trait) *DaemonComponent {
 	return d
 }
 
-func (d *DaemonComponent) GetTrait(_type string) apis.Trait {
+func (d *DaemonComponent) GetTrait(typ string) apis.Trait {
 	for _, _t := range d.Base.Traits {
 		if _t.DefType() == _type {
 			return _t

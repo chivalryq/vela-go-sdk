@@ -33,7 +33,7 @@ func main() {
 		panic("not webservice")
 	}
 	w.SetImage("nginx:1.20")
-	app.SetComponent(w)
+	app.AddComponents(w)
 	// Then you can re-apply the application
 
 	err = clt.Update(ctx, app)

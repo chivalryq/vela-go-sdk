@@ -28,9 +28,9 @@ var _ utils.MappedNullable = &CreateConfigSpec{}
 // CreateConfigSpec struct for CreateConfigSpec
 type CreateConfigSpec struct {
 	// Specify the content of the config.
-	Config map[string]interface{} `json:"config,omitempty"`
+	Config map[string]interface{} `json:"config"`
 	// Specify the name of the config.
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// Specify the namespace of the config.
 	Namespace *string `json:"namespace,omitempty"`
 	// Specify the template of the config.
@@ -41,8 +41,10 @@ type CreateConfigSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateConfigSpecWith() *CreateConfigSpec {
+func NewCreateConfigSpecWith(config map[string]interface{}, name string) *CreateConfigSpec {
 	this := CreateConfigSpec{}
+	this.Config = config
+	this.Name = name
 	return &this
 }
 
@@ -64,71 +66,53 @@ func NewCreateConfigSpecs(ps ...*CreateConfigSpec) []CreateConfigSpec {
 	return objs
 }
 
-// GetConfig returns the Config field value if set, zero value otherwise.
+// GetConfig returns the Config field value
 func (o *CreateConfigWorkflowStep) GetConfig() map[string]interface{} {
-	if o == nil || utils.IsNil(o.Properties.Config) {
+	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
+
 	return o.Properties.Config
 }
 
-// GetConfigOk returns a tuple with the Config field value if set, nil otherwise
+// GetConfigOk returns a tuple with the Config field value
 // and a boolean to check if the value has been set.
 func (o *CreateConfigWorkflowStep) GetConfigOk() (map[string]interface{}, bool) {
-	if o == nil || utils.IsNil(o.Properties.Config) {
+	if o == nil {
 		return map[string]interface{}{}, false
 	}
 	return o.Properties.Config, true
 }
 
-// HasConfig returns a boolean if a field has been set.
-func (o *CreateConfigWorkflowStep) HasConfig() bool {
-	if o != nil && !utils.IsNil(o.Properties.Config) {
-		return true
-	}
-
-	return false
-}
-
-// SetConfig gets a reference to the given map[string]interface{} and assigns it to the config field.
-// Config:  Specify the content of the config.
+// SetConfig sets field value
 func (o *CreateConfigWorkflowStep) SetConfig(v map[string]interface{}) *CreateConfigWorkflowStep {
 	o.Properties.Config = v
 	return o
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *CreateConfigWorkflowStep) GetName() string {
-	if o == nil || utils.IsNil(o.Properties.Name) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Properties.Name
+
+	return o.Properties.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *CreateConfigWorkflowStep) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.Name) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Properties.Name, true
+	return &o.Properties.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *CreateConfigWorkflowStep) HasName() bool {
-	if o != nil && !utils.IsNil(o.Properties.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the name field.
-// Name:  Specify the name of the config.
+// SetName sets field value
 func (o *CreateConfigWorkflowStep) SetName(v string) *CreateConfigWorkflowStep {
-	o.Properties.Name = &v
+	o.Properties.Name = v
 	return o
 }
 
@@ -210,12 +194,8 @@ func (o CreateConfigSpec) MarshalJSON() ([]byte, error) {
 
 func (o CreateConfigSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.Config) {
-		toSerialize["config"] = o.Config
-	}
-	if !utils.IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["config"] = o.Config
+	toSerialize["name"] = o.Name
 	if !utils.IsNil(o.Namespace) {
 		toSerialize["namespace"] = o.Namespace
 	}

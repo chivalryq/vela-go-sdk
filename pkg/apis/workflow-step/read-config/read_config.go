@@ -28,7 +28,7 @@ var _ utils.MappedNullable = &ReadConfigSpec{}
 // ReadConfigSpec struct for ReadConfigSpec
 type ReadConfigSpec struct {
 	// Specify the name of the config.
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// Specify the namespace of the config.
 	Namespace *string `json:"namespace,omitempty"`
 }
@@ -37,8 +37,9 @@ type ReadConfigSpec struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReadConfigSpecWith() *ReadConfigSpec {
+func NewReadConfigSpecWith(name string) *ReadConfigSpec {
 	this := ReadConfigSpec{}
+	this.Name = name
 	return &this
 }
 
@@ -60,37 +61,28 @@ func NewReadConfigSpecs(ps ...*ReadConfigSpec) []ReadConfigSpec {
 	return objs
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *ReadConfigWorkflowStep) GetName() string {
-	if o == nil || utils.IsNil(o.Properties.Name) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Properties.Name
+
+	return o.Properties.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *ReadConfigWorkflowStep) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Properties.Name) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Properties.Name, true
+	return &o.Properties.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *ReadConfigWorkflowStep) HasName() bool {
-	if o != nil && !utils.IsNil(o.Properties.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the name field.
-// Name:  Specify the name of the config.
+// SetName sets field value
 func (o *ReadConfigWorkflowStep) SetName(v string) *ReadConfigWorkflowStep {
-	o.Properties.Name = &v
+	o.Properties.Name = v
 	return o
 }
 
@@ -138,9 +130,7 @@ func (o ReadConfigSpec) MarshalJSON() ([]byte, error) {
 
 func (o ReadConfigSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if !utils.IsNil(o.Namespace) {
 		toSerialize["namespace"] = o.Namespace
 	}

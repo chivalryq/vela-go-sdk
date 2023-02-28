@@ -30,6 +30,7 @@ type KustomizeSpec struct {
 	Force           *bool            `json:"force,omitempty"`
 	Git             *Git             `json:"git,omitempty"`
 	ImageRepository *ImageRepository `json:"imageRepository,omitempty"`
+	Oci             *Oci             `json:"oci,omitempty"`
 	Oss             *Oss             `json:"oss,omitempty"`
 	// Path to the directory containing the kustomization.yaml file, or the set of plain YAMLs a kustomization.yaml should be generated for.
 	Path *string `json:"path,omitempty"`
@@ -48,7 +49,7 @@ type KustomizeSpec struct {
 	TargetNamespace *string `json:"targetNamespace,omitempty"`
 	// The timeout for operations like download index/clone repository, optional
 	Timeout *string `json:"timeout,omitempty"`
-	// The Git or Helm repository URL, OSS endpoint, accept HTTP/S or SSH address as git url,
+	// The Git or Helm repository URL, OSS endpoint or OCI repo, accept HTTP/S or SSH address as git url
 	Url *string `json:"url,omitempty"`
 }
 
@@ -198,6 +199,40 @@ func (o *KustomizeComponent) HasImageRepository() bool {
 // ImageRepository:
 func (o *KustomizeComponent) SetImageRepository(v ImageRepository) *KustomizeComponent {
 	o.Properties.ImageRepository = &v
+	return o
+}
+
+// GetOci returns the Oci field value if set, zero value otherwise.
+func (o *KustomizeComponent) GetOci() Oci {
+	if o == nil || utils.IsNil(o.Properties.Oci) {
+		var ret Oci
+		return ret
+	}
+	return *o.Properties.Oci
+}
+
+// GetOciOk returns a tuple with the Oci field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *KustomizeComponent) GetOciOk() (*Oci, bool) {
+	if o == nil || utils.IsNil(o.Properties.Oci) {
+		return nil, false
+	}
+	return o.Properties.Oci, true
+}
+
+// HasOci returns a boolean if a field has been set.
+func (o *KustomizeComponent) HasOci() bool {
+	if o != nil && !utils.IsNil(o.Properties.Oci) {
+		return true
+	}
+
+	return false
+}
+
+// SetOci gets a reference to the given Oci and assigns it to the oci field.
+// Oci:
+func (o *KustomizeComponent) SetOci(v Oci) *KustomizeComponent {
+	o.Properties.Oci = &v
 	return o
 }
 
@@ -569,7 +604,7 @@ func (o *KustomizeComponent) HasUrl() bool {
 }
 
 // SetUrl gets a reference to the given string and assigns it to the url field.
-// Url:  The Git or Helm repository URL, OSS endpoint, accept HTTP/S or SSH address as git url,
+// Url:  The Git or Helm repository URL, OSS endpoint or OCI repo, accept HTTP/S or SSH address as git url
 func (o *KustomizeComponent) SetUrl(v string) *KustomizeComponent {
 	o.Properties.Url = &v
 	return o
@@ -593,6 +628,9 @@ func (o KustomizeSpec) ToMap() (map[string]interface{}, error) {
 	}
 	if !utils.IsNil(o.ImageRepository) {
 		toSerialize["imageRepository"] = o.ImageRepository
+	}
+	if !utils.IsNil(o.Oci) {
+		toSerialize["oci"] = o.Oci
 	}
 	if !utils.IsNil(o.Oss) {
 		toSerialize["oss"] = o.Oss
@@ -736,7 +774,7 @@ func (k *KustomizeComponent) AddTrait(traits ...apis.Trait) *KustomizeComponent 
 	return k
 }
 
-func (k *KustomizeComponent) GetTrait(_type string) apis.Trait {
+func (k *KustomizeComponent) GetTrait(typ string) apis.Trait {
 	for _, _t := range k.Base.Traits {
 		if _t.DefType() == _type {
 			return _t

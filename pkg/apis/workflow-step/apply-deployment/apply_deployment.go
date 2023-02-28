@@ -27,8 +27,10 @@ var _ utils.MappedNullable = &ApplyDeploymentSpec{}
 
 // ApplyDeploymentSpec struct for ApplyDeploymentSpec
 type ApplyDeploymentSpec struct {
-	Cmd   []string `json:"cmd,omitempty"`
-	Image *string  `json:"image,omitempty"`
+	Cluster  *string  `json:"cluster,omitempty"`
+	Cmd      []string `json:"cmd,omitempty"`
+	Image    *string  `json:"image,omitempty"`
+	Replicas *int32   `json:"replicas,omitempty"`
 }
 
 // NewApplyDeploymentSpecWith instantiates a new ApplyDeploymentSpec object
@@ -37,6 +39,10 @@ type ApplyDeploymentSpec struct {
 // will change when the set of required properties is changed
 func NewApplyDeploymentSpecWith() *ApplyDeploymentSpec {
 	this := ApplyDeploymentSpec{}
+	var cluster string = ""
+	this.Cluster = &cluster
+	var replicas int32 = 1
+	this.Replicas = &replicas
 	return &this
 }
 
@@ -45,6 +51,10 @@ func NewApplyDeploymentSpecWith() *ApplyDeploymentSpec {
 // but it doesn't guarantee that properties required by API are set
 func NewApplyDeploymentSpec() *ApplyDeploymentSpec {
 	this := ApplyDeploymentSpec{}
+	var cluster string = ""
+	this.Cluster = &cluster
+	var replicas int32 = 1
+	this.Replicas = &replicas
 	return &this
 }
 
@@ -56,6 +66,40 @@ func NewApplyDeploymentSpecs(ps ...*ApplyDeploymentSpec) []ApplyDeploymentSpec {
 		objs = append(objs, *p)
 	}
 	return objs
+}
+
+// GetCluster returns the Cluster field value if set, zero value otherwise.
+func (o *ApplyDeploymentWorkflowStep) GetCluster() string {
+	if o == nil || utils.IsNil(o.Properties.Cluster) {
+		var ret string
+		return ret
+	}
+	return *o.Properties.Cluster
+}
+
+// GetClusterOk returns a tuple with the Cluster field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApplyDeploymentWorkflowStep) GetClusterOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Properties.Cluster) {
+		return nil, false
+	}
+	return o.Properties.Cluster, true
+}
+
+// HasCluster returns a boolean if a field has been set.
+func (o *ApplyDeploymentWorkflowStep) HasCluster() bool {
+	if o != nil && !utils.IsNil(o.Properties.Cluster) {
+		return true
+	}
+
+	return false
+}
+
+// SetCluster gets a reference to the given string and assigns it to the cluster field.
+// Cluster:
+func (o *ApplyDeploymentWorkflowStep) SetCluster(v string) *ApplyDeploymentWorkflowStep {
+	o.Properties.Cluster = &v
+	return o
 }
 
 // GetCmd returns the Cmd field value if set, zero value otherwise.
@@ -126,6 +170,40 @@ func (o *ApplyDeploymentWorkflowStep) SetImage(v string) *ApplyDeploymentWorkflo
 	return o
 }
 
+// GetReplicas returns the Replicas field value if set, zero value otherwise.
+func (o *ApplyDeploymentWorkflowStep) GetReplicas() int32 {
+	if o == nil || utils.IsNil(o.Properties.Replicas) {
+		var ret int32
+		return ret
+	}
+	return *o.Properties.Replicas
+}
+
+// GetReplicasOk returns a tuple with the Replicas field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApplyDeploymentWorkflowStep) GetReplicasOk() (*int32, bool) {
+	if o == nil || utils.IsNil(o.Properties.Replicas) {
+		return nil, false
+	}
+	return o.Properties.Replicas, true
+}
+
+// HasReplicas returns a boolean if a field has been set.
+func (o *ApplyDeploymentWorkflowStep) HasReplicas() bool {
+	if o != nil && !utils.IsNil(o.Properties.Replicas) {
+		return true
+	}
+
+	return false
+}
+
+// SetReplicas gets a reference to the given int32 and assigns it to the replicas field.
+// Replicas:
+func (o *ApplyDeploymentWorkflowStep) SetReplicas(v int32) *ApplyDeploymentWorkflowStep {
+	o.Properties.Replicas = &v
+	return o
+}
+
 func (o ApplyDeploymentSpec) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -136,11 +214,17 @@ func (o ApplyDeploymentSpec) MarshalJSON() ([]byte, error) {
 
 func (o ApplyDeploymentSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !utils.IsNil(o.Cluster) {
+		toSerialize["cluster"] = o.Cluster
+	}
 	if !utils.IsNil(o.Cmd) {
 		toSerialize["cmd"] = o.Cmd
 	}
 	if !utils.IsNil(o.Image) {
 		toSerialize["image"] = o.Image
+	}
+	if !utils.IsNil(o.Replicas) {
+		toSerialize["replicas"] = o.Replicas
 	}
 	return toSerialize, nil
 }

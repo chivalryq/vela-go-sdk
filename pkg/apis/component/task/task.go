@@ -726,7 +726,7 @@ func (t *TaskComponent) AddTrait(traits ...apis.Trait) *TaskComponent {
 	return t
 }
 
-func (t *TaskComponent) GetTrait(_type string) apis.Trait {
+func (t *TaskComponent) GetTrait(typ string) apis.Trait {
 	for _, _t := range t.Base.Traits {
 		if _t.DefType() == _type {
 			return _t

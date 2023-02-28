@@ -917,7 +917,7 @@ func (w *WebserviceComponent) AddTrait(traits ...apis.Trait) *WebserviceComponen
 	return w
 }
 
-func (w *WebserviceComponent) GetTrait(_type string) apis.Trait {
+func (w *WebserviceComponent) GetTrait(typ string) apis.Trait {
 	for _, _t := range w.Base.Traits {
 		if _t.DefType() == _type {
 			return _t

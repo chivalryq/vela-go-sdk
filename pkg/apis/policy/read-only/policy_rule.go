@@ -21,8 +21,7 @@ var _ utils.MappedNullable = &PolicyRule{}
 
 // PolicyRule struct for PolicyRule
 type PolicyRule struct {
-	// Specify how to select the targets of the rule
-	Selector []RuleSelector `json:"selector,omitempty"`
+	Selector *RuleSelector `json:"selector,omitempty"`
 }
 
 // NewPolicyRuleWith instantiates a new PolicyRule object
@@ -53,17 +52,17 @@ func NewPolicyRules(ps ...*PolicyRule) []PolicyRule {
 }
 
 // GetSelector returns the Selector field value if set, zero value otherwise.
-func (o *PolicyRule) GetSelector() []RuleSelector {
+func (o *PolicyRule) GetSelector() RuleSelector {
 	if o == nil || utils.IsNil(o.Selector) {
-		var ret []RuleSelector
+		var ret RuleSelector
 		return ret
 	}
-	return o.Selector
+	return *o.Selector
 }
 
 // GetSelectorOk returns a tuple with the Selector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PolicyRule) GetSelectorOk() ([]RuleSelector, bool) {
+func (o *PolicyRule) GetSelectorOk() (*RuleSelector, bool) {
 	if o == nil || utils.IsNil(o.Selector) {
 		return nil, false
 	}
@@ -79,10 +78,10 @@ func (o *PolicyRule) HasSelector() bool {
 	return false
 }
 
-// SetSelector gets a reference to the given []RuleSelector and assigns it to the selector field.
-// Selector:  Specify how to select the targets of the rule
-func (o *PolicyRule) SetSelector(v []RuleSelector) *PolicyRule {
-	o.Selector = v
+// SetSelector gets a reference to the given RuleSelector and assigns it to the selector field.
+// Selector:
+func (o *PolicyRule) SetSelector(v RuleSelector) *PolicyRule {
+	o.Selector = &v
 	return o
 }
 
